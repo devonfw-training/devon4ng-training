@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Richwebclient</title>
+    <title>Async programming in JS</title>
 
-    <meta name="description" content="Richwebclient">
-    <meta name="author" content="Richwebclient">
+    <meta name="description" content="AngularJS Directives: Demystified">
+    <meta name="author" content="Tomasz Bialecki, Marek Matczak">
 
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
@@ -16,7 +16,9 @@
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
     <link rel="stylesheet" href="../base/reveal.js/css/reveal.css">
-    <link rel="stylesheet" href="../base/reveal.js/css/theme/league.css" id="theme">
+    <link rel="stylesheet" href="../base/reveal.js/css/theme/sky.css" id="theme">
+    <link rel="stylesheet" href="css/own.css">
+    <link rel="stylesheet" href="css/js-engine.css">
 
     <!-- Code syntax highlighting -->
     <link rel="stylesheet" href="../base/reveal.js/lib/css/zenburn.css">
@@ -38,22 +40,55 @@
 <body>
 
 <div class="reveal">
+    <!-- Any section element inside of this container is displayed as a slide -->
     <div class="slides">
         <section>
-            <h1>Reveal.js</h1>
-
-            <h3>The HTML Presentation Framework</h3>
-
-            <p>
-                <small>
-                </small>
-            </p>
+            <p class="title_image"><img height="200" src="img/256px-JavaScript-logo.png"></p>
+            <h2 class="highlight">Asynchronous programming model</h2>
+            <h3 class="highlight">Promise API in AngularJS</h3>
+            <p>Marek Matczak</p>
+        </section>
+        <section>
+            <div id="js-engine">
+                <p>JavaScript Engine (simplified)</p>
+                        <pre><code data-trim class="javascript">
+var bar = function () {
+        console.log('bar...');
+    },
+    foo = function () {
+        setTimeout(bar, 5000);
+        console.log('foo...');
+    };
+foo();
+					</code></pre>
+                <div id="js-engine-core">
+                    <div id="call-stack">
+                        <p>Call Stack</p>
+                    </div>
+                    <div id="event-table">
+                        <p>Event Table</p>
+                    </div>
+                    <div id="event-queue">
+                        <p>Event Queue</p>
+                    </div>
+                    <div id="console">
+                        <p>Console</p>
+                        <!--<pre class="code-element"><code data-trim class="javascript">"I'm second!"</code></pre>-->
+                    </div>
+                </div>
+                <div class="navigate-left enabled"></div>
+            </div>
+            <div>
+                <a href="javascript:jsEngineSteps.backward()">&lt;&lt;</a>&nbsp;
+                <a href="javascript:jsEngineSteps.forward()">&gt;&gt;</a>
+            </div>
         </section>
     </div>
 </div>
 <script src="../base/reveal.js/lib/js/head.min.js"></script>
 <script src="../base/reveal.js/js/reveal.js"></script>
-
+<script src="lib/jquery/jquery.min.js"></script>
+<script src="js/js-engine.js"></script>
 <script>
 
     // Full list of configuration options available at:

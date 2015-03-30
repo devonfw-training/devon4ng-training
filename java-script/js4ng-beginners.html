@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+
+    <title>JavaScript for Those Wanting to Get Started with AngularJS</title>
+
+    <meta name="description" content="JavaScript for Those Wanting to Get Started with AngularJS">
+    <meta name="author" content="Marek Matczak">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="../base/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../base/reveal.js/css/theme/sky.css" id="theme">
+
+    <link rel="stylesheet" href="css/js4ng-beginners.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../base/reveal.js/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../base/reveal.js/css/print/pdf.css' : '../base/reveal.js/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="../base/reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+<!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
+<section>
+    <h1 class="no_upper">JavaScript*</h1>
+    <h4>* for Those Wanting to Get Started with <img class="middle" src="img/AngularJS-large.png" height="54" width="191"></h4>
+    <p>
+        <small>Marek Matczak</small>
+    </p>
+</section>
+
+<section>
+    <h2>Inspired by</h2>
+    <div>
+        <img src="img/javascript_the_good_parts.jpg" >
+    </div>
+    <div>
+        <small>Picture taken from: <a href="http://frightanic.com/category/software-development/javascript/">http://frightanic.com/category/software-development/javascript/</a></small>
+    </div>
+</section>
+
+<section>
+    <h2 class="no_upper">JavaScript...</h2>
+    <p class="fragment">...has nothing common with Java&nbsp;<small>* except for some key words</small></p>
+    <p class="fragment">...is more like <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">&ldquo;Lisp in C's clothing&rdquo;</q>&nbsp;<small>*Douglas Crockford</small></p>
+    <p class="fragment">...has objects, but is class-free</p>
+    <p class="fragment">...is of single-threaded nature</p>
+    <p class="fragment">...has asynchronous programming model</p>
+    <p class="fragment">...is object oriented and functional at the same time</p>
+</section>
+
+<section>
+    <h2>Declaring variables</h2>
+    <p>Always use <i>var</i> to declare variables</p>
+    <p>If you don't, they become <b>global</b> variables</p>
+    <div class="fragment">
+        <p>Variable declarations get hoisted to the top of a function...</p>
+        <p>...which may be confusing:</p>
+					<pre><code data-trim class="javascript">
+var myVar = 'global';
+var myFunction = function () {
+  console.log(myVar);  // undefined
+  var myVar = 'local';
+  console.log(myVar); // 'local'
+};
+myFunction();
+					</code></pre>
+    </div>
+    <div class="fragment">
+        <p>The above code behaves as if it looked like this:</p>
+					<pre><code data-trim class="javascript">
+var myVar = 'global';
+var myFunction = function () {
+  var myVar;
+  console.log(myVar);  // undefined
+  myVar = 'local';
+  console.log(myVar); // 'local'
+};
+myFunction();
+					</code></pre>
+    </div>
+</section>
+
+<section>
+    <h2>Single var pattern</h2>
+    <p>Eliminates logical errors caused by hoisting</p>
+					<pre><code data-trim class="javascript">
+var a = 1,
+    b = 2,
+    sum = a + b,
+    myVar,
+    hello = function () {
+      return 'Hello!';
+    };
+					</code></pre>
+</section>
+
+<section>
+    <h2>Objects</h2>
+    <p>can be created in a very convenient way with <i>object literals</i>:</p>
+					<pre><code data-trim class="javascript">
+var emptyObject = {},
+    person = {
+      firstName : 'John',
+      lastName : 'Example',
+      age : 30
+    };
+					</code></pre>
+</section>
+<section>
+    <h2>Objects</h2>
+    <p>Values' retrieval</p>
+					<pre><code data-trim class="javascript">
+var person = {
+      firstName : 'John',
+      lastName : 'Example',
+      age : 30
+    }, salutation, street;
+
+// retrieval
+person.firstName  // 'John'
+person['lastName']  // 'Example'
+person.salutation  // undefined
+salutation = person.salutation || '';  // the default operator
+person.address.street // throws TypeError
+street = person.address && person.address.street  // undefined
+					</code></pre>
+</section>
+<section>
+    <h2>Objects</h2>
+    <p>Values' update and properties' removal</p>
+					<pre><code data-trim class="javascript">
+var person = {
+      firstName : 'John',
+      lastName : 'Example',
+      age : 30
+    }, salutation, street;
+
+// update
+person['firstName'] = 'Joe';
+person.age = 33;
+
+// delete
+delete person.age;
+					</code></pre>
+</section>
+<section>
+    <h2>Functions</h2>
+    <p>are objects</p>
+    <p>can be created with <i>function literals</i>:</p>
+					<pre><code data-trim class="javascript">
+var add = function (a, b) {
+    return a + b;
+};
+
+add(1, 2); // 3
+					</code></pre>
+</section>
+<section>
+    <h2>Functions</h2>
+    <p>stored as properties of objects...</p>
+
+					<pre><code data-trim class="javascript">
+var person = {
+      firstName : 'John',
+      lastName : 'Example',
+      age : 30,
+      letMeIntroduceMyself : function () {
+        return 'My name is ' + this.firstName + ' ' + this.lastName;
+      }
+    };
+
+person.letMeIntroduceMyself();  // My name is John Example
+person.firstName  // 'John' - no privacy
+					</code></pre>
+    <p>...are called <i>methods</i>:</p>
+</section>
+<section>
+    <h2>Scope</h2>
+    <p>is defined by functions, and no {} blocks</p>
+					<pre><code data-trim class="javascript">
+var myFun = function (someInput) {
+  var a = 1, b = 2,
+      yourFun = function () {
+        var b = 22, c = 3;
+        // at this point a = 1, b = 22, c = 3
+        a = 11;
+	  };
+  // at this point a = 1, b = 2, c is not defined
+  yourFun();
+  // at this point a = 11, b = 2, c is not defined
+};
+myFun();
+					</code></pre>
+</section>
+<section>
+    <h2>Closure</h2>
+    <p>enables a function to keep its creation context</p>
+					<pre><code data-trim class="javascript">
+var myObjectFactory = function (param) {
+  var value = 'Value';
+
+  return {
+    theseAreMySecrets : function () {
+      return 'value = ' + value + ', param = ' + param;
+    }
+  };
+},
+myObject = myObjectFactory('Param');
+myObject.theseAreMySecrets(); // value = Value, param = Param
+myObject.value; // undefined
+					</code></pre>
+    <p>...even if its lifetime is shorter than the function's one</p>
+</section>
+<section>
+    <h2>Module Pattern</h2>
+    <p>makes use of function scope and closure</p>
+					<pre><code data-trim class="javascript">
+var person = (function () {
+  var details = {
+    firstName : 'John',
+    lastName : 'Example',
+    age : 30
+  };
+
+  return {
+    letMeIntroduceMyself : function () {
+      return 'My name is ' +
+        details.firstName + ' ' + details.lastName;
+    }
+  };
+})();
+
+person.letMeIntroduceMyself();  // My name is John Example
+person.details; // undefined
+					</code></pre>
+    <p>is widely used for programming <i>services</i> in <img class="middle" src="img/AngularJS-large.png" height="54" width="191"></p>
+</section>
+
+<section>
+    <h2>Constructor function</h2>
+    <p>is intended to be invoked with the <i>new</i> prefix <small>(forgetting it makes <i>this</i> bound to the global object!)</small></p>
+    <p>creates a new object with a hidden link to its <i>prototype</i></p>
+    <p>is kept in a variable with a capitalized name by convention</p>
+					<pre><code data-trim class="javascript">
+var Person = function () {
+      this.firstName = 'John';
+      this.lastName = 'Example';
+      this.age = 30;
+    }, johnExample;
+
+Person.prototype.letMeIntroduceMyself = function () {
+  return 'My name is ' + this.firstName + ' ' + this.lastName;
+};
+
+johnExample = new Person();
+johnExample.letMeIntroduceMyself();  // My name is John Example
+johnExample.firstName; // 'John' - no privacy
+					</code></pre>
+    <p>is used for defining <i>controllers</i> in <img class="middle" src="img/AngularJS-large.png" height="54" width="191"></p>
+</section>
+
+<section>
+    <h2>Prototypal inheritance</h2>
+					<pre><code data-trim class="javascript">
+var create = function (from) {  // added to ECMAScript 5 as Object.create
+      var F = function () {};
+      F.prototype = from;
+      return new F();
+    },
+    parent = {
+      firstName : 'John',
+      lastName : 'Example',
+      letMeIntroduceMyself : function () {
+        return 'My name is ' + this.firstName + ' ' + this.lastName;
+      }
+    }, child;
+child = create(parent);
+child.firstName = 'Joe';
+parent.letMeIntroduceMyself();  // My name is John Example
+child.letMeIntroduceMyself();  // My name is Joe Example
+					</code></pre>
+    <p>In <img class="middle" src="img/AngularJS-large.png" height="54" width="191"> <i>scopes</i> prototypically inherit from each other</p>
+</section>
+
+<section>
+    <h2>Functional inheritance</h2>
+					<pre><code data-trim class="javascript">
+var parent = function (my) {
+      var that = {},
+          details = {
+            firstName : 'John',
+            lastName : 'Example',
+          };
+      my = my || {};  // keeps secrets shared in the inheritance chain
+      my.details = details; // makes details shared by descendants
+
+      that.letMeIntroduceMyself = function () {
+        return 'My name is ' + details.firstName + ' ' + details.lastName;
+      };
+
+      return that;
+    },
+    child = function(name) {
+      var my = {},
+          that = parent(my);
+      my.details.firstName = name;
+
+      return that;
+    };
+
+johnExample = parent();
+joeExample = child('Joe');
+johnExample.letMeIntroduceMyself();  // My name is John Example
+joeExample.letMeIntroduceMyself();  // My name is Joe Example
+joeExample.firstName; // undefined
+					</code></pre>
+</section>
+
+<section>
+    <h2>Summary</h2>
+    <div>
+        <img src="img/dcrockford-js.jpg" >
+    </div>
+    <div>
+        <small>http://www.flickr.com/photos/natekoechley/2853942919/</small>
+    </div>
+</section>
+
+</div>
+
+</div>
+<script src="../base/reveal.js/lib/js/head.min.js"></script>
+<script src="../base/reveal.js/js/reveal.js"></script>
+
+<script>
+
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        width: 980,
+        minScale: 1,
+        maxScale: 1,
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+            { src: '../base/reveal.js/lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            } },
+            { src: '../base/reveal.js/plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../base/reveal.js/plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../base/reveal.js/plugin/highlight/highlight.js', async: true, condition: function () {
+                return !!document.querySelector('pre code');
+            }, callback: function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src: '../base/reveal.js/plugin/zoom-js/zoom.js', async: true },
+            { src: '../base/reveal.js/plugin/notes/notes.js', async: true }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
