@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>HTTP protocol</title>
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <link rel="stylesheet" href="../base/css/reveal.css">
+    <link rel="stylesheet" href="../base/css/theme/cap.css" id="theme">
+
+
+    <link rel="stylesheet" href="../base/lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write('<link rel="stylesheet" href="../base/css/print/' + (window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper') + '.css" type="text/css" media="print">');
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+
+        <section>
+          <h1>HTTP</h1>
+
+        </section>
+        <section>
+          <h2>Links /materials</h2>
+          <ul>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP">Mozilla development</a>
+              <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html">RFC 2616</a>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>Agenda</h3>
+          <ul>
+            <li>Request - response</li>
+            <li>Response and  headers</li>
+            <li>Request and headers</li>
+            <li>Websockets</li>
+            <li>HTTPS</li>
+            <li>SPDY</li>
+            <li>PROXY</li>
+          </ul>
+        </section>
+        <section>
+          <section>
+            <h3>Request - response</h3>
+          </section>
+          <section>
+            <h4>sample</h4>
+
+            <pre>
+GET /path/file.html HTTP/1.0
+From: someuser@jmarshall.com
+User-Agent: HTTPTool/1.0
+[blank line here]
+            </pre>
+
+            <pre>
+HTTP/1.0 200 OK
+Date: Fri, 31 Dec 1999 23:59:59 GMT
+Content-Type: text/html
+Content-Length: 1354
+
+&lt;html&gt;
+&lt;body&gt;
+&lt;h1&gt;Happy New Millennium!&lt;/h1&gt;
+(more file contents)
+  .
+  .
+  .
+&lt;/body&gt;
+&lt;/html&gt;
+            </pre>
+
+          </section>
+          <section>
+            <h4>Details</h4>
+            <ul>
+              <li>Uses TCP/IP</li>
+              <li>Can be any port (not only :80)</li>
+              <li>Version 1.1 is mostly used</li>
+              <li>Stateless</li>
+              <li>Max 2 connections per browser to server</li>
+            </ul>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h3>Response</h3>
+          </section>
+          <section>
+            <h4>Headers - status</h4>
+            <pre>
+HTTP/1.1 301 Moved Permanently
+Location: http://www.example.org/index.asp
+            </pre>
+            <table>
+              <tr>
+                <td>200</td><td>OK</td>
+              </tr>
+              <tr>
+                <td>302</td><td>Found - redirect</td>
+              </tr>
+              <tr>
+                <td>304</td><td>Not modified</td>
+              </tr>
+              <tr>
+                <td>403</td><td>Forbidden</td>
+              </tr>
+              <tr>
+                <td>404</td><td>Not found</td>
+              </tr>
+              <tr>
+                <td>418</td><td>I am teapot</td>
+              </tr>
+              <tr>
+                <td>500</td><td>Error</td>
+              </tr>
+            </table>
+          </section>
+          <section>
+            <h4>headers</h4>
+            <ul>
+              <li>Content-Type: <span> text/html; charset=iso-8859-1</span></li>
+              <li>Set cookie: <span>name2=value2; Expires=Wed, 09 Jun 2021 10:18:14 GMT</span></li>
+              <li>Cache-Control: <span>no-cache</span></li>
+              <li>Expires: <span>Thu, 01 Dec 1994 16:00:00 GMT</span></li>
+            </ul>
+          </section>
+          <section>
+            <h4>security</h4>
+            <ul>
+                <li>Content-security-policy:<span> default-src https://cdn.example.net; frame-src 'none'; object-src 'none'</span></li>
+              <li>HSTS</li>
+            </ul>
+          </section>
+
+
+        </section>
+        <section>
+          <section>
+            <h3>Request</h3>
+          </section>
+          <section>
+            <h4>sample</h4>
+            <pre>
+POST /contact_form.php HTTP/1.1
+Host: developer.mozilla.org
+Content-Length: 64
+Content-Type: application/x-www-form-urlencoded
+
+name=Joe%20User&request=Send%20me%20one%20of%20your%20catalogue
+            </pre>
+          </section>
+          <section>
+            <h4>Methods</h4>
+            <ul>
+              <li>GET</li>
+              <li>POST</li>
+              <li>PUT</li>
+              <li>DELETE</li>
+              <li>HEAD</li>
+              <li>TRACE</li> 
+              <li>OPTIONS</li>
+              <li>CONNECT*</li>
+            </ul>
+          </section>
+          <section>
+            <h4>Headers</h4>
+            <ul>
+                <li>Cookie: <span>_pk_id.1.1fff=ecf3e1dfc5f148c5.1382558306.1.1382558306.1382558306.</span></li>
+                <li>Referrer:<span>http://localhost/previous_url.html</span></li>
+                <li>If-Modified-Since: <span>15.07.1410</span></li>
+            </ul>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h3>Advanced</h3>
+          </section>
+          <section>
+            <h4>Websockets</h4>
+            <pre>
+101 Web Socket Protocol Handshake
+Connection:Upgrade
+Sec-WebSocket-Accept:efzNf0JIU1nTDPwN0mEuyDczNY4=
+Server:GlassFish Server Open Source Edition  4.0.1
+Upgrade:websocket
+X-Powered-By:Servlet/3.1 JSP/2.3 (GlassFish Server Open Source Edition  4.0.1  Java/Oracle Corporation/1.8)
+            </pre>
+            <aside>
+              You can see FRAMES that go in both directions.
+              
+            </aside>
+          </section>
+          <section>
+            <h4>HTTPS</h4>
+            <ul>
+              <li>
+                You should always use HTTPS.
+              </li>
+              <li>
+                It is generally transparent to application.
+              </li>
+              <li>
+                  HTTPS is limited to one domain - one IP.
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h4>SPDY</h4>
+            <ul>
+              <li>Everything compressed (in HTTP headers are not compressed)</li>
+              <li>More files in one request</li>
+              <li>Supported by major browsers</li>
+            </ul>
+          
+          </section>
+          <section>
+            <h4>Proxy</h4>
+            <img src="proxy.png"/>
+              
+
+          </section>
+      </div>
+
+    </div>
+
+    <script src="../base/lib/js/head.min.js"></script>
+    <script src="../base/js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          {src: '../base/lib/js/classList.js', condition: function () {
+              return !document.body.classList;
+            }},
+          {src: '../base/plugin/markdown/showdown.js', condition: function () {
+              return !!document.querySelector('[data-markdown]');
+            }},
+          {src: '../base/plugin/markdown/markdown.js', condition: function () {
+              return !!document.querySelector('[data-markdown]');
+            }},
+          {src: '../base/plugin/highlight/highlight.js', async: true, callback: function () {
+              hljs.initHighlightingOnLoad();
+            }},
+          {src: '../base/plugin/zoom-js/zoom.js', async: true, condition: function () {
+              return !!document.body.classList;
+            }},
+          {src: '../base/plugin/notes/notes.js', async: true, condition: function () {
+              return !!document.body.classList;
+            }}
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>

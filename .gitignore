@@ -1,0 +1,10 @@
+node_modules
+bower_components
+dist
+.tmp
+.idea/
+*.iml
+java/target
+.settings
+.project
+/nbproject/private/

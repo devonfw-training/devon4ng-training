@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en" data-ng-app="revealCode">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>HTML5</title>
+
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <link rel="stylesheet" href="../base/css/reveal.css">
+        <link rel="stylesheet" href="../base/css/theme/cap.css" id="theme">
+        <link rel="stylesheet" href="../base/lib/css/zenburn.css">
+
+        <!-- codemirror start -->
+        <link rel="stylesheet" href="../base/css/coder.css">
+        <link rel="stylesheet" type="text/css" href="../base/lib/codemirror/lib/codemirror.css" />
+        <link rel="stylesheet" type="text/css" href="../base/lib/codemirror/theme/blackboard.css" />
+        <!-- codemirror end -->
+
+        <link rel="stylesheet" href="css/sample.css">
+        <link rel="stylesheet" href="css/tip.css">
+        <link rel="stylesheet" href="css/lists.css">
+        <link rel="stylesheet" href="css/webcam.css">
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script>
+            document.write('<link rel="stylesheet" href="../base/css/print/' + (window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper') + '.css" type="text/css" media="print">');
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <div class="slides">
+
+                <section>
+                    <h1>HTML5</h1>
+
+
+                </section>
+
+                <section>
+                    <h3>Agenda</h3>
+
+                    <ul>
+                        <li>Page structure</li>
+                        <li>Basics</li>
+                        <li>HTML5 tags</li>
+                        <li>Browsers</li>
+                        <li>Cool HTML5 features</li>
+
+                    </ul>       
+
+                </section>
+                <section>
+                    <h3>Materials</h3>
+                    <ul>
+                        <li><a href="http://www.w3schools.com/tags/default.asp">W3Schools tags reference</a></li>
+                        <li><a href=" http://code.tutsplus.com/tutorials/28-html5-features-tips-and-techniques-you-must-know--net-13520">28 HTML5 Features, Tips, and Techniques you Must Know</a></li>
+                        <li><a href="http://caniuse.com/">Can I Use?</a></li>
+                    </ul>
+                    <p><a href="http://helion.pl/ksiazki/html5-nieoficjalny-podrecznik-matthew-macdonald,htm5np.htm"><img src="html5_manual.jpg"/></a></p>
+
+                </section>
+                <section>
+                    <section>
+                        <h3>Page</h3>
+                    </section>
+                    <section>
+                        <h4>Structure</h4>
+                        <pre><code>
+            &lt;!doctype html&gt;
+            &lt;html&gt;
+              &lt;head&gt;
+                &lt;title&gt;title&lt;/title&gt;
+                 &lt;link rel="stylesheet" href="css/myl.css"&gt;
+                  &lt;script src="js/minimal.min.js"&gt;&lt;/script&gt;
+              &lt;/head&gt;
+              &lt;body&gt;
+                &lt;p&gt;
+                  page
+                &lt;/p&gt;
+                &lt;script src="js/allscripts.min.js"&gt;&lt;/script&gt;
+              &lt;/body&gt;
+            &lt;/html&gt;
+          </code></pre>
+                    </section>
+                    <section>
+                        <h4>Remeber</h4>
+                        <ul>
+                            <li>check doctype</li>
+                            <li>put script at the end of page</li>
+                            <li>do not embed CSS and JS in HTML</li>
+                            <li>Validate</li>
+                        </ul>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h3>HEAD</h3>
+
+                        <pre>
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge,chrome=1&quot;&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;meta name=&quot;description&quot; content=&quot;&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+    &lt;!-- build:css({.tmp,app}) css/oasp.css --&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;css/oasp.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;bower_components/angular-ui-select/dist/select.min.css&quot;&gt;
+    &lt;!-- endbuild --&gt;
+    &lt;!-- build:js js/modernizr.js --&gt;
+    &lt;script src=&quot;bower_components/modernizr/modernizr.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;bower_components/respond/respond.min.js&quot;&gt;&lt;/script&gt;
+    &lt;!-- endbuild --&gt;
+&lt;/head&gt;
+                        </pre>
+                    </section>
+                    <section>
+                        <h4>basic</h4>
+                        <ul>
+                            <li>meta encoding</li>
+                            <li>base tag</li>
+                            <li>IE tags</li>
+                            <li>scripts should be <strong>after</strong> link/css</li>
+                        </ul>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h3>BODY</h3>
+                    </section>
+                    <section>
+                        <h4>basic</h4>
+                        <ul>
+                            <li>HTML -&gt; DOM</li>
+                            <li>JavaScript manipulates DOM</li>
+                            <li>Visible page is result of CSS styles applied to DOM</li>
+                            
+                        </ul>
+                    </section>
+                    <section data-ng-controller="codeController" data-ng-init="loadJsCode('js/sample.js')">
+                        <h4>All together</h4>
+                        <pre><code>
+&lt;div class="outer"&gt;&lt;button&gt;Click me&lt;/button&gt;&lt;/div&gt;
+
+            </code></pre>
+                        <pre><code>
+.outer > button {
+   border-radius: 6px;
+   background: white;
+   box-shadow: 2px 2px 6px 8px rgba(255,255,255,0.2);
+}
+
+            </code></pre>
+                        <textarea  ui-codemirror="editorOptionsJS" data-ng-model="angularCode"  ui-refresh="refresher">
+                        </textarea>
+
+                        <div  class="outer">
+                            <button class="fancy">Click me!</button>
+                        </div>
+                        <aside>
+                            Do not use jQuery :-)
+                        </aside>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Tags</h2>
+
+                    </section>
+                    <section>
+                        <h3>Tags that are used too often</h3>
+                        <ul>
+                            <li>TABLE, TR, TD
+                            </li>
+                            <li>DIV,SPAN</li>
+                            <li>BR</li>
+                        </ul>
+                        <p class="fragment current-visible" data-fragment-index="0">
+                            Source of page should reflect semantic of page.
+                        </p>
+                        <p class="fragment current-visible" data-fragment-index="1">
+                            <i>TABLE</i> should be used where tabular data is presented... but not to achieve tabular 
+                            layout.
+                        </p>
+                        <p class="fragment current-visible" data-fragment-index="2">
+                            <i>DIV</i> and <i>SPAN</i> span have no meaning ... but sometimes must be use just to 
+                            distinguish small portion of HTML (for styling).
+                        </p>
+                        <p class="fragment current-visible" data-fragment-index="3">
+                            Usage of <i>BR</i> for layout... is a crime.
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Tag that are used too  rarely</h3>
+                        <ul>
+                            <li>
+                                UL, OL, LI
+                            </li>
+                        </ul>
+                        <div class="liPresentation" id="liPresentation"> 
+                            <ol class="ordered">
+                                <li>Item 1</li>
+                                <li>Item 2</li>
+                                <li>Item 3</li>
+                            </ol>
+                            <ul class="unordered">
+                                <li>Item 1</li>
+                                <li>Item 2</li>
+                                <li>Item 3</li>
+                            </ul>
+
+                            <a class='button ctrl'  data-ng-click="">C</a>
+
+                            <ul class='tip ctrl'>
+                                <li class='slice'><a href='#'>a</a></li>
+                                <li class='slice'><a href='#'>b</a></li>
+                                <li class='slice'><a href='#'>c</a></li>
+                                <li class='slice'><a href='#'>d</a></li>
+                                <li class='slice'><a href='#'>e</a></li>
+                            </ul>
+
+                        </div>
+                    </section>
+                    <section>
+                        <h3>HTML5 Tags</h3>
+                        <ul>
+                            <li>SECTION</li>
+                            <li>HEADER</li>
+                            <li> FOOTER </li>
+                            <li>NAV </li>
+                            <li>ARTICLE</li>
+                            <li> ASIDE </li>
+                            <li>OUTER</li>
+                        </ul>
+                        <aside>
+                            You  may call them <i>DIV</i> if You like
+                        </aside>
+                    </section>
+                </section>
+                <section>
+                    <section>  
+                        <h2>Browsers</h2>
+                    </section>
+                    <section>
+                        <h4>Tools</h4>
+                        <ul>
+                            <li>Chrome, IE, Firefox F12
+                                <ul>
+                                    <li>Network</li>
+                                    <li>Console</li>
+                                    <li>JS Debug</li>
+                                    <li>JS Profile</li>
+                                    <li>CSS Profile (IE11)</li>
+                                    <li>Page  audit chrome</li>
+                                </ul>
+                            </li>
+                            <li>JSONView</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>No problem</h3>
+                        <p>
+                            2014: Browsers are no longer problem.
+                        </p>
+                        <p>
+                            Problems are: screen resoultions and mobile devices.
+                        </p>
+                        <aside>
+                           (Of course... IE 8 does not exist).
+                        </aside>
+                    </section>
+                    <section>
+                        <h3>RWD</h3>
+                        <p>
+                            Responsive Web Design - more than just scalable design
+                        </p>
+                        
+                        
+                        <p>
+                            Use lot of CSS features plus media queries.
+                        </p>
+                        <pre>
+  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot;
+   media=&quot;screen and (max-width: 600px)&quot;
+   href=&quot;arkusz600.css&quot; /&gt;
+                        </pre>
+                    </section>
+                   
+                </section>
+                <section>
+                    <section>
+                        <h2>HTML5 Features</h2>
+                    </section>
+                    <section>
+                        <h3>Storage</h3>
+                        <ul>
+                            <li>Do not store in COOKIEs</li>
+                            <li>Lot of space</li>
+                            
+                        </ul>
+                        <pre>
+var foo = localStorage.getItem("bar");
+// ...
+localStorage.setItem("bar", foo);
+                        </pre>
+                        <aside><a href=https://github.com/seantmalone/HiveMind">HiveMind</a></aside>
+                    </section>
+                    <section>
+                        <h3>Audio/Video</h3>
+                        <div id="my_camera" style="width:320px; height:240px;"></div>
+                    </section>
+                    <section>
+                        <h3>Canvas</h3>
+                        
+                        <canvas id="canvas"></canvas>
+                        <aside><a href="http://lamberta.github.io/html5-animation/">source</a></aside>
+                    </section>
+                    <section>
+                        <h3>WebSocket</h3>
+                        <pre>
+                            if ("WebSocket" in window)
+  {
+     alert("WebSocket is supported by your Browser!");
+     // Let us open a web socket
+     var ws = new WebSocket("ws://localhost:9998/echo");
+     ws.onopen = function()
+     {
+        // Web Socket is connected, send data using send()
+        ws.send("Message to send");
+        alert("Message is sent...");
+     };
+     ws.onmessage = function (evt) 
+     { 
+        var received_msg = evt.data;
+        alert("Message is received...");
+     };
+     ws.onclose = function()
+     { 
+        // websocket is closed.
+        alert("Connection is closed..."); 
+     };
+  }
+  else
+  {
+     // The browser doesn't support WebSocket
+     alert("WebSocket NOT supported by your Browser!");
+  }
+                        </pre>
+                    </section>
+                    <section>
+                        <h3>History API</h3>
+                        <p>
+                            URL, address, back, forward buttons are Your friends.
+                        </p>
+                        <p>
+                            <a href="https://html.spec.whatwg.org/multipage/browsers.html#history">History API</a>
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Other stuff</h3>
+                        <p>
+                          <a href="http://threejs.org/" >WebGl/Three.js</a>
+                        </p>
+                    </section>
+                </section>
+                
+            </div>
+
+        </div>
+
+        <script src="../base/lib/js/head.min.js"></script>
+        <script src="../base/js/reveal.min.js"></script>
+
+        <script>
+
+                            // Full list of configuration options available here:
+                            // https://github.com/hakimel/reveal.js#configuration
+                            Reveal.initialize({
+                                controls: true,
+                                progress: true,
+                                history: true,
+                                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                                transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+                                // Optional libraries used to extend on reveal.js
+                                dependencies: [
+                                    {src: '../base/lib/js/classList.js', condition: function () {
+                                            return !document.body.classList;
+                                        }},
+                                    {src: '../base/plugin/markdown/showdown.js', condition: function () {
+                                            return !!document.querySelector('[data-markdown]');
+                                        }},
+                                    {src: '../base/plugin/markdown/markdown.js', condition: function () {
+                                            return !!document.querySelector('[data-markdown]');
+                                        }},
+                                    {src: '../base/plugin/highlight/highlight.js', async: true, callback: function () {
+                                            hljs.initHighlightingOnLoad();
+                                        }},
+                                    {src: '../base/plugin/zoom-js/zoom.js', async: true, condition: function () {
+                                            return !!document.body.classList;
+                                        }},
+                                    {src: '../base/plugin/notes/notes.js', async: true, condition: function () {
+                                            return !!document.body.classList;
+                                        }}
+                                ]
+                            });
+
+        </script>
+
+        <!-- codemirror start -->
+        <script src="../base/lib/js/angular/angular.min.js"></script>
+        <script type="text/javascript" src="../base/lib/js/angular/ui-bootstrap-tpls-0.10.0.min.js"></script>
+
+        <script type="text/javascript" src="../base/lib/codemirror/lib/codemirror.js"></script>
+        <script type="text/javascript" src="../base/lib/codemirror/mode/xml/xml.js"></script>
+        <script type="text/javascript" src="../base/lib/codemirror/mode/javascript/javascript.js"></script>
+        <script type="text/javascript" src="../base/lib/codemirror/mode/css/css.js"></script>
+        <script type="text/javascript" src="../base/lib/codemirror/mode/clike/clike.js"></script>
+        <script type="text/javascript" src="../base/lib/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+        <script type="text/javascript" src="../base/lib/codemirror/mode/htmlembedded/htmlembedded.js"></script>
+        <script type="text/javascript" src="../base/lib/codemirror/addon/lint/lint.js"></script>
+        <script type="text/javascript" src="../base/lib/codemirror/addon/lint/javascript-lint.js"></script>
+        <script type="text/javascript" src="../base/lib/codemirror/ui-codemirror.js"></script>
+        <script src="../base/lib/js/jquery/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="../base/js/coder.js"></script>
+        <!-- codemirror end -->
+
+        <script src="../base/lib/js/webcam/webcam.min.js"></script>
+
+        <script src="js/sample.js"></script>
+        <script src="js/webcamsample.js"></script>
+        <script src="js/canvas.js"></script>
+    </body>
+</html>

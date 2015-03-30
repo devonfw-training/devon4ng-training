@@ -1,0 +1,9 @@
+#my_camera {
+    border-radius: 6px;
+    border: 2px solid white;
+}
+
+#canvas {
+    width: 80%;
+    height: 40%;
+}
