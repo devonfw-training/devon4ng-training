@@ -1,0 +1,7 @@
+{
+  "generator-oasp": {
+    "appPath": "app",
+    "appModule": "app",
+    "appModulePath": "app/app.module.js"
+  }
+}

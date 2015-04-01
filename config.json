@@ -1,0 +1,12 @@
+{
+    "paths": {
+        "tmp": ".tmp",
+        "dist": "dist",
+        "app": "app",
+        "test": "test"
+    },
+    "modules": [
+        "main"
+    ],
+    "appBuild": true
+}
