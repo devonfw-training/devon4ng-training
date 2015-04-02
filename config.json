@@ -8,5 +8,7 @@
     "modules": [
         "main"
     ],
-    "appBuild": true
+    "appBuild": true,
+    "proxy": "http://localhost:3000",
+    "proxyContext": ""
 }
