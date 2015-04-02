@@ -54,8 +54,18 @@
         position: absolute;
         margin-left: -1.1em;
     }
+
     .reveal li a {
         white-space: nowrap;
+    }
+    .reveal pre {
+        width: 100%;
+    }
+    .reveal code {
+        background-color: rgb(63, 63, 63);
+        font-family: monospace;
+        color: rgb(220, 220, 220);
+        padding: 0 10px;
     }
 </style>
 <div class="reveal">
@@ -159,6 +169,10 @@
                         <td><a href="angular/angular.html#/dep-injection" target="_blank">Dependency Injection</a></td>
                     </tr>
                     <tr>
+                        <td>15:30</td>
+                        <td><a href="angular/angular.html#/useful-directives" target="_blank">Useful Directives</a></td>
+                    </tr>
+                    <tr>
                         <td>16:00</td>
                         <td>Reserved Slot</td>
                     </tr>
@@ -168,11 +182,51 @@
                 <h2>Exercise 1 (JavaScript)</h2>
                 <ol>
                     <li>Create a service <code>person</code> using the module pattern.</li>
-                    <li>The <code>person</code> service keeps its <code>details</code> including <code>firstName</code> and <code>lastName</code> private.</li>
+                    <li>The <code>person</code> service keeps its <code>details</code> including <code>firstName</code>
+                        and <code>lastName</code> private.
+                    </li>
                     <li>The <code>person</code> service exposes the <code>getFirstName</code> method.</li>
-                    <li>Define a controller <code>HelloCntl</code> using a constructor function passing it the <code>person</code> service.</li>
-                    <li>The <code>HelloCntl</code> controller exposes the <code>sayHello</code> method which returns a greeting (as as a string) getting the name from the <code>person</code> service.</li>
+                    <li>Define a controller <code>HelloCntl</code> using a constructor function passing it the <code>person</code>
+                        service.
+                    </li>
+                    <li>The <code>HelloCntl</code> controller exposes the <code>sayHello</code> method which returns a
+                        greeting (as as a string) getting the name from the <code>person</code> service.
+                    </li>
                 </ol>
+            </section>
+            <section><h2>Exercise 2 (Controller, Service)</h2>
+                <ul>
+                    <li>Create Angular service which exposes method <code>getTodos</code> which returns list of
+                        following objects
+                        <pre><code data-trim class="javascript">
+{
+    title: 'example title',
+    description: 'example description',
+    done: false
+}
+            </code></pre>
+                    </li>
+                    <li>Create Angular Controller and use created service</li>
+                    <li>Bind result of <code>getTodos</code> to controller variable and display using <code>ng-repeat</code></li>
+                </ul>
+            </section>
+            <section><h2>Exercise 3 (Routing)</h2>
+                <ul>
+                    <li>Install <code>angular-router</code> using bower</li>
+                    <li>Extend objects from <code>getTodos</code> method by <code>id</code> property</li>
+                    <li>Create list and detailed view for objects from <code>getTodos</code> method using ng-router
+                    </li>
+                    <li>List view should display simple list of objects returned by service(<code>#/list</code>) </li>
+                    <li>Detailed view should display details of one item(<code>#/item/1</code>) </li>
+                </ul>
+            </section>
+            <section><h2>Exercise 4 (Backend)</h2>
+                <ul>
+                    <li>Replace existing service with real backend service</li>
+                    <li>Add persistance(<code>saveTodos</code>)</li>
+                    <li>Add ability to create new Todos(be creative ;))</li>
+                    <li>Add archiving functionality</li>
+                </ul>
             </section>
         </section>
         <section>
