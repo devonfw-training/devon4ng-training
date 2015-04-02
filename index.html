@@ -44,6 +44,19 @@
     .reveal h3 {
         margin-bottom: 10px;
     }
+
+    .reveal ul {
+        list-style-type: none;
+    }
+
+    .reveal ul > li:before {
+        content: "–";
+        position: absolute;
+        margin-left: -1.1em;
+    }
+    .reveal li a {
+        white-space: nowrap;
+    }
 </style>
 <div class="reveal">
 
@@ -52,7 +65,7 @@
         <section>
             <h2>Rich Web Client</h2>
 
-            <h3>Feel power of Single Page Applications </h3>
+            <h3>Feel the power of Single Page Applications </h3>
 
             <p>
 
@@ -104,6 +117,13 @@
             </section>
             <section>
                 <h2>Exercises</h2>
+                <ol>
+                    <li><a href="css/index.html#/exercise-selectors" target="_blank">Selectors 1</a></li>
+                    <li><a href="css/index.html#/exercise-selectors2" target="_blank">Selectors 2</a></li>
+                    <li><a href="css/index.html#/block-model-exercise" target="_blank">Box model</a></li>
+                    <li><a href="css/index.html#/float-exercise" target="_blank">Floats</a></li>
+                    <li><a href="css/index.html#/positioning-exercise" target="_blank">Positioning</a></li>
+                </ol>
             </section>
         </section>
         <section>
@@ -145,7 +165,14 @@
                 </table>
             </section>
             <section>
-                <h2>Exercises</h2>
+                <h2>Exercise 1 (JavaScript)</h2>
+                <ol>
+                    <li>Create a service <code>person</code> using the module pattern.</li>
+                    <li>The <code>person</code> service keeps its <code>details</code> including <code>firstName</code> and <code>lastName</code> private.</li>
+                    <li>The <code>person</code> service exposes the <code>getFirstName</code> method.</li>
+                    <li>Define a controller <code>HelloCntl</code> using a constructor function passing it the <code>person</code> service.</li>
+                    <li>The <code>HelloCntl</code> controller exposes the <code>sayHello</code> method which returns a greeting (as as a string) getting the name from the <code>person</code> service.</li>
+                </ol>
             </section>
         </section>
         <section>
