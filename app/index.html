@@ -20,18 +20,13 @@
     <!-- endbuild -->
 </head>
 <body data-ng-app="app" data-ng-controller="AppCntl">
+<div ng-view="">
 
-<div ng-controller="TodoCntl" class="todo-widget">
-    <ul>
-        <li ng-repeat="todo in todoList">
-            <input type="checkbox" ng-model="todo.done" ng-checked="todo.done"/> {{todo.title}}
-        </li>
-    </ul>
 </div>
-
 <!-- build:jsVendor({.tmp,app}) js/vendor.js -->
 <!-- bower:js -->
 <script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 

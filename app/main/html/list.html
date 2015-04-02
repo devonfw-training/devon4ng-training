@@ -1,0 +1,12 @@
+<html>
+<body>
+<div class="todo-widget">
+    <ul>
+        <li ng-repeat="todo in todoList">
+            <input type="checkbox" ng-model="todo.done" ng-checked="todo.done"/>
+            <a href="#/item/{{todo.id}}">{{todo.title}}</a>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
