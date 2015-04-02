@@ -53,14 +53,14 @@
 <section>
     <h2>Agenda</h2>
     <ol>
-        <li><a href="#/2">Angular Modules</a></li>
-        <li><a href="#/6">Dependency Injection</a></li>
-        <li><a href="#/7">Controllers, Services, Factories, Constants, Providers</a></li>
-        <li><a href="#/12">Routing in Angular</a></li>
-        <li><a href="#/16">Backend Communication</a></li>
+        <li><a href="#/modules">Angular Modules</a></li>
+        <li><a href="#/dep-injection">Dependency Injection</a></li>
+        <li><a href="#/controllers">Controllers, Services, Factories, Constants, Providers</a></li>
+        <li><a href="#/routing">Routing in Angular</a></li>
+        <li><a href="#/backend">Backend Communication</a></li>
     </ol>
 </section>
-<section>
+<section id="modules">
     <h3>What is a Module?</h3>
 
     <blockquote class="fragment">
@@ -109,7 +109,7 @@ angular.module('myModule', []).
         <li>And an application level module which depends on the above modules and contains any initialization code</li>
     </ul>
 </section>
-<section>
+<section id="dep-injection">
     <section>
         <h2>Dependency Injection</h2>
         <blockquote>
@@ -133,7 +133,7 @@ angular.module('mySecond', [])
                 </code></pre>
     </section>
 </section>
-<section>
+<section id="controllers">
     <h2>Controller Recipe</h2>
                 <pre class="javascript"><code contenteditable data-trim>
 angular.module('myFirst', [])
@@ -278,7 +278,7 @@ angular.module('myFirst')
     });
 </code></pre>
 </section>
-<section>
+<section id="routing">
     <h2>Angular Routes</h2>
 
     <img class="fragment" src="img/route.png"></img>
@@ -332,7 +332,7 @@ angular.module('myFirst', [])
     });
 </code></pre>
 </section>
-<section>
+<section id="backend">
     <h2>Angular Backend Communication - $http</h2>
     <pre class="javascript"><code contenteditable data-trim>
 angular.module('myFirst', [])
@@ -356,7 +356,7 @@ angular.module('myFirst', [])
         <li>$http.get(url, [config])</li>
         <li>$http.head(url, [config])</li>
         <li>$http.post(url, data, [config])</li>
-        <li>$http.pu(url, data, [config])</li>
+        <li>$http.put(url, data, [config])</li>
         <li>$http.delete(url, [config])</li>
         <li>$http.jsonp(url, [config])</li>
         <li>$http.patch(url, data, [config])</li>
