@@ -15,13 +15,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- build:css({.tmp,app}) css/oasp.css -->
     <!-- inject:css -->
-    <!-- css files will be automaticaly insert here -->
+    <!-- css files will be automatically insert here -->
     <!-- endinject -->
     <!-- endbuild -->
 </head>
 <body data-ng-app="app" data-ng-controller="AppCntl">
 
-<div>Hello {{message}} !</div>
+<div ng-controller="TodoCntl" class="todo-widget">
+    <ul>
+        <li ng-repeat="todo in todoList">
+            <input type="checkbox" ng-model="todo.done" ng-checked="todo.done"/> {{todo.title}}
+        </li>
+    </ul>
+</div>
 
 <!-- build:jsVendor({.tmp,app}) js/vendor.js -->
 <!-- bower:js -->
