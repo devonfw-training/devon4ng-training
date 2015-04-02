@@ -64,7 +64,8 @@
     <h3>What is a Module?</h3>
 
     <blockquote class="fragment">
-        You can think of a module as a <b>container</b> for the different parts of your app – controllers, services, filters, directives, etc.
+        You can think of a module as a <b>container</b> for the different parts of your app – controllers, services,
+        filters, directives, etc.
     </blockquote>
 </section>
 <section>
@@ -113,7 +114,8 @@ angular.module('myModule', []).
     <section>
         <h2>Dependency Injection</h2>
         <blockquote>
-            <b>Dependency injection</b> is a software design pattern that implements <b>inversion of control</b> and allows a program design
+            <b>Dependency injection</b> is a software design pattern that implements <b>inversion of control</b> and
+            allows a program design
             to
             follow the <b>dependency inversion principle</b>
         </blockquote>
@@ -131,6 +133,24 @@ angular.module('mySecond', [])
         //code of service
     });
                 </code></pre>
+    </section>
+    <section id="exercise-ng-service"><h2>Exercise 2 (Cntl, Service)</h2>
+        <ul>
+            <li>Create Angular service which exposes method <code>getTodos</code> which returns list of
+                following objects
+                        <pre><code data-trim class="javascript">
+{
+    title: 'example title',
+    description: 'example description',
+    done: false
+}
+            </code></pre>
+            </li>
+            <li>Create Angular Controller and use created service</li>
+            <li>Bind result of <code>getTodos</code> to controller variable and display using <code>ng-repeat</code>
+            </li>
+            <small>Fallback: checkout <b>3-todo-service-fallback</b> branch</small>
+        </ul>
     </section>
 </section>
 <section id="controllers">
@@ -365,8 +385,11 @@ angular.module('myFirst', [])
 </section>
 <section>
     <h2>$httpBackendProvider allows...</h2>
+
     <p class="fragment">... to set default headers for every type of request</p>
+
     <p class="fragment">... to define interceptors for cross cutting feature</p>
+
     <p class="fragment">... to enable XSRF protection</p>
 </section>
 </div>
