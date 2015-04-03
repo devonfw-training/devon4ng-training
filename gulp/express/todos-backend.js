@@ -52,6 +52,14 @@ router.route('/todos')
             done: req.body.done
         });
         res.sendStatus(200);
+    })
+    .delete(function (req, res) {
+        for (var i = todos.length - 1; i >= 0; i--) {
+            if (todos[i].done === true) {
+                todos.splice(i, 1);
+            }
+        }
+        res.sendStatus(200);
     });
 
 router.route('/todos/:todo_id')

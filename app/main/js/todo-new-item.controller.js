@@ -1,8 +1,8 @@
-angular.module('app.main').controller('TodoItemCntl', function ($scope, todo, todos, $location) {
+angular.module('app.main').controller('TodoNewItemCntl', function ($scope, todos, $location) {
     'use strict';
-    $scope.todo = todo;
+    $scope.todo = {};
     $scope.save = function () {
-        todos.saveTodo($scope.todo).then(function () {
+        todos.addTodo($scope.todo).then(function () {
             $location.path('/list')
         })
     };
