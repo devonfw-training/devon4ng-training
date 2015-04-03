@@ -1,0 +1,10 @@
+.reveal section img.plain {
+    background: white;
+    border: none;
+    box-shadow: none;
+}
+
+.reveal p.foot-note {
+    text-align: left;
+    line-height: 1;
+}
