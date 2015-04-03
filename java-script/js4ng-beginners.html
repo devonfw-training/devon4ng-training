@@ -81,9 +81,9 @@
                     <pre><code data-trim class="javascript">
 var myVar = 'global';
 var myFunction = function () {
-  console.log(myVar);  // undefined
-  var myVar = 'local';
-  console.log(myVar); // 'local'
+    console.log(myVar); // undefined
+    var myVar = 'local';
+    console.log(myVar); // 'local'
 };
 myFunction();
 					</code></pre>
@@ -93,10 +93,10 @@ myFunction();
                     <pre><code data-trim class="javascript">
 var myVar = 'global';
 var myFunction = function () {
-  var myVar;
-  console.log(myVar);  // undefined
-  myVar = 'local';
-  console.log(myVar); // 'local'
+    var myVar;
+    console.log(myVar); // undefined
+    myVar = 'local';
+    console.log(myVar); // 'local'
 };
 myFunction();
 					</code></pre>
@@ -112,7 +112,7 @@ var a = 1,
     sum = a + b,
     myVar,
     hello = function () {
-      return 'Hello!';
+        return 'Hello!';
     };
 					</code></pre>
             </section>
@@ -133,19 +133,20 @@ var emptyObject = {},
                 <h2>Objects</h2>
                 <p>Values' retrieval</p>
                 <pre><code data-trim class="javascript">
-var person = {
-      firstName : 'John',
-      lastName : 'Example',
-      age : 30
-    }, salutation, street;
+var emptyObject = {},
+    person = {
+        firstName: 'John',
+        lastName: 'Example',
+        age: 30
+    };
 
 // retrieval
-person.firstName  // 'John'
-person['lastName']  // 'Example'
-person.salutation  // undefined
-salutation = person.salutation || '';  // the default operator
+person.firstName // 'John'
+person['lastName'] // 'Example'
+person.salutation // undefined
+salutation = person.salutation || ''; // the default operator
 person.address.street // throws TypeError
-street = person.address && person.address.street  // undefined
+street = person.address && person.address.street // undefined
 					</code></pre>
             </section>
             <section>
@@ -153,10 +154,11 @@ street = person.address && person.address.street  // undefined
                 <p>Values' update and properties' removal</p>
                 <pre><code data-trim class="javascript">
 var person = {
-      firstName : 'John',
-      lastName : 'Example',
-      age : 30
-    }, salutation, street;
+        firstName: 'John',
+        lastName: 'Example',
+        age: 30
+    },
+    salutation, street;
 
 // update
 person['firstName'] = 'Joe';
@@ -181,19 +183,18 @@ add(1, 2); // 3
             <section>
                 <h2>Functions</h2>
                 <p>stored as properties of objects...</p>
-
                 <pre><code data-trim class="javascript">
 var person = {
-      firstName : 'John',
-      lastName : 'Example',
-      age : 30,
-      letMeIntroduceMyself : function () {
+    firstName: 'John',
+    lastName: 'Example',
+    age: 30,
+    letMeIntroduceMyself: function () {
         return 'My name is ' + this.firstName + ' ' + this.lastName;
-      }
-    };
+    }
+};
 
-person.letMeIntroduceMyself();  // My name is John Example
-person.firstName  // 'John' - no privacy
+person.letMeIntroduceMyself(); // My name is John Example
+person.firstName // 'John' - no privacy
 					</code></pre>
                 <p>...are called <i>methods</i></p>
             </section>
@@ -202,15 +203,17 @@ person.firstName  // 'John' - no privacy
                 <p>is defined by functions, and no {} blocks</p>
                 <pre><code data-trim class="javascript">
 var myFun = function (someInput) {
-  var a = 1, b = 2,
-      yourFun = function () {
-        var b = 22, c = 3;
-        // at this point a = 1, b = 22, c = 3
-        a = 11;
-	  };
-  // at this point a = 1, b = 2, c is not defined
-  yourFun();
-  // at this point a = 11, b = 2, c is not defined
+    var a = 1,
+        b = 2,
+        yourFun = function () {
+            var b = 22,
+                c = 3;
+            // at this point a = 1, b = 22, c = 3
+            a = 11;
+        };
+    // at this point a = 1, b = 2, c is not defined
+    yourFun();
+    // at this point a = 11, b = 2, c is not defined
 };
 myFun();
 					</code></pre>
@@ -220,15 +223,15 @@ myFun();
                 <p>enables a function to keep its creation context</p>
                 <pre><code data-trim class="javascript">
 var myObjectFactory = function (param) {
-  var value = 'Value';
+        var value = 'Value';
 
-  return {
-    theseAreMySecrets : function () {
-      return 'value = ' + value + ', param = ' + param;
-    }
-  };
-},
-myObject = myObjectFactory('Param');
+        return {
+            theseAreMySecrets: function () {
+                return 'value = ' + value + ', param = ' + param;
+            }
+        };
+    },
+    myObject = myObjectFactory('Param');
 myObject.theseAreMySecrets(); // value = Value, param = Param
 myObject.value; // undefined
 					</code></pre>
@@ -240,21 +243,21 @@ myObject.value; // undefined
                     <p>makes use of function scope and closure</p>
                     <pre><code data-trim class="javascript">
 var person = (function () {
-  var details = {
-    firstName : 'John',
-    lastName : 'Example',
-    age : 30
-  };
+    var details = {
+        firstName: 'John',
+        lastName: 'Example',
+        age: 30
+    };
 
-  return {
-    letMeIntroduceMyself : function () {
-      return 'My name is ' +
-        details.firstName + ' ' + details.lastName;
-    }
-  };
+    return {
+        letMeIntroduceMyself: function () {
+            return 'My name is ' +
+                details.firstName + ' ' + details.lastName;
+        }
+    };
 })();
 
-person.letMeIntroduceMyself();  // My name is John Example
+person.letMeIntroduceMyself(); // My name is John Example
 person.details; // undefined
 					</code></pre>
                     <p>is widely used for programming <i>services</i> in <img class="middle" src="img/AngularJS-large.png" height="54" width="191">
@@ -271,15 +274,15 @@ person.details; // undefined
                 </section>
                 <section>
                     <h2>Solution</h2>
-                    <pre><code data-trim>
+                    <pre><code data-trim class="javascript">
 var todos = (function () {
     var todos = [{title: 'Take part in the Rich Web Client School', done: true},
-                 {title: 'Do exercise', done: false}];
-    
+        {title: 'Do exercise', done: false}];
+
     return {
-        numberOfDoneToDos : function () {
+        numberOfDoneToDos: function () {
             var i, noOfDone = 0;
-            for(i=0; i < todos.length; i+=1) {
+            for (i = 0; i < todos.length; i += 1) {
                 if (todos[i].done) {
                     noOfDone += 1;
                 }
@@ -328,7 +331,7 @@ johnExample.firstName; // 'John' - no privacy
                 </section>
                 <section>
                     <h2>Solution 1</h2>
-                    <pre><code data-trim>
+                    <pre><code data-trim class="javascript">
 var
     todos = {}, // from the previous exercise
     ToDoCtrl = function (todos) {
@@ -345,7 +348,7 @@ myToDoCtrl.summary();
                 </section>
                 <section>
                     <h2>Solution 2</h2>
-                    <pre><code data-trim>
+                    <pre><code data-trim  class="javascript">
 var
     todos = {}, // from the previous exercise
     ToDoCtrl = function (todos) {
@@ -391,32 +394,32 @@ child.letMeIntroduceMyself();  // My name is Joe Example
                 <h2>Functional inheritance</h2>
                 <pre><code data-trim class="javascript">
 var parent = function (my) {
-      var that = {},
-          details = {
-            firstName : 'John',
-            lastName : 'Example',
-          };
-      my = my || {};  // keeps secrets shared in the inheritance chain
-      my.details = details; // makes details shared by descendants
+        var that = {},
+            details = {
+                firstName: 'John',
+                lastName: 'Example',
+            };
+        my = my || {}; // keeps secrets shared in the inheritance chain
+        my.details = details; // makes details shared by descendants
 
-      that.letMeIntroduceMyself = function () {
-        return 'My name is ' + details.firstName + ' ' + details.lastName;
-      };
+        that.letMeIntroduceMyself = function () {
+            return 'My name is ' + details.firstName + ' ' + details.lastName;
+        };
 
-      return that;
+        return that;
     },
-    child = function(name) {
-      var my = {},
-          that = parent(my);
-      my.details.firstName = name;
+    child = function (name) {
+        var my = {},
+            that = parent(my);
+        my.details.firstName = name;
 
-      return that;
+        return that;
     };
 
 johnExample = parent();
 joeExample = child('Joe');
-johnExample.letMeIntroduceMyself();  // My name is John Example
-joeExample.letMeIntroduceMyself();  // My name is Joe Example
+johnExample.letMeIntroduceMyself(); // My name is John Example
+joeExample.letMeIntroduceMyself(); // My name is Joe Example
 joeExample.firstName; // undefined
 					</code></pre>
             </section>
