@@ -26,3 +26,26 @@
 .reveal blockquote b {
     color: #3b759e;
 }
+.reveal ul{
+    list-style: none;
+}
+.reveal ul > li:before {
+    content: "–";
+    position: absolute;
+    margin-left: -1.1em;
+}
+
+.reveal li a {
+    white-space: nowrap;
+}
+.reveal pre {
+    width: 100%;
+}
+.reveal code {
+    background-color: rgb(63, 63, 63);
+    font-family: monospace;
+    color: rgb(220, 220, 220);
+    padding: 3px 10px;
+    font-size: 75%;
+    vertical-align: middle;
+}
