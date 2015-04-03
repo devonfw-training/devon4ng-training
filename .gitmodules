@@ -1,7 +1,3 @@
-[submodule "css"]
-	path = css
-	url = https://github.com/tbialecki/css-basics.git
-	branch = gh-pages
 [submodule "base/reveal.js"]
 	path = base/reveal.js
 	url = https://github.com/hakimel/reveal.js.git
