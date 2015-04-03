@@ -54,6 +54,7 @@
     <h2>Agenda</h2>
     <ol>
         <li><a href="#/modules">Angular Modules</a></li>
+        <li><a href="#/useful-directives">Useful directives</a></li>
         <li><a href="#/dep-injection">Dependency Injection</a></li>
         <li><a href="#/controllers">Controllers, Services, Factories, Constants, Providers</a></li>
         <li><a href="#/routing">Routing in Angular</a></li>
@@ -147,9 +148,57 @@ angular.module('mySecond', [])
             </code></pre>
             </li>
             <li>Create Angular Controller and inject created service.</li>
-            <li>Bind result of <strong>getTodos</strong> to controller variable and display using <strong>ng-repeat</strong>.
+            <li>Bind result of <strong>getTodos</strong> to controller variable and display using
+                <strong>ng-repeat</strong>.
             </li>
         </ol>
+    </section>
+</section>
+<section>
+    <section id="useful-directives">
+        <h2>Usefull directives</h2>
+        <h4>ngClick</h4>
+        <pre class="javascript"><code data-trim class="html">
+    &lt;button ng-click=&quot;clickCallback()&quot;&gt;Click me&lt;/button&gt;
+</code><code data-trim>
+$scope.clickCallback = function(){
+    console.log('clicked');
+}
+        </code></pre>
+        <h4>ngShow/ngHide</h4>
+        <pre class="javascript"><code data-trim class="html">
+&lt;button ng-click=&quot;toggle()&quot;&gt;Toggle&lt;/button&gt;
+&lt;span ng-show=&quot;visibie&quot;&gt;Enabled&lt;/span&gt;
+&lt;span ng-hide=&quot;visibie&quot;&gt;Disabled&lt;/span&gt;
+</code><code data-trim>
+$scope.toggle = function(){
+    $scope.visible = !$scope.visible;
+}
+        </code></pre>
+    </section>
+    <section>
+        <h2>Usefull directives</h2>
+        <h4>ngRepeat</h4>
+        <pre class="javascript"><code data-trim class="html">
+    &lt;p ng-repeat=&quot;item in items&quot;&gt;{{item.title}}&lt;/p&gt;
+</code><code data-trim>
+$scope.items = [
+  {
+    id: 1,
+    title: 'title 1'
+  },
+  {
+    id: 2,
+    title: 'title 2'
+  }
+]
+        </code></pre>
+        <h4>ngClass</h4>
+        <pre class="javascript"><code data-trim class="html">
+&lt;button ng-class=&quot;{'red':isRed}&quot;&gt;Button&lt;/button&gt;
+</code><code data-trim>
+$scope.isRed = true;
+        </code></pre>
     </section>
 </section>
 <section id="controllers">
@@ -161,7 +210,7 @@ angular.module('myFirst', [])
             name: 'John',
             surname: 'Nowak'
         };
-        $scope.getFullName = function(){
+        $scope.getFullName = function() {
             return $scope.user.name + ' ' + $scope.user.surname;
         };
     });
@@ -356,8 +405,12 @@ angular.module('myFirst', [])
         <ol>
             <li>Install <strong>angular-route</strong> using bower, configure <strong>ng-view</strong> directive.</li>
             <li>Add <strong>id</strong> property to every todo.</li>
-            <li>Create <strong>list</strong> and <strong>detailed</strong> view for objects from <strong>getTodos</strong> method.</li>
-            <li><strong>List</strong> view should display simple list of objects returned by service(<strong>#/list</strong>)</li>
+            <li>Create <strong>list</strong> and <strong>detailed</strong> view for objects from
+                <strong>getTodos</strong> method.
+            </li>
+            <li><strong>List</strong> view should display simple list of objects returned by
+                service(<strong>#/list</strong>)
+            </li>
             <li>Detailed view should display details of single item taken by id(<strong>#/item/1</strong>)</li>
         </ol>
         <small>Fallback if previous exercise not done: checkout <b>3-todo-service-fallback</b> branch</small>
@@ -412,7 +465,8 @@ angular.module('myFirst', [])
         <li>Add ability to create new Todos(be creative ;)).</li>
         <li>Add archiving functionality.</li>
     </ol>
-    <small>API description (<b>gulp serve</b>) <a href="http://localhost:9000/services/" target="_blank">http://localhost:9000/services/</a></small>
+    <small>API description (<b>gulp serve</b>) <a href="http://localhost:9000/services/" target="_blank">http://localhost:9000/services/</a>
+    </small>
     <small>Fallback if previous exercise not done: checkout <b>4-routing-fallback</b> branch</small>
 </section>
 </div>
@@ -430,7 +484,7 @@ angular.module('myFirst', [])
         progress: true,
         history: true,
         center: true,
-        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        transition: 'concave', // none/fade/slide/convex/concave/zoom
 
         // Optional reveal.js plugins
         dependencies: [
