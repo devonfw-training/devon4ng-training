@@ -134,10 +134,10 @@ angular.module('mySecond', [])
     });
                 </code></pre>
     </section>
-    <section id="exercise-ng-service"><h2>Exercise 2 (Cntl, Service)</h2>
-        <ul>
-            <li>Create Angular service which exposes method <code>getTodos</code> which returns list of
-                following objects
+    <section id="exercise-ng-service"><h2>EXERCISE</h2>
+        <ol>
+            <li>Create Angular service which exposes method <strong>getTodos</strong> which returns list of
+                following objects:
                         <pre><code data-trim class="javascript">
 {
     title: 'example title',
@@ -146,11 +146,10 @@ angular.module('mySecond', [])
 }
             </code></pre>
             </li>
-            <li>Create Angular Controller and use created service</li>
-            <li>Bind result of <code>getTodos</code> to controller variable and display using <code>ng-repeat</code>
+            <li>Create Angular Controller and inject created service.</li>
+            <li>Bind result of <strong>getTodos</strong> to controller variable and display using <strong>ng-repeat</strong>.
             </li>
-            <small>Fallback: checkout <b>3-todo-service-fallback</b> branch</small>
-        </ul>
+        </ol>
     </section>
 </section>
 <section id="controllers">
@@ -298,13 +297,14 @@ angular.module('myFirst')
     });
 </code></pre>
 </section>
-<section id="routing">
-    <h2>Angular Routes</h2>
-
-    <img class="fragment" src="img/route.png"></img>
-</section>
 <section>
-    <h2>Angular Routes - Simple routing</h2>
+    <section id="routing">
+        <h2>Angular Routes</h2>
+
+        <img class="fragment" src="img/route.png"></img>
+    </section>
+    <section>
+        <h2>Angular Routes - Simple routing</h2>
   <pre class="fragment javascript"><code contenteditable data-trim>
 angular.module('myFirst', []).config(function ($routeProvider) {
     $routeProvider.when('/tables', {
@@ -316,9 +316,9 @@ angular.module('myFirst', []).config(function ($routeProvider) {
     });
 });
 </code></pre>
-</section>
-<section>
-    <h2>Angular Routes - Initial data</h2>
+    </section>
+    <section>
+        <h2>Angular Routes - Initial data</h2>
     <pre class="fragment javascript"><code contenteditable data-trim>
 angular.module('myFirst', []).config(function ($routeProvider) {
     $routeProvider.when('/books', {
@@ -336,9 +336,9 @@ angular.module('myFirst', []).config(function ($routeProvider) {
     });
 });
 </code></pre>
-</section>
-<section>
-    <h2>Angular Routes - Request Params</h2>
+    </section>
+    <section>
+        <h2>Angular Routes - Request Params</h2>
     <pre class="fragment javascript"><code contenteditable data-trim>
 angular.module('myFirst', [])
     .config(function ($routeProvider) {
@@ -351,9 +351,21 @@ angular.module('myFirst', [])
         //use $routeParams.tableId
     });
 </code></pre>
+    </section>
+    <section id="routing-exercise"><h2>EXERCISE</h2>
+        <ol>
+            <li>Install <strong>angular-route</strong> using bower, configure <strong>ng-view</strong> directive.</li>
+            <li>Add <strong>id</strong> property to every todo.</li>
+            <li>Create <strong>list</strong> and <strong>detailed</strong> view for objects from <strong>getTodos</strong> method.</li>
+            <li><strong>List</strong> view should display simple list of objects returned by service(<strong>#/list</strong>)</li>
+            <li>Detailed view should display details of single item taken by id(<strong>#/item/1</strong>)</li>
+        </ol>
+        <small>Fallback if previous exercise not done: checkout <b>3-todo-service-fallback</b> branch</small>
+    </section>
 </section>
-<section id="backend">
-    <h2>Angular Backend Communication - $http</h2>
+<section>
+    <section id="backend">
+        <h2>Angular Backend Communication - $http</h2>
     <pre class="javascript"><code contenteditable data-trim>
 angular.module('myFirst', [])
     .factory('tables', function($http){
@@ -367,30 +379,41 @@ angular.module('myFirst', [])
         };
     });
 </code></pre>
+    </section>
+    <section>
+        <h2>$http provides ...</h2>
+
+        <p>...generic method <b>$http(config)</b><span class="fragment"><br>... and shortcut methods</span></p>
+        <ul class="fragment" style="font-size:0.8em">
+            <li>$http.get(url, [config])</li>
+            <li>$http.head(url, [config])</li>
+            <li>$http.post(url, data, [config])</li>
+            <li>$http.put(url, data, [config])</li>
+            <li>$http.delete(url, [config])</li>
+            <li>$http.jsonp(url, [config])</li>
+            <li>$http.patch(url, data, [config])</li>
+        </ul>
+
+    </section>
+    <section>
+        <h2>$httpBackendProvider allows...</h2>
+
+        <p class="fragment">... to set default headers for every type of request</p>
+
+        <p class="fragment">... to define interceptors for cross cutting feature</p>
+
+        <p class="fragment">... to enable XSRF protection</p>
+    </section>
 </section>
-<section>
-    <h2>$http provides ...</h2>
-
-    <p>...generic method <b>$http(config)</b><span class="fragment"><br>... and shortcut methods</span></p>
-    <ul class="fragment" style="font-size:0.8em">
-        <li>$http.get(url, [config])</li>
-        <li>$http.head(url, [config])</li>
-        <li>$http.post(url, data, [config])</li>
-        <li>$http.put(url, data, [config])</li>
-        <li>$http.delete(url, [config])</li>
-        <li>$http.jsonp(url, [config])</li>
-        <li>$http.patch(url, data, [config])</li>
-    </ul>
-
-</section>
-<section>
-    <h2>$httpBackendProvider allows...</h2>
-
-    <p class="fragment">... to set default headers for every type of request</p>
-
-    <p class="fragment">... to define interceptors for cross cutting feature</p>
-
-    <p class="fragment">... to enable XSRF protection</p>
+<section id="backend-exercise"><h2>EXERCISE</h2>
+    <ol>
+        <li>Replace existing service with real backend service.</li>
+        <li>Add persistance(<strong>saveTodo</strong> ...).</li>
+        <li>Add ability to create new Todos(be creative ;)).</li>
+        <li>Add archiving functionality.</li>
+    </ol>
+    <small>API description (<b>gulp serve</b>) <a href="http://localhost:9000/services/" target="_blank">http://localhost:9000/services/</a></small>
+    <small>Fallback if previous exercise not done: checkout <b>4-routing-fallback</b> branch</small>
 </section>
 </div>
 
@@ -407,7 +430,6 @@ angular.module('myFirst', [])
         progress: true,
         history: true,
         center: true,
-
         transition: 'slide', // none/fade/slide/convex/concave/zoom
 
         // Optional reveal.js plugins
