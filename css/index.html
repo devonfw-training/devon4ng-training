@@ -1,0 +1,113 @@
+<!DOCTYPE html><html lang="en"></html><head><title>Css Basics</title><link rel="stylesheet" href="css/base.css"><link rel="stylesheet" href="css/slides.css"><link rel="stylesheet" href="css/custom.css"><link rel="stylesheet" href="lib/highlight.js/styles/railscasts.min.css"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic"></head><body class="startup impress-not-supported"><div class="fallback-message"><p>Your browser<b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p><p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p></p></div></body><div id="impress"><div id="start" data-x="0" data-y="0" class="slide step"><h1>CSS Basics</h1><h3>Tomasz Białecki</h3></div><div id="syntax" data-x="1000" data-y="0" class="slide step"><h1><i>Cascading Style Sheets</i> Syntax</h1><pre><code contenteditable data-trim>&lt;selector1&gt;, &lt;selector2&gt; {
+  &lt;property1&gt; : &lt;value1&gt;;
+  &lt;property2&gt; : &lt;value2&gt;;
+  &lt;property3&gt; : &lt;value3&gt;
+}
+&nbsp;
+&lt;selector1&gt; {
+  &lt;property4&gt; : &lt;value4&gt;
+}
+&nbsp;
+/* Css comment */</code></pre></div><div id="syntax2" data-x="1000" data-y="0" class="visible-on-active slide step"><h1><i>Cascading Style Sheets</i> Syntax</h1><pre><code contenteditable data-trim>p, div {
+  background: red;
+  font-weight: bold;
+  color: blue
+}
+&nbsp;
+p {
+  font-style: italic
+}
+&nbsp;
+/* Css comment */</code></pre></div><div id="selectors" data-x="1000" data-y="800" class="slide step"><h1>Selectors</h1><table><thead><tr><th>Selector</th><th>Selected element(s)</th></tr></thead><tbody><tr><td class="code">p</td><td>Paragraphs</td></tr><tr><td class="code">.class1</td><td>Elements with <i>class1</i></td></tr><tr><td class="code">#content</td><td>Element with identifier <i>content</i></td></tr><tr><td class="code">p.class1</td><td>Paragaphs with class <i>class1</i></td></tr><tr><td class="code">p .class1</td><td>Elements with class <i>class1</i> having paragraph as direct parent</td></tr><tr><td class="code">.class1 .class2</td><td>Elements with class <i>class2</i> having direct parent with class <i>class1</i></td></tr><tr><td class="code">p.class1.class2</td><td>Paragraphs with both <i>class1</i> and <i>class2</i> classes</td></tr></tbody></table></div><div id="selectors2" data-x="1000" data-y="1600" class="slide step"><h1>Selectors</h1><table><thead><tr><th style="width: 250px;">Selector</th><th>Selected element(s)</th></tr></thead><tbody><tr><td class="code">*</td><td>All elements</td></tr><tr><td class="code">div &gt; p</td><td>All &lt;p&gt; elements where the parent is a &lt;div&gt; element</td></tr><tr><td class="code">div + p</td><td>All &lt;p&gt; elements that are placed immediately after &lt;div&gt; elements</td></tr><tr><td class="code">p:first-child</td><td>Selects every &lt;p&gt; element that is the first child of its parent</td></tr><tr><td class="code">p:nth-child(2)</td><td>Selects every &lt;p&gt; element that is the second child of its parent</td></tr></tbody></table><a href="http://www.w3schools.com/cssref/css_selectors.asp" target="_blank">. . . W3C Selectors</a></div><div id="exercise-selectors" data-x="1000" data-y="2400" class="slide step"><h1>Exercise 1 - Selectors</h1><pre data-pane="html,css" data-user="tbialecki" data-href="hi5aaa4f" data-version="0" class="_cssdeck_embed"></pre><script async src="http://cssdeck.com/assets/js/embed.js"></script><div><iframe src="http://cssdeck.com/labs/full/mbass4zv//noframe" class="cssdeck"></iframe></div></div><div id="exercise-selectors2" data-x="1000" data-y="3200" class="slide step"><h1>Exercise 2 - Selectors</h1><pre data-pane="html,css" data-user="tbialecki" data-href="qfaxbef2" data-version="0" class="_cssdeck_embed"></pre><script async src="http://cssdeck.com/assets/js/embed.js"></script><div><iframe src="http://cssdeck.com/labs/full/ssz5nsm2//noframe" class="cssdeck"></iframe></div></div><div id="inherit1" data-x="1000" data-y="4000" class="slide step"><h1>Default property value</h1><div class="container6-4"><pre><code contenteditable data-trim>&lt;body&gt;
+&lt;style&gt;
+    body {
+        color: red;
+        font-size:20px;
+        border: 1px solid black;
+    }
+&lt;/style&gt;
+&lt;div&gt;
+    &lt;p&gt;
+        &lt;span&gt;Sample text&lt;/span&gt;
+    &lt;/p&gt;
+&lt;/div&gt;
+&lt;/body&gt;</code></pre><iframe src="frames/selectors/inherit/index1.html"></iframe></div></div><div id="inherit2" data-x="1000" data-y="4800" class="slide step"><h1>Default property value</h1><div class="container6-4"><pre><code contenteditable data-trim>&lt;body&gt;
+&lt;style&gt;
+    * {
+        border: inherit;
+    }
+    body {
+        color: red;
+        font-size:20px;
+        border: 1px solid black;
+    }
+&lt;/style&gt;
+&lt;div&gt;
+    &lt;p&gt;
+        &lt;span&gt;Sample text&lt;/span&gt;
+    &lt;/p&gt;
+&lt;/div&gt;
+&lt;/body&gt;</code></pre><iframe src="frames/selectors/inherit/index2.html"></iframe></div></div><div id="priorties" data-x="1000" data-y="5600" data-rotate-x="360" class="slide step"><h1>Selector's priority</h1><h1 class="priorties">(S<span>ource</span>,I<span>ds</span>,C<span>lasses</span>,E<span>elements</span>)</h1><table><tbody><tr><td class="bold">Source</td><td>2 - Inline <br> 1 - <span style="color:blue">&lt;style&gt;&lt;/style&gt;</span> tag <br> 0 - External file</td></tr><tr><td class="bold">Ids</td><td>Number of identifiers in selector</td></tr><tr><td class="bold">Classes</td><td>Number of classes in selector</td></tr><tr><td class="bold">Elements</td><td>Number of elements in selector</td></tr></tbody></table></div><div id="priorties2" data-x="1000" data-y="6400" class="visible-on-active slide step"><h1>Selector's priority</h1><div class="container6-4"><pre><code contenteditable data-trim>&lt;div id=&quot;content&quot;&gt;
+   &lt;p class=&quot;active&quot;&gt;
+       Text
+       &lt;!-- (2,0,0,0) = 2000 --&gt;
+       &lt;span style=&quot;color: red&quot;&gt;!&lt;/span&gt;
+   &lt;/p&gt;
+&lt;/div&gt;</code></pre><iframe src="frames/selectors/priorities/index.html"></iframe></div><br><pre><code contenteditable data-trim>/* (0,1,0,1) = 101 */
+#content p {
+   color: blue
+}
+/* (0,0,1,2) = 12 */
+div p.active {
+   color: yellow
+}</code></pre></div><div id="box-model" data-x="2000" data-y="0" class="slide step"><h1>Box model</h1><img src="img/box.gif" class="zoomable center"><h2 class="bold center">real-size = margin + border + padding + size</h2></div><div id="block-inline" data-x="2000" data-y="800" class="slide step"><h1><span class="blue">block</span> vs <span class="blue">inline</span></h1><h2><b>Block elements</b></h2><ul><li>display: <b class="blue">block</b></li><li>displayed <b>under</b> each other</li><li>size defined by width, height, margin, padding</li><li>example:<b> &lt;div&gt;, &lt;section&gt;, &lt;p&gt;</b></li></ul><br><h2><b>Inline elements</b></h2><ul><li>display: <b class="blue">inline</b></li><li>displayed <b>next</b> to each other</li><li>size defined only by content size and margin-left, margin-right, padding-left, padding-right</li><li>example:<b> &lt;b&gt;, &lt;i&gt;, &lt;a&gt;, &lt;span&gt;</b></li></ul></div><div id="block-inline-example" data-x="2000" data-y="1600" class="slide step"><h1>Example</h1><pre><code contenteditable data-trim>&lt;div&gt;
+   &lt;span&gt;1&lt;/span&gt;
+   &lt;span&gt;2&lt;/span&gt;&lt;span&gt;3&lt;/span&gt;
+&lt;/div&gt;
+&lt;div&gt;
+   &lt;span&gt;4&lt;/span&gt;
+   &lt;span&gt;5&lt;/span&gt;&lt;span&gt;6&lt;/span&gt;
+&lt;/div&gt;
+&lt;div&gt;
+   &lt;span&gt;7&lt;/span&gt;
+   &lt;span&gt;8&lt;/span&gt;&lt;span&gt;9&lt;/span&gt;
+&lt;/div&gt;</code></pre><br><div><iframe src="frames/display/block-inline/index.html"></iframe></div></div><div id="horizontal-alignment" data-x="2000" data-y="2400" class="slide step"><h1>Horizontal alignment</h1><h2>How to align <span class="blue">inline</span> elements <span class="blue">horizontally</span></h2><pre><code contenteditable data-trim>.container {
+  text-align: center;
+}
+.child {
+  display: inline-block;
+}</code></pre><iframe src="frames/box-model/horizontal-inline.html" height="100"></iframe></div><div id="horizontal-alignment2" data-x="2000" data-y="3200" class="slide step"><h1>Horizontal alignment</h1><h2>How to align <span class="blue">block</span> elements <span class="blue">horizontally</span></h2><pre><code contenteditable data-trim>.container {
+  &nbsp;
+}
+.child {
+  margin: 0 auto;
+}</code></pre><iframe src="frames/box-model/horizontal-block.html" height="100"></iframe></div><div id="vertical-alignment" data-x="2000" data-y="4000" class="slide step"><h1>Vertical alignment</h1><h2>How to align <span class="blue">vertically</span> with fixed container height</h2><pre><code contenteditable data-trim>.container {
+    height: 100px;
+    line-height: 100px;
+}
+.child {
+    display: inline-block;
+    vertical-align: middle;
+}</code></pre><iframe src="frames/box-model/vertical-fixed.html" height="100"></iframe></div><div id="block-model-exercise" data-x="2000" data-y="4800" class="slide step"><h1>Exercise 3 - Box model</h1><pre data-pane="html,css" data-user="tbialecki" data-href="jkntqvh4" data-version="0" class="_cssdeck_embed"></pre><script async src="http://cssdeck.com/assets/js/embed.js"></script><div><iframe src="http://cssdeck.com/labs/full/jej2t4lj//noframe" class="cssdeck"></iframe></div></div><div id="float" data-x="3000" data-y="" class="slide step"><h1>Float</h1><ul><li>element can be pushed to the <b class="blue">left</b> or <b class="blue">right</b>,<br> allowing other elements to wrap around it</li><li>elements are floated <b class="blue">horizontally</b></li><li>element<u>s</u> after the floating element will flow around it</li><li>if an image is floated to the right, a following text flows around it, to the left</li></ul><br></div><div id="text-float" data-x="3000" data-y="800" class="slide step"><h1>Float in text</h1><div class="css-control-container"><div class="css-control">vertical-align:&nbsp;<select onchange="$('#float-text-iframe').contents().find('img').css('vertical-align',this.value)"><option value="bottom">bottom</option><option value="middle">middle</option><option value="top">top</option></select></div><div class="css-control">float:&nbsp;<select onchange="$('#float-text-iframe').contents().find('img').css('float',this.value)"><option value="none">none</option><option value="left">left</option><option value="right">right</option></select></div></div><iframe id="float-text-iframe" src="frames/float/text/index.html"></iframe></div><div id="block-float-1" data-x="3000" data-y="1600" class="slide step"><h1>Float of blocks</h1><div class="css-control-container"><div class="css-control"><span style="color:#ffff22">float:&nbsp;</span><select onchange="$('#float-block-iframe').contents().find('li').css('float',this.value)"><option value="none">none</option><option value="left">left</option><option value="right">right</option></select></div></div><iframe id="float-block-iframe" src="frames/float/block/index.html"></iframe></div><div id="clear" data-x="3000" data-y="2400" class="slide step"><h1>Clear</h1><div class="css-control-container"><div class="css-control"><span style="color:#ffff22">float:&nbsp;</span><select onchange="$('#float-clear-iframe').contents().find('li').css('float',this.value)"><option value="none">none</option><option value="left">left</option><option value="right">right</option></select></div><div class="css-control"><span class="red">clear</span>:&nbsp;<select onchange="$('#float-clear-iframe').contents().find('li:nth-child(4)').css('clear',this.value)"><option value="none">none</option><option value="left">left</option><option value="right">right</option><option value="both">both</option></select></div><div class="css-control">append clearing element:&nbsp;<input type="checkbox" value="block" onchange="$('#float-clear-iframe').contents().find('li.clear').css('display',this.checked? 'block' : 'none')"></div></div><iframe id="float-clear-iframe" src="frames/float/clear/index.html"></iframe></div><div id="float-exercise" data-x="3000" data-y="3200" class="slide step"><h1>Exercise 4 - Float</h1><pre data-pane="html,css" data-user="tbialecki" data-href="5cbx5yzs" data-version="0" class="_cssdeck_embed"></pre><script async src="http://cssdeck.com/assets/js/embed.js"></script><div><iframe src="http://cssdeck.com/labs/full/5orcdjoe//noframe" class="cssdeck"></iframe></div></div><div id="positioning" data-x="4000" data-y="" class="slide step"><h1>Positioning</h1><h2><b>position: <span class="blue">static</span></b></h2><ul><li>default value</li><li>positioned according to the normal flow</li></ul><br><h2><b>position: <span class="blue">relative</span></b></h2><ul><li>element is positioned <b>relative to its normal position</b></li><li>position can be adjusted with <i>top, bottom, left, right</i> properties</li><li>even if moved consumes space in container</li></ul></div><div id="positioning2" data-x="4000" data-y="800" class="slide step"><h1>Positioning</h1><h2><b>position: <span class="blue">absolute</span></b></h2><ul><li>element is positioned <b>relative to its first positioned (not static) ancestor element</b></li><li>position can be adjusted with <i>top, bottom, left, right</i> properties</li><li>offten used together with <b>relative</b> positioning</li></ul><br><h2><b>position: <span class="blue">fixed</span></b></h2><ul><li>element is positioned <b>relative to the browser window</b></li><li>position can be adjusted with <i>top, bottom, left, right</i> properties</li></ul></div><div id="positioning-example" data-x="4000" data-y="1600" class="slide step"><h1>Positioning example</h1><pre><code contenteditable data-trim>body {
+  position: relative
+}
+.container {
+  top: 50px; left: 50px; background: green
+}
+.child {
+  top: 50px; right: 50px; background: red
+}</code></pre><div class="css-control-container"><div class="css-control"><span style="color:green">position:&nbsp;</span><select onchange="$('#positioning-iframe').contents().find('.container').css('position',this.value)"><option value="static">static</option><option value="relative">relative</option><option value="absolute">absolute</option><option value="fixed">fixed</option></select></div><div class="css-control"><span class="red">position</span>:&nbsp;<select onchange="$('#positioning-iframe').contents().find('.child').css('position',this.value)"><option value="static">static</option><option value="relative">relative</option><option value="absolute">absolute</option><option value="fixed">fixed</option></select></div></div><iframe id="positioning-iframe" src="frames/positioning/position/index.html"></iframe></div><div id="vertical-alignment2" data-x="4000" data-y="2400" class="slide step"><h1>Vertical alignment</h1><h2>How to align <span class="blue">vertically</span> independently on container height</h2><div class="container6-4"><pre><code contenteditable data-trim>.container {
+  height: 200px;
+  position: relative
+}
+.child-container {
+  position: absolute;
+  height: 0;
+  overflow: visible;
+  top: 50%
+}
+.child {
+  height: 50px;
+  top: -25px;
+  position: relative
+}</code></pre><iframe src="frames/box-model/vertical-flex.html" height="200"></iframe></div></div><div id="positioning-exercise" data-x="4000" data-y="3200" class="slide step"><h1>Exercise 5 - Positioning</h1><pre data-pane="html,css" data-user="tbialecki" data-href="trsplmor" data-version="0" class="_cssdeck_embed"></pre><script async src="http://cssdeck.com/assets/js/embed.js"></script><div><iframe src="http://cssdeck.com/labs/full/hvivuhdq//noframe" class="cssdeck"></iframe></div></div><div id="overview" data-x="1000" data-y="0" data-scale="5" class="step"></div><!-- bower:js--><script src="lib/jquery/dist/jquery.js"></script><!-- endbower--><script type="text/javascript" src="lib/impress.js/js/impress.js"></script><script type="text/javascript">impress().init();</script><script type="text/javascript" src="lib/highlight.js/highlight.min.js"></script><script type="text/javascript" src="lib/highlight.js/zoom.js"></script><script type="text/javascript" src="js/custom.js"></script><script>hljs.initHighlightingOnLoad();</script><script src="//localhost:35729/livereload.js"></script></div>
