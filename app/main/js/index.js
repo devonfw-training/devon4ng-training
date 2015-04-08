@@ -1,1 +1,1 @@
-console.log('Hallo world');
+document.getElementById('greeting').textContent = 'World';
