@@ -26,7 +26,8 @@ gulp.task('serve', gulpsync.sync(['build', 'watch']), function () {
         'app/bower_components/bootstrap/dist'
     ], _.flatten([
         config.css.dest.path(),
-        config.js.src()
+        config.js.src(),
+        '.tmp/index.html'
     ]));
 });
 
