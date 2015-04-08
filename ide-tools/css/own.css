@@ -1,0 +1,32 @@
+.reveal section img.plain {
+    background: white;
+    border: none;
+    box-shadow: none;
+}
+
+.reveal section img.no-margin {
+    margin: 0;
+}
+
+.reveal p.foot-note {
+    text-align: left;
+    line-height: 1;
+}
+
+.reveal section p .middle {
+    vertical-align: middle;
+}
+
+.reveal ul.no-bullets {
+    list-style-type: none;
+}
+
+span.bower{
+    color: #ef5734;
+    font-weight: bold;
+}
+
+.reveal p.foot-note {
+    text-align: left;
+    line-height: 1;
+}
