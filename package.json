@@ -7,6 +7,9 @@
         "connect": "3.4.0"
     },
     "devDependencies": {
+        "body-parser": "1.13.2",
+        "express": "4.13.1",
+        "gulp-nodemon": "2.0.3",
         "browser-sync": "2.7.13",
         "chalk": "1.1.0",
         "coveralls": "2.11.2",
