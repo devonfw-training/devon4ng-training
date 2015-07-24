@@ -15,6 +15,7 @@ function browserSyncInit(baseDir, files, browser) {
             baseDir: baseDir,
             routes: null
         },
+        online: false,
         browser: browser
     });
 }
