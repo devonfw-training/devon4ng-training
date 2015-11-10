@@ -1,0 +1,28 @@
+{
+    "rules": {
+        "quotes": [2, "single"],
+        "semi": [2, "always"],
+        "strict": 2
+    },
+    "env": {
+        "browser": true,
+        "node": true,
+        "es6": true
+    },
+    "globals": {
+        "angular": true,
+         // Angular Mocks
+         "inject": false,
+         // JASMINE
+         "describe": false,
+         "it": false,
+         "before": false,
+         "beforeEach": false,
+         "after": false,
+         "afterEach": false,
+         "expect": false,
+         "jasmine": false,
+         "spyOn": false
+      },
+    "extends": "eslint:recommended"
+}
