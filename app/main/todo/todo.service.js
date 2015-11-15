@@ -28,5 +28,5 @@ angular.module('app.main').factory('todos', function () {
         getTodos: function () {
             return todos;
         }
-    }
+    };
 });
