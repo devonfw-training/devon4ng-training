@@ -11,7 +11,7 @@ global.isBuildForProd = function () {
 
 global.config = require('./gulp/lib/config-factory.js')(require('./config.json'));
 
-require('require-dir')('./gulp', {recurse: true});
+require('require-dir')('./gulp', {recurse: false});
 
 gulp.task('default', ['clean'], function () {
     gulp.start('build:dist');

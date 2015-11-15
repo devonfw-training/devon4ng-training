@@ -24,7 +24,7 @@ function browserSyncInit(baseDir, files, browser) {
     });
 }
 
-gulp.task('serve', gulpsync.sync(['build', 'watch']), function () {
+gulp.task('serve', gulpsync.sync(['build','nodemon', 'watch']), function () {
     browserSyncInit([
         config.paths.tmp,
         config.paths.src,
