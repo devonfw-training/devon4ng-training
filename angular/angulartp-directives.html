@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Angular JS</title>
+
+    <meta name="description" content="Richwebclient">
+    <meta name="author" content="Richwebclient Team">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="../base/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../base/reveal.js/css/theme/sky.css" id="theme">
+    <link rel="stylesheet" href="css/angular-js-forms.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../base/reveal.js/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../base/reveal.js/css/print/pdf.css' : '../base/reveal.js/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="../base/reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body class="angularjs-forms">
+
+<div class="reveal">
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+        <section>
+            <h2><img class="logo" src="img/AngularJS-large.png"> Directives</h2>
+
+            <p>
+                <small>Tomasz Białecki</small>
+            </p>
+        </section>
+
+        <section>
+            <h2>Inspired by</h2>
+            <img src="img/1820OS.jpg" height="400px" alt="http://www.packtpub.com/sites/default/files/1820OS.jpg"/>
+        </section>
+
+        <section>
+            <h3>What are Directives?</h3>
+            <blockquote>At a high level, directives are markers on a DOM element (such as an attribute, element name,
+                comment or CSS class) that tell AngularJS's HTML compiler to attach a specified behavior to that DOM
+                element or even transform the DOM element and its children.
+            </blockquote>
+        </section>
+        <section>
+            <h3>Why you would want to develop custom directives?</h3>
+
+            <p class="fragment">... to manipulate the DOM directly</p>
+
+            <p class="fragment">... to remove repeated codes</p>
+
+            <p class="fragment">... to create new HTML mark-up for non-developers to use</p>
+        </section>
+        <section>
+            <section data-transition="none">
+                <h3>How to attache directive to an element?</h3>
+            <pre><code contenteditable data-trim>
+.directive('myDirective', function(){
+    return {
+        restrict:'E'
+    }
+});
+                </code></pre>
+<pre><code contenteditable data-trim>
+<my-directive></my-directive>
+                </code></pre>
+            </section>
+            <section data-transition="none">
+                <h3>How to attache directive to an element?</h3>
+            <pre><code contenteditable data-trim>
+.directive('myDirective', function(){
+    return {
+        restrict:'A'
+    }
+});
+                </code></pre>
+<pre><code contenteditable data-trim>
+<div my-directive=""></div>
+                </code></pre>
+            </section>
+            <section data-transition="none">
+                <h3>How to attache directive to an element?</h3>
+            <pre><code contenteditable data-trim>
+.directive('myDirective', function(){
+    return {
+        restrict:'C'
+    }
+});
+                </code></pre>
+<pre><code contenteditable data-trim>
+<div class="my-directive"></div>
+                </code></pre>
+            </section>
+        </section>
+        <section>
+            <section data-transition="none">
+                <h3>What is a scope of directive?</h3>
+                <pre class="fragment"><code contenteditable data-trim>
+.directive('myDirective', function(){
+    return {
+        restrict: 'ACE'
+        scope: false                    //no scope (use parent scope)
+    }
+});
+                </code></pre>
+            </section>
+            <section data-transition="none">
+                <h3>What is a scope of directive?</h3>
+                <pre><code contenteditable data-trim>
+.directive('myDirective', function(){
+    return {
+        restrict: 'ACE'
+        scope: true                     //create child scope
+    }
+});
+                </code></pre>
+            </section>
+            <section data-transition="none">
+                <h3>What is a scope of directive?</h3>
+                <pre><code contenteditable data-trim>
+.directive('myDirective', function(){
+    return {
+        restrict: 'ACE'
+        scope: {                        //create new isolated scope
+        }
+    }
+});
+                </code></pre>
+            </section>
+        </section>
+        <section>
+            <h2>Useful build in directives</h2>
+
+            <p>ngRepeat</p>
+
+            <p>ngShow / ngHide</p>
+
+            <p>ngClass</p>
+
+            <p>ngDisabled</p>
+
+            <p>ngIf / ngInclude</p>
+        </section>
+    </div>
+
+</div>
+
+<script src="../base/reveal.js/lib/js/head.min.js"></script>
+<script src="../base/reveal.js/js/reveal.js"></script>
+
+<script>
+
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'concave', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+            { src: '../base/reveal.js/lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            } },
+            { src: '../base/reveal.js/plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../base/reveal.js/plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../base/reveal.js/plugin/highlight/highlight.js', async: true, condition: function () {
+                return !!document.querySelector('pre code');
+            }, callback: function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src: '../base/reveal.js/plugin/zoom-js/zoom.js', async: true },
+            { src: '../base/reveal.js/plugin/notes/notes.js', async: true }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
