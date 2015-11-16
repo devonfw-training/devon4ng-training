@@ -21,5 +21,5 @@ angular.module('app.main').factory('todos', function ($http) {
         archiveTodos: function (todo) {
             return $http.delete('/services/todos', todo);
         }
-    }
+    };
 });

@@ -1,14 +1,17 @@
 {
-    "paths": {
-        "tmp": ".tmp",
-        "dist": "dist",
-        "app": "app",
-        "test": "test"
-    },
-    "modules": [
-        "main"
-    ],
-    "appBuild": true,
-    "proxy": "http://localhost:3000",
-    "proxyContext": ""
+  "paths": {
+    "tmp": ".tmp",
+    "dist": "dist",
+    "src": "app",
+    "testSrc": "app",
+    "testOutput": "test-output"
+  },
+  "styles": {
+    "type": "less",
+    "output": "css/app.css"
+  },
+  "proxy": {
+    "baseUrl": "http://localhost:3000",
+    "context": ""
+  }
 }
