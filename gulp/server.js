@@ -19,6 +19,7 @@ function browserSyncInit(baseDir, files, browser) {
                 '/bower_components': 'bower_components'
             }
         },
+        online: false,
         browser: browser,
         ghostMode: false
     });
