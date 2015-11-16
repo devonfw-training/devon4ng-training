@@ -2,7 +2,7 @@ angular.module('app.main').controller('TodoItemCntl', function ($scope, todo, $l
     'use strict';
     $scope.todo = todo;
     $scope.ok = function () {
-        $location.path('#/list')
-    }
+        $location.path('#/list');
+    };
 
 });
