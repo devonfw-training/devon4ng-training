@@ -98,7 +98,8 @@ div p.active {
   top: 50px; right: 50px; background: red
 }</code></pre><div class="css-control-container"><div class="css-control"><span style="color:green">position:&nbsp;</span><select onchange="$('#positioning-iframe').contents().find('.container').css('position',this.value)"><option value="static">static</option><option value="relative">relative</option><option value="absolute">absolute</option><option value="fixed">fixed</option></select></div><div class="css-control"><span class="red">position</span>:&nbsp;<select onchange="$('#positioning-iframe').contents().find('.child').css('position',this.value)"><option value="static">static</option><option value="relative">relative</option><option value="absolute">absolute</option><option value="fixed">fixed</option></select></div></div><iframe id="positioning-iframe" src="frames/positioning/position/index.html"></iframe></div><div id="vertical-alignment2" data-x="4000" data-y="2400" class="slide step"><h1>Vertical alignment</h1><h2>How to align <span class="blue">vertically</span> independently on container height</h2><div class="container6-4"><pre><code contenteditable data-trim>.container {
   height: 200px;
-  position: relative
+  position: relative;
+  background: green;
 }
 .child-container {
   position: absolute;
@@ -109,5 +110,19 @@ div p.active {
 .child {
   height: 50px;
   top: -25px;
-  position: relative
-}</code></pre><iframe src="frames/box-model/vertical-flex.html" height="200"></iframe></div></div><div id="positioning-exercise" data-x="4000" data-y="3200" class="slide step"><h1>Exercise 5 - Positioning</h1><pre data-pane="html,css" data-user="tbialecki" data-href="trsplmor" data-version="0" class="_cssdeck_embed"></pre><script async src="http://cssdeck.com/assets/js/embed.js"></script><div><iframe src="http://cssdeck.com/labs/full/hvivuhdq//noframe" class="cssdeck"></iframe></div></div><div id="overview" data-x="1000" data-y="0" data-scale="5" class="step"></div><!-- bower:js--><script src="lib/jquery/dist/jquery.js"></script><!-- endbower--><script type="text/javascript" src="lib/impress.js/js/impress.js"></script><script type="text/javascript">impress().init();</script><script type="text/javascript" src="lib/highlight.js/highlight.min.js"></script><script type="text/javascript" src="lib/highlight.js/zoom.js"></script><script type="text/javascript" src="js/custom.js"></script><script>hljs.initHighlightingOnLoad();</script><script src="//localhost:35729/livereload.js"></script></div>
+  position: relative;
+  background: yellow;
+}</code></pre><iframe src="frames/box-model/vertical-flex.html" height="200"></iframe></div></div><div id="vertical-alignment3" data-x="4000" data-y="3200" class="slide step"><h1>Vertical alignment</h1><h2>How to align <span class="blue">vertically</span> using table features</h2><div class="container6-4"><pre><code contenteditable data-trim>.container {
+  height: 200px;
+  display: table;
+  width: 100%
+}
+.child-container {
+  display: table-cell;
+  vertical-align: middle
+}
+.child {
+  height: 50px;
+  width: 50px;
+  background: yellow
+}</code></pre><iframe src="frames/box-model/vertical-table-cell.html" height="200"></iframe></div></div><div id="positioning-exercise" data-x="4000" data-y="4000" class="slide step"><h1>Exercise 5 - Positioning</h1><pre data-pane="html,css" data-user="tbialecki" data-href="trsplmor" data-version="0" class="_cssdeck_embed"></pre><script async src="http://cssdeck.com/assets/js/embed.js"></script><div><iframe src="http://cssdeck.com/labs/full/hvivuhdq//noframe" class="cssdeck"></iframe></div></div><div id="overview" data-x="1000" data-y="0" data-scale="5" class="step"></div><!-- bower:js--><script src="lib/jquery/dist/jquery.js"></script><!-- endbower--><script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script><script type="text/javascript" src="lib/impress.js/js/impress.js"></script><script type="text/javascript">impress().init();</script><script type="text/javascript" src="lib/highlight.js/highlight.min.js"></script><script type="text/javascript" src="lib/highlight.js/zoom.js"></script><script type="text/javascript" src="js/custom.js"></script><script>hljs.initHighlightingOnLoad();</script><script src="//localhost:35729/livereload.js"></script></div>
