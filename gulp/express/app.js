@@ -9,4 +9,3 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/services', todosRouter);
 app.listen(port);
-console.log('Express started on port ' + port);

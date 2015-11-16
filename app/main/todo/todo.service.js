@@ -40,5 +40,5 @@ angular.module('app.main').factory('todos', function () {
             }
             return null;
         }
-    }
+    };
 });
