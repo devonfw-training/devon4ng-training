@@ -3,10 +3,10 @@ angular.module('app.main').controller('TodoItemCntl', function ($scope, todo, to
     $scope.todo = todo;
     $scope.save = function () {
         todos.saveTodo($scope.todo).then(function () {
-            $location.path('/list')
-        })
+            $location.path('/list');
+        });
     };
     $scope.cancel = function () {
-        $location.path('/list')
-    }
+        $location.path('/list');
+    };
 });

@@ -1,11 +1,12 @@
 angular.module('app.main', ['ngRoute']).config(function ($routeProvider) {
+    'use strict';
     $routeProvider
         .when('/list', {
-            templateUrl: 'main/html/list.html',
+            templateUrl: 'main/todo/list.html',
             controller: 'TodoCntl'
         })
         .when('/item/:todoId', {
-            templateUrl: 'main/html/item.html',
+            templateUrl: 'main/todo/item.html',
             controller: 'TodoItemCntl',
             resolve: {
                 todo: function ($route, todos) {
@@ -14,9 +15,9 @@ angular.module('app.main', ['ngRoute']).config(function ($routeProvider) {
             }
         })
         .when('/add', {
-            templateUrl: 'main/html/item.html',
+            templateUrl: 'main/todo/item.html',
             controller: 'TodoNewItemCntl'
         }).otherwise({
             redirectTo: '/list'
-        })
+        });
 });

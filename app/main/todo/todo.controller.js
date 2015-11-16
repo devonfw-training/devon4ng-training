@@ -8,12 +8,12 @@ angular.module('app.main').controller('TodoCntl', function ($scope, todos, $loca
     };
     loadTodos();
     $scope.add = function () {
-        $location.path('/add')
+        $location.path('/add');
     };
     $scope.update = function (todo) {
         todos.saveTodo(todo);
     };
     $scope.archive = function () {
-        todos.archiveTodos().then(loadTodos)
-    }
+        todos.archiveTodos().then(loadTodos);
+    };
 });
