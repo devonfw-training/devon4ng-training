@@ -2,7 +2,8 @@
     "rules": {
         "quotes": [2, "single"],
         "semi": [2, "always"],
-        "strict": 2
+        "strict": 2,
+        "eol-last": 0
     },
     "env": {
         "browser": true,
