@@ -2,7 +2,7 @@
 'use strict';
 
 var gulp = require('gulp');
-
+var browserSync = require('browser-sync');
 gulp.task('watch', [], function () {
     gulp.watch(config.styles.allSrc(), ['styles']);
     gulp.watch(config.indexHtml.src(), ['indexHtml:html']);
@@ -16,4 +16,8 @@ gulp.task('watch', [], function () {
     config.ngTemplates.conf().forEach(function (ngTemplatesItemConf) {
         gulp.watch(ngTemplatesItemConf.src, ['ngTemplates[' + ngTemplatesItemConf.file + ']']);
     });
+});
+
+gulp.task('page:reload', function(){
+    browserSync.instance.reload();
 });
