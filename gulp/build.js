@@ -157,7 +157,7 @@ gulp.task('i18n', function (done) {
 /** ======================================== html ======================================== **/
 gulp.task('html', function () {
     return gulp.src(config.html.src(), { base: config.paths.src })
-        .pipe($.newer(config.paths.tmp))
+        //.pipe($.newer(config.paths.tmp))
         .pipe($.processhtml({commentMarker: 'process',
             recursive: true,
             includeBase: config.paths.src}))
