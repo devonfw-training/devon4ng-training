@@ -9,6 +9,10 @@ h2 {
   line-height: 1.2em;
   margin-bottom: 0.3em; }
 
+h4 {
+  float: right;
+  font-weight: bold; }
+
 .center {
   margin: 0 auto;
   text-align: center;
@@ -44,14 +48,19 @@ td.code {
 .bold {
   font-weight: bold; }
 
-iframe.cssdeck {
+iframe.jsbin {
   margin-bottom: 10px;
-  min-height: 400px !important; }
+  min-height: 350px !important; }
+
+iframe.jsbinresult {
+  margin-bottom: 10px;
+  min-height: 100px !important; }
 
 .container6-4 > *:first-child {
   width: 57.5%;
   display: inline-block;
   vertical-align: top; }
+
 .container6-4 > *:last-child {
   width: 37.5%;
   margin-left: 5%;
@@ -129,6 +138,7 @@ h1.priorties {
 
 #float-exercise iframe {
   min-height: 250px !important; }
+
 #float-exercise .cssdeck {
   min-height: 250px !important;
   height: 250px;
