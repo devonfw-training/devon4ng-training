@@ -1,3 +1,11 @@
+.reveal section::before {
+    background: white !important;
+}
+
+.reveal section::after {
+    box-shadow: none !important;
+}
+
 .reveal section img.plain {
     background: white;
     border: none;
@@ -6,6 +14,9 @@
 
 .reveal section img.no-margin {
     margin: 0;
+}
+.reveal section img.middle {
+    vertical-align: middle;
 }
 
 .reveal p.foot-note {
@@ -29,4 +40,41 @@ span.bower{
 .reveal p.foot-note {
     text-align: left;
     line-height: 1;
+}
+
+.reveal .slides .primaryColor {
+    color: #00488D;
+}
+
+.reveal .slides .secondaryColor {
+    color: #2E97C4;
+}
+
+.reveal .slides .primaryFont {
+    font-family: 'Open Sans Condensed'
+}
+
+.reveal .slides .secondaryFont {
+    font-family: 'Lobster Two'
+}
+
+.reveal .slides .inline {
+    display: inline;
+    margin: auto
+}
+
+.reveal .slides .noTransform {
+    text-transform: none;
+}
+
+.reveal .slides .lowercase {
+    text-transform: lowercase;
+}
+
+.reveal .slides a:link {
+    color: lightgreen;
+}
+
+.reveal .slides a:visited {
+    color: lightgreen;
 }

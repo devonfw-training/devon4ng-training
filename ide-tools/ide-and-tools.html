@@ -7,7 +7,7 @@
     <title>IDE and Tools</title>
 
     <meta name="description" content="IDE and Tools">
-    <meta name="author" content="Marek Matczak">
+    <meta name="author" content="Bartłomiej Pietrowski, Marek Matczak">
 
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -17,6 +17,10 @@
     <link rel="stylesheet" href="../base/reveal.js/css/reveal.css">
     <link rel="stylesheet" href="../base/reveal.js/css/theme/white.css" id="theme">
     <link rel="stylesheet" href="css/own.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Lobster+Two:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet" type="text/css">
+
 
     <!-- Code syntax highlighting -->
     <link rel="stylesheet" href="../base/reveal.js/lib/css/zenburn.css">
@@ -41,55 +45,158 @@
         <!-- Any section element inside of this container is displayed as a slide -->
         <div class="slides">
             <section>
-                <h1>IDE and Tools</h1>
-                <p>Marek Matczak</p>
+                <h1 class="inline primaryFont primaryColor">IDE</h1>
+                <h1 style="font-size: 1.5em" class="inline secondaryFont lowercase">and</h1>
+                <h1 class="inline primaryFont primaryColor">Tools</h1>
+
+                <p class="secondaryColor">Bartłomiej Pietrowski, Marek Matczak</p>
             </section>
+
             <section>
-                <h3><img height="35" class="plain no-margin" src="img/120px-Brackets_Icon.svg.png">&nbsp;Brackets - a lightweight IDE</h3>
-                <img height="200" class="plain" src="img/brackets.png">
-                <ul>
+                <h2 class="inline primaryFont primaryColor">Meet</h2>
+                <h2 class="inline secondaryFont primaryColor lowercase">the</h2>
+                <h2 class="inline primaryFont">competitors</h2>
+
+                <div style="margin-top: 1em">
+                    <img height="150" class="plain no-margin" src="img/atom_icon.png">
+                    <img height="150" class="plain no-margin" src="img/vscode_icon.ico">
+                    <img height="150" class="plain no-margin" src="img/120px-Brackets_Icon.svg.png">
+                </div>
+
+                <div>
+                    <img height="70" class="plain no-margin" src="img/webstorm.png">
+                    <img height="70" class="plain no-margin" src="img/emacs.png">
+                    <img height="70" class="plain no-margin" src="img/vim.png">
+                </div>
+            </section>
+
+            <section>
+                <h2 class="primaryFont primaryColor ">
+                    <img height="100" class="plain no-margin middle" src="img/atom_icon.png">
+                    Atom
+                </h2>
+
+                <div style="margin-top: 1em">
+                    <img height="400" class="plain middle inline"  style="float:left" src="img/under-the-hood.gif">
+                    <ul style="display: block" class="no-bullets">
+                        <li>
+                            Home page <a href="https://atom.io/">https://atom.io/</a>
+                        </li>
+                        <li>Package manager</li>
+                        <li class="secondaryColor">Collection of packages</li>
+                        <li class="secondaryColor">Well documented</li>
+                        <li>GIT support</li>
+                        <li>Markdown support</li>
+                        <li class="secondaryColor">Execute command by typing</li>
+                        <li>Theming, Open Source</li>
+
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="primaryFont primaryColor noTransform">
+                    <img height="100" class="plain no-margin middle" src="img/vscode_icon.ico">
+                    Visual Studio Code
+                </h2>
+
+                <ul style="text-align: center; margin-top: 1em" class="no-bullets">
                     <li>
-                        Can be downloaded from <a href="http://brackets.io/">http://brackets.io/</a>
+                        Home page <a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a>
                     </li>
+                    <li class="secondaryColor">IntelliSense</li>
+                    <li>Extensions</li>
+                    <li class="secondaryColor">Powerful debugging</li>
+                    <li>GIT support</li>
+                    <li class="secondaryColor">Focused on Node and .NET</li>
+                    <li class="secondaryColor">Execute command by typing</li>
+                    <li>Theming, Open Source</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="primaryFont primaryColor noTransform">
+                    <img height="100" class="plain no-margin middle" src="img/120px-Brackets_Icon.svg.png">
+                    Brackets
+                </h2>
+
+                <ul style="text-align: center; margin-top: 1em" class="no-bullets">
                     <li>
-                        Recommended extension:&nbsp;<a href="https://github.com/drewhamlett/brackets-beautify">Beautify</a> - formats HTML, CSS, and JavaScript files.
+                        Home page <a href="http://brackets.io/">http://brackets.io/</a>
                     </li>
+                    <li class="secondaryColor">Live preview</li>
+                    <li>Focussed on <strong>front-end</strong> web development</li>
+                    <li class="secondaryColor">Inline editor</li>
+                    <li>Photoshop integration</li>
+                    <li>Extension manager (slow)</li>
+                    <li>Theming, Open Source</li>
 
                 </ul>
             </section>
+
             <section>
-                <h2>We make use of the <a href="http://oasp.github.io/oasp4js/"><img class="plain no-margin" width="60" src="img/oasp4js-logo.png"></a>&nbsp;Application Template</h2>
+                <h2 class="primaryColor primaryFont">We make use of the
+                    <a href="http://oasp.github.io/oasp4js/">
+                        <img class="plain no-margin" width="60" src="img/oasp4js-logo.png">
+                    </a>
+                    Application Template</h2>
                 <img class="plain" src="img/oasp4js-structure.png">
             </section>
+
             <section>
-                <h2>The tools</h2>
-                <ul class="no-bullets">
-                    <li>
-                        <p><img height="60" class="plain no-margin middle" src="img/nodejs.png">&nbsp;<span class="middle">is a JavaScript Runtime Environment based on the Google's V8 engine. Its package manager (npm) enables installing node.js modules.</span>
-                        </p>
-                    </li>
-                    <li>
-                        <p><img height="60" class="plain no-margin middle" src="img/gulp.png">&nbsp;<span class="middle">is a task-based streaming build system.</span>
-                        </p>
-                    </li>
-                    <li>
-                        <p><img height="60" class="plain no-margin middle" src="img/bower.png">&nbsp;<span class="middle"><span class="bower">Bower</span> manages application dependencies.</span>
-                        </p>
-                    </li>
-                    <li>
-                        <p><img height="80" class="plain no-margin middle" src="img/yeoman.png">&nbsp;<span class="middle">enables creation of generators which automate common activities.</span>
-                        </p>
-                    </li>
-                    <li>
-                        <p><img height="35" class="plain no-margin middle" src="img/karma.png">&nbsp;<span class="middle">is a test runner supporting Jasmine, Mocha and QUnit test frameworks.</span>
-                        </p>
-                    </li>
+                <h1><img height="80" class="plain no-margin" src="img/nodejs.png"></h1>
+
+                <ul style="text-align: center" class="no-bullets primaryFont">
+                    <li>JavaScript Runtime Environment</li>
+                    <li>Based on the Google's <strong class="secondaryColor">V8 engine</strong></li>
+                    <li>Includes <strong class="secondaryColor">npm</strong> (package manager)</li>
                 </ul>
             </section>
+
             <section>
-                <h2>How it works</h2>
+                <h2 style="margin: 0" class="primaryColor primaryFont noTransform">Node Version Manager</h2>
+                <p style="margin: 0" class="primaryColor primaryFont">for Windows</p>
+                <img class="plain" src="img/nvm.jpg">
+            </section>
+
+            <section>
+                <h1><img height="120" class="plain no-margin middle" src="img/gulp.png"></h1>
+
+                <p class="primaryFont">
+                    <span class="middle">is a task-based <strong class="secondaryColor">streaming build system</strong>.</span>
+                </p>
+            </section>
+
+            <section>
+                <h1><img height="120" class="plain no-margin middle" src="img/bower.png"><span class="bower">Bower</span></h1>
+
+                 <p class="primaryFont">manages application dependencies.</p>
+            </section>
+
+            <section>
+                <h1><img height="160" class="plain no-margin middle" src="img/yeoman.png"></h1>
+
+                <p class="primaryFont">
+                    <span class="middle">enables creation of <strong class="secondaryColor">generators</strong> which automate common activities.</span>
+                </p>
+            </section>
+
+            <section>
+                <h1><img height="67" class="plain no-margin middle" src="img/karma.png"></h1>
+
+                 <p class="primaryFont">
+                     <span class="middle">is a test runner supporting <strong class="secondaryColor">Jasmine, Mocha and QUnit</strong> test frameworks.</span>
+                 </p>
+            </section>
+
+
+            <section>
+                <h2 class="primaryFont primaryColor">How it works</h2>
                 <img class="plain no-margin middle" src="img/app-template-and-tools.png">
             </section>
+        </div>
+    </div>
+
             <script src="../base/reveal.js/lib/js/head.min.js"></script>
             <script src="../base/reveal.js/js/reveal.js"></script>
             <script>
@@ -102,7 +209,7 @@
                     center: true,
                     minScale: 1,
                     maxScale: 1,
-                    transition: 'zoom', // none/fade/slide/convex/concave/zoom
+                    transition: 'cube', // none/fade/slide/convex/concave/zoom
 
                     // Optional reveal.js plugins
                     dependencies: [
