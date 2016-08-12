@@ -19,10 +19,10 @@
     <link rel="stylesheet" href="./lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="../base/reveal.js/css/reveal.css">
-    <link rel="stylesheet" href="../base/reveal.js/css/theme/league.css" id="theme">
+    <link rel="stylesheet" href="../base/reveal.js/css/theme/white.css" id="theme">
 
     <!-- Code syntax highlighting -->
-    <link rel="stylesheet" href="../base/reveal.js/lib/css/zenburn.css">
+    <link rel="stylesheet" href="../base/reveal.js/lib/css/vs.css">
 
     <!-- Printing and PDF exports -->
     <script>
@@ -40,6 +40,11 @@
 
 <body>
 <style>
+.reveal pre code {
+    background: white;
+    color: black;
+}
+
 .reveal .slides section img.bootstrapIcon {
     border: 0;
     background: transparent
@@ -48,12 +53,29 @@
 .reveal pre{
     border-radius: 0;
 }
+.reveal .slides #gridSystemSampleTable td {
+    text-align: center;
+    line-height: 90px;
+    width: 90px;
+    height: 90px;
+}
+.reveal #gridSystemSampleTable code {
+    background: transparent;
+    color: white;
+}
+.reveal .slides #gridSystemSampleTable td.tdGreen {
+    background: lightgreen;
+}
+.reveal .slides #gridSystemSampleTable td.tdBlue {
+    background: lightblue;
+}
 </style>
 <div class="reveal">
     <div class="slides">
         <section>
             <h2>Introduction to Bootstrap</h2>
             <img class="bootstrapIcon" src="./content/bootstrapIcon.png">
+            <p>Philip Schmökel</p>
         </section>
         <section>
             <h2>Bootstrap</h2>
@@ -75,10 +97,10 @@
                 </li>
             </ul>
             <div>
-                <button type="button" class="btn btn-success">Bootstrap is awesome!</button>
+                <button class="btn btn-success">Bootstrap is awesome!</button>
             </div>
-            <pre><code>
-&lt;button type=&quot;button&quot; class=&quot;btn btn-success&quot;&gt;Bootstrap is awesome!&lt;/button&gt;
+            <pre><code class="html">
+&lt;button class=&quot;btn btn-success&quot;&gt;Bootstrap is awesome!&lt;/button&gt;
             </code></pre>
         </section>
         <section>
@@ -91,21 +113,77 @@
                 <li>direct download</li>
                 <li>etc.</li>
             </ul>
-            <pre><code>
+            <pre><code class="sh">
 bower install -S bootstrap
             </code></pre>
-            <p>Minimal setup</p><pre><code>
+            <p>Minimal setup</p><pre><code class="html">
 &lt;link [...] href=&quot;bower_components/bootstrap/dist/css/bootstrap.min.css&quot;&gt;
             </code></pre>
         </section>
         <section>
             <h2>Grid System</h2>
+            <p>... 12 columns to fit</p>
+            <table id="gridSystemSampleTable" class="table table-bordered">
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                    <td>8</td>
+                    <td>9</td>
+                    <td>10</td>
+                    <td>11</td>
+                    <td>12</td>
+                </tr>
+                <tr class="fragment fade-in" data-fragment-index="1">
+                    <td class="tdGreen" colspan="6"><code>.col-xx-6</code></td>
+                    <td class="tdGreen" colspan="6"><code>.col-xx-6</code></td>
+                </tr>
+                <tr class="fragment fade-in" data-fragment-index="2">
+                    <td class="tdBlue" colspan="4"><code>.col-xx-4</code></td>
+                    <td class="tdBlue" colspan="4"><code>.col-xx-4</code></td>
+                    <td class="tdBlue" colspan="4"><code>.col-xx-4</code></td>
+                </tr>
+                <tr class="fragment fade-in" data-fragment-index="3">
+                    <td class="tdBlue" colspan="3"><code>.col-xx-4</code></td>
+                    <td class="tdBlue" colspan="9"><code>.col-xx-4</code></td>
+                </tr>
+                <tr class="fragment fade-in" data-fragment-index="3">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
         </section>
         <section>
             <h2>Buttons</h2>
         </section>
         <section>
             <h2>Navbar</h2>
+        </section>
+        <section>
+            <h2>Bootswatch</h2>
+            <p>... provides themes for Bootstrap to change the look and feel.</p>
+            <ul>
+                <li><p>Free and paid themes</p></li>
+                <li>
+                    <p>Available through Bower</p>
+                    <pre><code>bower install -S bootswatch</code></pre>                
+                </li>
+                <li><p><a href="http://bootswatch.com">bootswatch.com</a></p></li>
+            </ul>
         </section>
     </div>
 </div>
