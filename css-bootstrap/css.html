@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Introduction to CSS</title>
+
+    <meta name="description" content="Richwebclient">
+    <meta name="author" content="Richwebclient Team">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <!-- Showing Examples -->
+    <link rel="stylesheet" href="./lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="../base/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../base/reveal.js/css/theme/white.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../base/reveal.js/lib/css/vs.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../base/reveal.js/css/print/pdf.css' : '../base/reveal.js/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="base/reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <link rel="stylesheet" href="./lib/style.css">
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h2>Introduction to CSS</h2>
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    width="200px" viewBox="85.5 210.272 437.29 491.728" enable-background="new 85.5 210.272 437.29 491.728" xml:space="preserve">
+                    <title>CSS3 Logo</title>
+                    <polygon fill="#1572B6" points="128.668,652.845 89.21,210.272 522.79,210.272 483.29,652.775 305.735,702 " />
+                    <polygon fill="#33A9DC" points="306,664.375 449.474,624.599 483.229,246.459 306,246.459 " />
+                    <path fill="#FFFFFF" d="M167.739,293.569l-0.308,54.766H390.34l-0.08,35.375H167.203l-0.161,54.766h222.909l-0.293,62.462
+                l-84.061,29.75l-83.639-29.75l0.063-27.087h-54.765l-0.251,65.719l138.353,49.289l138.877-49.289l0.467-98.873l0.141-19.834
+                l0.568-127.292L167.739,293.569L167.739,293.569z" />
+                </svg>
+
+                <p>Philip Schmökel</p>
+            </section>
+            <section>
+                <h2>Cascading Style Sheets</h2>
+                <div>
+                    <pre><code class="css">&lt;selector1&gt;, &lt;selector2&gt; {
+  &lt;property1&gt; : &lt;value1&gt;;
+  &lt;property2&gt; : &lt;value2&gt;;
+  &lt;property3&gt; : &lt;value3&gt;
+}
+&nbsp;
+&lt;selector1&gt; {
+  &lt;property4&gt; : &lt;value4&gt;
+}
+&nbsp;
+/* Css comment */</code></pre>
+                </div>
+                <div class="fragment fade-in">
+                    <pre><code class="css">/* Example */
+p, div {
+  background: red;
+  font-weight: bold;
+  color: blue
+}
+&nbsp;
+p {
+  font-style: italic
+}
+</code></pre>
+                </div>
+            </section>
+            <section>
+                <h2>Selectors</h2>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th style="width: 350px;">Selector</th>
+                            <th>Selected element(s)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>p</code></td>
+                            <td>Paragraphs</td>
+                        </tr>
+                        <tr>
+                            <td><code>.class1</code></td>
+                            <td>Elements with <i>class1</i></td>
+                        </tr>
+                        <tr>
+                            <td><code>#content</code></td>
+                            <td>Element with identifier <i>content</i></td>
+                        </tr>
+                        <tr>
+                            <td><code>p.class1</code></td>
+                            <td>Paragaphs with class <i>class1</i></td>
+                        </tr>
+                        <tr>
+                            <td><code>p .class1</code></td>
+                            <td>Elements with class <i>class1</i> having paragraph parent</td>
+                        </tr>
+                        <tr>
+                            <td><code>.class1 .class2</code></td>
+                            <td>Elements with class <i>class2</i> having parent with class <i>class1</i></td>
+                        </tr>
+                        <tr>
+                            <td><code>p.class1.class2</code></td>
+                            <td>Paragraphs with both <i>class1</i> and <i>class2</i> classes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section>
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 350px;">Selector</th>
+                            <th>Selected element(s)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>*</code></td>
+                            <td>All elements</td>
+                        </tr>
+                        <tr>
+                            <td><code>div &gt; p</code></td>
+                            <td>All &lt;p&gt; elements where the direct parent is a &lt;div&gt; element</td>
+                        </tr>
+                        <tr>
+                            <td><code>div + p</code></td>
+                            <td>All &lt;p&gt; elements that are placed immediately after &lt;div&gt; elements</td>
+                        </tr>
+                        <tr>
+                            <td><code>p:first-child</code></td>
+                            <td>Selects every &lt;p&gt; element that is the first child of its parent</td>
+                        </tr>
+                        <tr>
+                            <td><code>p:nth-child(2)</code></td>
+                            <td>Selects every &lt;p&gt; element that is the second child of its parent</td>
+                        </tr>
+                        <tr>
+                            <td><code>input[type="text"]</code></td>
+                            <td>Selects all &lt;input type="text"&gt;</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a href="http://www.w3schools.com/cssref/css_selectors.asp" target="_blank">. . . W3C Selectors</a>
+            </section>
+            <section>
+                <h2>Exercise 1: Selectors</h2>
+                <h2 class="btn-danger">TODO</h2>
+            </section>
+            <section>
+                <h2>Exercise 2: Selectors</h2>
+                <h2 class="btn-danger">TODO</h2>
+            </section>
+            <section>
+                <h2>Selector's priority</h2>
+                <p class="priorities">S<span>ource</span>&nbsp;I<span>ds</span>&nbsp;C<span>lasses</span>&nbsp;E<span>lements</span></p>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="bold">Source</td>
+                            <td>2 - Inline <br> 1 - <span style="color:blue">&lt;style&gt;&lt;/style&gt;</span> tag <br> 0 -
+                                External file</td>
+                        </tr>
+                        <tr>
+                            <td class="bold">Ids</td>
+                            <td>Number of identifiers in selector</td>
+                        </tr>
+                        <tr>
+                            <td class="bold">Classes</td>
+                            <td>Number of classes in selector</td>
+                        </tr>
+                        <tr>
+                            <td class="bold">Elements</td>
+                            <td>Number of elements in selector</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section>
+                <h2>Box Model</h2>
+                <img src="../css/img/box.gif" alt="CSS Boxmodel">
+                <p>real-size = margin + border + padding + size</p>
+            </section>
+            <section>
+                <h2><span class="blue">block</span> vs <span class="blue">inline</span></h2>
+                <ul style="width: 1000px">
+                    <li>display: <strong class="blue">block</strong></li>
+                    <li>displayed <strong>under</strong> each other</li>
+                    <li>size defined by width, height, margin, padding</li>
+                    <li>example: <code>&lt;div&gt;, &lt;section&gt;, &lt;p&gt;</code></li>
+                </ul>
+                <ul style="margin-top: 50px; width: 1000px">
+                    <li>display: <strong class="blue">inline</strong></li>
+                    <li>displayed <strong>next</strong> to each other</li>
+                    <li>size defined only by content size and margin-left, margin-right, padding-left, padding-right</li>
+                    <li>example: <code>&lt;strong&gt;, &lt;i&gt;, &lt;a&gt;, &lt;span&gt;</code></li>
+                </ul>
+            </section>
+            <section>
+                <h2><span class="blue">block</span> vs <span class="blue">inline</span></h2>
+                <h3>Example</h3>
+<pre><code class="html">&lt;div&gt;
+    &lt;span&gt;1&lt;/span&gt;
+    &lt;span&gt;2&lt;/span&gt;&lt;span&gt;3&lt;/span&gt;
+&lt;/div&gt;
+&lt;div&gt;
+    &lt;span&gt;4&lt;/span&gt;
+    &lt;span&gt;5&lt;/span&gt;&lt;span&gt;6&lt;/span&gt;
+&lt;/div&gt;
+&lt;div&gt;
+    &lt;span&gt;7&lt;/span&gt;
+    &lt;span&gt;8&lt;/span&gt;&lt;span&gt;9&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+                <div>
+                    <div>
+                        <span>1</span>
+                        <span>2</span><span>3</span>
+                    </div>
+                    <div>
+                        <span>4</span>
+                        <span>5</span><span>6</span>
+                    </div>
+                    <div>
+                        <span>7</span>
+                        <span>8</span><span>9</span>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h2>Horizontal Alignment</h2>
+                <p>inline elements</p>
+<pre><code class="css">.parentSample {
+  text-align: center;
+}
+.childSample {
+  display: inline-block;
+}
+</code></pre>
+                <p>block elements</p>
+<pre><code class="css">.parentSample {
+   
+}
+.childSample {
+  margin: 0 auto;
+}
+</code></pre>
+                <div style="text-align: center; background: green" class="parentSample"> 
+                    <div style="display: inline-block; background: yellow; padding: 0 10px;" class="childSample">Child</div>
+                </div>
+            </section>
+            <section>
+                <h2>Vertical Alignment</h2>
+                <p>How to align vertically with <strong>fixed container height</strong></p>
+<pre><code class="css">.parentSample {
+  /* containers height is fixed */
+  height: 80px;
+  line-height: 80px;
+}
+.childSample {
+  display: inline-block;
+  line-height: 80px;
+}
+</code></pre>
+                <div style="background: green; height: 80px; line-height: 80px;">
+                    <span style="line-height: 80px; vertical-align: middle;" ><code>&lt;span&gt;Child&lt;/span&gt;</code></span>
+                </div>
+            </section>
+            <section>
+                <h2>Exercise 3: Box Model</h2>
+                <h2 class="btn-danger">TODO</h2>
+            </section>
+            <section>
+                <h2>Float</h2>
+                <h2 class="btn-danger">TODO</h2>
+            </section>
+            <section>
+                <h2>Float of blocks</h2>
+                <h2 class="btn-danger">TODO</h2>
+            </section>
+            <section>
+                <h2>Clear</h2>
+                <h2 class="btn-danger">TODO</h2>
+            </section>
+            <section>
+                <h2>Exercise 4: Float</h2>
+                <h2 class="btn-danger">TODO</h2>
+            </section>
+            <section>
+                <h2>Positioning</h2>
+                <p>static, relative</p>
+                <h2 class="btn-danger">TODO</h2>
+            </section>
+            <section>
+                <h2>Positioning</h2>
+                <p>absolute, fixed</p>
+                <h2 class="btn-danger">TODO</h2>
+            </section>
+            <section>
+                <h2>Positioning Example</h2>
+                <h2 class="btn-danger">TODO</h2>
+            </section>
+            <section>
+                <h2>Vertical alignment</h2>
+                <p>How to align vertically independently on container height</p>
+                <h2 class="btn-danger">TODO</h2>
+            </section>
+            <section>
+                <h2>Exercise 5: Positioning</h2>
+                <h2 class="btn-danger">TODO</h2>
+            </section>
+        </div>
+    </div>
+    <script src="../base/reveal.js/lib/js/head.min.js"></script>
+    <script src="../base/reveal.js/js/reveal.js"></script>
+    <script src="./lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+    <script>
+
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        minScale: 1,
+        maxScale: 1,
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+            { src: '../base/reveal.js/lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            } },
+            { src: '../base/reveal.js/plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../base/reveal.js/plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../base/reveal.js/plugin/highlight/highlight.js', async: true, condition: function () {
+                return !!document.querySelector('pre code');
+            }, callback: function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src: '../base/reveal.js/plugin/zoom-js/zoom.js', async: true },
+            { src: '../base/reveal.js/plugin/notes/notes.js', async: true }
+        ]
+    });
+
+</script>
+
+</body>
+</html>

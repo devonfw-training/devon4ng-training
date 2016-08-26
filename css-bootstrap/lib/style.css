@@ -1,0 +1,53 @@
+.reveal pre code {
+    background: white;
+    color: black;
+}
+
+.reveal .slides section img {
+    border: 0;
+    background: transparent;
+    box-shadow: 0 0 0;
+}
+.reveal pre{
+    border-radius: 0;
+}
+.reveal .slides #gridSystemSampleTable td {
+    text-align: center;
+    line-height: 90px;
+    width: 90px;
+    height: 90px;
+}
+.reveal table code {
+    background: transparent;
+    color: white;
+}
+.reveal .slides #gridSystemSampleTable td.tdGreen {
+    background: lightgreen;
+}
+.reveal .slides #gridSystemSampleTable td.tdBlue {
+    background: lightblue;
+}
+.reveal .codeWithoutBackground {
+    background: transparent;
+}
+.reveal section .container .row div {
+    background: lightgray; 
+    border: solid 1px;
+}
+.reveal section .nav li {
+    display: inline-block;
+}
+.reveal section tr td code  {
+    color: black;
+}
+.reveal section .priorities{
+    color: red;
+}
+.reveal section .priorities span {
+    font-size: 0.7em;
+    color: black;
+}
+
+.reveal section .blue {
+    color: blue;
+}
