@@ -1,0 +1,24 @@
+.reveal section img.plain {
+    background: white;
+    border: none;
+    box-shadow: none;
+}
+
+.reveal p.foot-note {
+    text-align: left;
+    line-height: 1;
+}
+
+#faceImg{
+    width: 300px;
+    height: 200px;
+}
+
+div.column {
+    display: inline-block;
+    margin-right: 40px;
+}
+
+div.pull-left {
+    float: left;
+}

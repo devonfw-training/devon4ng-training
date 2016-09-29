@@ -1,0 +1,25 @@
+.angularjs-forms .reveal h1,
+.angularjs-forms .reveal h2,
+.angularjs-forms .reveal h3,
+.angularjs-forms .reveal h4 {
+    text-transform: none;
+}
+
+.angularjs-forms .reveal section img{
+    border:none;
+    box-shadow: none;
+}
+
+.angularjs-forms p +pre {
+    margin-top:30px
+}
+
+.angularjs-forms pre +p {
+    margin-top:20px
+}
+
+.reveal img.logo{
+    vertical-align: middle;
+    height: 1.2em;
+    background: none;
+}

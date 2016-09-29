@@ -1,0 +1,769 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>JavaScripts Frameworks</title>
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <link rel="stylesheet" href="../base/reveal.js/css/reveal.css">
+
+    <link rel="stylesheet" href="../base/reveal.js/css/theme/league.css" id="theme">
+    <link rel="stylesheet" href="./css/frameworks.css" id="theme">
+
+
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write('<link rel="stylesheet" href="../base/css/print/' + (window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper') + '.css" type="text/css" media="print">');
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+
+        <section>
+            <h2><span class="highlight">J</span>ava<span class="highlight">S</span>cripts Frameworks</h2>
+            <h4>Janusz Rygał</h4>
+        </section>
+
+        <section>
+            <section style="margin-top: -100px;">
+                <h2>JavaScripts Frameworks Overview</h2>
+                    <div id="FrameworksShowTrigger" onClick="showFrameworksHistory();">
+                        Show me JS story
+                    </div>
+
+                    <canvas id="timeLineCanvas" width="1004" height="500">
+                    </canvas>
+
+                    <div id="restartButton" onClick="showFrameworksHistory();">
+                        restart
+                    </div>
+
+            </section>
+
+            <section>
+                <h2>JavaScripts Frameworks Rate Of Interest</h2>
+                <div id="GoogleChartContainer">
+                <script type="text/javascript" src="http://www.google.com/trends/embed.js?hl=en-US&q=ember+js,+angular+js,+backbone+js,+react+js,+extjs&cmpt=q&tz=Etc/GMT-1&tz=Etc/GMT-1&content=1&cid=TIMESERIES_GRAPH_0&export=5&w=800&h=330"></script>
+                </div>
+            </section>
+
+            <section>
+                <h2>JavaScripts Frameworks, what for ...?</h2>
+                <ul>
+                    <li>Client side is fully independent</li>
+                    <li>Organisation, architecture, development, maintenance</li>
+                    <li>Separation of responsibilities</li>
+                    <li>Organisation of tests</li>
+                    <li>Build and deployment</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Architecture, Design, Build, Layout ...</h2>
+                <ul>
+                    <li><span class="highlight">MVC</span> - Model View Controller</li>
+                    <li><span class="highlight">MVVM</span> - Model View ViewModel</li>
+                    <li><span class="highlight">MVP</span> - Model View Presenter</li>
+                    <li><span class="highlight">Build</span> und <span class="highlight">execution</span> environments</li>
+                    <li><span class="highlight">Layout</span> - Components</li>
+                    <li><span class="highlight">Testing</span></li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <img class="logoImage" src="images/AngularLogo.png" />
+            </section>
+
+            <section>
+                <h2>Angular<span class="highlight">JS</span></h2>
+                <h3>Superheroic JavaScript MVW Framework</h3>
+                <ul>
+                    <li>Come from <span class="highlight">Google</span></li>
+                    <li>Is open sourced</li>
+                    <li>Initialy released on 2009</li>
+                    <li>Current version: <span class="highlight">1.5</span></li>
+                    <li>One of the biggest players</li>
+                    <li>Version <span class="highlight">2.0</span> announced, no official releasedate, most likely come out in the <span class="highlight">Mid 2016</span></li>
+                    <li>Version 2.0 will be <span class="highlight">NOT</span> compatible with Versions 1.X of Angular</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Angular<span class="highlight">JS</span></h2>
+                <h3>Superheroic JavaScript MVW Framework</h3>
+                <ul>
+                    <li><span class="highlight">Data binding</span> is fully supported</li>
+                    <li>Builtin <span class="highlight">Routing</span></li>
+                    <li>Uses <span class="highlight">HTML-Templating</span> language</li>
+                    <li>Very good support for <span class="highlight">tests</span></li>
+                    <li>Clear and nice API for <span class="highlight">data access</span></li>
+                    <li>Good <span class="highlight">documentation</span> and very big <span class="highlight">community</span></li>
+                    <li>Wide <span class="highlight">tooling</span> support</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <img class="logoImage" src="images/ExtjsLogo.svg" />
+                <p id="logoNameContainer">
+                    <span id="extjsLogoFirst">Ext</span><span id="extjsLogoSecond">JS</span>
+                </p>
+            </section>
+
+            <section>
+                <h2>Ext<span class="highlight">JS</span></h2>
+                <h3>JavaScript MVC/MVVM framework for cross-platform web apps | Sencha</h3>
+
+                <ul>
+                    <li>Come from <span class="highlight">Sencha</span></li>
+                    <li>Is <span class="highlight">proprietary</span></li>
+                    <li>Initialy released on <span class="highlight">2007</span></li>
+                    <li>Current version: <span class="highlight">6.0</span></li>
+                    <li><span class="highlight">One stop shop</span> for WebApp development</li>
+                    <li>Wide support for mobile <span class="highlight">Sencha Touch</span></li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Ext<span class="highlight">JS</span></h2>
+                <h3>JavaScript MVC/MVVM framework for cross-platform web apps | Sencha</h3>
+
+                <ul>
+                    <li>Very good <span class="highlight">documentation</span>, with helpful <span class="highlight">examples</span></li>
+                    <li>Very wide <span class="highlight">components</span> library</li>
+                    <li>Intuitive to <span class="highlight">learn</span></li>
+                    <li>Very good <span class="highlight">tooling</span> support, build, test, RAD (many builin tools)</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Ext<span class="highlight">JS</span></h2>
+                <h3>JavaScript MVC/MVVM framework for cross-platform web apps | Sencha</h3>
+
+                <ul>
+                    <li>Powerful <span class="highlight">components</span>, easily customizable</li>
+                    <li>Wide set of core functionalities <span class="highlight">utils/app</span></li>
+                    <li>Easy and advanced <span class="highlight">charts</span></li>
+                    <li>Advanced and matured <span class="highlight">datastore</span> concept</li>
+                    <li><span class="highlight">Crossbrowser</span> compatible components</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Ext<span class="highlight">JS</span></h2>
+                <h3>JavaScript MVC/MVVM framework for cross-platform web apps | Sencha</h3>
+
+                <ul>
+                    <li><a href="http://examples.sencha.com/extjs/6.0.0/examples/">Examples</a></li>
+                    <li><a href="http://docs.sencha.com/extjs/6.0/6.0.1-modern">Docs</a></li>
+                    <li><a href="https://www.sencha.com/products/architect/#overview">Sencha Architect</a></li>
+                    <li><a href="https://www.sencha.com/products/touch/#overview">Mobile: Sencha Touch</a></li>
+                </ul>
+            </section>
+
+        </section>
+
+        <section>
+                <section>
+                    <img class="logoImage" src="images/ReactLogo.svg" />
+                    <p id="logoNameContainer">
+                        <span id="reactLogoText">React</span>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>React</h2>
+                    <h3>A JAVASCRIPT LIBRARY FOR BUILDING USER INTERFACES</h3>
+                    <ul>
+                        <li>Released by Facebook in <span class="highlight">May 2013</span></li>
+                        <li>Actively used by <span class="highlight">Facebook</span> and <span class="highlight">Instagram</span></li>
+                        <li>Current version <span class="highlight">15.0.1</span></li>
+                        <li>Offen used for <span class="highlight">V</span> layer in the MVW models</li>
+                        <li><span class="highlight">FLUX</span> ?</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>React</h2>
+                    <h3>A JAVASCRIPT LIBRARY FOR BUILDING USER INTERFACES</h3>
+                    <ul>
+                        <li>Small and relatively easy to learn <span class="highlight">API</span></li>
+                        <li>Using <span class="highlight">virtual DOM</span></li>
+                        <li>No strict <span class="highlight">guidelines</span> for code organisation</li>
+                        <li><span class="highlight">Components</span> are one of fundamentals of this library</li>
+                        <li>React analyzes tree of components to identify <span class="highlight">minimal</span> number of DOM elements, which have to be refreshed</li>
+                        <li>High <span class="highlight">performance</span></li>
+                    </ul>
+                </section>
+
+
+                <section>
+                    <h2>React</h2>
+                    <h3>A JAVASCRIPT LIBRARY FOR BUILDING USER INTERFACES</h3>
+
+                    <blockquote>
+                        "Flux is the application architecture that Facebook uses for building client-side web applications.
+                        It complements React's composable view components by utilizing a unidirectional data flow.
+                        It's more of a pattern rather than a formal framework, and you can start using
+                        Flux immediately without a lot of new code."
+                    </blockquote>
+
+                </section>
+
+                <section>
+                    <h2>React</h2>
+                    <h3>A JAVASCRIPT LIBRARY FOR BUILDING USER INTERFACES</h3>
+
+                    <img src="./images/flux-diagram.png" />
+                </section>
+
+          </section>
+
+          <section>
+              <section>
+                  <h2>JavaScripts Frameworks</h2>
+                  <h3>Which framework to choose?</h3>
+                    <blockquote>
+                      <p id="citeTextFrameworks">"Christ! Another damn JavaScript framework. You guys. All you have to do is learn JavaScript and the browser DOM
+                          and you can do anything you want. What the hell is so difficult about that? You wanna be a programmer?
+                          Learn to write code. You’re not going to do that by using somebody elses because that’s all it is.
+                          When you look at this stuff its the most unclean and unreadable stuff you could ever have the misfortune
+                          to come across in suppirt mode."</p>
+                        <footer>— Ray Pooley July 10, 2015 at 4:00 am # <a href="http://www.funnyant.com/reactjs-what-is-it/">Link</a></footer>
+                    </blockquote>
+              </section>
+
+              <section>
+                  <h2>JavaScripts Frameworks</h2>
+                  <h3>Which framework to choose?</h3>
+                  <ul>
+                      <li>Do you know already <span class="highlight">what kind</span> of software you want to build?</li>
+                      <li>Do you know already <span class="highlight">which functionalities</span> are the most important for you and your project?</li>
+                      <li>Does the <span class="highlight">team</span> know the framework?</li>
+                      <li>Is a framework <span class="highlight">stable</span>?</li>
+                      <li>How difficult is to <span class="highlight">learn</span> the framework?</li>
+                      <li>Is framework good <span class="highlight">documented</span>?</li>
+                  </ul>
+              </section>
+
+              <section>
+                  <h2>JavaScripts Frameworks</h2>
+                  <h3>Which framework to choose?</h3>
+                    <div>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/DFP6UDgVJtE" frameborder="0" allowfullscreen></iframe>
+                    </div>
+              </section>
+
+              <section>
+                  <h2>JavaScripts Frameworks</h2>
+                  <h3>Which framework to choose?</h3>
+                  <ul>
+                      <li>Don't be afraid to check <span class="highlight">new</span> things!</li>
+                      <li>Read and <span class="highlight">learn</span>, try to write some <span class="highlight">dummy soft</span> with new framework/library.</li>
+                      <li>Be <span class="highlight">critical</span>.</li>
+                      <li>Check new things but remember about <span class="highlight">the past</span>.</li>
+                      <li>Have <span class="highlight">fun</span>!</li>
+                  </ul>
+              </section>
+          </section>
+
+      </div>
+
+    </div>
+
+    <script src="../base/reveal.js/lib/js/head.min.js"></script>
+    <script src="../base/reveal.js/js/reveal.js"></script>
+
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          {src: '../base/lib/js/classList.js', condition: function () {
+              return !document.body.classList;
+            }},
+          {src: '../base/plugin/markdown/showdown.js', condition: function () {
+              return !!document.querySelector('[data-markdown]');
+            }},
+          {src: '../base/plugin/markdown/markdown.js', condition: function () {
+              return !!document.querySelector('[data-markdown]');
+            }},
+          {src: '../base/plugin/highlight/highlight.js', async: true, callback: function () {
+              hljs.initHighlightingOnLoad();
+            }},
+          {src: '../base/plugin/zoom-js/zoom.js', async: true, condition: function () {
+              return !!document.body.classList;
+            }},
+          {src: '../base/plugin/notes/notes.js', async: true, condition: function () {
+              return !!document.body.classList;
+            }}
+        ]
+      });
+
+      var timeLineIndex;
+      var timeLineWidth;
+      var timeLineHeight;
+      var timelinePercent;
+      var startYear;
+      var numberOfYears;
+      var yearIter;
+      var monthIterator;
+      var oneYearWidth;
+      var libraries;
+
+      function drawLine(ctx, beginX, beginY, endX, endY){
+          ctx.beginPath();
+          ctx.moveTo(beginX,beginY);
+          ctx.lineTo(endX,endY);
+          ctx.strokeStyle = "#FFFFFF";
+          ctx.stroke();
+      }
+
+      function initTimeVars(){
+          timeLineIndex = 0;
+          timeLineWidth = 1000;
+          timeLineHeight = 10;
+          startYear = 1996;
+          numberOfYears = 20;
+          monthsNumber = numberOfYears*12;
+          monthIterator = 0;
+          timelineChange = timeLineWidth/monthsNumber;
+
+          yearIter = 0;
+          oneYearWidth = (timeLineWidth - 40)/20;
+      }
+
+      function initLibrarier(){
+          libraries = [
+              { name: 'javascript',
+                year: 1996,
+                month: 8,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'jquery 1.0',
+                year: 2006,
+                month: 8,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'jquery 2.0',
+                year: 2013,
+                month: 4,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'ExtJS 1.0',
+                year: 2007,
+                month: 4,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'ExtJS 2.0',
+                year: 2007,
+                month: 12,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'ExtJS 3.0',
+                year: 2009,
+                month: 7,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'ExtJS 4.0',
+                year: 2011,
+                month: 4,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'ExtJS 5.0',
+                year: 2014,
+                month: 6,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'ExtJS 6.0',
+                year: 2015,
+                month: 1,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'Angular 1.0',
+                year: 2009,
+                month: 6,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'Angular 2.0',
+                year: 2015,
+                month: 10,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'React',
+                year: 2013,
+                month: 6,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'Backbone',
+                year: 2010,
+                month: 10,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'Ember',
+                year: 2011,
+                month: 6,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'Knockout',
+                year: 2010,
+                month: 6,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'Meteor',
+                year: 2012,
+                month: 6,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'Capuccino',
+                year: 2008,
+                month: 9,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'Mojito',
+                year: 2014,
+                month: 3,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'TodoMVC',
+                year: 2012,
+                month: 11,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'MarionetteJS',
+                year: 2013,
+                month: 3,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'VanillaJS',
+                year: 2012,
+                month: 10,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'Enyo',
+                year: 2011,
+                month: 2,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'Ample SDK',
+                year: 2012,
+                month: 12,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'Dojo',
+                year: 2005,
+                month: 8,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'Echo',
+                year: 2005,
+                month: 12,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'GWT',
+                year: 2006,
+                month: 5,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'MooTools',
+                year: 2006,
+                month: 9,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'OpenUI5',
+                year: 2013,
+                month: 12,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'Prototype',
+                year: 2005,
+                month: 2,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'PolymerJS',
+                year: 2013,
+                month: 6,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'AureliaJS',
+                year: 2014,
+                month: 12,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'NodeJS',
+                year: 2009,
+                month: 9,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'CanJS',
+                year: 2012,
+                month: 5,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'SproutCore',
+                year: 2010,
+                month: 6,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'Spine',
+                year: 2011,
+                month: 9,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'Derby',
+                year: 2011,
+                month: 4,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'AgilityJS',
+                year: 2012,
+                month: 9,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'Choco',
+                year: 2010,
+                month: 6,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'SammyJS',
+                year: 2009,
+                month: 6,
+                x: null,
+                y: null,
+                drawed: false},
+              { name: 'Eyeballs',
+                year: 2010,
+                month: 6,
+                x: null,
+                y: null,
+                drawed: false}
+          ];
+      }
+
+      function displayYears(){
+        var cv = document.getElementById("timeLineCanvas");
+        var ctx = cv.getContext("2d");
+        var yearX = 5 + oneYearWidth*yearIter;
+        var yearY = 500 - timeLineHeight - 20;
+        ctx.font = "15px Arial";
+        ctx.fillText(startYear + yearIter, yearX, yearY);
+        drawLine(ctx, yearX + 15, yearY + 4, yearX + 15, yearY + 15);
+
+        yearIter = yearIter + 1;
+        if(yearIter <= numberOfYears){
+            setTimeout(displayYears, 100);
+        }else{
+            displayTimeLine();
+        }
+      }
+
+      function findColor(){
+        return {
+            r: Math.floor((Math.random() * 255) + 50),
+            g: Math.floor((Math.random() * 255) + 50),
+            b: Math.floor((Math.random() * 255) + 50),
+            getCssColor: function(){
+               var r16 = parseInt(this.r.toString(16), 16);
+               var g16 = parseInt(this.g.toString(16), 16);
+               var b16 = parseInt(this.b.toString(16), 16);
+               return 'rgb('+this.r.toString()+','+this.g.toString()+','+this.b.toString()+')';
+            }
+        };
+      }
+
+      function findPositionForLibrary(){
+          var xpos = Math.floor((Math.random() * 850) + 50);
+          var ypos = Math.floor((Math.random() * 350) + 50);
+          for(var i=0; i<libraries.length; ++i){
+            if(libraries[i].drawed){
+                if(Math.abs(xpos - libraries[i].x) < 40 &&
+                   Math.abs(ypos - libraries[i].y) < 40){
+                   console.log('x - '+xpos.toString() + ', y - '+ypos.toString());
+                   findPositionForLibrary();
+                }
+            }
+          }
+          return {
+            x : xpos,
+            y : ypos
+          };
+      }
+
+      function displayFrameworks(ctx, aktuellMonth, timeLineIndex){
+         for(var i=0; i<libraries.length; ++i){
+            if(!libraries[i].drawed){
+                var libMonth = ((libraries[i].year - 1996)*12) + libraries[i].month;
+                if(aktuellMonth >= libMonth){
+                    ctx.font = "14px Arial";
+                    var position = findPositionForLibrary();
+                    var textColor = findColor();
+                    ctx.fillStyle = textColor.getCssColor();
+                    ctx.fillText(libraries[i].name, position.x, position.y);
+                    libraries[i].drawed = true;
+                    libraries[i].x = position.x;
+                    libraries[i].y = position.y;
+                    //first line
+                    drawLine(ctx, libraries[i].x + 5, libraries[i].y + 5, libraries[i].x + 5, libraries[i].y + 25);
+                    //second line
+                    drawLine(ctx, libraries[i].x + 5, libraries[i].y + 25, timeLineIndex, libraries[i].y + 25);
+                    //last line
+                    drawLine(ctx, timeLineIndex, libraries[i].y + 25, timeLineIndex, 500 - timeLineHeight - 5);
+                }
+            }
+         }
+      }
+
+      function displayTimeLine(){
+        var cv = document.getElementById("timeLineCanvas");
+        var ctx = cv.getContext("2d");
+
+        ctx.fillStyle = "lawngreen";
+        ctx.fillRect(2,498-timeLineHeight,timeLineIndex,timeLineHeight)
+
+        displayFrameworks()
+
+        timeLineIndex = timeLineIndex + timelineChange;
+        monthIterator = monthIterator + 1;
+
+        displayFrameworks(ctx, monthIterator, timeLineIndex);
+
+        if(timeLineIndex <= timeLineWidth){
+            setTimeout(displayTimeLine, 50);
+        }
+      }
+
+      function showFrameworksHistory(){
+          initTimeVars();
+          initLibrarier();
+          var frameworkTrigger = document.getElementById("FrameworksShowTrigger");
+          var cv = document.getElementById("timeLineCanvas");
+          var restartButton = document.getElementById("restartButton");
+          frameworkTrigger.style.display = "none";
+          cv.style.display="block";
+          restartButton.style.display="block";
+          var ctx = cv.getContext("2d");
+          ctx.clearRect(0, 0, cv.width, cv.height);
+          ctx.fillStyle = "#FFFFFF";
+          ctx.fillRect(0,496-timeLineHeight,timeLineWidth+4,timeLineHeight+4)
+          //displayFrameworks();
+          displayYears();
+      }
+
+
+
+    </script>
+
+       <script src="d3-cloud/lib/d3/d3.js"></script>
+        <script src="d3-cloud/d3.layout.cloud.js"></script>
+
+        <script>
+              var fill = d3.scale.category20();
+
+              d3.layout.cloud().size([600, 600])
+                  .words([{text: "AngularJS", size: 70},
+                          {text: "ExtJS", size: 70},
+                          {text: "React", size: 55},
+                          {text: "Backbone.js", size: 40},
+                          {text: "Ember.js", size: 40},
+                          {text: "Knockout", size: 40},
+                          {text: "Meteor", size: 40},
+                          {text: "Capuccino", size: 40},
+                          {text: "Mojito", size: 40},
+                          {text: "TodoMVC", size: 40},
+                          {text: "MarionetteJS", size: 40},
+                          {text: "VanillaJS", size: 40}])
+                  .padding(5)
+                  .rotate(function() { return ~~(Math.random() * 2) * 90; })
+                  .font("Impact")
+                  .fontSize(function(d) { return d.size; })
+                  .on("end", draw)
+                  .start();
+
+              function draw(words) {
+                d3.select("#JSFrameworksCloud").append("svg")
+                    .attr("width", 600)
+                    .attr("height", 600)
+                  .append("g")
+                    .attr("transform", "translate(300,300)")
+                  .selectAll("text")
+                    .data(words)
+                  .enter().append("text")
+                    .style("font-size", function(d) { return d.size + "px"; })
+                    .style("font-family", "Impact")
+                    .style("fill", function(d, i) { return fill(i); })
+                    .attr("text-anchor", "middle")
+                    .attr("transform", function(d) {
+                      return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+                    })
+                    .text(function(d) { return d.text; });
+              }
+        </script>
+
+  </body>
+</html>

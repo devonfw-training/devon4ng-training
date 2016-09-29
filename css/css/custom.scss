@@ -1,0 +1,187 @@
+h1 {
+  font-size: 2em;
+  line-height: 2em;
+  margin-bottom: 0;
+}
+
+h2 {
+  font-size: 1.2em;
+  line-height: 1.2em;
+  margin-bottom: 0.3em;
+}
+
+.center {
+  margin: 0 auto;
+  text-align: center;
+  display: block;
+}
+
+iframe {
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.blue {
+  color: blue
+}
+.red {
+  color: red
+}
+tr {
+  border-bottom: 1px solid gray;
+}
+
+th {
+  font-weight: bold;
+}
+
+th, td {
+  padding: 5px;
+}
+
+td.code {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+iframe.cssdeck {
+  margin-bottom: 10px;
+  min-height: 400px !important;
+}
+
+.container6-4 {
+  & > *:first-child {
+    width: 57.5%;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  & > *:last-child {
+    width: 37.5%;
+    margin-left: 5%;
+    display: inline-block;
+    vertical-align: top;
+  }
+}
+
+.visible-on-active {
+  display: none;
+  &.active {
+    display: block;
+  }
+}
+
+ul {
+  list-style-type: none;
+  & > li {
+    margin-left: 2em;
+    &:before {
+      content: "–";
+      position: absolute;
+      margin-left: -1.1em;
+    }
+  }
+}
+
+.css-control-container {
+  background-color: #cccccc;
+  padding-left: 10px;
+  .css-control {
+    font-family: monospace;
+    font-size: 20px;
+    line-height: 40px;
+    display: inline-block;
+    margin-right: 30px;
+    select {
+      font-family: inherit;
+      font-size: inherit;
+    }
+  }
+}
+
+pre {
+  margin-bottom: 20px;
+}
+
+//============================================= slides =============================================
+#start h1 {
+  font-size: 100px;
+  text-align: center;
+  font-weight: bold;
+}
+
+#start h3 {
+  font-size: 30px;
+  text-align: center;
+}
+
+#start h1, #start h3 {
+  margin-top: 2em;
+}
+
+#selectors h1, #selectors2 h1 {
+  margin-bottom: 0;
+}
+
+h1.priorties {
+  line-height: 100px;
+  font-size: 1.5em;
+}
+
+.priorties {
+  color: red;
+  span {
+    font-size: 0.5em;
+    color: rgb(102, 102, 102);
+  }
+}
+
+#priorties3 img {
+  max-height: 80%;
+  margin: 0 auto;
+  display: block;
+}
+
+#block-inline-example iframe {
+  height: 200px;
+  width: 100%;
+  border: none;
+}
+
+#block-float-1, #text-float, #clear {
+  iframe {
+    margin-top: 20px;
+    height: 460px;
+  }
+}
+
+#float-exercise {
+  iframe{
+    min-height: 250px !important;
+  }
+  .cssdeck{
+    min-height: 250px !important;
+    height: 250px;
+    border:none !important;
+  }
+}
+
+#positioning-example{
+  iframe {
+    height: 200px;
+  }
+}
+#positioning-exercise{
+  & > iframe{
+    min-height: 200px !important;
+  }
+}

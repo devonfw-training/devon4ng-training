@@ -1,0 +1,12 @@
+html,body{
+    margin:0;
+    font-size: 40px;
+}
+/* (0,1,0,0) = 100 */
+#content p {
+    color: blue;
+}
+/* (0,0,1,2) = 12 */
+div p.active {
+    color: yellow
+}

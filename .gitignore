@@ -1,11 +1,9 @@
 node_modules
 bower_components
-dist
 .tmp
-test
 .idea/
 *.iml
 java/target
 .settings
 .project
-.sonar
+/nbproject/private/

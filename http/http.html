@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Http protocol</title>
+
+    <meta name="description" content="Richwebclient">
+    <meta name="author" content="Richwebclient">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="../base/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../base/reveal.js/css/theme/sky.css" id="theme">
+    <link rel="stylesheet" href="css/http.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../base/reveal.js/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../base/reveal.js/css/print/pdf.css' : '../base/reveal.js/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="../base/reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>HTTP Protocol</h2>
+
+            <p>
+                <small>Tomasz Białecki</small>
+            </p>
+        </section>
+        <section>
+            <h2><span class="red">H</span>yper<span class="red">T</span>ext <span class="red">T</span>ransfer <span
+                    class="red">P</span>rotocol</h2>
+            <ul>
+                <li><a class="blue" href="https://developer.mozilla.org/en-US/docs/Web/HTTP">Mozilla development RFC
+                    2616</a></li>
+                <li>client-server text protocoll</li>
+                <li><span class="blue">stateless</span></li>
+                <li>generally over <span class="blue">TCP/IP</span></li>
+                <li>typically on port 80</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Example communication</h2>
+            <h4>Client request</h4>
+            <pre><code data-trim class="http">
+GET /path/file.html HTTP/1.0
+From: someuser@jmarshall.com
+User-Agent: HTTPTool/1.0
+[blank line here]
+            </code></pre>
+            <h4>Server response</h4>
+            <pre><code data-trim class="http">
+HTTP/1.0 200 OK
+Date: Fri, 31 Dec 1999 23:59:59 GMT
+Content-Type: text/html
+Content-Length: 1354
+
+&lt;html&gt;
+&lt;body&gt;
+&lt;h1&gt;Happy New Millennium!&lt;/h1&gt;
+(more file contents)
+.
+.
+&lt;/body&gt;
+&lt;/html&gt;
+            </code></pre>
+        </section>
+        <section>
+            <h2>HTTP Methods</h2>
+            <table class="wide-table">
+                <thead>
+                <tr>
+                    <th>Method</th>
+                    <th>Idempotent</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>GET</td>
+                    <td>yes</td>
+                    <td>retrieve information identified by the URI</td>
+                </tr>
+                <tr class="fragment">
+                    <td>HEAD</td>
+                    <td>yes</td>
+                    <td>identical to GET but without the message body</td>
+                </tr>
+                <tr class="fragment">
+                    <td>POST</td>
+                    <td>no</td>
+                    <td>the way to trigger an action on the server</td>
+                </tr>
+                <tr class="fragment">
+                    <td>PUT</td>
+                    <td>no</td>
+                    <td>the way to upload a new resource on the server</td>
+                </tr>
+                <tr  class="fragment">
+                    <td>DELETE</td>
+                    <td>no</td>
+                    <td>removes a resource from the server</td>
+                </tr>
+                <tr  class="fragment">
+                    <td>TRACE</td>
+                    <td>no</td>
+                    <td>kind of ping between the client and the server</td>
+                </tr>
+                <tr  class="fragment">
+                    <td>...</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <h2>Status codes</h2>
+            <table>
+                <tbody>
+                <tr style="color:green">
+                    <td><b>2</b>00</td>
+                    <td>OK</td>
+                </tr>
+                <tr style="color:#c3be00">
+                    <td><b>3</b>02</td>
+                    <td>Found - redirect</td>
+                </tr>
+                <tr style="color:#c3be00">
+                    <td><b>3</b>04</td>
+                    <td>Not modified</td>
+                </tr>
+                <tr style="color:orange">
+                    <td><b>4</b>03</td>
+                    <td>Forbidden</td>
+                </tr>
+                <tr style="color:orange">
+                    <td><b>4</b>04</td>
+                    <td>Not Found</td>
+                </tr>
+                <tr style="color:orange">
+                    <td><b>4</b>18</td>
+                    <td>I am teapot</td>
+                </tr>
+                <tr style="color:red">
+                    <td><b>5</b>00</td>
+                    <td>Server error</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <h2>Request - Response</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th style="width: 480px;">Client</th>
+                    <th style="width: 480px;">Server</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="http-headers">
+                    <td>
+                        User-Agent: <span class="attr">Mozilla/5.0</span>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr class="http-headers fragment">
+                    <td>
+                        Host: <span class="attr">oasp-ci.cloudapp.net</span>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr class="http-headers fragment">
+                    <td>
+                        Referer: <span class="attr">http://oasp-ci.cloudapp.net/oasp4j-sample/jsclient</span>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr class="http-headers fragment">
+                    <td></td>
+                    <td>
+                        Date: <span class="attr">Tue, 15 Nov 1994 08:12:31 GMT</span>
+                    </td>
+                </tr>
+                <tr class="http-headers fragment">
+                    <td></td>
+                    <td>
+                        X-UA-Compatible: <span class="attr">IE=Edge,chrome=1</span>
+                    </td>
+                </tr>
+                <tr class="http-headers fragment">
+                    <td></td>
+                    <td>
+                        X-Frame-Options: <span class="attr">SAMEORIGIN</span>
+                    </td>
+                </tr>
+                <tr class="http-headers fragment">
+                    <td>
+                        Accept: <span class="attr">text/plain</span>
+                    </td>
+                    <td>
+                        Content-Type: <span class="attr">text/html;charset=UTF-8</span> <br>
+                        Content-Length: <span class="attr">1354</span>
+                    </td>
+                </tr>
+                <tr class="http-headers fragment">
+                    <td>
+                        Accept-Language: <span class="attr">pl, en-us;</span>
+                    </td>
+                    <td>
+                        Content-Language: <span class="attr">en, pl</span>
+                    </td>
+                </tr>
+                <tr class="http-headers fragment">
+                    <td>
+                        Accept-Encoding: <span class="attr">gzip, deflate, sdch</span>
+                    </td>
+                    <td>
+                        Content-Encoding: <span class="attr">gzip</span>
+                    </td>
+                </tr>
+                <tr class="http-headers fragment">
+                    <td>
+                        Cookie: <span class="attr">JSESSIONID=4C2164</span>
+                    </td>
+                    <td>
+                        Set-Cookie: <span class="attr">JSESSIONID=4C2164; Path=/; HttpOnly</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <h2>HTTP Cache (HTTP 1.1)</h2>
+            <pre style="width:100%"><code data-trim class="http">
+Cache-Control: max-age=3600, public
+            </code></pre>
+            <table>
+                <thead>
+                <tr>
+                    <th style="width:20%">Include</th>
+                    <th style="width:80%">Behaviour</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        max-age
+                    </td>
+                    <td>maximum time that a representation will be considered fresh</td>
+                </tr>
+                <tr>
+                    <td>
+                        no-store
+                    </td>
+                    <td>browser is not allowed to save copy</td>
+                </tr>
+                <tr>
+                    <td>
+                        no-cache
+                    </td>
+                    <td>force to send validation request to server</td>
+                </tr>
+                <tr>
+                    <td>
+                        public
+                    </td>
+                    <td>allow to cache in browser and in proxies</td>
+                </tr>
+                <tr>
+                    <td>
+                        private
+                    </td>
+                    <td>does not allow proxies to cache</td>
+                </tr>
+                <tr>
+                    <td>
+                        must-revalidate
+                    </td>
+                    <td>enables validation headers after cache period(If-Modified-Since, If-None-Match) </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <h2>HTTP Cache Validators</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th style="width: 480px;">Client</th>
+                    <th style="width: 480px;">Server</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="http-headers">
+                    <td>
+                        If-Modified-Since: <span class="attr">Sat, 27 Apr 2013 00:44:54 GMT</span>
+                    </td>
+                    <td>
+                        Last-Modified: <span class="attr">Sat, 27 Apr 2013 00:44:54 GMT</span>
+                    </td>
+                </tr>
+                <tr class="http-headers">
+                    <td>
+                        If-None-Match: <span class="attr">"bbea5db7e1785119a7f94fdd504c546e"</span>
+                    </td>
+                    <td>
+                        ETag: <span class="attr">"bbea5db7e1785119a7f94fdd504c546e"</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <h2>Advanced features</h2>
+            <ul>
+                <li><span class="blue">HTTPS</span> – Hypertext Transfer Protocol Secure</li>
+                <li><span class="blue">SPDY</span> – Extension of HTTP by Google</li>
+                <li><span class="blue">Websockets</span> – Full duplex client-server communication</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Useful tools</h2>
+            <ul>
+                <li>Chrome developer tools / Firebug</li>
+                <li>Postman</li>
+                <li>XHR Poster / Poster</li>
+                <li>Fiddler</li>
+            </ul>
+        </section>
+    </div>
+</div>
+<script src="../base/reveal.js/lib/js/head.min.js"></script>
+<script src="../base/reveal.js/js/reveal.js"></script>
+
+<script>
+
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+            { src: '../base/reveal.js/lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            } },
+            { src: '../base/reveal.js/plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../base/reveal.js/plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../base/reveal.js/plugin/highlight/highlight.js', async: true, condition: function () {
+                return !!document.querySelector('pre code');
+            }, callback: function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src: '../base/reveal.js/plugin/zoom-js/zoom.js', async: true },
+            { src: '../base/reveal.js/plugin/notes/notes.js', async: true }
+        ]
+    });
+
+</script>
+
+</body>
+</html>

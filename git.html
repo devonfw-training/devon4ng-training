@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Richwebclient</title>
+
+    <meta name="description" content="Richwebclient">
+    <meta name="author" content="Richwebclient Team">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" type="text/css" href="base/reveal.js/css/reveal.css" media="all">
+    <link rel="stylesheet" type="text/css" href="base/reveal.js/css/theme/simple.css" id="theme" media="all">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" type="text/css" href="base/reveal.js/lib/css/zenburn.css" media="all">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.id = "printLink";
+        link.text = "PRINT";
+        link.media = "all";
+        link.href = window.location.search.match(/print-pdf/gi) ? 'base/reveal.js/css/print/pdf.css' : 'base/reveal.js/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="base/reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<style>
+    .reveal table td {
+        padding: 0.1em 0.5em 0.1em 0.5em;
+    }
+
+    .reveal h3 {
+        margin-bottom: 10px;
+    }
+
+    .reveal ul {
+        list-style-type: none;
+    }
+
+    .reveal ul > li:before {
+        content: "–";
+        position: absolute;
+        margin-left: -1.1em;
+    }
+
+    .reveal li a {
+        white-space: nowrap;
+    }
+    
+    .command{
+        background-color: lightgray;
+    }
+    
+    #commandTable{
+        font-size: 18px;
+    }
+    
+    #titleRow{
+        font-weight: bold;
+    }
+    
+</style>
+<div class="reveal">
+
+    <div class="slides">
+
+        <section>
+            <h4>GIT - basic commands</h4>
+
+            <table id="commandTable">
+                <tr id="titleRow">
+                    <td>Task</td>
+                    <td>Command</td>
+                </tr>
+                <tr>
+                    <td>Create a working copy of a local repository:</td>
+                    <td class="command">git clone /path/to/repository</td>
+                </tr>
+                
+                <tr>
+                    <td>Add one or more files to staging (index):</td>
+                    <td class="command">git add *</td>
+                </tr>
+                
+                <tr>
+                    <td>Commit changes:</td>
+                    <td class="command">git commit -m "Commit message"</td>
+                </tr>
+                
+                <tr>
+                    <td>Create a new branch and switch to it:</td>
+                    <td class="command">git checkout -b &lt;branchname&gt;</td>
+                </tr>
+                
+                <tr>
+                    <td>Switch from one branch to another:</td>
+                    <td class="command">git checkout &lt;branchname&gt;</td>
+                </tr>
+                
+                <tr>
+                    <td>List all the branches in your repo, and also tell you what branch you're currently in:</td>
+                    <td class="command">git branch</td>
+                </tr>
+                <tr>
+                    <td>List all branches in remote repository:</td>
+                    <td class="command">git branch -r</td>
+                </tr>
+                <tr>
+                    <td>Fetch and merge changes on the remote server to your working directory:</td>
+                    <td class="command">git pull</td>
+                </tr>
+                
+            </table>
+            
+            <p>
+        More commands:    
+        <a href="https://goo.gl/WMvop0">https://goo.gl/WMvop0</a>
+        </p>
+        </section>
+        
+        
+    </div>
+
+</div>
+<script src="base/reveal.js/lib/js/head.min.js"></script>
+<script src="base/reveal.js/js/reveal.js"></script>
+
+<script>
+
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        minScale: 1,
+        maxScale: 1,
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+            { src: 'base/reveal.js/lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            } },
+            { src: 'base/reveal.js/plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: 'base/reveal.js/plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: 'base/reveal.js/plugin/highlight/highlight.js', async: true, condition: function () {
+                return !!document.querySelector('pre code');
+            }, callback: function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src: 'base/reveal.js/plugin/zoom-js/zoom.js', async: true },
+            { src: 'base/reveal.js/plugin/notes/notes.js', async: true }
+        ]
+    });
+
+</script>
+
+</body>
+</html>

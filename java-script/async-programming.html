@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>JavaScript - Asynchronous Programming</title>
+
+    <meta name="description" content="JavaScript - Asynchronous Programming. Promise API in AngularJS.">
+    <meta name="author" content="Marek Matczak">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="../base/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../base/reveal.js/css/theme/league.css" id="theme">
+    <link rel="stylesheet" href="css/own.css">
+    <link rel="stylesheet" href="css/js-engine.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../base/reveal.js/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../base/reveal.js/css/print/pdf.css' : '../base/reveal.js/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="../base/reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <div class="reveal">
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section>
+                <p class="title_image"><img height="200" src="img/256px-JavaScript-logo.png">
+                </p>
+                <h2 class="highlight">Asynchronous programming model</h2>
+                <h3 class="highlight">Promise API in AngularJS</h3>
+                <p>Marek Matczak</p>
+            </section>
+            <section>
+                <div id="js-engine">
+                    <p>JavaScript Engine (simplified)</p>
+                    <pre><code data-trim class="javascript">
+var bar = function () {
+        console.log('bar...');
+    },
+    foo = function () {
+        setTimeout(bar, 5000);
+        console.log('foo...');
+    };
+foo();
+					</code></pre>
+                    <div id="js-engine-core">
+                        <div id="call-stack">
+                            <p>Call Stack</p>
+                        </div>
+                        <div id="event-table">
+                            <p>Event Table</p>
+                        </div>
+                        <div id="event-queue">
+                            <p>Event Queue</p>
+                        </div>
+                        <div id="console">
+                            <p>Console</p>
+                            <!--<pre class="code-element"><code data-trim class="javascript">"I'm second!"</code></pre>-->
+                        </div>
+                    </div>
+                    <div class="navigate-left enabled"></div>
+                </div>
+                <div>
+                    <a href="javascript:jsEngineSteps.backward()">&lt;&lt;</a>&nbsp;
+                    <a href="javascript:jsEngineSteps.forward()">&gt;&gt;</a>
+                </div>
+            </section>
+            <section>
+                <h3 class="highlight">Asynchronous programming</h3>
+                <ul>
+                    <li>Browsers are full of asynchronous events: <span class="highlight">XHR responses, DOM events, timeouts</span>, etc.
+                    </li>
+                    <li>Blocking operations are implemented using callbacks.
+                    </li>
+                    <li>Synchronous vs. asynchronous model:
+                        <pre><code data-trim class="javascript">
+// synchronous style
+var currentOrder = orders.get(1234);
+console.log(currentOrder.referenceNumber);
+
+// asynchronous style
+orders.get(1234,
+    function (currentOrder) { // anonymous callback function
+        console.log(currentOrder.referenceNumber);
+    });
+                        </code></pre>
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h3 class="highlight">Challenges:</h3>
+                <ul>
+                    <li>synchronizing multiple asynchronous events</li>
+                    <li>exception handling</li>
+                </ul>
+                <pre><code data-trim class="javascript">
+var orderId = 1234,
+    orderDetails;
+try {
+    orders.get(orderId, function (currentOrder) {
+        orderDetails.order = currentOrder;
+        orders.getPositions(orderId, function (currentPositions) {
+            orderDetails.positions = currentPositions;
+            // open a dialog and show the order details
+        });
+    });
+} catch (err) {
+// this catches errors occurred while calling orders.get()
+// but not while executing its callback!
+}
+                </code></pre>
+            </section>
+            <section>
+                <h3 class="highlight">Promise / Deferred API</h3>
+                <p class="justify_text">Promise is an <span class="highlight">interface for interacting </span>with an object that represents the <span class="highlight">result of an action</span> that is performed asynchronously, and <span class="highlight">may or may not be finished</span> at any given point in time</p>
+                <div class="margin_top_30">
+                    <p class="align_right"><small><a href="http://wiki.commonjs.org/wiki/Promises">The CommonJS Promise proposal</a></small>
+                    </p>
+                </div>
+                <p class="justify_text">From the perspective of dealing with <span class="highlight">error handling</span>, deferred and promise APIs are to asynchronous programming what <span class="highlight"><code>try</code>, <code>catch</code> and <code>throw</code> keywords are to synchronous programming</span>
+                </p>
+                <div class="margin_top_30">
+                    <p class="align_right"><small><a href="https://docs.angularjs.org/api/ng/service/$q">AngularJS Documentation</a></small>
+                    </p>
+                </div>
+            </section>
+            <section>
+                <h3 class="highlight">Promise API</h3>
+                <pre><code data-trim class="javascript">
+var promise = tables.get(1234);
+promise.then(
+    function (table) {
+        console.log(table.id);
+    }, function (reason) {
+        console.log('Could not get a table because of: ' + reason);
+    }, function (progress) {
+        console.log(progress + '/100 %');
+    });
+                </code></pre>
+            </section>
+            <section>
+                <h3 class="highlight">Deferred API</h3>
+                <pre><code data-trim class="javascript">
+var tables = function () {
+    return {
+        get: function (id) {
+            var deferred = $q.defer(); // represents a deferred action
+            $timeout(function () {
+                deferred.notify(50); // notify about progress
+                $timeout(function () {
+                    deferred.notify(100); // notify about progress
+                    deferred.resolve({id: 1}); // return a table with id = 1
+                }, 1000);
+            }, 1000);
+            return deferred.promise; // return a promise for the caller
+        }
+    }
+}();
+                </code></pre>
+            </section>
+            <section>
+                <h3 class="highlight">Chaining promises (success callbacks)</h3>
+                <pre><code data-trim class="javascript">
+$q.when('Pizza with') // wraps a value in a promise and resolves it
+    .then(function (pizza) {
+        return pizza + ' cheese,';
+    })
+    .then(function (pizza) {
+        return pizza + ' onion,'
+    })
+    .then(function (pizza) {
+        return pizza + ' sausage'
+    })
+    .then(function (pizza) {
+        $log.info(pizza); // Pizza with cheese, onion, sausage
+    });
+                </code></pre>
+            </section>
+            <section>
+                <h3 class="highlight">Chaining promises (failure callbacks)</h3>
+                <pre><code data-trim class="javascript">
+$q.reject('Out of cheese...') // wraps a value in a promise and rejects it
+    .catch(function (reason) {
+        return $q.reject(reason + ' Oh no!'); // failure CAN'T be handled
+    })
+    .catch(function (reason) {
+        $log.error('Easy, I bought some cheese'); // failure CAN be handled
+        return 'Pizza with cheese';
+    })
+    .then(function (pizza) {
+        $log.info(pizza); // Pizza with cheese
+    }, function (reason) {
+        $log.info('Hi!'); // unreachable - has already been handled
+    });
+                </code></pre>
+            </section>
+            <section>
+                <h3 class="highlight">Chaining vs. Aggregation</h3>
+                <pre><code data-trim class="javascript">
+var promise =
+    $q.when('Pizza with cheese'); // wraps a value in a promise and rejects it
+
+promise.then(function (pizza) {
+    $log.info('Let us add something to ' + pizza);  // 1
+    return pizza + ' and sausage';
+}).then(function (pizza) {
+    $log.info('Andrew is eating ' + pizza);         // 3
+});
+
+promise.then(function (pizza) {
+    $log.info('John is eating ' + pizza);           // 2
+});
+                </code></pre>
+            </section>
+            <section>
+                <h3 class="highlight">Returning a promise from a promise callback</h3>
+                <pre><code data-trim class="javascript">
+$q.when('Pizza with')
+    .then(function (pizza) {
+        return pizza + ' cheese,';
+    })
+    .then(function (pizza) {
+        return $q.when(pizza + ' (add-ons')
+            .then(function (addOn) {
+                return addOn + ' mushrooms,';
+            })
+            .then(function (addOn) {
+                return addOn + ' oregano)';
+            });
+    })
+    .then(function (pizza) {
+        $log.info(pizza); // Pizza with cheese, (add-ons mushrooms, oregano)
+    });
+                </code></pre>
+            </section>
+        </div>
+    </div>
+    <script src="../base/reveal.js/lib/js/head.min.js"></script>
+    <script src="../base/reveal.js/js/reveal.js"></script>
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="js/js-engine.js"></script>
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+            minScale: 1,
+            maxScale: 1,
+            transition: 'zoom', // none/fade/slide/convex/concave/zoom
+
+            // Optional reveal.js plugins
+            dependencies: [
+                {
+                    src: '../base/reveal.js/lib/js/classList.js',
+                    condition: function () {
+                        return !document.body.classList;
+                    }
+                },
+                {
+                    src: '../base/reveal.js/plugin/markdown/marked.js',
+                    condition: function () {
+                        return !!document.querySelector('[data-markdown]');
+                    }
+                },
+                {
+                    src: '../base/reveal.js/plugin/markdown/markdown.js',
+                    condition: function () {
+                        return !!document.querySelector('[data-markdown]');
+                    }
+                },
+                {
+                    src: '../base/reveal.js/plugin/highlight/highlight.js',
+                    async: true,
+                    condition: function () {
+                        return !!document.querySelector('pre code');
+                    },
+                    callback: function () {
+                        hljs.initHighlightingOnLoad();
+                    }
+                },
+                {
+                    src: '../base/reveal.js/plugin/zoom-js/zoom.js',
+                    async: true
+                },
+                {
+                    src: '../base/reveal.js/plugin/notes/notes.js',
+                    async: true
+                }
+        ]
+        });
+    </script>
+
+</body>
+
+</html>
