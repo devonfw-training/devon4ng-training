@@ -45,7 +45,7 @@
             <h2><img class="logo" src="img/AngularJS-large.png"> Directives</h2>
 
             <p>
-                <small>Tomasz Białecki</small>
+                <small>Tomasz Białecki & Philipp Kleybolte</small>
             </p>
         </section>
 
@@ -111,13 +111,39 @@
                 </code></pre>
             </section>
         </section>
+		
+		<section>
+			<section data-transition="none">
+			 <h3>Template</h3>
+                <pre><code contenteditable data-trim>
+.directive('myDirective', function(){
+    return {
+        restrict: 'ACE',
+        template: '<p> content of my directive </p>'
+    }
+});
+                </code></pre>
+			</section>
+			<section data-transition="none">
+			 <h3>Template</h3>
+                <pre><code contenteditable data-trim>
+.directive('myDirective', function(){
+    return {
+        restrict: 'ACE',
+        templateUrl: 'my-directive.template.html'
+    }
+});
+                </code></pre>
+			</section>
+		</section>
+		
         <section>
             <section data-transition="none">
                 <h3>What is a scope of directive?</h3>
-                <pre class="fragment"><code contenteditable data-trim>
+                <pre><code contenteditable data-trim>
 .directive('myDirective', function(){
     return {
-        restrict: 'ACE'
+        restrict: 'ACE',
         scope: false                    //no scope (use parent scope)
     }
 });
@@ -128,7 +154,7 @@
                 <pre><code contenteditable data-trim>
 .directive('myDirective', function(){
     return {
-        restrict: 'ACE'
+        restrict: 'ACE',
         scope: true                     //create child scope
     }
 });
@@ -137,19 +163,72 @@
             <section data-transition="none">
                 <h3>What is a scope of directive?</h3>
                 <pre><code contenteditable data-trim>
-.directive('myDirective', function(){
-    return {
-        restrict: 'ACE'
-        scope: {                        //create new isolated scope
-        }
-    }
+angular.module('docsIsolationExample', [])
+.controller('Controller', ['$scope', function($scope) {
+  $scope.naomi = { name: 'Naomi', address: '1600 Amphitheatre' };
+}])
+.directive('myCustomer', function() {
+  return {
+    restrict: 'E',
+    scope: {
+      customerInfo: '=info'
+    },
+    template: 'Name: {{customerInfo.name}} Address: {{customerInfo.address}}'
+  };
 });
                 </code></pre>
             </section>
         </section>
         <section>
+              <h3>Transclude</h3>
+               <pre><code contenteditable data-trim >
+
+.directive('wrapper', function() {
+  return {
+    restrict: 'E',
+    scope: {},
+    transclude: true, // we want to insert custom content inside the directive
+    template: '<div style="border:1px solid" ng-transclude></div>'
+  }
+})
+                </code></pre>
+        </section>
+		<section>
+              <h3>The Link function</h3>
+               <pre><code contenteditable data-trim >
+angular.module('docsTimeDirective', [])
+.controller('Controller', ['$scope', function($scope) {
+  $scope.format = 'M/d/yy h:mm:ss a';
+}])
+.directive('myCurrentTime', ['$interval', 'dateFilter', function($interval, dateFilter) {
+
+  function link(scope, element, attrs) {
+    var format,timeoutId;
+
+    scope.$watch(attrs.myCurrentTime, function(value) {
+      format = value;
+      element.text(dateFilter(new Date(), format));
+    });
+	
+    timeoutId = $interval(function() {
+      updateTime(); // update DOM
+    }, 1000);
+	
+    element.on('$destroy', function() {$interval.cancel(timeoutId);});
+  }
+
+  return {
+    link: link
+  };
+}]);
+
+                </code></pre>
+        </section>
+        <section>
             <h2>Useful build in directives</h2>
 
+			<p>ngModel</p>
+			
             <p>ngRepeat</p>
 
             <p>ngShow / ngHide</p>
