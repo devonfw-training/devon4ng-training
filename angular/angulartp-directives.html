@@ -160,6 +160,21 @@
 });
                 </code></pre>
             </section>
+			<section data-transition="none">
+                <h3>What is a scope of directive?</h3>
+                <pre><code contenteditable data-trim>
+.directive('myDirective', function(){
+    return {
+        restrict: 'ACE',
+        scope:{
+            text: "@myText",
+            twoWayBind: "=myTwoWayBind",
+            oneWayBind: "&myOneWayBind"
+            }
+    }
+});
+                </code></pre>
+            </section>
             <section data-transition="none">
                 <h3>What is a scope of directive?</h3>
                 <pre><code contenteditable data-trim>
@@ -177,13 +192,21 @@ angular.module('docsIsolationExample', [])
   };
 });
                 </code></pre>
+				
+				<pre><code contenteditable data-trim>
+
+
+<div ng-controller="Controller">
+    <my-customer info="naomi"></my-customer>
+</div>
+                </code></pre>
             </section>
         </section>
         <section>
               <h3>Transclude</h3>
                <pre><code contenteditable data-trim >
 
-.directive('wrapper', function() {
+.directive('myWrapper', function() {
   return {
     restrict: 'E',
     scope: {},
@@ -191,6 +214,11 @@ angular.module('docsIsolationExample', [])
     template: '<div style="border:1px solid" ng-transclude></div>'
   }
 })
+                </code></pre>
+				<pre><code contenteditable data-trim>
+<my-wrapper>
+    some content
+</my-wrapper>
                 </code></pre>
         </section>
 		<section>
@@ -222,6 +250,12 @@ angular.module('docsTimeDirective', [])
   };
 }]);
 
+                </code></pre>
+				<pre><code contenteditable data-trim>
+<div ng-controller="Controller">
+  Date format: <input ng-model="format"> <hr/>
+  Current time is: <span my-current-time="format"></span>
+</div>
                 </code></pre>
         </section>
         <section>
