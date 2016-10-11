@@ -51,3 +51,21 @@
 .reveal section .blue {
     color: blue;
 }
+
+.css-control-container {
+    background-color: #cccccc;
+    padding-left: 10px;
+}
+
+.css-control-container .css-control {
+    font-family: monospace;
+    font-size: 20px;
+    line-height: 40px;
+    display: inline-block;
+    margin-right: 30px;
+}
+
+.css-control-container .css-control select {
+    font-family: inherit;
+    font-size: inherit;
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<body>
+<link rel="stylesheet" href="../lib/style.css">
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+    }
+
+    ul, li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: block;
+    }
+
+    ul {
+        background-color: #E6E6E6;
+        padding: 20px
+    }
+
+    li {
+        background-color: #FFFF00;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        border: 1px solid #333;
+    }
+
+    li:nth-child(4) {
+        background: red;
+    }
+
+    p {
+        height: 50px;
+        background: #3535ff;
+        margin: 0;
+    }
+
+    .clear {
+        float: none !important;
+        clear: both  !important;
+        display: none;
+    }
+
+    .red {
+        color: red;
+    }
+</style>
+<div class="css-control-container">
+	<div class="css-control"><span style="color:#ffff22">float:&nbsp;</span><select onchange="$('li').css('float',this.value)"><option value="none">none</option><option value="left">left</option><option value="right">right</option></select></div>
+	<div
+		class="css-control"><span class="red">clear</span>:&nbsp;<select onchange="$('li:nth-child(4)').css('clear',this.value)"><option value="none">none</option><option value="left">left</option><option value="right">right</option><option value="both">both</option></select></div>
+<div
+	class="css-control">append clearing element:&nbsp;<input type="checkbox" value="block" onchange="$('li.clear').css('display',this.checked? 'block' : 'none')"></div>
+	</div>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+		<li class="clear">clear</li>
+	</ul>
+	<p>Another block element</p>
+	<script src="../lib/jquery.min.js"></script>
+	</body>
+
+	</html>

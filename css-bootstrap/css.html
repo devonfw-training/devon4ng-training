@@ -12,8 +12,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
     <!-- Showing Examples -->
     <link rel="stylesheet" href="./lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
@@ -33,13 +32,14 @@
         document.getElementsByTagName('head')[0].appendChild(link);
     </script>
 
+    <link rel="stylesheet" href="./lib/style.css">
+
     <!--[if lt IE 9]>
     <script src="base/reveal.js/lib/js/html5shiv.js"></script>
     <![endif]-->
 </head>
 
 <body>
-    <link rel="stylesheet" href="./lib/style.css">
     <div class="reveal">
         <div class="slides">
             <section>
@@ -104,7 +104,7 @@ p {
                             <th>Selected element(s)</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody style="font-size: 30px">
                         <tr>
                             <td><code>p</code></td>
                             <td>Paragraphs</td>
@@ -144,7 +144,7 @@ p {
                             <th>Selected element(s)</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody style="font-size: 30px">
                         <tr>
                             <td><code>*</code></td>
                             <td>All elements</td>
@@ -171,7 +171,9 @@ p {
                         </tr>
                     </tbody>
                 </table>
-                <a href="http://www.w3schools.com/cssref/css_selectors.asp" target="_blank">. . . W3C Selectors</a>
+                <p class="foot-note">
+                    <a href="http://www.w3schools.com/cssref/css_selectors.asp" target="_blank">. . . W3C Selectors</a>
+                </p>
             </section>
             <section>
                 <h2>Exercise 1: Selectors</h2>
@@ -326,12 +328,16 @@ p {
                 </ul>
             </section>
             <section>
+                <h2>Float in text</h2>
+                <iframe width="100%" height="400" src="./content/floatInText.html"></iframe>
+            </section>
+            <section>
                 <h2>Float of blocks</h2>
-                <h2 class="btn-danger">TODO</h2>
+                <iframe width="100%" height="500" src="content/floatOfBlocks.html"></iframe>
             </section>
             <section>
                 <h2>Clear</h2>
-                <h2 class="btn-danger">TODO</h2>
+                <iframe width="100%" height="500" src="content/clearFloat.html"></iframe>
             </section>
             <section>
                 <h2>Exercise 3: Float</h2>
@@ -346,22 +352,71 @@ p {
             </section>
             <section>
                 <h2>Positioning</h2>
-                <p>static, relative</p>
-                <h2 class="btn-danger">TODO</h2>
+                <div style="text-align: left">
+                    <p><b>position: <span class="blue">static</span></b></p>
+                    <ul>
+                        <li>default value</li>
+                        <li>positioned according to the normal flow</li>
+                    </ul>
+                    <p><b>position: <span class="blue">relative</span></b></p>
+                    <ul>
+                        <li>element is positioned <b>relative to its normal position</b></li>
+                        <li>position can be adjusted with <i>top, bottom, left, right</i> properties</li>
+                        <li>even if moved consumes space in container</li>
+                    </ul>
+                </div>
             </section>
             <section>
                 <h2>Positioning</h2>
-                <p>absolute, fixed</p>
-                <h2 class="btn-danger">TODO</h2>
+                <div style="text-align: left">
+                <p><b>position: <span class="blue">absolute</span></b></p>
+                <ul>
+                    <li>element is positioned <b>relative to its first positioned (not static) ancestor element</b></li>
+                    <li>position can be adjusted with <i>top, bottom, left, right</i> properties</li>
+                    <li>often used together with <b>relative</b> positioning</li>
+                </ul><br>
+                <p><b>position: <span class="blue">fixed</span></b></p>
+                <ul>
+                    <li>element is positioned <b>relative to the browser window</b></li>
+                    <li>position can be adjusted with <i>top, bottom, left, right</i> properties</li>
+                </ul>
+                </div>
             </section>
             <section>
                 <h2>Positioning Example</h2>
-                <h2 class="btn-danger">TODO</h2>
+                <pre><code data-trim>body {
+  position: relative
+}
+.container {
+  top: 50px; left: 50px; background: green
+}
+.child {
+  top: 50px; right: 50px; background: red
+}</code></pre>
+                <iframe width="100%" height="400" src="./content/positioningExample.html"></iframe>
             </section>
             <section>
                 <h2>Vertical alignment</h2>
-                <p>How to align vertically independently on container height</p>
-                <h2 class="btn-danger">TODO</h2>
+                <p>How to align <span class="blue">vertically</span> independently on container height</p>
+    <pre style="width: 350px; margin:0; vertical-align: top; display: inline-block">
+<code style="max-height:  500px;" data-trim>.container {
+    height: 200px;
+    position: relative;
+    background: green;
+}
+.child-container {
+    position: absolute;
+    height: 0;
+    overflow: visible;
+    top: 50%
+}
+.child {
+    height: 50px;
+    top: -25px;
+    position: relative;
+    background: yellow;
+}</code></pre>
+        <iframe style="width: 300px; display: inline-block; margin-left:10px;" src="./content/positioningVerticalAlignment.html" height="200"></iframe>
             </section>
             <section>
                 <h2>Exercise 4: Positioning</h2>
@@ -378,6 +433,7 @@ p {
     </div>
     <script src="../base/reveal.js/lib/js/head.min.js"></script>
     <script src="../base/reveal.js/js/reveal.js"></script>
+    <script src="./lib/jquery.min.js"></script>
     <script src="./lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
     <script>
