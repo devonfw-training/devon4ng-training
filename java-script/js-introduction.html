@@ -288,19 +288,31 @@ var responseBody = JSON.stringify(obj);
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 
 	<section>
-		<h2>Hints</h2>
+		<h2>Demo</h2>
+		<p>Run 'node'' to open an interactive JS runtime environment</p>
 		<pre>
-			<code data-trim  class="hljs javascript">
-console.log("Some message", somevariable); // logs to the console
-
-JSON.stringify(somevariable)// converts arrays, objects, ... into human-readable strings
-
-console.log("Some message", JSON.stringify(somevariable)); // logs to the console
+			<code data-trim  class="hljs bash">
+$ node
+>
 			</code>
 		</pre>
 
-		<p>Use your browser's developer tools to get a console, network traffic, ...</p>
-		<p>Use your browser's 'inspect element' to analyze (and modify) html</p>
+
+
+		<pre class="fragment">
+			<code data-trim  class="hljs javascript">
+console.log("Hello World"); // logs to the console
+
+var myObject = { myProperty : 42 }; // creates myObject
+JSON.stringify(myObject) // converts arrays, objects, ... into human-readable strings
+
+var myOtherObject = JSON.parse(JSON.stringify(myObject)); // parse is the counterpart to stringify
+
+			</code>
+		</pre>
+
+		<p class="fragment">Your browser also has a JS console, press 'F12' to open it.</p>
+		<p class="fragment">Your browser also has a JS console, press 'F12' to open it.</p>
 	</section>
 
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
