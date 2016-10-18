@@ -61,15 +61,51 @@
                 element or even transform the DOM element and its children.
             </blockquote>
         </section>
-        <section>
-            <h3>Why you would want to develop custom directives?</h3>
+		<section>
+			<section>
+				<h3>Why you would want to develop custom directives?</h3>
 
-            <p class="fragment">... to manipulate the DOM directly</p>
+				<p class="fragment">... to manipulate the DOM directly</p>
 
-            <p class="fragment">... to remove repeated codes</p>
+				<p class="fragment">... to remove repeated codes</p>
 
-            <p class="fragment">... to create new HTML mark-up for non-developers to use</p>
-        </section>
+				<p class="fragment">... to create new HTML mark-up for non-developers to use</p>
+			</section>
+			<section>
+				<h3>Why you would want to develop custom directives?</h3>
+<pre><code contenteditable data-trim>
+<h2>Person</h2>
+<label> Vorname <input type="text" ng-model="person.firstName"></label>
+<label> Nachname <input type="text" ng-model="person.lastName"></label>
+<label> Straße <input type="text" ng-model="person.address.street"></label>
+<label> PLZ <input type="text" ng-model="person.address.zipcode"></label>
+<label> Ort <input type="text" ng-model="person.address.town"></label>
+                </code></pre>
+<pre><code contenteditable data-trim>
+<<h2>Firma</h2>
+<label> Firmenname <input type="text"  ng-model="company.name"></label>
+<label> Straße <input type="text" ng-model="company.address.street"></label>
+<label> PLZ <input type="text" ng-model="company.address.zipcode"></label>
+<label> Ort <input type="text" ng-model="company.address.town"></label>
+                </code></pre>
+			</section>
+			<section>
+				<h3>Why you would want to develop custom directives?</h3>
+<pre><code contenteditable data-trim>
+<h2>Person</h2>
+<label> Vorname <input type="text"/></label>
+<label> Nachname <input type="text"/></label>
+<my-address address="person.address"></my-address>
+                </code></pre>
+<pre><code contenteditable data-trim>
+<<h2>Firma</h2>
+<label> Firmenname <input type="text"/></label>
+<my-address address="company.address"></my-address>
+                </code></pre>
+				You can add business logic like validation as well<br/>
+				-> Only one place to fix errors
+			</section>
+		</section>
         <section>
             <section data-transition="none">
                 <h3>How to attache directive to an element?</h3>
@@ -222,6 +258,12 @@ angular.module('docsIsolationExample', [])
                 </code></pre>
         </section>
 		<section>
+			<section>
+				<h3>The Link function</h3>
+				...links the model and the view<br>
+				...may contain business logic
+			</section>
+			<section>
               <h3>The Link function</h3>
                <pre><code contenteditable data-trim >
 angular.module('docsTimeDirective', [])
@@ -257,7 +299,17 @@ angular.module('docsTimeDirective', [])
   Current time is: <span my-current-time="format"></span>
 </div>
                 </code></pre>
-        </section>
+		</section>
+		<section>
+				<h3>The Link function</h3>
+					If that is not complicated enough,...<br>
+					<ul>
+						<li>There is a <em>preLink</em>, a <em>postLink</em> and a <em>compile</em> function</li>
+						<li>These functions are called at different times.<br> If you have nested directives, it might be important which one you use</li>
+						<li>The link function is short for preLink. Usually that is sufficient </li>
+					</ul>
+			</section>
+		</section>
         <section>
             <h2>Useful build in directives</h2>
 
