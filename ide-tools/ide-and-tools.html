@@ -141,6 +141,17 @@
                     </a>
                     Application Template</h2>
                 <img class="plain" src="img/oasp4js-structure.png">
+                <aside class="notes">
+                    <p>
+                        The OASP software architecture uses various architectural styles and patterns throughout the whole application stack. It generally combines almost all well known practices, patterns and frameworks which are widely used throughout enterprise web applications. OASP is a three tier architecture which focuses on separation of concerns, reusability, layering, informationhiding and design by contract through component APIs. Each business component has its “well-defined responsibility that it encapsulates” [1]. The technical aspect is based on a multilayered architecture, where every “business component can therefore be split into component parts for each layer” [1].
+                    </p>
+                    <p>
+                        Through the fact that there are almost all popular architectural styles, patterns and approaches integrated into the OASP stack, it can be transferred to every other programming language which provides the required design possibilities. Hence it is difficult to compare it to single styles, if it is a combination of nearly all. For example OASP is a client-server architecture which provides a web application, abstraction and implicit invocation, a service interface which is also sufficient for mobile developed apps (RESTful service) and a layered architecture. Further it is component-based, domain driven and service oriented.
+                    </p>
+                    <p>
+                        So the question if the provided pattern can be used in other architectural styles is trivial, because it consists of many and is therefore already ported to all integrated styles. Generally speaking, the developed use-cases can be utilized for every architectural style, as long as there is a database driver available to access HANA via SQL. But also if there is no driver available the access could also take place via ODATA, whereas the HANA XS server provides services which could also access all provided features of HANA. Further, all developed HANA information views can be exported as XML to be used on different machines.
+                    </p>
+ide>
             </section>
 
             <section>
