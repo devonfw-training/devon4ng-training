@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="css/js-introduction.css">
 
     <!-- Code syntax highlighting -->
-    <link rel="stylesheet" href="../base/reveal.js/lib/css/solarized-dark.css">
+    <link rel="stylesheet" href="../base/reveal.js/lib/css/zenburn.css">
 
     <!-- Printing and PDF exports -->
     <script>
@@ -87,15 +87,38 @@
 				</code>
 			</pre>
 
-			<p class="fragment">Allows static analysis in IDE (compile time instead of runtime)</p>
-
 		</section>
 
 		<section>
 			<h2>let</h2>
+				<p >Solves most hoisting / scope issues by defining a block scope</p>
+
 				<pre>
 					<code data-trim  class="hljs typescript">
-// add example
+let foo = true;
+if  (foo) {
+    let bar = 'baz';
+    console.log(bar); // outputs 'baz'
+}
+
+try {
+    console.log(bar);
+} catch (e) {
+    console.log("bar doesn't exist");
+}
+				</code>
+			</pre>
+
+				<pre>
+					<code data-trim  class="hljs typescript">
+for (let i = 0; i <= 2; i += 1) {
+    console.log(i); // current i
+}
+try {
+    console.log(i);
+} catch (e) {
+    console.log("i doesn't exist");
+}
 				</code>
 			</pre>
 		</section>
