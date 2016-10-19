@@ -236,6 +236,8 @@ myObject.theseAreMySecrets(); // value = Value, param = Param
 myObject.value; // undefined
 					</code></pre>
                 <p>...even if its lifetime is shorter than the function's one</p>
+                <p class="fragment">-> variables outside of block scope are remembered if necessary (value)</p>
+
             </section>
             <section>
                 <section>
@@ -423,6 +425,109 @@ joeExample.letMeIntroduceMyself(); // My name is Joe Example
 joeExample.firstName; // undefined
 					</code></pre>
             </section>
+
+
+        	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+            <section>
+
+                <section>
+                    <h2>Asynchronous Programming Sneak Peak</h2>
+                    <div class="fragment">
+                        <p>This is just a short introduction to make you familiar with the syntax.</p>
+                        <p>There will be a more detailed talk later on.</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Challenges</h2>
+                    <pre>
+                            <code data-trim class="hljs javascript">
+function asyncCall(callbackSuccess, callbackError) {
+    ...
+}
+                        </code>
+                    </pre>
+                    <pre class="fragment">
+                        <code data-trim class="hljs javascript">
+asyncCall(
+    function(response){
+        // handle the response
+        calculateStuff(JSON.parse(response.data));
+    },
+    function(error){
+        // do some cleanup
+        ...
+        // do some logging
+        console.log("An error occured: ", error);
+    }
+)
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Pyramid of Doom</h2>
+                    <pre>
+                            <code data-trim class="hljs javascript">
+function isUserTooYoung(id, callback) {
+    openDatabase(function(db) {
+        getCollection(db, 'users', function(col) {
+            find(col, {'id': id},function(result) {
+                result.filter(function(user) {
+                    callback(user.age < cutoffAge)
+                }
+            }
+            , itemNotFound()
+        }
+        , collectionNotFound()
+    }
+    , failedToOpenDatabase()
+}
+                        </code>
+                    </pre>
+
+                </section>
+
+                <section>
+                    <h2>Solution: Promises</h2>
+                    <pre>
+                        <code data-trim  class="hljs javascript">
+signupPayingUser
+    .then(displayHoorayMessage, signupFailed)
+    .then(queueWelcomeEmail, hoorayFailed)
+    .then(queueHandwrittenPostcard)
+    .then(redirectToThankYouPage)
+                        </code>
+                    </pre>
+
+                    <pre class="fragment">
+                        <code data-trim  class="hljs javascript">
+function signupPayingUser() {
+    var deferred = $q.defer()
+
+    // someting asynchronous
+
+    if(success) {
+        deferred.resolve(result);
+    } else {
+        deferred.reject(errorMessage);
+    }
+
+    return deferred.promise;
+}
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Promises Visualization</h2>
+                    <p><a href="https://bevacqua.github.io/promisees/#">Demo</a></p>
+                </section>
+
+            </section>
+
+        	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 
             <section>
                 <h2>Summary</h2>
