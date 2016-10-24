@@ -194,7 +194,28 @@ for (var key of myMap.keys()) { console.log(key); }
 			<h2>Classes / Interfaces</h2>
 				<pre>
 					<code data-trim  class="hljs typescript">
-// add example
+interface ICar{
+	engine: string;
+	color: string;
+}
+
+class Car implements ICar {
+	constructor (public engine: string, public color: string) {
+	}
+
+	start() {
+		return "Started " + this.engine;
+	}
+}
+
+class ManlyTruck extends Car {
+	bigTires: bool;
+
+	constructor(engine: string, public color: string, bigTires: bool) {
+		super(engine, color);
+		this.bigTires = bigTires;
+	}
+}
 				</code>
 			</pre>
 		</section>
