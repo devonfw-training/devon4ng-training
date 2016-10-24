@@ -222,9 +222,26 @@ class ManlyTruck extends Car {
 
 		<section>
 			<h2>Modules, Namespaces, Imports</h2>
-				<pre>
-					<code data-trim  class="hljs typescript">
-// add example
+			<pre>
+				<code data-trim  class="hljs typescript">
+// ZipCodeValidator.ts
+export class ZipCodeValidator { ... }
+// App.ts
+import { ZipCodeValidator } from "./ZipCodeValidator";
+				</code>
+			</pre>
+
+			<pre>
+				<code data-trim  class="hljs typescript">
+namespace Shapes {
+	export namespace Polygons {
+		export class Triangle { }
+		export class Square { }
+	}
+}
+
+import polygons = Shapes.Polygons;
+let sq = new polygons.Square();
 				</code>
 			</pre>
 		</section>
@@ -240,11 +257,32 @@ class ManlyTruck extends Car {
 	<section>
 
 		<section>
-			<h2>Transpiling / Polyfills</h2>
+			<h2>Compiling Typescript</h2>
 		</section>
 
 		<section>
-			<h2>Transpiling / Polyfills</h2>
+			<h2>tsconfig.json</h2>
+			<pre>
+				<code data-trim  class="hljs json">
+{
+	"compilerOptions": {
+		"module": "system",
+		"noImplicitAny": true,
+		"removeComments": true,
+		"preserveConstEnums": true,
+		"outFile": "../../built/local/tsc.js",
+		"sourceMap": true
+	},
+	"include": [
+		"src/**/*"
+	],
+	"exclude": [
+		"node_modules",
+		"**/*.spec.ts"
+	]
+}
+				</code>
+			</pre>
 		</section>
 
 	</section>
