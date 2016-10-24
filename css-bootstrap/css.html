@@ -61,8 +61,8 @@
                     <ul>
                     <li><a href="#/4">1: Selectors</a></li>
                     <li><a href="#/5">2: Selectors</a></li>
-                    <li><a href="#/15">3: Float</a></li>
-                    <li><a href="#/20">4: Positioning</a></li>
+                    <li><a href="#/16">3: Float</a></li>
+                    <li><a href="#/21">4: Positioning</a></li>
                     </ul>
                 </section>
             </section>
@@ -270,15 +270,15 @@ p {
             </section>
             <section>
                 <h2>Horizontal Alignment</h2>
-                <p>inline elements</p>
+                <p><span class="blue">inline</span> elements inside block</p>
 <pre><code class="css">.parentSample {
   text-align: center;
 }
 .childSample {
-  display: inline-block;
+
 }
 </code></pre>
-                <p>block elements</p>
+                <p><span class="blue">block</span> elements inside block</p>
 <pre><code class="css">.parentSample {
    
 }
@@ -287,7 +287,7 @@ p {
 }
 </code></pre>
                 <div style="text-align: center; background: green" class="parentSample"> 
-                    <div style="display: inline-block; background: yellow; padding: 0 10px;" class="childSample">Child</div>
+                    <span style="background: yellow; padding: 0 30px;" class="childSample">Child</span>
                 </div>
             </section>
             <section>
