@@ -61,8 +61,8 @@
                     <ul>
                     <li><a href="#/4">1: Selectors</a></li>
                     <li><a href="#/5">2: Selectors</a></li>
-                    <li><a href="#/15">3: Float</a></li>
-                    <li><a href="#/20">4: Positioning</a></li>
+                    <li><a href="#/16">3: Float</a></li>
+                    <li><a href="#/21">4: Positioning</a></li>
                     </ul>
                 </section>
             </section>
@@ -220,7 +220,7 @@ p {
             </section>
             <section>
                 <h2>Box Model</h2>
-                <img src="../css/img/box.gif" alt="CSS Boxmodel">
+                <img src="./content/box.gif" alt="CSS Boxmodel">
                 <p>real-size = margin + border + padding + size</p>
             </section>
             <section>
@@ -270,15 +270,15 @@ p {
             </section>
             <section>
                 <h2>Horizontal Alignment</h2>
-                <p>inline elements</p>
+                <p><span class="blue">inline</span> elements inside block</p>
 <pre><code class="css">.parentSample {
   text-align: center;
 }
 .childSample {
-  display: inline-block;
+
 }
 </code></pre>
-                <p>block elements</p>
+                <p><span class="blue">block</span> elements inside block</p>
 <pre><code class="css">.parentSample {
    
 }
@@ -287,7 +287,7 @@ p {
 }
 </code></pre>
                 <div style="text-align: center; background: green" class="parentSample"> 
-                    <div style="display: inline-block; background: yellow; padding: 0 10px;" class="childSample">Child</div>
+                    <span style="background: yellow; padding: 0 30px;" class="childSample">Child</span>
                 </div>
             </section>
             <section>
@@ -428,6 +428,45 @@ p {
                 <div>
                     <iframe src="./exercises/results/exercise4-result.html" height="350" width="500"></iframe>
                 </div>
+            </section>
+            <section>
+                <h2>less and sass</h2>
+                <p style="margin: 0">... to make CSS more <strong>maintainable</strong>.</p>
+                <ul>
+                    <li><p>CSS pre-processor</p></li>
+                    <li><p>variables, functions, mixins and more</p></li>
+                </ul>
+                <pre><code class="css">@base: #f938ab;
+
+.box-shadow(@style, @c) when (iscolor(@c)) {
+  -webkit-box-shadow: @style @c;
+  box-shadow:         @style @c;
+}
+.box-shadow(@style, @alpha: 50%) when (isnumber(@alpha)) {
+  .box-shadow(@style, rgba(0, 0, 0, @alpha));
+}
+.box {
+  color: saturate(@base, 5%);
+  border-color: lighten(@base, 30%);
+  div { .box-shadow(0 0 5px, 30%) }
+}
+</code></pre>
+                <p class="foot-note" style="font-size: 30px">
+                    <a href="http://lesscss.org/" target="_blank" style="margin: 0px 10px 0 0">http://lesscss.org/</a>
+                    <a href="http://sass-lang.com/" target="_blank">http://sass-lang.com/</a>
+                </p>
+            </section>
+            <section>
+                <p>... compiles to</p>
+<pre><code class="css">.box {
+  color: #fe33ac;
+  border-color: #fdcdea;
+}
+.box div {
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+    </code></pre>
             </section>
         </div>
     </div>

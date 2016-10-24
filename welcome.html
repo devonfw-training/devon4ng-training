@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>Welcome to RWC</title>
+
+	<meta name="description" content="Welcome to RWC">
+	<meta name="author" content="Bastian Ramm">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="stylesheet" href="base/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="base/reveal.js/css/theme/league.css" id="theme">
+
+	<!-- Code syntax highlighting -->
+	<link rel="stylesheet" href="base/reveal.js/lib/css/zenburn.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'base/reveal.js/css/print/pdf.css' : 'base/reveal.js/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+	<!--[if lt IE 9]>
+    <script src="base/reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+	<style>
+		.reveal table td {
+			padding: 0.1em 0.5em 0.1em 0.5em;
+		}
+
+		.reveal h3 {
+			margin-bottom: 10px;
+		}
+
+		.reveal ul {
+			list-style-type: none;
+		}
+
+		.reveal ul > li:before {
+			content: "–";
+			position: absolute;
+			margin-left: -1.1em;
+		}
+
+		.reveal li a {
+			white-space: nowrap;
+		}
+	</style>
+	<div class="reveal">
+
+		<div class="slides">
+
+			<section>
+				<h1>Welcome</h2>
+			</section>
+
+			<section>
+				<h2>We are your trainers</h2>
+				<p>
+					<img class="plain no-margin" src="trainers_ps.jpg">
+					<img class="plain no-margin" src="trainers_pk.jpg">
+					<img class="plain no-margin" src="trainers_br.jpg">
+				</p>
+				<p>Philip Schmökel </p>
+				<p>Philipp Kleybolte</p>
+				<p>Bastian Ramm </p>
+			</section>
+
+			<section>
+				<h2>What do you know about Web Development ?</h2>
+				<p class="fragment">... HTML ?</p>
+				<p class="fragment">... JavaScript ?</p>
+				<p class="fragment">... AngularJS ?</p>
+			</section>
+
+			<section>
+				<h2>What to expect</h2>
+				<p class="fragment">... an introduction to modern web development basics</p>
+				<p class="fragment">... AngularJS Basics</p>
+				<p class="fragment">... lots of excercises</p>
+			</section>
+
+		</div>
+	</div>
+	<script src="base/reveal.js/lib/js/head.min.js"></script>
+	<script src="base/reveal.js/js/reveal.js"></script>
+
+	<script>
+
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        minScale: 1,
+        maxScale: 1,
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+            { src: 'base/reveal.js/lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            } },
+            { src: 'base/reveal.js/plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: 'base/reveal.js/plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: 'base/reveal.js/plugin/highlight/highlight.js', async: true, condition: function () {
+                return !!document.querySelector('pre code');
+            }, callback: function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src: 'base/reveal.js/plugin/zoom-js/zoom.js', async: true },
+            { src: 'base/reveal.js/plugin/notes/notes.js', async: true }
+        ]
+    });
+
+</script>
+
+</body>
+
+</html>

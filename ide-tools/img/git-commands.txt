@@ -1,0 +1,75 @@
+## This is a text version of the 'git-commands' picture. Enter it at websequencediagrams.com to generate the picture.
+note over remotes/origin/master
+    Per default, git creates a 'remote' called origin,
+    which is a reference to the repository originally
+    cloned from:
+    git clone https://github.com/devonfw/rich-web-client-school.git
+end note
+
+
+
+remotes/origin/master -> master: update local repository
+note over remotes/origin/master, master
+    git pull
+end note
+
+master -> master : Implement feature
+note over master :
+    git add .
+    git commit
+    <repeat>
+end note
+
+remotes/origin/master -> master: update local repository
+note over remotes/origin/master, master
+    git pull
+end note
+
+master -> master: fix merge conflicts
+
+
+master -> remotes/origin/master : Push to shared repository
+note over master, remotes/origin/master : git push
+
+
+## Advanced version with local branch
+note over remotes/origin/master
+    Per default, git creates a 'remote' called origin,
+    which is a reference to the repository originally
+    cloned from:
+    git clone https://github.com/devonfw/rich-web-client-school.git
+end note
+
+
+
+remotes/origin/master -> master: update local repository
+note over remotes/origin/master, master
+    git pull
+end note
+
+master -> local/1234 : create local branch
+note over master, local/1234
+    git checkout -b local/1234
+end note
+
+local/1234 -> local/1234 : Implement feature
+note over local/1234 :
+    git add .
+    git commit
+    <repeat>
+end note
+
+remotes/origin/master -> master: update local repository
+note over remotes/origin/master, master
+    git pull
+end note
+
+master -> local/1234 : update local branch (rebase)
+note over master, local/1234 : git rebase master
+
+local/1234 -> master : merge local branch into shared branch
+note over local/1234, master : git merge local/1234
+
+
+master -> remotes/origin/master : Push to shared repository
+note over master, remotes/origin/master : git push

@@ -8,3 +8,5 @@ java/target
 .project
 /nbproject/private/
 dist
+**/*.log
+

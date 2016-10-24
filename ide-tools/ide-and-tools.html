@@ -7,7 +7,7 @@
     <title>IDE and Tools</title>
 
     <meta name="description" content="IDE and Tools">
-    <meta name="author" content="Bartłomiej Pietrowski, Marek Matczak">
+    <meta name="author" content="Bartłomiej Pietrowski, Marek Matczak, Bastian Ramm">
 
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -49,7 +49,7 @@
                 <h1 style="font-size: 1.5em" class="inline secondaryFont lowercase">and</h1>
                 <h1 class="inline primaryFont primaryColor">Tools</h1>
 
-                <p class="secondaryColor">Bartłomiej Pietrowski, Marek Matczak</p>
+                <p class="secondaryColor">Bartłomiej Pietrowski, Marek Matczak, Bastian Ramm</p>
             </section>
 
             <section>
@@ -141,6 +141,17 @@
                     </a>
                     Application Template</h2>
                 <img class="plain" src="img/oasp4js-structure.png">
+                <aside class="notes">
+                    <p>
+                        The OASP software architecture uses various architectural styles and patterns throughout the whole application stack. It generally combines almost all well known practices, patterns and frameworks which are widely used throughout enterprise web applications. OASP is a three tier architecture which focuses on separation of concerns, reusability, layering, informationhiding and design by contract through component APIs. Each business component has its “well-defined responsibility that it encapsulates” [1]. The technical aspect is based on a multilayered architecture, where every “business component can therefore be split into component parts for each layer” [1].
+                    </p>
+                    <p>
+                        Through the fact that there are almost all popular architectural styles, patterns and approaches integrated into the OASP stack, it can be transferred to every other programming language which provides the required design possibilities. Hence it is difficult to compare it to single styles, if it is a combination of nearly all. For example OASP is a client-server architecture which provides a web application, abstraction and implicit invocation, a service interface which is also sufficient for mobile developed apps (RESTful service) and a layered architecture. Further it is component-based, domain driven and service oriented.
+                    </p>
+                    <p>
+                        So the question if the provided pattern can be used in other architectural styles is trivial, because it consists of many and is therefore already ported to all integrated styles. Generally speaking, the developed use-cases can be utilized for every architectural style, as long as there is a database driver available to access HANA via SQL. But also if there is no driver available the access could also take place via ODATA, whereas the HANA XS server provides services which could also access all provided features of HANA. Further, all developed HANA information views can be exported as XML to be used on different machines.
+                    </p>
+ide>
             </section>
 
             <section>
@@ -194,6 +205,112 @@
                 <h2 class="primaryFont primaryColor">How it works</h2>
                 <img class="plain no-margin middle" src="img/app-template-and-tools.png">
             </section>
+
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+            <section>
+                <section>
+                    <h2 class="primaryFont primaryColor">Git</h2>
+                    <p class="fragment" data-fragment-index="1">...
+                        <em>distributed</em>&nbspversion control</p>
+                    <p class="fragment" data-fragment-index="2">... everyone gets his own local repository</p>
+                    <p class="fragment" data-fragment-index="3">... simple branching and merging</p>
+                    <p class="fragment" data-fragment-index="4">... allows some interesting workflows</p>
+                    <aside class="notes">
+                        <ul>
+                            <li>Who does not know it at all?</li>
+                            <li>local repository:
+                                <ul>
+                                    <li>interaction similar to traditional version control</li>
+                                    <li>encourages for "commit early, commit often"</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <ul>
+                                    <li>all workflows are based on conventions</li>
+                                    <li>central repository of course still possible</li>
+                                    <li>examples: git-flow, fork & pull request, feature branches, dictator and lieutenants</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>Basic Git Terminology</h3>
+                    <table>
+                        <tr>
+                            <td>
+                                <strong>Add</strong>
+                            </td>
+                            <td>select what to commit</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Commit</strong>
+                            </td>
+                            <td>commits to your
+                                <em>local</em>&nbsprepository</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Push</strong>
+                            </td>
+                            <td>pushes your local commits to a remote repository</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Fetch</strong>
+                            </td>
+                            <td>fetches changes from a remote repository</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Pull</strong>
+                            </td>
+                            <td>performs fetch, followed by merge
+                                <em>(use this)</em>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Merge</strong>
+                            </td>
+                            <td>merges fetched changes into your current checkout</td>
+                        </tr>
+                    </table>
+                    <aside class="notes">That is what you will need for the excercises, we will leave out branches, repository creation, forks, etc.</aside>
+                </section>
+
+                <section>
+                    <img class="plain no-margin middle" src="img/git-commands.png">
+                </section>
+
+                <section>
+                    <img class="plain no-margin middle" src="img/git-commands-advanced.png">
+                </section>
+
+                <section data-background="img/tortoisegit-screenshot.png">
+                    <h1>Tools</h1>
+                    <p>Tortoise</p>
+                    <p>GitKraken</p>
+                    <p>SourceTree</p>
+                </section>
+
+                <section>
+                    <img class="plain no-margin middle" src="img/git-emergency.jpg">
+                </section>
+            </section>
+
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         </div>
     </div>
 
