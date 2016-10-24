@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="description" content="RWC CSS Exercise 3">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>RWC CSS Exercise 3</title>
+  <style>
+/* appends automatic clear after last li element, will be explained later */
+ul {
+    padding: 0;
+}
+
+ul:after {
+  display:block;
+  height:0;
+  content:'';
+  clear:both;
+}
+ul li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: block;
+    width: 50px;
+    height: 50px;
+    border: 1px black solid;
+    background: yellow;
+    text-align: center;
+    line-height: 50px
+}
+
+
+li:first-child, li:nth-child(2), li:nth-child(3), li:nth-child(8){
+  float: left;
+}
+li:nth-child(4), li:nth-child(5), li:nth-child(6), li:nth-child(9), li:nth-child(10), li:nth-child(12){
+  float: right;
+}
+
+li:nth-child(7), li:nth-child(11){
+  clear: right;
+  float: left;
+}
+
+p {
+  background: blue;
+  height: 50px
+}
+  </style>
+</head>
+
+<body>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>10</li>
+    <li>11</li>
+    <li>12</li>
+  </ul>
+  <p>Sample description</p>
+  <!-- Do not change HTML -->
+</body>
+
+</html>

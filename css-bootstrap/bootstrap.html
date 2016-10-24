@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Bootstrap Introduction</title>
+
+    <meta name="description" content="Richwebclient">
+    <meta name="author" content="Richwebclient Team">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <!-- Showing Examples -->
+    <link rel="stylesheet" href="./lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="../base/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../base/reveal.js/css/theme/white.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../base/reveal.js/lib/css/vs.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../base/reveal.js/css/print/pdf.css' : '../base/reveal.js/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="base/reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+<link rel="stylesheet" href="./lib/style.css">
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>Introduction to Bootstrap</h2>
+            <img class="bootstrapIcon" src="./content/bootstrapIcon.png">
+            <p>Philip Schmökel</p>
+        </section>
+        <section>
+            <h2>Bootstrap</h2>
+            <ul>
+                <li>
+                    <p>Open Source Framework (Current version 3.3)</p>
+                </li>
+                <li>
+                    <p>Layout and components</p>
+                </li>
+                <li>
+                    <p>Responsive designs without boilerplate code</p>
+                </li>
+                <li>
+                    <p>Modular and customizable</p>
+                </li>
+                <li>
+                    <p>Easy to use styling through css classes</p>
+                </li>
+            </ul>
+            <div>
+                <button class="btn btn-success">Bootstrap is awesome!</button>
+            </div>
+            <pre><code class="html">
+&lt;button class=&quot;btn btn-success&quot;&gt;Bootstrap is awesome!&lt;/button&gt;
+            </code></pre>
+        </section>
+        <section>
+            <h2>Adding Bootstrap</h2>
+            <p>Boostrap is available by all major package managers</p>
+            <ul>
+                <li>Bower</li>
+                <li>npm</li>
+                <li>nuget</li>
+                <li>direct download</li>
+                <li>etc.</li>
+            </ul>
+            <pre><code class="sh">
+bower install -S bootstrap
+            </code></pre>
+            <p>Minimal setup</p><pre><code class="html">
+&lt;link [...] href=&quot;bower_components/bootstrap/dist/css/bootstrap.min.css&quot;&gt;
+            </code></pre>
+        </section>
+        <section>
+            <h2>Grid System</h2>
+            <p>... 12 columns to fit</p>
+            <table id="gridSystemSampleTable" class="table table-bordered table-striped ">
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                    <td>8</td>
+                    <td>9</td>
+                    <td>10</td>
+                    <td>11</td>
+                    <td>12</td>
+                </tr>
+                <tr class="fragment fade-in" data-fragment-index="1">
+                    <td class="tdGreen" colspan="6"><code>.col-xx-6</code></td>
+                    <td class="tdGreen" colspan="6"><code>.col-xx-6</code></td>
+                </tr>
+                <tr class="fragment fade-in" data-fragment-index="2">
+                    <td class="tdBlue" colspan="4"><code>.col-xx-4</code></td>
+                    <td class="tdBlue" colspan="4"><code>.col-xx-4</code></td>
+                    <td class="tdBlue" colspan="4"><code>.col-xx-4</code></td>
+                </tr>
+                <tr class="fragment fade-in" data-fragment-index="3">
+                    <td class="tdGreen" colspan="3"><code>Menu</code></td>
+                    <td class="tdGreen" colspan="9"><code>Workspace</code></td>
+                </tr>
+                <tr class="fragment fade-in" data-fragment-index="3">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="tdBlue" colspan="9"><code>.col-xx-9 .col-xx-offset-3</code></td>
+                </tr>
+            </table>
+        </section>
+        <section>
+            <h2>Grid System</h2>
+            <p>Grid options*</p>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <td>Type</td>
+                        <td>Width</td>
+                        <td>Info</td>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>.col-lg-xx</td>
+                    <td>≥1200px</td>
+                    <td>Large devices Desktops</td>
+                </tr>
+                <tr>
+                    <td>.col-md-xx</td>
+                    <td>≥992px</td>
+                    <td>Medium devices Desktops</td>
+                </tr>
+                <tr>
+                    <td>.col-sm-xx</td>
+                    <td>≥768px</td>
+                    <td>Small devices Tablets</td>
+                </tr>
+                <tr>
+                    <td>.col-xs-xx</td>
+                    <td>&lt;768px</td>
+                    <td>Extra small devices Phones</td>
+                </tr>
+            </table>
+            <p class="foot-note">
+                <small>*&nbsp;<a href="http://getbootstrap.com/css/#grid-options">http://getbootstrap.com/css/#grid-options</a></small>
+            </p>
+        </section>
+        <section>
+            <h2>Grid System</h2>
+            <p>Overflow and responsiveness*</p>
+            <div class="container" style="border: dashed 1px; margin: 5px">
+                <p>.container</p>
+                <div class="row" style="border: solid 1px; margin: 5px">
+                    <p>.row</p>
+                    <div class="col-md-2"><code class="codeWithoutBackground">.col-md-2</code></div>
+                    <div class="col-md-2"><code class="codeWithoutBackground">.col-md-2</code></div>
+                    <div class="col-md-2"><code class="codeWithoutBackground">.col-md-2</code></div>
+                    <div class="col-md-2"><code class="codeWithoutBackground">.col-md-2</code></div>
+                    <div class="col-md-2"><code class="codeWithoutBackground">.col-md-2</code></div>
+                    <div class="col-md-2"><code class="codeWithoutBackground">.col-md-2</code></div>
+                </div>
+                <div class="row" style="border: solid 1px; margin: 5px">
+                    <p>.row (Overflow)</p>
+                    <div class="col-md-2"><code class="codeWithoutBackground">.col-md-2</code></div>
+                    <div class="col-md-11"><code class="codeWithoutBackground">.col-md-11</code></div>
+                </div>
+            </div>
+            <p class="foot-note">
+                <small>* Behavior may differ through the use of presentation framework reveal.js</small>
+            </p>
+        </section>
+        <section>
+            <h2>Buttons</h2>
+            <p>Make Anchor, Button, Input, Submit elements look the same.</p>
+            <div>
+                <button class="btn btn-default">Bootstrap Button</button>
+            </div>
+            <div>
+                <pre><code class="html">
+&lt;a class=&quot;btn btn-default&quot; href=&quot;#&quot; role=&quot;button&quot;&gt;Link&lt;/a&gt;
+&lt;button class=&quot;btn btn-default&quot; type=&quot;submit&quot;&gt;Button&lt;/button&gt;
+&lt;input class=&quot;btn btn-default&quot; type=&quot;button&quot; value=&quot;Input&quot;&gt;
+&lt;input class=&quot;btn btn-default&quot; type=&quot;submit&quot; value=&quot;Submit&quot;&gt;
+                    </code></pre>
+            </div>
+        </section>
+        <section>
+            <h2>Navbar</h2>
+            <p>Bootstrap provides an iconic navbar / header</p>
+            <ul>
+                <li>... recognizable all over the web</li>
+                <li>... but highly generic and customizable.</li>
+                <li>
+<pre><code>&lt;div class=&quot;navbar navbar-default&quot;&gt;
+    &lt;div class=&quot;container-fluid&quot;&gt;
+        &lt;span&gt;RWC School&lt;/span&gt;
+        &lt;ul class=&quot;nav&quot;&gt;
+            &lt;li&gt;&lt;a href=&quot;#/1&quot;&gt;Seite 1&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#/2&quot;&gt;Seite 2&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#/3&quot;&gt;Seite 3&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </li>
+            </ul>
+            <div class="navbar navbar-default">
+                <div class="container-fluid">
+                <span>RWC School</span>
+                <ul class="nav">
+                    <li><a href="#/1">Seite 1</a></li>
+                    <li><a href="#/2">Seite 2</a></li>
+                    <li><a href="#/3">Seite 3</a></li>
+                </ul>
+                </div>
+            </div>
+            <p class="foot-note">
+                <small>For more advanced responsive navbars visit <a href="http://getbootstrap.com/components/#navbar">Bootstrap Docs</a></small>
+            </p>
+        </section>
+        <section>
+            <h2>Bootswatch</h2>
+            <p>... provides themes for Bootstrap to change the look and feel.</p>
+            <ul>
+                <li><p>Free and paid themes</p></li>
+                <li>
+                    <p>Available through Bower</p>
+                    <pre><code class="sh">bower install -S bootswatch</code></pre>                
+                </li>
+                <li><p><a href="http://bootswatch.com">bootswatch.com</a></p></li>
+            </ul>
+        </section>
+    </div>
+</div>
+<script src="../base/reveal.js/lib/js/head.min.js"></script>
+<script src="../base/reveal.js/js/reveal.js"></script>
+<script src="./lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        minScale: 1,
+        maxScale: 1,
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+            { src: '../base/reveal.js/lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            } },
+            { src: '../base/reveal.js/plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../base/reveal.js/plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../base/reveal.js/plugin/highlight/highlight.js', async: true, condition: function () {
+                return !!document.querySelector('pre code');
+            }, callback: function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src: '../base/reveal.js/plugin/zoom-js/zoom.js', async: true },
+            { src: '../base/reveal.js/plugin/notes/notes.js', async: true }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
