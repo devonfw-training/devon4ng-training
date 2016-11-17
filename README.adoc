@@ -1,0 +1,245 @@
+= OASP4JS Angular 2 Project Seed
+
+This is an Angular 2 Project Seed (aka application template) which supports you while developing, testing and building
+your Angular 2 applications for production. This project seed is essentially based on the https://github.com/angular/quickstart[Angular 2 Quick Start]. What
+was added to it are http://gulpjs.com/[Gulp] with its plugins to make the project seed more configurable and useful while developing,
+testing and building Angular 2 applications.
+
+== Getting Started
+
+=== Install prerequisites
+
+You need a Git client, the https://nodejs.org/[Node.js] platform (including its package manager - https://www.npmjs.com/[npm]) and http://gulpjs.com/[Gulp] to make use of the project seed.
+It is highly recommended to use the following versions:
+
+* Node.js 5.0.0
+* npm 3.3.6
+* Gulp 3.9.1
+
+Please refer to the link:#prerequisites[FAQ section] for details on how to install the prerequisites.
+
+=== Install the OASP4JS Angular 2 Project Seed
+
+Clone the `oasp4js-ng2-project-seed` repository:
+
+....
+git clone https://github.com/oasp/oasp4js-ng2-project-seed.git
+....
+
+Install all node.js dependencies (this may take several minutes when doing for the first time):
+
+....
+cd oasp4js-ng2-project-seed
+npm install
+....
+
+Start a sample Angular 2 application:
+
+....
+gulp
+....
+
+Your default browser opens and shows the sample Angular 2 application. What is more, you can now develop your application
+using your favorite IDE while the Gulp process is watching for your changes and upon them reloads the sample application
+automatically in your browser.
+
+== Using the OASP4JS Angular 2 Project Seed
+
+The OASP4JS Angular 2 Project Seed offers developers a few Gulp tasks which support them.
+
+=== Building
+
+....
+gulp build
+....
+
+Transpiles your TypeScript sources into JavaScript, processes http://lesscss.org/[Less] files into CSS ones,
+copies HTML files, images, fonts, etc. to the temporary directory (which defaults to `.tmp`).
+
+....
+gulp build:dist
+....
+
+Does all what `gulp build` does and additionally minimizes HTML and CSS files as well as concatenates all JavaScript
+files into one file and eventually minimizes and obfuscates it. After executing this task, in the destination directory
+(which defaults to `dist`) you can find an application optimized for production.
+
+=== Running
+
+....
+gulp serve
+....
+
+Executes `gulp build` and starts a https://www.browsersync.io/[Browsersync] web server which serves the web content
+from the temporary directory (where the results of `gulp build` are saved). In addition to this, the sources,
+such as JavaScript, HTML, CSS, image files, are watched for changes. Upon a change, your browser will be reloaded
+automatically.
+
+....
+gulp serve:dist
+....
+
+Executes `gulp build:dist` and starts a https://www.browsersync.io/[Browsersync] web server which serves the web content
+from the destination directory (where the results of `gulp build:dist` are saved). No sources are watched for changes.
+
+=== Testing
+
+....
+gulp test
+....
+
+Starts linting your source code (using https://palantir.github.io/tslint/[TSLint]) and - if no errors found - executes
+your tests (specs) using http://karma-runner.github.io/1.0/index.html[Karma] against the http://phantomjs.org/[PhantomJS]
+headless browser.
+
+....
+gulp test:tdd
+....
+
+As in `gulp test`, executes your specs using http://karma-runner.github.io/1.0/index.html[Karma]
+against the http://phantomjs.org/[PhantomJS] browser, but without linting and the Gulp process doesn't end. It watches
+for your code changes instead. This mode is recommended for developers applying the
+https://en.wikipedia.org/wiki/Test-driven_development[Test Driven Development] technique.
+
+....
+gulp test:tdd:debug
+....
+
+In addition to `gulp test:tdd` allows you to debug your application while testing. Therefore the specs are executed
+against the Chrome browser.
+
+=== Miscellaneous
+
+....
+gulp lint
+....
+
+Lints your source code (using https://palantir.github.io/tslint/[TSLint]).
+
+....
+gulp clean
+....
+
+=== Environment specific behaviour
+
+In the `app\_env` directory you can find TypeScript files, `environment.dev.ts` and `environment.prod.ts` which add
+environment specific (e.g. development, production) behavior to your application. These files can be modified as needed.
+During the build, depending on the target platform, one of these files is renamed to `environment.ts` and transpiled to JavaScript.
+
+You can import the current environment file somewhere in your TypeScript sources; this is an example from the https://github.com/oasp/oasp4js-ng2-project-seed/blob/master/app/main.ts[main.ts]:
+
+[source,javascript]
+----
+import {enableProdMode} from '@angular/core';
+import {environment} from './_env/environment';
+
+if (environment.enableProdMode) {
+  enableProdMode();
+}
+----
+
+== Frequently Asked Questions
+
+=== [[prerequisites]]How to install the prerequisites?
+
+==== Git
+Check if you have a Git client already installed:
+
+----
+git --version
+----
+
+If your OS can not recognize this command, install Git. For details please refer to http://git-scm.com[this page].
+When installing under Windows, please make sure you check the following option:
+
+- [*] Use git from Windows command prompt
+
+==== Node.js
+
+It is highly recommended to install the  https://github.com/creationix/nvm[Node Version Manager] which manages multiple active
+Node.js versions on your machine. The windows version of nvm can be found https://github.com/coreybutler/nvm-windows#installation--upgrades[here].
+
+==== Gulp
+
+http://gulpjs.com/[Gulp] is a streaming build system. Install the Gulp globally using the npm. Type the following command in the command line tool:
+
+----
+npm install -g gulp
+----
+
+In order to check if Gulp was correctly installed you can check its version by typing:
+
+----
+gulp --version
+----
+
+'''
+
+=== How to add a new JavaScript library?
+
+As is the case in the https://github.com/angular/quickstart[Angular 2 Quick Start], this project seed uses
+npm for dependency management and https://github.com/systemjs/systemjs[SystemJS] for module loading.
+
+Let us assume you would like to add a very popular JavaScript utility library - https://lodash.com/[lodash]. First
+install it using npm:
+
+----
+npm install lodash --save
+----
+
+The above command downloads the library to your `node_modules` directory and updates the `package.json` file.
+
+Second, let SystemJS know that the library can be imported in your TypeScript files; add this to the `systemjs.config.json` file:
+
+[source,javascript]
+----
+map: {
+  ...
+  'lodash': 'npm:lodash'
+}
+packages: {
+  ...
+  'lodash': {
+    main: './index.js',
+    defaultExtension: 'js'
+  }
+}
+----
+
+Third, import the library in your TypeScript class and use it:
+
+[source,javascript]
+----
+import * as _ from 'lodash';
+
+export class MyClass {
+  myMethod(): void {
+    ...
+    _.cloneDeep({name: 'John'});
+  }
+}
+----
+
+'''
+
+=== How to replace Bootstrap with Angular Material?
+
+Switch to the `angular-material` branch:
+
+----
+git checkout angular-material
+----
+
+install npm dependencies:
+
+----
+npm install
+----
+
+and run the project seed:
+
+----
+gulp
+----
+
+'''

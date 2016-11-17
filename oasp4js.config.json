@@ -1,0 +1,15 @@
+{
+  "paths": {
+    "fonts": "fonts",
+    "img": "images",
+    "tmp": ".tmp",
+    "dist": "dist",
+    "src": "app",
+    "testOutput": "test-output"
+  },
+  "proxy": {
+    "servicesPath": "\/services\/",
+    "baseUrl": "http://localhost:8888",
+    "context": "/"
+  }
+}
