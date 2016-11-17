@@ -4,35 +4,36 @@
   "description": "OASP4JS Angular 2 Project Seed",
   "scripts": {
     "start": "gulp",
-    "postinstall": "typings install",
-    "test": "gulp test",
-    "typings": "typings"
+    "test": "gulp test"
   },
   "keywords": [],
   "author": "OASP Team",
   "license": "Apache-2.0",
   "dependencies": {
-    "@angular/common": "~2.0.2",
-    "@angular/compiler": "~2.0.2",
-    "@angular/core": "~2.0.2",
-    "@angular/forms": "~2.0.2",
-    "@angular/http": "~2.0.2",
-    "@angular/platform-browser": "~2.0.2",
-    "@angular/platform-browser-dynamic": "~2.0.2",
-    "@angular/router": "~3.0.2",
-    "@angular/upgrade": "~2.0.2",
-
-    "systemjs": "0.19.39",
+    "@angular/common": "~2.2.0",
+    "@angular/compiler": "~2.2.0",
+    "@angular/core": "~2.2.0",
+    "@angular/forms": "~2.2.0",
+    "@angular/http": "~2.2.0",
+    "@angular/platform-browser": "~2.2.0",
+    "@angular/platform-browser-dynamic": "~2.2.0",
+    "@angular/router": "~3.2.0",
+    "@angular/upgrade": "~2.2.0",
+    "systemjs": "0.19.40",
     "core-js": "^2.4.1",
     "reflect-metadata": "^0.1.8",
     "rxjs": "5.0.0-beta.12",
-    "zone.js": "^0.6.25",
-
+    "zone.js": "^0.6.26",
     "bootstrap-css-only": "^3.3.6",
     "lodash": "^4.15.0",
     "systemjs-plugin-text": "0.0.9"
   },
   "devDependencies": {
+    "@types/core-js": "^0.9.34",
+    "@types/jasmine": "^2.5.36",
+    "@types/lodash": "^4.14.39",
+    "@types/node": "^6.0.46",
+    "@types/selenium-webdriver": "^2.53.33",
     "browser-sync": "^2.14.3",
     "canonical-path": "0.0.2",
     "concurrently": "^2.2.0",
@@ -65,8 +66,7 @@
     "rimraf": "^2.5.2",
     "systemjs-builder": "^0.15.31",
     "tslint": "^3.7.4",
-    "typescript": "^2.0.2",
-    "typings": "^1.0.4"
+    "typescript": "^2.0.2"
   },
   "repository": {}
 }

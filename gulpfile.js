@@ -119,6 +119,10 @@ var
     removeComments: false,
     noImplicitAny: true,
     suppressImplicitAnyIndexErrors: true,
+    typeRoots: [
+      './node_modules/@types/'
+    ],
+
     // these settings are specific to gulp-typescript
     declaration: false,
     typescript: currentTsTranspiler
