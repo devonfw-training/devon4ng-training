@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 import { Speaker } from './speaker';
 
@@ -14,9 +15,15 @@ import { Speaker } from './speaker';
 }`],
     template: `
 <div class="speaker-box">
-  <h3>Speaker: <span>{{(speaker.lines$ | async) || 'speaker is quiet'}}</span></h3>
+  <h3>Speaker: <span>{{(line$ | async) || 'speaker is quiet'}}</span></h3>
 </div>`
 })
-export class SpeakerComponent {
+export class SpeakerComponent implements OnInit {
+    line$: Observable<string>;
+
     constructor(private speaker: Speaker) {}
+
+    ngOnInit(): void {
+        this.line$ = this.speaker.getLine();
+    }
 }
