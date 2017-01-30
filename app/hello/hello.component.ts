@@ -1,4 +1,4 @@
-import { Component, ViewChildren, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 import { HelloService } from './hello.service';
 import { Book } from './book';
