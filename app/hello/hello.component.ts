@@ -44,7 +44,7 @@ export class HelloComponent {
 
     constructor(private helloService: HelloService) {}
 
-    clearAndFocus(): void {
+    private clearAndFocus(): void {
         this.currentLine = '';
         this.vc.nativeElement.focus();
     }
