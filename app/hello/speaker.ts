@@ -1,5 +1,10 @@
+import { Subject } from 'rxjs/Subject';
+
 export class Speaker {
+    private linesSource = new Subject<string>();
+    lines$ = this.linesSource.asObservable();
+
     speak(val: string): void {
-        console.log('speaker:', val); // highly sophisticated operation...
+        this.linesSource.next(val);
     }
 }
