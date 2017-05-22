@@ -1,7 +1,0 @@
-==== 1.0.1 (11-10-2016)
-* Migration to Angular 2.0.2
-* Migration to gulp-typescript 3.0.2
-* Added files specific to environments
-
-==== 1.0.0 (3-10-2016)
-* Initial version after Angular 2 was released
