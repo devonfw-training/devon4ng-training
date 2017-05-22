@@ -1,3 +1,3 @@
 export const environment = {
-  enableProdMode: true
+  production: true
 };
