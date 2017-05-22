@@ -3,8 +3,8 @@ import { Component } from '@angular/core';
 import { Book } from './book';
 
 @Component({
-    selector: 'book',
-    styles: [`
+  selector: 'app-book',
+  styles: [`
 .book-box {
   margin: 5px 0;
 }
@@ -15,7 +15,7 @@ import { Book } from './book';
 .book-box h3 {
   font-weight: normal;
 }`],
-    template: `
+  template: `
 <div class="book-box">
   <h3>Book:</h3>
   <ol>
@@ -24,5 +24,5 @@ import { Book } from './book';
 </div>`
 })
 export class BookComponent {
-    constructor(private book: Book) {}
+  constructor(private book: Book) {}
 }

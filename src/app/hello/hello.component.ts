@@ -5,9 +5,9 @@ import { Book } from './book';
 import { Speaker } from './speaker';
 
 @Component({
-    selector: 'app-hello',
-    providers: [HelloService, Book, Speaker],
-    styles: [`
+  selector: 'app-hello',
+  providers: [HelloService, Book, Speaker],
+  styles: [`
 .hello-box {
   width: 350px;
   margin: 0 auto;
@@ -25,8 +25,8 @@ import { Speaker } from './speaker';
 .hello-box button {
   height: 36px;
 }
-`],
-    template: `
+  `],
+  template: `
 <div class="hello-box">
   <div>
     <h1>It's your turn to speak!</h1>
@@ -34,32 +34,34 @@ import { Speaker } from './speaker';
     <button (click)="toBook()">Book</button>
     <button (click)="toSpeaker()">Speaker</button>
   </div>
-  <speaker></speaker>
-  <book></book>
+  <app-speaker></app-speaker>
+  <app-book></app-book>
 <div>`
 })
 export class HelloComponent {
-    @ViewChild('helloInput') vc: any;
-    currentLine: string;
+  @ViewChild('helloInput') vc: any;
+  currentLine: string;
 
-    constructor(private helloService: HelloService) {}
+  constructor(private helloService: HelloService) {}
 
-    clearAndFocus(): void {
-        this.currentLine = '';
-        this.vc.nativeElement.focus();
+  clearAndFocus(): void {
+    this.currentLine = '';
+    this.vc.nativeElement.focus();
+  }
+
+  toBook(): void {
+    if (this.currentLine) {
+      this.helloService.writeToBook(this.currentLine);
     }
 
-    toBook(): void {
-        if (this.currentLine) {
-            this.helloService.writeToBook(this.currentLine);
-        }
-        this.clearAndFocus();
+    this.clearAndFocus();
+  }
+
+  toSpeaker(): void {
+    if (this.currentLine) {
+      this.helloService.sayOnSpeaker(this.currentLine);
     }
 
-    toSpeaker(): void {
-        if (this.currentLine) {
-            this.helloService.sayOnSpeaker(this.currentLine);
-        }
-        this.clearAndFocus();
-    }
+    this.clearAndFocus();
+  }
 }
