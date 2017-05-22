@@ -1,0 +1,248 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>devonfw ng2 training - testing exercises</title>
+    <link rel="icon" href="../common/img/favicon.ico">
+
+
+    <link rel="stylesheet" href="../reveal.js-3.3.0/css/reveal.css">
+    <link rel="stylesheet" href="../reveal.js-3.3.0/css/theme/black.css">
+    <link rel="stylesheet" href="../common/css/common.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../reveal.js-3.3.0/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../reveal.js-3.3.0/css/print/pdf.css' : '../reveal.js-3.3.0/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<section class="angular-link">
+    <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
+</section>
+<section class="devon-link">
+    <a href="http://devonfw.github.io" target="_blank"><img height="50px" src="../common/img/devon_logo_white.png"></a>
+</section>
+<div class="devon reveal">
+    <div class="slides">
+        <section>
+            <section>
+                <h3>Isolated Unit Tests</h3>
+                <p>Note: This exercise is built on top of <a href="../testing/index.html#/9/2" target="_blank">HelloService example</a>.</p>
+            </section>
+            <section>
+                <h3>Exercise: Setup running environment</h3>
+                <ol>
+                    <li>Checkout branch 100-isolated-unit-tests</li>
+                    <li>Run Karma and check the initial test is running green via <code>ng test</code></li>
+                </ol>
+            </section>
+            <section>
+                <h3>Exercise: Write simple tests.</h3>
+                <p>Extend hello.service.spec.ts and test</p>
+                <ol>
+                    <li>speech is initialized correctly</li>
+                    <li>speech builds correct string after calling say()</li>
+                    <li>speech builds correct string after calling say() 2 times</li>
+                    <li>speaker is called 3 times if say is called 3 times</li>
+                </ol>
+            </section>
+            <section>
+                <h3>Exercise: New Feature</h3>
+                <p>As the project grows new features are required.</p>
+                <blockquote>There is the requirement for a book writer.</blockquote>
+                <p>HelloService should expose <span class="highlight">say methods for speaker and book</span> - e.g. <code>sayOnSpeaker()</code> and <code>writeToBook()</code></p>
+                <ol>
+                    <li>Implement the new requirements.</li>
+                    <li>Refactor existing tests.</li>
+                    <li>Write a test which expects the speech is filled correctly after calling both types.</li>
+                </ol>
+            </section>
+            <section>
+                <h3>Exercise: Change</h3>
+                <p>As the project grows the client changes his mind.</p>
+                <blockquote>Saying on speaker should never be added to the speech.</blockquote>
+                <ol>
+                    <li>Adjust existing tests to the new requirements.</li>
+                    <li>Fix the implementation.</li>
+                </ol>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>Angular Testing Utilities</h3>
+            </section>
+            <section>
+                <h3>Exercise: Set up running environment</h3>
+                <ol>
+                    <li>Checkout branch 101-angular-testing-utilities</li>
+                    <li>Run Karma and check the initial test is running green via <code>ng test</code></li>
+                    <li>Browse simple app and make yourself familiar with its structure.</li>
+                </ol>
+            </section>
+            <section>
+                <h3>Set up book.component.spec.ts</h3>
+                <pre><code class="typescript">import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+
+import { Book } from './book';
+import { BookComponent } from './book.component';
+
+let fixture: ComponentFixture&lt;BookComponent&gt;;
+let book: Book;
+
+describe('BookComponent', () => {
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            declarations: [ BookComponent ],
+            providers: [Book]
+        });
+
+        fixture = TestBed.createComponent(BookComponent);
+        book = fixture.debugElement.injector.get(Book);
+    });
+
+    it('displays no li elements if no line written', () => {
+        // TODO
+    });
+
+    it('displays a li with matching content if 1 line written', () => {
+        // TODO
+    });
+
+    it('displays five li if five lines written to book', () => {
+        // TODO
+    });
+});
+</code></pre>
+                <p>Complete the tests.</p>
+            </section>
+            <section>
+                <h3>Set up speaker.component.spec.ts</h3>
+                <pre><code class="typescript">import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/empty';
+import 'rxjs/add/observable/of';
+
+import { Speaker } from './speaker';
+import { SpeakerComponent } from './speaker.component';
+
+let fixture: ComponentFixture&lt;SpeakerComponent&gt;;
+let speaker: Speaker;
+
+describe('SpeakerComponent', () => {
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            declarations: [ SpeakerComponent ],
+            providers: [Speaker]
+        });
+
+        fixture = TestBed.createComponent(SpeakerComponent);
+        speaker = fixture.debugElement.injector.get(Speaker);
+    });
+
+    it('displays default value', () => {
+        spyOn(speaker, 'getLine').and.returnValue(Observable.empty());
+        fixture.componentInstance.ngOnInit();
+
+        // TODO
+    });
+
+    it('displays emitted line', () => {
+        // TODO
+    });
+});
+</code></pre>
+                <p>Complete the tests.</p>
+            </section>
+            <section>
+                <h3>Set up hello.component.spec.ts</h3>
+                <pre><code class="typescript">import { HelloComponent } from './hello.component';
+import { HelloService } from './hello.service';
+
+let component: HelloComponent;
+let serviceFake = {
+  sayOnSpeaker: (val: string) => {},
+  writeToBook: (val: string) => {},
+  getSpeech: () => '',
+} as HelloService;
+let inputElementFake = {
+    nativeElement: {
+        focus: () => {}
+    }
+};
+
+describe('HelloComponent', () => {
+    beforeEach(() => {
+        component = new HelloComponent(serviceFake);
+        component.vc = inputElementFake;
+    });
+
+    describe('toBook', () => {
+        it('calls writeToBook if currentLine is set', () => {
+            // TODO
+        });
+
+        it('does not call writeToBook if currentLine is empty', () => {
+            // TODO
+        });
+
+        it('calls focus and resets currentLine', () => {
+            // TODO
+        });
+    });
+
+    describe('toSpeaker', () => {
+        it('calls sayOnSpeaker if currentLine is set', () => {
+            // TODO
+        });
+
+        it('does not call sayOnSpeaker if currentLine is not set', () => {
+            // TODO
+        });
+
+        it('calls focus and resets currentLine', () => {
+            // TODO
+        });
+    });
+});</code></pre>
+                <p>Complete the tests.</p>
+            </section>
+            <section>
+                <h3>Bonus Exercise</h3>
+                <p>Change SpeakerComponent to use HTML speechSynthesis and make the speaker speak!</p>
+            </section>
+        </section>
+    </div>
+</div>
+
+<script src="../reveal.js-3.3.0/lib/js/head.min.js"></script>
+<script src="../reveal.js-3.3.0/js/reveal.js"></script>
+
+<script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        history: true,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+            { src: '../reveal.js-3.3.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: '../reveal.js-3.3.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../reveal.js-3.3.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../reveal.js-3.3.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: '../reveal.js-3.3.0/plugin/zoom-js/zoom.js', async: true },
+            { src: '../reveal.js-3.3.0/plugin/notes/notes.js', async: true }
+        ]
+    });
+</script>
+</body>
+</html>
