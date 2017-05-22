@@ -2,24 +2,21 @@ import { Speaker } from './speaker';
 import { Book } from './book';
 import { HelloService } from './hello.service';
 
-const speakerFake = {
-  speak: (v: string) => {}
-} as Speaker;
-const bookFake = {
-  write: (v: string) => {}
-} as Book;
+let speakerSpy: Speaker;
+let bookSpy: Book;
 let sut: HelloService;
-
 describe('HelloService', () => {
   beforeEach(() => {
-    sut = new HelloService(speakerFake, bookFake);
+    speakerSpy = jasmine.createSpyObj('speaker', ['speak']);
+    bookSpy = jasmine.createSpyObj('book', ['write']);
+    sut = new HelloService(speakerSpy, bookSpy);
   });
 
   it('should build correct speech after calling sayOnSpeaker', () => {
     const speech = 'This is Sparta!';
 
     sut.sayOnSpeaker(speech);
-    let actual = sut.getSpeech();
+    const actual = sut.getSpeech();
 
     expect(actual).toEqual('');
   });
@@ -30,7 +27,7 @@ describe('HelloService', () => {
 
     sut.sayOnSpeaker(say1);
     sut.sayOnSpeaker(say2);
-    let actual = sut.getSpeech();
+    const actual = sut.getSpeech();
 
     expect(actual).toEqual('');
   });
@@ -41,7 +38,7 @@ describe('HelloService', () => {
 
     sut.sayOnSpeaker(speakerLine);
     sut.writeToBook(bookLine);
-    let actual = sut.getSpeech();
+    const actual = sut.getSpeech();
 
     expect(actual).toEqual(bookLine);
   });
@@ -50,23 +47,20 @@ describe('HelloService', () => {
     it('should call Speaker', () => {
       // Given
       const speechLine = 'This is Sparta!';
-      spyOn(speakerFake, 'speak');
 
       // When
       sut.sayOnSpeaker(speechLine);
 
       // Then
-      expect(speakerFake.speak).toHaveBeenCalledWith(speechLine);
+      expect(speakerSpy.speak).toHaveBeenCalledWith(speechLine);
     });
 
     it('should call Speaker 3 times if called 3 times', () => {
-      spyOn(speakerFake, 'speak');
-
       sut.sayOnSpeaker('1');
       sut.sayOnSpeaker('2');
       sut.sayOnSpeaker('3');
 
-      expect(speakerFake.speak).toHaveBeenCalledTimes(3);
+      expect(speakerSpy.speak).toHaveBeenCalledTimes(3);
     });
   });
 

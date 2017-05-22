@@ -4,8 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import { Speaker } from './speaker';
 
 @Component({
-    selector: 'speaker',
-    styles: [`
+  selector: 'app-speaker',
+  styles: [`
 .speaker-box {
   background: #EDEDED;
   margin: 5px 0;
@@ -13,17 +13,17 @@ import { Speaker } from './speaker';
 .speaker-box h3 {
   font-weight: normal;
 }`],
-    template: `
+  template: `
 <div class="speaker-box">
   <h3>Speaker: <span>{{(line$ | async) || 'speaker is quiet'}}</span></h3>
 </div>`
 })
 export class SpeakerComponent implements OnInit {
-    line$: Observable<string>;
+  line$: Observable<string>;
 
-    constructor(private speaker: Speaker) {}
+  constructor(private speaker: Speaker) { }
 
-    ngOnInit(): void {
-        this.line$ = this.speaker.getLine();
-    }
+  ngOnInit(): void {
+    this.line$ = this.speaker.getLine();
+  }
 }
