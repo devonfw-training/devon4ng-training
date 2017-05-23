@@ -156,31 +156,32 @@
             </section>
 
             <section>
-                    <section>
-                        <h2>Custom attributes</h2>
-                        <p>
-                            <p>
-                            <cite>
-                            Custom data attributes are intended to <strong>store custom data private to 
-                            the page or application</strong>, for which there are no more appropriate attributes or elements.
-                                </cite>
-                            </p>  
-                        <p><cite>
-These attributes are not intended for use by software that is independent of the site that uses the attributes.
-<strong>Every HTML element</strong> may have <strong>any number</strong> of custom data attributes specified, with <strong>any value</strong>.
-                            </cite>
-                        </p>    
-                        </p>
-                    </section>
-                    <section>
-                        <h2>Custom attributes</h2>
-                        <ul>
-                            <li>Name: data-*</li>
-                            <li>Value: whatever</li>
-                            <li>Custom attributes prefixed with "data-" will be completely ignored by the user agent.</li>
-                        </ul>
-                    </section>
-                    <section>
+                <section>
+                    <h2>Custom attributes</h2>
+                    <p>
+
+                        <cite>
+                            Custom data attributes are intended to <strong>store custom data private to
+                            the page or application</strong>, for which there are no more appropriate attributes or
+                            elements.
+                        </cite>
+                    </p>
+                    <p><cite>
+                        These attributes are not intended for use by software that is independent of the site that uses
+                        the attributes.
+                        <strong>Every HTML element</strong> may have <strong>any number</strong> of custom data
+                        attributes specified, with <strong>any value</strong>.
+                    </cite>
+                    </p>
+
+                    <h2>Custom attributes</h2>
+                    <ul>
+                        <li>Name: data-*</li>
+                        <li>Value: whatever</li>
+                        <li>Custom attributes prefixed with "data-" will be completely ignored by the user agent.</li>
+                    </ul>
+                </section>
+                <section>
                         <h2>Custom attributes sample</h2>
                             <p>Definition and Usage</p>
                             <p><pre><code data-trim class="html">
@@ -195,7 +196,7 @@ plant.dataset.plantHeight = '3.6m';  // Cracking fertiliser
 &lt;/script&gt;
                             </code></pre></p>
                     </section>
-            
+
                     <section>
                         <h2>Custom attributes don't use:</h2>
                         <ul>
@@ -205,7 +206,7 @@ plant.dataset.plantHeight = '3.6m';  // Cracking fertiliser
                         </ul>
                     </section>
                 </section>
-            
+
             <section>
                     <section>
                         <h2>Content description</h2>
@@ -216,7 +217,7 @@ plant.dataset.plantHeight = '3.6m';  // Cracking fertiliser
                             <li><a href="http://www.w3.org/TR/microdata/">Microdata</a></li>
                         </ul>
                     </section>
-                    
+
                     <section>
                         <h2>Content description, why?</h2>
                         <ul>
@@ -225,7 +226,7 @@ plant.dataset.plantHeight = '3.6m';  // Cracking fertiliser
                             <li>Future browsers</li>
                         </ul>
                     </section>
-                    
+
                     <section>
                         <h2>Content description RDF, Sample</h2>
                         <p><pre><code class="html">
@@ -243,7 +244,7 @@ plant.dataset.plantHeight = '3.6m';  // Cracking fertiliser
                         <code>
                             <div itemscope itemtype="http://schema.org/Person">
                                 <img id="faceImg" itemprop="image" src="http://www.graphics20.com/wp-content/uploads/2012/12/Funny-Faces-2.jpg" alt="John Smith face" />
-                                <p>Page created by 
+                                <p>Page created by
                                     <span itemprop="jobTitle" style="display: none">
                                         Capgemini Enigneer
                                     </span>
@@ -251,7 +252,7 @@ plant.dataset.plantHeight = '3.6m';  // Cracking fertiliser
                                         John Smith
                                     </span>
                                     Nickname <span itemprop="additionalname">Big Boy</span>
-                                    
+
                                     <p>Contact:</p>
                                 <span itemprop="telephone">+48 111 111 111</span>
                                 <span itemprop="email">big.boy@capgemini.com</span>
@@ -259,13 +260,13 @@ plant.dataset.plantHeight = '3.6m';  // Cracking fertiliser
                             </div>
                         </code>
                     </section>
-                
+
                     <section>
                         <h2>Content description microdata, sample</h2>
                         <p><pre><code>
 &lt;div itemscope itemtype="http://schema.org/Person"&gt;
 &lt;img id="faceImg" itemprop="image" src="http://www.graphics20.com/wp-content/uploads/2012/12/Funny-Faces-2.jpg" alt="John Smith face" /&gt;
-    &lt;p&gt;Page created by 
+    &lt;p&gt;Page created by
         &lt;span itemprop="jobTitle" style="display: none"&gt;
             Capgemini Enigneer
         &lt;/span&gt;
@@ -282,7 +283,7 @@ plant.dataset.plantHeight = '3.6m';  // Cracking fertiliser
 &lt;/div&gt;
                             </code></pre></p>
                     </section>
-                    
+
                     <section>
                         <h2>Structured Data Testing Tool</h2>
                         <ul>
@@ -291,7 +292,7 @@ plant.dataset.plantHeight = '3.6m';  // Cracking fertiliser
                         </ul>
                         <img src="./img/GoogleContentDescriptionTestToolScreenshot.png" alt="Test tool result">
                     </section>
-                
+
                     <section>
                         <h2>Structured Data shown by Google</h2>
                         <p>... after typing "Jan Frodeno"</p>
@@ -358,7 +359,7 @@ if (webStorageSupported) {
             center: true,
             minScale: 1,
             maxScale: 1,
-            transition: 'zoom', // none/fade/slide/convex/concave/zoom
+            transition: 'fade', // none/fade/slide/convex/concave/zoom
 
             // Optional reveal.js plugins
             dependencies: [

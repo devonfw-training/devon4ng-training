@@ -69,3 +69,11 @@
     font-family: inherit;
     font-size: inherit;
 }
+
+.reveal {
+    font-size: 30px;
+}
+
+.reveal p{
+    margin: 15px 0;
+}

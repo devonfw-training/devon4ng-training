@@ -57,7 +57,7 @@
                     <p>Philip Schmökel</p>
                 </section>
                 <section>
-                    <h2>Exercises</h1>
+                    <h2>Exercises</h2>
                     <ul>
                     <li><a href="#/4">1: Selectors</a></li>
                     <li><a href="#/5">2: Selectors</a></li>
@@ -123,11 +123,11 @@ p {
                         </tr>
                         <tr>
                             <td><code>p .class1</code></td>
-                            <td>Elements with class <i>class1</i> having paragraph parent</td>
+                            <td>Elements with class <i>class1</i> having paragraph ancestor</td>
                         </tr>
                         <tr>
                             <td><code>.class1 .class2</code></td>
-                            <td>Elements with class <i>class2</i> having parent with class <i>class1</i></td>
+                            <td>Elements with class <i>class2</i> having ancestor with class <i>class1</i></td>
                         </tr>
                         <tr>
                             <td><code>p.class1.class2</code></td>
@@ -183,8 +183,9 @@ p {
                 </div>
                 <p>to</p>
                 <div>
-                    <iframe src="./exercises/results/exercise1-result.html" height="200" width="500"></iframe>
+                    <iframe src="./exercises/results/exercise1-result.html" height="80" width="500"></iframe>
                 </div>
+                <p style="font-size: smaller">HTML-file: &lt;Repository&gt;/css/exercise1.html</p>
             </section>
             <section>
                 <h2>Exercise 2: Selectors</h2>
@@ -192,6 +193,7 @@ p {
                 <div>
                     <iframe src="./exercises/results/exercise2-result.html" height="200" width="700"></iframe>
                 </div>
+                <p style="font-size: smaller">HTML-file: &lt;Repository&gt;/css/exercise2.html</p>
             </section>
             <section>
                 <h2>Selector's priority</h2>
@@ -220,8 +222,12 @@ p {
             </section>
             <section>
                 <h2>Box Model</h2>
-                <img src="./content/box.gif" alt="CSS Boxmodel">
-                <p>real-size = margin + border + padding + size</p>
+                <img src="./content/box.gif" alt="CSS Boxmodel" width="380">
+                <p>
+					real-size = margin + border + padding + size<br>
+					you can change what width and height refer to:
+					<br>box-sizing: content-box|border-box|inherit;
+				</p>
             </section>
             <section>
                 <h2><span class="blue">block</span> vs <span class="blue">inline</span></h2>
@@ -269,45 +275,6 @@ p {
                 </div>
             </section>
             <section>
-                <h2>Horizontal Alignment</h2>
-                <p><span class="blue">inline</span> elements inside block</p>
-<pre><code class="css">.parentSample {
-  text-align: center;
-}
-.childSample {
-
-}
-</code></pre>
-                <p><span class="blue">block</span> elements inside block</p>
-<pre><code class="css">.parentSample {
-   
-}
-.childSample {
-  margin: 0 auto;
-}
-</code></pre>
-                <div style="text-align: center; background: green" class="parentSample"> 
-                    <span style="background: yellow; padding: 0 30px;" class="childSample">Child</span>
-                </div>
-            </section>
-            <section>
-                <h2>Vertical Alignment</h2>
-                <p>How to align vertically with <strong>fixed container height</strong></p>
-<pre><code class="css">.parentSample {
-  /* containers height is fixed */
-  height: 80px;
-  line-height: 80px;
-}
-.childSample {
-  display: inline-block;
-  line-height: 80px;
-}
-</code></pre>
-                <div style="background: green; height: 80px; line-height: 80px;">
-                    <span style="line-height: 80px; vertical-align: middle;" ><code>&lt;span&gt;Child&lt;/span&gt;</code></span>
-                </div>
-            </section>
-            <section>
                 <h2>Float</h2>
                 <ul>
                     <li>
@@ -343,12 +310,13 @@ p {
                 <h2>Exercise 3: Float</h2>
                 <p>Write CSS and change</p>
                 <div>
-                    <iframe src="./exercises/exercise3.html" height="200" width="500"></iframe>
+                    <iframe src="./exercises/exercise3.html" height="150" width="500"></iframe>
                 </div>
                 <p>to</p>
                 <div>
-                    <iframe src="./exercises/results/exercise3-result.html" height="300" width="500"></iframe>
+                    <iframe src="./exercises/results/exercise3-result.html" height="250" width="500"></iframe>
                 </div>
+                <p style="font-size: smaller">HTML-file: &lt;Repository&gt;/css/exercise3.html</p>
             </section>
             <section>
                 <h2>Positioning</h2>
@@ -395,39 +363,18 @@ p {
 }</code></pre>
                 <iframe width="100%" height="400" src="./content/positioningExample.html"></iframe>
             </section>
-            <section>
-                <h2>Vertical alignment</h2>
-                <p>How to align <span class="blue">vertically</span> independently on container height</p>
-    <pre style="width: 350px; margin:0; vertical-align: top; display: inline-block">
-<code style="max-height:  500px;" data-trim>.container {
-    height: 200px;
-    position: relative;
-    background: green;
-}
-.child-container {
-    position: absolute;
-    height: 0;
-    overflow: visible;
-    top: 50%
-}
-.child {
-    height: 50px;
-    top: -25px;
-    position: relative;
-    background: yellow;
-}</code></pre>
-        <iframe style="width: 300px; display: inline-block; margin-left:10px;" src="./content/positioningVerticalAlignment.html" height="200"></iframe>
-            </section>
+
             <section>
                 <h2>Exercise 4: Positioning</h2>
                 <p>Write CSS and change</p>
                 <div>
-                    <iframe src="./exercises/exercise4.html" height="100" width="500"></iframe>
+                    <iframe src="./exercises/exercise4.html" height="90" width="500"></iframe>
                 </div>
                 <p>to</p>
                 <div>
-                    <iframe src="./exercises/results/exercise4-result.html" height="350" width="500"></iframe>
+                    <iframe src="./exercises/results/exercise4-result.html" height="320" width="500"></iframe>
                 </div>
+                <p style="font-size: smaller">HTML-file: &lt;Repository&gt;/css/exercise4.html</p>
             </section>
             <section>
                 <h2>less and sass</h2>
@@ -436,19 +383,18 @@ p {
                     <li><p>CSS pre-processor</p></li>
                     <li><p>variables, functions, mixins and more</p></li>
                 </ul>
-                <pre><code class="css">@base: #f938ab;
+                <pre><code class="css">$buttonColor: #2ecc71;
+$buttonDark: darken($buttonColor, 10%);
+$buttonDarker: darken($buttonDark, 10%);
 
-.box-shadow(@style, @c) when (iscolor(@c)) {
-  -webkit-box-shadow: @style @c;
-  box-shadow:         @style @c;
-}
-.box-shadow(@style, @alpha: 50%) when (isnumber(@alpha)) {
-  .box-shadow(@style, rgba(0, 0, 0, @alpha));
-}
-.box {
-  color: saturate(@base, 5%);
-  border-color: lighten(@base, 30%);
-  div { .box-shadow(0 0 5px, 30%) }
+button {
+  background: $buttonColor;
+  border-radius: 3px;
+  box-shadow: 0px 5px 0px $buttonDark;
+  &:hover {
+    background: $buttonDark;
+    box-shadow: 0px 5px 0px $buttonDarker;
+  }
 }
 </code></pre>
                 <p class="foot-note" style="font-size: 30px">
@@ -458,13 +404,14 @@ p {
             </section>
             <section>
                 <p>... compiles to</p>
-<pre><code class="css">.box {
-  color: #fe33ac;
-  border-color: #fdcdea;
+<pre><code class="css">button {
+  background: #2ecc71;
+  border-radius: 3px;
+  box-shadow: 0px 5px 0px #25a25a;
 }
-.box div {
-  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+button:hover {
+  background: #25a25a;
+  box-shadow: 0px 5px 0px #1b7943;
 }
     </code></pre>
             </section>
