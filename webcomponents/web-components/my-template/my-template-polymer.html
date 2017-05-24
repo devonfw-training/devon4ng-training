@@ -1,0 +1,25 @@
+<link rel="import" href="https://polygit.org/components/polymer/polymer.html">
+
+<dom-module id="my-template">
+    <template>
+        <style>
+            div p {
+                color: green;
+
+            }
+            :host {
+                display: block;
+                margin: 5px;
+                border: solid 2px red;
+            }
+        </style>
+
+        <div><p>This is my template</p></div>
+    </template>
+
+    <script>
+        Polymer({
+            is: "my-template"
+        });
+    </script>
+</dom-module>

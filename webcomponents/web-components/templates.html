@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<button onclick="addMyTemplateToDocumentBody()">Add template</button>
+
+<template id="my-template">
+    <div>
+        <p>This is my template</p>
+    </div>
+</template>
+
+<script>
+    function addMyTemplateToDocumentBody() {
+        var template = document.querySelector('#my-template');
+        var clone = document.importNode(template.content, true);
+        document.body.appendChild(clone);
+    }
+</script>
+
+</body>
+</html>

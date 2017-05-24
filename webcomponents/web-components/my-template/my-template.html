@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+<template id="my-template">
+    <style>
+        div p {
+            color: green;
+        }
+        :host {
+            display: block;
+            margin: 5px;
+            border: solid 2px red;
+        }
+    </style>
+    <div>
+        <p>This is my template</p>
+    </div>
+</template>
+
+<script>
+    var myTemplateHtmlElement = Object.create(HTMLElement.prototype),
+            thisDoc = document.currentScript.ownerDocument;
+
+    myTemplateHtmlElement.createdCallback = function () {
+        var template = thisDoc.querySelector('#my-template'),
+                clone = document.importNode(template.content, true),
+                root = this.attachShadow({mode: 'closed'});
+        root.appendChild(clone);
+    };
+    document.registerElement("my-template", {prototype: myTemplateHtmlElement});
+</script>
+</body>
+</html>

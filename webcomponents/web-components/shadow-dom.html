@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        div p {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<button onclick="addShadowRootToEric()">Add Shadow Dom To Eric</button>
+<div id="john">
+    <p>John</p>
+</div>
+<div id="eric">
+    <p>Eric</p>
+</div>
+
+<template id="my-template">
+    <style>
+        div p {
+            color: green;
+        }
+        :host {
+            border: solid 2px red;
+        }
+    </style>
+    <div>
+        <p>This is my template</p>
+    </div>
+</template>
+
+<script>
+    function addShadowRootToEric() {
+        var template = document.querySelector('#my-template'),
+                host = document.querySelector('#eric'),
+                root = host.attachShadow({mode: 'closed'});
+                clone = document.importNode(template.content, true);
+        root.appendChild(clone);
+    }
+</script>
+
+</body>
+</html>
