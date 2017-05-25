@@ -1,0 +1,482 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>devonfw ng2 training - Exercises</title>
+    <link rel="icon" href="../common/img/favicon.ico">
+
+
+    <link rel="stylesheet" href="../reveal.js-3.3.0/css/reveal.css">
+    <link rel="stylesheet" href="../reveal.js-3.3.0/css/theme/black.css">
+    <link rel="stylesheet" href="../common/css/common.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../reveal.js-3.3.0/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../reveal.js-3.3.0/css/print/pdf.css' : '../reveal.js-3.3.0/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<section class="angular-link">
+    <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
+</section>
+<section class="devon-link">
+    <a href="http://devonfw.github.io" target="_blank"><img height="50px" src="../common/img/devon_logo_white.png"></a>
+</section>
+<div class="devon reveal">
+    <div class="slides">
+        <section><h1>Exercises</h1></section>
+        <section id="simple-component">
+            <section>
+                <h3>Simple Component (1/4)</h3>
+                <ol>
+                    <li>Let's assume we're in the <span class="monospace highlight">app</span> directory.</li>
+                    <li>Create a new module <span class="monospace highlight">Books</span> (<span class="monospace highlight">ng g module Books</span>).</li>
+                    <li>Go to the <span class="monospace highlight">books</span> directory and create a new component <span class="monospace highlight">BookDetails</span> (<span class="monospace highlight">ng g component BookDetails</span>).</li>
+                    <li>Export the <span class="monospace highlight">BookDetailsComponent</span> from the <span class="monospace highlight">BooksModule</span> - both of them you've just created.</li>
+                    <li>Import the <span class="monospace highlight">BooksModule</span> in the <span class="monospace highlight">AppModule</span>. Remove the <span class="monospace highlight">AppModule.title</span> property as it is not needed anymore.</li>
+                    <li>Add <span class="monospace highlight">&lt;app-book-details&gt;</span> to the <span class="monospace highlight">AppComponent</span>'s template. <i>book-details works!</i> should appear on the page.</li>
+                </ol>
+            </section>
+            <section>
+                <h3>Simple Component (2/4)</h3>
+                <ol>
+                    <li>Create a class <span class="monospace highlight">Book</span> in the <span class="monospace highlight">books</span> directory (<span class="monospace highlight">ng g class Book</span>). Add the <span class="monospace highlight">id</span>, <span class="monospace highlight">author</span>
+                        and <span class="monospace highlight">title</span> properties (including setters and getters).</li>
+                    <li>Add a public <span class="monospace highlight">BookDetailsComponent.currentBook</span> property of type <span class="monospace highlight">Book</span> and initialize the property with an empty
+                        <span class="monospace highlight">Book</span> object in the constructor.</li>
+                    <li>Take part in the <span class="monospace highlight">OnInit</span> lifecycle hook (an empty <span class="monospace highlight">ngOnInit()</span> method should have been generated) setting the <span class="monospace highlight">author</span> and
+                        <span class="monospace highlight">title</span> properties of <span class="monospace highlight">currentBook</span> to any values of your choice.
+                </ol>
+            </section>
+            <section>
+                <h3>Simple Component (3/4)</h3>
+                <ol>
+                    <li>Create a Book form based on the <a href="https://v4-alpha.getbootstrap.com/components/forms/#using-the-grid" target="_blank">Bootstrap grid system</a> (in the file <span class="monospace highlight">book-details.component.html</span>).</li>
+                    <li>For now don't use <span class="monospace highlight">&lt;input&gt;</span>s. Just display labels and values of the <span class="monospace highlight">authors</span> and
+                        <span class="monospace highlight">title</span> properties (using the interpolation <span class="monospace highlight">{{}}</span>).</li>
+                    <li>Add some component's styling (to the file <span class="monospace highlight">book-details.component.scss</span>) , e.g. make the labels' font weight bold. Make use of the <span class="monospace highlight">:host</span> pseudo selector.</li>
+                </ol>
+            </section>
+            <section>
+                <h3>Simple Component (4/4)</h3>
+                <ol>
+                    <li>Make the values aligned with the labels horizontally centered. Use the <a href="https://v4-alpha.getbootstrap.com/utilities/flexbox/#align-items" target="_blank">Bootstrap flexbox utilities</a>.</li>
+                    <li>Make both linting (<span class="monospace highlight">ng lint</span>) and tests (including E2E ones) passing :)</li>
+                </ol>
+            </section>
+        </section>
+        <section id="master-details">
+            <section>
+                <h3>Master/Details Pattern (1/6)</h3>
+                <ol>
+                    <li>Let's assume we're in the <span class="monospace highlight">app/books</span> directory.</li>
+                    <li>Create a new component <span class="monospace highlight">BookOverview</span> (<span class="monospace highlight">ng g component BookOverview</span>) and export it from the <span class="monospace highlight">BooksModule</span>.</li>
+                    <li>Add <span class="monospace highlight">&lt;app-book-overview&gt;</span> to the <span class="monospace highlight">AppComponent</span>'s template. <i>book-overview works!</i> should appear on the page.</li>
+                </ol>
+            </section>
+            <section>
+                <h3>Master/Details Pattern (2/6)</h3>
+                <ol>
+                    <li>Add public properties to the <span class="highlight monospace">BookOverviewComponent</span> class:
+                    <ul>
+                        <li>the array <span class="highlight monospace">books</span> which keeps available books,</li>
+                        <li>the <span class="highlight monospace">selectedBook</span> which keeps currently selected book from available ones.</li>
+                    </ul>
+                    </li>
+                    <li>Initialize the <span class="highlight monospace">books</span> array in the constructor with an empty array.</li>
+                    <li>Add some book entries to the <span class="highlight monospace">books</span> array (In the <span class="highlight monospace">OnInit</span> lifecycle hook).
+                        For book creation add a static convenience method to the <span class="highlight monospace">Book</span> class, e.g.: <span class="highlight monospace">Book.from(authors: string, title: string): Book</span>
+                    </li>
+                </ol>
+            </section>
+            <section>
+                <h3>Master/Details Pattern (3/6)</h3>
+                <ol>Extend the <span class="highlight monospace">BookOverviewComponent</span> class:
+                    <li>Implement the <span class="highlight monospace">isBookSelected(book: Book): boolean</span>
+                        method
+                        which checks if the book passed is the selected one.
+                    </li>
+                    <li>Implement the <span class="highlight monospace">selectBook(book: Book): void</span> method
+                        which sets the passed book as the selected one.
+                    </li>
+                </ol>
+            </section>
+            <section>
+                <h3>Master/Details Pattern (4/6)</h3>
+                <ol>
+                    <li>
+                        Add a <a href="https://v4-alpha.getbootstrap.com/layout/grid/#how-it-works" target="_blank">Bootstrap container</a> having one row with two columns.
+                    </li>
+                    <li>To the first cell add a <a href="https://v4-alpha.getbootstrap.com/content/tables/#hoverable-rows" target="_blank">Bootstrap table with hoverable rows</a>. Stamp out the table's rows iterating over the
+                        <span class="highlight monospace">BookOverviewComponent.books</span>. Make use of the
+                        <a href="https://angular.io/docs/ts/latest/api/common/index/NgFor-directive.html" target="_blank" class="monospace">*ngFor</a> directive. For each book element show its author and title as well as the row number (in the first column).</li>
+                </ol>
+            </section>
+            <section>
+                <h3>Master/Details Pattern (5/6)</h3>
+                <ol>
+                    <li>
+                        <ul>Add the following bindings to the table rows:
+                            <li>the <span class="highlight monospace">(click)</span> event binding to the
+                                <span class="highlight monospace">selectBook(book:Book):void</span> method,</li>
+                            <li>the <a href="https://angular.io/docs/ts/latest/guide/template-syntax.html#!#class-binding" target="_blank"  class="monospace">class binding</a>
+                                <span class="highlight monospace">[class.table-active]</span> to the
+                                <span class="highlight monospace">isBookSelected(book: Book): boolean</span> method.</li>
+                        </ul>
+                    </li>
+                    <li>Put the <span class="monospace highlight">&lt;app-book-details&gt;</span> element in the second cell
+                        and add the <span class="highlight monospace">[book]</span> property binding to the
+                        <span class="highlight monospace">selectedBook</span>.</li>
+                </ol>
+            </section>
+            <section>
+                <h3>Master/Details Pattern (6/6)</h3>
+                <ol>
+                    <li>Go to the <span class="highlight monospace">BookDetailsComponent</span> class and remove all
+                        its content except for the <span class="highlight monospace">currentBook</span> property. Rename it to <span class="highlight monospace">book</span>.</li>
+                    <li>Add the <span class="highlight monospace">@Input()</span> decorator to the
+                        <span class="highlight monospace">book</span> property.</li>
+                    <li>Go to the <span class="highlight monospace">BookDetailsComponent</span>'s template and wrap up
+                        the current content with a <span class="highlight monospace">&lt;section&gt;</span> element
+                        which is shown only if the <span class="highlight monospace">book</span> property is set.
+                        Use the <a href="https://angular.io/docs/ts/latest/api/common/index/NgIf-directive.html" target="_blank" class="monospace">*ngIf</a> directive.</li>
+                    <li>Make both linting and tests (including E2E ones) passing :)</li>
+                </ol>
+            </section>
+        </section>
+        <section id="data-binding">
+            <section>
+                <h3>Data Binding (1/5)</h3>
+                <ol>
+                    <li>Go to the <span class="highlight monospace">BookDetailsComponent</span>'s template and replace
+                        the interpolation of book's author and title with text input fields having the id and name attributes set. Add the Bootstrap's <span class="highlight monospace">form-control</span> class.</li>
+                    <li>Import the <span class="highlight monospace">FormsModule</span> in the <span class="highlight monospace">BooksModule</span> and add two-way binding (<span class="highlight monospace">[(ngModel)]</span>) to the input fields.</li>
+                    <li>Place the apply button (use the <a href="https://v4-alpha.getbootstrap.com/components/buttons/#examples" target="_blank" class="monospace">Bootstrap primary button</a>) underneath input fields. The button has the <span class="highlight monospace">(click)</span> event binding to the <span class="highlight monospace">apply()</span> method.</li>
+                </ol>
+            </section>
+            <section>
+                <h3>Data Binding (2/5)</h3>
+                <ol>
+                    <li>Go to the <span class="highlight monospace">BookDetailsComponent</span> class and add a setter and a getter of the <span class="monospace highlight">book</span> property.</li>
+                    <li>Move the <span class="highlight monospace">@Input()</span> decorator from the property to the setter.</li>
+                    <li>Change the setter implementation so that instead of a direct assignment a copy of the passed object is made.
+                        You can use the <a href="https://lodash.com/docs/4.17.4#cloneDeep" target="_blank" class="monospace">cloneDeep</a>
+                        function from the lodash library (<span class="highlight monospace">import {cloneDeep} from 'lodash'</span>).</li>
+                </ol>
+            </section>
+            <section>
+                <h3>Data Binding (3/5)</h3>
+                <ol>
+                    <li>Add the <span class="highlight monospace">bookUpdate</span> property of type <span class="highlight monospace">EventEmitter</span>.</li>
+                    <li>Put the decorator <span class="highlight monospace">@Output()</span> on the <span class="highlight monospace">bookUpdate</span> property.</li>
+                    <li>Implement the <span class="highlight monospace">apply(): void</span> method which uses the <span class="highlight monospace">bookUpdate</span>
+                        EventEmitter and emits the <span class="highlight monospace">_book</span> property.</li>
+                    <li>Update the <span class="highlight monospace">Book.from</span> factory method so that each new book being created gets a unique id
+                        (hint: keep a sequencer as a static field of the <span class="highlight monospace">Book</span> class).</li>
+                </ol>
+            </section>
+            <section>
+                <h3>Data Binding (4/5)</h3>
+                <ol>
+                    <li>Go to the <span class="monospace highlight">BookOverviewComponent</span>'s template and add the
+                        <span class="highlight monospace">(bookUpdate)</span> event binding to the
+                        <span class="highlight monospace">&lt;app-book-details&gt;</span> element.</li>
+                    <li>Assign the <span class="highlight monospace">onBookUpdated($event)</span> method call to the
+                        <span class="highlight monospace">(bookUpdate)</span> event binding.</li>
+                    <li>Go to the <span class="highlight monospace">BookOverviewComponent</span> class and implement
+                        the <span class="highlight monospace">onBookUpdated(updatedBook: Book): void</span> method.</li>
+                </ol>
+            </section>
+            <section>
+                <h3>Data Binding (5/5)</h3>
+                <ol>
+                    <li>The <span class="highlight monospace">onBookUpdated(updatedBook: Book): void</span> method should find a book (among books in the <span class="highlight monospace">books</span> array)
+                        with the same ID as the passed book (consider using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter" target="_blank" class="monospace">Array.prototype.filter</a> function)
+                        and update the found book accordingly. You can use the
+                        <a href="https://lodash.com/docs/4.17.4#assign" target="_blank" class="monospace">assign</a> function from the lodash library (<span class="highlight monospace">import {assign} from 'lodash'</span>).</li>
+                    <li>Make both linting and tests (including E2E ones) passing :)</li>
+                </ol>
+            </section>
+        </section>
+        <section id="service">
+            <section>
+                <h3>Service (1/3)</h3>
+                <ol>
+                    <li>Go to the <span class="monospace highlight">app/books</span> directory and create a new <span class="highlight monospace">Book</span> service (<span class="highlight monospace">ng g service Book</span>) with the private
+                        <span class="highlight monospace">books</span> array property.</li>
+                    <li>In the constructor initialize the array. Just copy the code from the <span class="highlight monospace">BookOverviewComponent.ngOnInit()</span> method.</li>
+                    <li>Add the <span class="highlight monospace">findAll(): Observable&lt;Book[]&gt;</span> service method
+                        which returns the <span class="highlight monospace">books</span> array as an <span class="highlight monospace">Observable</span>.</li>
+                    <li>Add the <span class="highlight monospace">BookService</span> to providers of the
+                        <span class="highlight monospace">BooksModule</span>.</li>
+                </ol>
+            </section>
+            <section>
+                <h3>Service (2/3)</h3>
+                <ol>
+                    <li>Make use of the dependency injection and pass a reference to the
+                        <span class="highlight monospace">BookService</span> in the
+                        <span class="highlight monospace">BookOverviewComponent</span>'s constructor.
+                    </li>
+                    <li>Call the <span class="highlight monospace">BookService.findAll()</span> method in the
+                        <span class="highlight monospace">BookOverviewComponent.ngOnInit()</span> method to initialize
+                        the book list.</li>
+                </ol>
+            </section>
+            <section>
+                <h3>Service (3/3)</h3>
+                <ol>Extend the <span class="highlight monospace">BookService</span>:
+                    <li>Implement the <span class="highlight monospace">findOne(id: number): Observable&lt;Book&gt;</span> method which finds a
+                        book by the ID passed and returns its copy.</li>
+                    <li>Implement the <span class="highlight monospace">save(bookToSave: Book): Observable&lt;Book&gt;</span> method. If the ID of the passed book
+                        is set, update the existing book (copying values from the passed book to it) from the list.
+                        Otherwise add the passed book to the list as a new element.</li>
+                    <li>Implement unit tests using the <a href="https://jasmine.github.io/2.5/introduction" target="_blank" class="monospace">Jasmine</a> framework.</li>
+                </ol>
+            </section>
+        </section>
+		<section id="routing">
+            <section>
+                <h3>Routing (1/7)</h3>
+                <h4>Configure application routes</h4>
+                <ul>
+                    Create the <span class="highlight monospace">app/app-routing.module.ts</span> file. Export the <span class="highlight monospace">appRoutes</span>
+                    constant which is going to keep the application routes so that:
+                    <li>all paths starts with <span class="highlight monospace">book-app</span>,</li>
+                    <li>the <span class="highlight monospace">books</span> path (relative to <span class="highlight monospace">book-app</span>) leads to the <span class="highlight monospace">BookOverviewComponent</span>,</li>
+                    <li>the <span class="highlight monospace">book</span> path leads to the <span class="highlight monospace">BookDetailsComponent</span> (when adding a new book),</li>
+                    <li>the <span class="highlight monospace">book/:id</span> path leads to the <span class="highlight monospace">BookDetailsComponent</span> (when editing an existing book),</li>
+                    <li>the empty path (<span class="highlight monospace">''</span>) redirects to <span class="highlight monospace">/book-app/books</span>.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Routing (2/7)</h3>
+                <h4>Import the Router Module / Set up an app frame</h4>
+                <ol>
+                    <li>Import the <span class="highlight monospace">RouterModule</span> in the <span class="highlight monospace">AppModule</span>.
+                        Use the <span class="highlight monospace">RouterModule.forRoot</span> static method passing the the <span class="highlight monospace">appRoutes</span>
+                        constant imported from <span class="highlight monospace">app/app-routing.module.ts</span> file.</li>
+                    <li>Modify the <span class="highlight monospace">AppComponent</span>'s template so that it contains:
+                    <ul>
+                        <li><a href="https://v4-alpha.getbootstrap.com/components/navs/#pills" target="_blank" class="monospace">Bootstrap navigation</a>
+                            with links to the overview and for adding a new book (<span class="highlight monospace">/book-app/books</span>
+                            and <span class="highlight monospace">/book-app/book</span> respectively). Use the
+                            <a href="https://angular.io/docs/ts/latest/api/router/index/RouterLink-directive.html" target="_blank" class="monospace">&lt;routerLink&gt;</a>
+                            and <a href="https://angular.io/docs/ts/latest/api/router/index/RouterLinkActive-directive.html" target="_blank" class="monospace">&lt;routerLinkActive&gt;</a></li>
+                        <li>the <a href="https://angular.io/docs/ts/latest/api/router/index/RouterOutlet-directive.html" target="_blank" class="monospace">&lt;router-outlet&gt;</a> directive underneath the navigation</li>
+                    </ul>
+                    </li>
+                </ol>
+            </section>
+
+            <section>
+                <h3>Routing (3/7)</h3>
+                <h4>Update the Book Overview</h4>
+                <ol>
+                    <li>Remove the <span class="highlight monospace">&lt;app-book-details&gt;</span> from the <span class="highlight monospace">BookOverviewComponent</span>'s template.</li>
+                    <li>Inject the <span class="highlight monospace">Router</span> and <span class="highlight monospace">ActivatedRoute</span> instead of the <span class="highlight monospace">BookService</span>
+                        into the <span class="highlight monospace">BookOverviewComponent</span>. Remove the <span class="highlight monospace">isBookSelected()</span> and <span class="highlight monospace">onBookUpdate()</span> methods.</li>
+                    <li>Update the <span class="highlight monospace">selectBook()</span> method so that it uses the
+                        <a href="https://angular.io/docs/ts/latest/api/router/index/Router-class.html#!#navigate-anchor" target="_blank" class="monospace">Router.navigate</a> to navigate to the details of the selected book.</li>
+                </ol>
+            </section>
+
+            <section id="bookOverviewResolver">
+                <h3>Routing (4/7)</h3>
+                <h4>Add the Book Overview Resolver</h4>
+                <ol>
+                    <li>Add the <span class="highlight monospace">BookOverviewResolver</span> class (in <span class="highlight monospace">book-overview/book-overview.resolver.ts</span>)
+                        which implements the <a href="https://angular.io/docs/ts/latest/api/router/index/Resolve-interface.html" target="_blank" class="monospace">Resolve</a> interface.
+                        Add the <span class="highlight monospace">@Injectable()</span> decorator.</li>
+                    <li>Inject the <span class="highlight monospace">BookService</span> and use it in the
+                        <span class="highlight monospace">resolve()</span> method to return an Observable of a book list (<span class="highlight monospace">BookService.findAll()</span>).
+                    </li>
+                    <li>Add the <span class="highlight monospace">BookOverviewResolver</span> to the <span class="highlight monospace">BookModule</span>'s providers; import the <span class="highlight monospace">RouterModule</span>.</li>
+                </ol>
+            </section>
+
+            <section>
+                <h3>Routing (5/7)</h3>
+                <h4>Use the Book Overview Resolver</h4>
+                <ol>
+                    <li>Update the Book Overview's route configuration (<span class="highlight monospace">app/app-routing.module.ts</span>) so that the <span class="highlight monospace">BookOverviewResolver</span>
+                        sets the <span class="highlight monospace">books</span> route's data.</li>
+                    <li>Update the <span class="highlight monospace">BookOverviewComponent.ngOnInit</span> method so that the <span class="highlight monospace">books</span>
+                        property is set after subscribing to <span class="highlight monospace">ActivatedRoute.data</span> rather than to <span class="highlight monospace">BookService.findAll</span>.</li>
+                </ol>
+            </section>
+
+            <section>
+                <h3>Routing (6/7)</h3>
+                <h4>Update the Book Details</h4>
+                <ol>
+                    <li>Remove the <span class="highlight monospace">BookDetailsComponent.bookUpdate</span> property.
+                        Make the <span class="highlight monospace">BookDetailsComponent.book</span> property public and remove its setter and getter.</li>
+                    <li>Add a constructor injecting <span class="highlight monospace">BookService</span>, <span class="highlight monospace">Router</span> and <span class="highlight monospace">ActivatedRoute</span> into it.
+                        Set the <span class="highlight monospace">BookDetailsComponent.book</span> property to a new, empty book.</li>
+                    <li>Update the <span class="highlight monospace">BookDetailsComponent.apply()</span> method so that <span class="highlight monospace">BookService.save</span> method is called.
+                        Once finished navigate to the book overview (<a href="https://angular.io/docs/ts/latest/api/router/index/Router-class.html#!#navigate-anchor" target="_blank" class="monospace">Router.navigate</a>).</li>
+                </ol>
+            </section>
+
+            <section>
+                <h3>Routing (7/7)</h3>
+                <h4>Add the Book Details Resolver</h4>
+                <ol>
+                    <li>Similarly to <a href="#/bookOverviewResolver">Book Overview's Resolver</a> add one for the <span class="highlight monospace">BookDetailsComponent</span>.
+                        The resolver should load a book calling <span class="highlight monospace">BookService.findOne()</span>.
+                        The current book ID can obtained from <span class="highlight monospace">ActivatedRouteSnapshot.params.id</span>.</li>
+                    <li>In case the ID can't be parsed or no book could be found (use the <a href="http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-catch" target="_blank" class="monospace">catch</a> operator),
+                        navigate to <span class="highlight monospace">/book-app/book</span> and throw an exception (use <a href="http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#static-method-throw" target="_blank" class="monospace">Observable.throw</a>).</li>
+                    <li>Add the <span class="highlight monospace">OnInit.ngOnInit</span> hook to the <span class="highlight monospace">BookDetailsComponent</span> and use <span class="highlight monospace">ActivatedRoute.data</span> to set the edited book.</li>
+                </ol>
+            </section>
+        </section>
+
+		<section id="http">
+            <section>
+                <h3>Http (1/2)</h3>
+                <ol>
+                    <li>Prepare a server of your choice :)</li>
+					<li>Add a Adjust the proxy configuration in the <span class="highlight monospace">oasp4js.config.json</span> file</li>
+                </ol>
+            </section>
+			<section>
+                <h3>Http (2/2)</h3>
+                <ol>
+                    <li>Import the <span class="highlight monospace">HttpModule</span> into the <span class="highlight monospace">AppModule</span>, add it to the imports array</li>
+					<li>Refactor the <span class="highlight monospace">findAll()</span> books method - use <span class="highlight monospace">http.get</span></li>
+					<li>Refactor the <span class="highlight monospace">findOne(id: Number)</span> method - use <span class="highlight monospace">http.get</span></li>
+					<li>Refactor the <span class="highlight monospace">save(book: Book)</span> method  - use <span class="highlight monospace">http.post / http.put</span></li>
+					<li>Import the necessary RxJS operators to map the responses</li>
+                </ol>
+            </section>
+        </section>
+        <section id="forms">
+            <section>
+                <h3>Forms (1/6)</h3>
+                <ol>
+                    <li>Go to the <span class="highlight monospace">BookDetailsComponent</span>'s template and add a <a href="https://angular.io/docs/ts/latest/guide/template-syntax.html#!#ref-vars" target="_blank" class="monospace">template variable</a>
+                        which references the <span class="highlight monospace">&lt;form&gt;</span>'s control model (<span class="highlight monospace">#bookForm="ngForm"</span>).</li>
+                    <li>Make the apply button of type submit (<span class="highlight monospace">type="submit"</span>)
+                        and move the call of <span class="highlight monospace">apply()</span> to the
+                        <span class="highlight monospace">&lt;form&gt;</span>'s <span class="highlight monospace">(submit)</span> event binding.</li>
+                    <li>Add the <span class="highlight monospace">[class.ng-submit]</span> <a href="https://angular.io/docs/ts/latest/guide/template-syntax.html#!#class-binding" target="_blank" class="monospace">class binding</a> to the
+                        <span class="highlight monospace">&lt;form&gt;</span>. Bind it to the
+                        <span class="highlight monospace">submitted</span> flag of the <span class="highlight monospace">BookDetailsComponent</span> class
+                        (the flag will be added later on).</li>
+                    <li>Add the <span class="highlight monospace">novalidate</span> attribute to the
+                        <span class="highlight monospace">&lt;form&gt;</span> so that the HTML5 validation is off.</li>
+                </ol>
+            </section>
+            <section>
+                <h3>Forms (2/6)</h3>
+                    <p style="text-align: justify">Based on <a href="https://v4-alpha.getbootstrap.com/components/forms/#examples" target="_blank" class="monospace">Bootstrap examples</a>
+                        implement its validation behavior; for each input field:
+                        <ul>
+                            <li>to the parent element of an input field and a label add the <span class="highlight monospace">[class.has-danger]</span> class binding to the
+                                <span class="highlight monospace">isFieldInvalid()</span> method passing a field name as an argument,</li>
+                            <li>add the <span class="highlight monospace">form-control-danger</span> class to the input field,</li>
+                            <li>add a <span class="highlight monospace">&lt;div&gt;</span> element underneath the input field with the <span class="highlight monospace">form-control-feedback</span> class.
+                                Put interpolation binding to the <span class="highlight monospace">getErrorMessageOfField()</span> method passing a field name as an argument.
+                            </li>
+                        </ul>
+                    </p>
+            </section>
+            <section>
+                <h3>Forms (3/6)</h3>
+                <ol>
+                    <li>Go to the <span class="highlight monospace">BookDetailsComponent</span>
+                        and add the public <span class="highlight monospace">currentForm: NgForm</span> property. Apply
+                        the <span class="highlight monospace">@ViewChild('bookForm')</span> decorator to it to bind it with the
+                        <a href="https://angular.io/docs/ts/latest/guide/template-syntax.html#!#ref-vars" target="_blank" class="monospace">template variable</a>
+                        <span class="highlight monospace">#bookForm="ngForm"</span> (we put in the template file before).
+                    </li>
+                    <li>Add the public <span class="highlight monospace">submitted: boolean</span> property setting it
+                        initially to <span class="highlight monospace">false</span>. Once the <span class="highlight monospace">apply()</span> method is called,
+                        set the flag to <span class="highlight monospace">true</span>.
+                    </li>
+                    <li>Add an if-condition to the <span class="highlight monospace">apply()</span> method so that
+                        all actions (such as saving a book and going back to the book overview dialog) are executed only
+                        if our form (<span class="highlight monospace">currentForm.form</span>) is valid.
+                    </li>
+                </ol>
+            </section>
+            <section>
+                <h3>Forms (4/6)</h3>
+                <ol>
+                    <li>
+                        Implement the <span class="highlight monospace">getErrorMessageOfField(fieldName: string): string</span> method.
+                        Use the <span class="highlight monospace">NgForm.form.get()</span> function to get form data
+                        related to a given field. The data contains an <span class="highlight monospace">errors</span>
+                        object. Iterate over its properties to check if a given error (e.g. required) occurred. The error message
+                        should only be returned if the field is invalid and either touched or the form submitted.
+                    </li>
+                    <li>
+                        Add the <a href="https://angular.io/docs/ts/latest/api/forms/index/RequiredValidator-directive.html" target="_blank" class="monospace">required</a> and
+                        <a href="https://angular.io/docs/ts/latest/api/forms/index/MaxLengthValidator-directive.html" target="_blank" class="monospace">maxlength</a> (declarative) validators to the input fields.
+                    </li>
+                </ol>
+            </section>
+            <section>
+                <h3>(Reactive) Forms (5/6)</h3>
+                <ol>
+                    <li>Go to the <span class="highlight monospace">BooksModule</span> and replace the import of <span class="highlight monospace">FormsModule</span> with <span class="highlight monospace">ReactiveFormsModule</span></li>
+                    <li>Go to the <span class="highlight monospace">BookDetailsComponent</span>'s template:
+                        <ul>
+                            <li>remove the template variable and add the <a href="https://angular.io/docs/ts/latest/api/forms/index/FormGroupDirective-directive.html" target="_blank" class="monospace">formGroup</a> directive's binding to the
+                                <span class="highlight monospace">BookDetailsComponent.bookForm</span> property (<span class="highlight monospace">[formGroup]="bookForm"</span>) instead,
+                                </li>
+                            <li>replace input fields' <span class="highlight monospace">name</span> attributes with <span class="highlight monospace">formControlName</span>,</li>
+                            <li>remove <span class="highlight monospace">ngModel</span> as well as validation directives (<span class="highlight monospace">required, maxlength</span>) from input fields.</li>
+                        </ul>
+                    </li>
+                </ol>
+            </section>
+            <section>
+                <h3>(Reactive) Forms (6/6)</h3>
+                <p style="text-align: justify">Go to the <span class="highlight monospace">BooksModule</span>:</p>
+                <ol>
+                    <li>replace the <span class="highlight monospace">currentForm:&nbsp;NgForm</span> with <span class="highlight monospace">bookForm:&nbsp;FormGroup</span> property</li>
+                    <li>inject the <span class="highlight monospace">FormBuilder</span> and use it in the
+                        <span class="highlight monospace">ngOnInit</span> method to build the <span class="highlight monospace">authors</span>
+                        and <span class="highlight monospace">title</span> <a href="https://angular.io/docs/ts/latest/api/forms/index/FormControl-class.html" target="_blank" class="monospace">FormControls</a>; please refer to <a href="https://angular.io/docs/ts/latest/guide/reactive-forms.html#!#formbuilder" target="_blank">this manual</a> for an example</li>
+                    <li>Use the <a href="https://angular.io/docs/ts/latest/api/forms/index/FormGroup-class.html#!#setValue-anchor" target="_blank" class="monospace">FormGroup.setValue</a> to set from controls' values after subscribing,</li>
+                    <li>For each from control use the <span>FormControl.valueChanges</span> to subscribe to from controls' changes. Update the <span class="highlight monospace">book</span> property upon them.</li>
+                </ol>
+            </section>
+        </section>
+    </div>
+</div>
+
+<script src="../reveal.js-3.3.0/lib/js/head.min.js"></script>
+<script src="../reveal.js-3.3.0/js/reveal.js"></script>
+
+<script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        history: true,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+            { src: '../reveal.js-3.3.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: '../reveal.js-3.3.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../reveal.js-3.3.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../reveal.js-3.3.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: '../reveal.js-3.3.0/plugin/zoom-js/zoom.js', async: true },
+            { src: '../reveal.js-3.3.0/plugin/notes/notes.js', async: true }
+        ]
+    });
+</script>
+</body>
+</html>

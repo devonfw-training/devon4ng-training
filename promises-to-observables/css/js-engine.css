@@ -1,0 +1,68 @@
+#js-engine {
+    position: relative;
+    width: 100%;
+    height: 530px;
+    margin: 0 auto 10px;
+    border: 3px white solid;
+    padding: 10px;
+    color: #71e9f4;
+}
+
+#js-engine-core {
+    position: relative;
+}
+
+#call-stack {
+    position: absolute;
+    top: 10px;
+    left: 45px;
+    width: 250px;
+    height: 210px;
+    margin: 0 auto 10px;
+    padding: 10px;
+    background-color: #71e9f4;
+    color: #000000;
+}
+
+#event-table {
+    position: absolute;
+    top: 10px;
+    left: 335px;
+    width: 250px;
+    height: 90px;
+    margin: 0 auto 10px;
+    padding: 10px;
+    background-color: #71e9f4;
+    color: #000000;
+}
+
+#event-queue {
+    position: absolute;
+    top: 130px;
+    left: 335px;
+    width: 250px;
+    height: 90px;
+    margin: 0 auto 10px;
+    padding: 10px;
+    background-color: #71e9f4;
+    color: #000000;
+}
+
+#console {
+    position: absolute;
+    top: 10px;
+    left: 625px;
+    width: 265px;
+    height: 210px;
+    margin: 0 auto 10px;
+    padding: 10px;
+    background-color: #71e9f4;
+    color: #000000;
+}
+
+#js-engine .code-element {
+    position: absolute;
+    width: 240px;
+    margin: 5px auto;
+    border: none;
+}

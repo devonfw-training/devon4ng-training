@@ -1,0 +1,189 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>devonfw ng2 training - Data Binding</title>
+    <link rel="icon" href="../common/img/favicon.ico">
+
+
+    <link rel="stylesheet" href="../reveal.js-3.3.0/css/reveal.css">
+    <link rel="stylesheet" href="../reveal.js-3.3.0/css/theme/black.css">
+    <link rel="stylesheet" href="../common/css/common.css">
+    <link rel="stylesheet" href="css/own.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../reveal.js-3.3.0/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../reveal.js-3.3.0/css/print/pdf.css' : '../reveal.js-3.3.0/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<section class="angular-link">
+    <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
+</section>
+<section class="devon-link">
+    <a href="http://devonfw.github.io" target="_blank"><img height="50px" src="../common/img/devon_logo_white.png"></a>
+</section>
+<div class="devon reveal">
+    <div class="slides">
+        <section>
+            <div class="title-with-image">
+                <img src="img/interpolation-databinding.png">
+                <h2>Interpolation</h2>
+            </div>
+
+                  <pre><code class="hljs html" data-trim data-noescape>
+&lt;span&gt;<mark>{{currentBook.author}}</mark>&lt;/span&gt;
+                  </code></pre>
+                  <pre><code class="hljs typescript" data-trim data-noescape>
+@Component(...)
+export class BookDetailsComponent {
+  <mark>currentBook: Book;</mark>
+
+  constructor() {
+    currentBook = new Book('John Example', 'Angular in a nutshell');
+  }
+}
+                  </code></pre>
+        </section>
+        <section>
+            <div class="title-with-image">
+                <img src="img/property-binding.png">
+                <h2>Property Binding</h2>
+            </div>
+            <pre><code class="hljs html" data-trim data-noescape>
+&lt;ul&gt;
+  &lt;li *ngFor="let book of ..." (click)="selectBook(book)">
+    {{book.author}},&nbsp;&lt;span class="book-title"&gt;{{book.title}}&lt;/span&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;book-details <mark>[book]="selectedBook"</mark>&gt;&lt;/book-details &gt;
+                  </code></pre>
+            <pre><code class="hljs typescript" data-trim data-noescape>
+@Component(...)
+export class BookOverviewComponent {
+  <mark>selectedBook: Book;</mark>
+
+  selectBook(book:Book):void {
+    this.selectedBook = book;
+  }
+}
+                  </code></pre>
+        </section>
+        <section>
+            <div class="title-with-image">
+                <img src="img/event-binding.png">
+                <h2>Event Binding</h2>
+            </div>
+            <pre><code class="hljs html" data-trim data-noescape>
+&lt;ul&gt;
+  &lt;li *ngFor="let book of ..." <mark>(click)="selectBook(book)"</mark>>
+    {{book.author}},&nbsp;&lt;span class="book-title"&gt;{{book.title}}&lt;/span&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+                  </code></pre>
+            <pre><code class="hljs typescript" data-trim data-noescape>
+@Component(...)
+export class BookOverviewComponent {
+  selectedBook: Book;
+
+  <mark>selectBook(book:Book):void {
+    this.selectedBook = book;
+  }</mark>
+}
+                  </code></pre>
+        </section>
+        <section>
+            <div class="title-with-image">
+                <img src="img/two-way-binding.png">
+                <h2>Two way binding</h2>
+            </div>
+            <pre><code class="hljs html" data-trim data-noescape>
+&lt;input type="text" <mark>[(ngModel)]="currentBook.author"</mark>&gt;
+                  </code></pre>
+            <pre><code class="hljs typescript" data-trim data-noescape>
+@Component(...)
+export class BookDetailsComponent {
+  <mark>currentBook: Book;</mark>
+
+  constructor() {
+    currentBook = new Book('John Example', 'Angular in a nutshell');
+  }
+}
+                  </code></pre>
+        </section>
+        <section>
+            <h3>Structural Directives</h3>
+            <h4>ng-if</h4>
+            <pre><code class="html" data-trim>
+&lt;div *ngIf="book"&gt;
+  &lt;p>{{book.description}}&lt;/p&gt;
+&lt;/div&gt;
+            </code></pre>
+            <p><span class="highlight">Removes element from the DOM</span> if book not present (this prevents errors - undefined.book is not valid).</p>
+            <h4>ng-for</h4>
+            <pre><code class="html" data-trim>
+&lt;ul&gt;
+  &lt;li *ngFor="let item of list"&gt;{{item.property}}&lt;/li&gt;
+&lt;/ul&gt;
+            </code></pre>
+            <p><span class="highlight">Creates an element</span> for every item of the collection.</p>
+        </section>
+        <section>
+            <h3>Binding to custom events</h3>
+            <pre><code class="max-height-unset typescript" data-trim>
+@Component({
+  selector: 'parent',
+  template: '&lt;child (message)="onChildClick($event)"&gt;</child>'
+})
+export class ParentComponent {
+  onChildClick(text: string): void {
+    console.log('child gave me:', text);
+  }
+}
+
+@Component({
+  selector: 'child',
+  template: '&lt;button (click)="onButtonClick()"&gt;Click me&lt;/button&gt;',
+} as Component)
+export class ChildComponent {
+  @Output() message = new EventEmitter&lt;string&gt;();
+
+  onButtonClick(): void {
+    this.message.emit('value of the event');
+  }
+}
+            </code></pre>
+        </section>
+    </div>
+</div>
+
+<script src="../reveal.js-3.3.0/lib/js/head.min.js"></script>
+<script src="../reveal.js-3.3.0/js/reveal.js"></script>
+
+<script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        history: true,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+            { src: '../reveal.js-3.3.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: '../reveal.js-3.3.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../reveal.js-3.3.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../reveal.js-3.3.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: '../reveal.js-3.3.0/plugin/zoom-js/zoom.js', async: true },
+            { src: '../reveal.js-3.3.0/plugin/notes/notes.js', async: true }
+        ]
+    });
+</script>
+</body>
+</html>

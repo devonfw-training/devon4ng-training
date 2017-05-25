@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>devonfw ng2 training - Services</title>
+    <link rel="icon" href="../common/img/favicon.ico">
+
+
+    <link rel="stylesheet" href="../reveal.js-3.3.0/css/reveal.css">
+    <link rel="stylesheet" href="../reveal.js-3.3.0/css/theme/black.css">
+    <link rel="stylesheet" href="../common/css/common.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../reveal.js-3.3.0/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../reveal.js-3.3.0/css/print/pdf.css' : '../reveal.js-3.3.0/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<section class="angular-link">
+    <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
+</section>
+<section class="devon-link">
+    <a href="http://devonfw.github.io" target="_blank"><img height="50px" src="../common/img/devon_logo_white.png"></a>
+</section>
+<div class="devon reveal">
+    <div class="slides">
+        <section>
+            <h2 class="no-text-transform">Services and Dependency Injection</h2>
+            <img src="img/services-and-di-architecture.png">
+        </section>
+        <section>
+            <h2 class="no-text-transform">Service is...</h2>
+            <p>...a broad category encompassing <span class="highlight">any value, function, or feature</span> that your application needs.</p>
+            <p>Almost anything can be a service. A <span class="highlight">service is typically a class</span> with a narrow, well-defined purpose.
+                It should do something specific and do it well</p>
+            <p>Services are <span class="highlight">fundamental to any Angular application</span>. <span class="highlight">Components are big consumers of services</span></p>
+        </section>
+        <section>
+            <h2 class="no-text-transform">Service vs. Component</h2>
+            <p><span class="highlight">Component classes should be lean</span>. They <span class="highlight">don't fetch
+                data from the server</span>, validate user input, or log directly to the console. They
+                <span class="highlight">delegate such tasks to services</span>.</p>
+            <p>A component's job is to <span class="highlight">enable the user experience and nothing more</span>.
+                It mediates between the view (rendered by the template) and the application logic (which often includes some notion of a model).
+                A good component <span class="highlight">presents properties and methods for data binding</span>.
+                It delegates <span class="highlight">everything nontrivial to services</span>.</p>
+        </section>
+        <section>
+            <pre><code class="hljs typescript" data-trim data-noescape>
+@Injectable() // not needed unless the service needs other services
+export class BookService {
+  private books: Book[] = [];
+
+  findAll(): Observable&lt;Book[]&gt; {
+    return Observable.create((observer: Observer&lt;Book[]&gt;) => {
+      observer.next(this.books);
+      observer.complete();
+    });
+  }
+}
+            </code></pre>
+            <pre><code class="hljs typescript" data-trim data-noescape>
+@NgModule({
+  ...
+  // makes the service available for all components in the app
+  <mark>providers: [BookService]</mark>
+})
+export class AppModule {}
+            </code></pre>
+        </section>
+        <section>
+            <p class="no-text-transform">Component consumes a service making use of the <span class="highlight">Dependency Injection</span></p>
+            <pre><code class="hljs typescript" data-trim data-noescape>
+@Component({...})
+export class BookOverviewComponent implements OnInit {
+  books: Book[] = [];
+
+  constructor(private <mark>bookService: BookService</mark>) {
+  }
+
+  ngOnInit(): void {
+    this.bookService.findAll().subscribe(books => this.books = books);
+  }
+}
+            </code></pre>
+        </section>
+        <section>
+            <div class="title-with-image">
+                <img src="img/injector-injects.png">
+                <h2 class="no-text-transform">Dependency Injection</h2>
+            </div>
+            <p>Dependency injection is a way to supply a new instance of a class with the <span class="highlight">fully-formed dependencies</span> it requires.</p>
+            <p><span class="highlight">Most dependencies are services</span>. Angular uses dependency injection to <span class="highlight">provide new components with the services</span> they need.</p>
+        </section>
+        <section>
+            <h2 class="no-text-transform">Injector</h2>
+            <p>When Angular creates a component, it first <span class="highlight">asks an injector for the services</span> that the component requires.</p>
+            <p>An injector <span class="highlight">maintains a container of service instances</span> that it has previously created. If a requested
+                service instance is not in the container, the <span class="highlight">injector makes one and adds it to the container</span> before
+                returning the service to Angular.</p>
+            <p>An injector can create a new service instance from a <span class="highlight">provider</span>.</p>
+        </section>
+        <section>
+            <h2 class="no-text-transform">Providers</h2>
+            <p>A provider is a <span class="highlight">recipe for creating a service</span>. You can register providers in <span class="highlight">modules or in components</span>.</p>
+            <p>In general, providers are <span class="highlight">added to the root module</span> so that the same instance of a service is <span class="highlight">available everywhere</span></p>
+            <p>Registering at a <span class="highlight">component level</span> means you get <span class="highlight">a new instance of the service with each new instance of that component</span>.</p>
+        </section>
+    </div>
+</div>
+
+<script src="../reveal.js-3.3.0/lib/js/head.min.js"></script>
+<script src="../reveal.js-3.3.0/js/reveal.js"></script>
+
+<script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        history: true,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+            { src: '../reveal.js-3.3.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: '../reveal.js-3.3.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../reveal.js-3.3.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../reveal.js-3.3.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: '../reveal.js-3.3.0/plugin/zoom-js/zoom.js', async: true },
+            { src: '../reveal.js-3.3.0/plugin/notes/notes.js', async: true }
+        ]
+    });
+</script>
+</body>
+</html>

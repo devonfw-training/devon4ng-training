@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>devonfw ng2 training - components</title>
+    <link rel="icon" href="../common/img/favicon.ico">
+
+    <link rel="stylesheet" href="../reveal.js-3.3.0/css/reveal.css">
+    <link rel="stylesheet" href="../reveal.js-3.3.0/css/theme/black.css">
+    <link rel="stylesheet" href="../common/css/common.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../reveal.js-3.3.0/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../reveal.js-3.3.0/css/print/pdf.css' : '../reveal.js-3.3.0/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<section class="devon-link">
+    <a href="http://devonfw.github.io" target="_blank"><img height="50px" src="../common/img/devon_logo_white.png"></a>
+</section>
+<section class="angular-link">
+    <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
+</section>
+<div class="devon reveal">
+    <div class="slides">
+        <section>
+            <h1>Http</h1>
+		</section>
+		
+        <section>
+			<p>The <span class="highlight">Angular Http</span> client communicates with the server using a familiar HTTP request/response protocol.</p> 
+			<p>The Http client is one of a family of services in the Angular HTTP library.</p>
+			<p><small><a target="_blank" href="https://angular.io/docs/ts/latest/guide/server-communication.html">https://angular.io/docs/ts/latest/guide/server-communication.html</a></small><p>
+			
+		</section>
+		
+		<section>
+			<section>
+			<h2>Http configuration</h2>
+			<ul>
+				<li class="fragment fade-up">Importing <span class="highlight">HttpModule</span></li>
+				<li class="fragment fade-up">Importing <span class="highlight">Http</span> utils and <span class="highlight">Rxjs</span> operators</li>
+				<li class="fragment fade-up">Injecting <span class="highlight">Http</span> service</li>
+			</ul>
+			</section>
+			
+			<section>
+				<h3>Importing HttpModule</h3>
+				<pre><code class="hljs typescript"  data-trim>
+// import
+import { HttpModule } from '@angular/http';
+
+// module configuration
+@NgModule({
+    imports: [HttpModule],
+    declarations: [...],
+    bootstrap: [...],
+    providers: [...]
+})
+export class AppModule {}
+			</code></pre>
+			</section>
+			
+			<section>
+				<h3>Importing Http utils and Rxjs operators</h3>
+				<pre><code class="hljs typescript"  data-trim>
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+			</code></pre>
+			</section>
+			
+			<section>
+				<h3>Injecting Http service</h3>
+				<pre><code class="hljs typescript"  data-trim>
+constructor(private http: Http) {}
+			</code></pre>
+			</section>
+		</section>
+		
+		<section>
+			<h2>Http GET</h2>
+			<pre><code class="hljs typescript"  data-trim>
+this.http.get(this.requestUrl + id)
+      .map(res => res.json())
+      .catch((error: any) => {
+        console.log(error);
+        return Observable.throw(error);
+      });
+			</code></pre>
+		</section>
+		
+		<section>
+			<h2>Http PUT</h2>
+			<pre><code class="hljs typescript"  data-trim>
+// create options
+let headers = new Headers({ 'Content-type': 'application/json' });
+let options = new RequestOptions({ headers: headers });
+
+// send request
+this.http.put(
+        this.requestUrl + id,
+        JSON.stringify(requestBody),
+        this.options);
+			</code></pre>
+		</section>
+		
+		<section>
+			<h2>Http POST</h2>
+			<pre><code class="hljs typescript"  data-trim>
+// create options
+let headers = new Headers({ 'Content-type': 'application/json' });
+let options = new RequestOptions({ headers: headers });
+
+// send request
+this.http.post(
+        this.requestUrl,
+        JSON.stringify(requestBody),
+        this.options);
+			</code></pre>
+		</section>
+		
+    </div>
+</div>
+
+<script src="../reveal.js-3.3.0/lib/js/head.min.js"></script>
+<script src="../reveal.js-3.3.0/js/reveal.js"></script>
+
+<script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        history: true,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+            { src: '../reveal.js-3.3.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: '../reveal.js-3.3.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../reveal.js-3.3.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../reveal.js-3.3.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: '../reveal.js-3.3.0/plugin/zoom-js/zoom.js', async: true },
+            { src: '../reveal.js-3.3.0/plugin/notes/notes.js', async: true }
+        ]
+    });
+</script>
+</body>
+</html>

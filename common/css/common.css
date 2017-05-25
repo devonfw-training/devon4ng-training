@@ -1,0 +1,52 @@
+.devon.reveal section img.reset {
+    background: none;
+    border: 0;
+    box-shadow: none;
+}
+
+.devon-link {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.angular-link {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.devon.reveal .highlight {
+    color: #71e9f4;
+}
+
+.devon.reveal .no-text-transform {
+    text-transform: none;
+}
+
+.devon.reveal .monospace {
+    font-family: monospace;
+    font-size: smaller;
+}
+
+.devon.reveal .title-with-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.devon.reveal .tables-of-content {
+    display: flex;
+}
+
+html .reveal section .max-height-unset {
+    max-height: unset;
+}
+
+html .reveal section div.quote-source {
+    margin-top: 25px;
+    text-align: right;
+    font-size: 30px;
+}

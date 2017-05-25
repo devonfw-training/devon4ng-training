@@ -1,0 +1,8 @@
+html section #title-img {
+    width: 400px;
+    height: auto;
+}
+
+html section.ng-model-ng-model-group div p {
+    text-align: left;
+}

@@ -1,0 +1,7 @@
+.reveal section .header-logo {
+    height: 200px;
+    width: auto;
+    border: none;
+    margin: 25px;
+    background: transparent;
+}

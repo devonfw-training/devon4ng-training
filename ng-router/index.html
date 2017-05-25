@@ -1,0 +1,285 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>devonfw ng2 training - components</title>
+    <link rel="icon" href="../common/img/favicon.ico">
+
+    <link rel="stylesheet" href="../reveal.js-3.3.0/css/reveal.css">
+    <link rel="stylesheet" href="../reveal.js-3.3.0/css/theme/black.css">
+    <link rel="stylesheet" href="../common/css/common.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../reveal.js-3.3.0/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../reveal.js-3.3.0/css/print/pdf.css' : '../reveal.js-3.3.0/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<section class="devon-link">
+    <a href="http://devonfw.github.io" target="_blank"><img height="50px" src="../common/img/devon_logo_white.png"></a>
+</section>
+<section class="angular-link">
+    <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
+</section>
+<div class="devon reveal">
+    <div class="slides">
+        <section>
+            <h1>Routing</h1>
+			<img class="reset" src="img/router-1-anim.gif">
+			<p><small><a target="_blank" href="https://angular.io/docs/ts/latest/guide/router.html">https://angular.io/docs/ts/latest/guide/router.html</a></small><p>
+        </section>
+		
+        <section>
+            <p>The Angular <span class="highlight">Router</span> enables navigation from one <span class="highlight">view</span> to the next as users perform application tasks.</p>
+			<p> It can interpret a browser URL as an instruction to navigate to a client-generated view and pass optional parameters along to the supporting view component to help it decide what specific content to present</p>
+        </section>
+		
+		<section>
+			<h2>Router Core Operations</h2>
+			<img class="reset" src="img/router_diagram.png">
+			<p><small><a target="_blank" href="https://vsavkin.com/angular-2-router-d9e30599f9ea#.8dn6hooyh">https://vsavkin.com/angular-2-router</a></small><p>
+		</section>
+		
+        <section>
+			<section>
+				<h2>Simple Router Configuration Steps</h2>
+				<ul>
+					<li class="fragment fade-up">setting the <span class="highlight">base href</span></li>
+					<li class="fragment fade-up">importing from the <span class="highlight">router library</span></li>
+					<li class="fragment fade-up">configuring the <span class="highlight">router</span> paths</li>
+					<li class="fragment fade-up">setting the <span class="highlight">routerOutlet</span> directive</li>
+					<li class="fragment fade-up">building simple navigation with <span class="highlight">routerLink</span> directive</li>
+					<li class="fragment fade-up">navigating from component's code</li>
+				</ul>
+			</section>
+			
+			<section>
+				<h3>base href</h3>
+				<p>The <span class="highlight">base</span> tag tells the router how to compose navigation URLs.</p>
+				<pre><code class="html"  data-trim>
+<!-- index.html file-->
+
+&lt;head&gt;
+  &lt;base href="/"&gt;
+				</code></pre>
+			</section>
+			
+			<section>
+				<h3>Router imports</h3>
+				<ul>
+					<li><span class="highlight">RouterModule</span> - A separate Angular module that provides the necessary service providers and directives for navigating through application views.</li>
+					<li><span class="highlight">Routes</span> - Defines an array of Routes, each mapping a URL path to a component.</li>
+				</ul>
+				<pre><code class="hljs typescript"  data-trim>
+import { RouterModule, Routes } from '@angular/router';
+				</code></pre>
+			</section>
+			
+			
+			<section>
+				<h3>Paths configuration</h3>
+				<pre><code class="hljs typescript"  data-trim>
+const appRoutes: Routes = [
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'heroes', component: HeroesComponent }
+];
+
+@NgModule({
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot(appRoutes)
+  ],
+  declarations: [ ... ],
+  bootstrap: [ ... ]
+})
+				</code></pre>
+			</section>
+			
+			<section>
+				<h3>Router Outlet</h3>
+
+				<pre><code class="html"  data-trim>
+&lt;router-outlet&gt;&lt;/router-outlet&gt;
+<!-- Routed views go here -->
+				</code></pre>
+			</section>
+			
+			<section>
+				<h3>Router Link</h3>
+
+				<pre><code class="html"  data-trim>
+&lt;nav&gt;				
+   &lt;a routerLink="/hereos" routerLinkActive="active"&gt;Heroes&lt;/a&gt;
+&lt;/nav&gt;
+				</code></pre>
+			</section>
+			
+			<section>
+				<h3>Navigating from component's code</h3>
+
+				<pre><code class="hljs typescript"  data-trim>
+// import
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+
+// injection
+constructor(private router: Router, private location: Location) {}
+
+// navigation
+this.router.navigate(['/dashboard']);
+this.location.back();
+				</code></pre>
+			</section>
+        </section>
+		
+		<section>
+			<section>
+				<h3>Routing with path variables</h3>
+				<ul>
+					<li class="fragment fade-up">configuring the <span class="highlight">router</span> paths with variables</li>
+					<li class="fragment fade-up">building navigation with <span class="highlight">routerLink</span> directive</li>
+					<li class="fragment fade-up">receiving <span class="highlight">params</span> from a route</li>
+				</ul>
+			</section>
+
+			<section>
+				<h3>routes configuration</h3>
+				<pre><code class="hljs typescript"  data-trim>
+const appRoutes: Routes = [
+  { path: 'hero/:id', component: HeroDetailComponent }
+];
+				</code></pre>
+			</section>
+			
+			<section>
+				<h3>routerLink directive for paths with variables</h3>
+				<pre><code class="html"  data-trim>
+<!--template-->
+&lt;a *ngFor="let hero of heroes" [routerLink]="['/hero', hero.id]"&gt;
+				</code></pre>
+			</section>
+				
+			<section>
+				<h3>Receiving params from a path</h3>
+				<pre><code class="hljs typescript"  data-trim>
+import { ActivatedRoute, Params } from '@angular/router';
+import 'rxjs/add/operator/switchMap';
+
+this.route.params
+  .switchMap((params: Params) => this.heroService.getHero(+params['id']))
+  .subscribe(hero => this.hero = hero)
+				</code></pre>
+			</section>
+				
+		</section>
+		
+		<section>
+			<section>
+				<h2>Routing with resolve</h2>
+				<ul>
+					<li class="fragment fade-up">building the <span class="highlight">resolve</span> service</li>
+					<li class="fragment fade-up">registering <span class="highlight">resolve</span> service</li>
+					<li class="fragment fade-up">receiving resolved data</li>
+				</ul>
+			</section>
+			
+			<section>
+				<h3>Resolve Service</h3>
+				<pre><code class="hljs typescript"  data-trim>
+import { Injectable } from '@angular/core';
+import { Resolve, ActivatedRouteSnapshot } from '@angular/router'
+import { Observable } from 'rxjs/Observable';
+import { BookService } from '../book.service';
+import { Book } from '../book';
+
+@Injectable()
+export class BookDetailsResolve implements Resolve&lt;Book&gt;{
+
+    constructor(private bookService: BookService) {}
+
+    resolve(route: ActivatedRouteSnapshot): Observable&lt;Book&gt; {
+        let id: number = +route.params['id'];
+        return this.bookService.findOne(id);
+    }
+}
+				</code></pre>
+			</section>
+			
+			<section>
+				<h3>Resolve in route and service registration</h3>
+				<pre><code class="hljs typescript"  data-trim>
+// routes config
+const appRoutes: Routes = [
+  {path: 'book-details/:id', component: BookDetailsComponent, 
+	resolve: {
+            book: BookDetailsResolve
+        }
+  }
+];
+
+// module config
+@NgModule({
+    imports: [...],
+    declarations: [...],
+    bootstrap: [...],
+    providers: [BookDetailsResolve]
+})
+				</code></pre>
+			</section>
+			
+			<section>
+			<h3>Receiving resolve data</h3>
+				<pre><code class="hljs typescript"  data-trim>
+// import				
+import { Router } from '@angular/router';
+
+// injection
+constructor(private route: ActivatedRoute) {}
+
+// data retrieval			
+ngOnInit(): void {
+    this.route.data
+      .subscribe((data: { book: Book }) => {
+        if (data.book) {
+          this.currentBook = data.book;
+        }
+      })
+  }
+				</code></pre>
+			<section>
+				
+		</section>
+    </div>
+</div>
+
+<script src="../reveal.js-3.3.0/lib/js/head.min.js"></script>
+<script src="../reveal.js-3.3.0/js/reveal.js"></script>
+
+<script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        history: true,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+            { src: '../reveal.js-3.3.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: '../reveal.js-3.3.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../reveal.js-3.3.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../reveal.js-3.3.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: '../reveal.js-3.3.0/plugin/zoom-js/zoom.js', async: true },
+            { src: '../reveal.js-3.3.0/plugin/notes/notes.js', async: true }
+        ]
+    });
+</script>
+</body>
+</html>

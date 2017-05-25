@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>devonfw ng2 training - modules</title>
+    <link rel="icon" href="../common/img/favicon.ico">
+
+    <link rel="stylesheet" href="../reveal.js-3.3.0/css/reveal.css">
+    <link rel="stylesheet" href="../reveal.js-3.3.0/css/theme/black.css">
+    <link rel="stylesheet" href="../common/css/common.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../reveal.js-3.3.0/lib/css/zenburn.css">
+    <link rel="stylesheet" href="./styles/own.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../reveal.js-3.3.0/css/print/pdf.css' : '../reveal.js-3.3.0/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<section class="devon-link">
+    <a href="http://devonfw.github.io" target="_blank"><img height="50px" src="../common/img/devon_logo_white.png"></a>
+</section>
+<section class="angular-link">
+    <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
+</section>
+<div class="devon reveal">
+    <div class="slides">
+        <section>
+            <h1>Modules</h1>
+            <p class="italic-font">Structuring Angular applications</p>
+            <img class="module-header-image" src="./img/project-sample-module-separation.png" alt="module separation example">
+		</section>
+        <section>
+            <h3>Definition</h3>
+            <p>Angular modules consolidate <span class="highlight">components, directives and pipes</span> into cohesive blocks of functionality, each focused on a <span class="highlight">feature area</span>, application <span class="highlight">business domain</span>, workflow, or common collection of utilities.</p>
+            <div class="margin_top_30">
+                <p class="align_right"><small><a href="https://angular.io/docs/ts/latest/guide/ngmodule.html#!#angular-modularity">Angular Docs</a></small></p>
+            </div>
+        </section>
+        <section>
+            <section>
+                <h3>Simple module</h3>
+                <p>An Angular module is a <span class="highlight">class decorated with @NgModule</span> metadata.</p>
+                <pre><code class="typescript code-without-max-height">import { NgModule } from '@angular/core';
+
+@NgModule({
+// applications modules, angular modules, libraries, etc.
+imports: [],
+
+// components, directives and pipes which should be made public
+// 're-export' imported modules
+exports: [],
+
+// components, directives and pipes which belong to the module
+// -> they can only be used in components templates inside this modules
+declarations: [], 
+
+// services which should be application wide useable
+providers: [] 
+})
+export class TestModule { }</code></pre>
+            </section>
+            <section>
+                <h3>... example</h3>
+                <pre><code class="typescript">@NgModule({
+  imports: [CommonModule],
+  exports: [CommonModule, BookListComponent],
+  declarations: [BookListComponent, BookDetailComponent],
+  providers: [BookService],
+})
+export class BookModule { }</code></pre>
+                <ul class="ul-small">
+                    <li>Angular <span class="highlight">Common module is imported</span> - e.g. *ngIf can be used in templates</li>
+                    <li>Common module is exported - so a module importing BookModule can <span class="highlight">use Common without importing it</span></li>
+                    <li>BookListComponent can be <span class="highlight">used inside templates in modules importing BookModule</span> - 'it's public'</li>
+                    <li>BookListComponent and BookDetailComponent are declared and can therefore be <span class="highlight">used inside modules templates</span> - good practice if for instance BookDetailComponent is part of BookListComponent and should <span class="highlight">never be used alone</span></li>
+                    <li>BookService is made <span class="highlight">application wide</span> available - can be used via DI</li>
+                </ul>
+            </section>
+        </section>
+        <section>
+            <h3>Application Start (1/2)</h3>
+            <p>AppModule is the top level Module which gets bootstrapped</p>
+            <pre><code class="typescript">import { NgModule }      from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppComponent }  from './app.component';
+
+@NgModule({
+  imports:      [ BrowserModule ],
+  declarations: [ AppComponent ],
+  bootstrap:    [ AppComponent ] // top level component to insert into index.html
+})
+export class AppModule { }</code></pre>
+<small>app.module.ts</small>
+        </section>
+        <section>
+            <h3>Application Start (2/2)</h3>
+            <pre><code class="typescript">import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { AppModule }              from './app.module';
+
+platformBrowserDynamic().bootstrapModule(AppModule);</code></pre>
+<small>main.ts</small>
+            <pre><code class="html">&lt;my-app&gt;Loading ...&lt;/my-app&gt;</code></pre>
+<small>index.html</small>
+        <pre><code class="typescript">import { Component } from '@angular/core';
+
+@Component({
+  selector: 'my-app',
+})
+export class AppComponent { }</code></pre>
+            <small>app.component.ts</small>
+        </section>
+        <section>
+            <h3>Core and Shared Module</h3>
+            <ul>
+                <li>Core- and SharedModule are <span class="highlight">modules with conventions</span></li>
+                <li>CoreModule has <span class="highlight">single use components</span> - e.g. NavigationModule, SpinnerModule, etc. to be <span class="highlight">used inside AppComponents template</span></li>
+                <li>CoreModule is <span class="highlight">only imported in AppModule</span></li>
+                <li>SharedModule has common components, services and pipes. <span class="highlight">Imported by multiple modules</span></li>
+            </ul>
+            <div class="margin_top_30">
+                <p class="align_right"><small><a href="https://angular.io/styleguide">Angular Docs</a></small></p>
+            </div>
+        </section>
+        <section>
+            <p>Default Application Structure from <a href="https://angular.io/styleguide#!#04-06">Angular Docs</a></p>
+            <iframe id="default-structure-iframe" src="./default-structure/index.html" frameborder="0"></iframe>
+        </section>
+    </div>
+</div>
+
+<script src="../reveal.js-3.3.0/lib/js/head.min.js"></script>
+<script src="../reveal.js-3.3.0/js/reveal.js"></script>
+
+<script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        history: true,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+            { src: '../reveal.js-3.3.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: '../reveal.js-3.3.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../reveal.js-3.3.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../reveal.js-3.3.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: '../reveal.js-3.3.0/plugin/zoom-js/zoom.js', async: true },
+            { src: '../reveal.js-3.3.0/plugin/notes/notes.js', async: true }
+        ]
+    });
+</script>
+</body>
+</html>
