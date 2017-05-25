@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <script src="./base/jasmine.min.js"></script>
+  <script src="./base/jasmine-html.min.js"></script>
+  <script src="./base/boot.min.js"></script>
+  <link rel="stylesheet" href="./base/jasmine.min.css">
+  <script>
+    const findLongestWordFunc = (sentence) => {
+      // TODO
+
+      return sentence;
+    }
+
+    describe('findLongestWordFunc', () => {
+        
+      it('finds Justus', () => {
+        expect(findLongestWordFunc('Are we there yet')).toBe('there');
+      });
+
+      it('finds Elisa', () => {
+        expect(findLongestWordFunc('Michelle likes ice cream a lot more than you might think')).toBe('Michelle');
+      })
+
+    });
+  </script>
+</body>
+</html>
