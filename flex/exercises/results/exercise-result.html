@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="description" content="RWC Flex Exercise">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>RWC Flex Exercise</title>
+  <style>
+  
+div {
+	border: 1px solid black;
+	margin: 5px
+} 
+
+.wrapper > div, .content > div {
+	display: flex;
+	display:-webkit-flex;
+	align-items: center;
+	justify-content: center;
+}
+ 
+.wrapper {
+	display: flex;
+	display:-webkit-flex;
+	flex-flow: row-reverse wrap-reverse;
+}
+
+.header, .footer {
+	background-color: gray;
+	flex: 1 100%; 
+}
+
+.sidebar_left, .sidebar_right {
+	border: 1px solid black;
+	background-color: lightgray;
+	flex-grow: 1;
+}
+
+.content {
+	display: flex;
+	display:-webkit-flex;
+	align-items: stretch;
+	flex-wrap: wrap;
+	flex-grow: 4;
+}
+
+
+.content div:nth-child(1), 
+.content div:nth-child(4),  
+.content div:nth-child(7), 
+.content div:nth-child(10){
+	flex: 1 100%;
+	background-color: red;
+}
+
+.content div:nth-child(2), 
+.content div:nth-child(3), 
+.content div:nth-child(5), 
+.content div:nth-child(6), 
+.content div:nth-child(8), 
+.content div:nth-child(9) {
+	flex: 1 40%;
+	background-color: blue;
+}
+
+@media screen and (max-width:600px) { 
+	.sidebar_left, .sidebar_right {
+		flex: 1 100%; 
+	}
+}
+
+  </style>
+</head>
+<body>
+  <!-- Do not modify html -->
+	<div class="wrapper">
+	  <div class="footer">Footer</div>
+	  <div class="sidebar_right">Right Sidebar</div> 	  
+	  <div class="content">
+		<div>0</div>
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+		<div>5</div>
+		<div>6</div>
+		<div>7</div>
+		<div>8</div>
+		<div>9</div>
+	  </div> 
+	  <div class="sidebar_left">Left Sidebar</div> 
+	  <div class="header">Header</div>	  
+	</div>
+</body>
+</html>
