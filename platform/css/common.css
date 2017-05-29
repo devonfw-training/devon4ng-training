@@ -1,0 +1,313 @@
+:root {
+  --primary-color: #00488D;
+  --secondary-color: #2E97C4;
+  --tertiary-color: #ffef34;
+  --fallback-color: black;
+  --bg-color: white;
+  --link-color: lightgreen;
+
+  --primary-font-family: 'Open Sans Condensed';
+  --secondary-font-family: 'Lobster Two';
+  --tertiary-font-family: 'Pacifico';
+}
+
+
+/*
+ ---------    General look  -----------
+*/
+html body {
+    background-color: var(--bg-color);
+}
+
+.reveal .slides .flippedColor {
+    color: var(--bg-color);
+}
+
+.reveal .slides .primaryColor {
+    color: var(--primary-color);
+}
+
+.reveal .slides .secondaryColor {
+    color: var(--secondary-color);
+}
+
+.reveal .slides .tertiaryColor {
+    color: var(--tertiary-color);
+}
+
+.reveal .slides .fallbackColor {
+    color: var(--fallback-color);
+}
+
+.reveal .slides .primaryFont {
+    font-family: var(--primary-font-family);
+}
+
+.reveal .slides .secondaryFont {
+    font-family: var(--secondary-font-family)
+}
+
+.reveal .slides .tertiaryFont {
+    font-family: var(--tertiary-font-family)
+}
+
+
+.reveal p, .reveal ul li, .reveal ol li {
+     font-family:  var(--primary-font-family);
+}
+
+.reveal .slides h3 {
+     text-transform: none;
+}
+
+.reveal .slides h1, 
+.reveal .slides h2, 
+.reveal .slides h3 {
+     color: var(--primary-color);
+     font-family: var(--primary-font-family)
+}
+
+
+.reveal .slides a:link {
+    color: var(--link-color);
+}
+
+.reveal .slides a:visited {
+    color: var(--link-color);
+}
+
+.reveal .slides a.credits {
+    font-size: 0.75em;
+}
+
+.reveal .slides button {
+    background: var(--bg-color);
+    padding: 0.5em;
+    margin: 0.5em;
+    font-size: 20px;
+    border: 2px solid #0098FF;
+    border-radius: 5px;
+    color: var(--primary-color);
+}
+
+.reveal .slides button:hover {
+    background: #0098FF;
+    cursor: pointer;
+    border-radius: 5px;
+    color: var(--bg-color);
+}
+
+.reveal .slide-background.present iframe {
+    opacity: 0.4;
+}
+
+
+/*---------------------------------*/
+
+
+.reveal .replacement {
+    position: relative;
+}
+
+.reveal .replacement .fragment {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+}
+
+
+/*
+ ---------    Slide specific  -----------
+*/
+
+ #intro .chrome-image {
+     width:1.5em; 
+     height:1.5em; 
+     vertical-align: bottom;
+ }
+
+ #intro .fragment {
+      margin-top: 3em;
+ }
+
+
+ .reveal .author-footer {
+     margin-top: 3em;
+     float: right
+}
+ .reveal .author-footer-by {
+     margin-right: 0.5em;
+     font-size: 0.8em;
+}
+
+
+/*
+ ---------    Utility  -----------
+*/
+
+.reveal section::before {
+    height: inherit !important;
+    width: inherit !important;
+}
+
+.reveal section::after {
+    box-shadow: none !important;
+}
+
+.reveal section img.plain {
+    background: white;
+    border: none;
+    box-shadow: none;
+}
+
+.reveal section img.no-margin {
+    margin: 0;
+}
+
+.reveal section .middle {
+    vertical-align: middle;
+}
+
+.reveal ul.no-bullets {
+    list-style-type: none;
+}
+
+.reveal .slides .inline {
+    display: inline;
+    margin: auto
+}
+
+.reveal .slides .noTransform {
+    text-transform: none;
+}
+
+.reveal .slides .lowercase {
+    text-transform: lowercase;
+}
+
+.reveal kbd {
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    color: #333;
+    font-size: 11px;
+    line-height: 1.4;
+    text-shadow: 0 1px 0 #fff;
+    display: inline-block;
+    vertical-align: middle;
+    padding: .1em .6em;
+    margin: 0 .1em;
+    white-space: nowrap;
+    box-shadow: 0 1px 0 rgba(0,0,0,.2),0 0 0 2px #fff inset;
+    border-radius: 3px;
+    font-family: monospace;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0;
+    font-size: 16px;
+}
+
+
+ /*--------- Other stuff ---------*/
+
+.reveal .slides .action-box
+{
+    z-index: 10;
+	padding: 10px 40px;
+    margin: 0px 10px 10px 0px;
+	border-radius: 10px;
+	color: #FFF;
+	text-decoration: none;	
+}
+
+.reveal .slides section.agenda .action-box.disabled
+{
+    opacity: 0.1;
+}
+
+.reveal .slides .blue-box
+{
+	background-color: #3498DB;
+	border-bottom: 5px solid #2980B9;
+	text-shadow: 0px -2px #2980B9;
+}
+
+.reveal .slides .red-box
+{
+	background-color: #E74C3C;
+	border-bottom: 5px solid #BD3E31;
+	text-shadow: 0px -2px #BD3E31;
+}
+
+.reveal .slides .green-box
+{
+	background-color: #82BF56;
+	border-bottom: 5px solid #669644;
+	text-shadow: 0px -2px #669644;
+}
+
+.reveal .slides .yellow-box
+{
+	background-color: #F2CF66;
+	border-bottom: 5px solid #D1B358;
+	text-shadow: 0px -2px #D1B358;
+}
+
+.reveal .slides .purple-box
+{
+	background-color: #793acf;
+	border-bottom: 5px solid #462572;
+	text-shadow: 0px -2px #462572;
+}
+
+.reveal .slides .grey-box
+{
+	background-color: #aaa;
+	text-shadow: 0px -2px #888;
+    margin:0;
+	padding: 10px 40px;
+	color: #FFF;
+	text-decoration: none;
+}
+
+.reveal .slides .grey-bg
+{
+    opacity: 0.6;
+	background-color: #ccc;
+	border: 5px solid #888;
+    height:90%; 
+    margin:0;
+}
+
+.reveal .slides section.agenda .disabled .grey-box
+{
+    opacity: 0.2;
+}
+
+.reveal .slides section.agenda .disabled .grey-bg
+{
+    opacity: 0.05;
+}
+
+.reveal .slides .cards .material-icons
+{
+    font-size: 3em;
+    float: left;
+    color: #ccc;
+}
+
+.reveal .slides .cards p
+{
+    float: left;
+    padding-left: 0.5em;
+}
+
+.reveal .slides .cards
+{
+    width: 50%;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    float: left;
+}
+

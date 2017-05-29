@@ -1,0 +1,932 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Platform</title>
+
+    <meta name="description" content="HTML5">
+    <meta name="author" content="Bartlomiej Pietrowski">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link href="https://fonts.googleapis.com/css?family=Pacifico|Shadows+Into+Light" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lobster+Two:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="../base/reveal.js@3.3.0/css/reveal.css">
+    <link rel="stylesheet" href="../base/reveal.js@3.3.0/css/theme/white.css" id="theme">
+
+    <link rel="stylesheet" href="./css/common.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="./css/solarized-light.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../base/reveal.js@3.3.0/css/print/pdf.css' : '../base/reveal.js@3.3.0/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="../base/reveal.js@3.3.0/lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <div class="reveal">
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+
+
+          <section data-background-color="var(--secondary-color)">
+               <h1 style="font-size: 4.9em; margin-bottom: -0.25em;" class="fallbackColor" >Use</h1>
+               <h1 style="font-size: 4.5em; margin-bottom: -0.25em;" class="primaryColor" >the</h1>
+               <h1 style="font-size: 4.1em;" class="flippedColor" >platform</h1>
+
+              <a style="position: fixed; top: 1em; right: 1em;" href="https://twitter.com/search?q=%23usetheplatform" target="_blank">
+               <svg>
+                   <path id="twitter" d="M100.001,17.942c-3.681,1.688-7.633,2.826-11.783,3.339
+                       c4.236-2.624,7.49-6.779,9.021-11.73c-3.965,2.432-8.354,4.193-13.026,5.146C80.47,10.575,75.138,8,69.234,8
+                       c-11.33,0-20.518,9.494-20.518,21.205c0,1.662,0.183,3.281,0.533,4.833c-17.052-0.884-32.168-9.326-42.288-22.155
+                       c-1.767,3.133-2.778,6.773-2.778,10.659c0,7.357,3.622,13.849,9.127,17.65c-3.363-0.109-6.525-1.064-9.293-2.651
+                       c-0.002,0.089-0.002,0.178-0.002,0.268c0,10.272,7.072,18.845,16.458,20.793c-1.721,0.484-3.534,0.744-5.405,0.744
+                       c-1.322,0-2.606-0.134-3.859-0.379c2.609,8.424,10.187,14.555,19.166,14.726c-7.021,5.688-15.867,9.077-25.48,9.077
+                       c-1.656,0-3.289-0.102-4.895-0.297C9.08,88.491,19.865,92,31.449,92c37.737,0,58.374-32.312,58.374-60.336
+                       c0-0.92-0.02-1.834-0.059-2.743C93.771,25.929,97.251,22.195,100.001,17.942L100.001,17.942z"></path>
+               </svg>
+             </a>
+           </section>
+
+
+            <section>
+                <h2 style="margin-bottom: -0.25em">Are we going to talk about frameworks?</h2>
+                <div>
+                    <img class="plain" style="max-height: 3.5em; margin: 0.5em" src="./img/angular-logo.png">
+                    <img class="plain" style="max-height: 3.5em; margin: 0.5em" src="./img/react-logo.png">
+                    <img class="plain" style="max-height: 3.5em; margin: 0.5em" src="./img/vue-logo.png">
+                </div>
+                <div>
+                    <img class="plain" style="max-height: 3.5em; margin: 0.5em" src="./img/aurelia-logo.png">
+                    <img class="plain" style="max-height: 3.5em; margin: 0.5em" src="./img/ember-logo.png">
+                    <img class="plain" style="max-height: 3.5em; margin: 0.5em" src="./img/backbone-logo.png">
+                </div>
+                <div>
+                    <img class="plain" style="max-height: 3.5em; margin: 0.5em" src="./img/jquery-logo.png">
+                    <img class="plain" style="max-height: 3.5em; margin: 0.5em" src="./img/logo-d3.png">
+                    <img class="plain" style="max-height: 3.5em; margin: 0.5em" src="./img/polymer-logo.png">
+                </div>
+            </section>
+
+            <section>
+                <h2>Not this time ...</h2>
+                <h2>we are going to focus on the platform</h2>
+                <div>
+                    <img class="plain" style="max-height: 4em; margin: 0.5em" src="./img/chrome-icon.png">
+                    <img class="plain" style="max-height: 4em; margin: 0.5em" src="./img/firefox-logo.png">
+                    <img class="plain" style="max-height: 4em; margin: 0.5em" src="./img/safari-logo.png">
+                </div>
+                <div>
+                    <img class="plain" style="max-height: 4em; margin: 1em" src="./img/edge-logo.png">
+                    <img class="plain" style="max-height: 4em; margin: 1em" src="./img/opera-logo.png">
+                </div>
+            </section>
+
+            <section>
+                <h2>Platform flavours</h2>
+                <ul>
+                  <li>Browsers</li>
+                  <li>Headless browsers</li>
+                  <li>Webviews</li>
+                  <li>Native from Web Tech (e.g. cross compiled)</li>
+                </ul>
+            </section>
+
+            <section data-background-image="./img/evolution.png" data-background-size="75%">
+                <h2 style="font-size: 2.8em; margin-bottom: -0.2em;" class="primaryColor">
+                  <a style="color: black" href="http://www.evolutionoftheweb.com/?hl=en" target="_blank">Evolution of the Web</a>
+                </h2>
+            </section>
+
+            <section data-background-iframe="https://whatwebcando.today" data-background-size="75%">
+                <h2 style="font-size: 2.8em; margin-bottom: -0.2em;" class="primaryColor">
+                  <a style="color: black" href="https://whatwebcando.today" target="_blank">What web can do</a>
+                </h2>
+            </section>
+
+            <section>
+                <section>
+                    <h3>Browser's high level structure</h3>
+                    <img class="plain" style="max-height: 12em;" src="./img/howbrowserworks.png">
+                    <p>
+                        <a href="https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/" class="credits" target="_blank">Image from html5rocks article</a>
+                    </p>
+                </section>
+
+
+                <section>
+                    <h3>Constructing DOM</h3>
+
+                    <img style="max-height: 12em;" class="plain" src="./img/full-process.png">
+                </section>
+
+                <section>
+                    <h3>Constructing CSSOM</h3>
+
+                    <img style="max-height: 12em;" class="plain" src="./img/cssom-tree.png">
+                </section>
+
+                <section>
+                    <h3>Page load schema</h3>
+
+                    <img style="max-height: 12em;" class="plain" src="./img/analysis-dom-css-js-async.png">
+                </section>
+
+                <section>
+                    <h3>Progressive rendering</h3>
+
+                    <img style="max-height: 12em;" class="plain" src="./img/progressive-rendering.png">
+                </section>
+
+                <section>
+                    <h3>The pixel pipeline</h3>
+
+                    <img style="max-height: 4em;" class="plain" src="./img/frame-full.jpg">
+                    <p>Details on <strong><a href="https://csstriggers.com/">CSS triggers</a></strong></p>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h2>Storage technologies</h2>
+                            <h3 >localStorage</h3>
+                            <h3 >sessionStorage</h3>
+                            <h3 >IndexedDB</h3>
+                            <h3 >WebSQL</h3>
+
+                        <p>
+                            <a href="https://www.html5rocks.com/en/tutorials/offline/storage/" class="credits" target="_blank">Introduction to offline storages</a>
+                        </p>
+                </section>
+
+                <section>
+                        <h3>localStorage</h3>
+                        <ul class="no-bullets">
+                            <li>Storing <span class="secondaryColor">smaller</span> amounts of data</li>
+                            <li><span class="secondaryColor">Single</span> persistent object called localStorage</li>
+                            <li><span class="secondaryColor">NoSQL</span> key-value store</li>
+                            <li>Sync API</li>
+                            <li><span class="secondaryColor">Poor</span> performance for <span class="secondaryColor">complex</span> data</li>
+                        </ul>
+                </section>
+                <section>
+                    <h3>sessionStorage</h3>
+                    <ul class="no-bullets">
+                        <li>Similar to <span class="secondaryColor">localStorage</span></li>
+                        <li><span class="secondaryColor">Cleans</span> when window/tab closed</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>WebSQL</h3>
+                    <ul class="no-bullets">
+                        <li>SQLLite in the Browser</li>
+                        <li>For <span class="secondaryColor">significant</span> amounts of <span class="secondaryColor">structured</span> data</li>
+                        <li><span class="secondaryColor">High performance</span> searches of this data</li>
+                        <li><span class="secondaryColor">Transactional</span> database system</li>
+                        <li><span class="secondaryColor">Deprecated</span> </li>
+                        <li><span class="secondaryColor">Only supported in Chrome and Safari</span> </li>
+                   </ul>
+                </section>
+                <section>
+                    <h3>IndexedDB</h3>
+                    <ul class="no-bullets">
+                        <li>Successor to both LocalStorage and WebSQL</li>
+                        <li><span class="secondaryColor">Low-level API</span> for client-side storage</li>
+                        <li>For <span class="secondaryColor">significant</span> amounts of <span class="secondaryColor">structured</span> data</li>
+                        <li><span class="secondaryColor">High performance</span> searches of this data</li>
+                        <li><span class="secondaryColor">Transactional</span> database system</li>
+                        <li>JavaScript based <span class="secondaryColor">object-oriented</span> database</li>
+                        <li>Operations done <span class="secondaryColor">async</span></li>
+                        <li>Famous for <strong><span class="secondaryColor">complex</span></strong> API</li>
+                        <li>Only Chrome and Firefox having fully usable implementations</li>
+                    </ul>
+                    <p>
+                        <a href="https://www.html5rocks.com/en/tutorials/offline/storage/" class="credits" target="_blank">Introduction to offline storages</a>
+                    </p>
+                </section>
+                <section>
+                    <h3>Wrapper</h3>
+                    <p>Wrappers hide complex API<br> Choose whatever is supported in the current browser<br>Popular Wrappers:</p>
+                    <ul>
+                        <li>ydn-db</li>
+                        <li>PouchDB</li>
+                    </ul>
+
+                </section>
+            </section>
+
+            <section data-background-color="var(--secondary-color)">
+                 <h1 style="font-size: 4.9em; margin-bottom: -0.25em;" class="fallbackColor" >Offline</h1>
+                 <h1 style="font-size: 4.5em; margin-bottom: -0.25em;" class="primaryColor" >caching</h1>
+                 <h1 style="font-size: 4.1em;" class="flippedColor" >dilemma</h1>
+            </section>
+
+             <section>
+                 <h3>AppCache lottery</h3>
+                 <ul class="no-bullets">
+                     <li>Files <span class="secondaryColor">always</span> come from cache</li>
+                     <li>Application updates <span class="secondaryColor">only</span> on manifest <span class="secondaryColor">content change</span></li>
+                     <li>Additional <span class="secondaryColor">not</span> alternative cache</li>
+                     <li><span class="secondaryColor">Non-cached</span> resources do <span class="secondaryColor">not load</span> on <span class="secondaryColor">cached</span> page</li>
+                     <li><strong><span class="secondaryColor">Lack of JavaScript API</span></strong></li>
+                 </ul>
+
+                 <p>
+                     <a href="http://alistapart.com/article/application-cache-is-a-douchebag" class="credits" target="_blank">Full article by Jake Archibald</a>
+                 </p>
+             </section>
+
+             <section>
+                 <h3>'Cache' interface</h3>
+                 <ul class="no-bullets">
+                     <li>Storage mechanism for <span class="secondaryColor">Request / Response object pairs</span></li>
+                     <li>Exposed to <span class="secondaryColor">window</span> and <span class="secondaryColor">workers</span></li>
+                     <li>Items <span class="secondaryColor">do not</span> get updated <span class="secondaryColor"> unless explicitly</span> requested</li>
+                     <li>Items <span class="secondaryColor">don’t expire</span> unless deleted</li>
+                     <li>Origin can have <span class="secondaryColor">multiple</span>, named Cache objects</li>
+                     <li><span class="secondaryColor">You</span> as a dev need to <span class="secondaryColor">purge</span> Cache entries</li>
+                 </ul>
+             </section>
+
+
+             <section data-background-color="var(--secondary-color)">
+                 <h1 style="font-size: 2.0em; margin-bottom: 0.5em;" class="fallbackColor" >Service Workers</h1>
+                 <h1 style="font-size: 2.3em; margin-bottom: -0.25em;" class="primaryColor" >Return power</h1>
+                 <h1 style="font-size: 2.7em;" class="flippedColor" >to the devs!</h1>
+             </section>
+
+            <section>
+             <section>
+                 <h3>Service Workers</h3>
+                 <ul class="no-bullets">
+                     <li>Give developers the <span class="secondaryColor">moving parts</span> to solve their problems</li>
+                     <li>Alow to create <span class="secondaryColor">own caching patterns</span></li>
+                     <li>Can only be used over <span class="secondaryColor">HTTPS</span> (excluding localhost)</li>
+                     <li>Hijack connections</li>
+                     <li>Fabricate, and filter responses</li>
+                 </ul>
+             </section>
+
+
+             <section>
+                 <h1 style="font-size: 2.4em; margin-bottom: 0em;" class="fallbackColor" >Wait wait wait!</h1>
+                 <h1 style="font-size: 1.95em; margin-bottom: -0.25em;" class="primaryColor" >But what are those</h1>
+                 <h1 style="font-size: 4em;" class="secondaryColor" >workers?</h1>
+             </section>
+
+
+             <section>
+                     <h3>Workers</h3>
+                     <ul class="no-bullets">
+                         <li>Isolated thread</li>
+                         <li>Code contained in <span class="secondaryColor">separate file</span> (async download)</li>
+                         <li>Communication via message passing - <span class="secondaryColor">postMessage()</span></li>
+                         <li>Messages <span class="secondaryColor">copied</span>, not shared</li>
+                         <li>Same Origin</li>
+                     </ul>
+             </section>
+
+             <section>
+                 <h3>Main script:</h3>
+                 <pre><code class="javascript" data-trim data-noescape>
+ var worker = new Worker('task.js');
+
+ worker.addEventListener('message', function(e) {
+   console.log('Worker said: ', e.data);
+ }, false);
+
+ worker.addEventListener('error', function(e){
+     console.log('ERROR: Line', e.lineno, 'in',
+         e.filename, ':', e.message);
+ }, false);
+
+ worker.postMessage('Hello World'); // Send data to our worker.
+                </code></pre>
+
+                 <h3>task.js (the worker)</h3>
+                 <pre><code class="javascript" data-trim data-noescape>
+ self.addEventListener('message', function(e) {
+   self.postMessage(e.data);
+ }, false);
+                </code></pre>
+
+                 <p>
+                     <a href="https://www.html5rocks.com/en/tutorials/workers/basics/" class="credits" target="_blank">Code from https://www.html5rocks.com/en/tutorials/workers/basics/</a>
+                 </p>
+
+             </section>
+
+               <section>
+                     <h3>Features Available to Workers</h3>
+                     <ul class="no-bullets">
+                         <li>The <span class="secondaryColor">navigator</span> object</li>
+                         <li>The <span class="secondaryColor">location</span> object (read-only)</li>
+                         <li>XMLHttpRequest</li>
+                         <li>setTimeout()/clearTimeout() and setInterval()/clearInterval()</li>
+                         <li>The Application <span class="secondaryColor">Cache</span></li>
+                         <li>Importing <span class="secondaryColor">external scripts</span> using the importScripts() method</li>
+                         <li><span class="secondaryColor">Spawning other</span> web workers</li>
+                     </ul>
+               </section>
+
+               <section>
+                     <h3>Workers do NOT have access to:</h3>
+                     <ul class="no-bullets">
+                         <li>The <span class="secondaryColor">DOM</span> (it's not thread-safe)</li>
+                         <li>The <span class="secondaryColor">window</span> object</li>
+                         <li>The <span class="secondaryColor">document</span> object</li>
+                         <li>The <span class="secondaryColor">parent</span> object</li>
+                         <li>will <span class="secondaryColor">not run locally</span> (e.g. from file://)</li>
+                     </ul>
+               </section>
+
+             <section>
+                 <h1 style="font-size: 2em; margin-bottom: 0em;" class="fallbackColor" >Now</h1>
+                 <h1 style="font-size: 2.5em; margin-bottom: 0em;" class="primaryColor" >back to</h1>
+                 <h1 style="font-size: 3em;" class="secondaryColor" >service workers</h1>
+             </section>
+
+
+             <section>
+                 <h3>Service worker lifecycle</h3>
+                 <p style="font-size: 0.5em; margin-top:-1em">(on first installation)</p>
+                 <img class="plain" style="max-height: 11em;" src="./img/sw-lifecycle.png">
+                 <p>
+                     <a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers" class="credits" target="_blank">Image from Google Web Fundamentals</a>
+                 </p>
+             </section>
+
+
+             <section>
+                 <h3>Register a service worker</h3>
+                 <pre><code class="javascript" data-trim data-noescape>
+ if ('serviceWorker' in navigator) {
+   navigator.serviceWorker.register('/sw.js')
+     .then(function(registration) {
+         // Registration was successful
+         console.log('Registration successful with scope: ',
+             registration.scope);
+     }).catch(function(err) {
+         // registration failed :(
+         console.log('ServiceWorker registration failed: ', err);
+     });
+ }
+                 </code></pre>
+                 <p>
+                     <a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers" class="credits" target="_blank">Code from Google Web Fundamentals</a>
+                 </p>
+             </section>
+
+
+             <section>
+                 <h3>Install a service worker</h3>
+                 <pre><code class="javascript" data-trim data-noescape>
+ self.addEventListener('install', function(event) {
+   // Perform install steps
+ });
+                 </code></pre>
+                 <p>
+                     <a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers" class="credits" target="_blank">Code from Google Web Fundamentals</a>
+                 </p>
+             </section>
+
+             <section data-background-color="var(--secondary-color)">
+                 <h1 style="font-size: 2em; margin-bottom: 0em;" class="fallbackColor" >The</h1>
+                 <h1 style="font-size: 2.5em; margin-bottom: 0em;" class="primaryColor" >cache</h1>
+                 <h1 style="font-size: 3em;" class="flippedColor" >machine</h1>
+             </section>
+
+
+             <section>
+                 <h3>On install - as a dependency</h3>
+                 <img class="plain" style="max-height: 12em;" src="./img/cm-on-install-dep.png">
+                 <p>
+                     <a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/" class="credits" target="_blank">Image from Jake Archibald`s offline cookbook</a>
+                 </p>
+             </section>
+
+
+             <section>
+                 <h3>On install - as a dependency</h3>
+                 <pre><code class="javascript" data-trim data-noescape>
+ self.addEventListener('install', function(event) {
+   event.waitUntil(
+     caches.open('mysite-static-v3').then(function(cache) {
+       return cache.addAll([
+         '/css/whatever-v3.css',
+         '/css/imgs/sprites-v6.png',
+         '/css/fonts/whatever-v8.woff',
+         '/js/all-min-v4.js'
+         // etc
+       ]);
+     })
+   );
+ });
+                 </code></pre>
+                 <p>
+                     <a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/" class="credits" target="_blank">Code from Jake Archibald`s offline cookbook</a>
+                 </p>
+             </section>
+
+             <section>
+                 <h3>On install - not as a dependency</h3>
+                 <img class="plain" style="max-height: 12em;" src="./img/cm-on-install-not.png">
+                 <p>
+                     <a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/" class="credits" target="_blank">Image from Jake Archibald`s offline cookbook</a>
+                 </p>
+             </section>
+
+
+             <section>
+                 <h3>On install - not as a dependency</h3>
+                 <pre><code class="javascript" data-trim data-noescape>
+ self.addEventListener('install', function(event) {
+   event.waitUntil(
+     caches.open('mygame-core-v1').then(function(cache) {
+       cache.addAll(
+         // levels 11-20
+       );
+       return cache.addAll(
+         // core assets & levels 1-10
+       );
+     })
+   );
+ });
+                 </code></pre>
+                 <p>
+                     <a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/" class="credits" target="_blank">Code from Jake Archibald`s offline cookbook</a>
+                 </p>
+             </section>
+
+
+             <section>
+                 <h3>On activate - cleanup</h3>
+                 <img class="plain" style="max-height: 12em;" src="./img/cm-on-activate.png">
+                 <p>
+                     <a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/" class="credits" target="_blank">Image from Jake Archibald`s offline cookbook</a>
+                 </p>
+             </section>
+
+
+             <section>
+                 <h3>On activate - cleanup</h3>
+                 <pre><code class="javascript" data-trim data-noescape>
+ self.addEventListener('activate', function(event) {
+   event.waitUntil(
+     caches.keys().then(function(cacheNames) {
+       return Promise.all(
+         cacheNames.filter(function(cacheName) {
+           // Return true if you want to remove this cache,
+           // but remember that caches are shared across
+           // the whole origin
+         }).map(function(cacheName) {
+           return caches.delete(cacheName);
+         })
+       );
+     })
+   );
+ });
+                 </code></pre>
+                 <p>
+                     <a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/" class="credits" target="_blank">Code from Jake Archibald`s offline cookbook</a>
+                 </p>
+             </section>
+
+
+             <section>
+                 <h3>On user interaction</h3>
+                 <img class="plain" style="max-height: 12em;" src="./img/cm-on-user-interaction.png">
+                 <p>
+                     <a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/" class="credits" target="_blank">Image from Jake Archibald`s offline cookbook</a>
+                 </p>
+             </section>
+
+
+             <section>
+                 <h3>On user interaction</h3>
+                 <pre><code class="javascript" data-trim data-noescape>
+ document.querySelector('.cache-article')
+     .addEventListener('click', function(event) {
+         event.preventDefault();
+
+         var id = this.dataset.articleId;
+         caches.open('mysite-article-' + id)
+             .then(function(cache) {
+                 fetch('/get-article-urls?id=' + id)
+                     .then(function(response) {
+                         return response.json();
+                     }).then(function(urls) {
+                         cache.addAll(urls);
+                     });
+         });
+     });
+                 </code></pre>
+                 <p>
+                     <a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/" class="credits" target="_blank">Code from Jake Archibald`s offline cookbook</a>
+                 </p>
+             </section>
+
+
+             <section>
+                 <h1>And more ...</h1>
+                 <img class="plain" style="max-height: 2.4em;" src="./img/cm-on-network-response.png">
+                 <img class="plain" style="max-height: 2.4em;" src="./img/cm-stale-while-revalidate.png">
+                 <img class="plain" style="max-height: 2.4em;" src="./img/cm-on-push.png">
+                 <img class="plain" style="max-height: 2.4em;" src="./img/cm-on-bg-sync.png">
+                 <img class="plain" style="max-height: 2.4em;" src="./img/ss-cache-only.png">
+                 <img class="plain" style="max-height: 2.4em;" src="./img/ss-network-only.png">
+                 <img class="plain" style="max-height: 2.4em;" src="./img/ss-falling-back-to-network.png">
+                 <img class="plain" style="max-height: 2.4em;" src="./img/ss-cache-and-network-race.png">
+                 <img class="plain" style="max-height: 2.4em;" src="./img/ss-network-falling-back-to-cache.png">
+                 <img class="plain" style="max-height: 2.4em;" src="./img/ss-cache-then-network.png">
+                 <img class="plain" style="max-height: 2.4em;" src="./img/ss-generic-fallback.png">
+                 <img class="plain" style="max-height: 2.4em;" src="./img/ss-sw-side-templating.png">
+                 <p>
+                     <a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/" class="credits" target="_blank">Images from Jake Archibald`s offline cookbook</a>
+                 </p>
+                 <p>
+                     <a href="https://github.com/GoogleChrome/sw-toolbox" class="credits" target="_blank"><strong>SW Toolbox</strong> - no need to dive deep</a>
+                 </p>
+             </section>
+
+
+             <section data-background-iframe="https://jakearchibald.github.io/isserviceworkerready/">
+                 <h1 style="font-size: 3.0em;" class="fallbackColor" >Can we use <a href="https://jakearchibald.github.io/isserviceworkerready/">it</a>?</h1>
+             </section>
+            </section>
+
+
+             <section>
+                 <h1>Push Notifications</h1>
+                 <img class="plain" style="max-height: 12em;" src="./img/cc-good.png">
+                 <p>
+                     <a href="https://developers.google.com/web/fundamentals/engage-and-retain/push-notifications/" class="credits" target="_blank">Image from Google Web Fundamentals</a>
+                 </p>
+             </section>
+
+
+             <section>
+                     <h3>Progressive Web Apps</h3>
+
+                     <div style="margin-left: 3em">
+                         <div class="cards">
+                             <i class="material-icons">schedule</i>
+                             <p>Instant Loading</p>
+                         </div>
+                         <div class="cards">
+                             <i class="material-icons">touch_app</i>
+                             <p>Fast</p>
+                         </div>
+                         <div class="cards">
+                             <i class="material-icons">phone_android</i>
+                             <p>Add to Home Screen</p>
+                         </div>
+                         <div class="cards">
+                             <i class="material-icons">lock</i>
+                             <p>Secure</p>
+                         </div>
+                         <div class="cards">
+                             <i class="material-icons">notifications_active</i>
+                             <p>Push Notifications</p>
+                         </div>
+                         <div class="cards">
+                             <i class="material-icons">devices_other</i>
+                             <p>Responsive</p>
+                         </div>
+                     </div>
+             </section>
+
+
+             <section>
+                 <h1 style="font-size: 2,5em; margin-bottom: 0em;" class="fallbackColor" >Application</h1>
+                 <h1 style="font-size: 4.5em; margin-bottom: 0em;" class="secondaryColor" >shell</h1>
+                 <h1 style="font-size: 2.4em;" class="primaryColor" >architecture</h1>
+             </section>
+
+
+             <section>
+                 <img class="plain" style="max-height: 12em;" src="./img/appshell-1.jpg">
+                 <p>
+                     <a href="https://developers.google.com/web/updates/2015/11/app-shell" class="credits" target="_blank">Image from Google Web Updates</a>
+                 </p>
+             </section>
+
+             <section>
+                 <h3>Application shell should:</h3>
+                 <ul>
+                     <li>load fast</li>
+                     <li>be cached</li>
+                     <li>dynamically display content</li>
+                     <li>be a replacment for bundles publishe din store for native apps</li>
+                 </ul>
+             </section>
+
+
+             <section>
+                 <h3>Web App Install Banner</h3>
+                 <img class="plain" style="max-height: 12em;" src="./img/add-to-home-screen.gif">
+                 <p>
+                     <a href="https://developers.google.com/web/fundamentals/engage-and-retain/app-install-banners/" class="credits" target="_blank">Image from Google Web Fundamentals</a>
+                 </p>
+             </section>
+
+             <section>
+                 <h3>Web Banner criteria</h3>
+                 <ul>
+                     <li>Has a <span class="secondaryColor">web app manifest</span></li>
+                     <li>Has a <span class="secondaryColor">service worker registered</span></li>
+                     <li>Is served over <span class="secondaryColor">HTTPS</span></li>
+                     <li>Is visited <span class="secondaryColor">at least twice</span>, with at least <span class="secondaryColor">five minutes</span> between visits</li>
+                 </ul>
+             </section>
+
+
+             <section>
+                 <h3>Sample manifest.json</h3>
+                 <pre><code class="javascript" data-trim data-noescape>
+ {
+   "short_name": "AirHorner",
+   "name": "Kinlan's AirHorner of Infamy",
+   "icons": [{
+       "src": "launcher-icon-1x.png",
+       "type": "image/png",
+       "sizes": "48x48"
+     },
+   ...
+     {
+       "src": "launcher-icon-4x.png",
+       "type": "image/png",
+       "sizes": "192x192"
+     }],
+   "start_url": "index.html?launcher=true"
+ }
+                 </code></pre>
+                 <pre><code class="html">
+ <link rel="manifest" href="/manifest.json">
+                 </code></pre>
+                 <p>
+                     <a href="https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/" class="credits" target="_blank">Code from Google Web Fundamentals</a>
+                 </p>
+             </section>
+
+             <section>
+                 <h3>What can I tell the browser?</h3>
+                 <ul>
+                     <li>Home screen Icon</li>
+                     <li>Add a splash screen</li>
+                     <li>Set the launch style</li>
+                     <li>...and more</li>
+                 </ul>
+             </section>
+
+             <section>
+                 <h3>Native vs. browser launch style</h3>
+                 <img class="plain" style="max-height: 12em;" src="./img/manifest-display-options.png">
+                 <p>
+                     <a href="https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/" class="credits" target="_blank">Image from Google Web Fundamentals</a>
+                 </p>
+             </section>
+
+             <section data-background-iframe="https://pwa.rocks/">
+                 <h1 style="font-size: 3.0em;" class="fallbackColor" >Anyone really does <a href="https://pwa.rocks/">that</a>?</h1>
+             </section>
+
+             <section>
+                 <a href="https://wiki-offline.jakearchibald.com/wiki/Rick_and_Morty">
+                     <img class="plain" style="max-height: 15em;" src="./img/wikipedia.jpg">
+                 </a>
+                 <p>
+                     <a href="https://developers.google.com/web/updates/2015/11/app-shell" class="credits" target="_blank">Image from Google Web Updates</a>
+                 </p>
+             </section>
+
+
+             <section>
+                 <h2 style="margin-top: -4em;">HTTP 2</h2>
+                 <div class="replacement">
+                     <div style="margin-top: 0em;" class="fragment fade-out" data-fragment-index="0">
+                         <img class="plain" style="max-height: 15em;" src="./img/HTTP_persistent_connection.svg">
+                          <p>
+                             <a href="https://en.wikipedia.org/wiki/HTTP_persistent_connection" class="credits" target="_blank">Image from Wikipedia</a>
+                         </p>
+                     </div>
+                     <div style="margin-top: -0.5em;" class="fragment fade-in" data-fragment-index="0">
+                         <p><span class="secondaryColor">Multiplexed</span> downloads over a <span class="secondaryColor">single</span> connection</p>
+                         <h3 style="margin-top: 1em;">HTTP/2 server push</h3>
+                         <p>Allows the server to <span class="secondaryColor">preemptively send resources</span> to the browser</p>
+                     </div>
+                 </div>
+             </section>
+
+
+            <section>
+                 <h3 style="margin-top: -4em;">HTTP/1 vs. HTTP/2 </h3>
+                 <div class="replacement">
+                     <div style="margin-top: 0em;" class="fragment fade-out" data-fragment-index="0">
+                         <h4>HTTP/1</h4>
+                         <ol>
+                             <li>The browser requests the <span class="secondaryColor">HTML file</span>.</li>
+                             <li>The server returns the HTML file and the <span class="secondaryColor">browser starts parsing</span it.</li>
+                             <li>The browser encounters the <strong><em>&lt;link rel="stylesheet"&gt;</em></strong> tag, and <span class="secondaryColor">starts a new request</span> for the stylesheet.</li>
+                             <li>The browser <span class="secondaryColor">receives the stylesheet</span>.</li>
+                         </ol>
+                     </div>
+                     <div style="margin-top: 0em;" class="fragment fade-in" data-fragment-index="0">
+                         <h4>HTTP/2</h4>
+                         <ol>
+                             <li>The browser requests the <span class="secondaryColor">HTML file</span>.</li>
+                             <li>The server returns the <span class="secondaryColor">HTML file</span>, and <span class="secondaryColor">pushes</span> the stylesheet <span class="secondaryColor">at the same time</span>.</li>
+                             <li>The browser starts parsing the HTML. By the time it encounters the <strong><em>&lt;link rel="stylesheet"&gt;</em></strong>, the stylesheet is <span class="secondaryColor">already in the cache</span>.</li>
+                         </ol>
+                     </div>
+                 </div>
+             </section>
+
+            <section>
+                 <section>
+                     <h1>
+                         <img style="max-height: 1.5em;" class="plain" src="./img/chrome-icon.png">
+                         <span style="font-size: 1em" class="inline secondaryFont fallbackColor lowercase">developer</span>
+                         <span class="inline primaryColor">Tools</span>
+                     </h1>
+                 </section>
+
+
+                 <section>
+                     <h3>Inspect / Live Edit</h3>
+                     <img class="plain" style="max-height: 12em;" src="./img/elements.png">
+                     <p>
+                         <a href="https://developers.google.com/web/tools/chrome-devtools/" class="credits" target="_blank">Chrome Developer Tools documentation</a>
+                     </p>
+                 </section>
+
+                 <section>
+                     <h3>Analyse network traffic</h3>
+                     <img class="plain" style="max-height: 12em;" src="./img/network.png">
+                     <p>
+                         <a href="https://developers.google.com/web/tools/chrome-devtools/" class="credits" target="_blank">Chrome Developer Tools documentation</a>
+                     </p>
+                 </section>
+
+                 <section>
+                     <h3>Debug</h3>
+                     <img class="plain" style="max-height: 12em;" src="./img/sources.png">
+                     <p>
+                         <a href="https://developers.google.com/web/tools/chrome-devtools/" class="credits" target="_blank">Chrome Developer Tools documentation</a>
+                     </p>
+                 </section>
+
+                 <section>
+                     <h3>Profile</h3>
+
+                     <h3 style="margin-top: -7.5em;">Profiling</h3>
+                     <div class="replacement">
+                         <div style="margin-top: 0em;" class="fragment fade-out" data-fragment-index="0">
+                             <img class="plain" style="max-height: 12em;" src="./img/timeline.png">
+                             <p>
+                                 <a href="https://developers.google.com/web/tools/chrome-devtools/" class="credits" target="_blank">Chrome Developer Tools documentation</a>
+                             </p>
+                         </div>
+                         <div style="margin-top: 0em;" class="fragment fade-in" data-fragment-index="0">
+                             <img class="plain" style="max-height: 12em;" src="./img/cpu-profile.png">
+                             <p>
+                                 <a href="https://developers.google.com/web/tools/chrome-devtools/" class="credits" target="_blank">Chrome Developer Tools documentation</a>
+                             </p>
+                         </div>
+                     </div>
+                 </section>
+
+                 <section>
+                     <h3>And much more ...</h3>
+                     <ul>
+                         <li>Console API</li>
+                         <li>Working with Service workers</li>
+                         <li>Web app manifest adjustment</li>
+                         <li>Device mode</li>
+                         <li>Cache/Storage inspection</li>
+                         <li>...</li>
+                     </ul>
+                 </section>
+            </section>
+
+
+             <section data-background-color="var(--secondary-color)">
+                 <h1 style="font-size: 4em; margin-bottom: -0.25em;" class="flippedColor" >WHOA!</h1>
+                 <h1 style="font-size: 2.8em; margin-bottom: -0.2em;" class="fallbackColor" >That was</h1>
+                 <h1 style="font-size: 2em;" class="primaryColor" >quick, right?</h1>
+             </section>
+
+
+
+             <section data-background-image="./img/web-api.png" data-background-size="75%">
+                 <h2 style="font-size: 2.8em; margin-bottom: -0.2em;" class="primaryColor" >But there is still much <a href="https://developer.mozilla.org/en-US/docs/Web/API">more</a> :P</h2>
+             </section>
+
+
+             <section>
+                 <h3>Our personal favourites:</h3>
+                 <ul>
+                     <li>Window.requestAnimationFrame()</li>
+                     <li>will-change CSS property</li>
+                     <li>CSS custom properties</li>
+                     <li>Web RTC</li>
+                 </ul>
+             </section>
+
+             <section>
+                 <h3>Stille want more?</h3>
+                 <a href="https://developers.google.com/web/fundamentals/">Google Web Fundamentals</a>
+             </section>
+
+
+             <section data-background-color="var(--secondary-color)">
+                 <h1 style="font-size: 9em;" class="fallbackColor" >Q<span class="flippedColor">&</span>A</h1>
+             </section>
+
+             <section data-background-color="var(--secondary-color)">
+                 <h1 style="font-size: 4em; margin-bottom: -0.5em;" class="fallbackColor" >Thank</h1>
+                 <h1 style="font-size: 6.5em; margin-bottom: 0em;" class="primaryColor" >you</h1>
+                 <h1 style="font-size: 1.5em;" class="flippedColor" >for your attention!</h1>
+             </section>
+
+
+
+         </div>
+     </div>
+     <script src="../base/reveal.js@3.3.0/lib/js/head.min.js"></script>
+     <script src="../base/reveal.js@3.3.0/js/reveal.js"></script>
+     <script>
+     // Full list of configuration options available at:
+     // https://github.com/hakimel/reveal.js#configuration
+     Reveal.initialize({
+         controls: true,
+         progress: true,
+         history: true,
+         center: true,
+         minScale: 1,
+         maxScale: 1,
+         transition: 'cube', // none/fade/slide/convex/concave/zoom
+
+         // Optional reveal.js plugins
+         dependencies: [
+             {
+                 src: '../base/reveal.js@3.3.0/lib/js/classList.js',
+                 condition: function () {
+                     return !document.body.classList;
+                 }
+             },
+             {
+                 src: '../base/reveal.js@3.3.0/plugin/markdown/marked.js',
+                 condition: function () {
+                     return !!document.querySelector('[data-markdown]');
+                 }
+             },
+             {
+                 src: '../base/reveal.js@3.3.0/plugin/markdown/markdown.js',
+                 condition: function () {
+                     return !!document.querySelector('[data-markdown]');
+                 }
+             },
+             {
+                 src: '../base/reveal.js@3.3.0/plugin/highlight/highlight.js',
+                 async: true,
+                 condition: function () {
+                     return !!document.querySelector('pre code');
+                 },
+                 callback: function () {
+                     hljs.initHighlightingOnLoad();
+                 }
+             },
+             {
+                 src: '../base/reveal.js@3.3.0/plugin/zoom-js/zoom.js',
+                 async: true
+             },
+             {
+                 src: '../base/reveal.js@3.3.0/plugin/notes/notes.js',
+                 async: true
+             }
+     ]
+     });
+     </script>
+
+  </body>
+</html>
