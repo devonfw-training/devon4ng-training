@@ -22,13 +22,33 @@ div {
 .wrapper {
 	display: flex;
 	display:-webkit-flex;
-	flex-flow: row-reverse wrap-reverse;
+	flex-wrap: wrap;
 }
 
-.header, .footer {
+.header {
+	order: 1;
 	background-color: gray;
-	flex: 1 100%; 
+	flex: 1 100%;
 }
+
+.footer {
+	order: 6;
+	background-color: gray;
+	flex: 1 100%;
+}
+
+.sidebar_left {
+	order: 3;
+}
+
+.sidebar_right {
+	order: 5;
+}
+
+.content {
+	order: 4;
+}
+
 
 .sidebar_left, .sidebar_right {
 	border: 1px solid black;
