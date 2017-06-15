@@ -91,7 +91,8 @@ import { RouterModule, Routes } from '@angular/router';
 const appRoutes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'heroes', component: HeroesComponent }
+  { path: 'heroes', component: HeroesComponent },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
@@ -179,6 +180,11 @@ this.route.params
   .switchMap((params: Params) => this.heroService.getHero(+params['id']))
   .subscribe(hero => this.hero = hero)
 				</code></pre>
+				<p style="font-size: smaller">
+					The switchMap operator allows you to perform an action with the current value of the Observable, and map it to a new Observable.<br><br>
+					The switchMap operator will cancel any in-flight requests if the user re-navigates to the route while still retrieving a hero.
+				</p>
+
 			</section>
 				
 		</section>
