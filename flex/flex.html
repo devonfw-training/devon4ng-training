@@ -195,30 +195,33 @@
                 <section>
                     <div>
                         <h5>flex-grow</h5>
-                        <p style="font-size: smaller">Defines an abilty to grow in proportion to other items inside the container</p>
+                        <p style="font-size: smaller">Defines an abilty to grow in proportion to free space</p>
                         <pre><code class="css" data-trim>
 .item {
   flex-grow: number; /* default 0 */
 }
                             </code></pre>
+                        <br>
+                        <img src="img/grow1.jpg" alt="Flex Grow" width="800" style="background:none; border:none; box-shadow:none;">
+                        <img src="img/grow2.jpg" alt="Flex Grow" width="800" style="background:none; border:none; box-shadow:none;">
                     </div>
-                    <div class="fragment" data-fragment-index="1">
+                </section>
+                <section>
+                    <div>
                         <h5>flex-shrink</h5>
-                        <p style="font-size: smaller">Defines an abilty to shrink in proportion to other items inside the container</p>
+                        <p style="font-size: smaller">Defines an abilty to shrink, if no space available</p>
                         <pre><code class="css" data-trim>
   flex-shrink: number; /* default 1 */
                             </code></pre>
                     </div>
-                    <div class="fragment" data-fragment-index="2">
+                    <div class="fragment" data-fragment-index="1">
                         <h5>flex-basis</h5>
                         <p style="font-size: smaller">Defines the size of the item</p>
                         <pre><code class="css" data-trim>
   flex-basis: length | auto; /* default auto */
                             </code></pre>
                     </div>
-                </section>
-                <section>
-                    <div>
+                    <div class="fragment" data-fragment-index="2">
                         <h4>flex</h4>
                         <p style="font-size: smaller">Usage of flex-grow, flex-shrink, flex-basis in one line</p>
                         <pre><code class="css" data-trim>
