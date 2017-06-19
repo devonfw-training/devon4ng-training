@@ -173,12 +173,20 @@ const appRoutes: Routes = [
 			<section>
 				<h3>Receiving params from a path</h3>
 				<pre><code class="hljs typescript"  data-trim>
+//(..) other imports
 import { ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 
-this.route.params
-  .switchMap((params: Params) => this.heroService.getHero(+params['id']))
-  .subscribe(hero => this.hero = hero)
+export class HeroDetailsComponent implements OnInit{
+
+  constructor(private activatedRoute: ActivatedRoute) {}
+
+  ngOnInit(){
+    this.activatedRoute.params
+      .switchMap(params: Params => this.heroService.getHero(params['id']))
+      .subscribe(hero => this.hero = hero);
+  }
+}
 				</code></pre>
 				<p style="font-size: smaller">
 					The switchMap operator allows you to perform an action with the current value of the Observable, and map it to a new Observable.<br><br>
@@ -226,10 +234,10 @@ export class BookDetailsResolve implements Resolve&lt;Book&gt;{
 				<pre><code class="hljs typescript"  data-trim>
 // routes config
 const appRoutes: Routes = [
-  {path: 'book-details/:id', component: BookDetailsComponent, 
-	resolve: {
-            book: BookDetailsResolve
-        }
+  {
+    path: 'book-details/:id',
+    component: BookDetailsComponent,
+    resolve: {book: BookDetailsResolve}
   }
 ];
 
