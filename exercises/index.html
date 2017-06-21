@@ -42,7 +42,7 @@
                     <li>Create a new module <span class="monospace highlight">Books</span> (<span class="monospace highlight">ng g module Books</span>).</li>
                     <li>Go to the <span class="monospace highlight">books</span> directory and create a new component <span class="monospace highlight">BookDetails</span> (<span class="monospace highlight">ng g component BookDetails</span>).</li>
                     <li>Export the <span class="monospace highlight">BookDetailsComponent</span> from the <span class="monospace highlight">BooksModule</span> - both of them you've just created.</li>
-                    <li>Import the <span class="monospace highlight">BooksModule</span> in the <span class="monospace highlight">AppModule</span>. Remove the <span class="monospace highlight">AppModule.title</span> property as it is not needed anymore.</li>
+                    <li>Import the <span class="monospace highlight">BooksModule</span> in the <span class="monospace highlight">AppModule</span>. Remove the <span class="monospace highlight">AppComponent.title</span> property as it is not needed anymore.</li>
                     <li>Add <span class="monospace highlight">&lt;app-book-details&gt;</span> to the <span class="monospace highlight">AppComponent</span>'s template. <i>book-details works!</i> should appear on the page.</li>
                 </ol>
             </section>
@@ -50,7 +50,7 @@
                 <h3>Simple Component (2/4)</h3>
                 <ol>
                     <li>Create a class <span class="monospace highlight">Book</span> in the <span class="monospace highlight">books</span> directory (<span class="monospace highlight">ng g class Book</span>). Add the <span class="monospace highlight">id</span>, <span class="monospace highlight">author</span>
-                        and <span class="monospace highlight">title</span> properties (including setters and getters).</li>
+                        and <span class="monospace highlight">title</span> properties.</li>
                     <li>Add a public <span class="monospace highlight">BookDetailsComponent.currentBook</span> property of type <span class="monospace highlight">Book</span> and initialize the property with an empty
                         <span class="monospace highlight">Book</span> object in the constructor.</li>
                     <li>Take part in the <span class="monospace highlight">OnInit</span> lifecycle hook (an empty <span class="monospace highlight">ngOnInit()</span> method should have been generated) setting the <span class="monospace highlight">author</span> and
@@ -60,7 +60,7 @@
             <section>
                 <h3>Simple Component (3/4)</h3>
                 <ol>
-                    <li>Create a Book form based on the <a href="https://v4-alpha.getbootstrap.com/components/forms/#using-the-grid" target="_blank">Bootstrap grid system</a> (in the file <span class="monospace highlight">book-details.component.html</span>).</li>
+                    <li>Create a Book form (in the file <span class="monospace highlight">book-details.component.html</span>).</li>
                     <li>For now don't use <span class="monospace highlight">&lt;input&gt;</span>s. Just display labels and values of the <span class="monospace highlight">authors</span> and
                         <span class="monospace highlight">title</span> properties (using the interpolation <span class="monospace highlight">{{}}</span>).</li>
                     <li>Add some component's styling (to the file <span class="monospace highlight">book-details.component.scss</span>) , e.g. make the labels' font weight bold. Make use of the <span class="monospace highlight">:host</span> pseudo selector.</li>
@@ -69,7 +69,7 @@
             <section>
                 <h3>Simple Component (4/4)</h3>
                 <ol>
-                    <li>Make the values aligned with the labels horizontally centered. Use the <a href="https://v4-alpha.getbootstrap.com/utilities/flexbox/#align-items" target="_blank">Bootstrap flexbox utilities</a>.</li>
+                    <li>Make the values aligned with the labels horizontally centered.</li>
                     <li>Make both linting (<span class="monospace highlight">ng lint</span>) and tests (including E2E ones) passing :)</li>
                 </ol>
             </section>
@@ -240,7 +240,14 @@
                     <li>Implement the <span class="highlight monospace">save(bookToSave: Book): Observable&lt;Book&gt;</span> method. If the ID of the passed book
                         is set, update the existing book (copying values from the passed book to it) from the list.
                         Otherwise add the passed book to the list as a new element.</li>
-                    <li>Implement unit tests using the <a href="https://jasmine.github.io/2.5/introduction" target="_blank" class="monospace">Jasmine</a> framework.</li>
+                    <li>Use the <span class="highlight monospace">save(bookToSave: Book): Observable&lt;Book&gt;</span> in the
+                        <span class="highlight monospace">BookOverviewComponent.onBookUpdated</span> you created in the Excercise "Data  Binding 4/5"</li>
+                </ol>
+            </section>
+            <section>
+                <h3>Service (extra)</h3>
+                <ol>Extend the <span class="highlight monospace">BookService</span>:
+                   <li>Implement unit tests using the <a href="https://jasmine.github.io/2.5/introduction" target="_blank" class="monospace">Jasmine</a> framework.</li>
                 </ol>
             </section>
         </section>
