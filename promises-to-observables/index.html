@@ -142,7 +142,7 @@ asynchronous) computation.</p>
             <section>
                 <h3 class="highlight">Use a returned promise</h3>
                 <pre><code data-trim class="javascript">
-var promise = tables.get(1234);
+var promise = tablesService.get(1234);
 promise.then(
     function (table) {
         console.log(table.id);
@@ -421,8 +421,8 @@ obs.subscribe(v => console.log('next value', v),
                 <pre class="typescript"><code>import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 
-let obs: Observable<number> = 
-        Observable.create(function (observer: Observer<number>) {
+let obs: Observable&lt;number&gt; =
+        Observable.create(function (observer: Observer&lt;number&gt;) {
     let luckyNumber = 1;
     setInterval(() => {
         observer.next(luckyNumber++);
@@ -490,7 +490,7 @@ setTimeout(() => {
                 <h3>Binding Observables in Angular components (1/2)</h3>
                 <pre><code class="typescript">@Component({
   selector: 'app-root',
-  template: '<h1>Hello {{name$ | async}}</h1>'
+  template: '&lt;h1&gt;Hello {{name$ | async}}&lt;/h1&gt;'
 })
 export class AppComponent {
   name$: Observable&lt;string&gt; = Observable.create((observer: Observer&lt;string&gt;) => {
