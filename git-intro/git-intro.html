@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Git introduction - devonfw ng2 training</title>
+    <link rel="icon" href="../common/img/favicon.ico">
+
+    <link rel="stylesheet" href="../reveal.js-3.3.0/css/reveal.css">
+    <link rel="stylesheet" href="../reveal.js-3.3.0/css/theme/black.css">
+    <link rel="stylesheet" href="../common/css/common.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../reveal.js-3.3.0/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../reveal.js-3.3.0/css/print/pdf.css' : '../reveal.js-3.3.0/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <style>
+        .reveal div.git-command {
+            display: inline-block;
+            width: 32%;
+            font-size: 27px;
+            text-align: left;
+        }
+        .reveal div.explanation {
+            display: inline-block;
+            width: 65%;
+            font-size: 27px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<section class="devon-link">
+    <a href="http://devonfw.github.io" target="_blank"><img height="50px" src="../common/img/devon_logo_white.png"></a>
+</section>
+<section class="angular-link">
+    <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
+</section>
+<div class="devon reveal">
+    <div class="slides">
+        <section >
+            <h1>Introduction to Git</h1>
+        </section>
+        <section>
+            <h2>You should know about Git</h2>
+            <ul>
+                <li>Your git folder contains the whole repository</li>
+                <li>No access to the remote repository is needed for branch switching</li>
+                <li>You can commit changes without sending the commit to the remote repository</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Git Cheat Sheet</h2>
+            <div class="git-command">git add .</div>
+            <div class="explanation">Adds all changed files to the next commit</div>
+            <div class="git-command">git commit -m 'message'</div>
+            <div class="explanation">Commits Changes with the specified message</div>
+            <div class="git-command">git checkout &lt;branch&gt;</div>
+            <div class="explanation">Checks aus the specified branch</div>
+            <div class="git-command">git push</div>
+            <div class="explanation">get changes from the remote repository</div>
+            <div class="git-command">git pull</div>
+            <div class="explanation">Pushes commits to the remote repository</div>
+            <div class="git-command">git reset --hard</div>
+            <div class="explanation">Reverts all changes since the last commit</div>
+        </section>
+    </div>
+</div>
+
+<script src="../reveal.js-3.3.0/lib/js/head.min.js"></script>
+<script src="../reveal.js-3.3.0/js/reveal.js"></script>
+
+<script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        history: true,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+            { src: '../reveal.js-3.3.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: '../reveal.js-3.3.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../reveal.js-3.3.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../reveal.js-3.3.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: '../reveal.js-3.3.0/plugin/zoom-js/zoom.js', async: true },
+            { src: '../reveal.js-3.3.0/plugin/notes/notes.js', async: true }
+        ]
+    });
+</script>
+</body>
+</html>
