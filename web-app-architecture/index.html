@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Web Application Architecture</title>
+
+    <meta name="description" content="Web Application Architecture">
+    <meta name="author" content="Tim Lüecke, Marek Matczak">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="../base/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../base/reveal.js/css/theme/white.css" id="theme">
+    <link rel="stylesheet" href="css/own.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../base/reveal.js/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../base/reveal.js/css/print/pdf.css' : '../base/reveal.js/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="../base/reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+        <section>
+            <p>
+                <img class="plain" height="300" src="img/architecture.jpg">
+            </p>
+            <h2>Web Application</h2>
+            <h1>Architecture</h1>
+            <p>Tim Lüecke, Marek Matczak</p>
+        </section>
+        <section>
+            <h1>Client Infrastructure</h1>
+            <h2>(a.k.a. TI-Architecture)</h2>
+        </section>
+        <section>
+            <h2>Classical Web Applications</h2>
+            <div class="pull-left">
+                <img class="plain" height="300" src="img/classical-web-apps.png">
+            </div>
+            <div>
+                <p>
+                    The content of each web page is fully <strong>rendered on the server</strong>. Each action requires
+                    a <strong>round trip to the server</strong> which contains <strong>presentation logic</strong>
+                    and <strong>application state</strong>.
+                </p>
+            </div>
+        </section>
+        <section>
+            <h2>Single Page Applications</h2>
+            <div class="pull-left">
+                <img class="plain" height="300" src="img/spas.png">
+            </div>
+            <div>
+                <p>
+                    The content of a page is retrieved with a <strong>single page load</strong>. However, additional
+                    resources may <strong>dynamically</strong> be loaded and added to the page as necessary. The page
+                    <strong>does not reload</strong> any more.
+                </p>
+            </div>
+        </section>
+        <section>
+            <div class="pull-left">
+                <img class="plain" height="230" src="img/challenge.gif">
+            </div>
+            <div>
+                <h2>Challenges</h2>
+                <h3>of Single Page Applications</h3>
+            </div>
+            <ul>
+                <li><strong>Bookmarking, Forward/Back Buttons</strong> - can be solved by the History API / fallback to
+                    hashbang URLs
+                </li>
+                <li><strong>Search engines optimization</strong> - can be solved by rendering a static HTML which is
+                    then returned crawlers,
+                    see <a href="https://prerender.io">Prerender</a></li>
+                <li><strong>Speed of initial load</strong> - can be solved by asynchronous loading of JavaScript modules
+                    or so called <a href="https://prerender.io">isomorphic JavaScript</a></li></li>
+            </ul>
+        </section>
+        <section>
+            <h1>Client Architecture</h1>
+            <h2>(a.k.a. T-Architecture)</h2>
+        </section>
+        <section>
+            <h2>Model View Controller</h2>
+            <div>
+                <img class="plain" height="300" src="img/mvc.png">
+            </div>
+            <div>
+                <a href="https://youtu.be/qsNGA8OFE1E">MVC Song</a>
+            </div>
+        </section>
+        <section>
+            <h2>Model View Presenter</h2>
+            <img class="plain" height="300" src="img/mvp.png">
+        </section>
+        <section>
+            <h2>Model View View Model</h2>
+            <img class="plain" height="300" src="img/mvvm.png">
+        </section>
+        <section>
+            <h2>Flux</h2>
+            <h3>Unidirectional Data Flow</h3>
+            <img class="plain" height="400" src="img/flux.png">
+        </section>
+        <section>
+            <h2>Open Questions</h2>
+            <ul>
+                <li>How is the data <strong>converted</strong> from the allowed value set and value type in the model to the value set and type in the View?</li>
+                <li>Where does <strongb>Internationalization</strong> happen?</li>
+                <li>What about <strongb>validation</strong> of user input?</li>
+                <li>How does the client <strong>talk to the application core</strong>?</li>
+                <li>What about dialog <strong>states</strong> and widget states? Are states data or are they something else?</li>
+                <li>What about states that are <strong>dependent on other states</strong>?</li>
+                <li>How to design that a state controls if an <strong>action</strong> can be executed or not?</li>
+                <li>How does the <strong>model</strong> look exactly?</li>
+                <li>Do I need <strong>observerable TOs</strong>? </li>
+                <li>…</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Projects gone wrong</h2>
+            <p>TODO: list of examples where simple patterns are not enough...</p>
+        </section>
+        <section>
+            <h2>Let's step back</h2>
+            <p>What we are trying to achieve, is a <strong>maintainable</strong> client.</p>
+            <p>For that we need to handle its <strong>complexity</strong>.</p>
+            <p>Complexity comes in two dimensions:</p>
+            <ul>
+                <li>Functional complexity</li>
+                <li>Technical complexity</li>
+            </ul>
+        </section>
+        <section>
+            <section>
+                <h1>Handling Functional Complexity</h1>
+            </section>
+            <section>
+                <h2>Entering component-oriented architecture</h2>
+                <p>Split application into functional components handling a specific functional concern.</p>
+                <p>Features of components</p>
+                <ul>
+                    <li>Providing services to other components via interfaces</li>
+                    <li>Depends on other components by importing their services</li>
+                    <li>Encapsulated: implementation can be replaced</li>
+                    <li>Element of reuse</li>
+                    <li>Composed of other components (composition hierarchy)</li>
+                    <li>Feasable unit of construction, implementation and planning</li>
+                </ul>
+                <p>On the client components are called <strong>dialogs</strong>.</p>
+            </section>
+            <section>
+                <h2>Example: How do we handle dialogs such as this?</h2>
+                <img class="plain" src="img/complex-dialog.png" />
+            </section>
+            <section>
+                <h2>Functional decomposition into dialog components</h2>
+                <img class="plain" height="300px" src="img/complex-dialog-decomposed.png" >
+                <img class="plain" height="300px"   src="img/complex-dialog-hierarchy.png" />
+                <p>Car configurator could then be reused for public website.</p>
+            </section>
+            <section>
+                <h2>OASP Client Architecture</h2>
+                <p>
+                    In OASP we aim at a dialog-component-based architecture differentiating between the dialog 
+                    components, their managing container and the server access layer:
+                </p>
+                <img class="plain" src="img/OASP_ClientArchitecture_Overview.png" />
+                <p>For a concrete framework, this requires tayloring how this is achieved.</p>
+                <a href="https://github.com/devonfw/devon-methodology/wiki/OASP-Client-Architecture">s. Devon methodology</a>
+            </section>
+            <section>
+                <h2>Dialog Container Architecture</h2>
+                <p>The container is responsible for the configuration, lifecycle-management and bootstrapping of the dialogs and client application.</p>
+                <img class="plain" src="img/OASP_ClientArchitecture_DialogContainer.png" />
+                <p>Mostly provided by framework, but might need to be extended.</p>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h1>Handling Technical Complexity</h1>
+            </section>
+            <section>
+                <h2>Technical Tasks of a client</h2>
+                <ul>
+                    <li>Displaying the user interface</li>
+                    <li>Displaying (business) data</li>
+                    <li>Accepting user input</li>
+                    <li>Controlling the dialog and dialog flow</li>
+                    <li>Validating of user input</li>
+                    <li>Controlling the presentation state</li>           
+                    <li>Calling the server for logic</li>
+                </ul>
+            </section>
+            <section>
+                <h2>OASP Dialog Component Architecture</h2>
+                <p>Distribute the responsibility of these tasks along the depicted components following the separation of concerns principle.</p>
+                <img class="plain" src="img/OASP_ClientArchitecture_DialogComponent.png" />
+            </section>
+            <section>
+                <h2>Interactions between dialogs</h2>
+                <p>Dialog components interact with each by either embedding each other or forwarding the control flow to each other</p>
+                <img class="plain" src="img/OASP_ClientArchitecture_DialogInteractions.png" />
+            </section>
+        </section>
+        <section>
+            <h2>Summary: OASP Architeture</h2>
+            <img class="plain" src="img/OASP_ClientArchitecture_CompleteOverview.png" />
+            <p>The OASP Client Architecture is a meta-architecture for arhcitectues based on a concrete framework:</p>
+            <ul>
+                <li>serving as a blueprint for checking completeness</li>
+                <li>providing a stable orientation</li>
+            </ul>
+        </section>
+        <section>
+            <section>
+                <h2>OASP4JS Architecture</h2>
+                <h3>Based on Angular</h3>
+                <ul>
+                    <li>Implementation of meta-architecture based on Angular</li>
+                    <li>Taking over the Angular best practices</li>
+                    <li>Filling the gaps where needed</li>
+                </ul>
+                <a href="https://github.com/devonfw/devon-methodology/wiki/OASP-Angular-Architecture">s. Devon methodology</a>
+            </section>
+            <section>
+                <h2>Angular Dialog Container</h2>
+                <ul>
+                    <li>Application provided by Angular root module bootrapped by framework</li>
+                    <li>Shared module for implementing reused components</li>
+                    <li>Angular Injector as service registry configured by root module</li>
+                    <li>Environment class as configuration management</li>
+                    <li>Dialog management by the Angular framework itself</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Angular Dialog components</h2>
+                <p>Possible representation of dialog components in Angular</p>
+                <ul>
+                    <li>One component with or without HTML template for simple dialogs</li>
+                    <li>
+                        One module for complex dialogs consisting of different sub components, e.g.
+                        <ul>
+                            <li>Smart components</li>
+                            <li>Dumb components</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h2>Angular Dialog Architecture</h2>
+            </section>
+            <section>
+                <h3>View Layer</h3>
+                <ul>
+                    <li>View represented by HTML template for simple dialogs or dumb components for complex dialogs</li>
+                    <li>DOM tree and attributes as presentation data</li>
+                    <li>Applied CSS styles as presentation state</li>
+                    <li>DOM events as presentation events</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Presentation Layer</h3>
+                <ul>
+                    <li>Data binding:
+                        <ul>
+                            <li>via two-way binding for simple components</li>
+                            <li>One way data binding + event handling for smart/dumb component pattern</li>
+                        </ul>
+                    </li>
+                    <li>Action binding by via events</li>
+                    <li>State binding: see data binding</li>
+                </ul>
+                <p>TODO: pipes and directives</p>
+            </section>
+            <section>
+                <h3>Dialog Core layer</h3>
+                <ul>
+                    <li>Data storage and dialog state via State service</li>
+                    <li>Action processing by smart component methods registered on state observables</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Dialog Interactions</h3>
+                <ul>
+                    <li>Embedding naturely supporting by using selector in template</li>
+                    <li>Dialog flow implemented by Angular Router</li>
+                </ul>
+            </section>
+        </section>
+    </div>
+</div>
+<script src="../base/reveal.js/lib/js/head.min.js"></script>
+<script src="../base/reveal.js/js/reveal.js"></script>
+<script>
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        minScale: 1,
+        maxScale: 1,
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+            {
+                src: '../base/reveal.js/lib/js/classList.js',
+                condition: function () {
+                    return !document.body.classList;
+                }
+            },
+            {
+                src: '../base/reveal.js/plugin/markdown/marked.js',
+                condition: function () {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            },
+            {
+                src: '../base/reveal.js/plugin/markdown/markdown.js',
+                condition: function () {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            },
+            {
+                src: '../base/reveal.js/plugin/highlight/highlight.js',
+                async: true,
+                condition: function () {
+                    return !!document.querySelector('pre code');
+                },
+                callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            },
+            {
+                src: '../base/reveal.js/plugin/zoom-js/zoom.js',
+                async: true
+            },
+            {
+                src: '../base/reveal.js/plugin/notes/notes.js',
+                async: true
+            }
+        ]
+    });
+</script>
+
+</body>
+
+</html>
