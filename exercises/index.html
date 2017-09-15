@@ -351,12 +351,35 @@
         </section>
 
 		<section id="http">
+            <!--<section>-->
+                <!--<h3>Http (1/2)</h3>-->
+                <!--<ol>-->
+                    <!--<li>Prepare a server of your choice :)</li>-->
+					<!--<li>Add a Adjust the proxy configuration in the <span class="highlight monospace">oasp4js.config.json</span> file</li>-->
+                <!--</ol>-->
+            <!--</section>-->
             <section>
                 <h3>Http (1/2)</h3>
-                <ol>
-                    <li>Prepare a server of your choice :)</li>
-					<li>Add a Adjust the proxy configuration in the <span class="highlight monospace">oasp4js.config.json</span> file</li>
-                </ol>
+                <p>
+                    We prepared a server for you.<br>
+                    User the following commands for startup
+                </p>
+
+                <ul>
+                    <li>"npm run start" - starts angular server with reverse proxy</li>
+                    <li>"npm run server" - starts the rest server</li>
+                </ul>
+
+                <p>
+                    <br>Possible REST calls:
+                </p>
+
+                <ul>
+                    <li>get http://localhost:4200/services/rest/books</li>
+                    <li>get http://localhost:4200/services/rest/book/:id</li>
+                    <li>post http://localhost:4200/services/rest/book</li>
+                </ul>
+
             </section>
 			<section>
                 <h3>Http (2/2)</h3>
