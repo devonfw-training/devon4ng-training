@@ -248,16 +248,6 @@
                 </ul>
             </section>
             <section>
-                <h2>Angular Dialog Container</h2>
-                <ul>
-                    <li>Application provided by Angular root module bootrapped by framework</li>
-                    <li>Shared module for implementing reused components</li>
-                    <li>Angular Injector as service registry configured by root module</li>
-                    <li>Environment class as configuration management</li>
-                    <li>Dialog management by the Angular framework itself</li>
-                </ul>
-            </section>
-            <section>
                 <h3>Angular Configuration Management</h3>
                 <h4>Definition</h4>
                 <pre data-trim><code data-trim class="json">
@@ -288,60 +278,66 @@ this.http.get&lt;Flight[]&gt;(environment.backendUrl + '/flights');
             <section>
                 <h3>Angular Dialog / Dependency Management</h3>
                 <img style="border: none; box-shadow: none" src="./img/injector-bubbling.svg" alt="">
-                <p style="margin: 0; padding: 0">When Angular compiler creates HeaderComponent injectors are asked until the depency can be found or root injector can not handle</p>
+                <p style="margin: 0; padding: 0">When Angular compiler creates HeaderComponent injectors are asked until the dependency can be found or root injector can not handle</p>
             </section>
             <section>
-                <h2>Angular Dialog components</h2>
-                <p>Possible representation of dialog components in Angular</p>
+                <h3>Layers</h3>
+                <img style="border: none; box-shadow: none" src="./img/architecture-layers.svg">
+            </section>
+            <section>
+                <h3>Modules</h3>
+                <img style="border: none; box-shadow: none" src="./img/architecture-modules.svg">
+            </section>
+            <section>
+                <table style="width: 100%; font-size: 26px">
+                    <thead>
+                        <tr style="font-size: 45px;">
+                            <td style="width: 50%">Smart Components</td>
+                            <td style="width: 50%">Dumb Components</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>contain the current view state</td>
+                            <td data-markdown>show data via `@Input` binding and contain no view state</td>
+                        </tr>
+                        <tr>
+                            <td data-markdown>handle events emited by _Dumb Components_</td>
+                            <td data-markdown>pass events up the component tree to be handled by _Smart Components_ (`@Output`)</td>
+                        </tr>
+                        <tr>
+                            <td>subscribe to application state from stores</td>
+                            <td>never use stores</td>
+                        </tr>
+                        <tr>
+                            <td data-markdown>consists of n _Dumb Components_</td>
+                            <td data-markdown>is independent of _Smart Components_</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section>
+                <h3 data-markdown>A _Smart Component_ is typically a toplevel dialog</h3>
                 <ul>
-                    <li>One component with or without HTML template for simple dialogs</li>
-                    <li>
-                        One module for complex dialogs consisting of different sub components, e.g.
-                        <ul>
-                            <li>Smart components</li>
-                            <li>Dumb components</li>
-                        </ul>
-                    </li>
+                    <li>a component that can be routed to</li>
+                    <li>a modal dialog</li>
+                    <li>a component which is placed inside AppComponent</li>
                 </ul>
             </section>
             <section>
-                <h2>Angular Dialog Architecture</h2>
+                <h3>Dumb - Smart Component Interaction</h3>
+                <img style="border: none; box-shadow: none" src="./img/smart-dumb-components.svg">
             </section>
             <section>
-                <h3>View Layer</h3>
-                <ul>
-                    <li>View represented by HTML template for simple dialogs or dumb components for complex dialogs</li>
-                    <li>DOM tree and attributes as presentation data</li>
-                    <li>Applied CSS styles as presentation state</li>
-                    <li>DOM events as presentation events</li>
-                </ul>
+                <h3>Smart Component Interaction</h3>
+                <h4>abstract</h4>
+                <img style="border: none; box-shadow: none" src="./img/smart-smart-components.svg">
             </section>
             <section>
-                <h3>Presentation Layer</h3>
-                <ul>
-                    <li>Data binding:
-                        <ul>
-                            <li>via two-way binding for simple components</li>
-                            <li>One way data binding + event handling for smart/dumb component pattern</li>
-                        </ul>
-                    </li>
-                    <li>Action binding by via events</li>
-                    <li>State binding: see data binding</li>
-                </ul>
-            </section>
-            <section>
-                <h3>Dialog Core layer</h3>
-                <ul>
-                    <li>Data storage and dialog state via State service</li>
-                    <li>Action processing by smart component methods registered on state observables</li>
-                </ul>
-            </section>
-            <section>
-                <h3>Dialog Interactions</h3>
-                <ul>
-                    <li>Embedding naturely supporting by using selector in template</li>
-                    <li>Dialog flow implemented by Angular Router</li>
-                </ul>
+                <h3>Smart Component Interaction</h3>
+                <h4>example</h4>
+                <img style="border: none; box-shadow: none" src="./img/smart-smart-components-example.svg">
+                <p>Shown is the action of loading flights which is triggert by FlightSearchComponent.</p>
             </section>
         </section>
     </div>
