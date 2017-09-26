@@ -15,12 +15,15 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-    <link rel="stylesheet" href="../base/reveal.js/css/reveal.css">
-    <link rel="stylesheet" href="../base/reveal.js/css/theme/white.css" id="theme">
-    <link rel="stylesheet" href="css/own.css">
+    <link rel="stylesheet" href="../reveal.js-3.3.0/css/reveal.css">
+    <link rel="stylesheet" href="../base/reveal.js/css/theme/simple.css" id="theme">
+    <link rel="stylesheet" href="../common/css/light-code.css">
 
-    <!-- Code syntax highlighting -->
-    <link rel="stylesheet" href="../base/reveal.js/lib/css/zenburn.css">
+    <link rel="stylesheet" href="../common/css/common.css">
+    <link rel="stylesheet" href="styles/own.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../reveal.js-3.3.0/lib/css/zenburn.css">
 
     <!-- Printing and PDF exports -->
     <script>
@@ -243,7 +246,6 @@
                     <li>Taking over the Angular best practices</li>
                     <li>Filling the gaps where needed</li>
                 </ul>
-                <a href="https://github.com/devonfw/devon-methodology/wiki/OASP-Angular-Architecture">s. Devon methodology</a>
             </section>
             <section>
                 <h2>Angular Dialog Container</h2>
@@ -254,6 +256,39 @@
                     <li>Environment class as configuration management</li>
                     <li>Dialog management by the Angular framework itself</li>
                 </ul>
+            </section>
+            <section>
+                <h3>Angular Configuration Management</h3>
+                <h4>Definition</h4>
+                <pre data-trim><code data-trim class="json">
+"environmentSource": "environments/environment.ts",
+"environments": {
+    "dev": "environments/environment.ts",
+    "ci": "environments/environment.ci.ts",
+    "staging": "environments/environment.staging.ts",
+    "prod": "environments/environment.prod.ts"
+}
+                </code></pre>
+                <p>.angular-cli.json</p>
+                <img style="border: none; box-shadow: none" src="./img/angular-configuration-management.svg">
+            </section>
+            <section>
+                <h3>Angular Configuration Management</h3>
+                <h4>Usage</h4>
+                <pre data-trim><code data-trim class="typescript">
+// Import Statement
+import { environment } from '../../../environments/environment';
+                </code></pre>
+                <pre data-trim><code data-trim class="typescript">
+// Usage
+this.http.get&lt;Flight[]&gt;(environment.backendUrl + '/flights');
+                </code></pre>
+                <p>The import statement does not change when changing the environment.</p>
+            </section>
+            <section>
+                <h3>Angular Dialog / Dependency Management</h3>
+                <img style="border: none; box-shadow: none" src="./img/injector-bubbling.svg" alt="">
+                <p style="margin: 0; padding: 0">When Angular compiler creates HeaderComponent injectors are asked until the depency can be found or root injector can not handle</p>
             </section>
             <section>
                 <h2>Angular Dialog components</h2>
@@ -293,7 +328,6 @@
                     <li>Action binding by via events</li>
                     <li>State binding: see data binding</li>
                 </ul>
-                <p>TODO: pipes and directives</p>
             </section>
             <section>
                 <h3>Dialog Core layer</h3>
