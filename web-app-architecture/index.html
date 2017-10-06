@@ -130,9 +130,10 @@
         <section>
             <h2>Open Questions</h2>
             <ul>
+                <li>How to structure huge applications with many interdependent dialogs?</li>
                 <li>How is the data <strong>converted</strong> from the allowed value set and value type in the model to the value set and type in the View?</li>
-                <li>Where does <strongb>Internationalization</strong> happen?</li>
-                <li>What about <strongb>validation</strong> of user input?</li>
+                <li>Where does <strong>Internationalization</strong> happen?</li>
+                <li>What about <strong>validation</strong> of user input?</li>
                 <li>How does the client <strong>talk to the application core</strong>?</li>
                 <li>What about dialog <strong>states</strong> and widget states? Are states data or are they something else?</li>
                 <li>What about states that are <strong>dependent on other states</strong>?</li>
@@ -197,7 +198,7 @@
                 <p>Car configurator could then be reused for public website.</p>
             </section>
             <section>
-                <h2>OASP Client Architecture</h2>
+                <h2>OASP Client Meta Architecture</h2>
                 <p>
                     In OASP we aim at a dialog-component-based architecture differentiating between the dialog 
                     components, their managing container and the server access layer:
@@ -205,6 +206,11 @@
                 <img class="plain" src="img/OASP_ClientArchitecture_Overview.png" />
                 <p>For a concrete framework, this requires tayloring how this is achieved.</p>
                 <a href="https://github.com/devonfw/devon-methodology/wiki/OASP-Client-Architecture">s. Devon methodology</a>
+            </section>
+            <section>
+                <h2>Interactions between dialogs</h2>
+                <p>Dialog components interact by either embedding each other or forwarding the control flow to each other.</p>
+                <img class="plain" src="img/OASP_ClientArchitecture_DialogInteractions.png" />
             </section>
             <section>
                 <h2>Dialog Container Architecture</h2>
@@ -230,20 +236,16 @@
                 </ul>
             </section>
             <section>
-                <h2>OASP Dialog Component Architecture</h2>
-                <p>Distribute the responsibility of these tasks along the depicted components following the separation of concerns principle.</p>
+                <h2>OASP Dialog Component Meta Architecture</h2>
+                <p>The <strong>internal view</strong> of one dialog component distributes the responsibility for the client tasks along the depicted components following the separation of concerns principle.</p>
                 <img class="plain" src="img/OASP_ClientArchitecture_DialogComponent.png" />
-            </section>
-            <section>
-                <h2>Interactions between dialogs</h2>
-                <p>Dialog components interact with each by either embedding each other or forwarding the control flow to each other</p>
-                <img class="plain" src="img/OASP_ClientArchitecture_DialogInteractions.png" />
+                <p>This meta architecture maps to MVC, MVP, MVVM...</p>
             </section>
         </section>
         <section>
             <h2>Summary: OASP Architeture</h2>
             <img class="plain" src="img/OASP_ClientArchitecture_CompleteOverview.png" />
-            <p>The OASP Client Architecture is a meta-architecture for arhcitectues based on a concrete framework:</p>
+            <p>The OASP Client Architecture is a meta-architecture for architectures based on a concrete framework:</p>
             <ul>
                 <li>serving as a blueprint for checking completeness</li>
                 <li>providing a stable orientation</li>
@@ -349,7 +351,7 @@ this.http.get&lt;Flight[]&gt;(environment.backendUrl + '/flights');
                 <h3>Smart Component Interaction</h3>
                 <h4>example</h4>
                 <img style="border: none; box-shadow: none" src="./img/smart-smart-components-example.svg">
-                <p>Shown is the action of loading flights which is triggert by FlightSearchComponent.</p>
+                <p>Shown is the action of loading flights which is triggered by FlightSearchComponent.</p>
             </section>
         </section>
     </div>
