@@ -144,16 +144,28 @@
         </section>
         <section>
             <h2>Projects gone wrong</h2>
-            <p>TODO: list of examples where simple patterns are not enough...</p>
+            <ul>
+                <li>Memory leak: Browser tab grows to 2GB, unresponsive script warnings. Dialogs were not unloaded. Control unloading in the framework!</li>
+                <li>Cardinal performance mistake: Unlimited loading of data to the client. Do paging, filtering, sorting, and grouping on the server side!</li>
+                <li>Performance: Mass manipulation in the DOM caused unnecessary rendering of intermediate results (forced reflow). Render at the end!</li>
+                <li>Control flow/wrong abstraction: Methods reused at the wrong level cause duplicate calls and performance issues. Event listeners triggering new
+                    events are hard to debug. Avoid!</li>
+                <li>Browser differences: It's done! Does it work in IE? Err... Avoid rolling your own if there is a library!</li>
+            </ul>
         </section>
         <section>
             <h2>Let's step back</h2>
-            <p>What we are trying to achieve, is a <strong>maintainable</strong> client.</p>
-            <p>For that we need to handle its <strong>complexity</strong>.</p>
-            <p>Complexity comes in two dimensions:</p>
+            <p>What we are trying to achieve, is a <strong>maintainable</strong> and <strong>performant</strong> client.</p>
+            <p>For that we need to handle its static and dynamic <strong>complexity</strong>.</p>
+            <p>Static complexity comes in two dimensions:</p>
             <ul>
                 <li>Functional complexity</li>
                 <li>Technical complexity</li>
+            </ul>
+            <p>Dynamic complexity needs to consider:</p>
+            <ul>
+                <li>Amount of processed data</li>
+                <li>Granularity of backend calls</li>
             </ul>
         </section>
         <section>
@@ -170,7 +182,7 @@
                     <li>Encapsulated: implementation can be replaced</li>
                     <li>Element of reuse</li>
                     <li>Composed of other components (composition hierarchy)</li>
-                    <li>Feasable unit of construction, implementation and planning</li>
+                    <li>Feasible unit of construction, implementation and planning</li>
                 </ul>
                 <p>On the client components are called <strong>dialogs</strong>.</p>
             </section>
