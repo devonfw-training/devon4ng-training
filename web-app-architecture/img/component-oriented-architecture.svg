@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="163.66066mm"
+   height="62.060669mm"
+   viewBox="0 0 163.66066 62.060669"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.1 r15371"
+   sodipodi:docname="component-oriented-architecture.svg">
+  <defs
+     id="defs2">
+    <clipPath
+       id="clipPath3696"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         style="clip-rule:evenodd"
+         inkscape:connector-curvature="0"
+         id="path3694"
+         d="M 0,1.2207e-4 H 960 V 540.00012 H 0 Z" />
+    </clipPath>
+    <clipPath
+       id="clipPath3710"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         style="clip-rule:evenodd"
+         inkscape:connector-curvature="0"
+         id="path3708"
+         d="M 1.4305e-5,0 H 960.00001 V 540 H 1.4305e-5 Z" />
+    </clipPath>
+    <clipPath
+       id="clipPath3724"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         style="clip-rule:evenodd"
+         inkscape:connector-curvature="0"
+         id="path3722"
+         d="M 1.4305e-5,0 H 960.00001 V 540 H 1.4305e-5 Z" />
+    </clipPath>
+    <clipPath
+       id="clipPath3738"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         style="clip-rule:evenodd"
+         inkscape:connector-curvature="0"
+         id="path3736"
+         d="M 1.4305e-5,0 H 960.00001 V 540 H 1.4305e-5 Z" />
+    </clipPath>
+    <clipPath
+       id="clipPath3752"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         style="clip-rule:evenodd"
+         inkscape:connector-curvature="0"
+         id="path3750"
+         d="M 1.4305e-5,0 H 960.00001 V 540 H 1.4305e-5 Z" />
+    </clipPath>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="395.67999"
+     inkscape:cy="45.280126"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="867"
+     inkscape:window-height="577"
+     inkscape:window-x="463"
+     inkscape:window-y="73"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-1.1430026,-98.75303)">
+    <path
+       d="M 1.1430026,160.8137 H 164.80367 V 98.75303 H 1.1430026 Z"
+       style="fill:#d9d9d9;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.35277778"
+       id="path3700"
+       inkscape:connector-curvature="0" />
+    <path
+       d="M 6.7733358,155.7337 H 39.243002 V 105.23003 H 6.7733358 Z"
+       style="fill:#5b9bd5;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.35277778"
+       id="path3702"
+       inkscape:connector-curvature="0" />
+    <g
+       id="g3704"
+       transform="matrix(0.35277777,0,0,-0.35277777,-63.499996,244.08336)">
+      <g
+         id="g3706"
+         clip-path="url(#clipPath3710)">
+        <text
+           transform="matrix(1,0,0,-1,216.19,315.94)"
+           style="font-variant:normal;font-weight:normal;font-size:18px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+           id="text3714">
+          <tspan
+             x="0 8.6219997 16.236 23.634001 33.119999 42.57 51.948002"
+             y="0"
+             sodipodi:role="line"
+             id="tspan3712">account</tspan>
+        </text>
+      </g>
+    </g>
+    <path
+       d="M 47.963668,155.7337 H 79.163334 V 105.23003 H 47.963668 Z"
+       style="fill:#5b9bd5;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.35277778"
+       id="path3716"
+       inkscape:connector-curvature="0" />
+    <g
+       id="g3718"
+       transform="matrix(0.35277777,0,0,-0.35277777,-63.499996,244.08336)">
+      <g
+         id="g3720"
+         clip-path="url(#clipPath3724)">
+        <text
+           transform="matrix(1,0,0,-1,324.34,315.94)"
+           style="font-variant:normal;font-weight:normal;font-size:18px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+           id="text3728">
+          <tspan
+             x="0 4.086 13.536 23.021999 32.472 39.348 45.377998 51.588001 55.674 64.638"
+             y="0"
+             sodipodi:role="line"
+             id="tspan3726">industries</tspan>
+        </text>
+      </g>
+    </g>
+    <path
+       d="M 87.926334,155.7337 H 119.08367 V 105.23003 H 87.926334 Z"
+       style="fill:#5b9bd5;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.35277778"
+       id="path3730"
+       inkscape:connector-curvature="0" />
+    <g
+       id="g3732"
+       transform="matrix(0.35277777,0,0,-0.35277777,-63.499996,244.08336)">
+      <g
+         id="g3734"
+         clip-path="url(#clipPath3738)">
+        <text
+           transform="matrix(1,0,0,-1,457.22,315.94)"
+           style="font-variant:normal;font-weight:normal;font-size:18px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+           id="text3742">
+          <tspan
+             x="0 5.04 14.004 23.021999"
+             y="0"
+             sodipodi:role="line"
+             id="tspan3740">feed</tspan>
+        </text>
+      </g>
+    </g>
+    <path
+       d="m 127.84667,155.7337 h 31.19966 v -50.50367 h -31.19966 z"
+       style="fill:#5b9bd5;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.35277778"
+       id="path3744"
+       inkscape:connector-curvature="0" />
+    <g
+       id="g3746"
+       transform="matrix(0.35277777,0,0,-0.35277777,-63.499996,244.08336)">
+      <g
+         id="g3748"
+         clip-path="url(#clipPath3752)">
+        <text
+           transform="matrix(1,0,0,-1,580.39,315.94)"
+           style="font-variant:normal;font-weight:normal;font-size:18px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+           id="text3756">
+          <tspan
+             x="0"
+             y="0"
+             id="tspan3754">…</tspan>
+        </text>
+      </g>
+    </g>
+  </g>
+</svg>
