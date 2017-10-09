@@ -206,21 +206,6 @@
                 <img class="plain no-border" height="300px" src="img/complex-dialog-hierarchy.png" />
                 <p>Car configurator could then be reused for public website.</p>
             </section>
-            <section>
-                <h2>OASP Client Meta Architecture</h2>
-                <img class="no-border" height="350px" src="img/OASP_ClientArchitecture_Overview.png" />
-            </section>
-            <section>
-                <h2>Interactions between dialogs</h2>
-                <img class="plain no-border" src="img/OASP_ClientArchitecture_DialogInteractions.png" />
-                <p>Dialog components interact by either embedding each other or forwarding the control flow to each other.</p>
-            </section>
-            <section>
-                <h2>Dialog Container Architecture</h2>
-                <p>The container is responsible for the configuration, lifecycle-management and bootstrapping of the dialogs and client application.</p>
-                <img class="plain no-border" src="img/OASP_ClientArchitecture_DialogContainer.png" />
-                <p>Mostly provided by framework, but might need to be extended.</p>
-            </section>
         </section>
         <section>
             <section>
@@ -239,8 +224,26 @@
                 </ul>
             </section>
             <section>
+                <h2>OASP Client Meta Architecture</h2>
+                <img class="no-border" height="350px" src="img/OASP_ClientArchitecture_Overview.png" />
+            </section>
+            <section>
+                <h2>Dialog Container Architecture</h2>
+                <p>The container is responsible for the configuration, lifecycle-management and bootstrapping of the dialogs and client application.</p>
+                <img class="plain no-border" src="img/OASP_ClientArchitecture_DialogContainer.png" />
+                <p>Mostly provided by framework, but might need to be extended.</p>
+            </section>
+            <section>
+                <h2>Dialog Components</h2>
+                <img class="plain no-border" src="img/OASP_ClientArchitecture_DialogInteractions.png" />
+                <p>Dialog components interact by either embedding each other or forwarding the control flow to each other.</p>
+            </section>
+            <section>
                 <h3>OASP Dialog Component Meta Architecture</h3>
-                <img class="plain no-border" src="img/OASP_ClientArchitecture_DialogComponent.png" />
+                <div style="display:flex;">
+                    <img class="no-border" style="height:200px;" src="img/single-dialog-component-highlighted.png" alt="">
+                    <img class="plain no-border" style="height:400px;margin-left:0" src="img/OASP_ClientArchitecture_DialogComponent.png" />
+                </div>
                 <p>This meta architecture maps to MVC, MVP, MVVM...</p>
             </section>
         </section>
