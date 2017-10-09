@@ -48,9 +48,11 @@
             <p>
                 <img class="plain no-border" height="300" src="img/architecture.jpg">
             </p>
-            <h2>Web Application</h2>
-            <h1>Architecture</h1>
-            <p>Tim Lüecke, Marek Matczak</p>
+            <h2>Web Application Architecture</h2>
+            <p>Tim Lüecke, Philip Schmökel, Marek Matczak</p>
+        </section>
+        <section>
+            <img class="no-border" height="600px" src="img/rewrite-frontend-every-six-weeks.jpg" alt="">
         </section>
         <section>
             <h1>Client Infrastructure</h1>
@@ -237,20 +239,25 @@
                 </ul>
             </section>
             <section>
-                <h2>OASP Dialog Component Meta Architecture</h2>
-                <p>The <strong>internal view</strong> of one dialog component distributes the responsibility for the client tasks along the depicted components following the separation of concerns principle.</p>
-                <img class="plain" src="img/OASP_ClientArchitecture_DialogComponent.png" />
+                <h3>OASP Dialog Component Meta Architecture</h3>
+                <img class="plain no-border" src="img/OASP_ClientArchitecture_DialogComponent.png" />
                 <p>This meta architecture maps to MVC, MVP, MVVM...</p>
             </section>
         </section>
         <section>
-            <h2>Summary: OASP Architeture</h2>
-            <img class="plain" src="img/OASP_ClientArchitecture_CompleteOverview.png" />
-            <p>The OASP Client Architecture is a meta-architecture for architectures based on a concrete framework:</p>
+            <h3>Summary: OASP Architecture</h3>
+            <img class="plain no-border" src="img/OASP_ClientArchitecture_CompleteOverview.png" />
+        </section>
+        <section>
+            <p>The OASP Client Architecture is a <strong>meta-architecture</strong> for architectures based on a concrete framework:</p>
             <ul>
                 <li>serving as a blueprint for checking completeness</li>
                 <li>providing a stable orientation</li>
             </ul>
+        </section>
+        <section>
+            <h3>Now let's move to Angular...</h3>
+            <h4>... and see the different concepts in action.</h4>
         </section>
         <section>
             <section>
@@ -261,6 +268,13 @@
                     <li>Taking over the Angular best practices</li>
                     <li>Filling the gaps where needed</li>
                 </ul>
+            </section>
+            <section>
+                <p>Mapping the Dialog Container...</p>
+                <img class="no-border" style="height:400px" src="img/OASP_ClientArchitecture_DialogContainer.png" alt="">
+            </section>
+            <section>
+                <img class="no-border" style="height:400px" src="img/config-management-highlighted.png" alt="">
             </section>
             <section>
                 <h3>Angular Configuration Management</h3>
@@ -291,17 +305,34 @@ this.http.get&lt;Flight[]&gt;(environment.backendUrl + '/flights');
                 <p>The import statement does not change when changing the environment.</p>
             </section>
             <section>
+                <img class="no-border" style="height:400px" src="img/dialog-management-highlighted.png" alt="">
+            </section>
+            <section>
+                <h3>Angular Component Lifecycle</h3>
+                <img class="no-border" src="img/hooks-in-sequence.png" alt="">
+            </section>
+            <section>
+                <img class="no-border" style="height:400px" src="img/service-registry-highlighted.png" alt="">
+            </section>
+            <section>
                 <h3>Angular Dialog / Dependency Management</h3>
-                <img style="border: none; box-shadow: none" src="./img/injector-bubbling.svg" alt="">
+                <img style="border: none; box-shadow: none; height:400px" src="./img/injector-bubbling.svg" alt="">
                 <p style="margin: 0; padding: 0">When Angular compiler creates HeaderComponent injectors are asked until the dependency can be found or root injector can not handle</p>
+            </section>
+            <section>
+                <h3>Application Overview</h3>
+            </section>
+            <section>
+                <h3>Modules</h3>
+                <img style="border: none; box-shadow: none" src="./img/architecture-modules.svg">
             </section>
             <section>
                 <h3>Layers</h3>
                 <img style="border: none; box-shadow: none" src="./img/architecture-layers.svg">
             </section>
             <section>
-                <h3>Modules</h3>
-                <img style="border: none; box-shadow: none" src="./img/architecture-modules.svg">
+                <h3>The Component Tree</h3>
+                <img class="no-border" src="img/component-tree.svg" alt="">
             </section>
             <section>
                 <table style="width: 100%; font-size: 26px">
@@ -340,13 +371,20 @@ this.http.get&lt;Flight[]&gt;(environment.backendUrl + '/flights');
                 </ul>
             </section>
             <section>
-                <h3>Dumb - Smart Component Interaction</h3>
-                <img style="border: none; box-shadow: none" src="./img/smart-dumb-components.svg">
+                <h3>A Smart Component is a mapped Dialog Component</h3>
+                <img class="no-border" style="height:400px" src="img/highlighted-smart-component.png" alt="">
             </section>
             <section>
-                <h3>Smart Component Interaction</h3>
-                <h4>abstract</h4>
-                <img style="border: none; box-shadow: none" src="./img/smart-smart-components.svg">
+                <h3>Dumb - Smart Component Interaction</h3>
+                <img style="border: none; box-shadow: none" src="./img/smart-dumb-components-interaction.svg">
+            </section>
+            <section>
+                <h3>Presentation Layer Boundaries</h3>
+                <img class="no-border" src="img/components-layer-service-layer-boundaries.svg" alt="">
+            </section>
+            <section>
+                <h3>Smart Component Interaction via Services Layer</h3>
+                <img class="no-border" src="img/smart-component-interaction-via-services-layer.svg" alt="">
             </section>
             <section>
                 <h3>Smart Component Interaction</h3>
