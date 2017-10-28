@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>devonfw ng2 training - _template</title>
+    <title>From JavaScript to TypeScript</title>
     <link rel="icon" href="../common/img/favicon.ico">
 
 
@@ -41,11 +41,11 @@
                 <img class="header-logo" src="img/js-logo.png" alt="javascript logo">
                 <img class="header-logo" src="img/ts-logo.png" alt="typescript logo">
             </p>
-            <p>From <span class="highlight">ES5</span> via <span class="highlight">ES2015</span> to <span class="highlight">TypeScript</span></p>
+            <p>From <strong>ES5</strong> via <strong>ES2015</strong> to <strong>TypeScript</strong></p>
         </section>
         <section>
             <p>
-                <p>ECMAScript (ES) first <span class="highlight">introduced 1997</span> turns 20 in 2017 and its popularity is <span class="highlight">still growing.</span></p>
+                <p>ECMAScript (ES) first <strong>introduced 1997</strong> turns 20 in 2017 and its popularity is <strong>still growing.</strong></p>
                 <p><small>5th PYPL (2017), 7th TIOBE Index (2017)</small></p>
             </p>
         </section>
@@ -54,17 +54,18 @@
             <ul>
                 <li>ES5 2009</li>
                 <li>ES2015 (f.k.a. ES6) 2015</li>
-                <li>TypeScript 2.1 2017</li>
+                <li>ES2016, ES2017</li>
+                <li>TypeScript 2.5 2017</li>
             </ul>
             <p><a href="http://caniuse.com/#search=es6" target="_blank">Can I use ES6 (Browsers Support)</a></p>
             <p><a href="http://node.green/" target="_blank">node.green (Node.js Support)</a></p>
         </section>
         <section>
             <h3>Why is ES5 still relevant</h3>
-            <p>Todays go to version considering <span class="highlight">compatibility</span>.</p>
-            <p>Older browsers (IE ...) can support ES5 code via <span class="highlight">polyfills</span> (shims).</p>
-            <p>Most TypeScript projects <span class="highlight">transpile</span> to it.</p>
-            <p>There are lots of <span class="highlight">legacy projects</span>, <span class="highlight">build scripts</span>, etc. written in ES5.</p>
+            <p>Todays go to version considering <strong>compatibility</strong>.</p>
+            <p>Older browsers (IE ...) can support ES5 code via <strong>polyfills</strong>.</p>
+            <p>Most TypeScript projects <strong>transpile</strong> to it.</p>
+            <p>There are lots of <strong>legacy projects</strong>, <strong>build scripts</strong>, etc. written in ES5.</p>
         </section>
         <section>
             <section>
@@ -83,11 +84,7 @@
                 <p>...is object oriented and functional at the same time</p>
             </section>
             <section>
-                <h3>Declaring variables (Hoisting)</h3>
-                <p>
-                    Always use <span class="highlight">var</span> to declare variables.
-                    If you don't, they become <span class="highlight">global</span> variables.
-                </p>
+                <h3>Hoisting</h3>
                 <div>
                     <pre><code data-trim class="javascript">
 var myVar = 'global';
@@ -98,7 +95,7 @@ var myFunction = function () {
 };
 myFunction();
 					</code></pre>
-                    <p>Variable declarations get <span class="highlight">hoisted to the top</span> of a function...</p>
+                    <p>Variable declarations get <strong>hoisted to the top</strong> of a function...</p>
                 </div>
                 <div>
                     <p>The above code behaves as if it looked like this:</p>
@@ -113,6 +110,44 @@ var myFunction = function () {
 myFunction();
 					</code></pre>
                 </div>
+            </section>
+            <section>
+                <p>
+                    Always use <strong>var</strong> to declare variables.
+                    If you don't, they become <strong>global</strong> variables.
+                </p>
+            </section>
+            <section>
+                <p>Top Scope</p>
+                <pre><code data-trim class="javascript">
+console.log(this); // Window
+console.log(this.myVar); // undefined
+console.log(this.myVar2); // undefined
+
+myVar = 'otto';
+var myVar2 = 'peter';
+
+console.log(this.myVar); // 'otto'
+console.log(this.myVar2); // 'peter'
+                </code></pre>
+            </section>
+            <section>
+                <p>Child Scope</p>
+                <pre><code data-trim class="javascript">
+function myFunc() {
+    console.log(this); // Window
+    console.log(this.myVar); // undefined
+    console.log(this.myVar2); // undefined
+
+    myVar = 'otto';
+    var myVar2 = 'peter';
+
+    console.log(this.myVar); // 'otto'
+    console.log(this.myVar2); // undefined
+}
+
+myFunc();
+                </code></pre>
             </section>
             <section>
                 <h2>Single var pattern</h2>
@@ -243,20 +278,19 @@ myFun();
                 <p>enables a function to keep its creation context</p>
                 <pre><code data-trim class="javascript">
 var myObjectFactory = function (param) {
-        var value = 'Value';
+      var value = 'Value';
 
-        return {
-            theseAreMySecrets: function () {
-                return 'value = ' + value + ', param = ' + param;
-            }
-        };
-    },
-    myObject = myObjectFactory('Param');
+      return {
+        theseAreMySecrets: function () {
+          return 'value = ' + value + ', param = ' + param;
+        }
+      };
+    }
+    , myObject = myObjectFactory('Param');
+
 myObject.theseAreMySecrets(); // value = Value, param = Param
-myObject.value; // undefined
+myObject.value; // undefined                        
 					</code></pre>
-                <p>...even if its lifetime is shorter than the function's one</p>
-                <p>-> variables outside of block scope are remembered if necessary (value)</p>
             </section>
             <section>
                 <h2>Module Pattern - IIFE</h2>
@@ -282,13 +316,13 @@ person.details; // undefined
                 </code></pre>
             </section>
             <section>
-                    <h2>Constructor function</h2>
-                    <p>is intended to be invoked with the <i>new</i> prefix <small>(forgetting it makes <i>this</i> bound to the global object!)</small>
-                    </p>
-                    <p>creates a new object with a hidden link to its <i>prototype</i>
-                    </p>
-                    <p>is kept in a variable with a capitalized name by convention</p>
-                    <pre><code data-trim class="javascript">
+                <h2>Constructor function</h2>
+                <p>is intended to be invoked with the <i>new</i> prefix <small>(forgetting it makes <i>this</i> bound to the global object!)</small>
+                </p>
+                <p>creates a new object with a hidden link to its <i>prototype</i>
+                </p>
+                <p>is kept in a variable with a capitalized name by convention</p>
+                <pre><code data-trim class="javascript">
 var Person = function () {
       this.firstName = 'John';
       this.lastName = 'Example';
@@ -302,10 +336,44 @@ Person.prototype.letMeIntroduceMyself = function () {
 johnExample = new Person();
 johnExample.letMeIntroduceMyself();  // My name is John Example
 johnExample.firstName; // 'John' - no privacy
-					</code></pre>
-                </section>
+                </code></pre>
+            </section>
             <section>
-                <blockquote class="twitter-tweet" data-lang="de"><p lang="en" dir="ltr">Sometimes when I&#39;m writing Javascript I want to throw up my hands and say &quot;this is bullshit!&quot; but I can never remember what &quot;this&quot; refers to</p>&mdash; Ben Halpern (@bendhalpern) <a href="https://twitter.com/bendhalpern/status/578925947245633536">20. März 2015</a></blockquote>
+                <img class="no-border" style="width:500px" src="./img/this-meme.jpg" alt="A word on this">
+            </section>
+            <section>
+                <p><strong>this</strong> is unrelated to scope.</p>
+                <ul>
+                    <li>the global object, at the top level scope</li>
+                    <li>obj, when executing <code>obj.func(...)</code></li>
+                    <li>obj, when executing <code>func.apply(obj, [...])</code></li>
+                    <li>a new object with prototype func.prototype, when calling new func(...)</li>
+                    <li>the event target, if <code>elem.addEventListener('event', func, ...)</code> and event is fired on elem</li>
+                    <li>...</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Coercion</h2>
+                <pre><code data-trim class="javascript">
+!!null        // false
+null == false // false
+
+0 == false  // true
+'' == false // true
+
++true // 1
+
+[] == ![] // true
+
+1 &lt; 2 &lt; 3 // true
+
+3 &gt; 2 &gt; 1 // false
+
+'2' - 1  // 1
+
+'133' + 7  // '1337'
+                </code></pre>
+                <p>always use <code>===</code> instead of <code>==</code></p>                
             </section>
         </section>
         <section>
@@ -315,7 +383,7 @@ johnExample.firstName; // 'John' - no privacy
             </section>
             <section>
                 <h3>let</h3>
-                <p>Declares a variable with <span class="highlight">block level scope</span>.</p>
+                <p>Declares a variable with <strong>block level scope</strong>.</p>
                 <pre><code class="javascript">var foo = 123;
 if (true) {
     var foo = 456;
@@ -330,14 +398,14 @@ console.log(foo); // 123</code></pre>
             </section>
             <section>
                 <h3>const</h3>
-                <p>Constants are <span class="highlight">immutable</span> after creation. Assigning a new value throws a <code class="javascript">TypeError</code></p>
+                <p>Constants are <strong>immutable</strong> after creation. Assigning a new value throws a <code class="javascript">TypeError</code></p>
                 <pre><code class="javascript">const foo = 123;
 foo = 456; // TypeError</code></pre>
-                <p><code>const</code> declared variables are <span class="highlight">block scoped</span> like <code>let</code></p>
+                <p><code>const</code> declared variables are <strong>block scoped</strong> like <code>let</code></p>
             </section>
             <section>
                 <h3>class</h3>
-                <p>Is implemented as <span class="highlight">syntactic</span> sugar.</p>
+                <p>Is implemented as <strong>syntactic</strong> sugar.</p>
                 <pre><code class="javascript">class A {
   constructor() {
     this.name = 'otto';
@@ -363,7 +431,7 @@ console.log(a.name); // otto</code></pre>
 class B extends A { }
 a = new B();
 console.log(a.name); // otto</code></pre>
-                <p><code>super</code> <span class="highlight">needs to be called</span> if extending and implementing the childs constructor</p>
+                <p><code>super</code> <strong>needs to be called</strong> if extending and implementing the childs constructor</p>
                 <pre><code class="javascript">class A { constructor() { console.log('hello my friend'); } }
 class B extends A { }
 class C extends A { constructor() { super() } }
@@ -383,7 +451,7 @@ var d = new D(); // ReferenceError: this is not defined</code></pre>
             </section>
             <section>
                 <h3>Hoisting</h3>
-                <p><code class="javascript">let</code>, <code class="javascript">const</code> and <code>class</code> are <span class="highlight">not hoisted</span>.</p>
+                <p><code class="javascript">let</code>, <code class="javascript">const</code> and <code>class</code> are <strong>not hoisted</strong>.</p>
                 <pre><code>a(); // hello
 function a() {
   console.log('hello');
@@ -445,13 +513,13 @@ console.log(myMap.values());
             </section>
             <section>
                 <h3>Modules</h3>
-                <p>A module is code which is <span class="highlight">executed when loaded</span>.</p>
-                <p>Declarations stay <span class="highlight">local</span> to that module.</p>
+                <p>A module is code which is <strong>executed when loaded</strong>.</p>
+                <p>Declarations stay <strong>local</strong> to that module.</p>
                 <p><code class="highlight">export</code> marks public visible declarations</p>
                 <p>A module can import from other modules.</p>
-                <p>Modules are <span class="highlight">singletons</span>.</p>
-                <p>Loading is <span class="highlight">asynchronous</span>.</p>
-                <p><span class="highlight">Declarative</span> and <span class="highlight">programmatic</span> loading.</p>
+                <p>Modules are <strong>singletons</strong>.</p>
+                <p>Loading is <strong>asynchronous</strong>.</p>
+                <p><strong>Declarative</strong> and <strong>programmatic</strong> loading.</p>
             </section>
             <section>
                 <h3>Exporting</h3>
@@ -474,11 +542,11 @@ fencyFunc(); // hello</code></pre>
             </section>
             <section>
                 <h3>Importing / Exporting</h3>
-                <p><code>import</code> and <code>export</code> Statements need to be in <span class="highlight">top level</span> (highest block scope)</p>
-                <p><code>import</code> statements are <span class="highlight">hoisted</span></p>
-                <p>imported entities are <span class="highlight">readonly</span></p>
+                <p><code>import</code> and <code>export</code> Statements need to be in <strong>top level</strong> (highest block scope)</p>
+                <p><code>import</code> statements are <strong>hoisted</strong></p>
+                <p>imported entities are <strong>readonly</strong></p>
                 <p>cyclic dependencies can be handled</p>
-                <p><span class="highlight">Re-exporting</span> is possible</p>
+                <p><strong>Re-exporting</strong> is possible</p>
             </section>
             <section>
                 <h3>Current (Jan. 2017) Drawbacks</h3>
@@ -494,11 +562,11 @@ fencyFunc(); // hello</code></pre>
             </section>
             <section>
                 <h2>What is it?</h2>
-                <p>TypeScript is a <span class="highlight">typed superset</span> of JavaScript that <span class="highlight">compiles</span> to plain JavaScript.<small><a href="https://www.typescriptlang.org" target="_blank">typescriptlang.org</a></small></p>
+                <p>TypeScript is a <strong>typed superset</strong> of JavaScript that <strong>compiles</strong> to plain JavaScript.<small><a href="https://www.typescriptlang.org" target="_blank">typescriptlang.org</a></small></p>
                 <ul>
-                    <li>invented by <span class="highlight">Microsoft</span></li>
+                    <li>invented by <strong>Microsoft</strong></li>
                     <li>valid JavaScript syntax is valid Typescript syntax</li>
-                    <li><span class="highlight">Google</span> dropped AtScript and chose <span class="highlight">TypeScript for Angular 2</span></li>
+                    <li><strong>Google</strong> dropped AtScript and chose <strong>TypeScript for Angular 2</strong></li>
                 </ul>
             </section>
             <section>
@@ -644,7 +712,7 @@ var Person = (function () {
             </section>
             <section>
                 <h3>Configuring TS compilation</h3>
-                <p>By convention running tsc without target looks for <span class="highlight">tsconfig.json</span>.</p>
+                <p>By convention running tsc without target looks for <strong>tsconfig.json</strong>.</p>
                 <pre><code class="json">{
   "compilerOptions": {
     "target": "es5",
@@ -659,16 +727,16 @@ var Person = (function () {
             </section>
             <section>
                 <h3>JavaScript Modules</h3>
-                <p>As shown ES2015 specifies how ES modules are created but <span class="highlight">not how they are loaded<span>.</p>
-                <p>There is <span class="highlight">no complete implementation</span> for ES modules at the moment.</p>
-                <p>But there are <span class="highlight">other modules</span> which let to ES modules and can be used today.</p>
+                <p>As shown ES2015 specifies how ES modules are created but <strong>not how they are loaded<span>.</p>
+                <p>There is <strong>no complete implementation</strong> for ES modules at the moment.</p>
+                <p>But there are <strong>other modules</strong> which let to ES modules and can be used today.</p>
             </section>
             <section>
                 <img src="img/nodejs-logo.png" alt="Nodejs logo" class="header-logo">
                 <p><a href="http://commonjs.org" target="_blank">CommonJS</a></p>
-                <p>Server side modules build into <span class="highlight">node.js</span></p>
+                <p>Server side modules build into <strong>node.js</strong></p>
                 <p><pre><code>require('gulp');</code></pre>loads gulp which is a CommonJS module</p>
-                <p>CommonJS require() is <span class="highlight">synchronous</span></p>
+                <p>CommonJS require() is <strong>synchronous</strong></p>
                 <p><code>console.log(this.require)</code> shows function in node but in browsers it is undefined.</p>
             </section>
             <section>
@@ -683,7 +751,7 @@ var Person = (function () {
             </section>
             <section>
                 <p><a href="https://github.com/umdjs/umd">UMD (Universal Module Definition)</a></p>
-                <p>A module definition which supports the API of both <span class="highlight">CommonJS and AMD</span></p>
+                <p>A module definition which supports the API of both <strong>CommonJS and AMD</strong></p>
                 <p>Angular 2 is packaged as UMD modules.</p>
             </section>
             <section>
@@ -704,7 +772,7 @@ var Person = (function () {
             </section>
             <section>
                 <h3>Tree shaking</h3>
-                <p>Removing code which is <span class="highlight">not imported.</span></p>
+                <p>Removing code which is <strong>not imported.</strong></p>
                 <p>Note: This is different to dead code elimination.</p>
                 <pre><code class="typescript">// ----lib.ts----
 export function crazy() { ... }
@@ -718,25 +786,25 @@ import { crazy } from 'lib';
             </section>
             <section>
                 <h3>Bundling</h3>
-                <p>For Browser application it is inadvisable to <span class="highlight">load hundreds of files</span> with HTTP overhead slowing the application down.</p>
-                <p>Better solution is to bundle to <span class="highlight">reduce HTTP requests</span>.</p>
-                <p>It is common to have a <span class="highlight">vendor</span> bundle and an <span class="highlight">app</span> bundle.</p>
+                <p>For Browser application it is inadvisable to <strong>load hundreds of files</strong> with HTTP overhead slowing the application down.</p>
+                <p>Better solution is to bundle to <strong>reduce HTTP requests</strong>.</p>
+                <p>It is common to have a <strong>vendor</strong> bundle and an <strong>app</strong> bundle.</p>
                 <p>SFX bundles: Independent of loader lib (it is inside the bundle).</p>
             </section>
             <section>
                 <h3>Angulars AoT compilation</h3>
-                <p>The <span class="highlight">largest part</span> of angular is the compiler.</p>
-                <p>By <span class="highlight">default</span> Angular uses <span class="highlight">JIT</span> compilation.</p>
-                <p>When using AoT compilation views come prerendered and the <span class="highlight">compiler can be removed</span> by tree shaking.</p>
+                <p>The <strong>largest part</strong> of angular is the compiler.</p>
+                <p>By <strong>default</strong> Angular uses <strong>JIT</strong> compilation.</p>
+                <p>When using AoT compilation views come prerendered and the <strong>compiler can be removed</strong> by tree shaking.</p>
             </section>
             <section>
                 <h3>What should I choose</h3>
-                <p>Angular-CLI <span class="highlight">abstracts</span> from all those tools and features and presents <span class="highlight">a single CLI</span>.</p>
-                <p>Angular-CLI switched from <span class="highlight">system.js</span> to <span class="highlight">webpack</span>.</p>
-                <p>Popular build tools like <a href="http://gruntjs.com/" target="_blank">Grunt</a> and <a href="http://gulpjs.com/" target="_blank">Gulp</a> lost popularity with <span class="highlight">npm scripts with webpack</span> presenting an easy solution to the whole build chain.</p>
+                <p>Angular-CLI <strong>abstracts</strong> from all those tools and features and presents <strong>a single CLI</strong>.</p>
+                <p>Angular-CLI switched from <strong>system.js</strong> to <strong>webpack</strong>.</p>
+                <p>Popular build tools like <a href="http://gruntjs.com/" target="_blank">Grunt</a> and <a href="http://gulpjs.com/" target="_blank">Gulp</a> lost popularity with <strong>npm scripts with webpack</strong> presenting an easy solution to the whole build chain.</p>
             </section>
             <section>
-                <h3>Tooling is even more <span class="highlight">fragile</span> then UI frameworks are.</h3>
+                <h3>Tooling is even more <strong>fragile</strong> then UI frameworks are.</h3>
                 <p>Embrace the change or choose a CLI and let the open source community do the work (e.g. Google).</p>
             </section>
         </section>
