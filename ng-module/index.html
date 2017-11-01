@@ -8,7 +8,8 @@
     <link rel="icon" href="../common/img/favicon.ico">
 
     <link rel="stylesheet" href="../reveal.js-3.3.0/css/reveal.css">
-    <link rel="stylesheet" href="../reveal.js-3.3.0/css/theme/black.css">
+    <link rel="stylesheet" href="../base/reveal.js/css/theme/simple.css" id="theme">
+    <link rel="stylesheet" href="../common/css/light-code.css">
     <link rel="stylesheet" href="../common/css/common.css">
 
     <!-- Theme used for syntax highlighting of code -->
@@ -26,7 +27,7 @@
 </head>
 <body>
 <section class="devon-link">
-    <a href="http://devonfw.github.io" target="_blank"><img height="50px" src="../common/img/devon_logo_white.png"></a>
+    <a href="http://devonfw.github.io" target="_blank"><img height="30px" src="../common/img/devon_logo_blue.png"></a>
 </section>
 <section class="angular-link">
     <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
@@ -34,13 +35,13 @@
 <div class="devon reveal">
     <div class="slides">
         <section>
-            <h1>Modules</h1>
+            <h2>Modules</h2>
             <p class="italic-font">Structuring Angular applications</p>
             <img class="module-header-image" src="./img/project-sample-module-separation.png" alt="module separation example">
 		</section>
         <section>
             <h3>Definition</h3>
-            <p>Angular modules consolidate <span class="highlight">components, directives and pipes</span> into cohesive blocks of functionality, each focused on a <span class="highlight">feature area</span>, application <span class="highlight">business domain</span>, workflow, or common collection of utilities.</p>
+            <p>Angular modules consolidate <strong>components, directives and pipes</strong> into cohesive blocks of functionality, each focused on a <strong>feature area</strong>, application <strong>business domain</strong>, workflow, or common collection of utilities.</p>
             <div class="margin_top_30">
                 <p class="align_right"><small><a href="https://angular.io/docs/ts/latest/guide/ngmodule.html#!#angular-modularity">Angular Docs</a></small></p>
             </div>
@@ -48,7 +49,7 @@
         <section>
             <section>
                 <h3>Simple module</h3>
-                <p>An Angular module is a <span class="highlight">class decorated with @NgModule</span> metadata.</p>
+                <p>An Angular module is a <strong>class decorated with @NgModule</strong> metadata.</p>
                 <pre><code class="typescript code-without-max-height">import { NgModule } from '@angular/core';
 
 @NgModule({
@@ -78,11 +79,11 @@ export class TestModule { }</code></pre>
 })
 export class BookModule { }</code></pre>
                 <ul class="ul-small">
-                    <li>Angular <span class="highlight">Common module is imported</span> - e.g. *ngIf can be used in templates</li>
-                    <li>Common module is exported - so a module importing BookModule can <span class="highlight">use Common without importing it</span></li>
-                    <li>BookListComponent can be <span class="highlight">used inside templates in modules importing BookModule</span> - 'it's public'</li>
-                    <li>BookListComponent and BookDetailComponent are declared and can therefore be <span class="highlight">used inside modules templates</span> - good practice if for instance BookDetailComponent is part of BookListComponent and should <span class="highlight">never be used alone</span></li>
-                    <li>BookService is made <span class="highlight">application wide</span> available - can be used via DI</li>
+                    <li>Angular <strong>Common module is imported</strong> - e.g. *ngIf can be used in templates</li>
+                    <li>Common module is exported - so a module importing BookModule can <strong>use Common without importing it</strong></li>
+                    <li>BookListComponent can be <strong>used inside templates in modules importing BookModule</strong> - 'it's public'</li>
+                    <li>BookListComponent and BookDetailComponent are declared and can therefore be <strong>used inside modules templates</strong> - good practice if for instance BookDetailComponent is part of BookListComponent and should <strong>never be used alone</strong></li>
+                    <li>BookService is made <strong>application wide</strong> available - can be used via DI</li>
                 </ul>
             </section>
         </section>
@@ -121,10 +122,10 @@ export class AppComponent { }</code></pre>
         <section>
             <h3>Core and Shared Module</h3>
             <ul>
-                <li>Core- and SharedModule are <span class="highlight">modules with conventions</span></li>
-                <li>CoreModule has <span class="highlight">single use components</span> - e.g. NavigationComponent, SpinnerComponent, etc. to be <span class="highlight">used inside AppComponents template</span></li>
-                <li>CoreModule is <span class="highlight">only imported in AppModule</span></li>
-                <li>SharedModule has common components, directives and pipes. <span class="highlight">Imported by multiple modules</span></li>
+                <li>Core- and SharedModule are <strong>modules with conventions</strong></li>
+                <li>CoreModule has <strong>single use components</strong> - e.g. NavigationComponent, SpinnerComponent, etc. to be <strong>used inside AppComponents template</strong></li>
+                <li>CoreModule is <strong>only imported in AppModule</strong></li>
+                <li>SharedModule has common components, directives and pipes. <strong>Imported by multiple modules</strong></li>
             </ul>
             <div class="margin_top_30">
                 <p class="align_right"><small><a href="https://angular.io/styleguide">Angular Docs</a></small></p>
