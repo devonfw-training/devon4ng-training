@@ -78,3 +78,8 @@
 #js-engine pre {
     box-shadow: none;
 }
+
+.reveal #js-engine pre code {
+    background: white;
+    color: black;
+}
