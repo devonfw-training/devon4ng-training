@@ -7,13 +7,12 @@
     <title>devonfw ng2 training - modules</title>
     <link rel="icon" href="../common/img/favicon.ico">
 
-    <link rel="stylesheet" href="../reveal.js-3.3.0/css/reveal.css">
-    <link rel="stylesheet" href="../base/reveal.js/css/theme/simple.css" id="theme">
-    <link rel="stylesheet" href="../common/css/light-code.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/theme/white.css" id="theme">
     <link rel="stylesheet" href="../common/css/common.css">
 
     <!-- Theme used for syntax highlighting of code -->
-    <link rel="stylesheet" href="../reveal.js-3.3.0/lib/css/zenburn.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/lib/css/github-gist.css">
     <link rel="stylesheet" href="./styles/own.css">
 
     <!-- Printing and PDF exports -->
@@ -21,7 +20,7 @@
         var link = document.createElement('link');
         link.rel = 'stylesheet';
         link.type = 'text/css';
-        link.href = window.location.search.match(/print-pdf/gi) ? '../reveal.js-3.3.0/css/print/pdf.css' : '../reveal.js-3.3.0/css/print/paper.css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../node_modules/reveal.js/css/print/pdf.css' : '../node_modules/reveal.js/css/print/paper.css';
         document.getElementsByTagName('head')[0].appendChild(link);
     </script>
 </head>
@@ -50,7 +49,7 @@
             <section>
                 <h3>Simple module</h3>
                 <p>An Angular module is a <strong>class decorated with @NgModule</strong> metadata.</p>
-                <pre><code class="typescript code-without-max-height">import { NgModule } from '@angular/core';
+                <pre><code data-trim class="typescript code-without-max-height">
 
 @NgModule({
 // applications modules, angular modules, libraries, etc.
@@ -97,14 +96,16 @@ import { AppComponent }  from './app.component';
 @NgModule({
   imports:      [ BrowserModule ],
   declarations: [ AppComponent ],
-  bootstrap:    [ AppComponent ] // top level component to insert into index.html
+  // top level component to insert into index.html
+  bootstrap:    [ AppComponent ]
 })
 export class AppModule { }</code></pre>
 <small>app.module.ts</small>
         </section>
         <section>
             <h3>Application Start (2/2)</h3>
-            <pre><code class="typescript">import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+            <pre><code style="overflow:hidden" data-trim class="typescript">
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule }              from './app.module';
 
 platformBrowserDynamic().bootstrapModule(AppModule);</code></pre>
@@ -138,8 +139,8 @@ export class AppComponent { }</code></pre>
     </div>
 </div>
 
-<script src="../reveal.js-3.3.0/lib/js/head.min.js"></script>
-<script src="../reveal.js-3.3.0/js/reveal.js"></script>
+<script src="../node_modules/reveal.js/lib/js/head.min.js"></script>
+<script src="../node_modules/reveal.js/js/reveal.js"></script>
 
 <script>
     // More info https://github.com/hakimel/reveal.js#configuration
@@ -148,12 +149,12 @@ export class AppComponent { }</code></pre>
 
         // More info https://github.com/hakimel/reveal.js#dependencies
         dependencies: [
-            { src: '../reveal.js-3.3.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-            { src: '../reveal.js-3.3.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-            { src: '../reveal.js-3.3.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-            { src: '../reveal.js-3.3.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-            { src: '../reveal.js-3.3.0/plugin/zoom-js/zoom.js', async: true },
-            { src: '../reveal.js-3.3.0/plugin/notes/notes.js', async: true }
+            { src: '../node_modules/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: '../node_modules/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../node_modules/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../node_modules/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: '../node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true },
+            { src: '../node_modules/reveal.js/plugin/notes/notes.js', async: true }
         ]
     });
 </script>

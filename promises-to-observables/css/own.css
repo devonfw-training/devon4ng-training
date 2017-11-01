@@ -53,17 +53,6 @@ p.align_right {
     margin: 0;
 }
 
-.reveal #js-engine pre code {
-    display: block;
-    padding: 5px;
-    overflow: auto;
-    max-height: 400px;
-    word-wrap: normal;
-    background: #3F3F3F;
-    color: #DCDCDC;
-    font-size: 90%;
-}
-
 .reveal #js-engine {
     height: 560px;
 }
@@ -115,10 +104,6 @@ html.img-center-fill div.slide-background.present {
 .reveal section .inline-block {
     display: inline-block;
     vertical-align: top;
-}
-
-.reveal section .width-70-percent {
-    width: 70%;
 }
 
 .reveal section .margin-top-70 {

@@ -14,23 +14,23 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-	<link rel="stylesheet" href="base/reveal.js/css/reveal.css">
-	<link rel="stylesheet" href="base/reveal.js/css/theme/simple.css" id="theme">
+	<link rel="stylesheet" href="node_modules/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="node_modules/reveal.js/css/theme/simple.css" id="theme">
 
 	<!-- Code syntax highlighting -->
-	<link rel="stylesheet" href="base/reveal.js/lib/css/zenburn.css">
+	<link rel="stylesheet" href="node_modules/reveal.js/lib/css/zenburn.css">
 
 	<!-- Printing and PDF exports -->
 	<script>
 		var link = document.createElement('link');
 		link.rel = 'stylesheet';
 		link.type = 'text/css';
-		link.href = window.location.search.match(/print-pdf/gi) ? 'base/reveal.js/css/print/pdf.css' : 'base/reveal.js/css/print/paper.css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'node_modules/reveal.js/css/print/pdf.css' : 'node_modules/reveal.js/css/print/paper.css';
 		document.getElementsByTagName('head')[0].appendChild(link);
 	</script>
 
 	<!--[if lt IE 9]>
-	<script src="base/reveal.js/lib/js/html5shiv.js"></script>
+	<script src="node_modules/reveal.js/lib/js/html5shiv.js"></script>
 	<![endif]-->
 </head>
 
@@ -76,15 +76,15 @@
 						</tr>
 						<tr>
 							<td>10:30</td>
-							<td><a href="html5/html5.html" target="_blank">HTML 5</a></td>
+							<td><a href="html5/index.html" target="_blank">HTML 5</a></td>
 						</tr>
 						<tr>
 							<td>11:00</td>
-							<td><a href="http/http.html" target="_blank">HTTP</a></td>
+							<td><a href="http/index.html" target="_blank">HTTP</a></td>
 						</tr>
 						<tr>
 							<td>11:30</td>
-							<td><a href="css/css.html" target="_blank">CSS</a></td>
+							<td><a href="css/index.html" target="_blank">CSS</a></td>
 						</tr>
 						<tr>
 							<td>13:00</td>
@@ -96,7 +96,7 @@
 						</tr>
 						<tr>
 							<td>14:45</td>
-							<td><a href="webcomponents/components.html" target="_blank">Webcomponents</a></td>
+							<td><a href="webcomponents/index.html" target="_blank">Webcomponents</a></td>
 						</tr>
 						<tr>
 							<td>15:15</td>
@@ -111,10 +111,10 @@
 				<section>
 					<h2>Exercises</h2>
 					<ol>
-						<li><a href="css/css.html#/4" target="_blank">Selectors</a></li>
-						<li><a href="css/css.html#/5" target="_blank">Selectors</a></li>
-						<li><a href="css/css.html#/14" target="_blank">Float</a></li>
-						<li><a href="css/css.html#/18" target="_blank">Positioning</a></li>
+						<li><a href="css/index.html#/4" target="_blank">Selectors</a></li>
+						<li><a href="css/index.html#/5" target="_blank">Selectors</a></li>
+						<li><a href="css/index.html#/14" target="_blank">Float</a></li>
+						<li><a href="css/index.html#/18" target="_blank">Positioning</a></li>
 						<li><a href="flex/flex.html#/7" target="_blank">Flex</a></li>
 						<li><a href="js-to-ts/exercises/js-beginners-1.html" target="_blank">JavaScript Beginners 1</a></li>
 						<li><a href="js-to-ts/exercises/js-beginners-2.html" target="_blank">JavaScript Beginners 2</a></li>
@@ -260,8 +260,8 @@
 		</div>
 
 	</div>
-	<script src="base/reveal.js/lib/js/head.min.js"></script>
-	<script src="base/reveal.js/js/reveal.js"></script>
+	<script src="node_modules/reveal.js/lib/js/head.min.js"></script>
+	<script src="node_modules/reveal.js/js/reveal.js"></script>
 
 	<script>
 		// Full list of configuration options available at:
@@ -278,29 +278,29 @@
 			// Optional reveal.js plugins
 			dependencies: [
 				{
-					src: 'base/reveal.js/lib/js/classList.js', condition: function () {
+					src: 'node_modules/reveal.js/lib/js/classList.js', condition: function () {
 						return !document.body.classList;
 					}
 				},
 				{
-					src: 'base/reveal.js/plugin/markdown/marked.js', condition: function () {
+					src: 'node_modules/reveal.js/plugin/markdown/marked.js', condition: function () {
 						return !!document.querySelector('[data-markdown]');
 					}
 				},
 				{
-					src: 'base/reveal.js/plugin/markdown/markdown.js', condition: function () {
+					src: 'node_modules/reveal.js/plugin/markdown/markdown.js', condition: function () {
 						return !!document.querySelector('[data-markdown]');
 					}
 				},
 				{
-					src: 'base/reveal.js/plugin/highlight/highlight.js', async: true, condition: function () {
+					src: 'node_modules/reveal.js/plugin/highlight/highlight.js', async: true, condition: function () {
 						return !!document.querySelector('pre code');
 					}, callback: function () {
 						hljs.initHighlightingOnLoad();
 					}
 				},
-				{ src: 'base/reveal.js/plugin/zoom-js/zoom.js', async: true },
-				{ src: 'base/reveal.js/plugin/notes/notes.js', async: true }
+				{ src: 'node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: 'node_modules/reveal.js/plugin/notes/notes.js', async: true }
 			]
 		});
 	</script>

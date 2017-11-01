@@ -8,32 +8,36 @@
     <link rel="icon" href="../common/img/favicon.ico">
 
     <!-- Showing Examples -->
-    <link rel="stylesheet" href="./../css/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="../base/reveal.js/css/reveal.css">
-    <link rel="stylesheet" href="./../css/lib/style.css">
-    <link rel="stylesheet" href="../base/reveal.js/css/theme/white.css" id="theme">
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../css/lib/style.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/theme/white.css" id="theme">
+
+    <link rel="stylesheet" href="../common/css/common.css">
 
     <!-- Theme used for syntax highlighting of code -->
-    <link rel="stylesheet" href="../reveal.js-3.3.0/lib/css/zenburn.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/lib/css/github-gist.css">
 
     <!-- Printing and PDF exports -->
     <script>
         var link = document.createElement('link');
         link.rel = 'stylesheet';
         link.type = 'text/css';
-        link.href = window.location.search.match(/print-pdf/gi) ? '../base/reveal.js/css/print/pdf.css' : '../base/reveal.js/css/print/paper.css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../node_modules/reveal.js/css/print/pdf.css' : '../node_modules/reveal.js/css/print/paper.css';
         document.getElementsByTagName('head')[0].appendChild(link);
     </script>
 
     <!--[if lt IE 9]>
-    <script src="base/reveal.js/lib/js/html5shiv.js"></script>
+    <script src="../node_modules/reveal.js/lib/js/html5shiv.js"></script>
     <![endif]-->
 </head>
 <body>
 <section class="angular-link">
     <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
-    <a href="http://devonfw.github.io" target="_blank"><img height="50px" style="background-color:grey;" src="../common/img/devon_logo_white.png"></a>
+</section>
+<section class="devon-link">
+    <a href="http://devonfw.github.io" target="_blank"><img height="30px" src="../common/img/devon_logo_blue.png"></a>
 </section>
 <div class="devon reveal">
     <div class="slides">
@@ -124,8 +128,8 @@ export class BookOverviewComponent implements OnInit {
     </div>
 </div>
 
-<script src="../base/reveal.js/lib/js/head.min.js"></script>
-<script src="../base/reveal.js/js/reveal.js"></script>
+<script src="../node_modules/reveal.js/lib/js/head.min.js"></script>
+<script src="../node_modules/reveal.js/js/reveal.js"></script>
 <script src="./lib/jquery.min.js"></script>
 <script src="./lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
@@ -147,22 +151,22 @@ export class BookOverviewComponent implements OnInit {
 
         // Optional reveal.js plugins
         dependencies: [
-            { src: '../base/reveal.js/lib/js/classList.js', condition: function () {
+            { src: '../node_modules/reveal.js/lib/js/classList.js', condition: function () {
                 return !document.body.classList;
             } },
-            { src: '../base/reveal.js/plugin/markdown/marked.js', condition: function () {
+            { src: '../node_modules/reveal.js/plugin/markdown/marked.js', condition: function () {
                 return !!document.querySelector('[data-markdown]');
             } },
-            { src: '../base/reveal.js/plugin/markdown/markdown.js', condition: function () {
+            { src: '../node_modules/reveal.js/plugin/markdown/markdown.js', condition: function () {
                 return !!document.querySelector('[data-markdown]');
             } },
-            { src: '../base/reveal.js/plugin/highlight/highlight.js', async: true, condition: function () {
+            { src: '../node_modules/reveal.js/plugin/highlight/highlight.js', async: true, condition: function () {
                 return !!document.querySelector('pre code');
             }, callback: function () {
                 hljs.initHighlightingOnLoad();
             } },
-            { src: '../base/reveal.js/plugin/zoom-js/zoom.js', async: true },
-            { src: '../base/reveal.js/plugin/notes/notes.js', async: true }
+            { src: '../node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true },
+            { src: '../node_modules/reveal.js/plugin/notes/notes.js', async: true }
         ]
     });
 

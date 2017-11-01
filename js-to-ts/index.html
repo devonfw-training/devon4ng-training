@@ -8,22 +8,21 @@
     <link rel="icon" href="../common/img/favicon.ico">
 
 
-    <link rel="stylesheet" href="../reveal.js-3.3.0/css/reveal.css">
-    <link rel="stylesheet" href="../base/reveal.js/css/theme/simple.css" id="theme">
-    <link rel="stylesheet" href="../common/css/light-code.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/theme/white.css" id="theme">
 
     <link rel="stylesheet" href="../common/css/common.css">
     <link rel="stylesheet" href="styles/own.css">
 
     <!-- Theme used for syntax highlighting of code -->
-    <link rel="stylesheet" href="../reveal.js-3.3.0/lib/css/zenburn.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/lib/css/github-gist.css">
 
     <!-- Printing and PDF exports -->
     <script>
         var link = document.createElement('link');
         link.rel = 'stylesheet';
         link.type = 'text/css';
-        link.href = window.location.search.match(/print-pdf/gi) ? '../reveal.js-3.3.0/css/print/pdf.css' : '../reveal.js-3.3.0/css/print/paper.css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../node_modules/reveal.js/css/print/pdf.css' : '../node_modules/reveal.js/css/print/paper.css';
         document.getElementsByTagName('head')[0].appendChild(link);
     </script>
 </head>
@@ -32,8 +31,8 @@
     <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
 </section>
 <section class="devon-link">
-        <a href="http://devonfw.github.io" target="_blank"><img height="30px" src="../common/img/devon_logo_blue.png"></a>
-    </section>
+    <a href="http://devonfw.github.io" target="_blank"><img height="30px" src="../common/img/devon_logo_blue.png"></a>
+</section>
 <div class="devon reveal">
     <div class="slides">
         <section>
@@ -95,7 +94,7 @@ var myFunction = function () {
 };
 myFunction();
 					</code></pre>
-                    <p>Variable declarations get <strong>hoisted to the top</strong> of a function...</p>
+                    <p>Declarations get <strong>hoisted to the top</strong> of a function...</p>
                 </div>
                 <div>
                     <p>The above code behaves as if it looked like this:</p>
@@ -317,12 +316,7 @@ person.details; // undefined
                 </code></pre>
             </section>
             <section>
-                <h2>Constructor function</h2>
-                <p>is intended to be invoked with the <i>new</i> prefix <small>(forgetting it makes <i>this</i> bound to the global object!)</small>
-                </p>
-                <p>creates a new object with a hidden link to its <i>prototype</i>
-                </p>
-                <p>is kept in a variable with a capitalized name by convention</p>
+                <h3>Constructor function</h3>
                 <pre><code data-trim class="javascript">
 var Person = function () {
       this.firstName = 'John';
@@ -338,9 +332,9 @@ johnExample = new Person();
 johnExample.letMeIntroduceMyself();  // My name is John Example
 johnExample.firstName; // 'John' - no privacy
                 </code></pre>
-            </section>
-            <section>
-                <img class="no-border" style="width:500px" src="./img/this-meme.jpg" alt="A word on this">
+                <p>is intended to be invoked with the <i>new</i> prefix</p>
+                <p>creates a new object with a hidden link to its <i>prototype</i></p>
+                <p>has capitalized name by convention</p>
             </section>
             <section>
                 <p><strong>this</strong> is unrelated to scope.</p>
@@ -367,11 +361,9 @@ null == false // false
 [] == ![] // true
 
 1 &lt; 2 &lt; 3 // true
-
 3 &gt; 2 &gt; 1 // false
 
 '2' - 1  // 1
-
 '133' + 7  // '1337'
                 </code></pre>
                 <p>always use <code>===</code> instead of <code>==</code></p>                
@@ -726,7 +718,6 @@ play(new Headphones()); // in ear: la la la
                 </code></pre>
             </section>
             <section>
-                <h3>Interface vs. Class</h3>
                 <p>Classes</p>
                 <pre><code>class A {
   name: string;
@@ -759,7 +750,7 @@ function sayHelloTo(person: NamedPerson) {
 }</code></pre>
             </section>
             <section>
-                <h2>Modules, Namespaces, Imports</h2>
+                <h3>Modules, Namespaces, Imports</h3>
                 <p>ES2015 is fully implemented.</p>
 			    <pre><code data-trim  class="hljs typescript">// ZipCodeValidator.ts
 export class ZipCodeValidator { ... }
@@ -804,7 +795,7 @@ function padLeft(value: string, padding: any) {
               </code></pre>
             </section>
             <section>
-              <h2>--strictNullChecks</h2>
+              <h2>Strict Null Checks</h2>
               <pre><code class="typescript" data-trim>
 interface MyType {
   name: string;
@@ -825,11 +816,13 @@ myFunc(undefined); // compiler error
                 <h3>Build / Modules / Angular compatibility</h3>
             </section>
             <section>
-                <h3>Installing TypeScript</h3>
-                <p>
-                    Global npm installation via
-                    <pre><code>npm install -g typescript</code></pre>
-                </p>
+                <p>TypeScript Compiler is just a package.</p>
+                <p>npm</p>
+                <pre><code>npm install -g typescript</code></pre>
+                <p>yarn</p>
+                <pre><code>yarn global add typescript</code></pre>
+            </section>
+            <section>
                 <p>
                     Compiling a single ts-file via
                     <pre><code class="typescript"> // -----test.ts-----
@@ -872,7 +865,7 @@ var Person = (function () {
                 <p>But there are <strong>other modules</strong> which let to ES modules and can be used today.</p>
             </section>
             <section>
-                <img src="img/nodejs-logo.png" alt="Nodejs logo" class="header-logo">
+                <img style="height:120px;margin:0;box-shadow:none" src="img/nodejs-logo.png" alt="Nodejs logo" class="header-logo">
                 <p><a href="http://commonjs.org" target="_blank">CommonJS</a></p>
                 <p>Server side modules build into <strong>node.js</strong></p>
                 <p><pre><code>require('gulp');</code></pre>loads gulp which is a CommonJS module</p>
@@ -988,8 +981,8 @@ crazy();
     </div>
 </div>
 
-<script src="../reveal.js-3.3.0/lib/js/head.min.js"></script>
-<script src="../reveal.js-3.3.0/js/reveal.js"></script>
+<script src="../node_modules/reveal.js/lib/js/head.min.js"></script>
+<script src="../node_modules/reveal.js/js/reveal.js"></script>
 
 <script>
     // More info https://github.com/hakimel/reveal.js#configuration
@@ -998,12 +991,12 @@ crazy();
 
         // More info https://github.com/hakimel/reveal.js#dependencies
         dependencies: [
-            { src: '../reveal.js-3.3.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-            { src: '../reveal.js-3.3.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-            { src: '../reveal.js-3.3.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-            { src: '../reveal.js-3.3.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-            { src: '../reveal.js-3.3.0/plugin/zoom-js/zoom.js', async: true },
-            { src: '../reveal.js-3.3.0/plugin/notes/notes.js', async: true }
+            { src: '../node_modules/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: '../node_modules/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../node_modules/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../node_modules/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: '../node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true },
+            { src: '../node_modules/reveal.js/plugin/notes/notes.js', async: true }
         ]
     });
 </script>

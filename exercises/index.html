@@ -8,19 +8,19 @@
     <link rel="icon" href="../common/img/favicon.ico">
 
 
-    <link rel="stylesheet" href="../reveal.js-3.3.0/css/reveal.css">
-    <link rel="stylesheet" href="../reveal.js-3.3.0/css/theme/black.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/theme/white.css">
     <link rel="stylesheet" href="../common/css/common.css">
 
     <!-- Theme used for syntax highlighting of code -->
-    <link rel="stylesheet" href="../reveal.js-3.3.0/lib/css/zenburn.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/lib/css/github-gist.css">
 
     <!-- Printing and PDF exports -->
     <script>
         var link = document.createElement('link');
         link.rel = 'stylesheet';
         link.type = 'text/css';
-        link.href = window.location.search.match(/print-pdf/gi) ? '../reveal.js-3.3.0/css/print/pdf.css' : '../reveal.js-3.3.0/css/print/paper.css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../node_modules/reveal.js/css/print/pdf.css' : '../node_modules/reveal.js/css/print/paper.css';
         document.getElementsByTagName('head')[0].appendChild(link);
     </script>
 </head>
@@ -29,11 +29,13 @@
     <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
 </section>
 <section class="devon-link">
-    <a href="http://devonfw.github.io" target="_blank"><img height="50px" src="../common/img/devon_logo_white.png"></a>
+    <a href="http://devonfw.github.io" target="_blank"><img height="30px" src="../common/img/devon_logo_blue.png"></a>
 </section>
 <div class="devon reveal">
     <div class="slides">
-        <section><h1>Exercises</h1></section>
+        <section>
+            <h2>Angular Exercises</h2>
+        </section>
         <section id="simple-component">
             <section>
                 <h3>Simple Component (1/4)</h3>
@@ -489,8 +491,8 @@
     </div>
 </div>
 
-<script src="../reveal.js-3.3.0/lib/js/head.min.js"></script>
-<script src="../reveal.js-3.3.0/js/reveal.js"></script>
+<script src="../node_modules/reveal.js/lib/js/head.min.js"></script>
+<script src="../node_modules/reveal.js/js/reveal.js"></script>
 
 <script>
     // More info https://github.com/hakimel/reveal.js#configuration
@@ -499,12 +501,12 @@
 
         // More info https://github.com/hakimel/reveal.js#dependencies
         dependencies: [
-            { src: '../reveal.js-3.3.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-            { src: '../reveal.js-3.3.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-            { src: '../reveal.js-3.3.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-            { src: '../reveal.js-3.3.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-            { src: '../reveal.js-3.3.0/plugin/zoom-js/zoom.js', async: true },
-            { src: '../reveal.js-3.3.0/plugin/notes/notes.js', async: true }
+            { src: '../node_modules/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: '../node_modules/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../node_modules/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../node_modules/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: '../node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true },
+            { src: '../node_modules/reveal.js/plugin/notes/notes.js', async: true }
         ]
     });
 </script>

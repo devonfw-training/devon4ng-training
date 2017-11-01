@@ -8,21 +8,21 @@
     <link rel="icon" href="../common/img/favicon.ico">
 
 
-    <link rel="stylesheet" href="../reveal.js-3.3.0/css/reveal.css">
-    <link rel="stylesheet" href="../reveal.js-3.3.0/css/theme/black.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/theme/white.css" id="theme">
     <link rel="stylesheet" href="../common/css/common.css">
     <link rel="stylesheet" href="css/own.css">
     <link rel="stylesheet" href="css/js-engine.css">
 
     <!-- Theme used for syntax highlighting of code -->
-    <link rel="stylesheet" href="../reveal.js-3.3.0/lib/css/zenburn.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/lib/css/github-gist.css">
 
     <!-- Printing and PDF exports -->
     <script>
         var link = document.createElement('link');
         link.rel = 'stylesheet';
         link.type = 'text/css';
-        link.href = window.location.search.match(/print-pdf/gi) ? '../reveal.js-3.3.0/css/print/pdf.css' : '../reveal.js-3.3.0/css/print/paper.css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../node_modules/reveal.js/css/print/pdf.css' : '../node_modules/reveal.js/css/print/paper.css';
         document.getElementsByTagName('head')[0].appendChild(link);
     </script>
 </head>
@@ -31,7 +31,7 @@
     <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
 </section>
 <section class="devon-link">
-    <a href="http://devonfw.github.io" target="_blank"><img height="50px" src="../common/img/devon_logo_white.png"></a>
+    <a href="http://devonfw.github.io" target="_blank"><img height="30px" src="../common/img/devon_logo_blue.png"></a>
 </section>
 <div class="devon reveal">
     <div class="slides">
@@ -40,14 +40,14 @@
                     <img height="200" src="img/256px-JavaScript-logo.png">
                     <img height="200" src="img/Rx_Logo_M.png">                    
                 </p>
-                <h2 class="highlight">From Callbacks via Promises to RxJS Observables</h2>
+                <h2>From Callbacks via Promises to RxJS Observables</h2>
                 <p>Marek Matczak</p>
                 <p>Philip Schmökel</p>
             </section>
             <section>
                 <div id="js-engine">
                     <p>JavaScript Engine (simplified)</p>
-                    <pre><code data-trim class="javascript">
+                    <pre><code style="border: none;" data-trim class="javascript">
 var bar = function () {
         console.log('bar...');
     },
@@ -80,9 +80,9 @@ foo();
                 </div>
             </section>
             <section>
-                <h3 class="highlight">Asynchronous programming</h3>
+                <h3>Asynchronous programming</h3>
                 <ul>
-                    <li>Browsers are full of asynchronous events: <span class="highlight">XHR responses, DOM events, timeouts</span>, etc.
+                    <li>Browsers are full of asynchronous events: <strong>XHR responses, DOM events, timeouts</strong>, etc.
                     </li>
                     <li>Blocking operations are implemented using callbacks.
                     </li>
@@ -102,7 +102,7 @@ orders.get(1234,
                 </ul>
             </section>
             <section>
-                <h3 class="highlight">Challenges:</h3>
+                <h3>Challenges:</h3>
                 <ul>
                     <li>synchronizing multiple asynchronous events</li>
                     <li>exception handling</li>
@@ -125,14 +125,14 @@ try {
                 </code></pre>
             </section>
             <section>
-                <h3 class="highlight">Promise / Deferred API</h3>
-                <p class="justiy_text">A Promise is an object that is used as a <span class="highlight">placeholder for the eventual results</span> of a deferred (and possibly
+                <h3>Promise / Deferred API</h3>
+                <p class="justiy_text">A Promise is an object that is used as a <strong>placeholder for the eventual results</strong> of a deferred (and possibly
 asynchronous) computation.</p>
                 <div class="margin_top_30">
                     <p class="align_right"><small><a href="http://www.ecma-international.org/ecma-262/6.0/ECMA-262.pdf">ECMAScript 2015 Language Specification</a></small>
                     </p>
                 </div>
-                <p class="justify_text">From the perspective of dealing with <span class="highlight">error handling</span>, deferred and promise APIs are to asynchronous programming what <span class="highlight"><code>try</code>, <code>catch</code> and <code>throw</code> keywords are to synchronous programming</span>
+                <p class="justify_text">From the perspective of dealing with <strong>error handling</strong>, deferred and promise APIs are to asynchronous programming what <strong><code>try</code>, <code>catch</code> and <code>throw</code> keywords are to synchronous programming</strong>
                 </p>
                 <div class="margin_top_30">
                     <p class="align_right"><small><a href="https://docs.angularjs.org/api/ng/service/$q">AngularJS Documentation</a></small>
@@ -140,7 +140,7 @@ asynchronous) computation.</p>
                 </div>
             </section>
             <section>
-                <h3 class="highlight">Use a returned promise</h3>
+                <h3>Use a returned promise</h3>
                 <pre><code data-trim class="javascript">
 var promise = tablesService.get(1234);
 promise.then(
@@ -152,8 +152,8 @@ promise.then(
                 </code></pre>
             </section>
             <section>
-                <h3 class="highlight">Create a promise</h3>
-                <pre><code data-trim class="javascript">
+                <h3>Create a promise</h3>
+                <pre><code data-trim class="javascript max-height-unset">
 let tables = function () {
     return {
         get: function (id) {
@@ -172,9 +172,10 @@ let tables = function () {
                 </code></pre>
             </section>
             <section>
-                <h3 class="highlight">Chaining promises (success callbacks)</h3>
+                <h3>Chaining promises (success callbacks)</h3>
                 <pre><code data-trim class="javascript">
-Promise.resolve('Pizza with') // wraps a value in a promise and resolves it
+// wraps a value in a promise and resolves it
+Promise.resolve('Pizza with')
     .then(function (pizza) {
         return pizza + ' cheese,';
     })
@@ -190,15 +191,17 @@ Promise.resolve('Pizza with') // wraps a value in a promise and resolves it
                 </code></pre>
             </section>
             <section>
-                <h3 class="highlight">Chaining promises (failure callbacks)</h3>
-                <pre><code data-trim class="javascript">
-Promise.reject('Out of cheese...') // wraps a value in a promise and rejects it
+                <h3>Chaining promises (failure callbacks)</h3>
+                <pre><code class="max-height-unset" data-trim class="javascript">
+// wraps a value in a promise and rejects it
+Promise.reject('Out of cheese...')
     .catch(function (reason) {
-        return Promise.reject(reason + ' Oh no!'); // failure CAN'T be handled
+        // failure CAN'T be handled
+        return Promise.reject(reason + ' Oh no!');
     })
     .catch(function (reason) {
-        console.error('Easy, I bought some cheese'); // failure CAN be handled
-        return 'Pizza with cheese';
+        console.error('Easy, I bought some cheese');
+        return 'Pizza with cheese'; // failure CAN be handled
     })
     .then(function (pizza) {
         console.info(pizza); // Pizza with cheese
@@ -208,7 +211,7 @@ Promise.reject('Out of cheese...') // wraps a value in a promise and rejects it
                 </code></pre>
             </section>
             <section>
-                <h3 class="highlight">Chaining vs. Aggregation</h3>
+                <h3>Chaining vs. Aggregation</h3>
                 <pre><code data-trim class="javascript">
 var promise = Promise.resolve('Pizza with cheese');
 
@@ -225,8 +228,8 @@ promise.then(function (pizza) {
                 </code></pre>
             </section>
             <section>
-                <h3 class="highlight">Returning a promise from a promise callback</h3>
-                <pre><code data-trim class="javascript">
+                <h3>Returning a promise from a promise callback</h3>
+                <pre><code class="max-height-unset" data-trim class="javascript">
 Promise.resolve('Pizza with')
     .then(function (pizza) {
         return pizza + ' cheese,';
@@ -241,19 +244,20 @@ Promise.resolve('Pizza with')
             });
     })
     .then(function (pizza) {
-        console.info(pizza); // Pizza with cheese, (add-ons mushrooms, oregano)
+        // Pizza with cheese, (add-ons mushrooms, oregano)
+        console.info(pizza);
     });
                 </code></pre>
             </section>
             <section>
-                <h3 class="highlight">Drawbacks of Promises</h3>
+                <h3>Drawbacks of Promises</h3>
                 <ul class="list-style-none">
                     <li>
-                        <p class="highlight">Returning only single values<p>
+                        <p><strong>Returning only single values</strong><p>
                         <p>This may be suitable for single XHRs but not for WebSocket connections, UI Events, etc.</p>
                     </li>
                     <li class="margin-top-40">
-                        <p class="highlight">Not cancellable</p>
+                        <p><strong>Not cancellable</strong></p>
                         <p>There is no way for the promise consumer to cancel the wrapped subject - e.g. XHR request.</p>
                     </li>
                 </ul>
@@ -262,22 +266,23 @@ Promise.resolve('Pizza with')
                 <section>
                     <h3>Introduction to Observables</h3>
                     <ul class="list-style-none">
-                        <li><p>... or <span class="highlight">Microsoft</span> and <span class="highlight">Netflix</span> to the rescue</p></li>
+                        <li><p>... or <strong>Microsoft</strong> and <strong>Netflix</strong> to the rescue</p></li>
                         <li><p>... via RxJS</p></li>
                         <li><p>... built into Angular by default.</p></li>
+                        <li><p>... ES.Next Proposal</p></li>
                     </ul>
                 </section>
                 <section>
                     <h3>Hint: Running the following examples via node js</h3>
                     <ul>
                         <li>node, npm and tsc (TypeScript compiler) need to be installed</li>
-                        <li>create folder - e.g. <code class="highlight">mkdir ts-test</code></li>
-                        <li>cd into folder - e.g. <code class="highlight">cd ts-test</code></li>
-                        <li>run <code class="highlight">npm install rxjs</code></li>
+                        <li>create folder - e.g. <code>mkdir ts-test</code></li>
+                        <li>cd into folder - e.g. <code>cd ts-test</code></li>
+                        <li>run <code>npm install rxjs</code></li>
                         <li>create TypeScript file - e.g. 'test.ts'</li>
                         <li>paste example code and save</li>
-                        <li>run <code class="highlight">tsc test.ts --target es5 --lib es6,dom</code></li>
-                        <li>run <code class="highlight">node test.js</code></li>
+                        <li>run <code>tsc test.ts --target es5 --lib es6,dom</code></li>
+                        <li>run <code>node test.js</code></li>
                     </ul>
                 </section>
             </section>
@@ -285,10 +290,10 @@ Promise.resolve('Pizza with')
                 <h3>How do Observables differ from Promises?</h3>
                 <p class="text-align-left">An Observable...</p>
                 <ul>
-                    <li>represents <span class="highlight">multiple</span> values over <span class="highlight">time</span>.</li>
-                    <li>can be <span class="highlight">subscribed</span> to (cf. <code>Promise.prototype.then()</code>).</li>
-                    <li>can be <span class="highlight">unsubscribed</span> from.</li>
-                    <li>offers the possibility to <span class="highlight">transform received values</span> through the usage of operators.</li>
+                    <li>represents <strong>multiple</strong> values over <strong>time</strong>.</li>
+                    <li>can be <strong>subscribed</strong> to (cf. <code>Promise.prototype.then()</code>).</li>
+                    <li>can be <strong>unsubscribed</strong> from.</li>
+                    <li>offers the possibility to <strong>transform received values</strong> through the usage of operators.</li>
                 </ul>
             </section>
             <section>
@@ -324,7 +329,8 @@ obs.map(n => n * n).subscribe(n => console.log('This is number ', n));</code></p
                 <div class="margin_top_30">
                     <p class="align_right"><small><a href="http://reactivex.io/rxjs/manual/overview.html#subscribing-to-observables">RxJS Docs</a></small></p>
                 </div>
-                <div class="side-by-side">
+            </section>
+            <section>
                     <div>
                         <pre class="typescript"><code>import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -338,6 +344,8 @@ Observable.of(2, 3).map(n => {
 // note: no subscribe() here!</code></pre>
                         <p>... leads to no output.</p>
                     </div>
+            </section>
+            <section>
                     <div>
                         <pre class="typescript"><code>import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -356,17 +364,18 @@ Observable.of(2, 3).map(n => {
                             <li>This is number  9</li>
                         </ul>
                     </div>
-                </div>
             </section>
             <section>
                 <h3>An Observables State</h3>
-                <p>In an Observable Execution, <span class="highlight">zero to infinite Next notifications</span> may be delivered. If <span class="highlight">either an Error or Complete notification</span> is delivered, then nothing else can be delivered afterwards.</p>
+                <p>In an Observable Execution, <strong>zero to infinite Next notifications</strong> may be delivered. If <strong>either an Error or Complete notification</strong> is delivered, then nothing else can be delivered afterwards.</p>
                 <div class="margin_top_30">
                     <p class="align_right"><small><a href="http://reactivex.io/rxjs/manual/overview.html">RxJS Docs</a></small>
                 </p>
             </section>
             <section>
-                <p>After <code>complete()</code> an Observable will not emit any more values</p>
+                <p>After <code>complete()</code> an Observable will not emit any more values.</p>                    
+            </section>
+            <section>
                 <pre><code>import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 
@@ -388,7 +397,9 @@ obs.subscribe(v => console.log('next value', v),
                 </ul>
             </section>
             <section>
-                <p>After <code>error()</code> an Observable will not emit any more values</p>
+                <p>After <code>error()</code> an Observable will not emit any more values.</p>                    
+            </section>
+            <section>
                 <pre><code>import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 
@@ -411,7 +422,7 @@ obs.subscribe(v => console.log('next value', v),
             </section>
             <section>
                 <h3>How to cancel an Observable</h3>
-                <p>When you subscribe, you get back a Subscription, which represents the ongoing execution. <span class="highlight">Just call unsubscribe() to cancel the execution.</span></p>
+                <p>When you subscribe, you get back a Subscription, which represents the ongoing execution. <strong>Just call unsubscribe() to cancel the execution.</strong></p>
                 <div class="margin_top_30">
                     <p class="align_right"><small><a href="http://reactivex.io/rxjs/manual/overview.html#disposing-observable-executions">RxJS Docs</a></small>
                 </p>
@@ -432,12 +443,13 @@ let obs: Observable&lt;number&gt; =
 let subscription = obs.subscribe(v => console.log('next value', v),
     e => console.log('error', e),
     () => console.log('completed'));</code></pre>
-<p>... <code>subscription.unsubscribe()</code> cancels the observable.</p>
             </section>
             <section>
-                <h3>Unsubscribing from an Observable</h3>
+                <p>... <code>subscription.unsubscribe()</code> cancels the observable.</p>
+            </section>
+            <section>
                 <div>
-                    <div class="inline-block width-70-percent">
+                    <div class="inline-block">
                         <pre><code class="code-without-max-height">import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 
@@ -475,12 +487,12 @@ setTimeout(() => {
             </section>
             <section>
                 <h3>Error handling</h3>
-                <p>As described earlier when calling <code>subscribe()</code> the <span class="highlight">second parameter is a function which gets called if the observable collection emits an error</span> by calling <code>error()</code>.</p>
+                <p>As described earlier when calling <code>subscribe()</code> the <strong>second parameter is a function which gets called if the observable collection emits an error</strong> by calling <code>error()</code>.</p>
                 <p class="margin-top-70">Note: Throwing inside the function given to <code>Observable.create()</code> leads to an unhandled exception - calling <code>error()</code> fulfills the contract.</p>
             </section>
             <section>
                 <h3>Operators</h3>
-                <p>An Operator is a function which creates <span class="highlight">a new Observable based on the current Observable</span>. This is a pure operation: the previous Observable stays unmodified.</p>
+                <p>An Operator is a function which creates <strong>a new Observable based on the current Observable</strong>. This is a pure operation: the previous Observable stays unmodified.</p>
                 <div class="margin_top_30">
                     <p class="align_right"><small><a href="http://reactivex.io/rxjs/manual/overview.html#operators">RxJS Docs</a></small>
                 </p>
@@ -488,34 +500,35 @@ setTimeout(() => {
             </section>
             <section>
                 <h3>Binding Observables in Angular components (1/2)</h3>
-                <pre><code class="typescript">@Component({
+                <pre><code class="typescript max-height-unset">@Component({
   selector: 'app-root',
   template: '&lt;h1&gt;Hello {{name$ | async}}&lt;/h1&gt;'
 })
 export class AppComponent {
-  name$: Observable&lt;string&gt; = Observable.create((observer: Observer&lt;string&gt;) => {
-    let names = ['Waldo', 'Caspar', 'Azizi'];
-    let index = 0;
-    setInterval(() => {
-      index = ++index >= names.length ? 0 : index;
-      observer.next(names[index]);
-    }, 500);
-  });
+  name$: Observable&lt;string&gt; =
+    Observable.create((observer: Observer&lt;string&gt;) => {
+        let names = ['Waldo', 'Caspar', 'Azizi'];
+        let index = 0;
+        setInterval(() => {
+        index = ++index >= names.length ? 0 : index;
+        observer.next(names[index]);
+        }, 500);
+    });
 }</code></pre>
                 <p>Binding to a stream of data - how cool is that?</p>
             </section>
             <section>
                 <h3>Binding Observables in Angular components (2/2)</h3>
                 <ul>
-                    <li>Observable members have <span class="highlight">suffix $</span> by convention</li>
-                    <li>Angular views automatically <span class="highlight">subscribe and unsubscribe</span></li>
-                    <li>... this logic is inside <span class="highlight">async pipe</span> and prevents memory leaks (you never have to think about when to unsubscribe!)</li>
+                    <li>Observable members have <strong>suffix $</strong> by convention</li>
+                    <li>Angular views automatically <strong>subscribe and unsubscribe</strong></li>
+                    <li>... this logic is inside <strong>async pipe</strong> and prevents memory leaks (you never have to think about when to unsubscribe!)</li>
                 </ul>
             </section>
             <section>
                 <section>
                     <p>Do advanced stuff without any state inside components</p>
-                    <pre><code class="typescript code-without-max-height">@Component({
+                    <pre><code class="typescript">@Component({
   selector: 'app-root',
   template: `&lt;h1&gt;{{salutation$ | async}}&lt;/h1&gt;
   &lt;button (click)="changeSalutation()"&gt;Change salutation&lt;/button&gt;
@@ -543,7 +556,7 @@ export class AppComponent implements OnInit {
 }</code></pre>
                 </section>
                 <section>
-                    <pre><code class="typescript code-without-max-height">@Injectable()
+                    <pre><code class="typescript">@Injectable()
 export class SalutationService {
     private names = ['Waldo', 'Caspar', 'Azizi', 'Otto', 'Kathreen', 'Dorothee'];
     private salutations = ['Hallo', 'Hola', 'Hello', 'Salut', 'Ciao'];
@@ -569,16 +582,16 @@ export class SalutationService {
                 </section>
             </section>
             <section>
-                <p>These examples <span class="highlight">only scratched the surface</span> of what Observables can do.</p>
-                <p>They are key to so called <span class="highlight">reactive architectures</span>.</p>
+                <p>These examples <strong>only scratched the surface</strong> of what Observables can do.</p>
+                <p>They are key to so called <strong>reactive architectures</strong>.</p>
                 <p>Further reading:</p>
                 <p><a href="https://github.com/ngrx/store">ngrx</a><span>: Redux implementation for Angular</span></p>
             </section>
     </div>
 </div>
 
-<script src="../reveal.js-3.3.0/lib/js/head.min.js"></script>
-<script src="../reveal.js-3.3.0/js/reveal.js"></script>
+<script src="../node_modules/reveal.js/lib/js/head.min.js"></script>
+<script src="../node_modules/reveal.js/js/reveal.js"></script>
 <script src="lib/jquery/jquery.min.js"></script>
 <script src="js/js-engine.js"></script>
 
@@ -589,12 +602,12 @@ export class SalutationService {
         width: 960, // this is default
         // More info https://github.com/hakimel/reveal.js#dependencies
         dependencies: [
-            { src: '../reveal.js-3.3.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-            { src: '../reveal.js-3.3.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-            { src: '../reveal.js-3.3.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-            { src: '../reveal.js-3.3.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-            { src: '../reveal.js-3.3.0/plugin/zoom-js/zoom.js', async: true },
-            { src: '../reveal.js-3.3.0/plugin/notes/notes.js', async: true }
+            { src: '../node_modules/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: '../node_modules/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../node_modules/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../node_modules/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: '../node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true },
+            { src: '../node_modules/reveal.js/plugin/notes/notes.js', async: true }
         ]
     });
 </script>
