@@ -54,8 +54,8 @@
             <ul>
                 <li>ES5 2009</li>
                 <li>ES2015 (f.k.a. ES6) 2015</li>
-                <li>ES2016, ES2017</li>
-                <li>TypeScript 2.5 2017</li>
+                <li>ES2016, ES2017, ..., ES.Next</li>
+                <li>TypeScript 2.6 2017</li>
             </ul>
             <p><a href="http://caniuse.com/#search=es6" target="_blank">Can I use ES6 (Browsers Support)</a></p>
             <p><a href="http://node.green/" target="_blank">node.green (Node.js Support)</a></p>
@@ -174,7 +174,7 @@ var emptyObject = {},
     };
 					</code></pre>
             </section>
-                        <section>
+            <section>
                 <h2>Objects</h2>
                 <p>Values' retrieval</p>
                 <pre><code data-trim class="javascript">
@@ -191,7 +191,7 @@ person['lastName'] // 'Example'
 person.salutation // undefined
 salutation = person.salutation || ''; // the default operator
 person.address.street // throws TypeError
-street = person.address && person.address.street // undefined
+street = person.address &amp;&amp; person.address.street // undefined
 					</code></pre>
             </section>
             <section>
@@ -210,7 +210,7 @@ person.age = 33;
 
 // delete
 delete person.age;
-					</code></pre>
+                </code></pre>
             </section>
             <section>
                 <h2>Functions</h2>
@@ -222,7 +222,7 @@ var add = function (a, b) {
 };
 
 add(1, 2); // 3
-					</code></pre>
+                </code></pre>
             </section>
             <section>
                 <h2>Functions</h2>
@@ -239,7 +239,7 @@ var person = {
 
 person.letMeIntroduceMyself(); // My name is John Example
 person.firstName // 'John' - no privacy
-					</code></pre>
+                </code></pre>
                 <p>...are called <i>methods</i></p>
             </section>
             <section>
@@ -251,7 +251,8 @@ var funcA = function () {
   var funcB = function () {
     // Scope 3
   };
-};</code></pre>
+};
+                </code></pre>
             </section>
             <section>
                 <h2>Lexical Scope</h2>
@@ -271,7 +272,7 @@ var myFun = function (someInput) {
     // at this point a = 11, b = 2, c is not defined
 };
 myFun();
-					</code></pre>
+                </code></pre>
             </section>
             <section>
                 <h2>Closure</h2>
@@ -290,7 +291,7 @@ var myObjectFactory = function (param) {
 
 myObject.theseAreMySecrets(); // value = Value, param = Param
 myObject.value; // undefined                        
-					</code></pre>
+                </code></pre>
             </section>
             <section>
                 <h2>Module Pattern - IIFE</h2>
@@ -384,17 +385,21 @@ null == false // false
             <section>
                 <h3>let</h3>
                 <p>Declares a variable with <strong>block level scope</strong>.</p>
-                <pre><code class="javascript">var foo = 123;
+                <pre><code data-trim class="javascript">
+var foo = 123;
 if (true) {
     var foo = 456;
 }
-console.log(foo); // 456</code></pre>
+console.log(foo); // 456
+                </code></pre>
                 <p>... with <code>let</code>:</p>
-                <pre><code class="javascript">let foo = 123;
+                <pre><code data-trim class="javascript">
+let foo = 123;
 if (true) {
     let foo = 456;
 }
-console.log(foo); // 123</code></pre>
+console.log(foo); // 123
+                </code></pre>
             </section>
             <section>
                 <h3>const</h3>
@@ -491,6 +496,19 @@ for (let x of numbers) {
                 <p>plus new array operators like spread, of, etc.</p>
             </section>
             <section>
+                <h2>Spread Operator</h2>
+                <pre><code data-trim class="javasript">
+const myValues = [1, 3, 7];
+const myValues2 = [...myValues];
+
+console.log(myValues === myValues2); // false
+
+const myExtendendValues = [...myValues, 9];
+
+console.log(myExtendendValues); // [1, 3, 7, 9]
+                </code></pre>
+            </section>
+            <section>
                 <h3>Advanced Types I</h3>
                 <p><code>Set</code> is a collection of distinct objects.</p>
                 <pre><code class="javascript">let mySet = new Set([...'abcd']);
@@ -548,11 +566,57 @@ fencyFunc(); // hello</code></pre>
                 <p>cyclic dependencies can be handled</p>
                 <p><strong>Re-exporting</strong> is possible</p>
             </section>
+        </section>
+        <section>
             <section>
-                <h3>Current (Jan. 2017) Drawbacks</h3>
-                <p>There is no specification of how modules are loaded inside ECMAScript 2015 specification.</p>
-                <p>The loader specification is a <a href="https://github.com/whatwg/loader/" target="_blank">new specification</a> which evolves outside of ECMAScript.</p>
-                <p>Check current status <a href="http://caniuse.com/#feat=es6-module" target="_blank">here</a></p>
+                <img class="header-logo" src="img/js-logo.png" alt="JS logo">
+                <h3>ES2016, ES2017, ES.Next</h3>
+            </section>
+            <section>
+                <p>ECMAScript is released more often.</p>
+                <p>This leads to smaller steps and a faster developing landscape.</p>
+            </section>
+            <section>
+                <p>Array includes</p>
+                <pre><code data-trim class="javascript">
+let vals = [1,2,3,4];
+vals.includes(1); // true
+                </code></pre>
+                <p>Exponentiation (**) Operator</p>
+                <pre><code data-trim class="javascript">
+console.log(2 ** 3); // 8
+console.log((-2) ** 3); // -8
+                </code></pre>
+            </section>
+            <section>
+                <h2>Async / Await</h2>
+                <pre><code class="javascript" data-trim>
+router.get('/user/:id', async (req, res, next) => {
+  try {
+    const user = await getUserFromDb({ id: req.params.id });
+    res.json(user);
+  } catch (e) {
+    next(e);
+  }
+})
+                </code></pre>
+            </section>
+            <section>
+                <h2>Object Spread</h2>
+                <p>ES.Next implemented today</p>
+                <pre><code class="javascript" data-trim>
+let myObject = {
+  name: 'karl',
+  age: 55
+};
+
+let myNewObject = { ...myObject };
+
+console.log(myObject === myNewObject); // false
+                </code></pre>
+            </section>
+            <section>
+                <p>node.green has good <a href="http://node.green">overview</a> of proposed features.</p>
             </section>
         </section>
         <section>
@@ -562,11 +626,15 @@ fencyFunc(); // hello</code></pre>
             </section>
             <section>
                 <h2>What is it?</h2>
-                <p>TypeScript is a <strong>typed superset</strong> of JavaScript that <strong>compiles</strong> to plain JavaScript.<small><a href="https://www.typescriptlang.org" target="_blank">typescriptlang.org</a></small></p>
+                <p>
+                    TypeScript is a <strong>typed superset</strong> of JavaScript that
+                    <strong>compiles</strong> to plain JavaScript.<small>
+                    <a href="https://www.typescriptlang.org" target="_blank">typescriptlang.org</a></small>
+                </p>
                 <ul>
                     <li>invented by <strong>Microsoft</strong></li>
                     <li>valid JavaScript syntax is valid Typescript syntax</li>
-                    <li><strong>Google</strong> dropped AtScript and chose <strong>TypeScript for Angular 2</strong></li>
+                    <li><strong>Google</strong> dropped AtScript and chose <strong>TypeScript for Angular</strong></li>
                 </ul>
             </section>
             <section>
@@ -594,37 +662,68 @@ let c: Color = Color.Green;
 let colorName: string = Color[2];</code></pre>
             </section>
             <section>
-                <h2>ES6 Features - today</h2>
-                    <dl>
-                        <dt>ECMAScript / JavaScript </dt><dd> commonly used name</dd>
-                        <dt>ECMAScript 5 (ES5) </dt><dd> version established in most browsers</dd>
-                        <dt>ECMAScript 6 (ES6) / ECMAScript 2015 (ES2015) </dt><dd> only partially implemented</dd>
-                        <dt>ECMAScript 7 (ES7) / ECMAScript 2016 (ES2016) </dt><dd> only available through transpiling</dd>
-                    </dl>
+                <h2>Interfaces</h2>
+				<pre><code data-trim class="max-height-unset typescript">
+interface TransferObject {
+  id: string;
+  values: string[]
+}
+
+function formatResponse(response: TransferObject): string {
+  return response.values.join(', ');
+}
+
+const response: TransferObject = {
+  id: 'dummy-1-2-3',
+  values: ['1', '2', '3']
+}
+
+const format = formatResponse(response);
+console.log(format); // 1, 2, 3
+                </code></pre>
             </section>
             <section>
-                <h2>Interfaces</h2>
-				<pre><code data-trim  class="max-height-unset typescript">interface ICar {
-  engine: string;
-  color: string;
+              <h2>Extending Interfaces</h2>
+              <pre><code data-trim class="typescript">
+interface OnInit {
+  ngOnInit(): void
 }
 
-class Car implements ICar {
-  constructor (public engine: string, public color: string) { }
+class MyComponent implements OnInit {
 
-  start() {
-    return "Started " + this.engine;
+  ngOnInit(): void {
+    console.log('Component activated.')
   }
+
 }
-
-class ManlyTruck extends Car {
-  bigTires: bool;
-
-  constructor(engine: string, public color: string, bigTires: bool) {
-    super(engine, color);
-    this.bigTires = bigTires;
+              </code></pre>
+            </section>
+            <section>
+                <h3>Abstract Classes</h3>
+                <pre><code data-trim class="max-height-unset typescript">
+abstract class Speaker {
+  constructor(protected location: string) { }
+  abstract speak(): void;
+}
+    
+class Headphones extends Speaker {
+    
+  constructor() {
+    super('in ear');
   }
-}</code></pre>
+    
+  speak(): void {
+    console.log(this.location + ': la la la');
+  }
+    
+}
+   
+function play(speaker: Speaker) {
+  speaker.speak();
+}
+    
+play(new Headphones()); // in ear: la la la
+                </code></pre>
             </section>
             <section>
                 <h3>Interface vs. Class</h3>
@@ -677,13 +776,52 @@ import polygons = Shapes.Polygons;
 let sq = new polygons.Square();</code></pre>
 		    </section>
             <section>
-                <h2>Starts to feel like a "real" programming language</h2>
-                <p>And there is no reason not to use it.</p>
+              <h2>Type Inference</h2>
+              <pre><code data-trim class="typescript">
+let x = [1, 2, 3]; // x becomes number[]
+
+// zoo becomes (Rhino | Elephant | Snake)[]
+let zoo = [new Rhino(), new Elephant(), new Snake()];
+
+// corrects type
+let zoo: Animal[] = [new Rhino(), new Elephant(), new Snake()];
+              </code></pre>
+            </section>
+            <section>
+              <h2>Advanced Types / Type Narrowing</h2>
+              <pre><code class="typescript" data-trim>
+function padLeft(value: string, padding: any) {
+    if (typeof padding === 'number') {
+        return Array(padding + 1).join(' ') + value;
+    }
+
+    if (typeof padding === 'string') {
+        return padding + value;
+    }
+
+    throw new Error(`Expected string or number, got '${padding}'.`);
+}
+              </code></pre>
+            </section>
+            <section>
+              <h2>--strictNullChecks</h2>
+              <pre><code class="typescript" data-trim>
+interface MyType {
+  name: string;
+}
+
+function myFunc(val: MyType) {
+  // ...
+}
+
+myFunc(null); // compiler error
+myFunc(undefined); // compiler error
+              </code></pre>
             </section>
         </section>
         <section>
             <section>
-                <img class="header-logo" src="../common/img/angular.svg">         
+                <img style="box-shadow:none;" class="header-logo" src="../common/img/angular.svg">         
                 <h3>Build / Modules / Angular compatibility</h3>
             </section>
             <section>
@@ -713,7 +851,8 @@ var Person = (function () {
             <section>
                 <h3>Configuring TS compilation</h3>
                 <p>By convention running tsc without target looks for <strong>tsconfig.json</strong>.</p>
-                <pre><code class="json">{
+                <pre><code data-trim class="json">
+{
   "compilerOptions": {
     "target": "es5",
     "module": "system",
@@ -722,12 +861,13 @@ var Person = (function () {
     ...
   },
   ...
-}</code></pre>
+}
+                </code></pre>
                 <p>See full list of compiler options at <a href="https://www.typescriptlang.org/docs/handbook/compiler-options.html" target="_blank">TS Docs</a></p>
             </section>
             <section>
                 <h3>JavaScript Modules</h3>
-                <p>As shown ES2015 specifies how ES modules are created but <strong>not how they are loaded<span>.</p>
+                <p>As shown ES2015 specifies how ES modules are created but <strong>not how they are loaded</strong>.</p>
                 <p>There is <strong>no complete implementation</strong> for ES modules at the moment.</p>
                 <p>But there are <strong>other modules</strong> which let to ES modules and can be used today.</p>
             </section>
@@ -745,14 +885,14 @@ var Person = (function () {
                 <p>Client side modules with implementation <a href="http://requirejs.org/">RequireJS</a></p>
                 <p>Modules are loaded asynchronously</p>
                 <p>Solution which has been long around for loading only files which are needed.</p>
-                <pre><code>require(['lib1','lodash','angular'],function (lib1, _, angular){
+                <pre><code data-trim>
+require(['lib1','lodash','angular'],function (lib1, _, angular){
     // use it
-});</code></pre>
+});              </code></pre>
             </section>
             <section>
                 <p><a href="https://github.com/umdjs/umd">UMD (Universal Module Definition)</a></p>
                 <p>A module definition which supports the API of both <strong>CommonJS and AMD</strong></p>
-                <p>Angular 2 is packaged as UMD modules.</p>
             </section>
             <section>
                 <h3>Loaders, Bundlers</h3>
@@ -779,7 +919,7 @@ export function crazy() { ... }
 export function crazy2() { ... }
 
 // -----main-----
-import { crazy } from 'lib';
+import { crazy } from './lib';
 </code></pre>
                 <p>Tree shaking removes <code>crazy2()</code> because it is not imported.</p>
                 <p><a href="http://rollupjs.org/" target="_blank">rollup.js</a> and <a href="https://webpack.js.org/" target="_blank">webpack</a></p>
