@@ -947,6 +947,43 @@ import { crazy } from './lib';
                 <h3>Tooling is even more <strong>fragile</strong> then UI frameworks are.</h3>
                 <p>Embrace the change or choose a CLI and let the open source community do the work (e.g. Google).</p>
             </section>
+            <section>
+                <h3>Webpack 3 Example</h3>
+                <p>webpack.config.js</p>
+                <pre><code class="javascript" data-trim>
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+
+module.exports = {
+  entry: './src/main.js',
+  output: {
+    filename: 'bundle.js'
+  },
+  plugins: [
+    new UglifyJSPlugin()
+  ]
+}
+                </code></pre>
+            </section>
+            <section>
+                <p>src/lib.js</p>
+                <pre><code class="javascript" data-trim>
+export function crazy() {
+  console.log('crazy');
+}
+
+export function crazy2() {
+  console.log('crazy2');
+}                          
+                </code></pre>
+            </section>
+            <section>
+                <p>src/main.js</p>
+                <pre><code class="javascript" data-trim>
+import { crazy } from './lib';
+
+crazy();
+                </code></pre>
+            </section>
         </section>
     </div>
 </div>
