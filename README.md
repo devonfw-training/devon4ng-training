@@ -6,7 +6,7 @@ Hosted slides are here https://devonfw.github.io/rich-web-client-school
 
 | Branch            | Content                                                  |
 | ----------------- | -------------------------------------------------------- |
-| master            | Dummy Branch                                             |
+| master            | Dummy branch                                             |
 | gh-pages          | Slides developed with reveal.js                          |
-| [1-9]-[title]     | Angular Exercises code, exercises can be found in slides |
-| [100-101]-[title] | Testing Exercises code                                   |
+| [1-9]-[title]     | Angular exercises code, exercises can be found in slides |
+| [100-101]-[title] | Testing exercises code                                   |
