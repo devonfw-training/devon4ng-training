@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>devonfw ng2 training - _template</title>
+    <link rel="icon" href="../common/img/favicon.ico">
+
+
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/theme/white.css">
+    <link rel="stylesheet" href="../common/css/common.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../node_modules/reveal.js/lib/css/github-gist.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../node_modules/reveal.js/css/print/pdf.css' : '../node_modules/reveal.js/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <style>
+        .reveal div.git-command {
+            display: inline-block;
+            width: 32%;
+            font-size: 27px;
+            text-align: left;
+        }
+        .reveal div.explanation {
+            display: inline-block;
+            width: 65%;
+            font-size: 27px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<section class="angular-link">
+    <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
+</section>
+<section class="devon-link">
+    <a href="http://devonfw.github.io" target="_blank"><img height="30px" src="../common/img/devon_logo_blue.png"></a>
+</section>
+<div class="devon reveal">
+    <div class="slides">
+        <section >
+            <h1>Introduction to Git</h1>
+        </section>
+        <section>
+            <h2>You should know about Git</h2>
+            <ul>
+                <li>Your git folder contains the whole repository</li>
+                <li>No access to the remote repository is needed for branch switching</li>
+                <li>You can commit changes without sending the commit to the remote repository</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Git Cheat Sheet</h2>
+            <div class="git-command">git add .</div>
+            <div class="explanation">Adds all changed files to the next commit</div>
+            <div class="git-command">git commit -m "message"</div>
+            <div class="explanation">Commits Changes with the specified message</div>
+            <div class="git-command">git checkout &lt;branch&gt;</div>
+            <div class="explanation">Checks out the specified branch</div>
+            <div class="git-command">git pull</div>
+            <div class="explanation">Load changes from the remote repository</div>
+            <div class="git-command">git push</div>
+            <div class="explanation">Pushes commits to the remote repository</div>
+            <div class="git-command">git reset --hard</div>
+            <div class="explanation">Reverts all changes since the last commit</div>
+        </section>
+    </div>
+</div>
+
+<script src="../node_modules/reveal.js/lib/js/head.min.js"></script>
+<script src="../node_modules/reveal.js/js/reveal.js"></script>
+
+<script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        history: true,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+            { src: '../node_modules/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: '../node_modules/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../node_modules/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../node_modules/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: '../node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true },
+            { src: '../node_modules/reveal.js/plugin/notes/notes.js', async: true }
+        ]
+    });
+</script>
+</body>
+</html>
