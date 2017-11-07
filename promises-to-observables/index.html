@@ -298,10 +298,10 @@ Promise.resolve('Pizza with')
             </section>
             <section>
                 <h3>Create and consume a simple Observable</h3>
-                <pre class="typescript"><code>import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
+                <pre class="typescript"><code class="typescript" data-trim>
+import { ArrayObservable } from 'rxjs/observable/ArrayObservable';
 
-let obs = Observable.of(1, 2, 3);
+const obs = ArrayObservable.of(1, 2, 3);
 obs.subscribe(n => console.log('This is number ', n));</code></pre>
             <ul class="list-style-none font-style-italic">
                 <li>This is number  1</li>
@@ -311,12 +311,14 @@ obs.subscribe(n => console.log('This is number ', n));</code></pre>
             </section>
             <section>
                 <h3>Using map() operator</h3>
-                <pre class="typescript"><code>import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/map';
+                <pre><code class="typescript" data-trim>
+import { ArrayObservable } from 'rxjs/observable/ArrayObservable';
+import { map } from 'rxjs/operators';
 
-let obs = Observable.of(1, 2, 3);
-obs.map(n => n * n).subscribe(n => console.log('This is number ', n));</code></pre>
+const obs = ArrayObservable.of(1, 2, 3);
+obs.pipe(map(n => n * n))
+   .subscribe(n => console.log('This is number ', n));
+                </code></pre>
                 <ul class="list-style-none font-style-italic">
                     <li>This is number  1</li>
                     <li>This is number  4</li>
@@ -332,38 +334,45 @@ obs.map(n => n * n).subscribe(n => console.log('This is number ', n));</code></p
             </section>
             <section>
                     <div>
-                        <pre class="typescript"><code>import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/map';
+                        <pre><code class="typescript" data-trim>
+import { ArrayObservable } from 'rxjs/observable/ArrayObservable';
+import { map } from 'rxjs/operators';
 
-Observable.of(2, 3).map(n => {
-    let result = n * n;
-    console.log(`mapping ${n} to ${result}`);
-    return result;
-}); 
+ArrayObservable.of(2, 3)
+  .pipe(
+    map(n => {
+        const result = n * n;
+        console.log(`mapping ${n} to ${result}`);
+        return result;
+    })
+  ); 
 // note: no subscribe() here!</code></pre>
                         <p>... leads to no output.</p>
                     </div>
             </section>
             <section>
-                    <div>
-                        <pre class="typescript"><code>import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/map';
-
-Observable.of(2, 3).map(n => {
-    let result = n * n;
-    console.log(`mapping ${n} to ${result}`);
-    return result;
-})
-.subscribe(n => console.log('This is number ', n));</code></pre>
-                        <ul class="list-style-none font-style-italic">
-                            <li>mapping 2 to 4</li>
-                            <li>This is number  4</li>
-                            <li>mapping 3 to 9</li>
-                            <li>This is number  9</li>
-                        </ul>
-                    </div>
+                <div>
+                    <pre><code class="typescript" data-trim>
+import { ArrayObservable } from 'rxjs/observable/ArrayObservable';
+import { map } from 'rxjs/operators';
+                                    
+ArrayObservable.of(2, 3)
+  .pipe(
+    map(n => {
+      const result = n * n;
+      console.log(`mapping ${n} to ${result}`);
+      return result;
+    })
+  )
+  .subscribe(n => console.log('This is number ', n));
+                    </code></pre>
+                    <ul class="list-style-none font-style-italic">
+                        <li>mapping 2 to 4</li>
+                        <li>This is number  4</li>
+                        <li>mapping 3 to 9</li>
+                        <li>This is number  9</li>
+                    </ul>
+                </div>
             </section>
             <section>
                 <h3>An Observables State</h3>
@@ -528,7 +537,8 @@ export class AppComponent {
             <section>
                 <section>
                     <p>Do advanced stuff without any state inside components</p>
-                    <pre><code class="typescript">@Component({
+                    <pre><code data-trim class="typescript">
+@Component({
   selector: 'app-root',
   template: `&lt;h1&gt;{{salutation$ | async}}&lt;/h1&gt;
   &lt;button (click)="changeSalutation()"&gt;Change salutation&lt;/button&gt;
@@ -540,7 +550,7 @@ export class AppComponent implements OnInit {
   constructor(private salutationService: SalutationService) { }
 
   ngOnInit(): void {
-    this.salutation$ = Observable.combineLatest(
+    this.salutation$ = combineLatest(
       this.salutationService.salutation$,
       this.salutationService.name$,
       (s:string, n:string) => `${s} ${n}`)
@@ -553,24 +563,25 @@ export class AppComponent implements OnInit {
   changeName(): void {
     this.salutationService.changeName();
   }
-}</code></pre>
+}
+                    </code></pre>
                 </section>
                 <section>
-                    <pre><code class="typescript">@Injectable()
+                    <pre class="width-100-percent"><code data-trim class="typescript max-height-unset">@Injectable()
 export class SalutationService {
     private names = ['Waldo', 'Caspar', 'Azizi', 'Otto', 'Kathreen', 'Dorothee'];
     private salutations = ['Hallo', 'Hola', 'Hello', 'Salut', 'Ciao'];
-    private name = new BehaviorSubject&lt;string&gt;(this.names[0]);
-    private salutation = new BehaviorSubject&lt;string&gt;(this.salutations[0]);
-    name$ = this.name.asObservable();
-    salutation$ = this.salutation.asObservable();
+    private nameSource = new BehaviorSubject&lt;string&gt;(this.names[0]);
+    private salutationSource = new BehaviorSubject&lt;string&gt;(this.salutations[0]);
+    name$ = this.nameSource.asObservable();
+    salutation$ = this.salutationSource.asObservable();
 
     changeName(): void {
-        this.name.next(this.getNextValue(this.names, this.name.getValue()));
+        this.nameSource.next(this.getNextValue(this.names, this.name.getValue()));
     }
 
     changeSalutation(): void {
-        this.salutation.next(
+        this.salutationSource.next(
             this.getNextValue(this.salutations, this.salutation.getValue()));
     }
 
@@ -578,7 +589,8 @@ export class SalutationService {
         let nextIndex = vals.indexOf(current) + 1;
         return vals[nextIndex >= vals.length ? 0 : nextIndex];
     }
-}</code></pre>
+}
+                    </code></pre>
                 </section>
             </section>
             <section>

@@ -64,3 +64,7 @@ html .reveal section img.no-border {
 .reveal section .width-80-percent {
     width: 70%;
 }
+
+.reveal section .width-100-percent {
+    width: 100%;
+}
