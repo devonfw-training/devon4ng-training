@@ -533,6 +533,40 @@ TestBed.configureTestingModule({
                 <pre class="width-100-percent"><code class="html">&lt;my-component (somethingChanged)="method($event)"&gt;&lt;/my-component&gt;</code></pre>
                 <pre class="width-100-percent"><code class="typescript">debugElement.triggerEventHandler('somethingChanged', whatHasChanged)</code></pre>
             </section>
+            <section>
+                <p>HttpClientTestingModule lets all calls made by HttpClient hit a fake backend.</p>                
+                <pre class="width-100-percent"><code data-trim class="typescript">
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
+beforeEach(() => {
+  TestBed.configureTestingModule({
+    ...,
+    imports: [
+      HttpClientTestingModule,
+    ],
+  })
+});
+                </code></pre>
+            </section>
+            <section>
+                <pre class="width-100-percent"><code class="max-height-unset typescript" data-trim>
+it('expects a GET request', inject(
+    [BookService, HttpTestingController],
+    (sut: BookService, httpMock: HttpTestingController) => {
+  
+  sut.getBooks()
+     .subscribe(books => expect(books.length).toBe(1));   
+
+  const req = httpMock.expectOne('/data');
+    
+  expect(req.request.method).toEqual('GET');
+    
+  req.flush([{ id: 1, name: 'Book of Ra', author: 'Mr Gambler' }]);
+    
+  httpMock.verify();
+}));
+                </code></pre>
+            </section>
         </section>
     </div>
 </div>
