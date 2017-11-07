@@ -98,19 +98,20 @@ constructor(private http: HttpClient) {}
 			<pre><code class="hljs typescript"  data-trim>
 this.http.get(this.requestUrl + bookId)
 	.catch((error: any) => {
-		console.log(error);
 		return Observable.throw(error);
 	})
-	.subscribe(...);
+	.subscribe( book => {
+		console.log('Book Author', book['author']);
+	});
 			</code></pre>
 			<p>..or with typechecking the response</p>
 			<pre><code class="hljs typescript"  data-trim data-noescape>
 this.http.get<mark>&lt;Book&gt;</mark>(this.requestUrl + bookId)
 	.catch((error: any) => {
-		console.log(error);
 		return Observable.throw(error);
 	})
 	.subscribe( book => {
+		console.log('Book Author', book.author);
 		this.book = book;
 	});
 			</code></pre>
