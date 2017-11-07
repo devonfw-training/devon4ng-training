@@ -537,7 +537,8 @@ export class AppComponent {
             <section>
                 <section>
                     <p>Do advanced stuff without any state inside components</p>
-                    <pre><code class="typescript">@Component({
+                    <pre><code data-trim class="typescript">
+@Component({
   selector: 'app-root',
   template: `&lt;h1&gt;{{salutation$ | async}}&lt;/h1&gt;
   &lt;button (click)="changeSalutation()"&gt;Change salutation&lt;/button&gt;
@@ -549,7 +550,7 @@ export class AppComponent implements OnInit {
   constructor(private salutationService: SalutationService) { }
 
   ngOnInit(): void {
-    this.salutation$ = Observable.combineLatest(
+    this.salutation$ = combineLatest(
       this.salutationService.salutation$,
       this.salutationService.name$,
       (s:string, n:string) => `${s} ${n}`)
@@ -562,24 +563,25 @@ export class AppComponent implements OnInit {
   changeName(): void {
     this.salutationService.changeName();
   }
-}</code></pre>
+}
+                    </code></pre>
                 </section>
                 <section>
-                    <pre><code class="typescript">@Injectable()
+                    <pre class="width-100-percent"><code data-trim class="typescript max-height-unset">@Injectable()
 export class SalutationService {
     private names = ['Waldo', 'Caspar', 'Azizi', 'Otto', 'Kathreen', 'Dorothee'];
     private salutations = ['Hallo', 'Hola', 'Hello', 'Salut', 'Ciao'];
-    private name = new BehaviorSubject&lt;string&gt;(this.names[0]);
-    private salutation = new BehaviorSubject&lt;string&gt;(this.salutations[0]);
-    name$ = this.name.asObservable();
-    salutation$ = this.salutation.asObservable();
+    private nameSource = new BehaviorSubject&lt;string&gt;(this.names[0]);
+    private salutationSource = new BehaviorSubject&lt;string&gt;(this.salutations[0]);
+    name$ = this.nameSource.asObservable();
+    salutation$ = this.salutationSource.asObservable();
 
     changeName(): void {
-        this.name.next(this.getNextValue(this.names, this.name.getValue()));
+        this.nameSource.next(this.getNextValue(this.names, this.name.getValue()));
     }
 
     changeSalutation(): void {
-        this.salutation.next(
+        this.salutationSource.next(
             this.getNextValue(this.salutations, this.salutation.getValue()));
     }
 
@@ -587,7 +589,8 @@ export class SalutationService {
         let nextIndex = vals.indexOf(current) + 1;
         return vals[nextIndex >= vals.length ? 0 : nextIndex];
     }
-}</code></pre>
+}
+                    </code></pre>
                 </section>
             </section>
             <section>
