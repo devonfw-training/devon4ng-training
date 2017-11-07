@@ -4,23 +4,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>devonfw ng2 training - testing exercises</title>
+    <title>Testing Exercise</title>
     <link rel="icon" href="../common/img/favicon.ico">
 
 
-    <link rel="stylesheet" href="../reveal.js-3.3.0/css/reveal.css">
-    <link rel="stylesheet" href="../reveal.js-3.3.0/css/theme/black.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/theme/white.css">
     <link rel="stylesheet" href="../common/css/common.css">
 
     <!-- Theme used for syntax highlighting of code -->
-    <link rel="stylesheet" href="../reveal.js-3.3.0/lib/css/zenburn.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/lib/css/github-gist.css">
 
     <!-- Printing and PDF exports -->
     <script>
         var link = document.createElement('link');
         link.rel = 'stylesheet';
         link.type = 'text/css';
-        link.href = window.location.search.match(/print-pdf/gi) ? '../reveal.js-3.3.0/css/print/pdf.css' : '../reveal.js-3.3.0/css/print/paper.css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../node_modules/reveal.js/css/print/pdf.css' : '../node_modules/reveal.js/css/print/paper.css';
         document.getElementsByTagName('head')[0].appendChild(link);
     </script>
 </head>
@@ -29,7 +29,7 @@
     <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
 </section>
 <section class="devon-link">
-    <a href="http://devonfw.github.io" target="_blank"><img height="50px" src="../common/img/devon_logo_white.png"></a>
+    <a href="http://devonfw.github.io" target="_blank"><img height="30px" src="../common/img/devon_logo_blue.png"></a>
 </section>
 <div class="devon reveal">
     <div class="slides">
@@ -42,7 +42,7 @@
                 <h3>Exercise: Setup running environment</h3>
                 <ol>
                     <li>Checkout branch 100-isolated-unit-tests</li>
-                    <li>Run Karma and check the initial test is running green via <code>ng test</code></li>
+                    <li>Run <code>ng test</code> and check if initial test is green.</li>
                 </ol>
             </section>
             <section>
@@ -59,6 +59,8 @@
                 <h3>Exercise: New Feature</h3>
                 <p>As the project grows new features are required.</p>
                 <blockquote>There is the requirement for a book writer.</blockquote>
+            </section>
+            <section>
                 <p>HelloService should expose <span class="highlight">say methods for speaker and book</span> - e.g. <code>sayOnSpeaker()</code> and <code>writeToBook()</code></p>
                 <ol>
                     <li>Implement the new requirements.</li>
@@ -70,6 +72,8 @@
                 <h3>Exercise: Change</h3>
                 <p>As the project grows the client changes his mind.</p>
                 <blockquote>Saying on speaker should never be added to the speech.</blockquote>
+            </section>
+            <section>
                 <ol>
                     <li>Adjust existing tests to the new requirements.</li>
                     <li>Fix the implementation.</li>
@@ -84,7 +88,7 @@
                 <h3>Exercise: Set up running environment</h3>
                 <ol>
                     <li>Checkout branch 101-angular-testing-utilities</li>
-                    <li>Run Karma and check the initial test is running green via <code>ng test</code></li>
+                    <li>Run <code>ng test</code> and check if initial test is running green.</li>
                     <li>Browse simple app and make yourself familiar with its structure.</li>
                 </ol>
             </section>
@@ -225,8 +229,8 @@ describe('HelloComponent', () => {
     </div>
 </div>
 
-<script src="../reveal.js-3.3.0/lib/js/head.min.js"></script>
-<script src="../reveal.js-3.3.0/js/reveal.js"></script>
+<script src="../node_modules/reveal.js/lib/js/head.min.js"></script>
+<script src="../node_modules/reveal.js/js/reveal.js"></script>
 
 <script>
     // More info https://github.com/hakimel/reveal.js#configuration
@@ -235,12 +239,12 @@ describe('HelloComponent', () => {
 
         // More info https://github.com/hakimel/reveal.js#dependencies
         dependencies: [
-            { src: '../reveal.js-3.3.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-            { src: '../reveal.js-3.3.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-            { src: '../reveal.js-3.3.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-            { src: '../reveal.js-3.3.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-            { src: '../reveal.js-3.3.0/plugin/zoom-js/zoom.js', async: true },
-            { src: '../reveal.js-3.3.0/plugin/notes/notes.js', async: true }
+            { src: '../node_modules/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: '../node_modules/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../node_modules/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../node_modules/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: '../node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true },
+            { src: '../node_modules/reveal.js/plugin/notes/notes.js', async: true }
         ]
     });
 </script>
