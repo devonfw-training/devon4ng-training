@@ -37,8 +37,8 @@
 		</section>
 		
         <section>
-			<p>The <span class="highlight">Angular Http</span> client communicates with the server using a familiar HTTP request/response protocol.</p> 
-			<p>The Http client is one of a family of services in the Angular HTTP library.</p>
+			<p>The <span class="highlight">Angular HttpClient</span> communicates with the server using a familiar HTTP request/response protocol.</p> 
+			<p>The HttpClient is one of a family of services in the Angular HTTP library.</p>
 			<p><small><a target="_blank" href="https://angular.io/docs/ts/latest/guide/server-communication.html">https://angular.io/docs/ts/latest/guide/server-communication.html</a></small><p>
 			
 		</section>
@@ -47,9 +47,9 @@
 			<section>
 			<h2>Http configuration</h2>
 			<ul>
-				<li class="fragment fade-up">Importing <span class="highlight">HttpModule</span></li>
+				<li class="fragment fade-up">Importing <span class="highlight">HttpClientModule</span></li>
 				<li class="fragment fade-up">Importing <span class="highlight">Http</span> utils and <span class="highlight">Rxjs</span> operators</li>
-				<li class="fragment fade-up">Injecting <span class="highlight">Http</span> service</li>
+				<li class="fragment fade-up">Injecting <span class="highlight">HttpClient</span> service</li>
 			</ul>
 			</section>
 			
@@ -57,11 +57,11 @@
 				<h3>Importing HttpModule</h3>
 				<pre><code class="hljs typescript"  data-trim>
 // import
-import { HttpModule } from '@angular/http';
+import {HttpClientModule} from '@angular/common/http';
 
 // module configuration
 @NgModule({
-    imports: [HttpModule],
+    imports: [HttpClientModule],
     declarations: [...],
     bootstrap: [...],
     providers: [...]
@@ -73,18 +73,22 @@ export class AppModule {}
 			<section>
 				<h3>Importing Http utils and Rxjs operators</h3>
 				<pre><code class="hljs typescript"  data-trim>
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { 
+	HttpClient,
+	HttpHeaders,
+	HttpResponse
+} from '@angular/common/http';
+
 import { Observable } from 'rxjs/Observable';
 
-import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 			</code></pre>
 			</section>
 			
 			<section>
-				<h3>Injecting Http service</h3>
+				<h3>Injecting HttpClient service</h3>
 				<pre><code class="hljs typescript"  data-trim>
-constructor(private http: Http) {}
+constructor(private http: HttpClient) {}
 			</code></pre>
 			</section>
 		</section>
@@ -92,21 +96,49 @@ constructor(private http: Http) {}
 		<section>
 			<h2>Http GET</h2>
 			<pre><code class="hljs typescript"  data-trim>
-this.http.get(this.requestUrl + id)
-      .map(res => res.json())
-      .catch((error: any) => {
-        console.log(error);
-        return Observable.throw(error);
-      });
+this.http.get(this.requestUrl + bookId)
+	.catch((error: any) => {
+		console.log(error);
+		return Observable.throw(error);
+	})
+	.subscribe(...);
+			</code></pre>
+			<p>..or with typechecking the response</p>
+			<pre><code class="hljs typescript"  data-trim data-noescape>
+this.http.get<mark>&lt;Book&gt;</mark>(this.requestUrl + bookId)
+	.catch((error: any) => {
+		console.log(error);
+		return Observable.throw(error);
+	})
+	.subscribe( book => {
+		this.book = book;
+	});
 			</code></pre>
 		</section>
 		
 		<section>
+			<p>..or with full response</p>
+			<pre><code class="hljs typescript"  data-trim data-noescape>
+this.http.get&lt;Book&gt;(this.reqUrl + bookId, <mark>{observe: 'response'}</mark>)
+	.subscribe(
+		data => {
+			console.log(data.headers.get('X-Custom-Header'));
+			console.log(data.body.author);
+		},
+		err => {
+			console.log('Something went wrong!');
+		}
+	);
+			</code></pre>
+		</section>
+		<section>
 			<h2>Http PUT</h2>
 			<pre><code class="hljs typescript"  data-trim>
 // create options
-let headers = new Headers({ 'Content-type': 'application/json' });
-let options = new RequestOptions({ headers: headers });
+let options = { 
+	headers: new HttpHeaders()
+			.set('Content-type', 'application/json')
+};
 
 // send request
 this.http.put(
@@ -120,8 +152,10 @@ this.http.put(
 			<h2>Http POST</h2>
 			<pre><code class="hljs typescript"  data-trim>
 // create options
-let headers = new Headers({ 'Content-type': 'application/json' });
-let options = new RequestOptions({ headers: headers });
+let options = { 
+	headers: new HttpHeaders()
+			.set('Content-type', 'application/json')
+};
 
 // send request
 this.http.post(
