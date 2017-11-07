@@ -83,6 +83,8 @@ describe('HelloService', () => {
             <div class="quote-source">
                 <a href="https://angular.io/docs/ts/latest/guide/testing.html#!#faq" target="_blank">Angular Docs</a>
             </div>
+        </section>
+        <section>
             <p>
                 Remember how the build differs to Java or .Net. No test code is build for production by <span class="highlight">file pattern</span>.
                 <blockquote>*.spec.ts</blockquote>
@@ -90,27 +92,65 @@ describe('HelloService', () => {
         </section>
         <section>
             <h3>Configuration</h3>
-            <p>Karma is configured with <blockquote>karma.conf.js</blockquote></p>
-            <p>Start karma with <blockquote>karma start</blockquote></p>
-            <p>Angular-CLI abstracts from karma and lets you start with <blockquote>ng test</blockquote></p>
+            <p>Karma is configured in</p>
+            <pre><code>karma.conf.js</code></pre>
+            <p>Start karma with</p>
+            <pre><code>karma start</code></pre>
+            <p>Angular-CLI abstracts from karma and lets you start with</p>
+            <pre><code>ng test</code></pre>
         </section>
         <section>
             <h3>Patterns</h3>
-            <ul>
-                <li>AAA / <span class="highlight">GWT</span> is always a good idea!</li>
-                <li>When testing more than one function use <span class="highlight">nested describes</span>.</li>
-                <li>Create const helper and variables outside of specs to keep <span class="highlight">specs short and readable</span>.</li>
-                <li>Initialize inside <code class="typescript highlight">beforeEach()</code> function
-                    <pre><code class="typescript">let sut: TestService;
-
+        </section>
+        <section>
+            <p>AAA / <span class="highlight">GWT</span> is always a good idea!</p>
+            <pre><code class="typescript" data-trim>
 describe('TestService', () => {
+
+  it('should return blue if name is otto', () => {
+    const sut = new TestService();
+    sut.name = 'otto';
+
+    const actual = sut.spell();
+
+    expect(actual).toBe('blue');
+  });
+
+});
+            </code></pre>
+        </section>
+        <section>
+            <p>When testing more than one function use <span class="highlight">nested describes</span>.</p>
+            <pre><code class="typescript" data-trim>
+describe('TestService', () => {
+
+    describe('spell', () => {
+
+    });
+
+    describe('dance', () => {
+
+    });
+
+});
+            </code></pre>
+        </section>
+        <section>
+            <p>Create const helper and variables outside of specs to keep <span class="highlight">specs short and readable</span>.</p>
+        </section>
+        <section>
+            <p>Initialize inside <code class="typescript highlight">beforeEach()</code> function</p>
+                <pre><code data-trim class="typescript">
+describe('TestService', () => {
+
+  let sut: TestService;
+
   beforeEach(() => {
     sut = new TestService;
   });
-  ...
-}</code></pre>
-                </li>
-            </ul>
+
+}
+            </code></pre>
         </section>
         <section>
             <h3>Expecting behavior</h3>
@@ -123,12 +163,25 @@ describe('TestService', () => {
             </div>
         </section>
         <section>
-            <h3>Mocking, Stubbing, Faking, Spies, etc.</h3>
+            <h3>Mocks, Stubs, Fakes, Spies</h3>
             <p>Jasmine comes pre-equipped with mocking ability.</p>
-            <p>Create a spy <pre><code class="typescript">spyOn(obj, 'methodName');</code></pre></p>
-            <p>Assert method has been called <pre><code class="typescript">expect(obj.methodName).toHaveBeenCalled()</code></pre></p>
-            <p>Assert method has been called with argument <pre><code class="typescript">expect(obj.methodName).toHaveBeenCalledWith(args)</code></pre></p>            
-            <p>Assert method has been called amount of times <pre><code class="typescript">expect(obj.methodName).toHaveBeenCalledTimes(count);</code></pre></p>                        
+            <p>spy on existing function</p>
+            <pre><code class="typescript">spyOn(func, 'methodName');</code></pre>
+            <p>spy on new function</p>
+            <pre><code class="typescript">jasmine.createSpy('methodName').and.returnValue(4711)</code></pre>
+            <p>create object with spies</p>
+            <pre><code data-trim class="typescript">
+jasmine.createSpyObj('ServiceName', ['func1', 'func2']);
+jasmine.createSpyObj('ServiceName', {
+    func1: true,
+    func2: 'otto'
+});
+            </code></pre>
+        </section>
+        <section>
+                <p>Assert method has been called <pre><code class="typescript">expect(obj.methodName).toHaveBeenCalled()</code></pre></p>
+                <p>Assert method has been called with argument <pre><code class="typescript">expect(obj.methodName).toHaveBeenCalledWith(args)</code></pre></p>            
+                <p>Assert method has been called amount of times <pre><code class="typescript">expect(obj.methodName).toHaveBeenCalledTimes(count);</code></pre></p>                        
         </section>
         <section>
             <section>
@@ -158,10 +211,14 @@ describe('TestService', () => {
             </section>
             <section>
                 <h3>Speaker</h3>
-                <pre><code class="max-height-unset typescript">export class Speaker {
-    speak(val: string): void {
-        console.log('speaker:', val); // highly sophisticated operation...
-    }
+                <pre><code data-trim class="max-height-unset typescript">
+export class Speaker {
+
+  speak(val: string): void {
+    // highly sophisticated operation...
+    console.log('speaker:', val);
+  }
+
 }
 </code></pre>
             </section>
@@ -190,29 +247,31 @@ export class HelloService {
             </section>
             <section>
                 <h3>HelloService spec</h3>
-                <pre><code class="max-height-unset javascript">const speakerFake = {
+                <pre><code data-trim class="max-height-unset javascript">
+const speakerFake = {
   speak: (v: string) => {}
 } as Speaker;
 let sut: HelloService;
 
 describe('HelloService', () => {
+
   beforeEach(() => {
     sut = new HelloService(speakerFake);
   });
 
   describe('say', () => {
+
     it('should call Speaker', () => {
-      // Given
       const speechLine = 'This is Sparta!';
       spyOn(speakerFake, 'speak');
 
-      // When
       sut.say(speechLine);
 
-      // Then
       expect(speakerFake.speak).toHaveBeenCalledWith(speechLine);
     });
+
   });
+
 });</code></pre>
             </section>
         </section>
