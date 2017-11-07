@@ -34,12 +34,22 @@
     <div class="slides">
         <section>
             <h1>Components</h1>
-            <img class="reset" src="img/ng2-arch-components.png">
+            <img class="reset" src="img/template-metadata-component.png">
         </section>
         <section>
             <p>A <span class="highlight">component</span> controls a patch of screen called a view.</p>
             <p><span class="highlight">Component's application logic</span> is defined inside a <span class="highlight">class</span>. The class <span class="highlight">interacts</span> with the view through an API of <span class="highlight">properties and methods</span></p>
+        </section>
+		<section>
+            <h3>Component Tree</h3>
+            <img class="reset" src="img/component-tree.svg">
+        </section>
+		<section>
             <p>Angular <span class="highlight">creates, updates, and destroys components</span> as the user moves through the application. Your app can <span class="highlight">take action</span> at each moment in this lifecycle through optional <span class="highlight">lifecycle hooks</span></p>
+        </section>
+		<section>
+            <h3>Lifecycle Hooks</h3>
+			<img class="reset" height="550px" src="img/lifecycle-hooks.png">
         </section>
         <section>
             <h2 class="no-text-transform">Component is just a class...</h2>
@@ -179,11 +189,11 @@ export class BookDetailsComponent implements OnInit {
             </code></pre>
         </section>
         <section>
-            <p class="no-text-transform">...extracted to a <span class="highlight">separate file</span> and imported using e.g. <span class="highlight">SystemJS</span></p>
+            <p class="no-text-transform">...extracted to a <span class="highlight">separate file</span> and imported using file path</p>
             <pre><code class="hljs typescript" data-trim  data-noescape>
 @Component({
   selector: 'book-details',
-  <mark>template: require('./book-details.component.html!text')</mark>
+  <mark>templateUrl: './book-details.component.html'</mark>
 })
 export class BookDetailsComponent implements OnInit {
 ...
@@ -215,7 +225,7 @@ export class BookDetailsComponent implements OnInit {
 @Component({
   selector: 'book-details',
   template: ...,
-  <mark>styles: [require('./book-details.component.css!text')]</mark>
+  <mark>styleUrls: ['./book-details.component.css']</mark>
 })
 export class BookDetailsComponent implements OnInit {
 ...
