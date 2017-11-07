@@ -122,10 +122,6 @@ export class BookDetailsComponent {
 }
                   </code></pre>
         </section>
-		<section>
-			<h4>Input (Data) and Output (Event) Binding</h4>
-			<img class="reset" src="img/data-binding.png"></a>
-		</section>
         <section>
             <h3>Structural Directives</h3>
             <h4>ng-if</h4>
@@ -169,6 +165,31 @@ export class ChildComponent {
 }
             </code></pre>
         </section>
+		<section>
+			<h4>Input (Data) and Output (Event) Binding</h4>
+			<img class="reset" src="img/data-binding.png"></a>
+		</section>
+		<section>
+			<pre><code class="max-height-unset typescript" data-trim data-noescape>
+				@Component({
+				  selector: 'child',
+				  template: `
+				  &lt;div *ngIf="currentBook"&gt;
+					&lt;div&gt;Book author: {{currentBook.author}}&lt;/div&gt;
+					&lt;div&gt;Book title: {{currentBook.title}}&lt;/div&gt;
+					&lt;div&gt;&lt;button (click)="onButtonClick()"&gt;Rent the book&lt;/button&gt;
+				  &lt;/div&gt;`
+				} as Component)
+				export class ChildComponent {
+				  <mark>@Input() currentBook: Book;</mark>
+				  <mark>@Output() rent = new EventEmitter&lt;Book&gt;();</mark>
+
+				  onButtonClick(): void {
+					this.rent.emit(this.currentBook);
+				  }
+				}
+            </code></pre>
+		</section>
     </div>
 </div>
 
