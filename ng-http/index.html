@@ -81,7 +81,7 @@ import {
 
 import { Observable } from 'rxjs/Observable';
 
-import 'rxjs/add/operator/catch';
+import { catchError } from 'rxjs/operators';
 			</code></pre>
 			</section>
 			
@@ -97,19 +97,25 @@ constructor(private http: HttpClient) {}
 			<h2>Http GET</h2>
 			<pre><code class="hljs typescript"  data-trim>
 this.http.get(this.requestUrl + bookId)
-	.catch((error: any) => {
-		return Observable.throw(error);
-	})
+	.pipe(
+		catchError( error => { 
+			return Observable.throw(error);
+		})
+	)
 	.subscribe( book => {
 		console.log('Book Author', book['author']);
 	});
 			</code></pre>
+	</section>
+	<section>
 			<p>..or with typechecking the response</p>
 			<pre><code class="hljs typescript"  data-trim data-noescape>
 this.http.get<mark>&lt;Book&gt;</mark>(this.requestUrl + bookId)
-	.catch((error: any) => {
-		return Observable.throw(error);
-	})
+	.pipe(
+		catchError( error => { 
+			return Observable.throw(error);
+		})
+	)
 	.subscribe( book => {
 		console.log('Book Author', book.author);
 		this.book = book;
@@ -120,16 +126,16 @@ this.http.get<mark>&lt;Book&gt;</mark>(this.requestUrl + bookId)
 		<section>
 			<p>..or with full response</p>
 			<pre><code class="hljs typescript"  data-trim data-noescape>
-this.http.get&lt;Book&gt;(this.reqUrl + bookId, <mark>{observe: 'response'}</mark>)
-	.subscribe(
-		data => {
-			console.log(data.headers.get('X-Custom-Header'));
-			console.log(data.body.author);
-		},
-		err => {
-			console.log('Something went wrong!');
-		}
-	);
+this.http.get&lt;Book&gt;(this.reqUrl, <mark>{observe: 'response'}</mark>)
+.subscribe(
+	data => {
+		console.log(data.headers.get('X-Custom-Header'));
+		console.log(data.body.author);
+	},
+	err => {
+		console.log('Something went wrong!');
+	}
+);
 			</code></pre>
 		</section>
 		<section>
@@ -138,7 +144,7 @@ this.http.get&lt;Book&gt;(this.reqUrl + bookId, <mark>{observe: 'response'}</mar
 // create options
 let options = { 
 	headers: new HttpHeaders()
-			.set('Content-type', 'application/json')
+		.set('Content-type', 'application/json')
 };
 
 // send request
@@ -155,7 +161,7 @@ this.http.put(
 // create options
 let options = { 
 	headers: new HttpHeaders()
-			.set('Content-type', 'application/json')
+		.set('Content-type', 'application/json')
 };
 
 // send request
