@@ -177,19 +177,20 @@ const appRoutes: Routes = [
 				
 			<section>
 				<h3>Receiving params from a path</h3>
-				<pre><code class="hljs typescript"  data-trim>
-//(..) other imports
+				<pre><code class="max-height-unset typescript" data-trim>
 import { ActivatedRoute, Params } from '@angular/router';
-import 'rxjs/add/operator/switchMap';
+import { switchMap } 'rxjs/operators';
 
-export class HeroDetailsComponent implements OnInit{
+export class HeroDetailsComponent implements OnInit {
 
-  constructor(private activatedRoute: ActivatedRoute) {}
+  hero$: Observable&lt;Hero&gt;;
 
-  ngOnInit(){
-    this.activatedRoute.params
-      .switchMap(params: Params => this.heroService.getHero(params['id']))
-      .subscribe(hero => this.hero = hero);
+  constructor(private activatedRoute: ActivatedRoute) { }
+
+  ngOnInit() {
+    this.hero$ = this.activatedRoute.params.pipe(
+      .switchMap(params => this.heroService.getHero(params.id))
+    );
   }
 }
 				</code></pre>
