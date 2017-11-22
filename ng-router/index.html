@@ -178,14 +178,18 @@ const appRoutes: Routes = [
 			<section>
 				<h3>Receiving params from a path</h3>
 				<pre><code class="max-height-unset typescript" data-trim>
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 import { switchMap } from 'rxjs/operators';
 
 export class HeroDetailsComponent implements OnInit {
 
   hero$: Observable&lt;Hero&gt;;
 
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private heroService: HeroService
+  ) { }
 
   ngOnInit() {
     this.hero$ = this.activatedRoute.params.pipe(
@@ -194,89 +198,8 @@ export class HeroDetailsComponent implements OnInit {
   }
 }
 				</code></pre>
-				<p style="font-size: smaller">
-					The switchMap operator allows you to perform an action with the current value of the Observable, and map it to a new Observable.<br><br>
-					The switchMap operator will cancel any in-flight requests if the user re-navigates to the route while still retrieving a hero.
-				</p>
 
 			</section>
-				
-		</section>
-		
-		<section>
-			<section>
-				<h2>Routing with resolve</h2>
-				<ul>
-					<li class="fragment fade-up">building the <span class="highlight">resolve</span> service</li>
-					<li class="fragment fade-up">registering <span class="highlight">resolve</span> service</li>
-					<li class="fragment fade-up">receiving resolved data</li>
-				</ul>
-			</section>
-			
-			<section>
-				<h3>Resolve Service</h3>
-				<pre><code class="hljs typescript"  data-trim>
-import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot } from '@angular/router'
-import { Observable } from 'rxjs/Observable';
-import { BookService } from '../book.service';
-import { Book } from '../book';
-
-@Injectable()
-export class BookDetailsResolve implements Resolve&lt;Book&gt;{
-
-    constructor(private bookService: BookService) {}
-
-    resolve(route: ActivatedRouteSnapshot): Observable&lt;Book&gt; {
-        let id: number = +route.params['id'];
-        return this.bookService.findOne(id);
-    }
-}
-				</code></pre>
-			</section>
-			
-			<section>
-				<h3>Resolve in route and service registration</h3>
-				<pre><code class="hljs typescript"  data-trim>
-// routes config
-const appRoutes: Routes = [
-  {
-    path: 'book-details/:id',
-    component: BookDetailsComponent,
-    resolve: {book: BookDetailsResolve}
-  }
-];
-
-// module config
-@NgModule({
-    imports: [...],
-    declarations: [...],
-    bootstrap: [...],
-    providers: [BookDetailsResolve]
-})
-				</code></pre>
-			</section>
-			
-			<section>
-			<h3>Receiving resolve data</h3>
-				<pre><code class="hljs typescript"  data-trim>
-// import				
-import { Router } from '@angular/router';
-
-// injection
-constructor(private route: ActivatedRoute) {}
-
-// data retrieval			
-ngOnInit(): void {
-    this.route.data
-      .subscribe((data: { book: Book }) => {
-        if (data.book) {
-          this.currentBook = data.book;
-        }
-      })
-  }
-				</code></pre>
-			<section>
 				
 		</section>
     </div>
