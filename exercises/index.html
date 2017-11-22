@@ -335,7 +335,7 @@
                 <h3>Routing (6/6)</h3>
                 <h4>Update the Book Details</h4>
                 <ol>
-                    <li>In the ngInit use <span class="highlight monospace">switchMap</span> on the injected <span class="highlight monospace">route's paramMap</span></li>
+                    <li>In the ngOnInit use <span class="highlight monospace">switchMap</span> on the injected <span class="highlight monospace">route's paramMap</span></li>
                     <li>In the <span class="highlight monospace">switchMaps</span> function retrieve the <span class="highlight monospace">id</span> from the params and use it to load the book from <span class="highlight monospace">BookService</span></li>
                     <li>Update the <span class="highlight monospace">BookDetailsComponent.apply()</span> method so that <span class="highlight monospace">BookService.save</span> method is called.
                         Once finished navigate to the book overview (<a href="https://angular.io/docs/ts/latest/api/router/index/Router-class.html#!#navigate-anchor" target="_blank" class="monospace">Router.navigate</a>).</li>
