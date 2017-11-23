@@ -121,7 +121,7 @@
         &lt;span&gt;Otto is really important!&lt;/span&gt;
     &lt;/div&gt;
     <!--check other validations...-->
-  &lt;div&gt;
+  &lt;/div&gt;
 &lt;/form&gt;</code></pre>
                 </li>
                 <li>
@@ -147,7 +147,7 @@
   name: {
     first: string,
     last: string
-  };
+  },
   email: string;
 };
 </code></pre>
@@ -191,10 +191,10 @@ export class FormTestComponent implements OnInit {
 
   ngOnInit(): void {
     this.contactForm = this.formBuilder.group({
-      name: this.formBuilder.group({
+      name: {
         first: 'Juana',
         last: 'Garcia'
-      }),
+      },
       email: '',
     });
   }
@@ -204,10 +204,10 @@ export class FormTestComponent implements OnInit {
             <h3>Validation</h3>
             <p>... in Model Driven forms</p>
             <pre><code class="typescript">this.contactForm = this.formBuilder.group({
-  name: this.formBuilder.group({
+  name: {
     first: ['', Validators.required],
     last: ['', Validators.minLength(2)]
-  }),
+  },
   email: ['', Validators.required],
 });</code></pre>
             <ul>

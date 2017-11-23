@@ -335,7 +335,7 @@
                 <h3>Routing (6/6)</h3>
                 <h4>Update the Book Details</h4>
                 <ol>
-                    <li>In the ngInit use <span class="highlight monospace">switchMap</span> on the injected <span class="highlight monospace">route's paramMap</span></li>
+                    <li>In the ngOnInit use <span class="highlight monospace">switchMap</span> on the injected <span class="highlight monospace">route's paramMap</span></li>
                     <li>In the <span class="highlight monospace">switchMaps</span> function retrieve the <span class="highlight monospace">id</span> from the params and use it to load the book from <span class="highlight monospace">BookService</span></li>
                     <li>Update the <span class="highlight monospace">BookDetailsComponent.apply()</span> method so that <span class="highlight monospace">BookService.save</span> method is called.
                         Once finished navigate to the book overview (<a href="https://angular.io/docs/ts/latest/api/router/index/Router-class.html#!#navigate-anchor" target="_blank" class="monospace">Router.navigate</a>).</li>
@@ -378,7 +378,7 @@
 			<section>
                 <h3>Http (2/2)</h3>
                 <ol>
-                    <li>Import the <span class="highlight monospace">HttpModule</span> into the <span class="highlight monospace">AppModule</span>, add it to the imports array</li>
+                    <li>Import the <span class="highlight monospace">HttpClientModule</span> into the <span class="highlight monospace">AppModule</span>, add it to the imports array</li>
 					<li>Refactor the <span class="highlight monospace">findAll()</span> books method - use <span class="highlight monospace">http.get</span></li>
 					<li>Refactor the <span class="highlight monospace">findOne(id: Number)</span> method - use <span class="highlight monospace">http.get</span></li>
 					<li>Refactor the <span class="highlight monospace">save(book: Book)</span> method  - use <span class="highlight monospace">http.post / http.put</span></li>
@@ -390,16 +390,32 @@
             <section>
                 <h3>Forms (1/6)</h3>
                 <ol>
-                    <li>Go to the <span class="highlight monospace">BookDetailsComponent</span>'s template and add a <a href="https://angular.io/docs/ts/latest/guide/template-syntax.html#!#ref-vars" target="_blank" class="monospace">template variable</a>
-                        which references the <span class="highlight monospace">&lt;form&gt;</span>'s control model (<span class="highlight monospace">#bookForm="ngForm"</span>).</li>
-                    <li>Make the apply button of type submit (<span class="highlight monospace">type="submit"</span>)
+                    <li>
+                        Go to the <span class="highlight monospace">BookDetailsComponent</span>'s
+                        template and add a
+                        <a href="https://angular.io/docs/ts/latest/guide/template-syntax.html#!#ref-vars" target="_blank" class="monospace">template variable</a>
+                        which references the <span class="highlight monospace">&lt;form&gt;</span>'s control model
+                        (<span class="highlight monospace">#bookForm="ngForm"</span>).
+                    </li>
+                    <li>
+                        Make the apply button of type submit (<span class="highlight monospace">type="submit"</span>)
                         and move the call of <span class="highlight monospace">apply()</span> to the
-                    <li>To each &lt;input&gt; add a &lt;span&gt; with an error message that is shown if the input field is not valid</li>&lt;form&gt;</span>'s <span class="highlight monospace">(submit)</span> event binding.</li>
-                    <li>Add the <span class="highlight monospace">[class.ng-submit]</span> <a href="https://angular.io/docs/ts/latest/guide/template-syntax.html#!#class-binding" target="_blank" class="monospace">class binding</a> to the
-                        <span class="highlight monospace">&lt;form&gt;</span>. Bind it to the
-                        <span class="highlight monospace">submitted</span> flag of the <span class="highlight monospace">BookDetailsComponent</span> class.</li>
-                    <li>Add the <span class="highlight monospace">novalidate</span> attribute to the
-                        <span class="highlight monospace">&lt;form&gt;</span> so that the HTML5 validation is off.</li>
+                        &lt;form&gt;</span>'s <span class="highlight monospace">(submit)</span> event binding.</li>
+                    <li>
+                        To each &lt;input&gt; add a &lt;span&gt; with an error message that is shown
+                        if the input field is not valid
+                    </li>
+                    <li>
+                        Add the <span class="highlight monospace">[class.ng-submit]</span>
+                        <a href="https://angular.io/docs/ts/latest/guide/template-syntax.html#!#class-binding" target="_blank" class="monospace">class binding</a>
+                        to the <span class="highlight monospace">&lt;form&gt;</span>. Bind it to the
+                        <span class="highlight monospace">submitted</span> flag of the
+                        <span class="highlight monospace">BookDetailsComponent</span> class.
+                    </li>
+                    <li>
+                        Add the <span class="highlight monospace">novalidate</span> attribute to the
+                        <span class="highlight monospace">&lt;form&gt;</span> so that the HTML5 validation is off.
+                    </li>
                 </ol>
             </section>
             <section>
