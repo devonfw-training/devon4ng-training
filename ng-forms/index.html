@@ -204,10 +204,10 @@ export class FormTestComponent implements OnInit {
             <h3>Validation</h3>
             <p>... in Model Driven forms</p>
             <pre><code class="typescript">this.contactForm = this.formBuilder.group({
-  name: this.formBuilder.group({
+  name: {
     first: ['', Validators.required],
     last: ['', Validators.minLength(2)]
-  }),
+  },
   email: ['', Validators.required],
 });</code></pre>
             <ul>
