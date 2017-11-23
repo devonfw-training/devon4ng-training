@@ -390,16 +390,32 @@
             <section>
                 <h3>Forms (1/6)</h3>
                 <ol>
-                    <li>Go to the <span class="highlight monospace">BookDetailsComponent</span>'s template and add a <a href="https://angular.io/docs/ts/latest/guide/template-syntax.html#!#ref-vars" target="_blank" class="monospace">template variable</a>
-                        which references the <span class="highlight monospace">&lt;form&gt;</span>'s control model (<span class="highlight monospace">#bookForm="ngForm"</span>).</li>
-                    <li>Make the apply button of type submit (<span class="highlight monospace">type="submit"</span>)
+                    <li>
+                        Go to the <span class="highlight monospace">BookDetailsComponent</span>'s
+                        template and add a
+                        <a href="https://angular.io/docs/ts/latest/guide/template-syntax.html#!#ref-vars" target="_blank" class="monospace">template variable</a>
+                        which references the <span class="highlight monospace">&lt;form&gt;</span>'s control model
+                        (<span class="highlight monospace">#bookForm="ngForm"</span>).
+                    </li>
+                    <li>
+                        Make the apply button of type submit (<span class="highlight monospace">type="submit"</span>)
                         and move the call of <span class="highlight monospace">apply()</span> to the
-                    <li>To each &lt;input&gt; add a &lt;span&gt; with an error message that is shown if the input field is not valid</li>&lt;form&gt;</span>'s <span class="highlight monospace">(submit)</span> event binding.</li>
-                    <li>Add the <span class="highlight monospace">[class.ng-submit]</span> <a href="https://angular.io/docs/ts/latest/guide/template-syntax.html#!#class-binding" target="_blank" class="monospace">class binding</a> to the
-                        <span class="highlight monospace">&lt;form&gt;</span>. Bind it to the
-                        <span class="highlight monospace">submitted</span> flag of the <span class="highlight monospace">BookDetailsComponent</span> class.</li>
-                    <li>Add the <span class="highlight monospace">novalidate</span> attribute to the
-                        <span class="highlight monospace">&lt;form&gt;</span> so that the HTML5 validation is off.</li>
+                        &lt;form&gt;</span>'s <span class="highlight monospace">(submit)</span> event binding.</li>
+                    <li>
+                        To each &lt;input&gt; add a &lt;span&gt; with an error message that is shown
+                        if the input field is not valid
+                    </li>
+                    <li>
+                        Add the <span class="highlight monospace">[class.ng-submit]</span>
+                        <a href="https://angular.io/docs/ts/latest/guide/template-syntax.html#!#class-binding" target="_blank" class="monospace">class binding</a>
+                        to the <span class="highlight monospace">&lt;form&gt;</span>. Bind it to the
+                        <span class="highlight monospace">submitted</span> flag of the
+                        <span class="highlight monospace">BookDetailsComponent</span> class.
+                    </li>
+                    <li>
+                        Add the <span class="highlight monospace">novalidate</span> attribute to the
+                        <span class="highlight monospace">&lt;form&gt;</span> so that the HTML5 validation is off.
+                    </li>
                 </ol>
             </section>
             <section>
