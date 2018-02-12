@@ -35,6 +35,9 @@
 <div class="devon reveal">
     <div class="slides">
         <section>
+            <h1>Data Binding</h1>
+        </section>
+        <section>
             <div class="title-with-image">
                 <img class="reset" src="img/interpolation-databinding.png">
                 <h2>Interpolation</h2>
@@ -62,15 +65,16 @@ export class BookDetailsComponent {
             </div>
             <pre><code class="hljs html" data-trim data-noescape>
 &lt;ul&gt;
-  &lt;li *ngFor="let book of ..." (click)="selectBook(book)">
-    {{book.author}},&nbsp;&lt;span class="book-title"&gt;{{book.title}}&lt;/span&gt;
-  &lt;/li&gt;
+  &lt;li (click)="selectBook(firstBook)">{{firstBook.title}}&lt;/li&gt;
+  &lt;li (click)="selectBook(secondBook)">{{secondBook.title}}&lt;/li&gt;
 &lt;/ul&gt;
 &lt;book-details <mark>[book]="selectedBook"</mark>&gt;&lt;/book-details &gt;
                   </code></pre>
             <pre><code class="hljs typescript" data-trim data-noescape>
 @Component(...)
 export class BookOverviewComponent {
+  firstBook: Book;
+  secondBook: Book;
   <mark>selectedBook: Book;</mark>
 
   selectBook(book:Book):void {
@@ -81,26 +85,83 @@ export class BookOverviewComponent {
         </section>
         <section>
             <div class="title-with-image">
+                <img class="reset" src="img/property-binding.png">
+                <h2>Property Binding</h2>
+            </div>
+            <pre><code class="hljs html" data-trim data-noescape>
+&lt;ul&gt;
+  &lt;li (click)="selectBook(firstBook)">{{firstBook.title}}&lt;/li&gt;
+  &lt;li (click)="selectBook(secondBook)">{{secondBook.title}}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;book-details <mark>[book]="selectedBook"</mark>&gt;&lt;/book-details &gt;
+                  </code></pre>
+
+<pre><code class="hljs typescript" data-trim data-noescape>
+@Component(...)
+export class BookDetailsComponent {
+  <mark>@Input() book: Book;</mark>
+
+}
+                  </code></pre>
+            <pre><code class="hljs html" data-trim data-noescape>
+        &lt;div&gt;Title: {{<mark>book</mark>.title}}&lt;/div&gt;
+        &lt;div&gt;Author: {{<mark>book</mark>.author}}&lt;/div&gt;
+                  </code></pre>
+        </section>
+        <section>
+            <div class="title-with-image">
                 <img class="reset" src="img/event-binding.png">
                 <h2>Event Binding</h2>
             </div>
             <pre><code class="hljs html" data-trim data-noescape>
-&lt;ul&gt;
-  &lt;li *ngFor="let book of ..." <mark>(click)="selectBook(book)"</mark>>
-    {{book.author}},&nbsp;&lt;span class="book-title"&gt;{{book.title}}&lt;/span&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+&lt;bookEntry [currentBook]="books[0]"
+            <mark>(selectBook)="rentBook(book)"</mark>&gt;
+&lt;/bookEntry&gt;
+&lt;bookEntry [currentBook]="books[1]"
+            <mark>(selectBook)="rentBook(book)"</mark>&gt;
+&lt;/bookEntry&gt;
                   </code></pre>
             <pre><code class="hljs typescript" data-trim data-noescape>
 @Component(...)
 export class BookOverviewComponent {
-  selectedBook: Book;
+  books: Book[];
+  rentedBook: Book;
 
-  <mark>selectBook(book:Book):void {
-    this.selectedBook = book;
-  }</mark>
+  <mark>rentBook(book:Book)</mark>:void {
+    this.rentedBook = book;
+  }
 }
                   </code></pre>
+        </section>
+        <section>
+            <div class="title-with-image">
+                <img class="reset" src="img/event-binding.png">
+                <h2>Event Binding</h2>
+            </div>
+            <pre class="width-100-percent"><code class="hljs html" data-trim data-noescape>
+&lt;bookEntry [currentBook]="books[0]"
+            <mark>(selectBook)="rentBook(book)"</mark>&gt;&lt;/bookEntry&gt;
+                  </code></pre>
+			<pre class="width-100-percent"><code class="max-height-unset typescript" data-trim data-noescape>
+				@Component(...)
+				export class BookEntryComponent {
+				  @Input() currentBook: Book;
+				  <mark>@Output() selectBook = new EventEmitter&lt;Book&gt;();</mark>
+
+				  onButtonClick(): void {
+					this.selectBook.emit(this.currentBook);
+    } }
+            </code></pre>
+            <pre class="width-100-percent"><code class="hljs typescript" data-trim data-noescape>
+&lt;div&gt;
+    &lt;div&gt;Book title: {{currentBook.title}}&lt;/div&gt;
+    &lt;button (click)="onButtonClick()"&gt;Rent the book&lt;/button&gt;
+&lt;/div&gt;
+            </code></pre>
+        </section>
+        <section>
+            <h4>Input (Data) and Output (Event) Binding</h4>
+            <img class="reset" src="img/data-binding.png"></a>
         </section>
         <section>
             <div class="title-with-image">
@@ -140,56 +201,48 @@ export class BookDetailsComponent {
             <p><span class="highlight">Creates an element</span> for every item of the collection.</p>
         </section>
         <section>
-            <h3>Binding to custom events</h3>
+            <h3>Example - Parent</h3>
             <pre><code class="max-height-unset typescript" data-trim>
 @Component({
   selector: 'parent',
-  template: '&lt;child (message)="onChildClick($event)"&gt;</child>'
+  template: `&lt;bookEntry
+                 *ngFor="let book of books"
+                 [currentBook]="book"
+                 (selectBook)="rentBook(book)"&gt;
+             &lt;/bookEntry&gt;`
 })
 export class ParentComponent {
-  onChildClick(text: string): void {
-    console.log('child gave me:', text);
+  books: Book[];
+  rentedBook: Book;
+
+  rentBook(book:Book):void {
+    this.rentedBook = book;
   }
 }
 
+            </code></pre>
+        </section>
+        <section>
+            <h3>Example - Child</h3>
+            <pre><code class="max-height-unset typescript" data-trim>
 @Component({
-  selector: 'child',
-  template: '&lt;button (click)="onButtonClick()"&gt;Click me&lt;/button&gt;',
-} as Component)
-export class ChildComponent {
-  @Output() message = new EventEmitter&lt;string&gt;();
+  selector: 'bookEntry',
+  template: `&lt;div *ngIf="currentBook"&gt;
+               &lt;div&gt;Book author: {{currentBook.author}}&lt;/div&gt;
+               &lt;div&gt;Book title: {{currentBook.title}}&lt;/div&gt;
+               &lt;button (click)="onButtonClick()"&gt;Rent book&lt;/button&gt;
+            &lt;/div&gt;`
+})
+export class BookEntryComponent {
+  @Input() currentBook: Book;
+  @Output() selectBook = new EventEmitter&lt;Book&gt;();
 
   onButtonClick(): void {
-    this.message.emit('value of the event');
+	this.selectBook.emit(this.currentBook);
   }
 }
             </code></pre>
         </section>
-		<section>
-			<h4>Input (Data) and Output (Event) Binding</h4>
-			<img class="reset" src="img/data-binding.png"></a>
-		</section>
-		<section>
-			<pre class="width-100-percent"><code class="max-height-unset typescript" data-trim data-noescape>
-				@Component({
-				  selector: 'child',
-				  template: `
-				  &lt;div *ngIf="currentBook"&gt;
-					&lt;div&gt;Book author: {{currentBook.author}}&lt;/div&gt;
-					&lt;div&gt;Book title: {{currentBook.title}}&lt;/div&gt;
-					&lt;div&gt;&lt;button (click)="onButtonClick()"&gt;Rent the book&lt;/button&gt;
-				  &lt;/div&gt;`
-				} as Component)
-				export class ChildComponent {
-				  <mark>@Input() currentBook: Book;</mark>
-				  <mark>@Output() rent = new EventEmitter&lt;Book&gt;();</mark>
-
-				  onButtonClick(): void {
-					this.rent.emit(this.currentBook);
-				  }
-				}
-            </code></pre>
-		</section>
     </div>
 </div>
 
