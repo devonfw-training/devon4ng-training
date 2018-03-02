@@ -30,12 +30,11 @@
 }
 
 .reveal .http-headers{
-     background: rgb(63, 63, 63);
+
      font-family: monospace;
      font-size: 20px;
-     color: rgb(220, 220, 220)
 }
 
 .reveal .http-headers .attr{
-    color: rgb(204, 147, 147)
+    color: #0000AF;
 }
