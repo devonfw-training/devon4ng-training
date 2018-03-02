@@ -720,46 +720,7 @@
              </section>
 
 
-             <section>
-                 <h2 style="margin-top: -4em;">HTTP 2</h2>
-                 <div class="replacement">
-                     <div style="margin-top: 0em;" class="fragment fade-out" data-fragment-index="0">
-                         <img class="plain" style="max-height: 15em;" src="./img/HTTP_persistent_connection.svg">
-                          <p>
-                             <a href="https://en.wikipedia.org/wiki/HTTP_persistent_connection" class="credits" target="_blank">Image from Wikipedia</a>
-                         </p>
-                     </div>
-                     <div style="margin-top: -0.5em;" class="fragment fade-in" data-fragment-index="0">
-                         <p><span class="secondaryColor">Multiplexed</span> downloads over a <span class="secondaryColor">single</span> connection</p>
-                         <h3 style="margin-top: 1em;">HTTP/2 server push</h3>
-                         <p>Allows the server to <span class="secondaryColor">preemptively send resources</span> to the browser</p>
-                     </div>
-                 </div>
-             </section>
 
-
-            <section>
-                 <h3 style="margin-top: -4em;">HTTP/1 vs. HTTP/2 </h3>
-                 <div class="replacement">
-                     <div style="margin-top: 0em;" class="fragment fade-out" data-fragment-index="0">
-                         <h4>HTTP/1</h4>
-                         <ol>
-                             <li>The browser requests the <span class="secondaryColor">HTML file</span>.</li>
-                             <li>The server returns the HTML file and the <span class="secondaryColor">browser starts parsing</span it.</li>
-                             <li>The browser encounters the <strong><em>&lt;link rel="stylesheet"&gt;</em></strong> tag, and <span class="secondaryColor">starts a new request</span> for the stylesheet.</li>
-                             <li>The browser <span class="secondaryColor">receives the stylesheet</span>.</li>
-                         </ol>
-                     </div>
-                     <div style="margin-top: 0em;" class="fragment fade-in" data-fragment-index="0">
-                         <h4>HTTP/2</h4>
-                         <ol>
-                             <li>The browser requests the <span class="secondaryColor">HTML file</span>.</li>
-                             <li>The server returns the <span class="secondaryColor">HTML file</span>, and <span class="secondaryColor">pushes</span> the stylesheet <span class="secondaryColor">at the same time</span>.</li>
-                             <li>The browser starts parsing the HTML. By the time it encounters the <strong><em>&lt;link rel="stylesheet"&gt;</em></strong>, the stylesheet is <span class="secondaryColor">already in the cache</span>.</li>
-                         </ol>
-                     </div>
-                 </div>
-             </section>
 
              <section data-background-color="var(--secondary-color)">
                  <h1 style="font-size: 4em; margin-bottom: -0.25em;" class="flippedColor" >WHOA!</h1>
@@ -786,9 +747,6 @@
                  <h1 style="font-size: 6.5em; margin-bottom: 0em;" class="primaryColor" >you</h1>
                  <h1 style="font-size: 1.5em;" class="flippedColor" >for your attention!</h1>
              </section>
-
-
-
          </div>
      </div>
      <script src="../node_modules/reveal.js/lib/js/head.min.js"></script>

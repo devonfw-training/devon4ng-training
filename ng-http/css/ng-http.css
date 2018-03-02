@@ -1,0 +1,17 @@
+.reveal .http-headers{
+
+    font-family: monospace;
+    font-size: 20px;
+}
+
+.reveal .http-headers .attr{
+    color: #0000AF;
+}
+
+.replacement {
+    position: relative;
+}
+ .replacement > .fragment {
+     position: absolute;
+     top: 0;
+ }

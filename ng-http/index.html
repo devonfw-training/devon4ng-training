@@ -13,6 +13,8 @@
 
     <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="../node_modules/reveal.js/lib/css/github-gist.css">
+	<link rel="stylesheet" href="css/ng-http.css">
+
 
     <!-- Printing and PDF exports -->
     <script>
@@ -35,8 +37,348 @@
         <section>
             <h1>Http</h1>
 		</section>
-		
-        <section>
+
+		<section>
+			<h2><span class="red">H</span>yper<span class="red">T</span>ext <span class="red">T</span>ransfer <span
+					class="red">P</span>rotocol</h2>
+			<ul>
+				<li><a class="blue" href="https://developer.mozilla.org/en-US/docs/Web/HTTP">Mozilla development RFC
+					2616</a></li>
+				<li>client-server text protocoll</li>
+				<li><span class="blue">stateless</span></li>
+				<li>generally over <span class="blue">TCP/IP</span></li>
+				<li>typically on port 80</li>
+			</ul>
+		</section>
+		<section>
+			<h4>Client request</h4>
+			<pre><code data-trim class="http">
+GET /path/file.html HTTP/1.0
+From: someuser@jmarshall.com
+User-Agent: HTTPTool/1.0
+[blank line here]
+            </code></pre>
+			<h4>Server response</h4>
+			<pre><code data-trim class="http">
+HTTP/1.0 200 OK
+Date: Fri, 31 Dec 1999 23:59:59 GMT
+Content-Type: text/html
+Content-Length: 1354
+
+&lt;html&gt;
+&lt;body&gt;
+&lt;h1&gt;Happy New Millennium!&lt;/h1&gt;
+(more file contents)
+.
+.
+&lt;/body&gt;
+&lt;/html&gt;
+            </code></pre>
+		</section>
+		<section>
+			<h3>HTTP Methods</h3>
+			<table style="font-size:0.8em" class="wide-table">
+				<thead>
+				<tr>
+					<th>Method</th>
+					<th>Idempotent</th>
+					<th>Description</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>GET</td>
+					<td>yes</td>
+					<td>retrieve information identified by the URI</td>
+				</tr>
+				<tr class="fragment">
+					<td>HEAD</td>
+					<td>yes</td>
+					<td>identical to GET but without the message body</td>
+				</tr>
+				<tr class="fragment">
+					<td>POST</td>
+					<td>no</td>
+					<td>the way to trigger an action on the server</td>
+				</tr>
+				<tr class="fragment">
+					<td>PUT</td>
+					<td>no</td>
+					<td>the way to upload a new resource on the server</td>
+				</tr>
+				<tr  class="fragment">
+					<td>DELETE</td>
+					<td>no</td>
+					<td>removes a resource from the server</td>
+				</tr>
+				<tr  class="fragment">
+					<td>TRACE</td>
+					<td>no</td>
+					<td>kind of ping between the client and the server</td>
+				</tr>
+				<tr  class="fragment">
+					<td>...</td>
+					<td></td>
+					<td></td>
+				</tr>
+				</tbody>
+			</table>
+		</section>
+		<section>
+			<h2>Status codes</h2>
+			<table>
+				<tbody>
+				<tr style="color:green">
+					<td><b>2</b>00</td>
+					<td>OK</td>
+				</tr>
+				<tr style="color:#c3be00">
+					<td><b>3</b>02</td>
+					<td>Found - redirect</td>
+				</tr>
+				<tr style="color:#c3be00">
+					<td><b>3</b>04</td>
+					<td>Not modified</td>
+				</tr>
+				<tr style="color:orange">
+					<td><b>4</b>03</td>
+					<td>Forbidden</td>
+				</tr>
+				<tr style="color:orange">
+					<td><b>4</b>04</td>
+					<td>Not Found</td>
+				</tr>
+				<tr style="color:orange">
+					<td><b>4</b>18</td>
+					<td>I am teapot</td>
+				</tr>
+				<tr style="color:red">
+					<td><b>5</b>00</td>
+					<td>Server error</td>
+				</tr>
+				</tbody>
+			</table>
+		</section>
+		<section>
+			<h2>Request - Response</h2>
+			<table>
+				<thead>
+				<tr>
+					<th style="width: 480px;">Client</th>
+					<th style="width: 480px;">Server</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr class="http-headers">
+					<td>
+						User-Agent: <span class="attr">Mozilla/5.0</span>
+					</td>
+					<td></td>
+				</tr>
+				<tr class="http-headers fragment">
+					<td>
+						Host: <span class="attr">oasp-ci.cloudapp.net</span>
+					</td>
+					<td></td>
+				</tr>
+				<tr class="http-headers fragment">
+					<td>
+						Referer: <span class="attr">http://oasp-ci.cloudapp.net/oasp4j-sample/jsclient</span>
+					</td>
+					<td></td>
+				</tr>
+				<tr class="http-headers fragment">
+					<td></td>
+					<td>
+						Date: <span class="attr">Tue, 15 Nov 1994 08:12:31 GMT</span>
+					</td>
+				</tr>
+				<tr class="http-headers fragment">
+					<td></td>
+					<td>
+						X-UA-Compatible: <span class="attr">IE=Edge,chrome=1</span>
+					</td>
+				</tr>
+				<tr class="http-headers fragment">
+					<td></td>
+					<td>
+						X-Frame-Options: <span class="attr">SAMEORIGIN</span>
+					</td>
+				</tr>
+				<tr class="http-headers fragment">
+					<td>
+						Accept: <span class="attr">text/plain</span>
+					</td>
+					<td>
+						Content-Type: <span class="attr">text/html;charset=UTF-8</span> <br>
+						Content-Length: <span class="attr">1354</span>
+					</td>
+				</tr>
+				<tr class="http-headers fragment">
+					<td>
+						Accept-Language: <span class="attr">pl, en-us;</span>
+					</td>
+					<td>
+						Content-Language: <span class="attr">en, pl</span>
+					</td>
+				</tr>
+				<tr class="http-headers fragment">
+					<td>
+						Accept-Encoding: <span class="attr">gzip, deflate, sdch</span>
+					</td>
+					<td>
+						Content-Encoding: <span class="attr">gzip</span>
+					</td>
+				</tr>
+				<tr class="http-headers fragment">
+					<td>
+						Cookie: <span class="attr">JSESSIONID=4C2164</span>
+					</td>
+					<td>
+						Set-Cookie: <span class="attr">JSESSIONID=4C2164; Path=/; HttpOnly</span>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</section>
+		<section>
+			<h2>HTTP Cache (HTTP 1.1)</h2>
+			<pre style="width:100%"><code data-trim class="http">
+Cache-Control: max-age=3600, public
+            </code></pre>
+			<table style="font-size:0.8em">
+				<thead>
+				<tr>
+					<th style="width:20%">Include</th>
+					<th style="width:80%">Behaviour</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>
+						max-age
+					</td>
+					<td>maximum time that a representation will be considered fresh</td>
+				</tr>
+				<tr>
+					<td>
+						no-store
+					</td>
+					<td>browser is not allowed to save copy</td>
+				</tr>
+				<tr>
+					<td>
+						no-cache
+					</td>
+					<td>force to send validation request to server</td>
+				</tr>
+				<tr>
+					<td>
+						public
+					</td>
+					<td>allow to cache in browser and in proxies</td>
+				</tr>
+				<tr>
+					<td>
+						private
+					</td>
+					<td>does not allow proxies to cache</td>
+				</tr>
+				<tr>
+					<td>
+						must-revalidate
+					</td>
+					<td>enables validation headers after cache period(If-Modified-Since, If-None-Match) </td>
+				</tr>
+				</tbody>
+			</table>
+		</section>
+		<section>
+			<h2>HTTP Cache Validators</h2>
+			<table>
+				<thead>
+				<tr>
+					<th style="width: 480px;">Client</th>
+					<th style="width: 480px;">Server</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr class="http-headers">
+					<td>
+						If-Modified-Since: <span class="attr">Sat, 27 Apr 2013 00:44:54 GMT</span>
+					</td>
+					<td>
+						Last-Modified: <span class="attr">Sat, 27 Apr 2013 00:44:54 GMT</span>
+					</td>
+				</tr>
+				<tr class="http-headers">
+					<td>
+						If-None-Match: <span class="attr">"bbea5db7e1785119a7f94fdd504c546e"</span>
+					</td>
+					<td>
+						ETag: <span class="attr">"bbea5db7e1785119a7f94fdd504c546e"</span>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</section>
+		<section>
+			<h2>Features</h2>
+			<ul>
+				<li><span class="blue">HTTPS</span> – Hypertext Transfer Protocol Secure</li>
+				<li><span class="blue">Websockets</span> – Full duplex client-server communication</li>
+			</ul>
+		</section>
+		<section>
+			<h2>Useful tools</h2>
+			<ul>
+				<li>Chrome developer tools / Firebug</li>
+				<li>Postman</li>
+				<li>XHR Poster / Poster</li>
+				<li>Fiddler</li>
+			</ul>
+		</section>
+		<section>
+			<h2>HTTP 2</h2>
+			<div class="replacement">
+				<div  class="fragment fade-out" data-fragment-index="0">
+					<img class="plain" style="max-height: 15em;" src="./img/HTTP_persistent_connection.svg">
+					<p>
+						<a href="https://en.wikipedia.org/wiki/HTTP_persistent_connection" class="credits" target="_blank">Image from Wikipedia</a>
+					</p>
+				</div>
+				<div  class="fragment fade-in" data-fragment-index="0">
+					<p><span class="secondaryColor">Multiplexed</span> downloads over a <span class="secondaryColor">single</span> connection</p>
+					<h3 style="margin-top: 1em;">HTTP/2 server push</h3>
+					<p>Allows the server to <span class="secondaryColor">preemptively send resources</span> to the browser</p>
+				</div>
+			</div>
+		</section>
+		<section>
+			<h2 >HTTP/1 vs. HTTP/2 </h2>
+			<div class="replacement">
+				<div class="fragment fade-out" data-fragment-index="0">
+					<h4>HTTP/1</h4>
+					<ol>
+						<li>The browser requests the <span class="secondaryColor">HTML file</span>.</li>
+						<li>The server returns the HTML file and the <span class="secondaryColor">browser starts parsing</span it.</li>
+						<li>The browser encounters the <strong><em>&lt;link rel="stylesheet"&gt;</em></strong> tag, and <span class="secondaryColor">starts a new request</span> for the stylesheet.</li>
+						<li>The browser <span class="secondaryColor">receives the stylesheet</span>.</li>
+					</ol>
+				</div>
+				<div class="fragment fade-in" data-fragment-index="0">
+					<h4>HTTP/2</h4>
+					<ol>
+						<li>The browser requests the <span class="secondaryColor">HTML file</span>.</li>
+						<li>The server returns the <span class="secondaryColor">HTML file</span>, and <span class="secondaryColor">pushes</span> the stylesheet <span class="secondaryColor">at the same time</span>.</li>
+						<li>The browser starts parsing the HTML. By the time it encounters the <strong><em>&lt;link rel="stylesheet"&gt;</em></strong>, the stylesheet is <span class="secondaryColor">already in the cache</span>.</li>
+					</ol>
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<h1>Http with Angular</h1>
 			<p>The <span class="highlight">Angular HttpClient</span> communicates with the server using a familiar HTTP request/response protocol.</p> 
 			<p>The HttpClient is one of a family of services in the Angular HTTP library.</p>
 			<p><small><a target="_blank" href="https://angular.io/docs/ts/latest/guide/server-communication.html">https://angular.io/docs/ts/latest/guide/server-communication.html</a></small><p>
@@ -97,9 +439,9 @@ constructor(private http: HttpClient) {}
 			<h2>Http GET</h2>
 			<pre><code class="hljs typescript"  data-trim>
 this.http.get(this.requestUrl + bookId)
-	.subscribe( data => {
-		console.log('Book Author', data['author']);
-	});
+  .subscribe( data => {
+    console.log('Book Author', data['author']);
+});
 			</code></pre>
 	The payloads structure is unknown.<br>
 	<span class="monospace">data</span> is of type Object<br>
@@ -109,10 +451,10 @@ this.http.get(this.requestUrl + bookId)
 			<p>...with typechecking</p>
 			<pre><code class="hljs typescript"  data-trim data-noescape>
 this.http.get<mark>&lt;Book&gt;</mark>(this.requestUrl + bookId)
-	.subscribe( book => {
-		console.log('Book Author', book.author);
-		this.book = book;
-	});
+  .subscribe( book => {
+    console.log('Book Author', book.author);
+    this.book = book;
+});
 			</code></pre>
 		</section>
 		
@@ -120,14 +462,14 @@ this.http.get<mark>&lt;Book&gt;</mark>(this.requestUrl + bookId)
 			<p>..or with full response</p>
 			<pre><code class="hljs typescript"  data-trim data-noescape>
 this.http.get&lt;Book&gt;(this.reqUrl, <mark>{observe: 'response'}</mark>)
-.subscribe(
-	data => {
-		console.log(data.headers.get('X-Custom-Header'));
-		console.log(data.body.author);
-	},
-	err => {
-		console.log('Something went wrong!');
-	}
+  .subscribe(
+    data => {
+      console.log(data.headers.get('X-Custom-Header'));
+      console.log(data.body.author);
+    },
+  err => {
+    console.log('Something went wrong!');
+  }
 );
 			</code></pre>
 		</section>
@@ -136,16 +478,16 @@ this.http.get&lt;Book&gt;(this.reqUrl, <mark>{observe: 'response'}</mark>)
 			<pre><code class="hljs typescript"  data-trim>
 // create options
 let options = { 
-	headers: new HttpHeaders()
-		.set('Content-type', 'application/json')
+  headers: new HttpHeaders()
+    .set('Content-type', 'application/json')
 };
 
 // send request
 this.http.put(
-        this.requestUrl + id,
-        objectToPut,
-        this.options);
-			</code></pre>
+  this.requestUrl + id,
+  objectToPut,
+  this.options);
+		</code></pre>
 		</section>
 		
 		<section>
@@ -153,15 +495,15 @@ this.http.put(
 			<pre><code class="hljs typescript"  data-trim>
 // create options
 let options = { 
-	headers: new HttpHeaders()
-		.set('Content-type', 'application/json')
+  headers: new HttpHeaders()
+    .set('Content-type', 'application/json')
 };
 
 // send request
 this.http.post(
-        this.requestUrl,
-        objectToPost,
-        this.options);
+  this.requestUrl,
+  objectToPost,
+  this.options);
 			</code></pre>
 		</section>
 		
