@@ -97,25 +97,18 @@ constructor(private http: HttpClient) {}
 			<h2>Http GET</h2>
 			<pre><code class="hljs typescript"  data-trim>
 this.http.get(this.requestUrl + bookId)
-	.pipe(
-		catchError( error => { 
-			return Observable.throw(error);
-		})
-	)
-	.subscribe( book => {
-		console.log('Book Author', book['author']);
+	.subscribe( data => {
+		console.log('Book Author', data['author']);
 	});
 			</code></pre>
+	The payloads structure is unknown.<br>
+	<span class="monospace">data</span> is of type Object<br>
+	<span class="monospace">data.author</span> does not work!
 	</section>
 	<section>
-			<p>..or with typechecking the response</p>
+			<p>...with typechecking</p>
 			<pre><code class="hljs typescript"  data-trim data-noescape>
 this.http.get<mark>&lt;Book&gt;</mark>(this.requestUrl + bookId)
-	.pipe(
-		catchError( error => { 
-			return Observable.throw(error);
-		})
-	)
 	.subscribe( book => {
 		console.log('Book Author', book.author);
 		this.book = book;
@@ -150,7 +143,7 @@ let options = {
 // send request
 this.http.put(
         this.requestUrl + id,
-        JSON.stringify(requestBody),
+        objectToPut,
         this.options);
 			</code></pre>
 		</section>
@@ -167,7 +160,7 @@ let options = {
 // send request
 this.http.post(
         this.requestUrl,
-        JSON.stringify(requestBody),
+        objectToPost,
         this.options);
 			</code></pre>
 		</section>
