@@ -1,0 +1,17 @@
+<div class="card">
+  <table>
+    <tr>
+      <td></td>
+      <td>Title</td>
+      <td>Movie</td>
+    </tr>
+    <tr *ngFor="let movie of movies; index as index" (click)="selectMovie(movie)" [class.row-active]="isMovieSelected(movie)">
+        <td>{{index}}</td>
+        <td>{{movie.title}}</td>
+      <td>{{movie.directors}}</td>
+    </tr>
+  </table>
+</div>
+<div class="card">
+  <app-movie-details [movie]="selectedMovie"></app-movie-details>
+</div>
