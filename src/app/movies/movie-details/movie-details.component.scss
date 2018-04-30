@@ -4,4 +4,24 @@
     label { 
         font-weight: bold;
     }
+
+    button {
+        border-radius: 2px;
+        padding: 8px 16px;
+        margin: 8px 16px;
+        border: none;
+        background-color: steelblue;
+        color: white;
+        font-weight: 500;
+        text-transform: uppercase;
+        font-family: roboto;
+    }
+    label {
+        width: 100px;
+        display: inline-block;
+    }
+    input {
+        padding: 3px 6px;
+        width: 300px
+    }
 }

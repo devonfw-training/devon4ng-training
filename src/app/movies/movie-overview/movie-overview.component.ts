@@ -10,6 +10,7 @@ export class MovieOverviewComponent implements OnInit {
 
   movies:Movie[];
   selectedMovie: Movie;
+  private movieIdSequence = 4;
 
   constructor() {
     this.movies = [];
@@ -47,6 +48,28 @@ export class MovieOverviewComponent implements OnInit {
 
   isMovieSelected(movie: Movie){
     return this.selectedMovie && movie && this.selectedMovie.id === movie.id;
+  }
+
+  onMovieUpdated(updatedMovie: Movie) {
+    let movieToUpdate=this.movies.find((movie) => {
+      return movie.id === updatedMovie.id;
+    });
+    if(movieToUpdate){
+      Object.assign(movieToUpdate, updatedMovie);
+    } else {
+      updatedMovie.id = this.movieIdSequence++;
+      this.movies.push(updatedMovie);
+    }
+  }
+
+  onMovieCreate(){
+    this.selectedMovie = {
+      id: null,
+      description: null,
+      directors: null,
+      title: null,
+      year: null
+    }
   }
 
 

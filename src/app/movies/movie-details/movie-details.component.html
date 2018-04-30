@@ -1,6 +1,8 @@
-<div *ngIf="movie">
-  <label>Title: </label><span>{{movie.title}}</span><br>
-  <label>Directors: </label><span>{{movie.directors}}</span><br>
-  <label>Description: </label><span>{{movie.description}}</span><br>
-  <label>Year: </label><span>{{movie.year}}</span><br>
+<div>
+  <label for="movie-title">Title: </label><input id="movie-title" [(ngModel)]="movie.title"><br>
+  <label for="movie-directors">Directors: </label><input id="movie-directors" [(ngModel)]="movie.directors"><br>
+  <label for="movie-description">Description: </label><input id="movie-description" [(ngModel)]="movie.description"><br>
+  <label for="movie-year">Year: </label><input id="movie-year" [(ngModel)]="movie.year"><br>
+  <button (click)="apply()">Save</button>  
+  <button (click)="create()">Create New</button>
 </div>

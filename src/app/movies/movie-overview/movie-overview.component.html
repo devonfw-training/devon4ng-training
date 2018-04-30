@@ -1,9 +1,9 @@
 <div class="card">
   <table>
     <tr>
-      <td></td>
-      <td>Title</td>
-      <td>Movie</td>
+      <th></th>
+      <th>Title</th>
+      <th>Movie</th>
     </tr>
     <tr *ngFor="let movie of movies; index as index" (click)="selectMovie(movie)" [class.row-active]="isMovieSelected(movie)">
         <td>{{index}}</td>
@@ -13,5 +13,9 @@
   </table>
 </div>
 <div class="card">
-  <app-movie-details [movie]="selectedMovie"></app-movie-details>
+  <app-movie-details 
+    *ngIf="selectedMovie" 
+    [movie]="selectedMovie"  
+    (movieUpdate)="onMovieUpdated($event)" 
+    (movieCreate)="onMovieCreate()"></app-movie-details>
 </div>

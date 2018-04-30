@@ -15,6 +15,10 @@
         background-color: rgba(0,0,0,0.2);
     }
     td {
-        padding: 0 16px;
+        padding: 8px 16px;
+    }
+    table {
+        border-spacing: 0;
+        border-collapse: collapse;
     }
 }
