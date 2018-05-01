@@ -28,6 +28,7 @@ export class MovieDetailsComponent {
   }
 
   apply() {
+    this._movie.year = +this._movie.year;
     this.movieUpdate.emit(this._movie);
   }
   create() {
