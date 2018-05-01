@@ -5,7 +5,7 @@
       <th>Title</th>
       <th>Movie</th>
     </tr>
-    <tr *ngFor="let movie of movies; index as index" (click)="selectMovie(movie)" [class.row-active]="isMovieSelected(movie)">
+    <tr *ngFor="let movie of movies$ | async; index as index" (click)="selectMovie(movie)" [class.row-active]="isMovieSelected(movie)">
         <td>{{index}}</td>
         <td>{{movie.title}}</td>
       <td>{{movie.directors}}</td>
