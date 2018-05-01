@@ -38,238 +38,369 @@
         </section>
         <section id="simple-component">
             <section>
+                <h3>Simple Component</h3>
+                <p>Goals:</p>
+                <ol>
+                    <li>Create a new module</li>
+                    <li>Create a new component</li>
+                    <li>Import the component into the module</li>
+                    <li>Show the component</li>
+                    <li>Show dummy data in the component</li>
+                </ol>
+            </section>
+            <section>
                 <h3>Simple Component (1/3)</h3>
                 <ol>
-                    <li>Create a new module <span class="monospace highlight">Books</span> (<span class="monospace highlight">ng g module Books</span>).</li>
-                    <li>Go to the <span class="monospace highlight">books</span> directory and create a new component <span class="monospace highlight">BookDetails</span> (<span class="monospace highlight">ng g component BookDetails</span>).</li>
-                    <li>Export the <span class="monospace highlight">BookDetailsComponent</span> from the <span class="monospace highlight">BooksModule</span> - both of them you've just created.</li>
-                    <li>Import the <span class="monospace highlight">BooksModule</span> in the <span class="monospace highlight">AppModule</span>. Remove the <span class="monospace highlight">AppComponent.title</span> property.</li>
-                    <li>Add <span class="monospace highlight">&lt;app-book-details&gt;</span> to the <span class="monospace highlight">AppComponent</span>'s template. <i>book-details works!</i> appears on the page.</li>
+                    <li>Create a new module <span class="monospace highlight">Movies</span> (<span class="monospace highlight">ng g module Movies</span>).</li>
+                    <li>Go to the <span class="monospace highlight">movies</span> directory and create a new component <span class="monospace highlight">MovieDetails</span> (<span class="monospace highlight">ng g component MovieDetails</span>).</li>
+                    <li>Export the <span class="monospace highlight">MovieDetailsComponent</span> from the <span class="monospace highlight">MoviesModule</span> - both of them you've just created.</li>
+                    <li>Import the <span class="monospace highlight">MovieModule</span> in the <span class="monospace highlight">AppModule</span>. Remove the <span class="monospace highlight">AppComponent.title</span> property.</li>
+                    <li>Add <span class="monospace highlight">&lt;app-movie-details&gt;</span> to the <span class="monospace highlight">AppComponent</span>'s template. <i>movie-details works!</i> appears on the page.</li>
                 </ol>
             </section>
             <section>
                 <h3>Simple Component (2/3)</h3>
                 <ol>
-                    <li>Create a class <span class="monospace highlight">Book</span> in the <span class="monospace highlight">books</span> directory (<span class="monospace highlight">ng g class Book</span>). Add the <span class="monospace highlight">id</span>, <span class="monospace highlight">author</span>
-                        and <span class="monospace highlight">title</span> properties.</li>
-                    <li>Add a public <span class="monospace highlight">BookDetailsComponent.currentBook</span> property of type <span class="monospace highlight">Book</span> and initialize the property with an empty
-                        <span class="monospace highlight">Book</span> object in the constructor.</li>
-                    <li>Take part in the <span class="monospace highlight">OnInit</span> lifecycle hook (an empty <span class="monospace highlight">ngOnInit()</span> method should have been generated) setting the <span class="monospace highlight">author</span> and
-                        <span class="monospace highlight">title</span> properties of <span class="monospace highlight">currentBook</span> to any values of your choice.
+                    <li>Create an interface <span class="monospace highlight">Movie</span> in the <span class="monospace highlight">movies</span> directory (<span class="monospace highlight">ng g interface Movie</span>). Add the <span class="monospace highlight">id</span>, <span class="monospace highlight">director</span>
+                        , <span class="monospace highlight">title</span>, <span class="monospace highlight">description</span> and <span class="monospace highlight">year</span> properties.</li>
+                    <li>Add a public <span class="monospace highlight">currentMovie</span> property of type <span class="monospace highlight">Movie</span>
+                    </li>
+                    <li>In the <span class="monospace highlight">OnInit</span> lifecycle hook (an empty <span class="monospace highlight">ngOnInit()</span> method should have been generated) assign a newly created <span class="monospace highlight">Movie</span> object with the <span class="monospace highlight">director</span>,
+                        <span class="monospace highlight">title</span> and other properties with any values of your choice. <span class="monospace">{id:1, title: 'a movie',...}</span>
                 </ol>
             </section>
             <section>
                 <h3>Simple Component (3/3)</h3>
                 <ol>
-                    <li>Create a Book form (in the file <span class="monospace highlight">book-details.component.html</span>).</li>
-                    <li>For now don't use <span class="monospace highlight">&lt;input&gt;</span>s. Just display labels and values of the <span class="monospace highlight">authors</span> and
-                        <span class="monospace highlight">title</span> properties (using the interpolation <span class="monospace highlight">{{}}</span>).</li>
-                    <li>Add some component's styling (to the file <span class="monospace highlight">book-details.component.scss</span>) , e.g. make the labels' font weight bold. Make use of the <span class="monospace highlight">:host</span> pseudo selector.</li>
-                </ol>
-            </section>
-            <section>
-                <h3>Simple Component (optional) </h3>
-                <ol>
-                    <li>Use the CSS-Flex-Features to create a responsive desgin</li>
+                    <li>in the file <span class="monospace highlight">movie-details.component.html</span>
+                    <ul>
+                        <li>Create a <span class="monospace highlight">&lt;div&gt;</span></li>
+                        <li>Display the movies properties inside the <span class="monospace highlight">&lt;div&gt;</span>
+                        </li>
+                        <li>For now don't use <span class="monospace highlight">&lt;input&gt;</span>. Just display labels and values of the <span class="monospace highlight">director</span> and
+                            <span class="monospace highlight">title</span> properties (using the interpolation <span class="monospace highlight">{{currentMovie.title}}</span>).</li>
+                    </ul>
+                    </li>
+
+                    <li>Add some component's styling (to the file <span class="monospace highlight">movie-details.component.scss</span>) , e.g. make the labels' font weight bold. Make use of the <span class="monospace highlight">:host</span> pseudo selector.</li>
                 </ol>
             </section>
         </section>
         <section id="master-details">
             <section>
-                <h3>Master/Details Pattern (1/6)</h3>
+                <h3>Master/Details Pattern @Input</h3>
+                <p>Goals:</p>
                 <ol>
-                    <li>Let's assume we're in the <span class="monospace highlight">app/books</span> directory.</li>
-                    <li>Create a new component <span class="monospace highlight">BookOverview</span> (<span class="monospace highlight">ng g component BookOverview</span>) and export it from the <span class="monospace highlight">BooksModule</span>.</li>
-                    <li>Add <span class="monospace highlight">&lt;app-book-overview&gt;</span> to the <span class="monospace highlight">AppComponent</span>'s template. <i>book-overview works!</i> should appear on the page.</li>
+                    <li>Create a component for a list of movies</li>
+                    <li>Use the details component to show details of a movie selected in the list</li>
+                    <li>Change movie details and update the list</li>
                 </ol>
             </section>
             <section>
-                <h3>Master/Details Pattern (2/6)</h3>
+                <h3>Master/Details Pattern @Input (1/7)</h3>
                 <ol>
-                    <li>Add public properties to the <span class="highlight monospace">BookOverviewComponent</span> class:
+                    <li>Let's assume we're in the <span class="monospace highlight">app/movies</span> directory.</li>
+                    <li>Create a new component <span class="monospace highlight">MovieOverview</span> (<span class="monospace highlight">ng g component MovieOverview</span>) and export it from the <span class="monospace highlight">MoviesModule</span>.</li>
+                    <li>Remove <span class="monospace highlight">MovieDetails</span> from the exports of <span class="monospace highlight">MoviesModule</span>.
+                    </li>
+                    <li>Replace <span class="monospace highlight">&lt;app-movie-details&gt;</span> with <span class="monospace highlight">&lt;app-movie-overview&gt;</span> in the <span class="monospace highlight">AppComponent</span>'s template. <i>movie-overview works!</i> should appear on the page.</li>
+                </ol>
+            </section>
+            <section>
+                <h3>Master/Details Pattern @Input (2/7)</h3>
+                <ol>
+                    <li>Add public properties to the <span class="highlight monospace">MovieOverviewComponent</span> class:
                     <ul>
-                        <li>the array <span class="highlight monospace">books</span> which keeps available books,</li>
-                        <li>the <span class="highlight monospace">selectedBook</span> which keeps currently selected book from available ones.</li>
+                        <li>the array <span class="highlight monospace">movies</span> which keeps available movies,</li>
+                        <li>the <span class="highlight monospace">selectedMovie</span> which keeps currently a selected movie of the available ones.</li>
                     </ul>
                     </li>
-                    <li>Initialize the <span class="highlight monospace">books</span> array in the constructor with an empty array.</li>
-                    <li>Add some book entries to the <span class="highlight monospace">books</span> array (In the <span class="highlight monospace">OnInit</span> lifecycle hook).
-                        For book creation add a static convenience method to the <span class="highlight monospace">Book</span> class, e.g.: <span class="highlight monospace">Book.from(authors: string, title: string): Book</span>
+                    <li>Initialize the <span class="highlight monospace">movies</span> array in the constructor with an empty array.</li>
+                    <li>Add some movie entries to the <span class="highlight monospace">movies</span> array (In the <span class="highlight monospace">OnInit</span> lifecycle hook).
                     </li>
                 </ol>
             </section>
             <section>
-                <h3>Master/Details Pattern (3/6)</h3>
-                <ol>Extend the <span class="highlight monospace">BookOverviewComponent</span> class:
-                    <li>Implement the <span class="highlight monospace">isBookSelected(book: Book): boolean</span>
-                        method
-                        which checks if the book passed is the selected one.
-                    </li>
-                    <li>Implement the <span class="highlight monospace">selectBook(book: Book): void</span> method
-                        which sets the passed book as the selected one.
-                    </li>
-                </ol>
-            </section>
-            <section>
-                <h3>Master/Details Pattern (4/6)</h3>
+                <h3>Master/Details Pattern @Input (3/7)</h3>
                 <ol>
                     <li>
                         Add two <span class="highlight monospace">&lt;div&gt;</span> elements to the overview component.
                     </li>
-                    <li>To the first <span class="highlight monospace">&lt;div&gt;</span> add a table with rows</a>. Stamp out the table's rows iterating over the
-                        <span class="highlight monospace">BookOverviewComponent.books</span>. Make use of the
-                        <a href="https://angular.io/docs/ts/latest/api/common/index/NgFor-directive.html" target="_blank" class="monospace">*ngFor</a> directive. For each book element show its author and title as well as the row number (in the first column).</li>
+                    <li>To the first <span class="highlight monospace">&lt;div&gt;</span> add a table with rows. Generate the table's rows iterating over the
+                        <span class="highlight monospace">movies</span>. Make use of the
+                        <a href="https://angular.io/docs/ts/latest/api/common/index/NgFor-directive.html" target="_blank" class="monospace">*ngFor</a> directive. For each movie element show its director and title.</li>
                 </ol>
             </section>
             <section>
-                <h3>Master/Details Pattern (5/6)</h3>
-                <ol>
-                    <li>
-                        <ul>Add the following bindings to the table rows:
-                            <li>the <span class="highlight monospace">(click)</span> event binding to the
-                                <span class="highlight monospace">selectBook(book:Book):void</span> method,</li>
-                            <li>the <a href="https://angular.io/docs/ts/latest/guide/template-syntax.html#!#class-binding" target="_blank"  class="monospace">class binding</a>
-                                <span class="highlight monospace">[class.table-active]</span> to the
-                                <span class="highlight monospace">isBookSelected(book: Book): boolean</span> method.</li>
-                        </ul>
+                <h3>Master/Details Pattern @Input (4/7)</h3>
+
+                <ol>Extend the <span class="highlight monospace">MovieOverviewComponent</span> class:
+                    <li>Implement the <span class="highlight monospace">selectMovie(movie: Movie): void</span> method
+                        which sets the passed movie as the selected one.
                     </li>
-                    <li>Put the <span class="monospace highlight">&lt;app-book-details&gt;</span> element in the second <span class="highlight monospace">&lt;div&gt;</span>
-                        and add the <span class="highlight monospace">[book]</span> property binding to the
-                        <span class="highlight monospace">selectedBook</span>.</li>
+                    <li>Implement the <span class="highlight monospace">isMovieSelected(movie: Movie): boolean</span>
+                        method
+                        which checks if the movie passed is the selected one.
+                    </li>
                 </ol>
             </section>
             <section>
-                <h3>Master/Details Pattern (6/6)</h3>
+                <h3>Master/Details Pattern @Input (5/7)</h3>
                 <ol>
-                    <li>Go to the <span class="highlight monospace">BookDetailsComponent</span> class and remove all
-                        its content except for the <span class="highlight monospace">currentBook</span> property. Rename it to <span class="highlight monospace">book</span>.</li>
+                <li>Add the following bindings to the table rows:</li>
+                    <ul>
+                        <li>the <span class="highlight monospace">(click)</span> event binding to the
+                            <span class="highlight monospace">selectMovie(movie:Movie):void</span> method,</li>
+                        <li>the <a href="https://angular.io/docs/ts/latest/guide/template-syntax.html#!#class-binding" target="_blank"  class="monospace">class binding</a>
+                            <span class="highlight monospace">[class.row-active]</span> to the
+                            <span class="highlight monospace">isMovieSelected(movie: Movie): boolean</span> method.</li>
+                    </ul>
+                    <li>Set a style for the <span class="highlight monospace">row-active</span> CSS-class</li>
+                </ol>
+            </section>
+            <section>
+                <h3>Master/Details Pattern @Input (6/7)</h3>
+                <ol>
+                    <li>Go to the <span class="highlight monospace">MovieDetailsComponent</span> class and remove all
+                        its content except for the <span class="highlight monospace">currentMovie</span> property. Rename it to <span class="highlight monospace">movie</span>.</li>
                     <li>Add the <span class="highlight monospace">@Input()</span> decorator to the
-                        <span class="highlight monospace">book</span> property.</li>
-                    <li>Go to the <span class="highlight monospace">BookDetailsComponent</span>'s template.
-                        The <span class="highlight monospace">&lt;div&gt;</span> element containing the BookDetailsComponent should only be displayed if the <span class="highlight monospace">book</span> property is set.
+                        <span class="highlight monospace">movie</span> property.</li>
+                    <li>Go to the <span class="highlight monospace">MovieDetailsComponent</span>'s template.
+                        The <span class="highlight monospace">&lt;div&gt;</span> element containing the MovieDetailsComponent should only be displayed if the <span class="highlight monospace">movie</span> property is set.
                         Use the <a href="https://angular.io/docs/ts/latest/api/common/index/NgIf-directive.html" target="_blank" class="monospace">*ngIf</a> directive.</li>
                 </ol>
             </section>
             <section>
-                <h3>Master/Details Pattern (Optional)</h3>
+                <h3>Master/Details Pattern @Input (7/7)</h3>
                 <ol>
+                    <li>Go to the <span class="highlight highlight">MovieOverviewComponent</span> template</li>
+                    <li>Put the <span class="monospace highlight">&lt;app-movie-details&gt;</span> element in the second <span class="highlight monospace">&lt;div&gt;</span></li>
+                    <li>
+                        Bind the <span class="highlight monospace">selectedMovie</span> to the <span class="monospace highlight">&lt;app-movie-details&gt;</span> element with the <span class="highlight monospace">[movie]</span> property binding.
+                </ol>
+            </section>
+            <section>
+                <h3>Master/Details Pattern @Input (Optional)</h3>
+                <ol>
+                    <li>Show the row number in the list as well</li>
                     <li>Give the <span class="highlight monospace">&lt;body&gt;</span> a light gray background</li>
-                    <li>Go to the BookOverviewComponent.
-                        Replace the two <span class="highlight monospace">&lt;div&gt;</span> elements by <a href="https://material.angular.io/components/card/overview"> &lt;mat-card&gt;</a>.
-                        Don't forget to import the MatCardModule in your BookModule</li>
-                    <li>Use Flex Box Styling to create a responsive design. The <span class="highlight monospace">&lt;mat-card&gt;</span>'s should be next to each other or below each other depending on the screen width</li>
+                    <li>Go to the MovieOverviewComponent. Give the <span class="highlight monospace">&lt;div&gt;</span>s
+                        <ol>
+                            <li>a white background</li>
+                            <li>box shadow</li>
+                            <li>16px of padding and margin</li>
+                        </ol>
+                        </li>
+                    <li>Use Flex Box Styling to create a responsive design. The <span class="highlight monospace">&lt;div&gt;</span>'s should be next to each other or below each other depending on the screen width</li>
                 </ol>
             </section>
         </section>
         <section id="data-binding">
             <section>
-                <h3>Data Binding (1/5)</h3>
+                <h3>Master/Details Pattern @Output </h3>
+                <p>Goals</p>
                 <ol>
-                    <li>Go to the <span class="highlight monospace">BookDetailsComponent</span>'s template and replace
-                        the interpolation of book's author and title with text input fields having the id and name attributes set.</li>
-                    <li>Import the <span class="highlight monospace">FormsModule</span> in the <span class="highlight monospace">BooksModule</span> and add two-way binding (<span class="highlight monospace">[(ngModel)]</span>) to the input fields.</li>
-                    <li>Place the apply button underneath input fields. The button has the <span class="highlight monospace">(click)</span> event binding to the <span class="highlight monospace">apply()</span> method.</li>
+                    <li>Movie Details are editable</li>
+                    <li>Clicking on a button propagates the changes to the list</li>
+                    <li>Add a button to create new movie entries</li>
                 </ol>
             </section>
             <section>
-                <h3>Data Binding (2/5)</h3>
+                <h3>Master/Details Pattern @Output (1/8)</h3>
                 <ol>
-                    <li>Go to the <span class="highlight monospace">BookDetailsComponent</span> class and add a setter and a getter of the <span class="monospace highlight">book</span> property.</li>
+                    <li>Import the <span class="highlight monospace"><a href="https://angular.io/api/forms/FormsModule">FormsModule</a></span> in the <span class="highlight monospace">MoviesModule</span> and add two-way binding (<span class="highlight monospace">[(ngModel)]</span>) to the input fields.</li>
+                    <li>In the <span class="highlight monospace">MovieDetailsComponent</span>'s template and replace
+                        the interpolation of movies's title, directors etc. with text input fields having the id and name attributes set.</li>
+                    <li>Move the <span class="highlight monospace">*ngIf</span> from the <span class="highlight monospace">movie-details</span> template to the <span class="highlight monospace">&lt;app-movie-details&gt;</span> in the <span class="highlight monospace">movie-overview</span> template</li>
+
+                    <!--<li>Place the apply button underneath input fields. The button has the <span class="highlight monospace">(click)</span> event binding to the <span class="highlight monospace">apply()</span> method.</li>-->
+                </ol>
+            </section>
+            <section>
+                <h3>Master/Details Pattern @Output (2/8)</h3>
+                <p>Check the result. Every change in an <span class="highlight monospace">input</span> immediatly changes the corresponding entry in the list. Nice feature, but that's not exactly what we want here
+                </p>
+            </section>
+            <section>
+                <h3>Master/Details Pattern @Output (3/8)</h3>
+                <ol>
+                    <li>Go to the <span class="highlight monospace">MovieDetailsComponent</span> class and add a setter and a getter of the <span class="monospace highlight">movie</span> property <br>(<span class="monospace highlight">get movie(){..}</span>). You need to rename the <span class="monospace highlight">movie</span> property for that. Recommendation: <span class="monospace highlight">_movie</span></li>
                     <li>Move the <span class="highlight monospace">@Input()</span> decorator from the property to the setter.</li>
-                    <li>Change the setter implementation so that instead of a direct assignment a copy of the passed object is made.
-                        You can use the <a href="https://lodash.com/docs/4.17.4#cloneDeep" target="_blank" class="monospace">cloneDeep</a>
-                        function from the lodash library (<span class="highlight monospace">import {cloneDeep} from 'lodash'</span>).</li>
+                    <li>Change the <span class="monospace highlight">_movie</span> property's visibility to private</li>
+                    <li>Change the setter implementation so that instead of a direct assignment a copy of the passed object is made. (<a href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">Object.assign</a>)
                 </ol>
             </section>
             <section>
-                <h3>Data Binding (3/5)</h3>
+                <h3>Master/Details Pattern @Output (4/8)</h3>
                 <ol>
-                    <li>Add the <span class="highlight monospace">bookUpdate</span> property of type <span class="highlight monospace">EventEmitter</span>.</li>
-                    <li>Put the decorator <span class="highlight monospace">@Output()</span> on the <span class="highlight monospace">bookUpdate</span> property.</li>
-                    <li>Implement the <span class="highlight monospace">apply(): void</span> method which uses the <span class="highlight monospace">bookUpdate</span>
-                        EventEmitter and emits the <span class="highlight monospace">_book</span> property.</li>
-                    <li>Update the <span class="highlight monospace">Book.from</span> factory method so that each new book being created gets a unique id
-                        (hint: keep a sequencer as a static field of the <span class="highlight monospace">Book</span> class).</li>
+                    <li>Add the <span class="highlight monospace">movieUpdate</span> property of type <span class="highlight monospace">EventEmitter</span>.</li>
+                    <li>Put the decorator <span class="highlight monospace">@Output()</span> on the <span class="highlight monospace">movieUpdate</span> property.</li>
+                    <li>Implement the <span class="highlight monospace">apply(): void</span> method which uses the <span class="highlight monospace">movieUpdate</span>
+                        EventEmitter and emits the <span class="highlight monospace">movie</span> property.</li>
+                    <li>Add a <span class="highlight monospace">button</span> to the template and assign the <span class="highlight monospace">apply()</span> method to the <span class="highlight monospace">(click)</span> event binding</li>
                 </ol>
             </section>
             <section>
-                <h3>Data Binding (4/5)</h3>
+                <h3>Master/Details Pattern @Output (5/8)</h3>
                 <ol>
-                    <li>Go to the <span class="monospace highlight">BookOverviewComponent</span>'s template and add the
-                        <span class="highlight monospace">(bookUpdate)</span> event binding to the
-                        <span class="highlight monospace">&lt;app-book-details&gt;</span> element.</li>
-                    <li>Assign the <span class="highlight monospace">onBookUpdated($event)</span> method call to the
-                        <span class="highlight monospace">(bookUpdate)</span> event binding.</li>
-                    <li>Go to the <span class="highlight monospace">BookOverviewComponent</span> class and implement
-                        the <span class="highlight monospace">onBookUpdated(updatedBook: Book): void</span> method.</li>
+                    <li>Go to the <span class="highlight monospace">MovieOverviewComponent</span> class and implement
+                        the <span class="highlight monospace">onMovieUpdated(updatedMovie: Movie): void</span> method.</li>
+                    <li>The <span class="highlight monospace">onMovieUpdated(updatedMovie: Movie): void</span> method should find a book (among movies in the <span class="highlight monospace">movies</span> array)
+                        with the same ID as the passed movie (consider using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find" target="_blank" class="monospace">Array.prototype.find</a> function)
+                        and update the found movie accordingly.
                 </ol>
             </section>
             <section>
-                <h3>Data Binding (5/5)</h3>
+                <h3>Master/Details Pattern @Output (6/8)</h3>
                 <ol>
-                    <li>The <span class="highlight monospace">onBookUpdated(updatedBook: Book): void</span> method should find a book (among books in the <span class="highlight monospace">books</span> array)
-                        with the same ID as the passed book (consider using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter" target="_blank" class="monospace">Array.prototype.filter</a> function)
-                        and update the found book accordingly. You can use the
-                        <a href="https://lodash.com/docs/4.17.4#assign" target="_blank" class="monospace">assign</a> function from the lodash library (<span class="highlight monospace">import {assign} from 'lodash'</span>).</li>
+                    <li>Go to the <span class="monospace highlight">MovieOverviewComponent</span>'s template and add the
+                        <span class="highlight monospace">(movieUpdate)</span> event binding to the
+                        <span class="highlight monospace">&lt;app-movie-details&gt;</span> element and assign the <span class="highlight monospace">onMovieUpdated($event)</span> method call</li>
                 </ol>
             </section>
             <section>
-                <h3>Data Binding (optional)</h3>
+                <h3>Master/Details Pattern @Output (7/8)</h3>
                 <ol>
-                    <li>Import the <a href="https://material.angular.io/components/input/overview">MatInputModule</a> and <a href="https://material.angular.io/components/button/overview">MatButtonModule</a> into the BookModule</li>
-                    <li>Wrap the each of the &lt;input&gt; elements in a &lt;mat-form-field&gt;</li>
-                    <li>Add the <span class="highlight monospace">matInput</span> directive to the &lt;input&gt; elements</li>
-                    <li>Remove the <span class="highlight monospace">label</span> elements and put their value into the <span class="highlight monospace">placeholder</span> attributes of the <span class="highlight monospace">&lt;input&gt; elements</li>
-                    <li>Add the <span class="highlight monospace">mat-raised-button</span> directive to the <span class="highlight monospace">button</span> element</li>
+                    <li>In the <span class="monospace highlight">movie-details</span> class add a <span class="monospace highlight">movieCreate</span> EventEmitter</li>
+                    <li>Add a <span class="monospace highlight">create(): void</span> method that triggers the <span class="monospace highlight">movieCreate</span> EventEmitter
+                    </li>
+                    <li>Add a <span class="monospace highlight">button</span> to the template to use the <span class="monospace highlight">create()</span> function</li>
+                </ol>
+            </section>
+            <section>
+                <h3>Master/Details Pattern @Output (8/8)</h3>
+                <ol>
+                    <li>In the <span class="monospace highlight">movie overview</span> class add a <span class="monospace highlight">onCreateMovie()</span> method that initializes the <span class="monospace highlight">selectedMovie</span> with a new object with all properties set to null
+                    </li>
+                    <li>Bind the <span class="monospace highlight">onCreateMovie()</span> to the <span class="monospace highlight">movieCreate</span> event of <span class="highlight monospace">&lt;app-movie-details&gt;</span>
+                    </li>
+                    <li>Add a private property <span class="monospace highlight">movieIdSequence</span></li>
+                    <li>Modify the <span class="monospace highlight">onMovieUpdated()</span>function. If no movie with the id of the updated movie is found, set the id to the next from <span class="monospace highlight">movieIdSequence</span> and push the updated movie to the array.</li>
+                </ol>
+            </section>
+            <section>
+                <h3>Master/Details Pattern @Output (optional)</h3>
+                <ol>
+                    <li>Style the input fields and the button</li>
+                    <!--<li>Import the <a href="https://material.angular.io/components/input/overview">MatInputModule</a> and <a href="https://material.angular.io/components/button/overview">MatButtonModule</a> into the BookModule</li>-->
+                    <!--<li>Wrap the each of the &lt;input&gt; elements in a &lt;mat-form-field&gt;</li>-->
+                    <!--<li>Add the <span class="highlight monospace">matInput</span> directive to the &lt;input&gt; elements</li>-->
+                    <!--<li>Remove the <span class="highlight monospace">label</span> elements and put their value into the <span class="highlight monospace">placeholder</span> attributes of the <span class="highlight monospace">&lt;input&gt; elements</li>-->
+                    <!--<li>Add the <span class="highlight monospace">mat-raised-button</span> directive to the <span class="highlight monospace">button</span> element</li>-->
                 </ol>
             </section>
         </section>
         <section id="service">
             <section>
-                <h3>Service (1/4)</h3>
+                <h3>Service</h3>
+                <p>Goals: </p>
                 <ol>
-                    <li>Go to the <span class="monospace highlight">app/books</span> directory and create a new <span class="highlight monospace">Book</span> service (<span class="highlight monospace">ng g service Book</span>) with the private
-                        <span class="highlight monospace">books</span> array property.</li>
-                    <li>In the constructor initialize the array. Just copy the code from the <span class="highlight monospace">BookOverviewComponent.ngOnInit()</span> method.</li>
-                    <li>Add the <span class="highlight monospace">findAll(): Observable&lt;Book[]&gt;</span> service method
-                        which returns the <span class="highlight monospace">books</span> array as an <span class="highlight monospace">Observable</span>.</li>
-                    <li>Add the <span class="highlight monospace">BookService</span> to providers of the
-                        <span class="highlight monospace">BooksModule</span>.</li>
+                    <li>The data is retrieved from a service by the component</li>
+                    <li>The data is asynchronously retrieved (like it would be via a REST service)</li>
+                    <li>The async pipe is used to subscribe to the service</li>
                 </ol>
             </section>
             <section>
-                <h3>Service (2/4)</h3>
+                <h3>Service (1/5)</h3>
+                <ol>
+                    <li>Go to the <span class="monospace highlight">app/movies</span> directory and create a new <span class="highlight monospace">Movie</span> service (<span class="highlight monospace">ng g service Movie</span>) with the private
+                        <span class="highlight monospace">movie</span> array property.</li>
+                    <li>In the constructor initialize the array. Just copy the code from the <span class="highlight monospace">MovieOverviewComponent.ngOnInit()</span> method.</li>
+                    <li>Add the <span class="highlight monospace">findAll(): Observable&lt;Movie[]&gt;</span> service method
+                        which returns the <span class="highlight monospace">movie</span> array as an <span class="highlight monospace">Observable</span>. For example with <span class="highlight monospace">of(this.movies)</span></li>
+                    <li>Add the <span class="highlight monospace">MovieService</span> to providers of the
+                        <span class="highlight monospace">MoviesModule</span>.</li>
+                </ol>
+            </section>
+            <section>
+                <h3>Service (2/5)</h3>
                 <ol>
                     <li>Make use of the dependency injection and pass a reference to the
-                        <span class="highlight monospace">BookService</span> in the
-                        <span class="highlight monospace">BookOverviewComponent</span>'s constructor.
+                        <span class="highlight monospace">MovieService</span> in the
+                        <span class="highlight monospace">MovieOverviewComponent</span>'s constructor.
                     </li>
-                    <li>Call the <span class="highlight monospace">BookService.findAll()</span> method in the
-                        <span class="highlight monospace">BookOverviewComponent.ngOnInit()</span> method to initialize
-                        the book list.</li>
+                    <li>Call the <span class="highlight monospace">MovieService.findAll()</span> method in the
+                        <span class="highlight monospace">MovieOverviewComponent.ngOnInit()</span> method to initialize
+                        the movie list.</li>
                 </ol>
             </section>
             <section>
-                <h3>Service (3/4)</h3>
-                <ol>Extend the <span class="highlight monospace">BookService</span>:
-                    <li>Implement the <span class="highlight monospace">findOne(id: number): Observable&lt;Book&gt;</span> method which finds a
+                <h3>Service (3/5)</h3>
+                <ol>Extend the <span class="highlight monospace">MovieService</span>:
+                    <li>Implement the <span class="highlight monospace">findOne(id: number): Observable&lt;Movie&gt;</span> method which finds a
                         book by the ID passed and returns its copy.</li>
-                    <li>Implement the <span class="highlight monospace">save(bookToSave: Book): Observable&lt;Book&gt;</span> method. If the ID of the passed book
-                        is set, update the existing book (copying values from the passed book to it) from the list.
-                        Otherwise add the passed book to the list as a new element.</li>
+                    <li>Implement the <span class="highlight monospace">save(movieToSave: Movie): Observable&lt;Movie&gt;</span> method. If the ID of the passed movie
+                        is set, update the existing movie (copying values from the passed movie to it) from the list.
+                        Otherwise set the id and add the passed movie to the list as a new element.</li>
                 </ol>
             </section>
             <section>
-                <h3>Service (4/4)</h3>
-                <ol>Extend the <span class="highlight monospace">BookService</span>:
-                    <li>Use the <span class="highlight monospace">save(bookToSave: Book): Observable&lt;Book&gt;</span> in the
-                        <span class="highlight monospace">BookOverviewComponent.onBookUpdated</span> you created in the Excercise "Data  Binding 4/5"</li>
+                <h3>Service (4/5)</h3>
+                <ol>
+                    <li>Use the <span class="highlight monospace">save(movieToSave: Movie): Observable&lt;Movie&gt;</span> in the
+                        <span class="highlight monospace">MovieOverviewComponent.onMovieUpdated</span></li>
+                </ol>
+            </section>
+            <section>
+                <h3>Service (5/5)</h3>
+                <ol>
+
+                    <li>
+                        In the <span class="highlight monospace">MovieOverviewComponent</span> change the <span class="highlight monospace">movies</span> array to <span class="highlight monospace">movies$</span> of type <span class="highlight monospace">Observable&lt;Movie[]&gt;</span>. Do not subscribe to the <span class="highlight monospace">MovieService.findAll()</span> but assign the resulting Observable to the <span class="highlight monospace">movies$</span> property.
+                    </li>
+                    <li>
+                        In the <span class="highlight monospace">MovieOverviewComponent</span> template use the <a href="https://blog.thoughtram.io/angular/2017/02/27/three-things-you-didnt-know-about-the-async-pipe.html" target="_blank">async pipe</a> in the <span class="highlight monospace">*ngFor</span> to automatically subscribe to the Observable.
+                    </li>
                 </ol>
             </section>
             <section>
                 <h3>Service (extra)</h3>
-                <ol>Extend the <span class="highlight monospace">BookService</span>:
+                <ol>Extend the <span class="highlight monospace">MovieService</span>:
                    <li>Implement unit tests using the <a href="https://jasmine.github.io/2.5/introduction" target="_blank" class="monospace">Jasmine</a> framework.</li>
+                </ol>
+            </section>
+        </section>
+        <section id="http">
+            <section>
+                <h3>Http</h3>
+                <p>
+                    Goals:
+                </p>
+                <ol>
+                    <li>The service retrieves the data from a REST service</li>
+                </ol>
+            </section>
+            <section>
+                <h3>Http (1/2)</h3>
+                <p>
+                    We prepared a server for you.<br>
+                    User the following commands for startup
+                </p>
+
+                <ul>
+                    <li>"npm run start" - starts angular server with reverse proxy</li>
+                    <li>"npm run server" - starts the rest server</li>
+                </ul>
+
+                <p>
+                    Possible REST calls:
+                </p>
+
+                <ul>
+                    <li>get http://localhost:4200/services/rest/movies</li>
+                    <li>get http://localhost:4200/services/rest/movies/:id</li>
+                    <li>post http://localhost:4200/services/rest/movies</li>
+                </ul>
+
+            </section>
+            <section>
+                <h3>Http (2/2)</h3>
+                <ol>
+                    <li>Import the <span class="highlight monospace">HttpClientModule</span> into the <span class="highlight monospace">AppModule</span>, add it to the imports array</li>
+                    <li>Refactor the <span class="highlight monospace">findAll()</span> books method - use <span class="highlight monospace">http.get</span></li>
+                    <li>Refactor the <span class="highlight monospace">findOne(id: Number)</span> method - use <span class="highlight monospace">http.get</span></li>
+                    <li>Refactor the <span class="highlight monospace">save(book: Book)</span> method  - use <span class="highlight monospace">http.post</span></li>
+                    <li>Import the necessary RxJS operators to map the responses</li>
                 </ol>
             </section>
         </section>
@@ -344,48 +475,6 @@
 
         </section>
 
-		<section id="http">
-            <!--<section>-->
-                <!--<h3>Http (1/2)</h3>-->
-                <!--<ol>-->
-                    <!--<li>Prepare a server of your choice :)</li>-->
-					<!--<li>Add a Adjust the proxy configuration in the <span class="highlight monospace">oasp4js.config.json</span> file</li>-->
-                <!--</ol>-->
-            <!--</section>-->
-            <section>
-                <h3>Http (1/2)</h3>
-                <p>
-                    We prepared a server for you.<br>
-                    User the following commands for startup
-                </p>
-
-                <ul>
-                    <li>"npm run start" - starts angular server with reverse proxy</li>
-                    <li>"npm run server" - starts the rest server</li>
-                </ul>
-
-                <p>
-                    Possible REST calls:
-                </p>
-
-                <ul>
-                    <li>get http://localhost:4200/services/rest/books</li>
-                    <li>get http://localhost:4200/services/rest/book/:id</li>
-                    <li>post http://localhost:4200/services/rest/book</li>
-                </ul>
-
-            </section>
-			<section>
-                <h3>Http (2/2)</h3>
-                <ol>
-                    <li>Import the <span class="highlight monospace">HttpClientModule</span> into the <span class="highlight monospace">AppModule</span>, add it to the imports array</li>
-					<li>Refactor the <span class="highlight monospace">findAll()</span> books method - use <span class="highlight monospace">http.get</span></li>
-					<li>Refactor the <span class="highlight monospace">findOne(id: Number)</span> method - use <span class="highlight monospace">http.get</span></li>
-					<li>Refactor the <span class="highlight monospace">save(book: Book)</span> method  - use <span class="highlight monospace">http.post / http.put</span></li>
-					<li>Import the necessary RxJS operators to map the responses</li>
-                </ol>
-            </section>
-        </section>
         <section id="forms">
             <section>
                 <h3>Forms (1/6)</h3>
