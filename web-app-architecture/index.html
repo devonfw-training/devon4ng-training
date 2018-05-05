@@ -112,40 +112,42 @@
             <img class="plain no-border" height="400" src="img/redux-architecture.svg">
         </section>
         <section>
-            <p>But is this really sufficient for building large scalable applications?</p>
-            <p class="fragment">... here are a few examples.</p>
-        </section>
-        <section>
-            <p>How to structure huge applications?</p>
-        </section>
-        <section>
-            <p>How is the data <strong>converted</strong> from model to view?</p>
-        </section>
-        <section>
-            <p>Where does <strong>Internationalization</strong> happen?</p>
-        </section>
-        <section>
-            <p>What about <strong>validation</strong> of user input?</p>
-        </section>
-        <section>
-            <p>How does the client <strong>talk to the application core</strong>?</p>
-        </section>
-        <section>
-            <p>What about dialog <strong>states</strong> and widget states?</p>
-        </section>
-        <section>            
-            <p>What about states that are <strong>dependent on other states</strong>?</p>
-        </section>
-        <section>
-            <p>How to design state controlling if an <strong>action</strong> can be executed or not?</p>
-        </section>
-        <section>
-            <p>How does the <strong>model</strong> look exactly?</p>
+            <section>
+                <p>But is this really sufficient for building large scalable applications?</p>
+                <p class="fragment">... here are a few questions.</p>
+            </section>
+            <section>
+                <p>How to structure huge applications?</p>
+            </section>
+            <section>
+                <p>How is the data <strong>converted</strong> from model to view?</p>
+            </section>
+            <section>
+                <p>Where does <strong>Internationalization</strong> happen?</p>
+            </section>
+            <section>
+                <p>What about <strong>validation</strong> of user input?</p>
+            </section>
+            <section>
+                <p>How does the client <strong>talk to the application core</strong>?</p>
+            </section>
+            <section>
+                <p>What about dialog <strong>states</strong> and widget states?</p>
+            </section>
+            <section>            
+                <p>What about states that are <strong>dependent on other states</strong>?</p>
+            </section>
+            <section>
+                <p>How to design state controlling if an <strong>action</strong> can be executed or not?</p>
+            </section>
+            <section>
+                <p>How does the <strong>model</strong> look exactly?</p>
+            </section>        
         </section>
         <section>
             <section>
-                <h3>Projects gone wrong</h3>
                 <img class="plain no-border" src="img/onedoesnotsimplybuild.jpg">
+                <p class="fragment">... Projects gone wrong. Let's look at a few examples.</p>
             </section>
             <section>
                 <p>It's done! Does it work in IE? Err... Avoid rolling your own if there is a library!</p>            
@@ -344,16 +346,30 @@ this.http.get&lt;Flight[]&gt;(environment.backendUrl + '/flights');
                 <h3>Application Overview</h3>
             </section>
             <section>
-                <h3>Modules</h3>
-                <img style="border: none; box-shadow: none" src="./img/architecture-modules.svg">
+                <p>Angular Modules help to structure the client</p>
+                <img style="border: none; box-shadow: none" src="./img/angular-module-dependencies.svg">
+                <p>core.module contains shared services.</p>
+                <p>share.module contains shared components.</p>
             </section>
             <section>
-                <h3>Layers</h3>
-                <img style="border: none; box-shadow: none" src="./img/architecture-layers.svg">
+                <p>A feature module encapsulates <strong>dialog components and functionality</strong> of one business domain.</p>
+                <p>Note: Multiple dialog components can be part of a feature module.</p>
             </section>
             <section>
-                <h3>The Component Tree</h3>
-                <img class="no-border" src="img/component-tree.svg" alt="">
+                <h3>The Angular Component Tree</h3>
+                <img class="no-border" src="img/component-tree.svg">
+            </section>
+            <section>
+                <img class="no-border" style="height:400px" src="img/highlighted-smart-component.png" alt="">            
+                <p>A <strong>Dialog Component</strong> is typically an Angular toplevel component, that is activated by a route.</p>
+            </section>
+            <section>
+                <h3>Dialog Components</h3>
+                <img class="no-border" src="img/component-tree-highlight.svg">
+            </section>
+            <section>
+                <img style="border: none; box-shadow: none" src="./img/smart-dumb-components-interaction.svg">
+                <p>A <strong>must-know</strong> pattern: Smart vs Dumb Components</p>
             </section>
             <section>
                 <table style="width: 100%; font-size: 26px">
@@ -392,26 +408,8 @@ this.http.get&lt;Flight[]&gt;(environment.backendUrl + '/flights');
                 </ul>
             </section>
             <section>
-                <h3>A Smart Component is a mapped Dialog Component</h3>
-                <img class="no-border" style="height:400px" src="img/highlighted-smart-component.png" alt="">
-            </section>
-            <section>
-                <h3>Dumb - Smart Component Interaction</h3>
-                <img style="border: none; box-shadow: none" src="./img/smart-dumb-components-interaction.svg">
-            </section>
-            <section>
-                <h3>Presentation Layer Boundaries</h3>
-                <img class="no-border" src="img/components-layer-service-layer-boundaries.svg" alt="">
-            </section>
-            <section>
-                <h3>Smart Component Interaction via Services Layer</h3>
-                <img class="no-border" src="img/smart-component-interaction-via-services-layer.svg" alt="">
-            </section>
-            <section>
-                <h3>Smart Component Interaction</h3>
-                <h4>example</h4>
-                <img style="border: none; box-shadow: none" src="./img/smart-smart-components-example.svg">
-                <p>Shown is the action of loading flights which is triggered by FlightSearchComponent.</p>
+                <h3>State Management</h3>
+                
             </section>
         </section>
     </div>
