@@ -48,104 +48,121 @@
                 <img class="plain no-border" height="300" src="img/architecture.jpg">
             </p>
             <h2>Web Application Architecture</h2>
-            <p>Tim Lüecke, Philip Schmökel, Marek Matczak</p>
+            <p>Philip Schmökel, Tim Lüecke, Marek Matczak</p>
         </section>
         <section>
             <img class="no-border" height="600px" src="img/rewrite-frontend-every-six-weeks.jpg" alt="">
         </section>
         <section>
-            <h1>Client Infrastructure</h1>
-            <h2>(a.k.a. TI-Architecture)</h2>
+            <h2>Client Infrastructure</h2>
+            <p>(a.k.a. TI-Architecture)</p>
         </section>
         <section>
-            <h2>Classical Web Applications</h2>
-            <div class="pull-left">
-                <img class="plain no-border" height="300" src="img/classical-web-apps.png">
-            </div>
-            <div>
-                <p>
-                    The content of each web page is fully <strong>rendered on the server</strong>. Each action requires
-                    a <strong>round trip to the server</strong> which contains <strong>presentation logic</strong>
-                    and <strong>application state</strong>.
-                </p>
-            </div>
+            <h3>Pageload-centric web applications</h3>
+            <p>... are the predominant architecture of the past.</p>
+            <img class="plain no-border" height="300" src="img/classical-web-apps.png">
         </section>
         <section>
-            <h2>Single Page Applications</h2>
-            <div class="pull-left">
-                <img class="plain no-border" height="300" src="img/spas.png">
-            </div>
-            <div>
-                <p>
-                    The content of a page is retrieved with a <strong>single page load</strong>. However, additional
-                    resources may <strong>dynamically</strong> be loaded and added to the page as necessary. The page
-                    <strong>does not reload</strong> any more.
-                </p>
-            </div>
-        </section>
-    <section>
-            <div>
-                <h2>Challenges</h2>
-                <h4>of Single Page Applications</h4>
-            </div>
-            <div class="pull-left">
-                <img class="plain no-border" height="230" src="img/challenge.gif">
-            </div>
-            <ul>
-                <li>Bookmarking, Forward/Back Buttons</li>
-                <li>Search engines optimization (SEO)</li>
-                <li>Speed of initial load</li>
-            </ul>
+            <p>
+                The content of each web page is fully <strong>rendered on the server</strong>.
+            </p>
+            <p>
+                Each action requires a <strong>round trip to the server</strong> which contains presentation logic and application state.
+            </p>
         </section>
         <section>
-            <h1>Client Architecture</h1>
-            <h2>(a.k.a. T-Architecture)</h2>
+            <h3>Single Page Applications</h3>
+            <img class="plain no-border" height="300" src="img/spas.png">
         </section>
         <section>
-            <h2>Model View Controller</h2>
+            <p>
+                A page's content is retrieved with a <strong>single page load</strong>. </p>
+            <p>
+                The page <strong>does not reload</strong> any more.
+            </p>
+        </section>
+        <section>
+            <h2>Client Architecture</h2>
+            <p>(a.k.a. T-Architecture)</p>
+        </section>
+        <section>
+            <h3>Model View Controller</h3>
             <div>
                 <img class="plain no-border" height="300" src="img/mvc.png">
             </div>
         </section>
         <section>
-            <h2>Model View Presenter</h2>
+            <h3>Model View Presenter</h3>
             <img class="plain no-border" height="300" src="img/mvp.png">
         </section>
         <section>
-            <h2>Model View View Model</h2>
+            <h3>Model View View Model</h3>
             <img class="plain no-border" height="300" src="img/mvvm.png">
         </section>
         <section>
-            <h2>Reactive Architecture</h2>
-            <h4>Unidirectional Dataflow (flux, redux, etc.)</h4>
+            <h3>
+                <strong>
+                    <a href="https://martinfowler.com/bliki/CQRS.html">CQRS</a>
+                </strong> / 
+                <strong>
+                    Event Sourcing
+                </strong>
+            </h3>
+            <p>... commonly called <strong>Reactive Architecture</strong> or <strong>Flux</strong></p>
             <img class="plain no-border" height="400" src="img/redux-architecture.svg">
         </section>
         <section>
-            <h2>Open Questions</h2>
-            <ul>
-                <li>How to structure huge applications?</li>
-                <li>How is the data <strong>converted</strong> from model to view?</li>
-                <li>Where does <strong>Internationalization</strong> happen?</li>
-                <li>What about <strong>validation</strong> of user input?</li>
-                <li>How does the client <strong>talk to the application core</strong>?</li>
-                <li>What about dialog <strong>states</strong> and widget states?</li>
-                <li>What about states that are <strong>dependent on other states</strong>?</li>
-                <li>How to design state controlling if an <strong>action</strong> can be executed or not?</li>
-                <li>How does the <strong>model</strong> look exactly?</li>
-                <li>Do I need <strong>observerable TOs</strong>? </li>
-                <li>…</li>
-            </ul>
+            <p>But is this really sufficient for building large scalable applications?</p>
+            <p class="fragment">... here are a few examples.</p>
         </section>
         <section>
-            <h2>Projects gone wrong</h2>
-            <ul>
-                <li>It's done! Does it work in IE? Err... Avoid rolling your own if there is a library!</li>
-                <li>Browser tab grows to 2GB, unresponsive script warnings. Dialogs were not unloaded.</li>
-                <li>Unlimited loading of data to the client. Do paging, filtering, sorting, and grouping on the server side!</li>
-                <li>Mass manipulation in the DOM caused unnecessary rendering of intermediate results (forced reflow). Render at the end!</li>
-                <li>Methods reused at the wrong level cause duplicate calls and performance issues. Event listeners triggering new
-                    events are hard to debug. Avoid!</li>
-            </ul>
+            <p>How to structure huge applications?</p>
+        </section>
+        <section>
+            <p>How is the data <strong>converted</strong> from model to view?</p>
+        </section>
+        <section>
+            <p>Where does <strong>Internationalization</strong> happen?</p>
+        </section>
+        <section>
+            <p>What about <strong>validation</strong> of user input?</p>
+        </section>
+        <section>
+            <p>How does the client <strong>talk to the application core</strong>?</p>
+        </section>
+        <section>
+            <p>What about dialog <strong>states</strong> and widget states?</p>
+        </section>
+        <section>            
+            <p>What about states that are <strong>dependent on other states</strong>?</p>
+        </section>
+        <section>
+            <p>How to design state controlling if an <strong>action</strong> can be executed or not?</p>
+        </section>
+        <section>
+            <p>How does the <strong>model</strong> look exactly?</p>
+        </section>
+        <section>
+            <section>
+                <h3>Projects gone wrong</h3>
+                <img class="plain no-border" src="img/onedoesnotsimplybuild.jpg">
+            </section>
+            <section>
+                <p>It's done! Does it work in IE? Err... Avoid rolling your own if there is a library!</p>            
+            </section>
+            <section>
+                <p>Browser tab grows to 2GB, unresponsive script warnings. Dialogs were not unloaded.</p>
+            </section>
+            <section>
+                <p>Unlimited loading of data to the client. Do paging, filtering, sorting, and grouping on the server side!</li>
+            </section>
+            <section>
+                <p>Mass manipulation in the DOM caused unnecessary rendering of intermediate results (forced reflow). Render at the end!</p>
+            </section>
+            <section>
+                <p>Methods reused at the wrong level cause duplicate calls and performance issues. Event listeners triggering new
+                        events are hard to debug. Avoid!</p>        
+            </section>        
         </section>
         <section>
             <h2>Let's step back</h2>
@@ -290,6 +307,8 @@
     "prod": "environments/environment.prod.ts"
 }
                 </code></pre>
+            </section>
+            <section>
                 <p>.angular-cli.json</p>
                 <img style="border: none; box-shadow: none" src="./img/angular-configuration-management.svg">
             </section>
