@@ -39,7 +39,18 @@
 </head>
 
 <body>
+<style>
+div.slides section img {
+    border: none;
+    box-shadow: none;
+    margin: 0;
+}
 
+.image-box {
+    display:flex;
+    align-items: center;
+}
+</style>
 <div class="reveal">
     <!-- Any section element inside of this container is displayed as a slide -->
     <div class="slides">
@@ -407,9 +418,124 @@ this.http.get&lt;Flight[]&gt;(environment.backendUrl + '/flights');
                     <li>a component which is placed inside AppComponent</li>
                 </ul>
             </section>
+        </section>
+        <section>
             <section>
-                <h3>State Management</h3>
-                
+                <h3>Reactive Architecture</h3>
+            </section>
+            <section>
+                <h2>Scaling MVC Applications</h2>
+                <div class="image-box">
+                    <img width="600px" style="margin-right: 50px" src="img/ng-state-everwhere.png">
+                    <ul style="width: 500px">
+                        <li>Debugging?</li>
+                        <li>Testing?</li>
+                        <li>Understanding?</li>
+                        <li>Server Side Rendering?</li>
+                    </ul>
+                </div>
+                <p style="font-size: 18px; display:flex"><a href="http://onehungrymind.com/build-better-angular-2-application-redux-ngrx/">http://onehungrymind.com/build-better-angular-2-application-redux-ngrx/</a></p>
+            </section>
+            <section>
+                <h1 style="font-style: italic">UI = f ( State )</h1>
+            </section>
+            <section>
+                <img src="img/uifunction.png">
+            </section>
+            <section>
+                <img src="img/state-example-1.png">
+            </section>
+            <section>
+                <img src="img/state-example-2.png">
+            </section>
+            <section>
+                <img src="img/state-example-3.png">
+            </section>
+            <section>
+                <h2>What Frameworks To Know?</h2>
+                <div style="display:flex; justify-content: space-around;">
+                    <div class="image-box">
+                        <img width="150px" src="img/react.png" style="margin-right: 20px">
+                        <p class="fragment" data-fragment-index="0" style="font-size: 30px; display:flex"><a href="https://facebook.github.io/react/">React</a></p>
+                    </div>
+                    <div class="image-box">
+                        <img width="150px" src="img/flux.png" style="margin-right: 20px">
+                        <p class="fragment" data-fragment-index="1" style="font-size: 30px; display:flex"><a href="https://facebook.github.io/flux/">Flux</a></p>
+                    </div>
+                </div>
+                <div style="display:flex; justify-content: space-around;">
+                    <div class="image-box">
+                        <img width="150px" src="img/redux.png" style="margin-right: 20px">
+                        <p class="fragment" data-fragment-index="2" style="font-size: 30px; display:flex"><a href="http://redux.js.org/">Redux</a></p>
+                    </div>
+                    <div class="image-box">
+                        <img width="150px" src="img/ngrx.png" style="margin-right: 20px">
+                        <p class="fragment" data-fragment-index="3" style="font-size: 30px; display:flex"><a href="https://github.com/ngrx">ngrx</a></p>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <img src="img/store-view-actions.png">
+            </section>
+            <section>
+                <h2>Reducer Function</h2>
+                <pre class="width-100-percent"><code class="typescript max-height-unset" data-trim data-noescape>
+export function counterReducer(state: number = 0, action: Action) {
+  switch (action.type) {
+    case INCREMENT:
+      return state + 1;
+
+    case DECREMENT:
+      return state - 1;
+
+    case RESET:
+      return 0;
+
+    default:
+      return state;
+  }
+}
+                </code></pre>
+            </section>
+            <section>
+                <h2>Store - Tree Of Reducers</h2>
+                <img src="img/reducer-composite.png">
+            </section>
+            <section>
+                <h2>State goes down</h2>
+                <p>... using Angular <code>@Input</code> syntax.</p>
+                <img src="img/state-goes-down.png">
+            </section>
+            <section>
+                <h2>Events go up</h2>
+                <p>... using Angular <code>@Output</code> syntax.</p>
+                <img src="img/events-go-up.png">
+            </section>
+            <section>
+                <h2>HTTP Request (XHR)</h2>
+                <img src="img/xhr.png">
+            </section>
+            <section>
+                <h2>Websockets Push</h2>
+                <img src="img/websockets-push.png">
+            </section>
+            <section>
+                <h2>Websockets Pull</h2>
+                <img src="img/websockets-pull.png">
+            </section>
+            <section>
+                <h2>Forget Everything And Go Reactive?</h2>
+                <p>Abstraction is the tradeoff which is not always worth it.</p>
+                <ul>
+                    <li>For small applications it's simply overkill.</li>
+                    <li>Lack of know how.</li>
+                    <li>Use it when you need it.</li>
+                </ul>
+            </section>
+            <section>
+                <p>
+                    devonfw provides an architecture which is a compromise between, on the one hand, leveraging the <strong>best practices and latest trends</strong> like reactive style development, on the other hand, providing a <strong>short onboarding time</strong> while still using an architecture that helps us scale and be productive at the same time.</p>
+                <small>see <a href="https://github.com/oasp-forge/oasp4js-wiki/wiki">devon4js</a></small>
             </section>
         </section>
     </div>
