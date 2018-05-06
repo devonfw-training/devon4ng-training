@@ -404,80 +404,81 @@
                 </ol>
             </section>
         </section>
+
 		<section id="routing">
             <section>
-                <h3>Routing (1/6)</h3>
-                <ul>
-                    Create the <span class="highlight monospace">app/app-routing.module.ts</span> file. Export the <span class="highlight monospace">appRoutes</span>
-                    constant which is going to keep the application routes so that:
-                    <li>all paths starts with <span class="highlight monospace">book-app</span>,</li>
-                    <li>the <span class="highlight monospace">books</span> path (relative to <span class="highlight monospace">book-app</span>) leads to the <span class="highlight monospace">BookOverviewComponent</span>,</li>
-                    <li>the <span class="highlight monospace">book</span> path leads to the <span class="highlight monospace">BookDetailsComponent</span> (when adding a new book),</li>
-                    <li>the <span class="highlight monospace">book/:id</span> path leads to the <span class="highlight monospace">BookDetailsComponent</span> (when editing an existing book),</li>
-                    <li>the empty path (<span class="highlight monospace">''</span>) redirects to <span class="highlight monospace">/book-app/books</span>.</li>
-                </ul>
+                <h3>Routing (1/5)</h3>
+                <div style="text-align: left">
+                    <p>The project-setup for this exercise contains five components:</p>
+                    <ul>
+                        <li>Homepage</li>
+                        <li>NotFound</li>
+                        <li>AnimalList</li>
+                        <li>AnimalDetails</li>
+                        <li>NavBar</li>
+                    </ul>
+                    <p>All components are displayed on application-startup.</p>
+                </div>
             </section>
 
             <section>
-                <h3>Routing (2/6)</h3>
-                <h4>Import the Router Module</h4>
-                <ol>
-                    <li>Import the <span class="highlight monospace">RouterModule</span> in the <span class="highlight monospace">AppModule</span>.
-                        Use the <span class="highlight monospace">RouterModule.forRoot</span> static method passing the the <span class="highlight monospace">appRoutes</span>
-                        constant imported from <span class="highlight monospace">app/app-routing.module.ts</span> file.</li>
-                </ol>
-            </section>
-            <section>
-                <h3>Routing (3/6)</h3>
-                <h4>Set up an app frame</h4>
-                Modify the <span class="highlight monospace">AppComponent</span>'s template so that it contains:
-                <ul>
-                    <li>Navigation with links to the overview and for adding a new book (<span class="highlight monospace">/book-app/books</span>
-                        and <span class="highlight monospace">/book-app/book</span> respectively). Use the
-                        <a href="https://angular.io/docs/ts/latest/api/router/index/RouterLink-directive.html" target="_blank" class="monospace">&lt;routerLink&gt;</a>
-                        and <a href="https://angular.io/docs/ts/latest/api/router/index/RouterLinkActive-directive.html" target="_blank" class="monospace">&lt;routerLinkActive&gt;</a></li>
-                    <li>the <a href="https://angular.io/docs/ts/latest/api/router/index/RouterOutlet-directive.html" target="_blank" class="monospace">&lt;router-outlet&gt;</a> directive underneath the navigation</li>
-                </ul>
+                <h3>Routing (2/5)</h3>
+                <div style="text-align: left">
+                    <ul>
+                        <p>Goals:</p>
+                        <ol>
+                            <li><b>NavigationBar Links work</b> as expected</li>
+                            <li>Navigation-Links are <b>highlithed</b> correctly</li>
+                            <li>AnimalDetails can be accessed by using Animal-ID as <b>URL-Parameter</b></li>
+                            <li><b>Error-Page</b> is shown when non-defined URLs are used</li>
+                        </ol>
+                    </ul>
+                </div>
             </section>
 
             <section>
-                <h3>Routing (4/6)</h3>
-                <h4>Update the Book Overview</h4>
-                <ol>
-                    <li>Remove the <span class="highlight monospace">&lt;app-book-details&gt;</span> from the <span class="highlight monospace">BookOverviewComponent</span>'s template.</li>
-                    <li>Inject the <span class="highlight monospace">Router</span> and <span class="highlight monospace">ActivatedRoute</span>
-                        into the <span class="highlight monospace">BookOverviewComponent</span>. Remove the <span class="highlight monospace">isBookSelected()</span> and <span class="highlight monospace">onBookUpdate()</span> methods.</li>
-                    <li>Update the <span class="highlight monospace">selectBook()</span> method so that it uses the
-                        <a href="https://angular.io/docs/ts/latest/api/router/index/Router-class.html#!#navigate-anchor" target="_blank" class="monospace">Router.navigate</a> to navigate to the details of the selected book.</li>
-                </ol>
+                <h3>Routing (3/5)</h3>
+                <div style="text-align: left">
+                    <p>Import the <span class="highlight monospace">RouterModule</span> in the <span class="highlight monospace">AppModule</span>. Use the <span class="highlight monospace">RouterModule.forRoot</span> static method passing the the following app-routes:</p>
+                    <ul>
+                        <li>user is redirected to /home on application startup</li>
+                        <li><span class="highlight monospace">/animals</span> -> AnomalListComponent</li>
+                        <li><span class="highlight monospace">/animal</span> -> AnimaldetailsComponent (error)</li>
+                        <li><span class="highlight monospace">/animal/2</span> -> AnimaldetailsComponent with Details of the Animal with animalID=2</li>
+                        <li><span class="highlight monospace">/home</span> -> HomepageComponent</li>
+                        <li>other paths -> NotFoundComponent</li>
+                    </ul>
+                </div>
             </section>
 
             <section>
-                <h3>Routing (5/6)</h3>
-                <h4>Update the Book Details</h4>
-                <ol>
-                    <li>Remove the <span class="highlight monospace">BookDetailsComponent.bookUpdate</span> property.
-                        Make the <span class="highlight monospace">BookDetailsComponent.book</span> property public and remove its setter and getter.</li>
-                    <li>Add a constructor injecting <span class="highlight monospace">BookService</span>, <span class="highlight monospace">Router</span> and <span class="highlight monospace">ActivatedRoute</span> into it.
-                        Set the <span class="highlight monospace">BookDetailsComponent.book</span> property to a new, empty book.</li>
-                </ol>
-            </section>
-            <section>
-                <h3>Routing (6/6)</h3>
-                <h4>Update the Book Details</h4>
-                <ol>
-                    <li>In the ngOnInit use <span class="highlight monospace">switchMap</span> on the injected <span class="highlight monospace">route's paramMap</span></li>
-                    <li>In the <span class="highlight monospace">switchMaps</span> function retrieve the <span class="highlight monospace">id</span> from the params and use it to load the book from <span class="highlight monospace">BookService</span></li>
-                    <li>Update the <span class="highlight monospace">BookDetailsComponent.apply()</span> method so that <span class="highlight monospace">BookService.save</span> method is called.
-                        Once finished navigate to the book overview (<a href="https://angular.io/docs/ts/latest/api/router/index/Router-class.html#!#navigate-anchor" target="_blank" class="monospace">Router.navigate</a>).</li>
-                </ol>
+                <h3>Routing (4/5)</h3>
+                <div style="text-align: left">
+                    <p>Adjust navigation-bar and content-area of the application to work with previously defined paths</p>
+                    <ul>
+                        <li>replace href with routerLink directive and add correct paths</li>
+                        <li>add css-class "active" for currently active Link</li>
+                        <li>put the router-outlet below the navigation-bar.</li>
+                    </ul>
+                </div>
             </section>
 
+            <section>
+                <h3>Routing (5/5)</h3>
+                <div style="text-align: left">
+                    <p>Add the master-detail functionality while using the router module</p>
+                    <ul>
+                        <li>Use typescript in AnimalListComponent to trigger an action when any of the list-items is clicked.</li>
+                        <li>Navigate the user to the AnimalDetailsComponent and provide the animalID as a URL-parameter.</li>
+                        <li>retrieve this parameter in AnimalAnimalDetailComponent to show the Details of the selected animal.</li>
+                    </ul>
+                </div>
+            </section>
         </section>
 
         <section id="forms">
             <section>
-                <h3>Forms (1/6)</h3>
+                <h3>TODO: Forms (1/6)</h3>
                 <ol>
                     <li>
                         Go to the <span class="highlight monospace">BookDetailsComponent</span>'s
