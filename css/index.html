@@ -75,7 +75,8 @@
             <section>
                 <h2>Cascading Style Sheets</h2>
                 <div>
-                    <pre><code class="css">&lt;selector1&gt;, &lt;selector2&gt; {
+<pre><code class="css">
+&lt;selector1&gt;, &lt;selector2&gt; {
   &lt;property1&gt; : &lt;value1&gt;;
   &lt;property2&gt; : &lt;value2&gt;;
   &lt;property3&gt; : &lt;value3&gt;
@@ -85,10 +86,11 @@
   &lt;property4&gt; : &lt;value4&gt;
 }
 &nbsp;
-/* Css comment */</code></pre>
+/* Css comment */
+</code></pre>
                 </div>
                 <div class="fragment fade-in">
-                    <pre><code class="css">/* Example */
+<pre><code class="css">/* Example */
 p, div {
   background: red;
   font-weight: bold;
@@ -164,12 +166,8 @@ p {
                             <td>All &lt;p&gt; elements that are placed immediately after &lt;div&gt; elements</td>
                         </tr>
                         <tr>
-                            <td><code>p:first-child</code></td>
-                            <td>Selects every &lt;p&gt; element that is the first child of its parent</td>
-                        </tr>
-                        <tr>
-                            <td><code>p:nth-child(2)</code></td>
-                            <td>Selects every &lt;p&gt; element that is the second child of its parent</td>
+                            <td><code>p:first-child</code><br><code>p:nth-child(3)</code><br><code>p:last-child</code></td>
+                            <td>Selects every &lt;p&gt; element that is the first/third/last child of its parent</td>
                         </tr>
                         <tr>
                             <td><code>input[type="text"]</code></td>
@@ -227,15 +225,6 @@ p {
                 </table>
             </section>
             <section>
-                <h2>Box Model</h2>
-                <img src="./content/box.gif" alt="CSS Boxmodel" width="380">
-                <p>
-					real-size = margin + border + padding + size<br>
-					you can change what width and height refer to:
-					<br>box-sizing: content-box|border-box|inherit;
-				</p>
-            </section>
-            <section>
                 <h2><span class="blue">block</span> vs <span class="blue">inline</span></h2>
                 <ul style="width: 1000px">
                     <li>display: <strong class="blue">block</strong></li>
@@ -280,95 +269,103 @@ p {
                     </div>
                 </div>
             </section>
+
             <section>
-                <h2>Float</h2>
-                <ul>
-                    <li>
-                        <p>
-                            element can be pushed to the <span class="blue">left</span> or <span class="blue">right</span>, allowing
-                            other elements to wrap around it
-                        </p>
-                    </li>
-                    <li>
-                        <p>elements are floated <span class="blue">horizontally</span></p>
-                    </li>
-                    <li>
-                        <p>elements after the floating element will flow around it</p>
-                    </li>
-                    <li>
-                        <p>if an image is floated to the right, a following text flows around it, to the left</p>
-                    </li>
-                </ul>
-            </section>
-            <section>
-                <h2>Float in text</h2>
-                <iframe width="100%" height="400" src="./content/floatInText.html"></iframe>
-            </section>
-            <section>
-                <h2>Float of blocks</h2>
-                <iframe width="100%" height="500" src="content/floatOfBlocks.html"></iframe>
-            </section>
-            <section>
-                <h2>Clear</h2>
-                <iframe width="100%" height="500" src="content/clearFloat.html"></iframe>
-            </section>
-            <section>
-                <h2>Positioning</h2>
-                <div style="text-align: left">
-                    <p><b>position: <span class="blue">static</span></b></p>
+                    <h2>Positioning</h2>
+                    <div style="text-align: left">
+                        <p><b>position: <span class="blue">static</span></b></p>
+                        <ul>
+                            <li>default value</li>
+                            <li>positioned according to the normal flow</li>
+                        </ul>
+                        <p><b>position: <span class="blue">relative</span></b></p>
+                        <ul>
+                            <li>element is positioned <b>relative to its normal position</b></li>
+                            <li>position can be adjusted with <i>top, bottom, left, right</i> properties</li>
+                            <li>even if moved consumes space in container</li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h2>Positioning</h2>
+                    <div style="text-align: left">
+                    <p><b>position: <span class="blue">absolute</span></b></p>
                     <ul>
-                        <li>default value</li>
-                        <li>positioned according to the normal flow</li>
-                    </ul>
-                    <p><b>position: <span class="blue">relative</span></b></p>
-                    <ul>
-                        <li>element is positioned <b>relative to its normal position</b></li>
+                        <li>element is positioned <b>relative to its first positioned (not static) ancestor element</b></li>
                         <li>position can be adjusted with <i>top, bottom, left, right</i> properties</li>
-                        <li>even if moved consumes space in container</li>
+                        <li>often used together with <b>relative</b> positioning</li>
+                    </ul><br>
+                    <p><b>position: <span class="blue">fixed</span></b></p>
+                    <ul>
+                        <li>element is positioned <b>relative to the browser window</b></li>
+                        <li>position can be adjusted with <i>top, bottom, left, right</i> properties</li>
                     </ul>
-                </div>
-            </section>
-            <section>
-                <h2>Positioning</h2>
-                <div style="text-align: left">
-                <p><b>position: <span class="blue">absolute</span></b></p>
-                <ul>
-                    <li>element is positioned <b>relative to its first positioned (not static) ancestor element</b></li>
-                    <li>position can be adjusted with <i>top, bottom, left, right</i> properties</li>
-                    <li>often used together with <b>relative</b> positioning</li>
-                </ul><br>
-                <p><b>position: <span class="blue">fixed</span></b></p>
-                <ul>
-                    <li>element is positioned <b>relative to the browser window</b></li>
-                    <li>position can be adjusted with <i>top, bottom, left, right</i> properties</li>
-                </ul>
-                </div>
-            </section>
-            <section>
-                <h2>Positioning Example</h2>
-                <pre><code data-trim>body {
-  position: relative
+                    </div>
+                </section>
+                <section>
+                    <h2>Positioning Example 1</h2>
+                    <pre><code data-trim>body {
+      position: relative
+    }
+    .container {
+      top: 50px; left: 50px; background: green
+    }
+    .child {
+      top: 50px; right: 50px; background: red
+    }</code></pre>
+                    <iframe width="100%" height="400" src="./content/positioningExample1.html"></iframe>
+                </section>
+                <section>
+                        <h2>Positioning Example 2</h2>
+                        <div style="width:40%; display:inline-block">
+                                <pre><code data-trim><body>
+<article>
+    <header>header</header> 
+    <div class="content">
+    <nav>menu</nav> 
+    center
+    </div> 
+    <footer>footer</footer> 
+</article>
+                                      </body></code></pre>
+                            </div>
+                        <div style="width:40%; display:inline-block">
+                            <pre><code data-trim>.content {
+    height: 200px;
+    position: relative;
+    margin-left: 100px;
+    background: green;
 }
-.container {
-  top: 50px; left: 50px; background: green
-}
-.child {
-  top: 50px; right: 50px; background: red
+nav {
+    width: 100px;
+    background: blue;
+    position: absolute;
+    top: 0;
+    left: -100px;
+    height: 100%;
 }</code></pre>
-                <iframe width="100%" height="400" src="./content/positioningExample.html"></iframe>
+                        </div>
+                        <iframe width="100%" height="400" src="./content/positioningExample2.html"></iframe>
+                    </section>
+            <section>
+                <h2>Float property</h2>
+                    <ul>
+                            <li>
+                                elements are floated <span class="blue">horizontally</span>
+                            </li>
+                            <li>
+                                elements after the floating element will flow around it
+                            </li>
+                            <li>
+                                exaple for placing images in text:</p>
+                            </li>
+                        </ul>
+                <iframe width="100%" height="400" src="./content/floatInText.html"></iframe>
             </section>
 
             <section>
-                <h2>Exercise 3: Positioning</h2>
-                <p>Write CSS and change</p>
-                <div>
-                    <iframe src="./exercises/exercise3.html" height="90" width="500"></iframe>
-                </div>
-                <p>to</p>
-                <div>
-                    <iframe src="./exercises/results/exercise3-result.html" height="320" width="500"></iframe>
-                </div>
-                <p style="font-size: smaller">HTML-file: &lt;Repository&gt;/css/exercise3.html</p>
+                <h2>Float and Clear</h2>
+                <iframe width="100%" height="500" src="./content/clearFloat.html"></iframe>
             </section>
             <section>
                 <h2>less and sass</h2>
@@ -409,6 +406,204 @@ button:hover {
 }
     </code></pre>
             </section>
+                <section>
+                    <h3>how to Layout our application?</h3>
+                    <div>
+                        <ul>
+                        <li>table</li>
+                        <li>positioned layout</li>
+                        <li>float</li>
+                        <li>block/inline(-block)</li>
+                            <div class="fragment" data-fragment-index="1">
+                                <li style="color: #5C9AD3">flex layout</li>
+                            </div>
+                        </ul>
+                </section>
+                <section>
+                    <h3>Flexbox Structure</h3>
+                    <ul>
+                        <li>Container = <span style="color:#5C9AD3">flex container</span></li>
+                        <li>Immediate children = <span style="color:#1F4E78">flex items</span></li>
+                    </ul>
+                    <br>
+                    <img src="img/flex-structure.jpg" lt="Flex Model" width="600" style="background:none; border:none; box-shadow:none;">
+                    <p>Its all about grouping and aligning container, its flexible items and the space in between</p>
+                </section>
+                <section>
+                    <h3>Flex features</h3>
+                    <img src="img/responsive.png" height="300" alt="Responsive"  style="background:none; border:none; box-shadow:none;">
+                    <center>
+                        <p>Nestable</p>
+                        <p>Items have equal height by default</p>
+                        <p>Easy responsive layout</p>
+                    </center>
+                </section>
+                <section>
+                    <section>
+                        <h3>Flex container<br> properties</h3>
+                        <img src="img/flex-container.jpg" alt="Flex Container" style="background:none; border:none; box-shadow:none;">
+                        <p style="font-size: smaller"><a href="https://codepen.io/enxaneta/full/adLPwv/" target="_blank">
+                            Flex Playground
+                        </a></p>
+                    </section>
+                    <section>
+                        <h3>display</h3>
+                        <p style="font-size: smaller">Defines the flex container</p>
+                        <pre><code class="css" data-trim>
+    .container {
+        display: flex; /* or inline-flex */
+    }
+                        </code></pre>
+                    </section>
+                    <section>
+                        <div>
+                            <h3>flex-direction</h3>
+                            <p style="font-size: smaller">Direction of flex item appearance</p>
+                            <pre><code class="css" data-trim>
+    .container {
+        flex-direction: row | row-reverse | column | column-reverse;
+    }
+                                </code></pre>
+                        </div>
+                        <div class="fragment" data-fragment-index="1">
+                            <h3>flex-wrap</h3>
+                            <p style="font-size: smaller">Allow items to wrap inside container</p>
+                            <pre><code class="css" data-trim>
+    .container{
+      flex-wrap: nowrap | wrap | wrap-reverse;
+    }
+                                </code></pre>
+                        </div>
+                    </section>
+                    <section>
+                        <div>
+                            <h3>flex-flow</h3>
+                            <p style="font-size: smaller">Usage of flex-direction and flex-wrap in one line</p>
+                            <pre><code class="css" data-trim>
+    .container {
+        flex-flow: <‘flex-direction’> || <‘flex-wrap’>
+    }
+                                </code></pre>
+                        </div>
+                        <div class="fragment" data-fragment-index="1">
+    
+                            <h3>justify-content</h3>
+                            <p style="font-size: smaller">Defines alignment of items and usage of free space between them inside the container along the main
+                                axis
+                            </p>
+                            <pre><code class="css" data-trim>
+    .container {
+      justify-content: flex-start | flex-end | center | space-between | space-around;
+    }
+                                </code></pre>
+                        </div>
+                    </section>
+                    <section>
+                        <div>
+                            <h3>align-items</h3>
+                            <p style="font-size: smaller">Defines alignment of container items along cross axis</p>
+                            <pre><code class="css" data-trim>
+    .container {
+      align-items: flex-start | flex-end | center | baseline | stretch;
+    }
+                                </code></pre>
+                        </div>
+                        <div class="fragment" data-fragment-index="2">
+                            <h3>align-content</h3>
+                            <p style="font-size: smaller">Aligns container lines (item rows) in the cross axis, affecting space between lines</p>
+                            <pre><code class="css" data-trim>
+    .container {
+      align-content: flex-start | flex-end | center | space-between | space-around | stretch;
+    }
+                                </code></pre>
+                        </div>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h3>Flex items<br> properties</h3>
+                        <img src="img/flex-items.jpg" alt="Flex Items" style="background:none; border:none; box-shadow:none;">
+                        <p style="font-size: smaller"><a href="https://codepen.io/enxaneta/full/adLPwv/" target="_blank">
+                            Flex Playground
+                        </a></p>
+                    </section>
+                    <section>
+                        <div>
+                            <h3>order</h3>
+                            <p style="font-size: smaller">Defines concrete order of special item inside a container</p>
+                            <pre><code class="css" data-trim>
+    .item {
+      order: integer;
+    }
+                                </code></pre>
+                        </div>
+                        <div class="fragment" data-fragment-index="0">
+                            <h3>align-self</h3>
+                            <p style="font-size: smaller">Overrides the cross axis alignment (align-items) for the individual item</p>
+                            <pre><code class="css" data-trim>
+    .item {
+      align-self: auto | flex-start | flex-end | center | baseline | stretch;
+    }
+                                </code></pre>
+                        </div>
+                    </section>
+                    <section>
+                        <div>
+                            <h5>flex-grow</h5>
+                            <p style="font-size: smaller">Defines an abilty to grow in proportion to free space</p>
+                            <pre><code class="css" data-trim>
+    .item {
+      flex-grow: number; /* default 0 */
+    }
+                                </code></pre>
+                            <br>
+                            <img src="img/grow1.jpg" alt="Flex Grow" width="800" style="background:none; border:none; box-shadow:none;">
+                            <img src="img/grow2.jpg" alt="Flex Grow" width="800" style="background:none; border:none; box-shadow:none;">
+                        </div>
+                    </section>
+                    <section>
+                        <div>
+                            <h5>flex-shrink</h5>
+                            <p style="font-size: smaller">Defines an abilty to shrink, if no space available</p>
+                            <pre><code class="css" data-trim>
+      flex-shrink: number; /* default 1 */
+                                </code></pre>
+                        </div>
+                        <div class="fragment" data-fragment-index="1">
+                            <h5>flex-basis</h5>
+                            <p style="font-size: smaller">Defines the size of the item</p>
+                            <pre><code class="css" data-trim>
+      flex-basis: length | auto; /* default auto */
+                                </code></pre>
+                        </div>
+                        <div class="fragment" data-fragment-index="2">
+                            <h4>flex</h4>
+                            <p style="font-size: smaller">Usage of flex-grow, flex-shrink, flex-basis in one line</p>
+                            <pre><code class="css" data-trim>
+    .item {
+      flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]
+    }
+                                </code></pre>
+                        </div>
+                    </section>
+                </section>
+                <section>
+                    <h1>Can I use it?</h1>
+                    <p style="font-size: smaller">Widely accepted: <a href="http://caniuse.com/#feat=flexbox" target="_blank">Can I use..Flexbox?</a></p>
+                    <img src="img/caniuse.jpg" alt="Flex Support" width="800" style="background:none; border:none; box-shadow:none;">
+                    <p style="font-size: smaller">.. but not without <a href="https://github.com/philipwalton/flexbugs" target="_blank">Flexbugs</a></p>
+                </section>
+                <section>
+                    <h3>Exercise 3: Flex</h3>
+                    <iframe src="./exercises/exercise3.html" width="630" height="60"></iframe>
+                    <p style="font-size: smaller">
+                        Write Css code using Flex Model and reproduce (for small devices (width < 600px) arrange sidebars horizontally):
+                    </p>
+                    <iframe src="./exercises/results/exercise3-result.html" width="650" height="330"></iframe>
+                    <p style="font-size: smaller">
+                        HTML-file: &lt;Repository&gt;/flex/exercise/exercise.html
+                    </p>
+                </section>
         </div>
     </div>
     <script src="../node_modules/reveal.js/lib/js/head.min.js"></script>
