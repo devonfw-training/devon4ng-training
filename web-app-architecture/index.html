@@ -39,7 +39,18 @@
 </head>
 
 <body>
+<style>
+div.slides section img {
+    border: none;
+    box-shadow: none;
+    margin: 0;
+}
 
+.image-box {
+    display:flex;
+    align-items: center;
+}
+</style>
 <div class="reveal">
     <!-- Any section element inside of this container is displayed as a slide -->
     <div class="slides">
@@ -48,104 +59,123 @@
                 <img class="plain no-border" height="300" src="img/architecture.jpg">
             </p>
             <h2>Web Application Architecture</h2>
-            <p>Tim Lüecke, Philip Schmökel, Marek Matczak</p>
+            <p>Philip Schmökel, Tim Lüecke, Marek Matczak</p>
         </section>
         <section>
             <img class="no-border" height="600px" src="img/rewrite-frontend-every-six-weeks.jpg" alt="">
         </section>
         <section>
-            <h1>Client Infrastructure</h1>
-            <h2>(a.k.a. TI-Architecture)</h2>
+            <h2>Client Infrastructure</h2>
+            <p>(a.k.a. TI-Architecture)</p>
         </section>
         <section>
-            <h2>Classical Web Applications</h2>
-            <div class="pull-left">
-                <img class="plain no-border" height="300" src="img/classical-web-apps.png">
-            </div>
-            <div>
-                <p>
-                    The content of each web page is fully <strong>rendered on the server</strong>. Each action requires
-                    a <strong>round trip to the server</strong> which contains <strong>presentation logic</strong>
-                    and <strong>application state</strong>.
-                </p>
-            </div>
+            <h3>Pageload-centric web applications</h3>
+            <p>... are the predominant architecture of the past.</p>
+            <img class="plain no-border" height="300" src="img/classical-web-apps.png">
         </section>
         <section>
-            <h2>Single Page Applications</h2>
-            <div class="pull-left">
-                <img class="plain no-border" height="300" src="img/spas.png">
-            </div>
-            <div>
-                <p>
-                    The content of a page is retrieved with a <strong>single page load</strong>. However, additional
-                    resources may <strong>dynamically</strong> be loaded and added to the page as necessary. The page
-                    <strong>does not reload</strong> any more.
-                </p>
-            </div>
-        </section>
-    <section>
-            <div>
-                <h2>Challenges</h2>
-                <h4>of Single Page Applications</h4>
-            </div>
-            <div class="pull-left">
-                <img class="plain no-border" height="230" src="img/challenge.gif">
-            </div>
-            <ul>
-                <li>Bookmarking, Forward/Back Buttons</li>
-                <li>Search engines optimization (SEO)</li>
-                <li>Speed of initial load</li>
-            </ul>
+            <p>
+                The content of each web page is fully <strong>rendered on the server</strong>.
+            </p>
+            <p>
+                Each action requires a <strong>round trip to the server</strong> which contains presentation logic and application state.
+            </p>
         </section>
         <section>
-            <h1>Client Architecture</h1>
-            <h2>(a.k.a. T-Architecture)</h2>
+            <h3>Single Page Applications</h3>
+            <img class="plain no-border" height="300" src="img/spas.png">
         </section>
         <section>
-            <h2>Model View Controller</h2>
+            <p>
+                A page's content is retrieved with a <strong>single page load</strong>. </p>
+            <p>
+                The page <strong>does not reload</strong> any more.
+            </p>
+        </section>
+        <section>
+            <h2>Client Architecture</h2>
+            <p>(a.k.a. T-Architecture)</p>
+        </section>
+        <section>
+            <h3>Model View Controller</h3>
             <div>
                 <img class="plain no-border" height="300" src="img/mvc.png">
             </div>
         </section>
         <section>
-            <h2>Model View Presenter</h2>
+            <h3>Model View Presenter</h3>
             <img class="plain no-border" height="300" src="img/mvp.png">
         </section>
         <section>
-            <h2>Model View View Model</h2>
+            <h3>Model View View Model</h3>
             <img class="plain no-border" height="300" src="img/mvvm.png">
         </section>
         <section>
-            <h2>Reactive Architecture</h2>
-            <h4>Unidirectional Dataflow (flux, redux, etc.)</h4>
+            <h3>
+                <strong>
+                    <a href="https://martinfowler.com/bliki/CQRS.html">CQRS</a>
+                </strong> / 
+                <strong>
+                    Event Sourcing
+                </strong>
+            </h3>
+            <p>... commonly called <strong>Reactive Architecture</strong> or <strong>Flux</strong></p>
             <img class="plain no-border" height="400" src="img/redux-architecture.svg">
         </section>
         <section>
-            <h2>Open Questions</h2>
-            <ul>
-                <li>How to structure huge applications?</li>
-                <li>How is the data <strong>converted</strong> from model to view?</li>
-                <li>Where does <strong>Internationalization</strong> happen?</li>
-                <li>What about <strong>validation</strong> of user input?</li>
-                <li>How does the client <strong>talk to the application core</strong>?</li>
-                <li>What about dialog <strong>states</strong> and widget states?</li>
-                <li>What about states that are <strong>dependent on other states</strong>?</li>
-                <li>How to design state controlling if an <strong>action</strong> can be executed or not?</li>
-                <li>How does the <strong>model</strong> look exactly?</li>
-                <li>Do I need <strong>observerable TOs</strong>? </li>
-                <li>…</li>
-            </ul>
+            <section>
+                <p>But is this really sufficient for building large scalable applications?</p>
+                <p class="fragment">... here are a few questions.</p>
+            </section>
+            <section>
+                <p>How to structure huge applications?</p>
+            </section>
+            <section>
+                <p>How is the data <strong>converted</strong> from model to view?</p>
+            </section>
+            <section>
+                <p>Where does <strong>Internationalization</strong> happen?</p>
+            </section>
+            <section>
+                <p>What about <strong>validation</strong> of user input?</p>
+            </section>
+            <section>
+                <p>How does the client <strong>talk to the application core</strong>?</p>
+            </section>
+            <section>
+                <p>What about dialog <strong>states</strong> and widget states?</p>
+            </section>
+            <section>            
+                <p>What about states that are <strong>dependent on other states</strong>?</p>
+            </section>
+            <section>
+                <p>How to design state controlling if an <strong>action</strong> can be executed or not?</p>
+            </section>
+            <section>
+                <p>How does the <strong>model</strong> look exactly?</p>
+            </section>        
         </section>
         <section>
-            <h2>Projects gone wrong</h2>
-            <ul>
-                <li>It's done! Does it work in IE? Err... Avoid rolling your own if there is a library!</li>
-                <li>Browser tab grows to 2GB, unresponsive script warnings. Dialogs were not unloaded.</li>
-                <li>Unlimited loading of data to the client. Do paging, filtering, sorting, and grouping on the server side!</li>
-                <li>Mass manipulation in the DOM caused unnecessary rendering of intermediate results (forced reflow). Render at the end!</li>
-                <li>Methods reused at the wrong level cause duplicate calls and performance issues. Event listeners triggering new
-                    events are hard to debug. Avoid!</li>
-            </ul>
+            <section>
+                <img class="plain no-border" src="img/onedoesnotsimplybuild.jpg">
+                <p class="fragment">... Projects gone wrong. Let's look at a few examples.</p>
+            </section>
+            <section>
+                <p>It's done! Does it work in IE? Err... Avoid rolling your own if there is a library!</p>            
+            </section>
+            <section>
+                <p>Browser tab grows to 2GB, unresponsive script warnings. Dialogs were not unloaded.</p>
+            </section>
+            <section>
+                <p>Unlimited loading of data to the client. Do paging, filtering, sorting, and grouping on the server side!</li>
+            </section>
+            <section>
+                <p>Mass manipulation in the DOM caused unnecessary rendering of intermediate results (forced reflow). Render at the end!</p>
+            </section>
+            <section>
+                <p>Methods reused at the wrong level cause duplicate calls and performance issues. Event listeners triggering new
+                        events are hard to debug. Avoid!</p>        
+            </section>        
         </section>
         <section>
             <h2>Let's step back</h2>
@@ -290,6 +320,8 @@
     "prod": "environments/environment.prod.ts"
 }
                 </code></pre>
+            </section>
+            <section>
                 <p>.angular-cli.json</p>
                 <img style="border: none; box-shadow: none" src="./img/angular-configuration-management.svg">
             </section>
@@ -322,19 +354,30 @@ this.http.get&lt;Flight[]&gt;(environment.backendUrl + '/flights');
                 <p style="margin: 0; padding: 0">When Angular compiler creates HeaderComponent injectors are asked until the dependency can be found or root injector can not handle</p>
             </section>
             <section>
-                <h3>Application Overview</h3>
+                <p>Angular Modules help to structure the client</p>
+                <img style="border: none; box-shadow: none" src="./img/angular-module-dependencies.svg">
+                <p>core.module contains shared services.</p>
+                <p>share.module contains shared components.</p>
             </section>
             <section>
-                <h3>Modules</h3>
-                <img style="border: none; box-shadow: none" src="./img/architecture-modules.svg">
+                <p>A feature module encapsulates <strong>dialog components and functionality</strong> of one business domain.</p>
+                <p>Note: Multiple dialog components can be part of a feature module.</p>
             </section>
             <section>
-                <h3>Layers</h3>
-                <img style="border: none; box-shadow: none" src="./img/architecture-layers.svg">
+                <h3>The Angular Component Tree</h3>
+                <img class="no-border" src="img/component-tree.svg">
             </section>
             <section>
-                <h3>The Component Tree</h3>
-                <img class="no-border" src="img/component-tree.svg" alt="">
+                <img class="no-border" style="height:400px" src="img/highlighted-smart-component.png" alt="">            
+                <p>A <strong>Dialog Component</strong> is typically an Angular toplevel component, that is activated by a route.</p>
+            </section>
+            <section>
+                <h3>Dialog Components</h3>
+                <img class="no-border" src="img/component-tree-highlight.svg">
+            </section>
+            <section>
+                <img style="border: none; box-shadow: none" src="./img/smart-dumb-components-interaction.svg">
+                <p>A <strong>must-know</strong> pattern: Smart vs Dumb Components</p>
             </section>
             <section>
                 <table style="width: 100%; font-size: 26px">
@@ -372,27 +415,124 @@ this.http.get&lt;Flight[]&gt;(environment.backendUrl + '/flights');
                     <li>a component which is placed inside AppComponent</li>
                 </ul>
             </section>
+        </section>
+        <section>
             <section>
-                <h3>A Smart Component is a mapped Dialog Component</h3>
-                <img class="no-border" style="height:400px" src="img/highlighted-smart-component.png" alt="">
+                <h3>Reactive Architecture</h3>
             </section>
             <section>
-                <h3>Dumb - Smart Component Interaction</h3>
-                <img style="border: none; box-shadow: none" src="./img/smart-dumb-components-interaction.svg">
+                <h2>Scaling MVC Applications</h2>
+                <div class="image-box">
+                    <img width="600px" style="margin-right: 50px" src="img/ng-state-everwhere.png">
+                    <ul style="width: 500px">
+                        <li>Debugging?</li>
+                        <li>Testing?</li>
+                        <li>Understanding?</li>
+                        <li>Server Side Rendering?</li>
+                    </ul>
+                </div>
+                <p style="font-size: 18px; display:flex"><a href="http://onehungrymind.com/build-better-angular-2-application-redux-ngrx/">http://onehungrymind.com/build-better-angular-2-application-redux-ngrx/</a></p>
             </section>
             <section>
-                <h3>Presentation Layer Boundaries</h3>
-                <img class="no-border" src="img/components-layer-service-layer-boundaries.svg" alt="">
+                <h1 style="font-style: italic">UI = f ( State )</h1>
             </section>
             <section>
-                <h3>Smart Component Interaction via Services Layer</h3>
-                <img class="no-border" src="img/smart-component-interaction-via-services-layer.svg" alt="">
+                <img src="img/uifunction.png">
             </section>
             <section>
-                <h3>Smart Component Interaction</h3>
-                <h4>example</h4>
-                <img style="border: none; box-shadow: none" src="./img/smart-smart-components-example.svg">
-                <p>Shown is the action of loading flights which is triggered by FlightSearchComponent.</p>
+                <img src="img/state-example-1.png">
+            </section>
+            <section>
+                <img src="img/state-example-2.png">
+            </section>
+            <section>
+                <img src="img/state-example-3.png">
+            </section>
+            <section>
+                <h2>What Frameworks To Know?</h2>
+                <div style="display:flex; justify-content: space-around;">
+                    <div class="image-box">
+                        <img width="150px" src="img/react.png" style="margin-right: 20px">
+                        <p class="fragment" data-fragment-index="0" style="font-size: 30px; display:flex"><a href="https://facebook.github.io/react/">React</a></p>
+                    </div>
+                    <div class="image-box">
+                        <img width="150px" src="img/flux.png" style="margin-right: 20px">
+                        <p class="fragment" data-fragment-index="1" style="font-size: 30px; display:flex"><a href="https://facebook.github.io/flux/">Flux</a></p>
+                    </div>
+                </div>
+                <div style="display:flex; justify-content: space-around;">
+                    <div class="image-box">
+                        <img width="150px" src="img/redux.png" style="margin-right: 20px">
+                        <p class="fragment" data-fragment-index="2" style="font-size: 30px; display:flex"><a href="http://redux.js.org/">Redux</a></p>
+                    </div>
+                    <div class="image-box">
+                        <img width="150px" src="img/ngrx.png" style="margin-right: 20px">
+                        <p class="fragment" data-fragment-index="3" style="font-size: 30px; display:flex"><a href="https://github.com/ngrx">ngrx</a></p>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <img src="img/store-view-actions.png">
+            </section>
+            <section>
+                <h2>Reducer Function</h2>
+                <pre class="width-100-percent"><code class="typescript max-height-unset" data-trim data-noescape>
+export function counterReducer(state: number = 0, action: Action) {
+  switch (action.type) {
+    case INCREMENT:
+      return state + 1;
+
+    case DECREMENT:
+      return state - 1;
+
+    case RESET:
+      return 0;
+
+    default:
+      return state;
+  }
+}
+                </code></pre>
+            </section>
+            <section>
+                <h2>Store - Tree Of Reducers</h2>
+                <img src="img/reducer-composite.png">
+            </section>
+            <section>
+                <h2>State goes down</h2>
+                <p>... using Angular <code>@Input</code> syntax.</p>
+                <img src="img/state-goes-down.png">
+            </section>
+            <section>
+                <h2>Events go up</h2>
+                <p>... using Angular <code>@Output</code> syntax.</p>
+                <img src="img/events-go-up.png">
+            </section>
+            <section>
+                <h2>HTTP Request (XHR)</h2>
+                <img src="img/xhr.png">
+            </section>
+            <section>
+                <h2>Websockets Push</h2>
+                <img src="img/websockets-push.png">
+            </section>
+            <section>
+                <h2>Websockets Pull</h2>
+                <img src="img/websockets-pull.png">
+            </section>
+            <section>
+                <h2>Forget Everything And Go Reactive?</h2>
+                <p>Abstraction is the tradeoff which is not always worth it.</p>
+                <ul>
+                    <li>For small applications it's simply overkill.</li>
+                    <li>Lack of know how.</li>
+                    <li>Use it when you need it.</li>
+                </ul>
+            </section>
+            <section>
+                <p>
+                    devonfw provides an architecture which is a compromise between, on the one hand, leveraging the <strong>best practices and latest trends</strong> like reactive style development, on the other hand, providing a <strong>short onboarding time</strong> while still using an architecture that helps us scale and be productive at the same time.</p>
+                <small>see <a href="https://github.com/oasp-forge/oasp4js-wiki/wiki">devon4js</a></small>
             </section>
         </section>
     </div>
