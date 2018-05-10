@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Introduction to ngrx</title>
+    <link rel="icon" href="../common/img/favicon.ico">
+
+
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/theme/white.css" id="theme">
+
+    <link rel="stylesheet" href="../common/css/common.css">
+    <link rel="stylesheet" href="styles/own.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../node_modules/reveal.js/lib/css/github-gist.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../node_modules/reveal.js/css/print/pdf.css' : '../node_modules/reveal.js/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<section class="angular-link">
+    <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
+</section>
+<section class="devon-link">
+    <a href="http://devonfw.github.io" target="_blank"><img height="30px" src="../common/img/devon_logo_blue.png"></a>
+</section>
+<div class="devon reveal">
+    <div class="slides">
+        <section>
+          <h2>Introduction to</h2>
+          <img class="no-border" src="img/ngrx-logo.png" alt="ngrx logo">
+          <p><a href="https://github.com/ngrx">ngrx</a></p>
+        </section>
+        <section>
+          <blockquote cite="https://github.com/ngrx/platform/blob/master/docs/store/README.md">
+            &ldquo;RxJS powered state management for Angular applications, inspired by Redux&rdquo;
+          </blockquote>
+        </section>
+        <section>
+          <p>Remember from <a href="../web-app-architecture/index.html#/23/8">Architecture Session</a>?</p>
+          <img class="no-border" src="img/store-view-actions.png" alt="Store View Actions Relations">
+        </section>
+        <section>
+          <p>State is a single, immutable data structure.</p>
+          <pre class="fragment"><code class="typescript" data-trim>
+export interface AppState {
+  name: string;
+  age: number;
+  showDropdown: boolean;
+  isUserLoggedIn: boolean;
+}
+          </code></pre>
+        </section>
+        <section>
+          <p>Actions describe state changes.</p>
+          <pre class="fragment"><code class="typescript" data-trim>
+this.store.dispatch({
+  type: 'Load Flight',
+  payload: {flightId: '4711ABC'}
+});
+          </code></pre>
+          <pre class="fragment"><code class="typescript" data-trim>
+this.store.dispatch({
+  type: 'Load Flight Success',
+  payload: {flight: loadedFlight}
+});
+          </code></pre>              
+          <pre class="fragment"><code class="typescript" data-trim>
+this.store.dispatch({
+  type: 'Load Flight Failure',
+  payload: {error: loadingError}
+});
+          </code></pre>                
+        </section>
+        <section>
+          <p>Pure functions called reducers take the previous state and the next action to compute the new state.</p>
+          <pre class="fragment"><code class="typescript" data-trim>
+function reducer(state: State, action: Action): State {
+  switch (action.type) {
+    case 'Load Flight': {
+      return {
+        ...state,
+        flight: null,
+        isLoading: true
+      }
+    }
+    case 'Load Flight Success': {
+      return {
+        ...state,
+        flight: action.payload,
+        isLoading: false
+      }
+    }
+    case 'Load Flight Failure': {
+      return {
+        ...state,
+        flight: null,
+        isLoading: false
+      }
+    }
+    default: {
+      return state;
+    }
+  }
+}
+          </code></pre>
+        </section>
+        <section>
+          <p>State accessed with the Store, an observable of state and an observer of actions.</p>
+          <pre class="fragment"><code class="typescript" data-trim>
+export class FlightComponent {
+  showSpinner$ = store.pipe(select(state =&gt; state.isLoading));
+
+  constructor(
+    private store: Store&lt;State&gt;
+  ) {}
+
+  onInput(flightId: string) {
+    this.store.dispatch({
+      type: 'Load Flight',
+      payload: flightId
+    });
+  }
+}
+          </code></pre>  
+        </section>
+        <section>
+          <p>Let's try this out and feel the power of reactive architecture!</p>
+        </section>
+    </div>
+</div>
+
+<script src="../node_modules/reveal.js/lib/js/head.min.js"></script>
+<script src="../node_modules/reveal.js/js/reveal.js"></script>
+
+<script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        history: true,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+            { src: '../node_modules/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: '../node_modules/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../node_modules/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../node_modules/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: '../node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true },
+            { src: '../node_modules/reveal.js/plugin/notes/notes.js', async: true }
+        ]
+    });
+</script>
+</body>
+</html>
