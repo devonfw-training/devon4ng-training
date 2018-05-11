@@ -10,3 +10,4 @@ java/target
 dist
 **/*.log
 
+.DS_STORE
