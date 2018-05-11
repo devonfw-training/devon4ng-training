@@ -68,3 +68,7 @@ html .reveal section img.no-border {
 .reveal section .width-100-percent {
     width: 100%;
 }
+
+.reveal section .size-medium {
+    font-size: 75%
+}

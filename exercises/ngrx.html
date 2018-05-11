@@ -25,6 +25,11 @@
         link.href = window.location.search.match(/print-pdf/gi) ? '../node_modules/reveal.js/css/print/pdf.css' : '../node_modules/reveal.js/css/print/paper.css';
         document.getElementsByTagName('head')[0].appendChild(link);
     </script>
+    <style>
+.align-left {
+    text-align: left;
+}
+    </style>
 </head>
 <body>
 <section class="angular-link">
@@ -38,9 +43,148 @@
       <section>
         <section>
           <h2>ngrx basics</h2>
+          <p>... let's start from scratch</p>
         </section>
         <section>
-          TODO
+          <div class="align-left">
+              <p>You will discover:</p>
+              <ul>
+                  <li>Basic setup for <code>@ngrx/store</code></li>
+                  <li>Defining state</li>
+                  <li>Dispatching Actions to trigger state transitions</li>
+                  <li>Writing a reducer function</li>
+                  <li>Testing a reducer function</li>
+                  <li>Debugging with the redux devtools</li>
+              </ul>
+          </div>
+        </section>
+        <section>
+            <h2>Basic Setup</h2>
+            <ul>
+                <li>Initialize a new Angular application with Angular CLI</li>
+                <li>Add <code>@ngrx/store</code> and <code>@ngrx/store-devtools</code> to the dependencies with npm/yarn</li>
+                <li>Download the <a href="http://zalmoxisus.github.io/redux-devtools-extension/">Redux Devtools Extension</a></li>
+            </ul>
+        </section>
+        <section>
+            <h2>Configure @ngrx</h2>
+            <ul>
+                <li>Create <code>root.reducer.ts</code> in <code>src/app</code></li>
+                <li>Define and export empty interface <code>AppState</code> (ignore warning - we add content later)</li>
+                <li>Define and export reducers - empty interface of type <code>ActionReducerMap&lt;AppState&gt;</code></li>
+                <li>Add <code>StoreModule</code> and <code>StoreDevtoolsModule</code> to <code>app.module</code> and configure with root reducer</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Check if configured successfully</h2>
+            <ul>
+                <li>inject <code>Store&lt;AppState&gt;</code> in <code>AppComponent</code></li>
+                <li>serve application</li>
+                <li>check if redux devtools are initialized</li>
+                <img src="img/ngrx-basic-setup-success.png" alt="ngrx setup success" class="no-border" height="300">
+            </ul>
+        </section>
+        <section>
+            <h2>Define number reducer I</h2>
+            <ul>
+                <li>Create <code>number.reducer.ts</code> in <code>src/app/number</code></li>
+                <li>Define and export interface <code>NumberState</code> with a single property called <code>value</code></li>
+                <li>Define and export <code>initialState</code> with value 0</li>
+                <li>Define and export <code>numberReducer</code> function which takes parameters <code>state = initialState</code> and <code>action: Action</code> and returns <code>NumberState</code></li>
+                <li>Add switch-case statement for <code>action.type</code> inside number reducer - default case returns state</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Define number reducer II</h2>
+            <ul>
+                <li>
+                    <p>Create case statement for <code>'INCREMENT'</code></p> 
+                    <p class="size-medium">Return new number state with value incremented by 1</p>
+                </li>
+                <li>
+                    <p>Create case statement for <code>'DECREMENT'</code></p> 
+                    <p class="size-medium">Return new number state with value decremented by 1</p>
+                </li>
+                <li>
+                    <p>Create case statement for <code>'RESET'</code></p> 
+                    <p class="size-medium">Return new number state with value set to </p>
+                </li>
+            </ul>
+        </section>
+        <section>
+            <h2>Test number reducer</h2>
+            <ul>
+                <li>Create <code>number.reducer.spec.ts</code> in <code>src/app/number</code></li>
+                <li>
+                    Create 3 test cases
+                    <ol>
+                        <li class="size-medium"><code>INCREMENT returns 4 if previous state is 3</code></li>
+                        <li class="size-medium"><code>DECREMENT returns -2 if previous state is -1</code></li>
+                        <li class="size-medium"><code>RESET returns 0 if previous state is 3</code></li>
+                    </ol>
+                </li>
+            </ul>
+        </section>
+        <section>
+            <h2>Add number reducer to root reducers</h2>
+            <p class="align-left">
+                Inside root.reducer.ts
+                <ul>
+                    <li>Add property number to <code>AppState</code> with value set to <code>NumberState</code> imported from <code>number.reducer</code></li>
+                    <li>Add property number to reducers with value set to <code>numberReducer</code> imported from <code>number.reducer</code></li>
+                </ul>
+            </p>
+        </section>
+        <section>
+            <h2>Select state from store in AppComponent</h2>
+            <p class="align-left">
+                Inside <code>app.component.ts</code>
+                <ul>
+                    <li>
+                        Create and initialize property <code>numberValue$</code> with select statement from store
+                    </li>
+
+                </ul>
+            </p>
+            <pre><code class="typescript" data-trim>
+numberValue$ = this.store.pipe(select(s => s.number.value));
+            </code></pre>
+        </section>
+        <section>
+            <h2>Display state and dispatch Actions in AppComponent I</h2>
+            <p class="align-left">
+                Set <code>AppComponent</code> template to
+                <pre><code class="html" data-trim>
+&lt;button&gt;Increment&lt;/button&gt;
+&lt;div&gt;Current Number: {{ numberValue$ | async }}&lt;/div&gt;
+&lt;button&gt;Decrement&lt;/button&gt;
+
+&lt;button&gt;Reset Counter&lt;/button&gt;
+                </code></pre>
+            </p>
+        </section>
+        <section>
+            <h2>Display state and dispatch Actions in AppComponent II</h2>
+            <p class="align-left">
+                Inside <code>AppComponent</code>
+                <ul>
+                    <li>Listen for button events and dispatch Actions</li>
+                </ul>
+            </p>
+            <pre><code class="typescript" data-trim>
+onResetClick() {
+  this.store.dispatch({type: 'RESET'});
+}
+            </code></pre>
+        </section>
+        <section>
+            <h2>Check and play</h2>
+            <ul>
+                <li>Serve application</li>
+                <li>Play with buttons</li>
+                <li>See state transitions in redux devtool</li>
+            </ul>
+            <img src="img/ngrx-basic-exer-result.png" height="300" alt="Basic exercise success" class="no-border">
         </section>
       </section>
       <section>
