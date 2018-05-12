@@ -51,8 +51,8 @@
             <section>
                 <h3>Simple Component (1/3)</h3>
                 <ol>
-                    <li>Create a new module <span class="monospace highlight">Movies</span> (<span class="monospace highlight">ng g module Movies</span>).</li>
-                    <li>Go to the <span class="monospace highlight">movies</span> directory and create a new component <span class="monospace highlight">MovieDetails</span> (<span class="monospace highlight">ng g component MovieDetails</span>).</li>
+                    <li>Create a new module <span class="monospace highlight">Movies</span> (<span class="monospace highlight">ng g m movies</span>).</li>
+                    <li>Create <span class="monospace highlight">MovieDetails</span> component in movies directory (<span class="monospace highlight">ng g c movies/movie-details</span>).</li>
                     <li>Export the <span class="monospace highlight">MovieDetailsComponent</span> from the <span class="monospace highlight">MoviesModule</span> - both of them you've just created.</li>
                     <li>Import the <span class="monospace highlight">MovieModule</span> in the <span class="monospace highlight">AppModule</span>. Remove the <span class="monospace highlight">AppComponent.title</span> property.</li>
                     <li>Add <span class="monospace highlight">&lt;app-movie-details&gt;</span> to the <span class="monospace highlight">AppComponent</span>'s template. <i>movie-details works!</i> appears on the page.</li>
@@ -61,7 +61,7 @@
             <section>
                 <h3>Simple Component (2/3)</h3>
                 <ol>
-                    <li>Create an interface <span class="monospace highlight">Movie</span> in the <span class="monospace highlight">movies</span> directory (<span class="monospace highlight">ng g interface Movie</span>). Add the <span class="monospace highlight">id</span>, <span class="monospace highlight">director</span>
+                    <li>Create an interface <span class="monospace highlight">Movie</span> in the <span class="monospace highlight">movies</span> directory (<span class="monospace highlight">ng g interface movies/movie</span>). Add the <span class="monospace highlight">id</span>, <span class="monospace highlight">director</span>
                         , <span class="monospace highlight">title</span>, <span class="monospace highlight">description</span> and <span class="monospace highlight">year</span> properties.</li>
                     <li>Add a public <span class="monospace highlight">currentMovie</span> property of type <span class="monospace highlight">Movie</span>
                     </li>
@@ -82,7 +82,7 @@
                     </ul>
                     </li>
 
-                    <li>Add some component's styling (to the file <span class="monospace highlight">movie-details.component.scss</span>) , e.g. make the labels' font weight bold. Make use of the <span class="monospace highlight">:host</span> pseudo selector.</li>
+                    <li>Add some component's styling (to the file <span class="monospace highlight">movie-details.component.css</span>) , e.g. make the labels' font weight bold. Make use of the <span class="monospace highlight">:host</span> pseudo selector.</li>
                 </ol>
             </section>
         </section>
@@ -99,8 +99,7 @@
             <section>
                 <h3>Master/Details Pattern @Input (1/7)</h3>
                 <ol>
-                    <li>Let's assume we're in the <span class="monospace highlight">app/movies</span> directory.</li>
-                    <li>Create a new component <span class="monospace highlight">MovieOverview</span> (<span class="monospace highlight">ng g component MovieOverview</span>) and export it from the <span class="monospace highlight">MoviesModule</span>.</li>
+                    <li>Create <span class="monospace highlight">MovieOverview</span> component (<span class="monospace highlight">ng g c movies/movie-overview</span>) and export it from the <span class="monospace highlight">MoviesModule</span>.</li>
                     <li>Remove <span class="monospace highlight">MovieDetails</span> from the exports of <span class="monospace highlight">MoviesModule</span>.
                     </li>
                     <li>Replace <span class="monospace highlight">&lt;app-movie-details&gt;</span> with <span class="monospace highlight">&lt;app-movie-overview&gt;</span> in the <span class="monospace highlight">AppComponent</span>'s template. <i>movie-overview works!</i> should appear on the page.</li>
@@ -109,13 +108,13 @@
             <section>
                 <h3>Master/Details Pattern @Input (2/7)</h3>
                 <ol>
-                    <li>Add public properties to the <span class="highlight monospace">MovieOverviewComponent</span> class:
+                    <li>Add properties to the <span class="highlight monospace">MovieOverviewComponent</span> class:
                     <ul>
                         <li>the array <span class="highlight monospace">movies</span> which keeps available movies,</li>
                         <li>the <span class="highlight monospace">selectedMovie</span> which keeps currently a selected movie of the available ones.</li>
                     </ul>
                     </li>
-                    <li>Initialize the <span class="highlight monospace">movies</span> array in the constructor with an empty array.</li>
+                    <li>Initialize <span class="highlight monospace">movies</span> with an empty array.</li>
                     <li>Add some movie entries to the <span class="highlight monospace">movies</span> array (In the <span class="highlight monospace">OnInit</span> lifecycle hook).
                     </li>
                 </ol>
@@ -208,12 +207,10 @@
             <section>
                 <h3>Master/Details Pattern @Output (1/8)</h3>
                 <ol>
-                    <li>Import the <span class="highlight monospace"><a href="https://angular.io/api/forms/FormsModule">FormsModule</a></span> in the <span class="highlight monospace">MoviesModule</span> and add two-way binding (<span class="highlight monospace">[(ngModel)]</span>) to the input fields.</li>
-                    <li>In the <span class="highlight monospace">MovieDetailsComponent</span>'s template and replace
+                    <li>Import the <span class="highlight monospace"><a href="https://angular.io/api/forms/FormsModule">FormsModule</a></span> in the <span class="highlight monospace">MoviesModule</span>.</li>
+                    <li>Add two-way binding (<span class="highlight monospace">[(ngModel)]</span>) to the input fields. In the <span class="highlight monospace">MovieDetailsComponent</span>'s template replace
                         the interpolation of movies's title, directors etc. with text input fields having the id and name attributes set.</li>
                     <li>Move the <span class="highlight monospace">*ngIf</span> from the <span class="highlight monospace">movie-details</span> template to the <span class="highlight monospace">&lt;app-movie-details&gt;</span> in the <span class="highlight monospace">movie-overview</span> template</li>
-
-                    <!--<li>Place the apply button underneath input fields. The button has the <span class="highlight monospace">(click)</span> event binding to the <span class="highlight monospace">apply()</span> method.</li>-->
                 </ol>
             </section>
             <section>
@@ -233,7 +230,7 @@
             <section>
                 <h3>Master/Details Pattern @Output (4/8)</h3>
                 <ol>
-                    <li>Add the <span class="highlight monospace">movieUpdate</span> property of type <span class="highlight monospace">EventEmitter</span>.</li>
+                    <li>Add the <span class="highlight monospace">movieUpdate</span> property of type <span class="highlight monospace">EventEmitter&lt;Movie&gt;</span>.</li>
                     <li>Put the decorator <span class="highlight monospace">@Output()</span> on the <span class="highlight monospace">movieUpdate</span> property.</li>
                     <li>Implement the <span class="highlight monospace">apply(): void</span> method which uses the <span class="highlight monospace">movieUpdate</span>
                         EventEmitter and emits the <span class="highlight monospace">movie</span> property.</li>
@@ -301,9 +298,12 @@
                 </ol>
             </section>
             <section>
+                <img src="img/ng-exer-overview.png" alt="Overview Service exercise" class="no-border" height="500">
+            </section>
+            <section>
                 <h3>Service (1/5)</h3>
                 <ol>
-                    <li>Go to the <span class="monospace highlight">app/movies</span> directory and create a new <span class="highlight monospace">Movie</span> service (<span class="highlight monospace">ng g service Movie</span>) with the private
+                    <li>Create a new <span class="highlight monospace">Movie</span> service (<span class="highlight monospace">ng g service movies/movie</span>) with the private
                         <span class="highlight monospace">movie</span> array property.</li>
                     <li>In the constructor initialize the array. Just copy the code from the <span class="highlight monospace">MovieOverviewComponent.ngOnInit()</span> method.</li>
                     <li>Add the <span class="highlight monospace">findAll(): Observable&lt;Movie[]&gt;</span> service method
@@ -388,9 +388,9 @@
                 </p>
 
                 <ul>
-                    <li>get http://localhost:4200/services/rest/movies</li>
-                    <li>get http://localhost:4200/services/rest/movies/:id</li>
-                    <li>post http://localhost:4200/services/rest/movies</li>
+                    <li><code>GET ./services/rest/movies</code></li>
+                    <li><code>GET ./services/rest/movies/:id</code></li>
+                    <li><code>POST ./services/rest/movies</code></li>
                 </ul>
 
             </section>
