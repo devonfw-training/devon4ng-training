@@ -491,7 +491,7 @@
                     <li>
                         Make the apply button of type submit (<span class="highlight monospace">type="submit"</span>)
                         and move the call of <span class="highlight monospace">apply()</span> to the
-                        &lt;form&gt;</span>'s <span class="highlight monospace">(submit)</span> event binding.</li>
+                        &lt;form&gt;</span>'s <span class="highlight monospace">(ngSubmit)</span> event binding.</li>
                     <li>
                         To each &lt;input&gt; add a &lt;span&gt; with an error message that is shown
                         if the input field is not valid
@@ -537,7 +537,7 @@
             <section>
                 <h3>Forms (4/6)</h3>
                 <ol>
-                    <li>Add the public <span class="highlight monospace">submitted: boolean</span> property setting it
+                    <li>Add <span class="highlight monospace">submitted: boolean</span> property setting it
                         initially to <span class="highlight monospace">false</span>. Once the <span class="highlight monospace">apply()</span> method is called,
                         set the flag to <span class="highlight monospace">true</span>.
                     </li>
