@@ -479,106 +479,112 @@
 
         <section id="forms">
             <section>
-                <h3>TODO: Forms (1/6)</h3>
-                <ol>
-                    <li>
-                        Go to the <span class="highlight monospace">BookDetailsComponent</span>'s
-                        template and add a
-                        <a href="https://angular.io/docs/ts/latest/guide/template-syntax.html#!#ref-vars" target="_blank" class="monospace">template variable</a>
-                        which references the <span class="highlight monospace">&lt;form&gt;</span>'s control model
-                        (<span class="highlight monospace">#bookForm="ngForm"</span>).
-                    </li>
-                    <li>
-                        Make the apply button of type submit (<span class="highlight monospace">type="submit"</span>)
-                        and move the call of <span class="highlight monospace">apply()</span> to the
-                        &lt;form&gt;</span>'s <span class="highlight monospace">(ngSubmit)</span> event binding.</li>
-                    <li>
-                        To each &lt;input&gt; add a &lt;span&gt; with an error message that is shown
-                        if the input field is not valid
-                    </li>
-                    <li>
-                        Add the <span class="highlight monospace">[class.ng-submit]</span>
-                        <a href="https://angular.io/docs/ts/latest/guide/template-syntax.html#!#class-binding" target="_blank" class="monospace">class binding</a>
-                        to the <span class="highlight monospace">&lt;form&gt;</span>. Bind it to the
-                        <span class="highlight monospace">submitted</span> flag of the
-                        <span class="highlight monospace">BookDetailsComponent</span> class.
-                    </li>
-                    <li>
-                        Add the <span class="highlight monospace">novalidate</span> attribute to the
-                        <span class="highlight monospace">&lt;form&gt;</span> so that the HTML5 validation is off.
-                    </li>
-                </ol>
-            </section>
-            <section>
-                <h3>Forms (2/6)</h3>
-                    <p style="text-align: justify">Implement validation behavior for each input field:
-                        <ul>
-                            <li>
-                                Add the <a href="https://angular.io/docs/ts/latest/api/forms/index/RequiredValidator-directive.html" target="_blank" class="monospace">required</a> and
-                                <a href="https://angular.io/docs/ts/latest/api/forms/index/MaxLengthValidator-directive.html" target="_blank" class="monospace">maxlength</a> (declarative) validators to the input fields.
-                            </li>
-                            <li>To each <span class="highlight monospace">&lt;input&gt;</span> add a <span class="highlight monospace">&lt;span&gt;</span> with an error message that is shown if the input field is not valid</li>
-                            <li>Use <span class="highlight monospace">*ngIf</span> to hide the error message</li>
-                            <li>Use null conditional notation to check for errors <span class="highlight monospace">(bookForm.controls.title?.errors?.required)</span> and to hide the error message</li>
-                        </ul>
-                    </p>
-            </section>
-            <section>
-                <h3>Forms (3/6)</h3>
-                <ol>
-                    <li>Go to the <span class="highlight monospace">BookDetailsComponent</span>
-                        and add the public <span class="highlight monospace">currentForm: NgForm</span> property. Apply
-                        the <span class="highlight monospace">@ViewChild('bookForm')</span> decorator to it to bind it with the
-                        <a href="https://angular.io/docs/ts/latest/guide/template-syntax.html#!#ref-vars" target="_blank" class="monospace">template variable</a>
-                        <span class="highlight monospace">#bookForm="ngForm"</span> (we put in the template file before).
-                    </li>
-                </ol>
-            </section>
-            <section>
-                <h3>Forms (4/6)</h3>
-                <ol>
-                    <li>Add <span class="highlight monospace">submitted: boolean</span> property setting it
-                        initially to <span class="highlight monospace">false</span>. Once the <span class="highlight monospace">apply()</span> method is called,
-                        set the flag to <span class="highlight monospace">true</span>.
-                    </li>
-                    <li>Add an if-condition to the <span class="highlight monospace">apply()</span> method so that
-                        all actions (such as saving a book and going back to the book overview dialog) are executed only
-                        if our form (<span class="highlight monospace">currentForm.form</span>) is valid.
-                    </li>
-                </ol>
-            </section>
-
-            <section>
-                <h3>(Reactive) Forms (5/6)</h3>
-                <ol>
-                    <li>Go to the <span class="highlight monospace">BooksModule</span> and replace the import of <span class="highlight monospace">FormsModule</span> with <span class="highlight monospace">ReactiveFormsModule</span></li>
-                    <li>Go to the <span class="highlight monospace">BookDetailsComponent</span>'s template:
-                        <ul>
-                            <li>remove the template variable and add the <a href="https://angular.io/docs/ts/latest/api/forms/index/FormGroupDirective-directive.html" target="_blank" class="monospace">formGroup</a> directive's binding to the
-                                <span class="highlight monospace">BookDetailsComponent.bookForm</span> property (<span class="highlight monospace">[formGroup]="bookForm"</span>) instead,
-                                </li>
-                            <li>replace input fields' <span class="highlight monospace">name</span> attributes with <span class="highlight monospace">formControlName</span>,</li>
-                            <li>remove <span class="highlight monospace">ngModel</span> as well as validation directives (<span class="highlight monospace">required, maxlength</span>) from input fields.</li>
-                        </ul>
-                    </li>
-                </ol>
-            </section>
-            <section>
-                <h3>(Reactive) Forms (6/6)</h3>
-                <p style="text-align: justify">Go to the <span class="highlight monospace">BooksModule</span>:</p>
-                <ol>
-                    <li>replace the <span class="highlight monospace">currentForm:&nbsp;NgForm</span> with <span class="highlight monospace">bookForm:&nbsp;FormGroup</span> property</li>
-                    <li>inject the <span class="highlight monospace">FormBuilder</span> and use it in the
-                        <span class="highlight monospace">ngOnInit</span> method to build the <span class="highlight monospace">authors</span>
-                        and <span class="highlight monospace">title</span> <a href="https://angular.io/docs/ts/latest/api/forms/index/FormControl-class.html" target="_blank" class="monospace">FormControls</a>; please refer to <a href="https://angular.io/docs/ts/latest/guide/reactive-forms.html#!#formbuilder" target="_blank">this manual</a> for an example</li>
-                    <li>Use the <a href="https://angular.io/docs/ts/latest/api/forms/index/FormGroup-class.html#!#setValue-anchor" target="_blank" class="monospace">FormGroup.setValue</a> to set from controls' values after subscribing,</li>
-                </ol>
-            </section>
-            <section>
-                <h3>Forms (Optional)</h3>
-                <p>The optional data binding excercise needs to be completed.</p>
+                <h3>Forms</h3>
+                <p>This exercise is divided into two parts:</p>
                 <ul>
-                    <li>Replace the <span class="highlight monospace">&lt;span&gt;</span>'s for the error messages by <span class="highlight monospace">&lt;mat-error&gt;</span></li>
+                    <li>A: Reactive Forms</li>
+                    <li>B: Template-driven Forms</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Forms (reactive Forms 1/4)</h3>
+                <ul>
+                    <li>
+                        Import the ReactiveFormsModule in your AppModule.
+                    </li>
+                    <li>
+                        Use the prepared example-data model from dataModel.ts within the reactive-form folder 
+                        Create an according Form-Model inside ReactiveFormComponent by using FormGroup and FormControls.
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h3>Forms (reactive Forms 2/4)</h3>
+                <ul>
+                    <li>
+                        EMail should contain the default value "example@mail.com"
+                    </li>
+                    <li>
+                            When the user submits the form, trigger the prepared function in ReactiveFormComponent and pass the form content.
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h3>Forms (reactive Forms 3/4)</h3>
+                <ul>
+                    <li>
+                        add following validators:
+                        <ul>
+                            <li>name is validated for a minimum length of 4 chars</li>
+                            <li>name contains only a-z,A-Z," "</li>
+                            <li>name and password are required fields</li>
+                            <li>password should have at least 8 chars</li>
+                            <li>repeat-password-field is validated for exact match with the password-field. (definde validator on your own)</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h3>Forms (reactive Forms 4/4)</h3>
+                <ul>
+                    <lI>
+                        Show the prepared textual descriptions (currently hidden with display:none) on validation errors for each field validated to give the user guidance on how to fix the errror.
+                        Use *ngIf to hide messages and use null conditional notation to check for different validation-errors.
+                    </lI>
+                </ul>
+            </section>
+            <section>
+                <h3>Forms (template-driven Forms 1/4)</h3>
+                <ul>
+                    <li>
+                        Import the FormsModule in your AppModule.
+                    </li>
+                    <li>
+                        use the ngModel directive to create a user-object in the form <pre>{
+"firstname": "",
+"lastname": "",
+"eMail": "yourName@domain.com", 
+"password": "",
+"passwordRepeat": "" 
+}</pre> 
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h3>Forms (template-driven Forms 2/4)</h3>
+                <ul>
+                    <li>
+                        when the user clicks the submit-button, call the prepared function "onSubmitTemplateBased" and pass the whole form content as parameter.
+                    </li>
+                    <li>
+                        Use one-way binding to fill the eMail input field with exampleEmail-property of the according component
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h3>Forms (template-driven Forms 3/4)</h3>
+                <ul>                   
+                    <li>
+                        Add Form directives to the html-template of the TemplateFormComponent, to achieve following:
+                        <ul>
+                            <li> name is validated for a minimum length of 4 chars</li>
+                            <li>name contains only a-z,A-Z," ", use a pattern-validator</li>
+                            <li>name and password are required fields</li>
+                            <li>password should have at least 8 characters</li>
+                            <li>"Repeat Password" schould use ValidateEqualDirective to validate it matches the password-field</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h3>Forms (template-driven Forms 4/4)</h3>
+                <ul>
+                    <lI>
+                        Show the prepared error-messages only when according validation-error occur. check the state of an input-field by using a local template variable. Show the whole alert only if an validation-error for the according field exists.
+                    </lI>
+                    <li>
+                        Figure out, why input fields are marked as valid/invalid by the red/blue indicaror-bar?
+                    </li>
                 </ul>
             </section>
         </section>
