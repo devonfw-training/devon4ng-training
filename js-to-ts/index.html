@@ -652,12 +652,7 @@ console.log(myObject === myNewObject); // false
                 </div>
             </section>
             <section>
-                <h2>What is it?</h2>
-                <p>
-                    TypeScript is a <strong>typed superset</strong> of JavaScript that
-                    <strong>compiles</strong> to plain JavaScript.<small>
-                    <a href="https://www.typescriptlang.org" target="_blank">typescriptlang.org</a></small>
-                </p>
+                <h2>Facts</h2>
                 <ul>
                     <li>invented by <strong>Microsoft</strong></li>
                     <li>valid JavaScript syntax is valid TypeScript syntax</li>
@@ -665,53 +660,68 @@ console.log(myObject === myNewObject); // false
                 </ul>
             </section>
             <section>
-                <h2>What are the benefits?</h2>
-            </section>
-            <section>
-                <h2>Static Types</h2>
-                <pre><code data-trim class="typescript">
-const isDone = false;
-const decimal = 6;
-
-let list: number[] = [1, 2, 3];
-let list: Array&lt;number> = [1, 2, 3];
-
-function warnUser(message: string): void { ... }
-
-let notSure: any = 4;
-notSure = "maybe a string instead";
-notSure = false; // okay, definitely a boolean</code></pre>
-			    <pre><code data-trim  class="hljs typescript">let fullName: string = `Bob Bobbington`;
-let age: number = 37;
-let sentence: string = `Hello, my name is ${ fullName }.
-  I'll be ${ age + 1 } years old next month.`</code></pre>
-			    <pre><code data-trim  class="hljs typescript">enum Color {Red = 1, Green = 2, Blue = 4};
-let c: Color = Color.Green;
-let colorName: string = Color[2];</code></pre>
-            </section>
-            <section>
-                <h2>Interfaces</h2>
-				<pre><code data-trim class="max-height-unset typescript">
-interface TransferObject {
-  id: string;
-  values: string[]
+                <p>Let's start with the quickstart example from <a href="https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html">typescriptlang.org</a></p>
+                <pre><code class="javascript" data-trim>
+function greeter(person) {
+    return "Hello, " + person;
 }
 
-function formatResponse(response: TransferObject): string {
-  return response.values.join(', ');
-}
+let user = "Jane User";
 
-const response: TransferObject = {
-  id: 'dummy-1-2-3',
-  values: ['1', '2', '3']
-}
-
-const format = formatResponse(response);
-console.log(format); // 1, 2, 3
+document.body.innerHTML = greeter(user);
                 </code></pre>
             </section>
             <section>
-              <h2>Extending Interfaces</h2>
+                <p>Could be written in TypeScript...</p>
+                <pre><code class="javascript" data-trim data-noescape>
+function greeter(person<mark>: string</mark>) {
+    return "Hello, " + person;
+}
+
+let user = "Jane User";
+
+document.body.innerHTML = greeter(user);
+                </code></pre>
+            </section>
+            <section>
+                <pre><code class="typescript" data-trim>
+function greeter(person: string) {
+    return "Hello, " + person;
+}
+
+let user = [0, 1, 2];
+
+document.body.innerHTML = greeter(user);
+                </code></pre>
+                <p>Leads to compilation time error.</p>
+                <p><small>error TS2345: Argument of type 'number[]' is not assignable to parameter of type 'string'.</p></small>
+            </section>
+            <section>
+                <p>... and is even supported by VS Code</p>
+                <img src="img/ts-vscode-error.png" alt="VS Code TS Error" class="plain no-border">
+            </section>
+            <section>
+                <pre><code class="typescript" data-trim>
+interface Person {
+    firstName: string;
+    lastName: string;
+}
+
+function greeter(person: Person) {
+    return "Hello, " + person.firstName + " " + person.lastName;
+}
+
+let user = { firstName: "Jane", lastName: "User" };
+
+document.body.innerHTML = greeter(user);
+                </code></pre>
+                <p>In TypeScript, two types are compatible if their internal structure is compatible.</p>
+            </section>
+            <section>
+                <img src="img/greet_person.png" class="plain no-border" alt="">
+                <p>TypeScript works well with VS Code</p>
+            </section>
+            <section>
               <pre><code data-trim class="typescript">
 interface OnInit {
   ngOnInit(): void
@@ -725,9 +735,9 @@ class MyComponent implements OnInit {
 
 }
               </code></pre>
+              <p>Interfaces can be implemented.</p>
             </section>
             <section>
-                <h3>Abstract Classes</h3>
                 <pre><code data-trim class="max-height-unset typescript">
 abstract class Speaker {
   constructor(protected location: string) { }
@@ -786,23 +796,6 @@ function sayHelloTo(person: NamedPerson) {
 }</code></pre>
             </section>
             <section>
-                <h3>Modules, Namespaces, Imports</h3>
-                <p>ES2015 is fully implemented.</p>
-			    <pre><code data-trim  class="hljs typescript">// ZipCodeValidator.ts
-export class ZipCodeValidator { ... }
-// App.ts
-import { ZipCodeValidator } from "./ZipCodeValidator";</code></pre>
-			    <pre><code data-trim  class="hljs typescript">namespace Shapes {
-  export namespace Polygons {
-    export class Triangle { }
-    export class Square { }
-  }
-}
-
-import polygons = Shapes.Polygons;
-let sq = new polygons.Square();</code></pre>
-		    </section>
-            <section>
               <h2>Type Inference</h2>
               <pre><code data-trim class="typescript">
 let x = [1, 2, 3]; // x becomes number[]
@@ -818,15 +811,15 @@ let zoo: Animal[] = [new Rhino(), new Elephant(), new Snake()];
               <h2>Advanced Types / Type Narrowing</h2>
               <pre><code class="typescript" data-trim>
 function padLeft(value: string, padding: any) {
-    if (typeof padding === 'number') {
-        return Array(padding + 1).join(' ') + value;
-    }
+  if (typeof padding === 'number') {
+    return Array(padding + 1).join(' ') + value;
+  }
 
-    if (typeof padding === 'string') {
-        return padding + value;
-    }
+  if (typeof padding === 'string') {
+    return padding + value;
+  }
 
-    throw new Error(`Expected string or number, got '${padding}'.`);
+  throw new Error(`Expected string or number, got '${padding}'.`);
 }
               </code></pre>
             </section>
@@ -844,6 +837,20 @@ function myFunc(val: MyType) {
 myFunc(null); // compiler error
 myFunc(undefined); // compiler error
               </code></pre>
+            </section>
+            <section>
+                <code><pre class="typescript" data-trim>
+function query(method: 'GET'|'POST'|'PUT') {
+  // highly suffisticated stuff here...
+}
+
+query('otto');
+                </pre></code>
+                <p>will it compile?</p>
+                <div class="fragment">
+                    <img src="img/specific-string-example.png" class="plain no-border" alt="">
+                    <p>More specific than a string - cool, right?</p>
+                </div>
             </section>
         </section>
         <section>
