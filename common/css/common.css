@@ -72,3 +72,7 @@ html .reveal section img.no-border {
 .reveal section .size-medium {
     font-size: 75%
 }
+
+.reveal section .header-logo.margin-top-6-em {
+    margin-top: 6em;
+}

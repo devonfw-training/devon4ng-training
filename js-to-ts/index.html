@@ -25,6 +25,21 @@
         link.href = window.location.search.match(/print-pdf/gi) ? '../node_modules/reveal.js/css/print/pdf.css' : '../node_modules/reveal.js/css/print/paper.css';
         document.getElementsByTagName('head')[0].appendChild(link);
     </script>
+    <style>
+.bannerTextHeadline {
+    color: #FFA700;
+    font-size: 2.5em;
+    font-weight: lighter;
+    padding: 0 1.4em;
+    padding-bottom: .5em;
+    font-weight: 500;
+}
+.bannerText p {
+    font-weight: 500;
+    font-size: 0.7em;
+    line-height: 0.7em;
+}
+    </style>
 </head>
 <body>
 <section class="angular-link">
@@ -622,9 +637,19 @@ console.log(myObject === myNewObject); // false
             </section>
         </section>
         <section>
-            <section>
-                <img class="header-logo" src="img/ts-logo.png" alt="TS logo">
-                <h3>TypeScript Introduction</h3>
+            <section
+                data-background-image="img/foreground_bluprint.svg"
+                data-background-position="top"
+                data-background-size="100% auto"
+                data-background-color="#152740">
+                <img style="height: 100px" class="header-logo plain margin-top-6-em" src="img/ts-logo.svg" alt="TS logo">
+                <div class="bannerTextHeadline">
+                    JavaScript that scales.
+                </div>
+                <div class="bannerText">
+                    <p>TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.</p>
+                    <p>Any browser. Any host. Any OS. Open source.</p>
+                </div>
             </section>
             <section>
                 <h2>What is it?</h2>
@@ -635,7 +660,7 @@ console.log(myObject === myNewObject); // false
                 </p>
                 <ul>
                     <li>invented by <strong>Microsoft</strong></li>
-                    <li>valid JavaScript syntax is valid Typescript syntax</li>
+                    <li>valid JavaScript syntax is valid TypeScript syntax</li>
                     <li><strong>Google</strong> dropped AtScript and chose <strong>TypeScript for Angular</strong></li>
                 </ul>
             </section>
@@ -644,8 +669,9 @@ console.log(myObject === myNewObject); // false
             </section>
             <section>
                 <h2>Static Types</h2>
-                <pre><code data-trim  class="hljs typescript">let isDone: boolean = false;
-let decimal: number = 6;
+                <pre><code data-trim class="typescript">
+const isDone = false;
+const decimal = 6;
 
 let list: number[] = [1, 2, 3];
 let list: Array&lt;number> = [1, 2, 3];
