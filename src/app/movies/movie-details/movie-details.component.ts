@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Movie } from '../movie';
 
 @Component({
@@ -8,8 +8,6 @@ import { Movie } from '../movie';
 })
 export class MovieDetailsComponent {
 
-  @Input() movie: Movie;
-
-  constructor() {}
+  @Input() movie?: Movie;
 
 }
