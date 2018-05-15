@@ -1,49 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Movie } from '../movie';
 import { MovieService } from '../movie.service';
-import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-movie-overview',
   templateUrl: './movie-overview.component.html',
   styleUrls: ['./movie-overview.component.scss']
 })
-export class MovieOverviewComponent implements OnInit {
+export class MovieOverviewComponent {
 
-  selectedMovie: Movie;
-  movies$:Observable<Movie[]>;
+  selectedMovie?: Movie;
+  movies$ = this.movieService.findAll();
 
-  constructor(private movieService:MovieService) {
-   }
+  constructor(private movieService: MovieService) {}
 
-  ngOnInit() {
-    this.movies$ = this.movieService.findAll();
-  }
-
-  selectMovie(movie:Movie){
+  selectMovie(movie: Movie) {
     this.selectedMovie = movie;
   }
 
-  isMovieSelected(movie: Movie){
-    return this.selectedMovie && movie && this.selectedMovie.id === movie.id;
+  isMovieSelected(movie: Movie) {
+    return this.selectedMovie && this.selectedMovie.id === movie.id;
   }
 
   onMovieUpdated(updatedMovie: Movie) {
-    this.movies$ = this.movieService.save(updatedMovie).pipe(switchMap( (movie) => {
-      return this.movieService.findAll();
-    }));
+    this.movieService.save(updatedMovie)
+      .pipe(tap(m => this.selectedMovie = m))
+      .subscribe({
+        complete: () => this.movies$ = this.movieService.findAll()
+      });
   }
 
   onMovieCreate() {
-    this.selectedMovie = {
-      id: null,
-      description: null,
-      directors: null,
-      title: null,
-      year: null
-    }
+    this.selectedMovie = {};
   }
-
 
 }
