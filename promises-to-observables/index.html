@@ -319,8 +319,10 @@ import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 const obs = of(1, 2, 3);
-obs.pipe(map(n => n * n))
-   .subscribe(n => console.log('This is number ', n));
+obs.pipe(
+    map(n => n * n)
+  )
+  .subscribe(n => console.log('This is number ', n));
                 </code></pre>
                 <ul class="list-style-none font-style-italic">
                     <li>This is number  1</li>
@@ -444,7 +446,7 @@ import { Observable } from 'rxjs/Observable';
 let obs = new Observable&lt;number&gt;(subscriber => {
   let luckyNumber = 1;
   setInterval(() => {
-    observer.next(luckyNumber++);
+    subscriber.next(luckyNumber++);
   }, 1000);
 });
 
