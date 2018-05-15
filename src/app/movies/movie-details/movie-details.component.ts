@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Movie } from '../movie';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-movie-details',
@@ -8,30 +8,26 @@ import { Movie } from '../movie';
 })
 export class MovieDetailsComponent {
 
-  private _movie: Movie;
+  private _movie: Movie = {};
 
-  @Output()
-  movieUpdate = new EventEmitter<Movie>();
+  @Output() movieUpdate = new EventEmitter<Movie>();
 
-  @Output()
-  movieCreate = new EventEmitter<any>();
+  @Output() movieCreate = new EventEmitter<void>();
 
-  constructor() {}
-
-  get movie(){
+  get movie(): Movie {
     return this._movie;
   }
 
-  @Input() 
-  set movie(movie) {
-    this._movie = Object.assign({}, movie);
+  @Input()
+  set movie(movie: Movie) {
+    this._movie = {...movie};
   }
 
-  apply() {
-    this._movie.year = +this._movie.year;
+  onApplyClick() {
     this.movieUpdate.emit(this._movie);
   }
-  create() {
+
+  onCreateClick() {
     this.movieCreate.emit();
   }
 

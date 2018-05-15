@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy.conf.json -o",
+    "start": "concurrently \"npm run server\" \"npm run start-ng\"",
+    "start-ng": "ng serve --proxy-config proxy.conf.json -o",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -25,6 +26,7 @@
     "@angular/platform-browser-dynamic": "^6.0.1",
     "@angular/router": "^6.0.1",
     "body-parser": "^1.18.2",
+    "concurrently": "^3.5.1",
     "core-js": "^2.5.4",
     "express": "^4.16.3",
     "lodash": "^4.17.10",
