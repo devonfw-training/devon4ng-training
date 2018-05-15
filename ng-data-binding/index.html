@@ -44,7 +44,7 @@
             </div>
 
                   <pre><code class="hljs html" data-trim data-noescape>
-&lt;span&gt;<mark>{{currentBook.author}}</mark>&lt;/span&gt;
+&lt;span&gt;<mark>{{ currentBook.author }}</mark>&lt;/span&gt;
                   </code></pre>
                   <pre><code class="hljs typescript" data-trim data-noescape>
 @Component(...)
@@ -60,8 +60,8 @@ export class BookDetailsComponent {
             </div>
             <pre><code class="hljs html" data-trim data-noescape>
 &lt;ul&gt;
-  &lt;li (click)="selectBook(firstBook)">{{firstBook.title}}&lt;/li&gt;
-  &lt;li (click)="selectBook(secondBook)">{{secondBook.title}}&lt;/li&gt;
+  &lt;li (click)="selectBook(firstBook)">{{ firstBook.title }}&lt;/li&gt;
+  &lt;li (click)="selectBook(secondBook)">{{ secondBook.title }}&lt;/li&gt;
 &lt;/ul&gt;
 &lt;book-details <mark>[book]="selectedBook"</mark>&gt;&lt;/book-details &gt;
                   </code></pre>
@@ -85,8 +85,8 @@ export class BookOverviewComponent {
             </div>
             <pre><code class="hljs html" data-trim data-noescape>
 &lt;ul&gt;
-  &lt;li (click)="selectBook(firstBook)">{{firstBook.title}}&lt;/li&gt;
-  &lt;li (click)="selectBook(secondBook)">{{secondBook.title}}&lt;/li&gt;
+  &lt;li (click)="selectBook(firstBook)">{{ firstBook.title }}&lt;/li&gt;
+  &lt;li (click)="selectBook(secondBook)">{{ secondBook.title }}&lt;/li&gt;
 &lt;/ul&gt;
 &lt;book-details <mark>[book]="selectedBook"</mark>&gt;&lt;/book-details &gt;
                   </code></pre>
@@ -98,8 +98,8 @@ export class BookDetailsComponent {
 }
                   </code></pre>
             <pre><code class="hljs html" data-trim data-noescape>
-        &lt;div&gt;Title: {{<mark>book</mark>?.title}}&lt;/div&gt;
-        &lt;div&gt;Author: {{<mark>book</mark>?.author}}&lt;/div&gt;
+        &lt;div&gt;Title: {{ <mark>book</mark>?.title }}&lt;/div&gt;
+        &lt;div&gt;Author: {{ <mark>book</mark>?.author }}&lt;/div&gt;
                   </code></pre>
         </section>
         <section>
@@ -135,21 +135,21 @@ export class BookOverviewComponent {
             <pre class="width-100-percent"><code class="hljs html" data-trim data-noescape>
 &lt;bookEntry [currentBook]="books[0]"
            <mark>(selectBook)="rentBook($event)"</mark>&gt;&lt;/bookEntry&gt;
-                  </code></pre>
+            </code></pre>
 			<pre class="width-100-percent"><code class="max-height-unset typescript" data-trim data-noescape>
-				@Component(...)
-				export class BookEntryComponent {
-				  @Input() currentBook: Book;
-				  <mark>@Output() selectBook = new EventEmitter&lt;Book&gt;();</mark>
+@Component(...)
+export class BookEntryComponent {
+  @Input() currentBook: Book;
+  <mark>@Output() selectBook = new EventEmitter&lt;Book&gt;();</mark>
 
-				  onButtonClick(): void {
-					this.selectBook.emit(this.currentBook);
-                  } 
-                }
+  onButtonClick(): void {
+    this.selectBook.emit(this.currentBook);
+  } 
+}
             </code></pre>
             <pre class="width-100-percent"><code class="hljs typescript" data-trim data-noescape>
 &lt;div&gt;
-    &lt;div&gt;Book title: {{currentBook.title}}&lt;/div&gt;
+    &lt;div&gt;Book title: {{ currentBook.title }}&lt;/div&gt;
     &lt;button (click)="onButtonClick()"&gt;Rent the book&lt;/button&gt;
 &lt;/div&gt;
             </code></pre>
@@ -169,12 +169,7 @@ export class BookOverviewComponent {
             <pre><code class="hljs typescript" data-trim data-noescape>
 @Component(...)
 export class BookDetailsComponent {
-  <mark>currentBook: Book;</mark>
-
-  constructor() {
-    this.currentBook =
-      new Book('John Example', 'Angular in a nutshell');
-  }
+  <mark>currentBook</mark> = new Book('John Example', 'Angular in a nutshell');
 }
                   </code></pre>
         </section>
@@ -183,14 +178,14 @@ export class BookDetailsComponent {
             <h4>ng-if</h4>
             <pre><code class="html" data-trim>
 &lt;div *ngIf="book"&gt;
-  &lt;p>{{book.description}}&lt;/p&gt;
+  &lt;p>{{ book.description }}&lt;/p&gt;
 &lt;/div&gt;
             </code></pre>
             <p><span class="highlight">Removes element from the DOM</span> if book not present (this prevents errors - undefined.book is not valid).</p>
             <h4>ng-for</h4>
             <pre><code class="html" data-trim>
 &lt;ul&gt;
-  &lt;li *ngFor="let item of list"&gt;{{item.property}}&lt;/li&gt;
+  &lt;li *ngFor="let item of list"&gt;{{ item.property }}&lt;/li&gt;
 &lt;/ul&gt;
             </code></pre>
             <p><span class="highlight">Creates an element</span> for every item of the collection.</p>
@@ -199,32 +194,31 @@ export class BookDetailsComponent {
             <h3>Example - Parent</h3>
             <pre><code class="max-height-unset typescript" data-trim>
 @Component({
-  selector: 'parent',
-  template: `&lt;bookEntry
+  selector: 'app-parent',
+  template: `&lt;app-book-entry
                  *ngFor="let book of books"
                  [currentBook]="book"
-                 (selectBook)="rentBook(book)"&gt;
-             &lt;/bookEntry&gt;`
+                 (selectBook)="rentBook($event)"&gt;
+             &lt;/app-book-entry&gt;`
 })
 export class ParentComponent {
-  books: Book[];
-  rentedBook: Book;
+  books = [new Book(...), new Book(...)];
+  rentedBook: Book|null = null;
 
-  rentBook(book:Book):void {
+  rentBook(book: Book) {
     this.rentedBook = book;
   }
 }
-
             </code></pre>
         </section>
         <section>
             <h3>Example - Child</h3>
             <pre><code class="max-height-unset typescript" data-trim>
 @Component({
-  selector: 'bookEntry',
+  selector: 'app-book-entry',
   template: `&lt;div *ngIf="currentBook"&gt;
-               &lt;div&gt;Book author: {{currentBook.author}}&lt;/div&gt;
-               &lt;div&gt;Book title: {{currentBook.title}}&lt;/div&gt;
+               &lt;div&gt;Book author: {{ currentBook.author }}&lt;/div&gt;
+               &lt;div&gt;Book title: {{ currentBook.title }}&lt;/div&gt;
                &lt;button (click)="onButtonClick()"&gt;Rent book&lt;/button&gt;
             &lt;/div&gt;`
 })
@@ -233,7 +227,7 @@ export class BookEntryComponent {
   @Output() selectBook = new EventEmitter&lt;Book&gt;();
 
   onButtonClick(): void {
-	this.selectBook.emit(this.currentBook);
+    this.selectBook.emit(this.currentBook);
   }
 }
             </code></pre>
