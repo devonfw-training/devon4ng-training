@@ -49,12 +49,7 @@
                   <pre><code class="hljs typescript" data-trim data-noescape>
 @Component(...)
 export class BookDetailsComponent {
-  <mark>currentBook: Book;</mark>
-
-  constructor() {
-    this.currentBook =
-      new Book('John Example', 'Angular in a nutshell');
-  }
+  <mark>currentBook</mark> = new Book('John Example', 'Angular in a nutshell');
 }
                   </code></pre>
         </section>
@@ -73,9 +68,9 @@ export class BookDetailsComponent {
             <pre><code class="hljs typescript" data-trim data-noescape>
 @Component(...)
 export class BookOverviewComponent {
-  firstBook: Book;
-  secondBook: Book;
-  <mark>selectedBook: Book;</mark>
+  firstBook = new Book(...);
+  secondBook = new Book(...);
+  <mark>selectedBook</mark>: Book|null = null;
 
   selectBook(book:Book):void {
     this.selectedBook = book;
@@ -99,13 +94,12 @@ export class BookOverviewComponent {
 <pre><code class="hljs typescript" data-trim data-noescape>
 @Component(...)
 export class BookDetailsComponent {
-  <mark>@Input() book: Book;</mark>
-
+  <mark>@Input() book: Book|null;</mark>
 }
                   </code></pre>
             <pre><code class="hljs html" data-trim data-noescape>
-        &lt;div&gt;Title: {{<mark>book</mark>.title}}&lt;/div&gt;
-        &lt;div&gt;Author: {{<mark>book</mark>.author}}&lt;/div&gt;
+        &lt;div&gt;Title: {{<mark>book</mark>?.title}}&lt;/div&gt;
+        &lt;div&gt;Author: {{<mark>book</mark>?.author}}&lt;/div&gt;
                   </code></pre>
         </section>
         <section>
@@ -115,19 +109,19 @@ export class BookDetailsComponent {
             </div>
             <pre><code class="hljs html" data-trim data-noescape>
 &lt;bookEntry [currentBook]="books[0]"
-            <mark>(selectBook)="rentBook(book)"</mark>&gt;
+           <mark>(selectBook)="rentBook($event)"</mark>&gt;
 &lt;/bookEntry&gt;
 &lt;bookEntry [currentBook]="books[1]"
-            <mark>(selectBook)="rentBook(book)"</mark>&gt;
+           <mark>(selectBook)="rentBook($event)"</mark>&gt;
 &lt;/bookEntry&gt;
                   </code></pre>
             <pre><code class="hljs typescript" data-trim data-noescape>
 @Component(...)
 export class BookOverviewComponent {
-  books: Book[];
-  rentedBook: Book;
+  books = [new Book(...), new Book(...)];
+  rentedBook: Book|null = null;
 
-  <mark>rentBook(book:Book)</mark>:void {
+  <mark>rentBook(book: Book)</mark> {
     this.rentedBook = book;
   }
 }
@@ -140,7 +134,7 @@ export class BookOverviewComponent {
             </div>
             <pre class="width-100-percent"><code class="hljs html" data-trim data-noescape>
 &lt;bookEntry [currentBook]="books[0]"
-            <mark>(selectBook)="rentBook(book)"</mark>&gt;&lt;/bookEntry&gt;
+           <mark>(selectBook)="rentBook($event)"</mark>&gt;&lt;/bookEntry&gt;
                   </code></pre>
 			<pre class="width-100-percent"><code class="max-height-unset typescript" data-trim data-noescape>
 				@Component(...)
@@ -150,7 +144,8 @@ export class BookOverviewComponent {
 
 				  onButtonClick(): void {
 					this.selectBook.emit(this.currentBook);
-    } }
+                  } 
+                }
             </code></pre>
             <pre class="width-100-percent"><code class="hljs typescript" data-trim data-noescape>
 &lt;div&gt;
