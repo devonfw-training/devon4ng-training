@@ -126,7 +126,7 @@ export class BookDetailsComponent implements <mark>OnInit</mark> {
             <h2 class="no-text-transform">...which has an API for the view</h2>
             <pre><code class="hljs typescript" data-trim  data-noescape>
 @Component({
-  selector: 'book-details',
+  selector: 'app-book-details',
   template:
     `&lt;div&gt;
        &lt;label&gt;Author:&lt;/label&gt;&nbsp;&lt;span&gt{{currentBook.author}}&lt;/span&gt;
@@ -144,7 +144,7 @@ export class BookDetailsComponent implements OnInit {
             <p class="no-text-transform">CSS <span class="highlight">selector</span> tells Angular to <span class="highlight">create and insert an instance of this component</span> where it finds a <span class="highlight">&lt;book-details&gt; tag</span> in parent HTML</p>
             <pre><code class="hljs typescript" data-trim  data-noescape>
 @Component({
-  <mark>selector: 'book-details'</mark>,
+  <mark>selector: 'app-book-details'</mark>,
   template:
     `&lt;div&gt;
        &lt;label&gt;Author:&lt;/label&gt;&nbsp;&lt;span&gt{{currentBook.author}}&lt;/span&gt;
@@ -162,7 +162,7 @@ export class BookDetailsComponent implements OnInit {
             <p class="no-text-transform"><span class="highlight">Templates can be inlined</span>, e.g. using ES2015 template literals (multi line strings marked with backticks) or ...</p>
             <pre><code class="hljs typescript" data-trim  data-noescape>
 @Component({
-  selector: 'book-details',
+  selector: 'app-book-details',
   <mark>template:
     `&lt;div&gt;
        &lt;label&gt;Author:&lt;/label&gt;&nbsp;&lt;span&gt;{{currentBook.author}}&lt;/span&gt;
@@ -180,7 +180,7 @@ export class BookDetailsComponent implements OnInit {
             <p class="no-text-transform">...extracted to a <span class="highlight">separate file</span> and imported using file path</p>
             <pre><code class="hljs typescript" data-trim  data-noescape>
 @Component({
-  selector: 'book-details',
+  selector: 'app-book-details',
   <mark>templateUrl: './book-details.component.html'</mark>
 })
 export class BookDetailsComponent implements OnInit {
@@ -211,7 +211,7 @@ export class BookDetailsComponent implements OnInit {
             <p class="no-text-transform"></p>
             <pre><code class="hljs typescript" data-trim  data-noescape>
 @Component({
-  selector: 'book-details',
+  selector: 'app-book-details',
   template: ...,
   <mark>styleUrls: ['./book-details.component.css']</mark>
 })
