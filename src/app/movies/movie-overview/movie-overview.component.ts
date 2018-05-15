@@ -1,3 +1,5 @@
+// tslint:disable:max-line-length
+
 import { Component, OnInit } from '@angular/core';
 import { Movie } from '../movie';
 
@@ -8,13 +10,9 @@ import { Movie } from '../movie';
 })
 export class MovieOverviewComponent implements OnInit {
 
-  movies:Movie[];
-  selectedMovie: Movie;
+  movies: Movie[] = [];
+  selectedMovie: Movie|null = null;
   private movieIdSequence = 4;
-
-  constructor() {
-    this.movies = [];
-   }
 
   ngOnInit() {
     this.movies = [
@@ -38,23 +36,22 @@ export class MovieOverviewComponent implements OnInit {
         directors: 'John Landis',
         description: 'Jake Blues, just out from prison, puts together his old band to save the Catholic home where he and brother Elwood were raised.',
         year: 1980
-    }
-    ];
+    }];
   }
 
-  selectMovie(movie:Movie){
+  selectMovie(movie: Movie) {
     this.selectedMovie = movie;
   }
 
-  isMovieSelected(movie: Movie){
+  isMovieSelected(movie: Movie) {
     return this.selectedMovie && movie && this.selectedMovie.id === movie.id;
   }
 
   onMovieUpdated(updatedMovie: Movie) {
-    let movieToUpdate=this.movies.find((movie) => {
+    const movieToUpdate = this.movies.find((movie) => {
       return movie.id === updatedMovie.id;
     });
-    if(movieToUpdate){
+    if (movieToUpdate) {
       Object.assign(movieToUpdate, updatedMovie);
     } else {
       updatedMovie.id = this.movieIdSequence++;
@@ -62,15 +59,8 @@ export class MovieOverviewComponent implements OnInit {
     }
   }
 
-  onMovieCreate(){
-    this.selectedMovie = {
-      id: null,
-      description: null,
-      directors: null,
-      title: null,
-      year: null
-    }
+  onMovieCreate() {
+    this.selectedMovie = { };
   }
-
 
 }
