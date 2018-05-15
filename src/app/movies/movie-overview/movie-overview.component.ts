@@ -11,7 +11,7 @@ import { Movie } from '../movie';
 export class MovieOverviewComponent implements OnInit {
 
   movies: Movie[] = [];
-  selectedMovie: Movie|null = null;
+  selectedMovie?: Movie;
   private movieIdSequence = 4;
 
   ngOnInit() {
@@ -22,15 +22,15 @@ export class MovieOverviewComponent implements OnInit {
         directors: 'Anthony Russo, Joe Russo',
         description: 'The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.',
         year: 2018
-    },
-    {
+      },
+      {
         id: 2,
         title: 'Matrix',
         directors: 'The Wachowski Brothers',
         description: 'A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.',
         year: 1999
-    },
-    {
+      },
+      {
         id: 3,
         title: 'Blues Brothers',
         directors: 'John Landis',
@@ -48,9 +48,7 @@ export class MovieOverviewComponent implements OnInit {
   }
 
   onMovieUpdated(updatedMovie: Movie) {
-    const movieToUpdate = this.movies.find((movie) => {
-      return movie.id === updatedMovie.id;
-    });
+    const movieToUpdate = this.movies.find(movie => movie.id === updatedMovie.id);
     if (movieToUpdate) {
       Object.assign(movieToUpdate, updatedMovie);
     } else {
@@ -60,7 +58,7 @@ export class MovieOverviewComponent implements OnInit {
   }
 
   onMovieCreate() {
-    this.selectedMovie = { };
+    this.selectedMovie = {};
   }
 
 }

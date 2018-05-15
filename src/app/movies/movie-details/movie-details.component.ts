@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Movie } from '../movie';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-movie-details',
@@ -23,11 +23,11 @@ export class MovieDetailsComponent {
     this._movie = {...movie};
   }
 
-  apply() {
+  onApplyClick() {
     this.movieUpdate.emit(this._movie);
   }
 
-  create() {
+  onCreateClick() {
     this.movieCreate.emit();
   }
 
