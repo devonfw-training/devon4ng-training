@@ -301,10 +301,10 @@ Promise.resolve('Pizza with')
             </section>
             <section>
                 <h3>Create and consume a simple Observable</h3>
-                <pre class="typescript"><code class="typescript" data-trim>
-import { ArrayObservable } from 'rxjs/observable/ArrayObservable';
+                <pre><code class="javascript" data-trim>
+import { of } from 'rxjs';
 
-const obs = ArrayObservable.of(1, 2, 3);
+const obs = of(1, 2, 3);
 obs.subscribe(n => console.log('This is number ', n));</code></pre>
             <ul class="list-style-none font-style-italic">
                 <li>This is number  1</li>
@@ -314,11 +314,11 @@ obs.subscribe(n => console.log('This is number ', n));</code></pre>
             </section>
             <section>
                 <h3>Using map() operator</h3>
-                <pre><code class="typescript" data-trim>
-import { ArrayObservable } from 'rxjs/observable/ArrayObservable';
+                <pre><code class="javascript" data-trim>
+import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-const obs = ArrayObservable.of(1, 2, 3);
+const obs = of(1, 2, 3);
 obs.pipe(map(n => n * n))
    .subscribe(n => console.log('This is number ', n));
                 </code></pre>
@@ -337,16 +337,15 @@ obs.pipe(map(n => n * n))
             </section>
             <section>
                     <div>
-                        <pre><code class="typescript" data-trim>
-import { ArrayObservable } from 'rxjs/observable/ArrayObservable';
+                        <pre><code class="javascript" data-trim>
+import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-ArrayObservable.of(2, 3)
-  .pipe(
+of(2, 3).pipe(
     map(n => {
-        const result = n * n;
-        console.log(`mapping ${n} to ${result}`);
-        return result;
+      const result = n * n;
+      console.log(`mapping ${n} to ${result}`);
+      return result;
     })
   ); 
 // note: no subscribe() here!</code></pre>
@@ -355,12 +354,11 @@ ArrayObservable.of(2, 3)
             </section>
             <section>
                 <div>
-                    <pre><code class="typescript" data-trim>
-import { ArrayObservable } from 'rxjs/observable/ArrayObservable';
+                    <pre><code class="javascript" data-trim>
+import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
                                     
-ArrayObservable.of(2, 3)
-  .pipe(
+of(2, 3).pipe(
     map(n => {
       const result = n * n;
       console.log(`mapping ${n} to ${result}`);
@@ -388,20 +386,20 @@ ArrayObservable.of(2, 3)
                 <p>After <code>complete()</code> an Observable will not emit any more values.</p>                    
             </section>
             <section>
-                <pre><code>import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
+                <pre><code class="typescript" data-trim>
+import { Observable } from 'rxjs';
 
-let obs: Observable&lt;number&gt; =
-        Observable.create(function (observer: Observer&lt;number&gt;) {
-    observer.next(1);
-    observer.next(2);
-    observer.complete();
-    observer.next(3); // note: 3 is never shown
+let obs = new Observable&lt;number&gt;(subscriber => {
+  subscriber.next(1);
+  subscriber.next(2);
+  subscriber.complete();
+  subscriber.next(3); // note: 3 is never shown
 });
 
 obs.subscribe(v => console.log('next value', v),
-    e => console.log('error', e),
-    () => console.log('completed'));</code></pre>
+  e => console.log('error', e),
+  () => console.log('completed'));                        
+                </code></pre>
                 <ul class="list-style-none font-style-italic">
                     <li>next value 1</li>
                     <li>next value 2</li>
@@ -412,15 +410,14 @@ obs.subscribe(v => console.log('next value', v),
                 <p>After <code>error()</code> an Observable will not emit any more values.</p>                    
             </section>
             <section>
-                <pre><code>import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
+                <pre><code class="typescript" data-trim>
+import { Observable } from 'rxjs';
 
-let obs: Observable&lt;number&gt; =
-        Observable.create(function (observer: Observer&lt;number&gt;) {
-    observer.next(1);
-    observer.next(2);
-    observer.error('Something went wrong.');
-    observer.next(3); // note: 3 is never shown
+let obs = new Observable&lt;number&gt;(subscriber => {
+  subscriber.next(1);
+  subscriber.next(2);
+  subscriber.error('Something went wrong.');
+  subscriber.next(3); // note: 3 is never shown
 });
 
 obs.subscribe(v => console.log('next value', v),
@@ -441,20 +438,20 @@ obs.subscribe(v => console.log('next value', v),
             </section>
             <section>
                 <p>The following code leads to endless numbers</p>
-                <pre class="typescript"><code>import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
+                <pre><code class="typescript" data-trim>
+import { Observable } from 'rxjs/Observable';
 
-let obs: Observable&lt;number&gt; =
-        Observable.create(function (observer: Observer&lt;number&gt;) {
-    let luckyNumber = 1;
-    setInterval(() => {
-        observer.next(luckyNumber++);
-    }, 1000);
+let obs = new Observable&lt;number&gt;(subscriber => {
+  let luckyNumber = 1;
+  setInterval(() => {
+    observer.next(luckyNumber++);
+  }, 1000);
 });
 
 let subscription = obs.subscribe(v => console.log('next value', v),
-    e => console.log('error', e),
-    () => console.log('completed'));</code></pre>
+  e => console.log('error', e),
+  () => console.log('completed'));
+                </code></pre>
             </section>
             <section>
                 <p>... <code>subscription.unsubscribe()</code> cancels the observable.</p>
@@ -462,21 +459,19 @@ let subscription = obs.subscribe(v => console.log('next value', v),
             <section>
                 <div>
                     <div class="inline-block">
-                        <pre><code class="code-without-max-height">import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
+                        <pre><code class="code-without-max-height typescript" data-trim>
+import { Observable } from 'rxjs';
 
-let obs: Observable&lt;number&gt; =
-        Observable.create(
-            function (observer: Observer&lt;number&gt;) {
-    let luckyNumber = 1;
-    let intervalId = setInterval(() => {
-        observer.next(luckyNumber++);
-    }, 1000);
+let obs = new Observable&lt;number&gt;(subscriber => {
+  let luckyNumber = 1;
+  let intervalId = setInterval(() => {
+    subscriber.next(luckyNumber++);
+  }, 1000);
 
-    // this function gets executed on unsubscribe()
-    return () => { 
-        clearInterval(intervalId);
-    };
+  // this function gets executed on unsubscribe()
+  return () => { 
+    clearInterval(intervalId);
+  };
 });
 
 let subscription = 
@@ -484,7 +479,8 @@ let subscription =
 // calling unsubscribe() after 5,1 seconds
 setTimeout(() => { 
     subscription.unsubscribe();
-}, 5100);</code></pre>
+}, 5100);
+                        </code></pre>
                     </div>
                     <div class="inline-block">
                         <ul class="list-style-none font-style-italic">
@@ -512,21 +508,22 @@ setTimeout(() => {
             </section>
             <section>
                 <h3>Binding Observables in Angular components (1/2)</h3>
-                <pre><code class="typescript max-height-unset">@Component({
+                <pre><code class="typescript max-height-unset" data-trim>
+@Component({
   selector: 'app-root',
   template: '&lt;h1&gt;Hello {{name$ | async}}&lt;/h1&gt;'
 })
 export class AppComponent {
-  name$: Observable&lt;string&gt; =
-    Observable.create((observer: Observer&lt;string&gt;) => {
-        let names = ['Waldo', 'Caspar', 'Azizi'];
-        let index = 0;
-        setInterval(() => {
-        index = ++index >= names.length ? 0 : index;
-        observer.next(names[index]);
-        }, 500);
-    });
-}</code></pre>
+  name$ = new Observable&lt;string&gt;(subscriber => {
+    let index = 0;
+    setInterval(() => {
+      index = ++index >= this.names.length ? 0 : index;
+      subscriber.next(names[index]);
+    }, 500);
+  });
+  private names = ['Waldo', 'Caspar', 'Azizi'];
+}
+                </code></pre>
                 <p>Binding to a stream of data - how cool is that?</p>
             </section>
             <section>
@@ -551,7 +548,8 @@ export class AppComponent {
   salutation$ = combineLatest(
     this.salutationService.salutation$,
     this.salutationService.name$,
-    (s:string, n:string) => `${s} ${n}`);
+    (salutation, name) => `${salutation} ${name}`
+  );
 
   constructor(private salutationService: SalutationService) { }
 
@@ -566,28 +564,28 @@ export class AppComponent {
                     </code></pre>
                 </section>
                 <section>
-                    <pre class="width-100-percent"><code data-trim class="typescript max-height-unset">@Injectable()
+                    <pre class="width-100-percent"><code data-trim class="typescript max-height-unset">
+@Injectable()
 export class SalutationService {
-    private names = ['Waldo', 'Caspar', 'Azizi', 'Otto', 'Kathreen', 'Dorothee'];
-    private salutations = ['Hallo', 'Hola', 'Hello', 'Salut', 'Ciao'];
-    private nameSource = new BehaviorSubject&lt;string&gt;(this.names[0]);
-    private salutationSource = new BehaviorSubject&lt;string&gt;(this.salutations[0]);
-    name$ = this.nameSource.asObservable();
-    salutation$ = this.salutationSource.asObservable();
+  private names = ['Waldo', 'Caspar', 'Azizi', 'Otto', 'Kathreen', 'Dorothee'];
+  private salutations = ['Hallo', 'Hola', 'Hello', 'Salut', 'Ciao'];
+  private nameSource = new BehaviorSubject&lt;string&gt;(this.names[0]);
+  private salutationSource = new BehaviorSubject&lt;string&gt;(this.salutations[0]);
+  name$ = this.nameSource.asObservable();
+  salutation$ = this.salutationSource.asObservable();
 
-    changeName(): void {
-        this.nameSource.next(this.getNextValue(this.names, this.name.getValue()));
-    }
+  changeName(): void {
+    this.nameSource.next(this.getNextValue(this.names, this.nameSource.getValue()));
+  }
 
-    changeSalutation(): void {
-        this.salutationSource.next(
-            this.getNextValue(this.salutations, this.salutation.getValue()));
-    }
+  changeSalutation(): void {
+    this.salutationSource.next(this.getNextValue(this.salutations, this.salutationSource.getValue()));
+  }
 
-    private getNextValue(vals: string[], current: string): string {
-        let nextIndex = vals.indexOf(current) + 1;
-        return vals[nextIndex >= vals.length ? 0 : nextIndex];
-    }
+  private getNextValue(vals: string[], current: string): string {
+    let nextIndex = vals.indexOf(current) + 1;
+    return vals[nextIndex >= vals.length ? 0 : nextIndex];
+  }
 }
                     </code></pre>
                 </section>
