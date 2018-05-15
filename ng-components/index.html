@@ -55,11 +55,7 @@
             <h2 class="no-text-transform">Component is just a class...</h2>
             <pre><code class="hljs typescript"  data-trim data-noescape>
 export class BookDetailsComponent implements OnInit {
-  currentBook: Book;
-
-  constructor() {
-    this.currentBook = new Book();
-  }
+  currentBook = new Book();
 
   ngOnInit(): void {
     this.currentBook.author = 'John Example';
@@ -72,11 +68,7 @@ export class BookDetailsComponent implements OnInit {
             <h2 class="no-text-transform">...which has an API for the view</h2>
             <pre><code class="hljs typescript"  data-trim data-noescape>
 export class BookDetailsComponent implements OnInit {
-  <mark>currentBook: Book;</mark>
-
-  constructor() {
-    this.currentBook = new Book();
-  }
+  <mark>currentBook = new Book();</mark>
 
   ngOnInit(): void {
     this.currentBook.author = 'John Example';
@@ -89,11 +81,7 @@ export class BookDetailsComponent implements OnInit {
             <h2 class="no-text-transform">...and can take action in the lifecycle</h2>
             <pre><code class="hljs typescript"  data-trim data-noescape>
 export class BookDetailsComponent implements <mark>OnInit</mark> {
-  currentBook: Book;
-
-  constructor() {
-    this.currentBook = new Book();
-  }
+  currentBook = new Book();
 
   <mark>ngOnInit(): void {
     this.currentBook.author = 'John Example';

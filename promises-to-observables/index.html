@@ -547,17 +547,13 @@ export class AppComponent {
   &lt;button (click)="changeSalutation()"&gt;Change salutation&lt;/button&gt;
   &lt;button (click)="changeName()"&gt;Change name&lt;/button&gt;`
 })
-export class AppComponent implements OnInit {
-  salutation$: Observable&lt;string&gt;;
+export class AppComponent {
+  salutation$ = combineLatest(
+    this.salutationService.salutation$,
+    this.salutationService.name$,
+    (s:string, n:string) => `${s} ${n}`);
 
   constructor(private salutationService: SalutationService) { }
-
-  ngOnInit(): void {
-    this.salutation$ = combineLatest(
-      this.salutationService.salutation$,
-      this.salutationService.name$,
-      (s:string, n:string) => `${s} ${n}`)
-  }
 
   changeSalutation(): void {
     this.salutationService.changeSalutation();
