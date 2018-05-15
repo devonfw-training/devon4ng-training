@@ -441,7 +441,7 @@ obs.subscribe(v => console.log('next value', v),
             <section>
                 <p>The following code leads to endless numbers</p>
                 <pre><code class="typescript" data-trim>
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 let obs = new Observable&lt;number&gt;(subscriber => {
   let luckyNumber = 1;
