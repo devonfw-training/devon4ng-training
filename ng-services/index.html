@@ -67,9 +67,9 @@
 
         <section>
             <pre><code class="hljs typescript" data-trim data-noescape>
-@Injectable() // not needed unless the service needs other services
+@Injectable()
 export class BookService {
-  private books: Book[] = [];
+  private books: Book[] = [{...}, {...}];
 
   findAll(): Observable&lt;Book[]&gt; {
     return Observable.create((observer: Observer&lt;Book[]&gt;) => {
@@ -93,14 +93,9 @@ export class AppModule {}
             <pre><code class="hljs typescript" data-trim data-noescape>
 @Component({...})
 export class BookOverviewComponent implements OnInit {
-  books: Book[] = [];
+  books$ = this.bookService.findAll();
 
-  constructor(private <mark>bookService: BookService</mark>) {
-  }
-
-  ngOnInit(): void {
-    this.bookService.findAll().subscribe(books => this.books = books);
-  }
+  constructor(private <mark>bookService: BookService</mark>) {}
 }
             </code></pre>
         </section>
