@@ -360,7 +360,6 @@ Cache-Control: max-age=3600, public
 			<h2>Http configuration</h2>
 			<ul>
 				<li class="fragment fade-up">Importing <span class="highlight">HttpClientModule</span></li>
-				<li class="fragment fade-up">Importing <span class="highlight">HttpClient</span> and <span class="highlight">RxJS</span> operators</li>
 				<li class="fragment fade-up">Injecting <span class="highlight">HttpClient</span> service</li>
 			</ul>
 			</section>
@@ -377,19 +376,6 @@ import { HttpClientModule } from '@angular/common/http';
     providers: [...]
 })
 export class AppModule {}
-			</code></pre>
-			</section>
-			
-			<section>
-				<h3>Importing Http utils and Rxjs operators</h3>
-				<pre><code class="hljs typescript"  data-trim>
-import { 
-	HttpClient,
-	HttpHeaders,
-	HttpResponse
-} from '@angular/common/http';
-
-import { Observable } from 'rxjs';
 			</code></pre>
 			</section>
 			
@@ -441,31 +427,14 @@ this.http.get&lt;Book&gt;(this.reqUrl, <mark>{observe: 'response'}</mark>)
 		<section>
 			<h2>Http PUT</h2>
 			<pre><code class="hljs typescript"  data-trim>
-// create options
-let options = { 
-  headers: new HttpHeaders()
-    .set('Content-type', 'application/json')
-};
-
-// send request
-this.http.put(this.requestUrl + id, objectToPut, options);
+this.http.put(this.requestUrl + id, objectToPut);
 		</code></pre>
 		</section>
 		
 		<section>
 			<h2>Http POST</h2>
-			<pre><code class="hljs typescript"  data-trim>
-// create options
-let options = { 
-  headers: new HttpHeaders()
-    .set('Content-type', 'application/json')
-};
-
-// send request
-this.http.post(
-  this.requestUrl,
-  objectToPost,
-  this.options);
+			<pre><code class="hljs typescript" data-trim>
+this.http.post(this.requestUrl, objectToPost);
 			</code></pre>
 		</section>
 		
