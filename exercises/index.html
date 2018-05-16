@@ -61,9 +61,9 @@
             <section>
                 <h3>Simple Component (2/3)</h3>
                 <ol>
-                    <li>Create an interface <span class="monospace highlight">Movie</span> in the <span class="monospace highlight">movies</span> directory (<span class="monospace highlight">ng g interface movies/movie</span>). Add the <span class="monospace highlight">id</span>, <span class="monospace highlight">director</span>
+                    <li>Create an interface <span class="monospace highlight">Movie</span> in the <span class="monospace highlight">movies</span> directory (<span class="monospace highlight">ng g interface movies/movie</span>). Add the <span class="monospace highlight">id</span>, <span class="monospace highlight">directors</span>
                         , <span class="monospace highlight">title</span>, <span class="monospace highlight">description</span> and <span class="monospace highlight">year</span> properties.</li>
-                    <li>Add a public <span class="monospace highlight">currentMovie</span> property of type <span class="monospace highlight">Movie</span>
+                    <li>Add a public <span class="monospace highlight">currentMovie</span> property of type <span class="monospace highlight">Movie</span> to the <span class="monospace highlight">MovieDetailsComponent</span>
                     </li>
                     <li>In the <span class="monospace highlight">OnInit</span> lifecycle hook (an empty <span class="monospace highlight">ngOnInit()</span> method should have been generated) assign a newly created <span class="monospace highlight">Movie</span> object with the <span class="monospace highlight">director</span>,
                         <span class="monospace highlight">title</span> and other properties with any values of your choice. <span class="monospace">{id:1, title: 'a movie',...}</span>
@@ -127,7 +127,7 @@
                     </li>
                     <li>To the first <span class="highlight monospace">&lt;div&gt;</span> add a table with rows. Generate the table's rows iterating over the
                         <span class="highlight monospace">movies</span>. Make use of the
-                        <a href="https://angular.io/docs/ts/latest/api/common/index/NgFor-directive.html" target="_blank" class="monospace">*ngFor</a> directive. For each movie element show its director and title.</li>
+                        <a href="https://angular.io/docs/ts/latest/api/common/index/NgFor-directive.html" target="_blank" class="monospace">*ngFor</a> directive. For each movie element show its directors and title.</li>
                 </ol>
             </section>
             <section>
@@ -319,19 +319,18 @@
                         <span class="highlight monospace">MovieService</span> in the
                         <span class="highlight monospace">MovieOverviewComponent</span>'s constructor.
                     </li>
-                    <li>Call the <span class="highlight monospace">MovieService.findAll()</span> method in the
-                        <span class="highlight monospace">MovieOverviewComponent.ngOnInit()</span> method to initialize
-                        the movie list.</li>
+                    <li>In the Call the <span class="highlight monospace">MovieOverviewComponent.ngOnInit()</span> call the <span class="highlight monospace">MovieService.findAll()</span> method. <span class="highlight monospace">Subscribe</span> to the returned <span class="highlight monospace">Observable</span> to initialize the movie list.</li>
                 </ol>
             </section>
             <section>
                 <h3>Service (3/5)</h3>
-                <ol>Extend the <span class="highlight monospace">MovieService</span>:
-                    <li>Implement the <span class="highlight monospace">findOne(id: number): Observable&lt;Movie&gt;</span> method which finds a
-                        book by the ID passed and returns its copy.</li>
-                    <li>Implement the <span class="highlight monospace">save(movieToSave: Movie): Observable&lt;Movie&gt;</span> method. If the ID of the passed movie
-                        is set, update the existing movie (copying values from the passed movie to it) from the list.
-                        Otherwise set the id and add the passed movie to the list as a new element.</li>
+                <ol>
+                    <li>
+                        In the <span class="highlight monospace">MovieOverviewComponent</span> change the <span class="highlight monospace">movies</span> array to <span class="highlight monospace">movies$</span> of type <span class="highlight monospace">Observable&lt;Movie[]&gt;</span>. Do not subscribe to the <span class="highlight monospace">MovieService.findAll()</span> but assign the resulting Observable to the <span class="highlight monospace">movies$</span> property.
+                    </li>
+                    <li>
+                        In the <span class="highlight monospace">MovieOverviewComponent</span> template use the <a href="https://blog.thoughtram.io/angular/2017/02/27/three-things-you-didnt-know-about-the-async-pipe.html" target="_blank">async pipe</a> in the <span class="highlight monospace">*ngFor</span> to automatically subscribe to the Observable.
+                    </li>
                 </ol>
             </section>
             <section>
@@ -343,16 +342,13 @@
             </section>
             <section>
                 <h3>Service (5/5)</h3>
-                <ol>
-
-                    <li>
-                        In the <span class="highlight monospace">MovieOverviewComponent</span> change the <span class="highlight monospace">movies</span> array to <span class="highlight monospace">movies$</span> of type <span class="highlight monospace">Observable&lt;Movie[]&gt;</span>. Do not subscribe to the <span class="highlight monospace">MovieService.findAll()</span> but assign the resulting Observable to the <span class="highlight monospace">movies$</span> property.
-                    </li>
-                    <li>
-                        In the <span class="highlight monospace">MovieOverviewComponent</span> template use the <a href="https://blog.thoughtram.io/angular/2017/02/27/three-things-you-didnt-know-about-the-async-pipe.html" target="_blank">async pipe</a> in the <span class="highlight monospace">*ngFor</span> to automatically subscribe to the Observable.
-                    </li>
-                </ol>
-            </section>
+                <ol>Extend the <span class="highlight monospace">MovieService</span>:
+                    <li>Implement the <span class="highlight monospace">findOne(id: number): Observable&lt;Movie&gt;</span> method which finds a
+                        book by the ID passed and returns its copy.</li>
+                    <li>Implement the <span class="highlight monospace">save(movieToSave: Movie): Observable&lt;Movie&gt;</span> method. If the ID of the passed movie
+                        is set, update the existing movie (copying values from the passed movie to it) from the list.
+                        Otherwise set the id and add the passed movie to the list as a new element.</li>
+                </ol>            </section>
             <section>
                 <h3>Service (extra)</h3>
                 <ol>Extend the <span class="highlight monospace">MovieService</span>:
@@ -492,7 +488,7 @@
                         Import the ReactiveFormsModule in your AppModule.
                     </li>
                     <li>
-                        Use the prepared example-data model from dataModel.ts within the reactive-form folder 
+                        Use the prepared example-data model from dataModel.ts within the reactive-form folder
                         Create an according Form-Model inside ReactiveFormComponent by using FormGroup and FormControls.
                     </li>
                 </ul>
@@ -542,10 +538,10 @@
                         use the ngModel directive to create a user-object in the form <pre>{
 "firstname": "",
 "lastname": "",
-"eMail": "yourName@domain.com", 
+"eMail": "yourName@domain.com",
 "password": "",
-"passwordRepeat": "" 
-}</pre> 
+"passwordRepeat": ""
+}</pre>
                     </li>
                 </ul>
             </section>
@@ -562,7 +558,7 @@
             </section>
             <section>
                 <h3>Forms (template-driven Forms 3/4)</h3>
-                <ul>                   
+                <ul>
                     <li>
                         Add Form directives to the html-template of the TemplateFormComponent, to achieve following:
                         <ul>
