@@ -442,7 +442,40 @@ this.http.post(this.requestUrl, objectToPost);
 			<p>see <a href="https://angular.io/guide/http">Angular Docs</a></p>
 			<iframe class="stretch" data-src="https://angular.io/guide/http"></iframe>
 		</section>
-		
+		<section>
+			<p>Angular HttpClient is just <span class="highlight">one option</span>.</p>
+			<p>There are a <span class="highlight">lot of frameworks</span> you could use instead.</p>
+			<p>Frameworks like react do not come with there own http framework.</p>
+		</section>
+		<section>
+			<p>Most common outside of Angular HttpClient</p>
+			<ul>
+				<li><code>axios</code></li>
+				<li><code>fetch</code></li>
+			</ul>
+		</section>
+		<section>
+			<p>axios</p>
+			<pre><code class="typescript" data-trim>
+import axios from 'axios';
+
+axios.get&lt;Book[]&gt;('/api/books')
+  .then(books => console.log(books))
+			</code></pre>
+			<p>axios is Promise based and can be used with generic TypeScript types.</p>
+		</section>
+		<section>
+			<p>fetch</p>
+			<pre><code class="typescript" data-trim>
+fetch('/api/books').then(response => {
+  if (!response.ok) {
+    throw new Error(response.statusText)
+  }
+  return response.json&lt;Book[]&gt;()
+});
+			</code></pre>
+			<p><code>fetch</code> is a <span class="highlight">native browser implementation</span> and the successor to <code>XMLHttpRequest</code></p>
+		</section>
     </div>
 </div>
 
