@@ -352,28 +352,24 @@ Cache-Control: max-age=3600, public
 		<section>
 			<h1>Http with Angular</h1>
 			<p>The <span class="highlight">Angular HttpClient</span> communicates with the server using a familiar HTTP request/response protocol.</p> 
-			<p>The HttpClient is one of a family of services in the Angular HTTP library.</p>
+			<p>HttpClient is exported by <code>@angular/common/http</code></p>
 			<p><small><a target="_blank" href="https://angular.io/docs/ts/latest/guide/server-communication.html">https://angular.io/docs/ts/latest/guide/server-communication.html</a></small><p>
-			
 		</section>
-		
 		<section>
 			<section>
 			<h2>Http configuration</h2>
 			<ul>
 				<li class="fragment fade-up">Importing <span class="highlight">HttpClientModule</span></li>
-				<li class="fragment fade-up">Importing <span class="highlight">Http</span> utils and <span class="highlight">Rxjs</span> operators</li>
+				<li class="fragment fade-up">Importing <span class="highlight">HttpClient</span> and <span class="highlight">RxJS</span> operators</li>
 				<li class="fragment fade-up">Injecting <span class="highlight">HttpClient</span> service</li>
 			</ul>
 			</section>
 			
 			<section>
 				<h3>Importing HttpModule</h3>
-				<pre><code class="hljs typescript"  data-trim>
-// import
-import {HttpClientModule} from '@angular/common/http';
+				<pre><code class="hljs typescript" data-trim>
+import { HttpClientModule } from '@angular/common/http';
 
-// module configuration
 @NgModule({
     imports: [HttpClientModule],
     declarations: [...],
@@ -409,19 +405,19 @@ constructor(private http: HttpClient) {}
 			<h2>Http GET</h2>
 			<pre><code class="hljs typescript"  data-trim>
 this.http.get(this.requestUrl + bookId)
-  .subscribe( data => {
-    console.log('Book Author', data['author']);
-});
+         .subscribe(data => {
+           console.log('Book Author', data['author']);
+         });
 			</code></pre>
 	The payloads structure is unknown.<br>
-	<span class="monospace">data</span> is of type Object<br>
-	<span class="monospace">data.author</span> does not work!
+	<span class="monospace">data</span> is of <code>type Object</code><br>
+	<span class="monospace">data.author</span> does not compile!
 	</section>
 	<section>
 			<p>...with typechecking</p>
 			<pre><code class="hljs typescript"  data-trim data-noescape>
 this.http.get<mark>&lt;Book&gt;</mark>(this.requestUrl + bookId)
-  .subscribe( book => {
+  .subscribe(book => {
     console.log('Book Author', book.author);
     this.book = book;
 });
@@ -432,15 +428,14 @@ this.http.get<mark>&lt;Book&gt;</mark>(this.requestUrl + bookId)
 			<p>..or with full response</p>
 			<pre><code class="hljs typescript"  data-trim data-noescape>
 this.http.get&lt;Book&gt;(this.reqUrl, <mark>{observe: 'response'}</mark>)
-  .subscribe(
-    data => {
+  .subscribe(data => {
       console.log(data.headers.get('X-Custom-Header'));
       console.log(data.body.author);
     },
-  err => {
-    console.log('Something went wrong!');
-  }
-);
+    err => {
+      console.log('Something went wrong!');
+    }
+  );
 			</code></pre>
 		</section>
 		<section>
