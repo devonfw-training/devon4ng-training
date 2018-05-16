@@ -501,10 +501,17 @@
                         Import the ReactiveFormsModule in your AppModule.
                     </li>
                     <li>
-                        Use the prepared example-data model from dataModel.ts within the reactive-form folder
-                        Create an according Form-Model inside ReactiveFormComponent by using FormGroup and FormControls.
+                        Create a Form-Model with following structure by using FormGroup and FormControl:
                     </li>
                 </ul>
+                <pre>{ 
+name: { 
+  firstname: string, 
+  lastname: string }, 
+email: string,
+password: string, 
+passwordRepeat: string 
+}</pre>
             </section>
             <section>
                 <h3>Forms (reactive Forms 2/4)</h3>
