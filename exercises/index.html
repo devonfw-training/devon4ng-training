@@ -401,7 +401,6 @@
                     <li>Refactor the <span class="highlight monospace">findAll()</span> books method - use <span class="highlight monospace">http.get</span></li>
                     <li>Refactor the <span class="highlight monospace">findOne(id: Number)</span> method - use <span class="highlight monospace">http.get</span></li>
                     <li>Refactor the <span class="highlight monospace">save(book: Book)</span> method  - use <span class="highlight monospace">http.post</span></li>
-                    <li>Import the necessary RxJS operators to map the responses</li>
                 </ol>
             </section>
         </section>
@@ -443,7 +442,7 @@
                     <p>Import the <span class="highlight monospace">RouterModule</span> in the <span class="highlight monospace">AppModule</span>. Use the <span class="highlight monospace">RouterModule.forRoot</span> static method passing the the following app-routes:</p>
                     <ul>
                         <li>user is redirected to /home on application startup</li>
-                        <li><span class="highlight monospace">/animals</span> -> AnomalListComponent</li>
+                        <li><span class="highlight monospace">/animals</span> -> AnimalListComponent</li>
                         <li><span class="highlight monospace">/animal</span> -> AnimaldetailsComponent (error)</li>
                         <li><span class="highlight monospace">/animal/2</span> -> AnimaldetailsComponent with Details of the Animal with animalID=2</li>
                         <li><span class="highlight monospace">/home</span> -> HomepageComponent</li>
@@ -571,7 +570,7 @@
                             <li>name contains only a-z,A-Z," ", use a pattern-validator</li>
                             <li>name and password are required fields</li>
                             <li>password should have at least 8 characters</li>
-                            <li>"Repeat Password" schould use ValidateEqualDirective to validate it matches the password-field</li>
+                            <li>"Repeat Password" should use ValidateEqualDirective to validate it matches the password-field</li>
                         </ul>
                     </li>
                 </ul>
