@@ -471,7 +471,8 @@ fetch('/api/books').then(response => {
   if (!response.ok) {
     throw new Error(response.statusText)
   }
-  return response.json&lt;Book[]&gt;()
+
+  response.json&lt;Book[]&gt;().then(books => console.log(books));
 });
 			</code></pre>
 			<p><code>fetch</code> is a <span class="highlight">native browser implementation</span> and the successor to <code>XMLHttpRequest</code></p>
