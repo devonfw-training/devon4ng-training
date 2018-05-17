@@ -84,7 +84,7 @@ this.store.dispatch({
         <section>
           <p>Pure functions called reducers take the previous state and the next action to compute the new state.</p>
           <pre class="fragment"><code class="typescript" data-trim>
-function reducer(state: State, action: Action): State {
+function reducer(state: AppState, action: Action): State {
   switch (action.type) {
     case 'Load Flight': {
       return {
@@ -118,10 +118,10 @@ function reducer(state: State, action: Action): State {
           <p>State accessed with the Store, an observable of state and an observer of actions.</p>
           <pre class="fragment"><code class="typescript" data-trim>
 export class FlightComponent {
-  showSpinner$ = store.pipe(select(state =&gt; state.isLoading));
+  showSpinner$ = this.store.pipe(select(state =&gt; state.isLoading));
 
   constructor(
-    private store: Store&lt;State&gt;
+    private store: Store&lt;AppState&gt;
   ) {}
 
   onInput(flightId: string) {
