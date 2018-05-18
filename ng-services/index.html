@@ -66,27 +66,33 @@
         </section>
 
         <section>
+            <p><code>ng generate service book</code></p>
+            <pre><code class="typescript" data-trim>
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class BookService {
+}
+            </code></pre>
+        </section>
+
+        <section>
             <pre><code class="hljs typescript" data-trim data-noescape>
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class BookService {
   private books: Book[] = [{...}, {...}];
 
   findAll(): Observable&lt;Book[]&gt; {
-    return Observable.create((observer: Observer&lt;Book[]&gt;) => {
-      observer.next(this.books);
-      observer.complete();
-    });
+    return of(this.books);
   }
 }
             </code></pre>
-            <pre><code class="hljs typescript" data-trim data-noescape>
-@NgModule({
-  ...
-  // makes the service available for all components in the app
-  <mark>providers: [BookService]</mark>
-})
-export class AppModule {}
-            </code></pre>
+            <code>providedIn: 'root'</code>
+            <p>... registers the service in the root injector.</p>
         </section>
         <section>
             <p class="no-text-transform">Component consumes a service making use of the <span class="highlight">Dependency Injection</span></p>
@@ -119,6 +125,9 @@ export class BookOverviewComponent implements OnInit {
             <p>A provider is a recipe for creating a service <span class="highlight">with configuration</span></p>
             <p>You can register providers in modules or in components</p>
             <p>In general, providers are <span class="highlight">added to the root module</span> so that the same instance of a service is available everywhere</p>
+        </section>
+        <section>
+            <img src="img/injector-bubbling.svg" alt="Injector Bubbling" class="plain no-border">
         </section>
     </div>
 </div>
