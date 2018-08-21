@@ -40,6 +40,222 @@
       <h2>Angular, Angular CLI and TypeScript</h2>
       <p>You will learn what Angular is all about. What Angular is and what problems it solves. What the Angular CLI is all about. What TypeScript is and how it relates to JavaScript.</p>
     </section>
+    <section
+                id="typescript"
+                data-background-image="img/foreground_bluprint.svg"
+                data-background-position="top"
+                data-background-size="100% auto"
+                data-background-color="#152740">
+                <img style="height: 100px" class="header-logo plain margin-top-6-em" src="img/ts-logo.svg" alt="TS logo">
+                <div class="bannerTextHeadline">
+                    JavaScript that scales.
+                </div>
+                <div class="bannerText">
+                    <p>TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.</p>
+                    <p>Any browser. Any host. Any OS. Open source.</p>
+                </div>
+            </section>
+            <section>
+                <h2>Facts</h2>
+                <ul>
+                    <li>invented by <strong>Microsoft</strong></li>
+                    <li>valid JavaScript syntax is valid TypeScript syntax</li>
+                    <li><strong>Google</strong> dropped AtScript and chose <strong>TypeScript for Angular</strong></li>
+                </ul>
+            </section>
+            <section>
+                <p>Let's start with the quickstart example from <a href="https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html">typescriptlang.org</a></p>
+                <pre><code class="javascript" data-trim>
+function greeter(person) {
+    return "Hello, " + person;
+}
+
+let user = "Jane User";
+
+document.body.innerHTML = greeter(user);
+                </code></pre>
+            </section>
+            <section>
+                <p>Could be written in TypeScript...</p>
+                <pre><code class="javascript" data-trim data-noescape>
+function greeter(person<mark>: string</mark>) {
+    return "Hello, " + person;
+}
+
+let user = "Jane User";
+
+document.body.innerHTML = greeter(user);
+                </code></pre>
+            </section>
+            <section>
+                <pre><code class="typescript" data-trim>
+function greeter(person: string) {
+    return "Hello, " + person;
+}
+
+let user = [0, 1, 2];
+
+document.body.innerHTML = greeter(user);
+                </code></pre>
+                <p>Leads to compilation time error.</p>
+                <p><small>error TS2345: Argument of type 'number[]' is not assignable to parameter of type 'string'.</p></small>
+            </section>
+            <section>
+                <p>... and is even supported by VS Code</p>
+                <img src="img/ts-vscode-error.png" alt="VS Code TS Error" class="plain no-border">
+            </section>
+            <section>
+                <pre><code class="typescript" data-trim>
+interface Person {
+    firstName: string;
+    lastName: string;
+}
+
+function greeter(person: Person) {
+    return "Hello, " + person.firstName + " " + person.lastName;
+}
+
+let user = { firstName: "Jane", lastName: "User" };
+
+document.body.innerHTML = greeter(user);
+                </code></pre>
+                <p>In TypeScript, two types are compatible if their internal structure is compatible.</p>
+            </section>
+            <section>
+                <img src="img/greet_person.png" class="plain no-border" alt="">
+                <p>TypeScript works well with VS Code</p>
+            </section>
+            <section>
+              <pre><code data-trim class="typescript">
+interface OnInit {
+  ngOnInit(): void
+}
+
+class MyComponent implements OnInit {
+
+  ngOnInit(): void {
+    console.log('Component activated.')
+  }
+
+}
+              </code></pre>
+              <p>Interfaces can be implemented.</p>
+            </section>
+            <section>
+                <pre><code data-trim class="max-height-unset typescript">
+abstract class Speaker {
+  constructor(protected location: string) { }
+  abstract speak(): void;
+}
+    
+class Headphones extends Speaker {
+    
+  constructor() {
+    super('in ear');
+  }
+    
+  speak(): void {
+    console.log(this.location + ': la la la');
+  }
+    
+}
+   
+function play(speaker: Speaker) {
+  speaker.speak();
+}
+    
+play(new Headphones()); // in ear: la la la
+                </code></pre>
+            </section>
+            <section>
+                <p>Classes</p>
+                <pre><code>class A {
+  name: string;
+}</code></pre>
+                <p>... compile to</p>
+                <pre><code>var A = (function () {
+  function A() {
+  }
+  return A;
+}());</code></pre>
+                <p>Interfaces</p>
+                <pre><code>interface A {
+  name: string;
+}</code></pre>
+                <p class="fragment">... compile to <i>nothing</i>.</p>
+            </section>
+            <section>
+                <h3>What are interfaces for</h3>
+                <p>Interfaces define contracts.</p>
+                <pre><code>function sayHelloTo(person: { name: string }) {
+  console.log(person.name);
+}</code></pre>
+                <p>... using Interfaces</p>
+                <pre><code>interface NamedPerson {
+  name: string;
+}
+
+function sayHelloTo(person: NamedPerson) {
+  console.log(person.name);   
+}</code></pre>
+            </section>
+            <section>
+              <h2>Type Inference</h2>
+              <pre><code data-trim class="typescript">
+let x = [1, 2, 3]; // x becomes number[]
+
+// zoo becomes (Rhino | Elephant | Snake)[]
+let zoo = [new Rhino(), new Elephant(), new Snake()];
+
+// corrects type
+let zoo: Animal[] = [new Rhino(), new Elephant(), new Snake()];
+              </code></pre>
+            </section>
+            <section>
+              <h2>Advanced Types / Type Narrowing</h2>
+              <pre><code class="typescript" data-trim>
+function padLeft(value: string, padding: any) {
+  if (typeof padding === 'number') {
+    return Array(padding + 1).join(' ') + value;
+  }
+
+  if (typeof padding === 'string') {
+    return padding + value;
+  }
+
+  throw new Error(`Expected string or number, got '${padding}'.`);
+}
+              </code></pre>
+            </section>
+            <section>
+              <h2>Strict Null Checks</h2>
+              <pre><code class="typescript" data-trim>
+interface MyType {
+  name: string;
+}
+
+function myFunc(val: MyType) {
+  // ...
+}
+
+myFunc(null); // compiler error
+myFunc(undefined); // compiler error
+              </code></pre>
+            </section>
+            <section>
+                <code><pre class="typescript" data-trim>
+function query(method: 'GET'|'POST'|'PUT') {
+  // highly suffisticated stuff here...
+}
+
+query('otto');
+                </pre></code>
+                <p>will it compile?</p>
+                <div class="fragment">
+                    <img src="img/specific-string-example.png" class="plain no-border" alt="">
+                    <p>More specific than a string - cool, right?</p>
+                </div>
+            </section>
   </div>
 </div>
 

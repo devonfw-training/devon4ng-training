@@ -38,8 +38,647 @@
   <div class="slides">
     <section>
       <h2>HTML, CSS and JavaScript Introduction</h2>
-      <p>You will learn what the purpose of the three languages is. What current browsers support and how to find out. What to rely on. A brief summary of past versions with browser history.</p>
+      <p>You will learn what the three languages are about. What current browsers support and how to find out. What to rely on. A brief summary of past versions with browser history.</p>
     </section>
+    <section>
+      <p>
+        <img class="plain" height="300" src="img/HTML5_Logo.svg">
+      </p>
+      <h1>HTML5 rocks!</h1>
+      <p>Created by Marek Matczak & Janusz Rygał</p>
+    </section>
+    <section>
+                <h2>HTML and HTML documents</h2>
+                <p><strong>HTML</strong> is a markup language for describing the <strong>structure</strong> of web documents (web pages).<small>*</small> A basic <strong>HTML document</strong> looks like this:<small>*</small>
+                </p>
+                <pre><code data-trim class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;RWC School&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welcome to Rich Web Client School&lt;/h1&gt;
+    &lt;p&gt;This is a &lt;a href="demo.html"&gt;simple&lt;/a&gt; sample.&lt;/p&gt;
+    &lt;!-- this is a comment --&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+                </code></pre>
+                <p class="foot-note">
+                    <small>*&nbsp;<a href="http://www.w3schools.com/html/html_intro.asp">http://www.w3schools.com/html/html_intro.asp</a></small>
+                    <small>**&nbsp;<a href="http://www.w3.org/TR/html5/introduction.html#a-quick-introduction-to-html">http://www.w3.org/TR/html5/introduction.html#a-quick-introduction-to-html</a></small>
+                </p>
+            </section>
+            <section>
+                <h3>HTML tags</h3>
+                <ul>
+                    <li><strong>HTML documents</strong> consist of a <strong>tree of elements and text</strong>. Each element is denoted in the source by <strong>a start tag</strong>, such as <strong><code>&lt;body&gt;</code></strong>, and an end tag, such as <strong><code>&lt;/body&gt;</code></strong>.</li>
+                    <li><strong>Tags have to be nested</strong> so that elements are all completely within each other, without overlapping:
+                        <pre><code data-trim class="html">
+&lt;p&gt;This is &lt;em&gt;very &lt;strong&gt;wrong&lt;/em&gt;!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This &lt;em&gt;is &lt;strong&gt;correct&lt;/strong&gt;.&lt;/em&gt;&lt;/p&gt;                
+                        </code></pre>
+                    </li>
+                    <li>
+                        There are exceptions - so called void-elements e.g.
+                        <pre><code data-trim class="html">
+&lt;input type="date"&gt;
+&lt;br&gt;      
+                        </code></pre>
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h2>HTML elements' attributes</h2>
+                <ul>
+                    <li>Attributes control how the elements work and are placed <strong>inside the start tag</strong>.</li>
+                    <li>Attributes consist of <strong>a name and a value</strong>, separated by an <code><strong>=</strong></code> character.</li>
+                    <li><strong>The value</strong> can remain <strong>unquoted</strong> if it doesn't contain space characters or any of <strong><code>" ' ` = &gt;</code>&nbsp;or&nbsp;<code>&lt;</code></strong> character.</li>
+                    <li>Otherwise, it has to be quoted using either single or double quotes. The value, along with the <code><strong>=</strong></code> character, can be omitted altogether if the value is the empty string.</li>
+                </ul>
+                <p class="foot-note">
+                    <small>*&nbsp;<a href="http://www.w3.org/TR/html5/introduction.html#a-quick-introduction-to-html">http://www.w3.org/TR/html5/introduction.html#a-quick-introduction-to-html</a></small>
+                </p>
+        </section>
+        <section>
+            <h3>Attributes: examples<small>*</small></h3>
+<pre><code data-trim class="html">
+&lt;!-- empty attributes --&gt;
+&lt;input name=address disabled&gt;
+&lt;input name=address disabled=""&gt;
+
+&lt;!-- attributes with a value --&gt;
+&lt;input name=address maxlength=200&gt;
+&lt;input name=address maxlength='200'&gt;
+&lt;input name=address maxlength="200"&gt;                
+            </code></pre>
+            <h3>Custom data attributes<small>**</small></h3>
+            <pre><code data-trim class="html">
+&lt;span data-my-attribute="go!"&gt;&lt;/span&gt;
+&lt;div data-ng-app='rwcApp'&gt;Angular lives here...&lt;/div&gt;
+            </code></pre>
+                
+            <p class="foot-note">
+                <small>*&nbsp;<a href="http://www.w3.org/TR/html5/introduction.html#a-quick-introduction-to-html">http://www.w3.org/TR/html5/introduction.html#a-quick-introduction-to-html</a></small><small>**&nbsp;<a href="http://www.w3.org/TR/html5/dom.html#attr-data-*">http://www.w3.org/TR/html5/dom.html#attr-data-*</a></small>
+            </p>
+        </section>
+        
+        <section>
+            <h3>Document Object Model (DOM)</h3>
+            <ul>
+                <li>Web browsers <strong>parse</strong> an HTML document, turning it into a Document Object Model (DOM) tree. A DOM tree is an <strong>in-memory representation</strong> of the document</li>
+                <li>The DOM tree can be <strong>manipulated</strong> from scripts (typically in <strong>JavaScript</strong>) in the page - through a <a href="http://www.w3.org/TR/html5/dom.html#the-document-object">Document interface</a></li>
+                <li>Each element in the DOM tree is <strong>represented by an object</strong>, and these objects <strong>have APIs</strong> so that they can be manipulated, e.g.:</li>
+            </ul>            
+        </section>
+        <section>
+            <p>Example:</p>
+            <pre><code data-trim class="html">
+&lt;form name="main"&gt;
+Result: &lt;output name="result"&gt;&lt;/output&gt;
+  &lt;script&gt;
+    document.forms.main.elements.result.value = 'Hello World';
+  &lt;/script&gt;
+&lt;/form&gt;                
+            </code></pre>    
+        </section>
+        <section>
+            <h2>Introduction to CSS</h2>
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                width="200px" viewBox="85.5 210.272 437.29 491.728" enable-background="new 85.5 210.272 437.29 491.728" xml:space="preserve">
+                <title>CSS3 Logo</title>
+                <polygon fill="#1572B6" points="128.668,652.845 89.21,210.272 522.79,210.272 483.29,652.775 305.735,702 " />
+                <polygon fill="#33A9DC" points="306,664.375 449.474,624.599 483.229,246.459 306,246.459 " />
+                <path fill="#FFFFFF" d="M167.739,293.569l-0.308,54.766H390.34l-0.08,35.375H167.203l-0.161,54.766h222.909l-0.293,62.462
+            l-84.061,29.75l-83.639-29.75l0.063-27.087h-54.765l-0.251,65.719l138.353,49.289l138.877-49.289l0.467-98.873l0.141-19.834
+            l0.568-127.292L167.739,293.569L167.739,293.569z" />
+            </svg>
+            <p>Philip Schmökel</p>
+        </section>
+        <section>
+                <h2>Cascading Style Sheets</h2>
+                <div>
+<pre><code class="css" data-trim>
+&lt;selector1&gt;, &lt;selector2&gt; {
+  &lt;property1&gt; : &lt;value1&gt;;
+  &lt;property2&gt; : &lt;value2&gt;;
+  &lt;property3&gt; : &lt;value3&gt;
+}
+&nbsp;
+&lt;selector1&gt; {
+  &lt;property4&gt; : &lt;value4&gt;
+}
+&nbsp;
+/* Css comment */
+</code></pre>
+                </div>
+        </section>
+        <section>
+<pre><code class="css" data-trim>/* Example */
+p, div {
+  background: red;
+  font-weight: bold;
+  color: blue
+}
+&nbsp;
+p {
+  font-style: italic
+}
+</code></pre>
+            </section>
+            <section>
+                <h2>Selectors</h2>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th style="width: 350px;">Selector</th>
+                            <th>Selected element(s)</th>
+                        </tr>
+                    </thead>
+                    <tbody style="font-size: 30px">
+                        <tr>
+                            <td><code>p</code></td>
+                            <td>Paragraphs</td>
+                        </tr>
+                        <tr>
+                            <td><code>.class1</code></td>
+                            <td>Elements with <i>class1</i></td>
+                        </tr>
+                        <tr>
+                            <td><code>#content</code></td>
+                            <td>Element with identifier <i>content</i></td>
+                        </tr>
+                        <tr>
+                            <td><code>p.class1</code></td>
+                            <td>Paragaphs with class <i>class1</i></td>
+                        </tr>
+                        <tr>
+                            <td><code>p .class1</code></td>
+                            <td>Elements with class <i>class1</i> having paragraph ancestor</td>
+                        </tr>
+                        <tr>
+                            <td><code>.class1 .class2</code></td>
+                            <td>Elements with class <i>class2</i> having ancestor with class <i>class1</i></td>
+                        </tr>
+                        <tr>
+                            <td><code>p.class1.class2</code></td>
+                            <td>Paragraphs with both <i>class1</i> and <i>class2</i> classes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section>
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 350px;">Selector</th>
+                            <th>Selected element(s)</th>
+                        </tr>
+                    </thead>
+                    <tbody style="font-size: 30px">
+                        <tr>
+                            <td><code>*</code></td>
+                            <td>All elements</td>
+                        </tr>
+                        <tr>
+                            <td><code>div &gt; p</code></td>
+                            <td>All &lt;p&gt; elements where the direct parent is a &lt;div&gt; element</td>
+                        </tr>
+                        <tr>
+                            <td><code>div + p</code></td>
+                            <td>All &lt;p&gt; elements that are placed immediately after &lt;div&gt; elements</td>
+                        </tr>
+                        <tr>
+                            <td><code>p:first-child</code><br><code>p:nth-child(3)</code><br><code>p:last-child</code></td>
+                            <td>Selects every &lt;p&gt; element that is the first/third/last child of its parent</td>
+                        </tr>
+                        <tr>
+                            <td><code>input[type="text"]</code></td>
+                            <td>Selects all &lt;input type="text"&gt;</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="foot-note">
+                    <a href="http://www.w3schools.com/cssref/css_selectors.asp" target="_blank">. . . W3C Selectors</a>
+                </p>
+            </section>
+            <section>
+                <h2>Selector's priority</h2>
+                <p class="priorities">S<span>ource</span>&nbsp;I<span>ds</span>&nbsp;C<span>lasses</span>&nbsp;E<span>lements</span></p>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="bold">Source</td>
+                            <td>2 - Inline <br> 1 - <span style="color:blue">&lt;style&gt;&lt;/style&gt;</span> tag <br> 0 -
+                                External file</td>
+                        </tr>
+                        <tr>
+                            <td class="bold">Ids</td>
+                            <td>Number of identifiers in selector</td>
+                        </tr>
+                        <tr>
+                            <td class="bold">Classes</td>
+                            <td>Number of classes in selector</td>
+                        </tr>
+                        <tr>
+                            <td class="bold">Elements</td>
+                            <td>Number of elements in selector</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section>
+                <h2><span class="blue">block</span> vs <span class="blue">inline</span></h2>
+                <ul style="width: 1000px">
+                    <li>display: <strong class="blue">block</strong></li>
+                    <li>displayed <strong>under</strong> each other</li>
+                    <li>size defined by width, height, margin, padding</li>
+                    <li>example: <code>&lt;div&gt;, &lt;section&gt;, &lt;p&gt;</code></li>
+                </ul>
+                <ul style="margin-top: 50px; width: 1000px">
+                    <li>display: <strong class="blue">inline</strong></li>
+                    <li>displayed <strong>next</strong> to each other</li>
+                    <li>size defined only by content size and margin-left, margin-right, padding-left, padding-right</li>
+                    <li>example: <code>&lt;strong&gt;, &lt;i&gt;, &lt;a&gt;, &lt;span&gt;</code></li>
+                </ul>
+            </section>
+            <section>
+                <h2><span class="blue">block</span> vs <span class="blue">inline</span></h2>
+                <h3>Example</h3>
+<pre><code class="html">&lt;div&gt;
+    &lt;span&gt;1&lt;/span&gt;
+    &lt;span&gt;2&lt;/span&gt;&lt;span&gt;3&lt;/span&gt;
+&lt;/div&gt;
+&lt;div&gt;
+    &lt;span&gt;4&lt;/span&gt;
+    &lt;span&gt;5&lt;/span&gt;&lt;span&gt;6&lt;/span&gt;
+&lt;/div&gt;
+&lt;div&gt;
+    &lt;span&gt;7&lt;/span&gt;
+    &lt;span&gt;8&lt;/span&gt;&lt;span&gt;9&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+                <div>
+                    <div>
+                        <span>1</span>
+                        <span>2</span><span>3</span>
+                    </div>
+                    <div>
+                        <span>4</span>
+                        <span>5</span><span>6</span>
+                    </div>
+                    <div>
+                        <span>7</span>
+                        <span>8</span><span>9</span>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h2>Box Model</h2>
+                <img class=plain src="./img/box.gif" alt="CSS Boxmodel" width="340">
+                <p>
+                    real-size = margin + border + padding + size<br>
+                    you can change what width and height refer to:
+                    <br>box-sizing: content-box|border-box|inherit;
+                </p>
+            </section>
+        <section>
+            <img class="header-logo" src="img/js-logo.png" alt="javascript logo">
+            <p>ECMAScript (<strong>JavaScript</strong>)</p>
+            <p>Philip Schmökel</p>
+        </section>
+        <section>
+            <p>
+                <p>ECMAScript (ES) first <strong>introduced 1997</strong> turns 20 in 2017 and its popularity is <strong>still growing.</strong></p>
+                <p><small>5th PYPL (2017), 7th TIOBE Index (2017)</small></p>
+            </p>
+            <div class="fragment">
+                <strong>UPDATE 2018</strong>
+                <p>
+                    <small><strong>4th</strong> PYPL in Feb. 2018, overtook C#</small>
+                </p>
+                <p>
+                    <small>... TypeScript ranked 12th, combined <strong>3rd</strong>, overtaking PHP</small>
+                </p>        
+            </div>
+        </section>
+        <section>
+            <h3>ECMAScript (JavaScript) versioning covered</h3>
+            <ul>
+                <li>ES5 2009</li>
+                <li>ES2015 (f.k.a. ES6) 2015</li>
+                <li>ES2016, ES2017, ..., ES.Next</li>
+                <li>TypeScript 3.0 2018</li>
+            </ul>
+            <p><a href="http://caniuse.com/#search=es6" target="_blank">Can I use ES6 (Browsers Support)</a></p>
+            <p><a href="http://node.green/" target="_blank">node.green (Node.js Support)</a></p>
+        </section>
+        <section>
+            <h3>Why is ES5 still relevant</h3>
+            <p>Todays go to version considering <strong>compatibility</strong>.</p>
+            <p>Older browsers (IE ...) can support ES5 code via <strong>polyfills</strong>.</p>
+            <p>Most TypeScript projects <strong>compile</strong> to it.</p>
+            <p>There are lots of <strong>legacy projects</strong>, <strong>build scripts</strong>, etc. written in ES5.</p>
+        </section>
+        <section>
+            <img class="header-logo" src="img/js-logo.png" alt="JS logo">
+            <h3>ES5 Introduction</h3>
+        </section>
+        <section>
+            <h2>JavaScript...</h2>
+            <p>...has nothing in common with Java&nbsp;<small>* except for some key words</small></p>
+            <p>...is more like <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">&ldquo;Lisp in C's clothing&rdquo;</q>&nbsp;<small>*Douglas Crockford</small>
+            </p>
+            <p>...has objects, but is class-free</p>
+            <p>...is of single-threaded nature</p>
+            <p>...has asynchronous programming model</p>
+            <p>...is object oriented and functional at the same time</p>
+        </section>
+        <section>
+                <h3>Hoisting</h3>
+                <div>
+                    <pre><code data-trim class="javascript">
+var myVar = 'global';
+var myFunction = function () {
+    console.log(myVar); // undefined
+    var myVar = 'local';
+    console.log(myVar); // 'local'
+};
+myFunction();
+					</code></pre>
+                    <p>Declarations get <strong>hoisted to the top</strong> of a function...</p>
+                </div>
+                <div>
+                    <p>The above code behaves as if it looked like this:</p>
+                    <pre><code data-trim class="javascript">
+var myVar = 'global';
+var myFunction = function () {
+    var myVar;
+    console.log(myVar); // undefined
+    myVar = 'local';
+    console.log(myVar); // 'local'
+};
+myFunction();
+					</code></pre>
+                </div>
+            </section>
+            <section>
+                <p>
+                    Always use <strong>var</strong> to declare variables.
+                    If you don't, they become <strong>global</strong> variables.
+                </p>
+            </section>
+            <section>
+                <p>Top Scope</p>
+                <pre><code data-trim class="javascript">
+console.log(this); // Window
+console.log(this.myVar); // undefined
+console.log(this.myVar2); // undefined
+
+myVar = 'otto';
+var myVar2 = 'peter';
+
+console.log(this.myVar); // 'otto'
+console.log(this.myVar2); // 'peter'
+                </code></pre>
+            </section>
+            <section>
+                <p>Child Scope</p>
+                <pre><code data-trim class="javascript">
+function myFunc() {
+    console.log(this); // Window
+    console.log(this.myVar); // undefined
+    console.log(this.myVar2); // undefined
+
+    myVar = 'otto';
+    var myVar2 = 'peter';
+
+    console.log(this.myVar); // 'otto'
+    console.log(this.myVar2); // undefined
+}
+
+myFunc();
+                </code></pre>
+            </section>
+            <section>
+                <h2>Single var pattern</h2>
+                <p>Eliminates logical errors caused by hoisting</p>
+                <pre><code data-trim class="javascript">
+var a = 1,
+    b = 2,
+    sum = a + b,
+    myVar,
+    hello = function () {
+        return 'Hello!';
+    };
+					</code></pre>
+            </section>
+            <section>
+                <h2>Objects</h2>
+                <p>can be created in a very convenient way with <i>object literals</i>:</p>
+                <pre><code data-trim class="javascript">
+var emptyObject = {},
+    person = {
+      firstName : 'John',
+      lastName : 'Example',
+      age : 30
+    };
+					</code></pre>
+            </section>
+            <section>
+                <h2>Objects</h2>
+                <p>Values' retrieval</p>
+                <pre><code data-trim class="javascript">
+var emptyObject = {},
+    person = {
+        firstName: 'John',
+        lastName: 'Example',
+        age: 30
+    };
+
+// retrieval
+person.firstName // 'John'
+person['lastName'] // 'Example'
+person.salutation // undefined
+salutation = person.salutation || ''; // the default operator
+person.address.street // throws TypeError
+street = person.address &amp;&amp; person.address.street // undefined
+					</code></pre>
+            </section>
+            <section>
+                <h2>Objects</h2>
+                <p>Values' update and properties' removal</p>
+                <pre><code data-trim class="javascript">
+var person = {
+        firstName: 'John',
+        lastName: 'Example',
+        age: 30
+    };
+
+// update
+person['firstName'] = 'Joe';
+person.age = 33;
+
+// delete
+delete person.age;
+                </code></pre>
+            </section>
+            <section>
+                <h2>Functions</h2>
+                <p>are objects</p>
+                <p>can be created with <i>function literals</i>:</p>
+                <pre><code data-trim class="javascript">
+var add = function (a, b) {
+    return a + b;
+};
+
+add(1, 2); // 3
+                </code></pre>
+            </section>
+            <section>
+                <h2>Functions</h2>
+                <p>stored as properties of objects...</p>
+                <pre><code data-trim class="javascript">
+var person = {
+    firstName: 'John',
+    lastName: 'Example',
+    age: 30,
+    letMeIntroduceMyself: function () {
+        return 'My name is ' + this.firstName + ' ' + this.lastName;
+    }
+};
+
+person.letMeIntroduceMyself(); // My name is John Example
+person.firstName // 'John' - no privacy
+                </code></pre>
+                <p>...are called <i>methods</i></p>
+            </section>
+            <section>
+                <h2>Scope</h2>
+                <p>... is defined by functions, and not {} blocks</p>
+                <pre><code class="javascript">// Scope 1
+var funcA = function () {
+  // Scope 2
+  var funcB = function () {
+    // Scope 3
+  };
+};
+                </code></pre>
+            </section>
+            <section>
+                <h2>Lexical Scope</h2>
+                <p>Inner scope can access outer scope and not vice versa.</p>
+                <pre><code data-trim class="javascript">
+var myFun = function (someInput) {
+    var a = 1,
+        b = 2,
+        yourFun = function () {
+            var b = 22,
+                c = 3;
+            // at this point a = 1, b = 22, c = 3
+            a = 11;
+        };
+    // at this point a = 1, b = 2, c is not defined
+    yourFun();
+    // at this point a = 11, b = 2, c is not defined
+};
+myFun();
+                </code></pre>
+            </section>
+            <section>
+                <h2>Closure</h2>
+                <p>enables a function to keep its creation context</p>
+                <pre><code data-trim class="javascript">
+var myObjectFactory = function (param) {
+      var value = 'Value';
+
+      return {
+        theseAreMySecrets: function () {
+          return 'value = ' + value + ', param = ' + param;
+        }
+      };
+    }
+    , myObject = myObjectFactory('Param');
+
+myObject.theseAreMySecrets(); // value = Value, param = Param
+myObject.value; // undefined                        
+                </code></pre>
+            </section>
+            <section>
+                <h2>Module Pattern - IIFE</h2>
+                <p>makes use of function scope and closure</p>
+                <pre><code class="max-height-unset" data-trim class="javascript">
+var person = (function () {
+    var details = {
+        firstName: 'John',
+        lastName: 'Example',
+        age: 30
+    };
+
+    return {
+        letMeIntroduceMyself: function () {
+            return 'My name is ' +
+                details.firstName + ' ' + details.lastName;
+        }
+    };
+})();
+
+person.letMeIntroduceMyself(); // My name is John Example
+person.details; // undefined
+                </code></pre>
+            </section>
+            <section>
+                <h3>Constructor function</h3>
+                <pre><code data-trim class="javascript">
+var Person = function () {
+      this.firstName = 'John';
+      this.lastName = 'Example';
+      this.age = 30;
+    }, johnExample;
+
+Person.prototype.letMeIntroduceMyself = function () {
+  return 'My name is ' + this.firstName + ' ' + this.lastName;
+};
+
+johnExample = new Person();
+johnExample.letMeIntroduceMyself();  // My name is John Example
+johnExample.firstName; // 'John' - no privacy
+                </code></pre>
+                <p>is intended to be invoked with the <i>new</i> prefix</p>
+                <p>creates a new object with a hidden link to its <i>prototype</i></p>
+                <p>has capitalized name by convention</p>
+            </section>
+            <section>
+                <p><strong>this</strong> is unrelated to scope.</p>
+                <ul>
+                    <li>the global object, at the top level scope</li>
+                    <li>obj, when executing <code>obj.func(...)</code></li>
+                    <li>obj, when executing <code>func.apply(obj, [...])</code></li>
+                    <li>a new object with prototype func.prototype, when calling new func(...)</li>
+                    <li>the event target, if <code>elem.addEventListener('event', func, ...)</code> and event is fired on elem</li>
+                    <li>...</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Coercion</h2>
+                <pre><code data-trim class="javascript">
+!!null        // false
+null == false // false
+
+0 == false  // true
+'' == false // true
+
++true // 1
+
+[] == ![] // true
+
+1 &lt; 2 &lt; 3 // true
+3 &gt; 2 &gt; 1 // false
+
+'2' - 1  // 1
+'133' + 7  // '1337'
+                </code></pre>
+                <p>always use <code>===</code> instead of <code>==</code></p>                
+            </section>
   </div>
 </div>
 
