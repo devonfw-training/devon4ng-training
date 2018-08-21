@@ -41,11 +41,31 @@
       <p>You will learn what the three languages are about. What current browsers support and how to find out. What to rely on. A brief summary of past versions with browser history.</p>
     </section>
     <section>
-      <p>
-        <img class="plain" height="300" src="img/HTML5_Logo.svg">
-      </p>
-      <h1>HTML5 rocks!</h1>
-      <p>Created by Marek Matczak & Janusz Rygał</p>
+        <h2>Summary</h2>
+        <div style="display: flex; justify-content: center">
+            <div style="display: flex; flex-direction: column">
+                <img class="header-logo" src="img/HTML5_logo.svg" alt="javascript logo">
+                <small>Structure</small>
+            </div>
+            <div style="display: flex; flex-direction: column">
+                <img class="header-logo" src="img/css-logo.png" alt="javascript logo">                
+                <small>Styling</small>
+            </div>
+            <div style="display: flex; flex-direction: column">
+                <img class="header-logo" src="img/js-logo.png" alt="javascript logo">
+                <small>Logic</small>
+            </div>
+        </div>
+        <p style="margin-top: 60px">All three run natively in the browser.</p>
+    </section>
+    <section>
+        <p>Browser support tables for modern web technologies at <a href="https://caniuse.com/" target="_about">caniuse.com</a></p>
+        <p>ECMAScript compatibility tables applied to Node.js <a href="https://node.green">node.green</a></p>
+        <p>You can check what your current browser supports at <a href="https://whatwebcando.today/" target="_about">whatwebcando.today</a></p>
+    </section>
+    <section>
+    <img class="plain" height="300" src="img/HTML5_Logo.svg">
+      <p>Introduction to HTML</p>
     </section>
     <section>
                 <h2>HTML and HTML documents</h2>
@@ -101,7 +121,7 @@
                 </p>
         </section>
         <section>
-            <h3>Attributes: examples<small>*</small></h3>
+            <h3>Attributes: examples</h3>
 <pre><code data-trim class="html">
 &lt;!-- empty attributes --&gt;
 &lt;input name=address disabled&gt;
@@ -112,15 +132,6 @@
 &lt;input name=address maxlength='200'&gt;
 &lt;input name=address maxlength="200"&gt;                
             </code></pre>
-            <h3>Custom data attributes<small>**</small></h3>
-            <pre><code data-trim class="html">
-&lt;span data-my-attribute="go!"&gt;&lt;/span&gt;
-&lt;div data-ng-app='rwcApp'&gt;Angular lives here...&lt;/div&gt;
-            </code></pre>
-                
-            <p class="foot-note">
-                <small>*&nbsp;<a href="http://www.w3.org/TR/html5/introduction.html#a-quick-introduction-to-html">http://www.w3.org/TR/html5/introduction.html#a-quick-introduction-to-html</a></small><small>**&nbsp;<a href="http://www.w3.org/TR/html5/dom.html#attr-data-*">http://www.w3.org/TR/html5/dom.html#attr-data-*</a></small>
-            </p>
         </section>
         
         <section>
@@ -130,6 +141,9 @@
                 <li>The DOM tree can be <strong>manipulated</strong> from scripts (typically in <strong>JavaScript</strong>) in the page - through a <a href="http://www.w3.org/TR/html5/dom.html#the-document-object">Document interface</a></li>
                 <li>Each element in the DOM tree is <strong>represented by an object</strong>, and these objects <strong>have APIs</strong> so that they can be manipulated, e.g.:</li>
             </ul>            
+        </section>
+        <section>
+            <img src="img/DOM-model.svg" class=plain alt="DOM example">
         </section>
         <section>
             <p>Example:</p>
@@ -143,7 +157,6 @@ Result: &lt;output name="result"&gt;&lt;/output&gt;
             </code></pre>    
         </section>
         <section>
-            <h2>Introduction to CSS</h2>
             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                 width="200px" viewBox="85.5 210.272 437.29 491.728" enable-background="new 85.5 210.272 437.29 491.728" xml:space="preserve">
                 <title>CSS3 Logo</title>
@@ -153,7 +166,7 @@ Result: &lt;output name="result"&gt;&lt;/output&gt;
             l-84.061,29.75l-83.639-29.75l0.063-27.087h-54.765l-0.251,65.719l138.353,49.289l138.877-49.289l0.467-98.873l0.141-19.834
             l0.568-127.292L167.739,293.569L167.739,293.569z" />
             </svg>
-            <p>Philip Schmökel</p>
+            <p>Introduction to CSS</p>
         </section>
         <section>
                 <h2>Cascading Style Sheets</h2>
