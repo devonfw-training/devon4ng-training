@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>HTML, CSS and JavaScript Introduction</title>
+    <title>Angular, Angular CLI and TypeScript</title>
     <link rel="icon" href="../common/img/favicon.ico">
 
 
@@ -38,7 +38,25 @@
   <div class="slides">
     <section>
       <h2>Angular, Angular CLI and TypeScript</h2>
-      <p>You will learn what Angular is all about. What Angular is and what problems it solves. What the Angular CLI is all about. What TypeScript is and how it relates to JavaScript.</p>
+      <div style="display: flex"><span style="width: 350px; margin-right: 30px">You will learn</span>
+        <ul>
+          <li>what Angular is and what problems it solves</li>
+          <li>what the Angular CLI is</li>
+          <li>what TypeScript is and how it relates to JavaScript</li>
+        </ul>
+      </div>
+    </section>
+    <section>
+        <h2>Angular Summary</h2>
+        <p>
+            <q cite="https://github.com/angular/angular">Angular is a development platform for building mobile and desktop web applications using Typescript/JavaScript and other languages.</q>
+        </p>
+    </section>
+    <section>
+        <h2>Angular CLI Summary</h2>
+        <p>
+            <q cite="https://angular.io/guide/quickstart">The Angular CLI is a command line interface tool that can create a project, add files, and perform a variety of ongoing development tasks such as testing, bundling, and deployment.</q>
+        </p>
     </section>
     <section
                 id="typescript"
@@ -243,18 +261,27 @@ myFunc(undefined); // compiler error
               </code></pre>
             </section>
             <section>
-                <code><pre class="typescript" data-trim>
+                <pre><code class="typescript" data-trim>
 function query(method: 'GET'|'POST'|'PUT') {
   // highly suffisticated stuff here...
 }
 
 query('otto');
-                </pre></code>
+                </code></pre>
                 <p>will it compile?</p>
                 <div class="fragment">
                     <img src="img/specific-string-example.png" class="plain no-border" alt="">
                     <p>More specific than a string - cool, right?</p>
                 </div>
+            </section>
+            <section>
+                <h2>Angular Live Coding</h2>
+                <p>We will take a quick look at...</p>
+                <ul>
+                    <li>components</li>
+                    <li>data binding</li>
+                    <li>backend requests</li>
+                </ul>
             </section>
   </div>
 </div>
