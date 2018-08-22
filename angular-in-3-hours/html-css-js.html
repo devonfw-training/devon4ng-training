@@ -38,7 +38,14 @@
   <div class="slides">
     <section>
       <h2>HTML, CSS and JavaScript Introduction</h2>
-      <p>You will learn what the three languages are about. What current browsers support and how to find out. What to rely on. A brief summary of past versions with browser history.</p>
+      <div style="display: flex"><span style="width: 350px; margin-right: 30px">You will learn</span>
+        <ul>
+          <li>what the three languages are about</li>
+          <li>what current browsers support and how to find out</li>
+          <li>what to rely on</li>
+          <li>A brief summary of past versions with browser history</li>
+        </ul>
+      </div>
     </section>
     <section>
         <h2>Summary</h2>
@@ -69,7 +76,7 @@
     </section>
     <section>
                 <h2>HTML and HTML documents</h2>
-                <p><strong>HTML</strong> is a markup language for describing the <strong>structure</strong> of web documents (web pages).<small>*</small> A basic <strong>HTML document</strong> looks like this:<small>*</small>
+                <p><strong>HTML</strong> is a markup language for describing the <strong>structure</strong> of web documents.
                 </p>
                 <pre><code data-trim class="html">
 &lt;!DOCTYPE html&gt;
@@ -84,41 +91,46 @@
 &lt;/body&gt;
 &lt;/html&gt;
                 </code></pre>
-                <p class="foot-note">
-                    <small>*&nbsp;<a href="http://www.w3schools.com/html/html_intro.asp">http://www.w3schools.com/html/html_intro.asp</a></small>
-                    <small>**&nbsp;<a href="http://www.w3.org/TR/html5/introduction.html#a-quick-introduction-to-html">http://www.w3.org/TR/html5/introduction.html#a-quick-introduction-to-html</a></small>
-                </p>
+                A basic <strong>HTML document</strong>
             </section>
             <section>
                 <h3>HTML tags</h3>
                 <ul>
                     <li><strong>HTML documents</strong> consist of a <strong>tree of elements and text</strong>. Each element is denoted in the source by <strong>a start tag</strong>, such as <strong><code>&lt;body&gt;</code></strong>, and an end tag, such as <strong><code>&lt;/body&gt;</code></strong>.</li>
-                    <li><strong>Tags have to be nested</strong> so that elements are all completely within each other, without overlapping:
+                </ul>
+                <pre><code class="html" data-trim>
+&lt;body&gt;
+  &lt;!-- body content goes here... --&gt;
+&lt;/body&gt;
+                </code></pre>
+            </section>
+            <section>
+                <strong>Tags have to be nested</strong> so that elements are all completely within each other, without overlapping
                         <pre><code data-trim class="html">
-&lt;p&gt;This is &lt;em&gt;very &lt;strong&gt;wrong&lt;/em&gt;!&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;This &lt;em&gt;is &lt;strong&gt;correct&lt;/strong&gt;.&lt;/em&gt;&lt;/p&gt;                
+&lt;p&gt;
+  This is &lt;em&gt;very &lt;strong&gt;wrong&lt;/em&gt;!&lt;/strong&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+  This &lt;em&gt;is &lt;strong&gt;correct&lt;/strong&gt;.&lt;/em&gt;
+&lt;/p&gt;                
                         </code></pre>
-                    </li>
-                    <li>
+            </section>
+            <section>
                         There are exceptions - so called void-elements e.g.
                         <pre><code data-trim class="html">
 &lt;input type="date"&gt;
 &lt;br&gt;      
                         </code></pre>
-                    </li>
-                </ul>
             </section>
             <section>
                 <h2>HTML elements' attributes</h2>
                 <ul>
                     <li>Attributes control how the elements work and are placed <strong>inside the start tag</strong>.</li>
-                    <li>Attributes consist of <strong>a name and a value</strong>, separated by an <code><strong>=</strong></code> character.</li>
-                    <li><strong>The value</strong> can remain <strong>unquoted</strong> if it doesn't contain space characters or any of <strong><code>" ' ` = &gt;</code>&nbsp;or&nbsp;<code>&lt;</code></strong> character.</li>
+                    <li>Attributes are <strong><code>name=value</code></strong> pairs</li>
+                    <li>Value can be <strong>unquoted</strong> if it doesn't contain space characters or any of <strong><code>" ' ` = &gt;</code>&nbsp;or&nbsp;<code>&lt;</code></strong> character.</li>
                     <li>Otherwise, it has to be quoted using either single or double quotes. The value, along with the <code><strong>=</strong></code> character, can be omitted altogether if the value is the empty string.</li>
                 </ul>
-                <p class="foot-note">
-                    <small>*&nbsp;<a href="http://www.w3.org/TR/html5/introduction.html#a-quick-introduction-to-html">http://www.w3.org/TR/html5/introduction.html#a-quick-introduction-to-html</a></small>
-                </p>
         </section>
         <section>
             <h3>Attributes: examples</h3>
@@ -136,17 +148,19 @@
         
         <section>
             <h3>Document Object Model (DOM)</h3>
+            <div style="display: flex">
+                <ul style="margin-right: 40px;">
+                    <li>Web browsers <strong>parse</strong> an HTML document, turning it into a Document Object Model (DOM) tree.</li>
+                    <li>A DOM tree is an <strong>in-memory representation</strong> of the document</li>
+                </ul>
+                <img src="img/DOM-model.svg" class=plain alt="DOM example">
+            </div>
+        </section>
+        <section>
             <ul>
-                <li>Web browsers <strong>parse</strong> an HTML document, turning it into a Document Object Model (DOM) tree. A DOM tree is an <strong>in-memory representation</strong> of the document</li>
-                <li>The DOM tree can be <strong>manipulated</strong> from scripts (typically in <strong>JavaScript</strong>) in the page - through a <a href="http://www.w3.org/TR/html5/dom.html#the-document-object">Document interface</a></li>
-                <li>Each element in the DOM tree is <strong>represented by an object</strong>, and these objects <strong>have APIs</strong> so that they can be manipulated, e.g.:</li>
-            </ul>            
-        </section>
-        <section>
-            <img src="img/DOM-model.svg" class=plain alt="DOM example">
-        </section>
-        <section>
-            <p>Example:</p>
+                <li>The DOM tree can be <strong>manipulated</strong> with JavaScript (see <a href="http://www.w3.org/TR/html5/dom.html#the-document-object">Document interface</a>)</li>
+                <li>Each element in the DOM tree is <strong>represented by an object</strong>, and these objects <strong>have APIs</strong></li>
+            </ul>
             <pre><code data-trim class="html">
 &lt;form name="main"&gt;
 Result: &lt;output name="result"&gt;&lt;/output&gt;
