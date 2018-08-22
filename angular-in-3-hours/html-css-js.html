@@ -171,15 +171,7 @@ Result: &lt;output name="result"&gt;&lt;/output&gt;
             </code></pre>    
         </section>
         <section>
-            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                width="200px" viewBox="85.5 210.272 437.29 491.728" enable-background="new 85.5 210.272 437.29 491.728" xml:space="preserve">
-                <title>CSS3 Logo</title>
-                <polygon fill="#1572B6" points="128.668,652.845 89.21,210.272 522.79,210.272 483.29,652.775 305.735,702 " />
-                <polygon fill="#33A9DC" points="306,664.375 449.474,624.599 483.229,246.459 306,246.459 " />
-                <path fill="#FFFFFF" d="M167.739,293.569l-0.308,54.766H390.34l-0.08,35.375H167.203l-0.161,54.766h222.909l-0.293,62.462
-            l-84.061,29.75l-83.639-29.75l0.063-27.087h-54.765l-0.251,65.719l138.353,49.289l138.877-49.289l0.467-98.873l0.141-19.834
-            l0.568-127.292L167.739,293.569L167.739,293.569z" />
-            </svg>
+            <img class="header-logo" src="img/css-logo.png" alt="javascript logo">                            
             <p>Introduction to CSS</p>
         </section>
         <section>
@@ -362,42 +354,51 @@ p {
             <section>
                 <h2>Box Model</h2>
                 <img class=plain src="./img/box.gif" alt="CSS Boxmodel" width="340">
-                <p>
-                    real-size = margin + border + padding + size<br>
-                    you can change what width and height refer to:
-                    <br>box-sizing: content-box|border-box|inherit;
-                </p>
+                <p>real-size = margin + border + padding + size<br></p>
             </section>
         <section>
             <img class="header-logo" src="img/js-logo.png" alt="javascript logo">
             <p>ECMAScript (<strong>JavaScript</strong>)</p>
-            <p>Philip Schmökel</p>
         </section>
         <section>
             <p>
-                <p>ECMAScript (ES) first <strong>introduced 1997</strong> turns 20 in 2017 and its popularity is <strong>still growing.</strong></p>
-                <p><small>5th PYPL (2017), 7th TIOBE Index (2017)</small></p>
+                <p>ECMAScript (ES) first <strong>introduced 1997</strong> turned 20 in 2017 and its popularity is <strong>still growing.</strong></p>
+                <p><small><strong>3th</strong> PYPL (Aug. 2018), <strong>8th</strong> TIOBE Index (Aug. 2018)<br>
+                    (TypeScript is listed separately)</small></p>
             </p>
-            <div class="fragment">
-                <strong>UPDATE 2018</strong>
-                <p>
-                    <small><strong>4th</strong> PYPL in Feb. 2018, overtook C#</small>
-                </p>
-                <p>
-                    <small>... TypeScript ranked 12th, combined <strong>3rd</strong>, overtaking PHP</small>
-                </p>        
+        </section>
+        <section>
+            <h2>JavaScript is everywhere...</h2>
+            <div style="display: flex; justify-content: space-around;">
+                <div style="display: flex; flex-direction: column; align-items: start">
+                    <div style="display: flex; justify-content: center; align-items: center">
+                        <img class="header-logo" style="height: 138px; margin: -30px" src="img/edge-logo.png" alt="javascript logo">                    
+                        <img class="header-logo" style="height: 90px" src="img/chrome-logo.png" alt="javascript logo">
+                        <img class="header-logo" style="height: 90px" src="img/firefox-logo.png" alt="javascript logo">
+                        <img class="header-logo" style="height: 90px" src="img/safari-logo.png" alt="javascript logo">
+                    </div>
+                    <p style="text-align: left; margin-left: 28px">on the client</p>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: start">
+                    <img class="header-logo" style="height: 90px; margin-left: 0" src="img/nodejs-logo.png" alt="javascript logo">
+                    <p style="text-align: left">on the server</p>
+                </div>
             </div>
         </section>
         <section>
-            <h3>ECMAScript (JavaScript) versioning covered</h3>
+            <h2>ECMAScript versions</h2>
             <ul>
+                <li>ES3 1999</li>
                 <li>ES5 2009</li>
                 <li>ES2015 (f.k.a. ES6) 2015</li>
                 <li>ES2016, ES2017, ..., ES.Next</li>
-                <li>TypeScript 3.0 2018</li>
             </ul>
-            <p><a href="http://caniuse.com/#search=es6" target="_blank">Can I use ES6 (Browsers Support)</a></p>
-            <p><a href="http://node.green/" target="_blank">node.green (Node.js Support)</a></p>
+            <p>
+                <small>
+                    <a href="http://caniuse.com/#search=es6" target="_blank">Can I use ES6 (Browsers Support)</a><br>
+                    <a href="http://node.green/" target="_blank">node.green (Node.js Support)</a>
+                </small>
+            </p>
         </section>
         <section>
             <h3>Why is ES5 still relevant</h3>
@@ -407,11 +408,8 @@ p {
             <p>There are lots of <strong>legacy projects</strong>, <strong>build scripts</strong>, etc. written in ES5.</p>
         </section>
         <section>
-            <img class="header-logo" src="img/js-logo.png" alt="JS logo">
-            <h3>ES5 Introduction</h3>
-        </section>
-        <section>
-            <h2>JavaScript...</h2>
+            <h2>A word on ES5</h2>
+            <p style="text-align: left"><strong>JavaScript...</strong></p>
             <p>...has nothing in common with Java&nbsp;<small>* except for some key words</small></p>
             <p>...is more like <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">&ldquo;Lisp in C's clothing&rdquo;</q>&nbsp;<small>*Douglas Crockford</small>
             </p>
@@ -421,219 +419,18 @@ p {
             <p>...is object oriented and functional at the same time</p>
         </section>
         <section>
-                <h3>Hoisting</h3>
-                <div>
-                    <pre><code data-trim class="javascript">
-var myVar = 'global';
-var myFunction = function () {
-    console.log(myVar); // undefined
-    var myVar = 'local';
-    console.log(myVar); // 'local'
-};
-myFunction();
-					</code></pre>
-                    <p>Declarations get <strong>hoisted to the top</strong> of a function...</p>
-                </div>
-                <div>
-                    <p>The above code behaves as if it looked like this:</p>
-                    <pre><code data-trim class="javascript">
-var myVar = 'global';
-var myFunction = function () {
-    var myVar;
-    console.log(myVar); // undefined
-    myVar = 'local';
-    console.log(myVar); // 'local'
-};
-myFunction();
-					</code></pre>
-                </div>
-            </section>
-            <section>
-                <p>
-                    Always use <strong>var</strong> to declare variables.
-                    If you don't, they become <strong>global</strong> variables.
-                </p>
-            </section>
-            <section>
-                <p>Top Scope</p>
-                <pre><code data-trim class="javascript">
-console.log(this); // Window
-console.log(this.myVar); // undefined
-console.log(this.myVar2); // undefined
-
-myVar = 'otto';
-var myVar2 = 'peter';
-
-console.log(this.myVar); // 'otto'
-console.log(this.myVar2); // 'peter'
-                </code></pre>
-            </section>
-            <section>
-                <p>Child Scope</p>
-                <pre><code data-trim class="javascript">
-function myFunc() {
-    console.log(this); // Window
-    console.log(this.myVar); // undefined
-    console.log(this.myVar2); // undefined
-
-    myVar = 'otto';
-    var myVar2 = 'peter';
-
-    console.log(this.myVar); // 'otto'
-    console.log(this.myVar2); // undefined
-}
-
-myFunc();
-                </code></pre>
-            </section>
-            <section>
-                <h2>Single var pattern</h2>
-                <p>Eliminates logical errors caused by hoisting</p>
-                <pre><code data-trim class="javascript">
-var a = 1,
-    b = 2,
-    sum = a + b,
-    myVar,
-    hello = function () {
-        return 'Hello!';
-    };
-					</code></pre>
-            </section>
-            <section>
-                <h2>Objects</h2>
-                <p>can be created in a very convenient way with <i>object literals</i>:</p>
-                <pre><code data-trim class="javascript">
-var emptyObject = {},
-    person = {
-      firstName : 'John',
-      lastName : 'Example',
-      age : 30
-    };
-					</code></pre>
-            </section>
-            <section>
-                <h2>Objects</h2>
-                <p>Values' retrieval</p>
-                <pre><code data-trim class="javascript">
-var emptyObject = {},
-    person = {
-        firstName: 'John',
-        lastName: 'Example',
-        age: 30
-    };
-
-// retrieval
-person.firstName // 'John'
-person['lastName'] // 'Example'
-person.salutation // undefined
-salutation = person.salutation || ''; // the default operator
-person.address.street // throws TypeError
-street = person.address &amp;&amp; person.address.street // undefined
-					</code></pre>
-            </section>
-            <section>
-                <h2>Objects</h2>
-                <p>Values' update and properties' removal</p>
-                <pre><code data-trim class="javascript">
-var person = {
-        firstName: 'John',
-        lastName: 'Example',
-        age: 30
-    };
-
-// update
-person['firstName'] = 'Joe';
-person.age = 33;
-
-// delete
-delete person.age;
-                </code></pre>
-            </section>
-            <section>
-                <h2>Functions</h2>
-                <p>are objects</p>
-                <p>can be created with <i>function literals</i>:</p>
-                <pre><code data-trim class="javascript">
-var add = function (a, b) {
-    return a + b;
-};
-
-add(1, 2); // 3
-                </code></pre>
-            </section>
-            <section>
-                <h2>Functions</h2>
-                <p>stored as properties of objects...</p>
-                <pre><code data-trim class="javascript">
-var person = {
-    firstName: 'John',
-    lastName: 'Example',
-    age: 30,
-    letMeIntroduceMyself: function () {
-        return 'My name is ' + this.firstName + ' ' + this.lastName;
-    }
-};
-
-person.letMeIntroduceMyself(); // My name is John Example
-person.firstName // 'John' - no privacy
-                </code></pre>
-                <p>...are called <i>methods</i></p>
-            </section>
-            <section>
-                <h2>Scope</h2>
-                <p>... is defined by functions, and not {} blocks</p>
-                <pre><code class="javascript">// Scope 1
-var funcA = function () {
-  // Scope 2
-  var funcB = function () {
-    // Scope 3
-  };
-};
-                </code></pre>
-            </section>
-            <section>
-                <h2>Lexical Scope</h2>
-                <p>Inner scope can access outer scope and not vice versa.</p>
-                <pre><code data-trim class="javascript">
-var myFun = function (someInput) {
-    var a = 1,
-        b = 2,
-        yourFun = function () {
-            var b = 22,
-                c = 3;
-            // at this point a = 1, b = 22, c = 3
-            a = 11;
-        };
-    // at this point a = 1, b = 2, c is not defined
-    yourFun();
-    // at this point a = 11, b = 2, c is not defined
-};
-myFun();
-                </code></pre>
-            </section>
-            <section>
-                <h2>Closure</h2>
-                <p>enables a function to keep its creation context</p>
-                <pre><code data-trim class="javascript">
-var myObjectFactory = function (param) {
-      var value = 'Value';
-
-      return {
-        theseAreMySecrets: function () {
-          return 'value = ' + value + ', param = ' + param;
-        }
-      };
-    }
-    , myObject = myObjectFactory('Param');
-
-myObject.theseAreMySecrets(); // value = Value, param = Param
-myObject.value; // undefined                        
-                </code></pre>
-            </section>
-            <section>
-                <h2>Module Pattern - IIFE</h2>
-                <p>makes use of function scope and closure</p>
-                <pre><code class="max-height-unset" data-trim class="javascript">
+            <p>Classic JavaScript has very confusing concepts (at least for Java / .Net devs...). Here are a few...</p>
+            <ul>
+                <li>Hoisting (undefined, null)</li>
+                <li>Lexical Scope</li>
+                <li><code>this</code></li>
+                <li>Object literals</li>
+                <li>Coercion (always use <code>===</code>)</li>
+            </ul>
+        </section>
+        <section>
+            <p>An example for a well known JavaScript pattern (<strong>IIFE</strong>)</p>
+            <pre><code class="max-height-unset" data-trim class="javascript">
 var person = (function () {
     var details = {
         firstName: 'John',
@@ -651,61 +448,12 @@ var person = (function () {
 
 person.letMeIntroduceMyself(); // My name is John Example
 person.details; // undefined
-                </code></pre>
-            </section>
-            <section>
-                <h3>Constructor function</h3>
-                <pre><code data-trim class="javascript">
-var Person = function () {
-      this.firstName = 'John';
-      this.lastName = 'Example';
-      this.age = 30;
-    }, johnExample;
-
-Person.prototype.letMeIntroduceMyself = function () {
-  return 'My name is ' + this.firstName + ' ' + this.lastName;
-};
-
-johnExample = new Person();
-johnExample.letMeIntroduceMyself();  // My name is John Example
-johnExample.firstName; // 'John' - no privacy
-                </code></pre>
-                <p>is intended to be invoked with the <i>new</i> prefix</p>
-                <p>creates a new object with a hidden link to its <i>prototype</i></p>
-                <p>has capitalized name by convention</p>
-            </section>
-            <section>
-                <p><strong>this</strong> is unrelated to scope.</p>
-                <ul>
-                    <li>the global object, at the top level scope</li>
-                    <li>obj, when executing <code>obj.func(...)</code></li>
-                    <li>obj, when executing <code>func.apply(obj, [...])</code></li>
-                    <li>a new object with prototype func.prototype, when calling new func(...)</li>
-                    <li>the event target, if <code>elem.addEventListener('event', func, ...)</code> and event is fired on elem</li>
-                    <li>...</li>
-                </ul>
-            </section>
-            <section>
-                <h2>Coercion</h2>
-                <pre><code data-trim class="javascript">
-!!null        // false
-null == false // false
-
-0 == false  // true
-'' == false // true
-
-+true // 1
-
-[] == ![] // true
-
-1 &lt; 2 &lt; 3 // true
-3 &gt; 2 &gt; 1 // false
-
-'2' - 1  // 1
-'133' + 7  // '1337'
-                </code></pre>
-                <p>always use <code>===</code> instead of <code>==</code></p>                
-            </section>
+            </code></pre>
+        </section>
+        <section>
+            <p>Newer ES versions introduced concepts like classes, interfaces, modules and block scope variables.</p>
+            <p>With TypeScript we can use those features today - and that's where we will continue.</p>
+        </section>
   </div>
 </div>
 
