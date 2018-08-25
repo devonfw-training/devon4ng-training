@@ -75,11 +75,6 @@ div.slides section img {
             <h3>Pageload-centric web applications</h3>
             <p>... are the predominant architecture of the past.</p>
             <img class="plain no-border" height="300" src="img/classical-web-apps.png">
-        </section>
-        <section>
-            <p>
-                The content of each web page is fully <strong>rendered on the server</strong>.
-            </p>
             <p>
                 Each action requires a <strong>round trip to the server</strong> which contains presentation logic and application state.
             </p>
@@ -87,8 +82,6 @@ div.slides section img {
         <section>
             <h3>Single Page Applications</h3>
             <img class="plain no-border" height="300" src="img/spas.png">
-        </section>
-        <section>
             <p>
                 A page's content is retrieved with a <strong>single page load</strong>. </p>
             <p>
@@ -117,6 +110,7 @@ div.slides section img {
             </section>
             <section>
                 <h1 style="font-style: italic">UI = f ( State )</h1>
+                <p>Everything you need to understand about <strong>reactive architecture</strong>.</p>
             </section>
             <section>
                 <img src="img/uifunction.png" alt="UI is function of state">
@@ -131,7 +125,7 @@ div.slides section img {
                 <img src="img/state-example-3.png" alt="UI is function of state example 3">
             </section>
             <section>
-                <h2>What Frameworks To Know?</h2>
+                <h2>Frameworks To Know</h2>
                 <div style="display:flex; justify-content: space-around;">
                     <div class="image-box">
                         <img width="150px" src="img/react.png" style="margin-right: 20px">
@@ -183,6 +177,46 @@ export function counterReducer(state: number = 0, action: Action) {
                 <img src="img/reducer-composite.png">
             </section>
             <section>
+                    <img style="border: none; box-shadow: none" src="./img/smart-dumb-components-interaction.svg">
+                    <p>A <strong>must-know</strong> pattern: Smart vs Dumb Components</p>
+                </section>
+                <section>
+                    <table style="width: 100%; font-size: 26px">
+                        <thead>
+                            <tr style="font-size: 45px;">
+                                <td style="width: 50%">Smart Components</td>
+                                <td style="width: 50%">Dumb Components</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>contain the current view state</td>
+                                <td data-markdown>show data via `@Input` binding and contain no view state</td>
+                            </tr>
+                            <tr>
+                                <td data-markdown>handle events emited by _Dumb Components_</td>
+                                <td data-markdown>pass events up the component tree to be handled by _Smart Components_ (`@Output`)</td>
+                            </tr>
+                            <tr>
+                                <td>subscribe to application state from stores</td>
+                                <td>never use stores</td>
+                            </tr>
+                            <tr>
+                                <td data-markdown>consists of n _Dumb Components_</td>
+                                <td data-markdown>is independent of _Smart Components_</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3 data-markdown>A _Smart Component_ is typically a toplevel dialog</h3>
+                    <ul>
+                        <li>a component that can be routed to</li>
+                        <li>a modal dialog</li>
+                        <li>a component which is placed inside AppComponent</li>
+                    </ul>
+                </section>
+            <section>
                 <h2>State goes down</h2>
                 <img src="img/state-goes-down.png">
                 <p>... using Angular <code>@Input</code> syntax.</p>
@@ -191,27 +225,6 @@ export function counterReducer(state: number = 0, action: Action) {
                 <h2>Events go up</h2>
                 <img src="img/events-go-up.png">
                 <p>... using Angular <code>@Output</code> syntax.</p>
-            </section>
-            <section>
-                <h2>HTTP Request (XHR)</h2>
-                <img src="img/xhr.png">
-            </section>
-            <section>
-                <h2>Websockets Push</h2>
-                <img src="img/websockets-push.png">
-            </section>
-            <section>
-                <h2>Websockets Pull</h2>
-                <img src="img/websockets-pull.png">
-            </section>
-            <section>
-                <h2>Forget Everything And Go Reactive?</h2>
-                <p>Abstraction is the tradeoff which is not always worth it.</p>
-                <ul>
-                    <li>For small applications it's simply overkill.</li>
-                    <li>Lack of know how.</li>
-                    <li>Use it when you need it.</li>
-                </ul>
             </section>
   </div>
 </div>
