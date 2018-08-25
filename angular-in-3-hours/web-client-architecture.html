@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>HTML, CSS and JavaScript Introduction</title>
+    <title>Web Client Architecture</title>
     <link rel="icon" href="../common/img/favicon.ico">
 
 
@@ -27,6 +27,19 @@
 </head>
 <body>
 <style>
+.reveal .slide-background.present {
+    opacity: 0.4 !important;
+}
+div.slides section img {
+    border: none;
+    box-shadow: none;
+    margin: 0;
+}
+
+.image-box {
+    display:flex;
+    align-items: center;
+}
 </style>
 <section class="angular-link">
     <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
@@ -36,10 +49,165 @@
 </section>
 <div class="devon reveal">
   <div class="slides">
-    <section>
+    <section data-background="img/architecture.jpg">
       <h2>Web Client Architecture</h2>
-      <p>You will learn the basics of modern web client architecture. You will learn about the differences between SPAs and Java Swing applications in terms of architecture.</p>
+      <div style="display: flex"><span style="width: 350px; margin-right: 30px">You will learn</span>
+        <ul>
+          <li>basics of modern web client architecture</li>
+          <li>differences between SPAs and Java Swing applications</li>
+        </ul>
+      </div>
     </section>
+    <section>
+            <img src="img/rewrite-frontend-every-six-weeks.jpg" style="height: 650px" alt="Rewrite Your Frontend Every Six Weeks" class="plain">
+        </section>
+        <section>
+            <h2>Client Infrastructure</h2>
+            <p>(a.k.a. TI-Architecture)</p>
+        </section>
+        <section>
+            <h3>Pageload-centric web applications</h3>
+            <p>... are the predominant architecture of the past.</p>
+            <img class="plain no-border" height="300" src="img/classical-web-apps.png">
+        </section>
+        <section>
+            <p>
+                The content of each web page is fully <strong>rendered on the server</strong>.
+            </p>
+            <p>
+                Each action requires a <strong>round trip to the server</strong> which contains presentation logic and application state.
+            </p>
+        </section>
+        <section>
+            <h3>Single Page Applications</h3>
+            <img class="plain no-border" height="300" src="img/spas.png">
+        </section>
+        <section>
+            <p>
+                A page's content is retrieved with a <strong>single page load</strong>. </p>
+            <p>
+                The page <strong>does not reload</strong> any more.
+            </p>
+        </section>
+        <section>
+            <h2>Client Architecture</h2>
+            <p>(a.k.a. T-Architecture)</p>
+        </section>
+        <section>
+            <h3>Model View Controller</h3>
+            <div>
+                <img class="plain no-border" height="300" src="img/mvc.png">
+            </div>
+        </section>
+            <section>
+                <h2>Scaling MVC Applications</h2>
+                <div class="image-box">
+                    <img width="600px" style="margin-right: 50px" src="img/ng-state-everwhere.png">
+                    <ul style="width: 500px">
+                        <li>Debugging?</li>
+                        <li>Testing?</li>
+                        <li>Understanding?</li>
+                        <li>Server Side Rendering?</li>
+                    </ul>
+                </div>
+                <p style="font-size: 18px; display:flex"><a href="http://onehungrymind.com/build-better-angular-2-application-redux-ngrx/">http://onehungrymind.com/build-better-angular-2-application-redux-ngrx/</a></p>
+            </section>
+            <section>
+                <h1 style="font-style: italic">UI = f ( State )</h1>
+            </section>
+            <section>
+                <img src="img/uifunction.png" alt="UI is function of state">
+            </section>
+            <section>
+                <img src="img/state-example-1.png" alt="UI is function of state example 1">
+            </section>
+            <section>
+                <img src="img/state-example-2.png" alt="UI is function of state example 2">
+            </section>
+            <section>
+                <img src="img/state-example-3.png" alt="UI is function of state example 3">
+            </section>
+            <section>
+                <h2>What Frameworks To Know?</h2>
+                <div style="display:flex; justify-content: space-around;">
+                    <div class="image-box">
+                        <img width="150px" src="img/react.png" style="margin-right: 20px">
+                        <p class="fragment" data-fragment-index="0" style="font-size: 30px; display:flex"><a href="https://facebook.github.io/react/">React</a></p>
+                    </div>
+                    <div class="image-box">
+                        <img width="150px" src="img/flux.png" style="margin-right: 20px">
+                        <p class="fragment" data-fragment-index="1" style="font-size: 30px; display:flex"><a href="https://facebook.github.io/flux/">Flux</a></p>
+                    </div>
+                </div>
+                <div style="display:flex; justify-content: space-around;">
+                    <div class="image-box">
+                        <img width="150px" src="img/redux.png" style="margin-right: 20px">
+                        <p class="fragment" data-fragment-index="2" style="font-size: 30px; display:flex"><a href="http://redux.js.org/">Redux</a></p>
+                    </div>
+                    <div class="image-box">
+                        <img width="150px" src="img/ngrx.png" style="margin-right: 20px">
+                        <p class="fragment" data-fragment-index="3" style="font-size: 30px; display:flex"><a href="https://github.com/ngrx">ngrx</a></p>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <img src="img/store-view-actions.png" alt="Store View Actions">
+            </section>
+            <section>
+                <h2>Reducer Function</h2>
+                <pre class="width-100-percent"><code class="typescript max-height-unset" data-trim data-noescape>
+export function counterReducer(state: number = 0, action: Action) {
+  switch (action.type) {
+    case INCREMENT:
+      return state + 1;
+
+    case DECREMENT:
+      return state - 1;
+
+    case RESET:
+      return 0;
+
+    default:
+      return state;
+  }
+}
+                </code></pre>
+            </section>
+            <section>
+                <h2>Store - Tree Of Reducers</h2>
+                <img src="img/reducer-composite.png">
+            </section>
+            <section>
+                <h2>State goes down</h2>
+                <p>... using Angular <code>@Input</code> syntax.</p>
+                <img src="img/state-goes-down.png">
+            </section>
+            <section>
+                <h2>Events go up</h2>
+                <p>... using Angular <code>@Output</code> syntax.</p>
+                <img src="img/events-go-up.png">
+            </section>
+            <section>
+                <h2>HTTP Request (XHR)</h2>
+                <img src="img/xhr.png">
+            </section>
+            <section>
+                <h2>Websockets Push</h2>
+                <img src="img/websockets-push.png">
+            </section>
+            <section>
+                <h2>Websockets Pull</h2>
+                <img src="img/websockets-pull.png">
+            </section>
+            <section>
+                <h2>Forget Everything And Go Reactive?</h2>
+                <p>Abstraction is the tradeoff which is not always worth it.</p>
+                <ul>
+                    <li>For small applications it's simply overkill.</li>
+                    <li>Lack of know how.</li>
+                    <li>Use it when you need it.</li>
+                </ul>
+            </section>
   </div>
 </div>
 
