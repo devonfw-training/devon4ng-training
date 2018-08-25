@@ -59,11 +59,17 @@ div.slides section img {
       </div>
     </section>
     <section>
+        <h2>Summary</h2>
+        <ul>
+            <li>Modern architecture puts <strong>UI logic and business logic on the client</strong> - consuming RESTful resources</li>
+            <li>Web client requests aren't trustworthy - <strong>every backend resource needs to be secured</strong></li>
+            <li>Migrating from Java Swing means changing to <strong>HTTP resources</strong> and switching to a <strong>fundamental different language</strong> in client development</li>
+            <li><strong>Reactive architecture</strong> is state of the art for large enterprise projects</li>
+            <li>Divide into <strong>smart and dumb components</strong></li>
+        </ul>
+    </section>
+    <section>
             <img src="img/rewrite-frontend-every-six-weeks.jpg" style="height: 650px" alt="Rewrite Your Frontend Every Six Weeks" class="plain">
-        </section>
-        <section>
-            <h2>Client Infrastructure</h2>
-            <p>(a.k.a. TI-Architecture)</p>
         </section>
         <section>
             <h3>Pageload-centric web applications</h3>
@@ -90,14 +96,11 @@ div.slides section img {
             </p>
         </section>
         <section>
-            <h2>Client Architecture</h2>
-            <p>(a.k.a. T-Architecture)</p>
-        </section>
-        <section>
             <h3>Model View Controller</h3>
             <div>
                 <img class="plain no-border" height="300" src="img/mvc.png">
             </div>
+            <p>... is still a widely used pattern in modern UI frameworks.</p>
         </section>
             <section>
                 <h2>Scaling MVC Applications</h2>
@@ -152,6 +155,7 @@ div.slides section img {
             </section>
             <section>
                 <img src="img/store-view-actions.png" alt="Store View Actions">
+                <p>Actions are an abstraction of the intent to change the apps state.</p>
             </section>
             <section>
                 <h2>Reducer Function</h2>
@@ -172,6 +176,7 @@ export function counterReducer(state: number = 0, action: Action) {
   }
 }
                 </code></pre>
+                <p>... is a <strong>pure function</strong> that returns the new state for a given action.</p>
             </section>
             <section>
                 <h2>Store - Tree Of Reducers</h2>
@@ -179,13 +184,13 @@ export function counterReducer(state: number = 0, action: Action) {
             </section>
             <section>
                 <h2>State goes down</h2>
-                <p>... using Angular <code>@Input</code> syntax.</p>
                 <img src="img/state-goes-down.png">
+                <p>... using Angular <code>@Input</code> syntax.</p>
             </section>
             <section>
                 <h2>Events go up</h2>
-                <p>... using Angular <code>@Output</code> syntax.</p>
                 <img src="img/events-go-up.png">
+                <p>... using Angular <code>@Output</code> syntax.</p>
             </section>
             <section>
                 <h2>HTTP Request (XHR)</h2>
