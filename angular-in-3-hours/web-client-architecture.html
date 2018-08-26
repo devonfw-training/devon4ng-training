@@ -54,7 +54,7 @@ div.slides section img {
       <div style="display: flex"><span style="width: 350px; margin-right: 30px">You will learn</span>
         <ul>
           <li>basics of modern web client architecture</li>
-          <li>differences between SPAs and Java Swing applications</li>
+          <li>challenges while migrating to SPAs from Java Swing</li>
         </ul>
       </div>
     </section>
@@ -69,91 +69,91 @@ div.slides section img {
         </ul>
     </section>
     <section>
-            <img src="img/rewrite-frontend-every-six-weeks.jpg" style="height: 650px" alt="Rewrite Your Frontend Every Six Weeks" class="plain">
-        </section>
-        <section>
-            <h3>Pageload-centric web applications</h3>
-            <p>... are the predominant architecture of the past.</p>
-            <img class="plain no-border" height="300" src="img/classical-web-apps.png">
-            <p>
-                Each action requires a <strong>round trip to the server</strong> which contains presentation logic and application state.
-            </p>
-        </section>
-        <section>
-            <h3>Single Page Applications</h3>
-            <img class="plain no-border" height="300" src="img/spas.png">
-            <p>
-                A page's content is retrieved with a <strong>single page load</strong>. </p>
-            <p>
-                The page <strong>does not reload</strong> any more.
-            </p>
-        </section>
-        <section>
-            <h3>Model View Controller</h3>
-            <div>
-                <img class="plain no-border" height="300" src="img/mvc.png">
+        <img src="img/rewrite-frontend-every-six-weeks.jpg" style="height: 650px" alt="Rewrite Your Frontend Every Six Weeks" class="plain">
+    </section>
+    <section>
+        <h3>Pageload-centric web applications</h3>
+        <p>... are the predominant architecture of the past.</p>
+        <img class="plain no-border" height="300" src="img/classical-web-apps.png">
+        <p>
+            Each action requires a <strong>round trip to the server</strong> which contains presentation logic and application state.
+        </p>
+    </section>
+    <section>
+        <h3>Single Page Applications</h3>
+        <img class="plain no-border" height="300" src="img/spas.png">
+        <p>
+            A page's content is retrieved with a <strong>single page load</strong>. </p>
+        <p>
+            The page <strong>does not reload</strong> any more.
+        </p>
+    </section>
+    <section>
+        <h3>Model View Controller</h3>
+        <div>
+            <img class="plain no-border" height="300" src="img/mvc.png">
+        </div>
+        <p>... is still a widely used pattern in modern UI frameworks.</p>
+    </section>
+    <section>
+        <h2>Scaling MVC Applications</h2>
+        <div class="image-box">
+            <img width="600px" style="margin-right: 50px" src="img/ng-state-everwhere.png">
+            <ul style="width: 500px">
+                <li>Debugging?</li>
+                <li>Testing?</li>
+                <li>Understanding?</li>
+                <li>Server Side Rendering?</li>
+            </ul>
+        </div>
+        <p style="font-size: 18px; display:flex"><a href="http://onehungrymind.com/build-better-angular-2-application-redux-ngrx/">http://onehungrymind.com/build-better-angular-2-application-redux-ngrx/</a></p>
+    </section>
+    <section>
+        <h1 style="font-style: italic">UI = f ( State )</h1>
+        <p>Everything you need to understand about <strong>reactive architecture</strong>.</p>
+    </section>
+    <section>
+        <img src="img/uifunction.png" alt="UI is function of state">
+    </section>
+    <section>
+        <img src="img/state-example-1.png" alt="UI is function of state example 1">
+    </section>
+    <section>
+        <img src="img/state-example-2.png" alt="UI is function of state example 2">
+    </section>
+    <section>
+        <img src="img/state-example-3.png" alt="UI is function of state example 3">
+    </section>
+    <section>
+        <h2>Frameworks To Know</h2>
+        <div style="display:flex; justify-content: space-around;">
+            <div class="image-box">
+                <img width="150px" src="img/react.png" style="margin-right: 20px">
+                <p class="fragment" data-fragment-index="0" style="font-size: 30px; display:flex"><a href="https://facebook.github.io/react/">React</a></p>
             </div>
-            <p>... is still a widely used pattern in modern UI frameworks.</p>
-        </section>
-            <section>
-                <h2>Scaling MVC Applications</h2>
-                <div class="image-box">
-                    <img width="600px" style="margin-right: 50px" src="img/ng-state-everwhere.png">
-                    <ul style="width: 500px">
-                        <li>Debugging?</li>
-                        <li>Testing?</li>
-                        <li>Understanding?</li>
-                        <li>Server Side Rendering?</li>
-                    </ul>
-                </div>
-                <p style="font-size: 18px; display:flex"><a href="http://onehungrymind.com/build-better-angular-2-application-redux-ngrx/">http://onehungrymind.com/build-better-angular-2-application-redux-ngrx/</a></p>
-            </section>
-            <section>
-                <h1 style="font-style: italic">UI = f ( State )</h1>
-                <p>Everything you need to understand about <strong>reactive architecture</strong>.</p>
-            </section>
-            <section>
-                <img src="img/uifunction.png" alt="UI is function of state">
-            </section>
-            <section>
-                <img src="img/state-example-1.png" alt="UI is function of state example 1">
-            </section>
-            <section>
-                <img src="img/state-example-2.png" alt="UI is function of state example 2">
-            </section>
-            <section>
-                <img src="img/state-example-3.png" alt="UI is function of state example 3">
-            </section>
-            <section>
-                <h2>Frameworks To Know</h2>
-                <div style="display:flex; justify-content: space-around;">
-                    <div class="image-box">
-                        <img width="150px" src="img/react.png" style="margin-right: 20px">
-                        <p class="fragment" data-fragment-index="0" style="font-size: 30px; display:flex"><a href="https://facebook.github.io/react/">React</a></p>
-                    </div>
-                    <div class="image-box">
-                        <img width="150px" src="img/flux.png" style="margin-right: 20px">
-                        <p class="fragment" data-fragment-index="1" style="font-size: 30px; display:flex"><a href="https://facebook.github.io/flux/">Flux</a></p>
-                    </div>
-                </div>
-                <div style="display:flex; justify-content: space-around;">
-                    <div class="image-box">
-                        <img width="150px" src="img/redux.png" style="margin-right: 20px">
-                        <p class="fragment" data-fragment-index="2" style="font-size: 30px; display:flex"><a href="http://redux.js.org/">Redux</a></p>
-                    </div>
-                    <div class="image-box">
-                        <img width="150px" src="img/ngrx.png" style="margin-right: 20px">
-                        <p class="fragment" data-fragment-index="3" style="font-size: 30px; display:flex"><a href="https://github.com/ngrx">ngrx</a></p>
-                    </div>
-                </div>
-            </section>
-            <section>
-                <img src="img/store-view-actions.png" alt="Store View Actions">
-                <p>Actions are an abstraction of the intent to change the apps state.</p>
-            </section>
-            <section>
-                <h2>Reducer Function</h2>
-                <pre class="width-100-percent"><code class="typescript max-height-unset" data-trim data-noescape>
+            <div class="image-box">
+                <img width="150px" src="img/flux.png" style="margin-right: 20px">
+                <p class="fragment" data-fragment-index="1" style="font-size: 30px; display:flex"><a href="https://facebook.github.io/flux/">Flux</a></p>
+            </div>
+        </div>
+        <div style="display:flex; justify-content: space-around;">
+            <div class="image-box">
+                <img width="150px" src="img/redux.png" style="margin-right: 20px">
+                <p class="fragment" data-fragment-index="2" style="font-size: 30px; display:flex"><a href="http://redux.js.org/">Redux</a></p>
+            </div>
+            <div class="image-box">
+                <img width="150px" src="img/ngrx.png" style="margin-right: 20px">
+                <p class="fragment" data-fragment-index="3" style="font-size: 30px; display:flex"><a href="https://github.com/ngrx">ngrx</a></p>
+            </div>
+        </div>
+    </section>
+    <section>
+        <img src="img/store-view-actions.png" alt="Store View Actions">
+        <p>Actions are an abstraction of the intent to change the apps state.</p>
+    </section>
+    <section>
+        <h2>Reducer Function</h2>
+        <pre class="width-100-percent"><code class="typescript max-height-unset" data-trim data-noescape>
 export function counterReducer(state: number = 0, action: Action) {
   switch (action.type) {
     case INCREMENT:
@@ -169,63 +169,50 @@ export function counterReducer(state: number = 0, action: Action) {
       return state;
   }
 }
-                </code></pre>
-                <p>... is a <strong>pure function</strong> that returns the new state for a given action.</p>
-            </section>
-            <section>
-                <h2>Store - Tree Of Reducers</h2>
-                <img src="img/reducer-composite.png">
-            </section>
-            <section>
-                    <img style="border: none; box-shadow: none" src="./img/smart-dumb-components-interaction.svg">
-                    <p>A <strong>must-know</strong> pattern: Smart vs Dumb Components</p>
-                </section>
-                <section>
-                    <table style="width: 100%; font-size: 26px">
-                        <thead>
-                            <tr style="font-size: 45px;">
-                                <td style="width: 50%">Smart Components</td>
-                                <td style="width: 50%">Dumb Components</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>contain the current view state</td>
-                                <td data-markdown>show data via `@Input` binding and contain no view state</td>
-                            </tr>
-                            <tr>
-                                <td data-markdown>handle events emited by _Dumb Components_</td>
-                                <td data-markdown>pass events up the component tree to be handled by _Smart Components_ (`@Output`)</td>
-                            </tr>
-                            <tr>
-                                <td>subscribe to application state from stores</td>
-                                <td>never use stores</td>
-                            </tr>
-                            <tr>
-                                <td data-markdown>consists of n _Dumb Components_</td>
-                                <td data-markdown>is independent of _Smart Components_</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </section>
-                <section>
-                    <h3 data-markdown>A _Smart Component_ is typically a toplevel dialog</h3>
-                    <ul>
-                        <li>a component that can be routed to</li>
-                        <li>a modal dialog</li>
-                        <li>a component which is placed inside AppComponent</li>
-                    </ul>
-                </section>
-            <section>
-                <h2>State goes down</h2>
-                <img src="img/state-goes-down.png">
-                <p>... using Angular <code>@Input</code> syntax.</p>
-            </section>
-            <section>
-                <h2>Events go up</h2>
-                <img src="img/events-go-up.png">
-                <p>... using Angular <code>@Output</code> syntax.</p>
-            </section>
+        </code></pre>
+        <p>... is a <strong>pure function</strong> that returns the new state for a given action.</p>
+    </section>
+    <section>
+        <h2>Store - Tree Of Reducers</h2>
+        <img src="img/reducer-composite.png">
+    </section>
+    <section>
+        <img style="border: none; box-shadow: none" src="./img/smart-dumb-components-interaction.svg">
+        <p>A <strong>must-know</strong> pattern: Smart vs Dumb Components</p>
+    </section>
+    <section>
+        <h2>State goes down</h2>
+        <img src="img/state-goes-down.png">
+        <p>... using Angular <code>@Input</code> syntax.</p>
+    </section>
+    <section>
+        <h2>Events go up</h2>
+        <img src="img/events-go-up.png">
+        <p>... using Angular <code>@Output</code> syntax.</p>
+    </section>
+    <section>
+        <p>With all that in mind - let's talk about the migration from Java Swing.</p>
+    </section>
+    <section>
+        <p>The most important thing: JavaScript/TypeScript has very little in common with Java.</p>
+        <p>While migrating, you can be happy to learn the coolest language there is. But be sure, there is no onboarding in 2 weeks - it will take time!</p>
+    </section>
+    <section>
+        <p>Migrating also means, changing the backend to HTTP resources and removing state and sessions.</p>
+    </section>
+    <section>
+        <h3>Tooling is different in modern client development.</h3>
+        <p>No need for heavyweights like Visual Studio or Eclipse.</p>
+        <div style="display: flex; justify-content: space-around; align-items: center;">
+            <img style="width: 450px" src="img/vs-code-screenshot.png" alt="Visual Studio Code Screenshot">
+            <img src="img/cli-logo.svg" alt="Angular CLI at work">
+        </div>
+        <p>Be ready to use just an editor with CLI tools.</p>
+    </section>
+    <section>
+        <p>Any web client is just a comfort function for the user to consume the backend.</p>
+        <p>Every backend resource needs to be secured. There is no trustworthy call from the client.</p>
+    </section>
   </div>
 </div>
 
