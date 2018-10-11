@@ -7,7 +7,7 @@
     <title>Platform</title>
 
     <meta name="description" content="HTML5">
-    <meta name="author" content="Bartlomiej Pietrowski">
+    <meta name="author" content="Philipp Kleybolte">
 
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -39,6 +39,12 @@
     <!--[if lt IE 9]>
     <script src="../node_modules/reveal.js/lib/js/html5shiv.js"></script>
     <![endif]-->
+
+    <style type="text/css">
+        .reveal .slides .cards {
+            margin: 0.5em 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -49,10 +55,9 @@
 
 
           <section data-background-color="var(--secondary-color)">
-               <h1 style="font-size: 4.9em; line-height: 1em;" class="fallbackColor" >Use<br>
-               <span class="primaryColor" >the</span><br>
-               <span class="flippedColor" >platform</span></h1>
-
+               <h1 style="font-size: 4.9em; margin-bottom: -0.25em;" class="fallbackColor" >Use</h1>
+               <h1 style="font-size: 4.5em; margin-bottom: -0.25em;" class="primaryColor" >the</h1>
+               <h1 style="font-size: 4.1em;" class="flippedColor" >platform</h1>
            </section>
 
 
@@ -153,559 +158,484 @@
                 </section>
             </section>
 
+        <section>
+            <h1>Progressive Web Apps</h1>
+            <ul>
+                <li>Regular web pages with additional functionality</li>
+                <li>Combination of open standards</li>
+                <li>Feel like a native app</li>
+            </ul>
+        </section>
+
+        <section>
+                <h3>Progressive Web Apps</h3>
+
+                <div style="margin-left: 3em; display: flex; flex-wrap: wrap;">
+                    <div class="cards">
+                        <i class="material-icons">schedule</i>
+                        <p style="float:none">Instant Loading</p>
+                    </div>
+                    <div class="cards">
+                        <i class="material-icons">phone_android</i>
+                        <p style="float:none">Add to Home Screen</p>
+                    </div>
+                    <div class="cards">
+                        <i class="material-icons">touch_app</i>
+                        <p style="float:none">Fast</p>
+                    </div>
+                    <div class="cards">
+                        <i class="material-icons">lock</i>
+                        <p style="float:none">Secure</p>
+                    </div>
+                    <div class="cards">
+                        <i class="material-icons">notifications_active</i>
+                        <p style="float:none">Push Notifications</p>
+                    </div>
+                    <div class="cards">
+                        <i class="material-icons">devices_other</i>
+                        <p style="float:none">Responsive</p>
+                    </div>
+                </div>
+                <aside class="notes">
+                    Progressive - Works for every user, regardless of browser choice because it's built with progressive enhancement as a core tenet.
+                    Installable - Allows users to add apps they find most useful to their home screen without the hassle of an app store.
+                    Connectivity independent - Enhanced with service workers to work offline or on low-quality networks.
+                    Responsive - Fits any form factor: desktop, mobile, tablet, or whatever is next.
+                    Secure - Served via HTTPS to prevent snooping and to ensure content hasn't been tampered with.
+                    App-like - Feels like an app, because the app shell model separates the application functionality from application content.
+                </aside>
+        </section>
+
+        <section>
+            <h3>Technologies used</h3>
+            <ul>
+                <li>Web App Manifest</li>
+                <li>App Shell</li>
+                <li>Service Workers</li>
+                <li>IndexedDB</li>
+                <li>LocalStorage & SessionStorage</li>
+                <li>...</li>
+            </ul>
+        </section>
+    <section>
+        <section>
+                <h3>Sample manifest.json</h3>
+                <pre><code class="javascript" data-trim data-noescape>
+    {
+    "short_name": "PWA example",
+    "name": "An example Progrssive Web App",
+    "icons": [{
+      "src": "launcher-icon-1x.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "launcher-icon-4x.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }],
+    "start_url": "index.html?launcher=true"
+    "display": "standalone",
+    }
+                </code></pre>
+                <pre><code class="html">
+    <link rel="manifest" href="/manifest.json">
+                </code></pre>
+            </section>
+    
             <section>
-                <section>
-                    <h2>Storage technologies</h2>
-                            <h3 >localStorage</h3>
-                            <h3 >sessionStorage</h3>
-                            <h3 >IndexedDB</h3>
-                            <h3 >WebSQL</h3>
+                <h3>What can I tell the browser?</h3>
+                <ul>
+                    <li>Home screen Icons</li>
+                    <li>Set the launch style (fullscreen, standalone, browser)</li>
+                    <li>Orientation (landscape, portrait,..)</li>
+                    <li>...and more</li>
+                </ul>
+                <p>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/Manifest" class="credits" target="_blank">Manifest Docs</a>
+                </p>
+            </section>
+    
+            <section>
+                <h3>Native vs. browser launch style</h3>
+                <img class="plain" style="max-height: 11em;" src="./img/manifest-display-options.png">
+                <p>
+                    <a href="https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/" class="credits" target="_blank">Image from Google Web Fundamentals</a>
+                </p>
+            </section>
+        </section>
+    
+        <section>
+            <section>
+                    <h3>App Shell</h3>
+                <img class="plain" style="max-height: 12em;" src="./img/appshell-1.jpg">
+                <p>
+                    <a href="https://developers.google.com/web/updates/2015/11/app-shell" class="credits" target="_blank">Image from Google Web Updates</a>
+                </p>
+            </section>
 
-                        <p>
-                            <a href="https://www.html5rocks.com/en/tutorials/offline/storage/" class="credits" target="_blank">Introduction to offline storages</a>
-                        </p>
-                </section>
+            <section>
+                <h3>Application shell should:</h3>
+                <ul>
+                    <li>load fast</li>
+                    <li>be cached</li>
+                    <li>dynamically display content</li>
+                    <li>be a replacement for bundles published in store for native apps</li>
+                </ul>
+            </section>
+        </section>
+<!-- How is an App Shell defined ?-->
 
+        <section>
+            <section>
+                <h3>Service Worker</h3>
+                <p>A script running in the background, separate from a web page. Used for</p>
+                <ul>
+                    <li>Caching</li>
+                    <li>Background syncing</li>
+                    <li>Push Notifications</li>
+                </ul>
+            </section>
                 <section>
-                        <h3>localStorage</h3>
-                        <ul class="no-bullets">
-                            <li>Storing <span class="secondaryColor">smaller</span> amounts of data</li>
-                            <li><span class="secondaryColor">Single</span> persistent object called localStorage</li>
-                            <li><span class="secondaryColor">NoSQL</span> key-value store</li>
-                            <li>Sync API</li>
-                            <li><span class="secondaryColor">Poor</span> performance for <span class="secondaryColor">complex</span> data</li>
-                        </ul>
-                </section>
-                <section>
-                    <h3>sessionStorage</h3>
-                    <ul class="no-bullets">
-                        <li>Similar to <span class="secondaryColor">localStorage</span></li>
-                        <li><span class="secondaryColor">Cleans</span> when window/tab closed</li>
+                    <h3>Before Service Workers - AppCache</h3>
+                    <ul>
+                        <li>Introduced with HTML5</li>
+                        <li>Service Workers do its Job way better</li>
+                        <li>Files always come from cache, even if online connection available</li>
+                        <li>Application updates only on manifest content change</li>
+                        <li>Additional not alternative cache</li>
+                        <li>Non-cached resources do not load on cached page</li>
+                        <li><strong><span class="secondaryColor">Lack of JavaScript API</span></strong></li>
                     </ul>
-                </section>
-                <section>
-                    <h3>WebSQL</h3>
-                    <ul class="no-bullets">
-                        <li>SQLLite in the Browser</li>
-                        <li>For <span class="secondaryColor">significant</span> amounts of <span class="secondaryColor">structured</span> data</li>
-                        <li><span class="secondaryColor">High performance</span> searches of this data</li>
-                        <li><span class="secondaryColor">Transactional</span> database system</li>
-                        <li><span class="secondaryColor">Deprecated</span> </li>
-                        <li><span class="secondaryColor">Only supported in Chrome and Safari</span> </li>
-                   </ul>
-                </section>
-                <section>
-                    <h3>IndexedDB</h3>
-                    <ul class="no-bullets">
-                        <li>Successor to both LocalStorage and WebSQL</li>
-                        <li><span class="secondaryColor">Low-level API</span> for client-side storage</li>
-                        <li>For <span class="secondaryColor">significant</span> amounts of <span class="secondaryColor">structured</span> data</li>
-                        <li><span class="secondaryColor">High performance</span> searches of this data</li>
-                        <li><span class="secondaryColor">Transactional</span> database system</li>
-                        <li>JavaScript based <span class="secondaryColor">object-oriented</span> database</li>
-                        <li>Operations done <span class="secondaryColor">async</span></li>
-                        <li>Famous for <strong><span class="secondaryColor">complex</span></strong> API</li>
-                        <li>Only Chrome and Firefox having fully usable implementations</li>
-                    </ul>
+   
                     <p>
-                        <a href="https://www.html5rocks.com/en/tutorials/offline/storage/" class="credits" target="_blank">Introduction to offline storages</a>
+                        <a href="http://alistapart.com/article/application-cache-is-a-douchebag" class="credits" target="_blank">Full article by Jake Archibald</a>
                     </p>
                 </section>
                 <section>
-                    <h3>Wrapper</h3>
-                    <p>Wrappers hide complex API<br> Choose whatever is supported in the current browser<br>Popular Wrappers:</p>
-                    <ul>
-                        <li>ydn-db</li>
-                        <li>PouchDB</li>
+                    <h3>Service Workers</h3>
+                    <ul class="no-bullets">
+                        <li>Give developers the <span class="secondaryColor">moving parts</span> to solve their problems</li>
+                        <li>Allow to create <span class="secondaryColor">own caching patterns</span></li>
+                        <li>Can only be used over <span class="secondaryColor">HTTPS</span> (excluding localhost)</li>
+                        <li>Fabricate, and filter responses</li>
                     </ul>
-
+                </section>   
+   
+                <section>
+                        <h3>Workers</h3>
+                        <ul>
+                            <li>There are <ul><li>Web Workers</li><li>Service Workers</li></ul></li>
+                            <li>Isolated thread</li>
+                            <li>Code contained in <span class="secondaryColor">separate file</span> (async download)</li>
+                            <li>Communication via message passing - <span class="secondaryColor">postMessage()</span></li>
+                            <li>Messages <span class="secondaryColor">copied</span>, not shared</li>
+                            <li>Must have same origin as the web application</li>
+                        </ul>
                 </section>
+
+                <section>
+                        <h3>Features Available to Workers</h3>
+                        <ul class="">
+                            <li>The <span class="secondaryColor">navigator</span> object</li>
+                            <li>The <span class="secondaryColor">location</span> object (read-only)</li>
+                            <li>XMLHttpRequest</li>
+                            <li>setTimeout()/clearTimeout() and setInterval()/clearInterval()</li>
+                            <li>The Application <span class="secondaryColor">Cache</span></li>
+                            <li>Importing <span class="secondaryColor">external scripts</span> using the importScripts() method</li>
+                            <li><span class="secondaryColor">Spawning other</span> web workers</li>
+                        </ul>
+                    </section>
+    
+                    <section>
+                        <h3>Workers do  <span class="secondaryColor">NOT</span> have access to:</h3>
+                        <ul class="">
+                            <li>The <span class="secondaryColor">DOM</span></li>
+                            <li>The <span class="secondaryColor">window</span> object</li>
+                            <li>The <span class="secondaryColor">document</span> object</li>
+                            <li>The <span class="secondaryColor">parent</span> object</li>
+                            <li>will <span class="secondaryColor">not run locally</span> (e.g. from file://)</li>
+                        </ul>
+                    </section>
+       
+
+   
+                <section>
+                    <h5>Web Worker</h5>
+                    <p>Main script:</p>
+                    <pre style="line-height: 1.0"><code class="javascript" data-trim data-noescape>
+    var worker = new Worker('task.js');
+   
+    worker.addEventListener('message', function(event) {
+      console.log('Worker said: ', event.data);
+    }, false);
+   
+    worker.addEventListener('error', function(event){
+        console.log('ERROR: Line', event.lineno, 'in',
+        event.filename, ':', event.message);
+    }, false);
+   
+    worker.postMessage('Hello World'); // Send data to our worker.
+                   </code></pre>
+   
+                    <p>task.js (the worker)</p>
+                    <pre style="line-height: 1.0"><code class="javascript" data-trim data-noescape>
+    self.addEventListener('message', function(e) {
+      self.postMessage(e.data);
+    }, false);
+                   </code></pre>
+   
+                    <p>
+                        <a href="https://www.html5rocks.com/en/tutorials/workers/basics/" class="credits" target="_blank">Code from https://www.html5rocks.com/en/tutorials/workers/basics/</a>
+                    </p>
+   
+                </section>
+
+                <section>
+                        <h3>Service worker lifecycle</h3>
+                        <p style="font-size: 0.5em; margin-top:-1em">(on first installation)</p>
+                        <img class="plain" style="max-height: 11em;" src="./img/sw-lifecycle.png">
+                        <p>
+                            <a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers" class="credits" target="_blank">Image from Google Web Fundamentals</a>
+                        </p>
+                    </section>
+   
+                <section>
+                    <h3>Register a service worker</h3>
+                    <pre><code class="javascript" data-trim data-noescape>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js')
+        .then(function(registration) {
+            // Registration was successful
+            console.log('Registration successful with scope: ',
+                registration.scope);
+        }).catch(function(err) {
+            // registration failed :(
+            console.log('ServiceWorker registration failed: ', err);
+        });
+    }
+                    </code></pre>
+                    <p>
+                        <a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers" class="credits" target="_blank">Code from Google Web Fundamentals</a>
+                    </p>
+                </section>
+   
+                <section>
+                    <h3>Service worker</h3>
+                    <p>Service workers listen to events</p>
+                    <ul>
+                        <li>install</li>
+                        <li>activate</li>
+                        <li>fetch</li>
+                        <li>message</li>
+                        <li>push</li>
+                    </ul>
+                </section>
+   
+                <section>
+                    <h3>Service worker - Listening to Events</h3>
+                    <pre><code class="javascript" data-trim data-noescape>
+    self.addEventListener('install', function(event) {
+      // Perform install steps
+    });
+                    </code></pre>
+                    <p>
+                        <a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers" class="credits" target="_blank">Code from Google Web Fundamentals</a>
+                    </p>
+                </section>
+
+                <section>
+                    <h3>Example: Load Resources into Cache on install</h3>
+                    <pre><code class="javascript" data-trim data-noescape>
+    self.addEventListener('install', function(event) {
+      event.waitUntil(
+        caches.open('mysite-static-v3').then(function(cache) {
+          return cache.addAll([
+            '/css/whatever-v3.css',
+            '/css/imgs/sprites-v6.png',
+            '/css/fonts/whatever-v8.woff',
+            '/js/all-min-v4.js'
+            // etc
+          ]);
+        })
+      );
+    });
+                    </code></pre>
+                    <p>
+                        <a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/" class="credits" target="_blank">Code from Jake Archibald`s offline cookbook</a>
+                    </p>
+                </section>
+
+                <section>
+                    <h3>Framework Support</h3>
+                    <p>No need to implement the caching manually <br>(but you can, if you want to)</p>
+                    <p>
+                        Angular, React and other frameworks bring <span class="secondaryColor">modules</span> with Service Workers 
+                        that are configurable with a <span class="secondaryColor">manifest file</span>
+                    </p>
+                    <p>
+                        <a href="https://angular.io/guide/service-worker-getting-started"  target="_blank">
+                            Further Reading for Angular
+                        </a>
+                        <br>
+                        <a href="https://scotch.io/tutorials/how-to-make-your-existing-react-app-progressive-in-10-minutes"  target="_blank">
+                            Further Reading for React
+                        </a>
+                    </p>
+                </section>
+        </section>
+        <section>
+            <section>
+                <h1>Push Notifications</h1>
+                <img class="plain" style="max-height: 12em;" src="./img/cc-good.png">
+                <p>
+                    <a href="https://developers.google.com/web/fundamentals/engage-and-retain/push-notifications/" class="credits" target="_blank">Image from Google Web Fundamentals</a>
+                </p>
             </section>
-
-            <section data-background-color="var(--secondary-color)">
-                 <h1 style="font-size: 4.9em; margin-bottom: -0.25em;" class="fallbackColor" >Offline</h1>
-                 <h1 style="font-size: 4.5em; margin-bottom: -0.25em;" class="primaryColor" >caching</h1>
-                 <h1 style="font-size: 4.1em;" class="flippedColor" >dilemma</h1>
+            <section>
+                <h3>Push Notifications</h3>
+                <ul>
+                    <li>On registering a Service Worker we get a  ServiceWorkerRegistration object</li>
+                    <li>The ServiceWorkerRegistration.pushManager interface enables us to
+                        <ul>
+                           <li>Subscribe to a Push Service</li>
+                           <li>Get an open subscription</li>
+                        </ul>
+                    </li>
+                    <li>In the Service Worker, we can listen to the "push" events</li>
+                </ul>
             </section>
-
-             <section>
-                 <h3>AppCache lottery</h3>
-                 <ul class="no-bullets">
-                     <li>Files <span class="secondaryColor">always</span> come from cache</li>
-                     <li>Application updates <span class="secondaryColor">only</span> on manifest <span class="secondaryColor">content change</span></li>
-                     <li>Additional <span class="secondaryColor">not</span> alternative cache</li>
-                     <li><span class="secondaryColor">Non-cached</span> resources do <span class="secondaryColor">not load</span> on <span class="secondaryColor">cached</span> page</li>
-                     <li><strong><span class="secondaryColor">Lack of JavaScript API</span></strong></li>
-                 </ul>
-
-                 <p>
-                     <a href="http://alistapart.com/article/application-cache-is-a-douchebag" class="credits" target="_blank">Full article by Jake Archibald</a>
-                 </p>
-             </section>
-
-             <section>
-                 <h3>'Cache' interface</h3>
-                 <ul class="no-bullets">
-                     <li>Storage mechanism for <span class="secondaryColor">Request / Response object pairs</span></li>
-                     <li>Exposed to <span class="secondaryColor">window</span> and <span class="secondaryColor">workers</span></li>
-                     <li>Items <span class="secondaryColor">do not</span> get updated <span class="secondaryColor"> unless explicitly</span> requested</li>
-                     <li>Items <span class="secondaryColor">don’t expire</span> unless deleted</li>
-                     <li>Origin can have <span class="secondaryColor">multiple</span>, named Cache objects</li>
-                     <li><span class="secondaryColor">You</span> as a dev need to <span class="secondaryColor">purge</span> Cache entries</li>
-                 </ul>
-             </section>
+       </section>
 
 
-             <section data-background-color="var(--secondary-color)">
-                 <h1 style="font-size: 2.0em; margin-bottom: 0.5em;" class="fallbackColor" >Service Workers</h1>
-                 <h1 style="font-size: 2.3em; margin-bottom: -0.25em;" class="primaryColor" >Return power</h1>
-                 <h1 style="font-size: 2.7em;" class="flippedColor" >to the devs!</h1>
-             </section>
+        <section>
+            <section>
+                <h3>Web Banner</h3>
+                <p>Add the Web Application to your home screen</p>
+                <p>Just like a native App</p>
+            </section>
+            <section>
+                <h3>Web Banner criteria</h3>
+               <p>The application...</p>
+                <ul>
+                    <li>Has a web app manifest</li>
+                    <li>Has a service worker registered</li>
+                    <li>Is served via HTTPS</li>
+                    <li>Meets a user engagement heuristic (currently, the user has interacted with the domain for at least 30 seconds)</li>
+                </ul>
+                <p>
+                    <a href="https://developers.google.com/web/fundamentals/app-install-banners/" target="_blank">
+                        Further Reading
+                    </a>
+                </p>
+            </section>
+            <section>
+                <h3>Web Install Banner</h3>
+                <img class="plain" style="max-height: 11em;" src="./img/add-to-home-screen.gif">
+                <p>
+                    <a href="https://developers.google.com/web/fundamentals/engage-and-retain/app-install-banners/" class="credits" target="_blank">Image from Google Web Fundamentals</a>
+                </p>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>Storage technologies</h2>
+                        <h3 >localStorage</h3>
+                        <h3 >sessionStorage</h3>
+                        <h3 >IndexedDB</h3>
+                        <h3 >WebSQL</h3>
+
+                    <p>
+                        <a href="https://www.html5rocks.com/en/tutorials/offline/storage/" class="credits" target="_blank">Introduction to offline storages</a>
+                    </p>
+            </section>
 
             <section>
-             <section>
-                 <h3>Service Workers</h3>
-                 <ul class="no-bullets">
-                     <li>Give developers the <span class="secondaryColor">moving parts</span> to solve their problems</li>
-                     <li>Alow to create <span class="secondaryColor">own caching patterns</span></li>
-                     <li>Can only be used over <span class="secondaryColor">HTTPS</span> (excluding localhost)</li>
-                     <li>Hijack connections</li>
-                     <li>Fabricate, and filter responses</li>
-                 </ul>
-             </section>
-
-
-             <section>
-                 <h1 style="font-size: 2.4em; margin-bottom: 0em;" class="fallbackColor" >Wait wait wait!</h1>
-                 <h1 style="font-size: 1.95em; margin-bottom: -0.25em;" class="primaryColor" >But what are those</h1>
-                 <h1 style="font-size: 4em;" class="secondaryColor" >workers?</h1>
-             </section>
-
-
-             <section>
-                     <h3>Workers</h3>
-                     <ul class="no-bullets">
-                         <li>Isolated thread</li>
-                         <li>Code contained in <span class="secondaryColor">separate file</span> (async download)</li>
-                         <li>Communication via message passing - <span class="secondaryColor">postMessage()</span></li>
-                         <li>Messages <span class="secondaryColor">copied</span>, not shared</li>
-                         <li>Same Origin</li>
-                     </ul>
-             </section>
-
-             <section>
-                 <h3>Main script:</h3>
-                 <pre><code class="javascript" data-trim data-noescape>
- var worker = new Worker('task.js');
-
- worker.addEventListener('message', function(e) {
-   console.log('Worker said: ', e.data);
- }, false);
-
- worker.addEventListener('error', function(e){
-     console.log('ERROR: Line', e.lineno, 'in',
-         e.filename, ':', e.message);
- }, false);
-
- worker.postMessage('Hello World'); // Send data to our worker.
-                </code></pre>
-
-                 <h3>task.js (the worker)</h3>
-                 <pre><code class="javascript" data-trim data-noescape>
- self.addEventListener('message', function(e) {
-   self.postMessage(e.data);
- }, false);
-                </code></pre>
-
-                 <p>
-                     <a href="https://www.html5rocks.com/en/tutorials/workers/basics/" class="credits" target="_blank">Code from https://www.html5rocks.com/en/tutorials/workers/basics/</a>
-                 </p>
-
-             </section>
-
-               <section>
-                     <h3>Features Available to Workers</h3>
-                     <ul class="no-bullets">
-                         <li>The <span class="secondaryColor">navigator</span> object</li>
-                         <li>The <span class="secondaryColor">location</span> object (read-only)</li>
-                         <li>XMLHttpRequest</li>
-                         <li>setTimeout()/clearTimeout() and setInterval()/clearInterval()</li>
-                         <li>The Application <span class="secondaryColor">Cache</span></li>
-                         <li>Importing <span class="secondaryColor">external scripts</span> using the importScripts() method</li>
-                         <li><span class="secondaryColor">Spawning other</span> web workers</li>
-                     </ul>
-               </section>
-
-               <section>
-                     <h3>Workers do NOT have access to:</h3>
-                     <ul class="no-bullets">
-                         <li>The <span class="secondaryColor">DOM</span> (it's not thread-safe)</li>
-                         <li>The <span class="secondaryColor">window</span> object</li>
-                         <li>The <span class="secondaryColor">document</span> object</li>
-                         <li>The <span class="secondaryColor">parent</span> object</li>
-                         <li>will <span class="secondaryColor">not run locally</span> (e.g. from file://)</li>
-                     </ul>
-               </section>
-
-             <section>
-                 <h1 style="font-size: 2em; margin-bottom: 0em;" class="fallbackColor" >Now</h1>
-                 <h1 style="font-size: 2.5em; margin-bottom: 0em;" class="primaryColor" >back to</h1>
-                 <h1 style="font-size: 3em;" class="secondaryColor" >service workers</h1>
-             </section>
-
-
-             <section>
-                 <h3>Service worker lifecycle</h3>
-                 <p style="font-size: 0.5em; margin-top:-1em">(on first installation)</p>
-                 <img class="plain" style="max-height: 11em;" src="./img/sw-lifecycle.png">
-                 <p>
-                     <a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers" class="credits" target="_blank">Image from Google Web Fundamentals</a>
-                 </p>
-             </section>
-
-
-             <section>
-                 <h3>Register a service worker</h3>
-                 <pre><code class="javascript" data-trim data-noescape>
- if ('serviceWorker' in navigator) {
-   navigator.serviceWorker.register('/sw.js')
-     .then(function(registration) {
-         // Registration was successful
-         console.log('Registration successful with scope: ',
-             registration.scope);
-     }).catch(function(err) {
-         // registration failed :(
-         console.log('ServiceWorker registration failed: ', err);
-     });
- }
-                 </code></pre>
-                 <p>
-                     <a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers" class="credits" target="_blank">Code from Google Web Fundamentals</a>
-                 </p>
-             </section>
-
-
-             <section>
-                 <h3>Install a service worker</h3>
-                 <pre><code class="javascript" data-trim data-noescape>
- self.addEventListener('install', function(event) {
-   // Perform install steps
- });
-                 </code></pre>
-                 <p>
-                     <a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers" class="credits" target="_blank">Code from Google Web Fundamentals</a>
-                 </p>
-             </section>
-
-             <section data-background-color="var(--secondary-color)">
-                 <h1 style="font-size: 2em; margin-bottom: 0em;" class="fallbackColor" >The</h1>
-                 <h1 style="font-size: 2.5em; margin-bottom: 0em;" class="primaryColor" >cache</h1>
-                 <h1 style="font-size: 3em;" class="flippedColor" >machine</h1>
-             </section>
-
-
-             <section>
-                 <h3>On install - as a dependency</h3>
-                 <img class="plain" style="max-height: 12em;" src="./img/cm-on-install-dep.png">
-                 <p>
-                     <a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/" class="credits" target="_blank">Image from Jake Archibald`s offline cookbook</a>
-                 </p>
-             </section>
-
-
-             <section>
-                 <h3>On install - as a dependency</h3>
-                 <pre><code class="javascript" data-trim data-noescape>
- self.addEventListener('install', function(event) {
-   event.waitUntil(
-     caches.open('mysite-static-v3').then(function(cache) {
-       return cache.addAll([
-         '/css/whatever-v3.css',
-         '/css/imgs/sprites-v6.png',
-         '/css/fonts/whatever-v8.woff',
-         '/js/all-min-v4.js'
-         // etc
-       ]);
-     })
-   );
- });
-                 </code></pre>
-                 <p>
-                     <a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/" class="credits" target="_blank">Code from Jake Archibald`s offline cookbook</a>
-                 </p>
-             </section>
-
-             <section>
-                 <h3>On install - not as a dependency</h3>
-                 <img class="plain" style="max-height: 12em;" src="./img/cm-on-install-not.png">
-                 <p>
-                     <a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/" class="credits" target="_blank">Image from Jake Archibald`s offline cookbook</a>
-                 </p>
-             </section>
-
-
-             <section>
-                 <h3>On install - not as a dependency</h3>
-                 <pre><code class="javascript" data-trim data-noescape>
- self.addEventListener('install', function(event) {
-   event.waitUntil(
-     caches.open('mygame-core-v1').then(function(cache) {
-       cache.addAll(
-         // levels 11-20
-       );
-       return cache.addAll(
-         // core assets & levels 1-10
-       );
-     })
-   );
- });
-                 </code></pre>
-                 <p>
-                     <a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/" class="credits" target="_blank">Code from Jake Archibald`s offline cookbook</a>
-                 </p>
-             </section>
-
-
-             <section>
-                 <h3>On activate - cleanup</h3>
-                 <img class="plain" style="max-height: 12em;" src="./img/cm-on-activate.png">
-                 <p>
-                     <a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/" class="credits" target="_blank">Image from Jake Archibald`s offline cookbook</a>
-                 </p>
-             </section>
-
-
-             <section>
-                 <h3>On activate - cleanup</h3>
-                 <pre><code class="javascript" data-trim data-noescape>
- self.addEventListener('activate', function(event) {
-   event.waitUntil(
-     caches.keys().then(function(cacheNames) {
-       return Promise.all(
-         cacheNames.filter(function(cacheName) {
-           // Return true if you want to remove this cache,
-           // but remember that caches are shared across
-           // the whole origin
-         }).map(function(cacheName) {
-           return caches.delete(cacheName);
-         })
-       );
-     })
-   );
- });
-                 </code></pre>
-                 <p>
-                     <a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/" class="credits" target="_blank">Code from Jake Archibald`s offline cookbook</a>
-                 </p>
-             </section>
-
-
-             <section>
-                 <h3>On user interaction</h3>
-                 <img class="plain" style="max-height: 12em;" src="./img/cm-on-user-interaction.png">
-                 <p>
-                     <a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/" class="credits" target="_blank">Image from Jake Archibald`s offline cookbook</a>
-                 </p>
-             </section>
-
-
-             <section>
-                 <h3>On user interaction</h3>
-                 <pre><code class="javascript" data-trim data-noescape>
- document.querySelector('.cache-article')
-     .addEventListener('click', function(event) {
-         event.preventDefault();
-
-         var id = this.dataset.articleId;
-         caches.open('mysite-article-' + id)
-             .then(function(cache) {
-                 fetch('/get-article-urls?id=' + id)
-                     .then(function(response) {
-                         return response.json();
-                     }).then(function(urls) {
-                         cache.addAll(urls);
-                     });
-         });
-     });
-                 </code></pre>
-                 <p>
-                     <a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/" class="credits" target="_blank">Code from Jake Archibald`s offline cookbook</a>
-                 </p>
-             </section>
-
-
-             <section>
-                 <h1>And more ...</h1>
-                 <img class="plain" style="max-height: 2.4em;" src="./img/cm-on-network-response.png">
-                 <img class="plain" style="max-height: 2.4em;" src="./img/cm-stale-while-revalidate.png">
-                 <img class="plain" style="max-height: 2.4em;" src="./img/cm-on-push.png">
-                 <img class="plain" style="max-height: 2.4em;" src="./img/cm-on-bg-sync.png">
-                 <img class="plain" style="max-height: 2.4em;" src="./img/ss-cache-only.png">
-                 <img class="plain" style="max-height: 2.4em;" src="./img/ss-network-only.png">
-                 <img class="plain" style="max-height: 2.4em;" src="./img/ss-falling-back-to-network.png">
-                 <img class="plain" style="max-height: 2.4em;" src="./img/ss-cache-and-network-race.png">
-                 <img class="plain" style="max-height: 2.4em;" src="./img/ss-network-falling-back-to-cache.png">
-                 <img class="plain" style="max-height: 2.4em;" src="./img/ss-cache-then-network.png">
-                 <img class="plain" style="max-height: 2.4em;" src="./img/ss-generic-fallback.png">
-                 <img class="plain" style="max-height: 2.4em;" src="./img/ss-sw-side-templating.png">
-                 <p>
-                     <a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/" class="credits" target="_blank">Images from Jake Archibald`s offline cookbook</a>
-                 </p>
-                 <p>
-                     <a href="https://github.com/GoogleChrome/sw-toolbox" class="credits" target="_blank"><strong>SW Toolbox</strong> - no need to dive deep</a>
-                 </p>
-             </section>
-
-
-             <section data-background-iframe="https://jakearchibald.github.io/isserviceworkerready/">
-                 <h1 style="font-size: 3.0em;" class="fallbackColor" >Can we use <a href="https://jakearchibald.github.io/isserviceworkerready/">it</a>?</h1>
-             </section>
+                    <h3>localStorage</h3>
+                    <ul class="no-bullets">
+                        <li>Storing <span class="secondaryColor">smaller</span> amounts of data</li>
+                        <li><span class="secondaryColor">Single</span> persistent object called localStorage</li>
+                        <li><span class="secondaryColor">NoSQL</span> key-value store</li>
+                        <li>Sync API</li>
+                        <li><span class="secondaryColor">Poor</span> performance for <span class="secondaryColor">complex</span> data</li>
+                    </ul>
             </section>
+            <section>
+                <h3>sessionStorage</h3>
+                <ul class="no-bullets">
+                    <li>Similar to <span class="secondaryColor">localStorage</span></li>
+                    <li><span class="secondaryColor">Cleans</span> when window/tab closed</li>
+                </ul>
+            </section>
+            <section>
+                <h3>WebSQL</h3>
+                <ul class="no-bullets">
+                    <li>SQLLite in the Browser</li>
+                    <li>For significant amounts of structured data</li>
+                    <li>High performance searches of this data</li>
+                    <li>Transactional database system</li>
+                    <li><span class="secondaryColor">Deprecated</span> </li>
+                    <li>Only supported in Chrome and Safari </li>
+               </ul>
+            </section>
+            <section>
+                <h3>IndexedDB</h3>
+                <ul class="no-bullets">
+                    <li>Successor to both LocalStorage and WebSQL</li>
+                    <li>Low-level API for client-side storage</li>
+                    <li>For significant amounts of structured data</li>
+                    <li>High performance searches of this data</li>
+                    <li>Transactional database system</li>
+                    <li>JavaScript based object-oriented database</li>
+                    <li>Operations done async</li>
+                    <li>Famous for <strong><span class="secondaryColor">complex</span></strong> API</li>
+                </ul>
+                <p>
+                    <a href="https://www.html5rocks.com/en/tutorials/offline/storage/" class="credits" target="_blank">Introduction to offline storages</a>
+                </p>
+            </section>
+            <section>
+                <h3>Storage Wrapper</h3>
+                <p>Wrappers hide complex API<br>Automatically choose whatever storage technology is supported in the current environment<br>Popular Wrappers:</p>
+                <ul>
+                    <li>ydn-db</li>
+                    <li>PouchDB</li>
+                </ul>
 
+            </section>
+        </section>
+    </section>
+        
+        <section data-background-iframe="https://pwa.rocks/">
+            <h1 style="font-size: 3.0em;" class="fallbackColor" >Anyone really does <a href="https://pwa.rocks/">that</a>?</h1>
+        </section>
 
+        <section>
+            <a href="https://wiki-offline.jakearchibald.com/wiki/Rick_and_Morty">
+                <img class="plain" style="max-height: 15em;" src="./img/wikipedia.jpg">
+            </a>
+            <p>
+                <a href="https://developers.google.com/web/updates/2015/11/app-shell" class="credits" target="_blank">Image from Google Web Updates</a>
+            </p>
+        </section>
+             
              <section>
-                 <h1>Push Notifications</h1>
-                 <img class="plain" style="max-height: 12em;" src="./img/cc-good.png">
-                 <p>
-                     <a href="https://developers.google.com/web/fundamentals/engage-and-retain/push-notifications/" class="credits" target="_blank">Image from Google Web Fundamentals</a>
-                 </p>
-             </section>
-
-
-             <section>
-                     <h3>Progressive Web Apps</h3>
-
-                     <div style="margin-left: 3em">
-                         <div class="cards">
-                             <i class="material-icons">schedule</i>
-                             <p>Instant Loading</p>
-                         </div>
-                         <div class="cards">
-                             <i class="material-icons">touch_app</i>
-                             <p>Fast</p>
-                         </div>
-                         <div class="cards">
-                             <i class="material-icons">phone_android</i>
-                             <p>Add to Home Screen</p>
-                         </div>
-                         <div class="cards">
-                             <i class="material-icons">lock</i>
-                             <p>Secure</p>
-                         </div>
-                         <div class="cards">
-                             <i class="material-icons">notifications_active</i>
-                             <p>Push Notifications</p>
-                         </div>
-                         <div class="cards">
-                             <i class="material-icons">devices_other</i>
-                             <p>Responsive</p>
-                         </div>
+                 <h2 style="margin-top: -4em;">HTTP 2</h2>
+                 <div class="replacement">
+                     <div style="margin-top: 0em;" class="fragment fade-out" data-fragment-index="0">
+                         <img class="plain" style="max-height: 15em;" src="./img/HTTP_persistent_connection.svg">
+                          <p>
+                             <a href="https://en.wikipedia.org/wiki/HTTP_persistent_connection" class="credits" target="_blank">Image from Wikipedia</a>
+                         </p>
                      </div>
+                     <div style="margin-top: -0.5em;" class="fragment fade-in" data-fragment-index="0">
+                         <p><span class="secondaryColor">Multiplexed</span> downloads over a <span class="secondaryColor">single</span> connection</p>
+                         <h3 style="margin-top: 1em;">HTTP/2 server push</h3>
+                         <p>Allows the server to <span class="secondaryColor">preemptively send resources</span> to the browser</p>
+                     </div>
+                 </div>
              </section>
 
-
-             <section>
-                 <h1 style="font-size: 2,5em; margin-bottom: 0em;" class="fallbackColor" >Application</h1>
-                 <h1 style="font-size: 4.5em; margin-bottom: 0em;" class="secondaryColor" >shell</h1>
-                 <h1 style="font-size: 2.4em;" class="primaryColor" >architecture</h1>
-             </section>
-
-
-             <section>
-                 <img class="plain" style="max-height: 12em;" src="./img/appshell-1.jpg">
-                 <p>
-                     <a href="https://developers.google.com/web/updates/2015/11/app-shell" class="credits" target="_blank">Image from Google Web Updates</a>
-                 </p>
-             </section>
-
-             <section>
-                 <h3>Application shell should:</h3>
-                 <ul>
-                     <li>load fast</li>
-                     <li>be cached</li>
-                     <li>dynamically display content</li>
-                     <li>be a replacment for bundles published in store for native apps</li>
-                 </ul>
-             </section>
-
-
-             <section>
-                 <h3>Web App Install Banner</h3>
-                 <img class="plain" style="max-height: 12em;" src="./img/add-to-home-screen.gif">
-                 <p>
-                     <a href="https://developers.google.com/web/fundamentals/engage-and-retain/app-install-banners/" class="credits" target="_blank">Image from Google Web Fundamentals</a>
-                 </p>
-             </section>
-
-             <section>
-                 <h3>Web Banner criteria</h3>
-                 <ul>
-                     <li>Has a <span class="secondaryColor">web app manifest</span></li>
-                     <li>Has a <span class="secondaryColor">service worker registered</span></li>
-                     <li>Is served over <span class="secondaryColor">HTTPS</span></li>
-                     <li>Is visited <span class="secondaryColor">at least twice</span>, with at least <span class="secondaryColor">five minutes</span> between visits</li>
-                 </ul>
-             </section>
-
-
-             <section>
-                 <h3>Sample manifest.json</h3>
-                 <pre><code class="javascript" data-trim data-noescape>
- {
-   "short_name": "AirHorner",
-   "name": "Kinlan's AirHorner of Infamy",
-   "icons": [{
-       "src": "launcher-icon-1x.png",
-       "type": "image/png",
-       "sizes": "48x48"
-     },
-   ...
-     {
-       "src": "launcher-icon-4x.png",
-       "type": "image/png",
-       "sizes": "192x192"
-     }],
-   "start_url": "index.html?launcher=true"
- }
-                 </code></pre>
-                 <pre><code class="html">
- <link rel="manifest" href="/manifest.json">
-                 </code></pre>
-                 <p>
-                     <a href="https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/" class="credits" target="_blank">Code from Google Web Fundamentals</a>
-                 </p>
-             </section>
-
-             <section>
-                 <h3>What can I tell the browser?</h3>
-                 <ul>
-                     <li>Home screen Icon</li>
-                     <li>Add a splash screen</li>
-                     <li>Set the launch style</li>
-                     <li>...and more</li>
-                 </ul>
-             </section>
-
-             <section>
-                 <h3>Native vs. browser launch style</h3>
-                 <img class="plain" style="max-height: 12em;" src="./img/manifest-display-options.png">
-                 <p>
-                     <a href="https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/" class="credits" target="_blank">Image from Google Web Fundamentals</a>
-                 </p>
-             </section>
-
-             <section data-background-iframe="https://pwa.rocks/">
-                 <h1 style="font-size: 3.0em;" class="fallbackColor" >Anyone really does <a href="https://pwa.rocks/"  target="_blank">that</a>?</h1>
-             </section>
-
-             <section>
-                 <a href="https://wiki-offline.jakearchibald.com/wiki/Rick_and_Morty">
-                     <img class="plain" style="max-height: 15em;" src="./img/wikipedia.jpg">
-                 </a>
-                 <p>
-                     <a href="https://developers.google.com/web/updates/2015/11/app-shell" class="credits" target="_blank">Image from Google Web Updates</a>
-                 </p>
-             </section>
 
             <section>
                 <p>Btw... <br>
