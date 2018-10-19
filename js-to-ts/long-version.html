@@ -1,0 +1,1048 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>From JavaScript to TypeScript</title>
+    <link rel="icon" href="../common/img/favicon.ico">
+
+
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/theme/white.css" id="theme">
+
+    <link rel="stylesheet" href="../common/css/common.css">
+    <link rel="stylesheet" href="styles/own.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../node_modules/reveal.js/lib/css/github-gist.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../node_modules/reveal.js/css/print/pdf.css' : '../node_modules/reveal.js/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+    <style>
+.bannerTextHeadline {
+    color: #FFA700;
+    font-size: 2.5em;
+    font-weight: lighter;
+    padding: 0 1.4em;
+    padding-bottom: .5em;
+    font-weight: 500;
+}
+.bannerText p {
+    font-weight: 500;
+    font-size: 0.7em;
+    line-height: 0.7em;
+}
+    </style>
+</head>
+<body>
+<section class="angular-link">
+    <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
+</section>
+<section class="devon-link">
+    <a href="http://devonfw.github.io" target="_blank"><img height="30px" src="../common/img/devon_logo_blue.png"></a>
+</section>
+<div class="devon reveal">
+    <div class="slides">
+        <section>
+            <p>
+                <img class="header-logo" src="img/js-logo.png" alt="javascript logo">
+                <img class="header-logo" src="img/ts-logo.png" alt="typescript logo">
+            </p>
+            <p>From <strong>ES5</strong> via <strong>ES2015</strong> to <strong>TypeScript</strong></p>
+            <p>Philip Schmökel</p>
+        </section>
+        <section>
+            <p>
+                <p>ECMAScript (ES) first <strong>introduced 1997</strong> turns 20 in 2017 and its popularity is <strong>still growing.</strong></p>
+                <p><small>5th PYPL (2017), 7th TIOBE Index (2017)</small></p>
+            </p>
+            <div class="fragment">
+                <strong>UPDATE 2018</strong>
+                <p>
+                    <small><strong>4th</strong> PYPL in Feb. 2018, overtook C#</small>
+                </p>
+                <p>
+                    <small>... TypeScript ranked 12th, combined <strong>3rd</strong>, overtaking PHP</small>
+                </p>        
+            </div>
+        </section>
+        <section>
+            <h3>ECMAScript (JavaScript) versioning covered</h3>
+            <ul>
+                <li>ES5 2009</li>
+                <li>ES2015 (f.k.a. ES6) 2015</li>
+                <li>ES2016, ES2017, ..., ES.Next</li>
+                <li>TypeScript 2.6 2017</li>
+            </ul>
+            <p><a href="http://caniuse.com/#search=es6" target="_blank">Can I use ES6 (Browsers Support)</a></p>
+            <p><a href="http://node.green/" target="_blank">node.green (Node.js Support)</a></p>
+        </section>
+        <section>
+            <h3>Why is ES5 still relevant</h3>
+            <p>Todays go to version considering <strong>compatibility</strong>.</p>
+            <p>Older browsers (IE ...) can support ES5 code via <strong>polyfills</strong>.</p>
+            <p>Most TypeScript projects <strong>transpile</strong> to it.</p>
+            <p>There are lots of <strong>legacy projects</strong>, <strong>build scripts</strong>, etc. written in ES5.</p>
+        </section>
+        <section>
+            <section>
+                <img class="header-logo" src="img/js-logo.png" alt="JS logo">
+                <h3>ES5 Introduction</h3>
+                <p>... best of previous RWC schools</p>
+            </section>
+            <section>
+                <h2>JavaScript...</h2>
+                <p>...has nothing in common with Java&nbsp;<small>* except for some key words</small></p>
+                <p>...is more like <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">&ldquo;Lisp in C's clothing&rdquo;</q>&nbsp;<small>*Douglas Crockford</small>
+                </p>
+                <p>...has objects, but is class-free</p>
+                <p>...is of single-threaded nature</p>
+                <p>...has asynchronous programming model</p>
+                <p>...is object oriented and functional at the same time</p>
+            </section>
+            <section>
+                <h3>Hoisting</h3>
+                <div>
+                    <pre><code data-trim class="javascript">
+var myVar = 'global';
+var myFunction = function () {
+    console.log(myVar); // undefined
+    var myVar = 'local';
+    console.log(myVar); // 'local'
+};
+myFunction();
+					</code></pre>
+                    <p>Declarations get <strong>hoisted to the top</strong> of a function...</p>
+                </div>
+                <div>
+                    <p>The above code behaves as if it looked like this:</p>
+                    <pre><code data-trim class="javascript">
+var myVar = 'global';
+var myFunction = function () {
+    var myVar;
+    console.log(myVar); // undefined
+    myVar = 'local';
+    console.log(myVar); // 'local'
+};
+myFunction();
+					</code></pre>
+                </div>
+            </section>
+            <section>
+                <p>
+                    Always use <strong>var</strong> to declare variables.
+                    If you don't, they become <strong>global</strong> variables.
+                </p>
+            </section>
+            <section>
+                <p>Top Scope</p>
+                <pre><code data-trim class="javascript">
+console.log(this); // Window
+console.log(this.myVar); // undefined
+console.log(this.myVar2); // undefined
+
+myVar = 'otto';
+var myVar2 = 'peter';
+
+console.log(this.myVar); // 'otto'
+console.log(this.myVar2); // 'peter'
+                </code></pre>
+            </section>
+            <section>
+                <p>Child Scope</p>
+                <pre><code data-trim class="javascript">
+function myFunc() {
+    console.log(this); // Window
+    console.log(this.myVar); // undefined
+    console.log(this.myVar2); // undefined
+
+    myVar = 'otto';
+    var myVar2 = 'peter';
+
+    console.log(this.myVar); // 'otto'
+    console.log(this.myVar2); // undefined
+}
+
+myFunc();
+                </code></pre>
+            </section>
+            <section>
+                <h2>Single var pattern</h2>
+                <p>Eliminates logical errors caused by hoisting</p>
+                <pre><code data-trim class="javascript">
+var a = 1,
+    b = 2,
+    sum = a + b,
+    myVar,
+    hello = function () {
+        return 'Hello!';
+    };
+					</code></pre>
+            </section>
+            <section>
+                <h2>Objects</h2>
+                <p>can be created in a very convenient way with <i>object literals</i>:</p>
+                <pre><code data-trim class="javascript">
+var emptyObject = {},
+    person = {
+      firstName : 'John',
+      lastName : 'Example',
+      age : 30
+    };
+					</code></pre>
+            </section>
+            <section>
+                <h2>Objects</h2>
+                <p>Values' retrieval</p>
+                <pre><code data-trim class="javascript">
+var emptyObject = {},
+    person = {
+        firstName: 'John',
+        lastName: 'Example',
+        age: 30
+    };
+
+// retrieval
+person.firstName // 'John'
+person['lastName'] // 'Example'
+person.salutation // undefined
+salutation = person.salutation || ''; // the default operator
+person.address.street // throws TypeError
+street = person.address &amp;&amp; person.address.street // undefined
+					</code></pre>
+            </section>
+            <section>
+                <h2>Objects</h2>
+                <p>Values' update and properties' removal</p>
+                <pre><code data-trim class="javascript">
+var person = {
+        firstName: 'John',
+        lastName: 'Example',
+        age: 30
+    };
+
+// update
+person['firstName'] = 'Joe';
+person.age = 33;
+
+// delete
+delete person.age;
+                </code></pre>
+            </section>
+            <section>
+                <h2>Functions</h2>
+                <p>are objects</p>
+                <p>can be created with <i>function literals</i>:</p>
+                <pre><code data-trim class="javascript">
+var add = function (a, b) {
+    return a + b;
+};
+
+add(1, 2); // 3
+                </code></pre>
+            </section>
+            <section>
+                <h2>Functions</h2>
+                <p>stored as properties of objects...</p>
+                <pre><code data-trim class="javascript">
+var person = {
+    firstName: 'John',
+    lastName: 'Example',
+    age: 30,
+    letMeIntroduceMyself: function () {
+        return 'My name is ' + this.firstName + ' ' + this.lastName;
+    }
+};
+
+person.letMeIntroduceMyself(); // My name is John Example
+person.firstName // 'John' - no privacy
+                </code></pre>
+                <p>...are called <i>methods</i></p>
+            </section>
+            <section>
+                <h2>Scope</h2>
+                <p>... is defined by functions, and not {} blocks</p>
+                <pre><code class="javascript">// Scope 1
+var funcA = function () {
+  // Scope 2
+  var funcB = function () {
+    // Scope 3
+  };
+};
+                </code></pre>
+            </section>
+            <section>
+                <h2>Lexical Scope</h2>
+                <p>Inner scope can access outer scope and not vice versa.</p>
+                <pre><code data-trim class="javascript">
+var myFun = function (someInput) {
+    var a = 1,
+        b = 2,
+        yourFun = function () {
+            var b = 22,
+                c = 3;
+            // at this point a = 1, b = 22, c = 3
+            a = 11;
+        };
+    // at this point a = 1, b = 2, c is not defined
+    yourFun();
+    // at this point a = 11, b = 2, c is not defined
+};
+myFun();
+                </code></pre>
+            </section>
+            <section>
+                <h2>Closure</h2>
+                <p>enables a function to keep its creation context</p>
+                <pre><code data-trim class="javascript">
+var myObjectFactory = function (param) {
+      var value = 'Value';
+
+      return {
+        theseAreMySecrets: function () {
+          return 'value = ' + value + ', param = ' + param;
+        }
+      };
+    }
+    , myObject = myObjectFactory('Param');
+
+myObject.theseAreMySecrets(); // value = Value, param = Param
+myObject.value; // undefined                        
+                </code></pre>
+            </section>
+            <section>
+                <h2>Module Pattern - IIFE</h2>
+                <p>makes use of function scope and closure</p>
+                <pre><code class="max-height-unset" data-trim class="javascript">
+var person = (function () {
+    var details = {
+        firstName: 'John',
+        lastName: 'Example',
+        age: 30
+    };
+
+    return {
+        letMeIntroduceMyself: function () {
+            return 'My name is ' +
+                details.firstName + ' ' + details.lastName;
+        }
+    };
+})();
+
+person.letMeIntroduceMyself(); // My name is John Example
+person.details; // undefined
+                </code></pre>
+            </section>
+            <section>
+                <h3>Constructor function</h3>
+                <pre><code data-trim class="javascript">
+var Person = function () {
+      this.firstName = 'John';
+      this.lastName = 'Example';
+      this.age = 30;
+    }, johnExample;
+
+Person.prototype.letMeIntroduceMyself = function () {
+  return 'My name is ' + this.firstName + ' ' + this.lastName;
+};
+
+johnExample = new Person();
+johnExample.letMeIntroduceMyself();  // My name is John Example
+johnExample.firstName; // 'John' - no privacy
+                </code></pre>
+                <p>is intended to be invoked with the <i>new</i> prefix</p>
+                <p>creates a new object with a hidden link to its <i>prototype</i></p>
+                <p>has capitalized name by convention</p>
+            </section>
+            <section>
+                <p><strong>this</strong> is unrelated to scope.</p>
+                <ul>
+                    <li>the global object, at the top level scope</li>
+                    <li>obj, when executing <code>obj.func(...)</code></li>
+                    <li>obj, when executing <code>func.apply(obj, [...])</code></li>
+                    <li>a new object with prototype func.prototype, when calling new func(...)</li>
+                    <li>the event target, if <code>elem.addEventListener('event', func, ...)</code> and event is fired on elem</li>
+                    <li>...</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Coercion</h2>
+                <pre><code data-trim class="javascript">
+!!null        // false
+null == false // false
+
+0 == false  // true
+'' == false // true
+
++true // 1
+
+[] == ![] // true
+
+1 &lt; 2 &lt; 3 // true
+3 &gt; 2 &gt; 1 // false
+
+'2' - 1  // 1
+'133' + 7  // '1337'
+                </code></pre>
+                <p>always use <code>===</code> instead of <code>==</code></p>                
+            </section>
+        </section>
+        <section>
+            <section>
+                <img class="header-logo" src="img/js-logo.png" alt="JS logo">
+                <h3>ES2015 (f.k.a. ES6) Introduction</h3>
+            </section>
+            <section>
+                <h3>let</h3>
+                <p>Declares a variable with <strong>block level scope</strong>.</p>
+                <pre><code data-trim class="javascript">
+var foo = 123;
+if (true) {
+    var foo = 456;
+}
+console.log(foo); // 456
+                </code></pre>
+                <p>... with <code>let</code>:</p>
+                <pre><code data-trim class="javascript">
+let foo = 123;
+if (true) {
+    let foo = 456;
+}
+console.log(foo); // 123
+                </code></pre>
+            </section>
+            <section>
+                <h3>const</h3>
+                <p>Constants are <strong>immutable</strong> after creation. Assigning a new value throws a <code class="javascript">TypeError</code></p>
+                <pre><code class="javascript">const foo = 123;
+foo = 456; // TypeError</code></pre>
+                <p><code>const</code> declared variables are <strong>block scoped</strong> like <code>let</code></p>
+            </section>
+            <section>
+                <h3>class</h3>
+                <p>Is implemented as <strong>syntactic</strong> sugar.</p>
+                <pre><code class="javascript">class A {
+  constructor() {
+    this.name = 'otto';
+  }
+};
+a = new A();
+console.log(a.name); // otto</code></pre>
+                <p>is syntactic sugar for</p>
+                <pre><code class="javascript">var A = (function () {
+    function A() {
+        this.name = 'otto';
+    }
+    return A;
+}());</code></pre>
+            </section>
+            <section>
+                <h3>extends</h3>
+                <pre><code class="javascript">class A {
+  constructor() {
+    this.name = 'otto';
+  }
+}
+class B extends A { }
+a = new B();
+console.log(a.name); // otto</code></pre>
+                <p><code>super</code> <strong>needs to be called</strong> if extending and implementing the childs constructor</p>
+                <pre><code class="javascript">class A { constructor() { console.log('hello my friend'); } }
+class B extends A { }
+class C extends A { constructor() { super() } }
+class D extends A { constructor() { } }
+var b = new B(); // hello my friend
+var c = new C(); // hello my friend
+var d = new D(); // ReferenceError: this is not defined</code></pre>
+            </section>
+            <section>
+                <h3>more class features</h3>
+                <p>There are more class features like:</p>
+                <ul>
+                    <li>getters and setters</li>
+                    <li>static functions</li>
+                    <li>etc.</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Hoisting</h3>
+                <p><code class="javascript">let</code>, <code class="javascript">const</code> and <code>class</code> are <strong>not hoisted</strong>.</p>
+                <pre><code>a(); // hello
+function a() {
+  console.log('hello');
+}</code></pre>
+                <pre><code class="javascript">new Tree(); // TypeError
+class Tree {}</code></pre>
+            </section>
+            <section>
+                <h3>String interpolation</h3>
+                <pre><code class="javascript">let name = 'otto';
+console.log(`${name} is a nice name!`);</code></pre>
+                <p>code inside backticks is evaluated</p>
+                <pre><code class="javascript">console.log(`${3+3}`); // 6</code></pre>
+            </section>
+            <section>
+                <h3>Arrow Functions</h3>
+                <pre><code class="javascript">var func = () => {
+   console.log('This saves a lot of typing.');
+}</code></pre>
+                <pre><code class="javascript">var func = () => console.log('even this way');</code></pre>
+                <p>... becomes very useful for anonymous filter functions, observable operators, etc.</p>
+                <pre><code class="javascript">[1,2,3].filter(a => a > 2); // [3]</code></pre>
+            </section>
+            <section>
+                <h3>Iterator</h3>
+                <pre><code class="javascript">var numbers = ['one', 'three', 'nine'];
+for (var x in numbers) {
+  if (numbers.hasOwnProperty(x)) {
+    console.log(numbers[x]);
+  }
+}</code></pre>
+                <p>can be shortened to</p>
+                <pre><code class="javascript">var numbers = ['one', 'three', 'nine'];
+for (let x of numbers) {
+    console.log(x);
+}</code></pre>
+                <p>plus new array operators like spread, of, etc.</p>
+            </section>
+            <section>
+                <h2>Spread Operator</h2>
+                <pre><code data-trim class="javasript">
+const myValues = [1, 3, 7];
+const myValues2 = [...myValues];
+
+console.log(myValues === myValues2); // false
+
+const myExtendendValues = [...myValues, 9];
+
+console.log(myExtendendValues); // [1, 3, 7, 9]
+                </code></pre>
+            </section>
+            <section>
+                <h3>Advanced Types I</h3>
+                <p><code>Set</code> is a collection of distinct objects.</p>
+                <pre><code class="javascript">let mySet = new Set([...'abcd']);
+console.log(mySet.Values())
+// SetIterator {"a", "b", "c", "d"}</code></pre>
+                <p><code>Map</code> is a key-value collection.</p>
+                <pre><code class="javascript">let myMap = new Map([...'abcd'].map(c => [c, c + c]));
+console.log(myMap.entries());
+// MapIterator {["a", "aa"], ["b", "bb"], ["c", "cc"], ["d", "dd"]}
+console.log(myMap.keys());
+// MapIterator {"a", "b", "c", "d"}
+console.log(myMap.values());
+// MapIterator {"aa", "bb", "cc", "dd"}</code></pre>
+                <p><code class="javascript">WeakSet</code> and <code class="javascript">WeakMap</code> are counterparts which dont prevent garbage collection.</p>
+            </section>
+            <section>
+                <h3>Advanced Types II</h3>
+                <p>There are more advanced types like <code class="javascript">Promise</code> and <code class="javascript">Proxy</code>.</p>
+                <p><code>Promise</code> will be covered in a separate presentation.</p>
+            </section>
+            <section>
+                <h3>Modules</h3>
+                <p>A module is code which is <strong>executed when loaded</strong>.</p>
+                <p>Declarations stay <strong>local</strong> to that module.</p>
+                <p><code class="highlight">export</code> marks public visible declarations</p>
+                <p>A module can import from other modules.</p>
+                <p>Modules are <strong>singletons</strong>.</p>
+                <p>Loading is <strong>asynchronous</strong>.</p>
+                <p><strong>Declarative</strong> and <strong>programmatic</strong> loading.</p>
+            </section>
+            <section>
+                <h3>Exporting</h3>
+                <p>can be done named</p>
+                <pre><code class="javascript">// ----hello.js-----
+export function sayHello() {
+  console.log('hello');
+}
+// ----main-----
+import { sayHello } from 'hello';
+sayHello(); // hello</code></pre>
+                <p>can be done by <i>default</i> (only one per module)</p>
+                <pre><code class="javascript">// ----hello.js-----
+export default function sayHello() {
+  console.log('hello');
+}
+// ----main-----
+import fencyFunc from 'hello';
+fencyFunc(); // hello</code></pre>
+            </section>
+            <section>
+                <h3>Importing / Exporting</h3>
+                <p><code>import</code> and <code>export</code> Statements need to be in <strong>top level</strong> (highest block scope)</p>
+                <p><code>import</code> statements are <strong>hoisted</strong></p>
+                <p>imported entities are <strong>readonly</strong></p>
+                <p>cyclic dependencies can be handled</p>
+                <p><strong>Re-exporting</strong> is possible</p>
+            </section>
+        </section>
+        <section>
+            <section>
+                <img class="header-logo" src="img/js-logo.png" alt="JS logo">
+                <h3>ES2016, ES2017, ES.Next</h3>
+            </section>
+            <section>
+                <p>ECMAScript is released more often.</p>
+                <p>This leads to smaller steps and a faster developing landscape.</p>
+            </section>
+            <section>
+                <p>Array includes</p>
+                <pre><code data-trim class="javascript">
+let vals = [1,2,3,4];
+vals.includes(1); // true
+                </code></pre>
+                <p>Exponentiation (**) Operator</p>
+                <pre><code data-trim class="javascript">
+console.log(2 ** 3); // 8
+console.log((-2) ** 3); // -8
+                </code></pre>
+            </section>
+            <section>
+                <h2>Async / Await</h2>
+                <pre><code class="javascript" data-trim>
+router.get('/user/:id', async (req, res, next) => {
+  try {
+    const user = await getUserFromDb({ id: req.params.id });
+    res.json(user);
+  } catch (e) {
+    next(e);
+  }
+})
+                </code></pre>
+            </section>
+            <section>
+                <h2>Object Spread</h2>
+                <p>ES.Next implemented today</p>
+                <pre><code class="javascript" data-trim>
+let myObject = {
+  name: 'karl',
+  age: 55
+};
+
+let myNewObject = { ...myObject };
+
+console.log(myObject === myNewObject); // false
+                </code></pre>
+            </section>
+            <section>
+                <p>node.green has good <a href="http://node.green">overview</a> of proposed features.</p>
+            </section>
+        </section>
+        <section>
+            <section
+                id="typescript"
+                data-background-image="img/foreground_bluprint.svg"
+                data-background-position="top"
+                data-background-size="100% auto"
+                data-background-color="#152740">
+                <img style="height: 100px" class="header-logo plain margin-top-6-em" src="img/ts-logo.svg" alt="TS logo">
+                <div class="bannerTextHeadline">
+                    JavaScript that scales.
+                </div>
+                <div class="bannerText">
+                    <p>TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.</p>
+                    <p>Any browser. Any host. Any OS. Open source.</p>
+                </div>
+            </section>
+            <section>
+                <h2>Facts</h2>
+                <ul>
+                    <li>invented by <strong>Microsoft</strong></li>
+                    <li>valid JavaScript syntax is valid TypeScript syntax</li>
+                    <li><strong>Google</strong> dropped AtScript and chose <strong>TypeScript for Angular</strong></li>
+                </ul>
+            </section>
+            <section>
+                <p>Let's start with the quickstart example from <a href="https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html">typescriptlang.org</a></p>
+                <pre><code class="javascript" data-trim>
+function greeter(person) {
+    return "Hello, " + person;
+}
+
+let user = "Jane User";
+
+document.body.innerHTML = greeter(user);
+                </code></pre>
+            </section>
+            <section>
+                <p>Could be written in TypeScript...</p>
+                <pre><code class="javascript" data-trim data-noescape>
+function greeter(person<mark>: string</mark>) {
+    return "Hello, " + person;
+}
+
+let user = "Jane User";
+
+document.body.innerHTML = greeter(user);
+                </code></pre>
+            </section>
+            <section>
+                <pre><code class="typescript" data-trim>
+function greeter(person: string) {
+    return "Hello, " + person;
+}
+
+let user = [0, 1, 2];
+
+document.body.innerHTML = greeter(user);
+                </code></pre>
+                <p>Leads to compilation time error.</p>
+                <p><small>error TS2345: Argument of type 'number[]' is not assignable to parameter of type 'string'.</p></small>
+            </section>
+            <section>
+                <p>... and is even supported by VS Code</p>
+                <img src="img/ts-vscode-error.png" alt="VS Code TS Error" class="plain no-border">
+            </section>
+            <section>
+                <pre><code class="typescript" data-trim>
+interface Person {
+    firstName: string;
+    lastName: string;
+}
+
+function greeter(person: Person) {
+    return "Hello, " + person.firstName + " " + person.lastName;
+}
+
+let user = { firstName: "Jane", lastName: "User" };
+
+document.body.innerHTML = greeter(user);
+                </code></pre>
+                <p>In TypeScript, two types are compatible if their internal structure is compatible.</p>
+            </section>
+            <section>
+                <img src="img/greet_person.png" class="plain no-border" alt="">
+                <p>TypeScript works well with VS Code</p>
+            </section>
+            <section>
+              <pre><code data-trim class="typescript">
+interface OnInit {
+  ngOnInit(): void
+}
+
+class MyComponent implements OnInit {
+
+  ngOnInit(): void {
+    console.log('Component activated.')
+  }
+
+}
+              </code></pre>
+              <p>Interfaces can be implemented.</p>
+            </section>
+            <section>
+                <pre><code data-trim class="max-height-unset typescript">
+abstract class Speaker {
+  constructor(protected location: string) { }
+  abstract speak(): void;
+}
+    
+class Headphones extends Speaker {
+    
+  constructor() {
+    super('in ear');
+  }
+    
+  speak(): void {
+    console.log(this.location + ': la la la');
+  }
+    
+}
+   
+function play(speaker: Speaker) {
+  speaker.speak();
+}
+    
+play(new Headphones()); // in ear: la la la
+                </code></pre>
+            </section>
+            <section>
+                <p>Classes</p>
+                <pre><code>class A {
+  name: string;
+}</code></pre>
+                <p>... compile to</p>
+                <pre><code>var A = (function () {
+  function A() {
+  }
+  return A;
+}());</code></pre>
+                <p>Interfaces</p>
+                <pre><code>interface A {
+  name: string;
+}</code></pre>
+                <p class="fragment">... compile to <i>nothing</i>.</p>
+            </section>
+            <section>
+                <h3>What are interfaces for</h3>
+                <p>Interfaces define contracts.</p>
+                <pre><code>function sayHelloTo(person: { name: string }) {
+  console.log(person.name);
+}</code></pre>
+                <p>... using Interfaces</p>
+                <pre><code>interface NamedPerson {
+  name: string;
+}
+
+function sayHelloTo(person: NamedPerson) {
+  console.log(person.name);   
+}</code></pre>
+            </section>
+            <section>
+              <h2>Type Inference</h2>
+              <pre><code data-trim class="typescript">
+let x = [1, 2, 3]; // x becomes number[]
+
+// zoo becomes (Rhino | Elephant | Snake)[]
+let zoo = [new Rhino(), new Elephant(), new Snake()];
+
+// corrects type
+let zoo: Animal[] = [new Rhino(), new Elephant(), new Snake()];
+              </code></pre>
+            </section>
+            <section>
+              <h2>Advanced Types / Type Narrowing</h2>
+              <pre><code class="typescript" data-trim>
+function padLeft(value: string, padding: any) {
+  if (typeof padding === 'number') {
+    return Array(padding + 1).join(' ') + value;
+  }
+
+  if (typeof padding === 'string') {
+    return padding + value;
+  }
+
+  throw new Error(`Expected string or number, got '${padding}'.`);
+}
+              </code></pre>
+            </section>
+            <section>
+              <h2>Strict Null Checks</h2>
+              <pre><code class="typescript" data-trim>
+interface MyType {
+  name: string;
+}
+
+function myFunc(val: MyType) {
+  // ...
+}
+
+myFunc(null); // compiler error
+myFunc(undefined); // compiler error
+              </code></pre>
+            </section>
+            <section>
+                <code><pre class="typescript" data-trim>
+function query(method: 'GET'|'POST'|'PUT') {
+  // highly suffisticated stuff here...
+}
+
+query('otto');
+                </pre></code>
+                <p>will it compile?</p>
+                <div class="fragment">
+                    <img src="img/specific-string-example.png" class="plain no-border" alt="">
+                    <p>More specific than a string - cool, right?</p>
+                </div>
+            </section>
+        </section>
+        <section>
+            <section>
+                <img style="box-shadow:none;" class="header-logo" src="../common/img/angular.svg">         
+                <h3>Build / Modules / Angular compatibility</h3>
+            </section>
+            <section>
+                <p>TypeScript Compiler is just a package.</p>
+                <p>npm</p>
+                <pre><code>npm install -g typescript</code></pre>
+                <p>yarn</p>
+                <pre><code>yarn global add typescript</code></pre>
+            </section>
+            <section>
+                <p>
+                    Compiling a single ts-file via
+                    <pre><code class="typescript"> // -----test.ts-----
+class Person { 
+  name: string;
+  height: number;
+}</code></pre>
+                    <pre><code>tsc test.ts</code></pre>
+                    <p>... creates</p>
+                    <pre><code> // -----test.js-----
+var Person = (function () {
+  function Person() {
+  }
+  return Person;
+}());
+</code></pre>
+                </p>
+            </section>
+            <section>
+                <h3>Configuring TS compilation</h3>
+                <p>By convention running tsc without target looks for <strong>tsconfig.json</strong>.</p>
+                <pre><code data-trim class="json">
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "system",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    ...
+  },
+  ...
+}
+                </code></pre>
+                <p>See full list of compiler options at <a href="https://www.typescriptlang.org/docs/handbook/compiler-options.html" target="_blank">TS Docs</a></p>
+            </section>
+            <section>
+                <h3>JavaScript Modules</h3>
+                <p>As shown ES2015 specifies how ES modules are created but <strong>not how they are loaded</strong>.</p>
+                <p>There is <strong>no complete implementation</strong> for ES modules at the moment.</p>
+                <p>But there are <strong>other modules</strong> which let to ES modules and can be used today.</p>
+            </section>
+            <section>
+                <img style="height:120px;margin:0;box-shadow:none" src="img/nodejs-logo.png" alt="Nodejs logo" class="header-logo">
+                <p><a href="http://commonjs.org" target="_blank">CommonJS</a></p>
+                <p>Server side modules build into <strong>node.js</strong></p>
+                <p><pre><code>require('gulp');</code></pre>loads gulp which is a CommonJS module</p>
+                <p>CommonJS require() is <strong>synchronous</strong></p>
+                <p><code>console.log(this.require)</code> shows function in node but in browsers it is undefined.</p>
+            </section>
+            <section>
+                <h3>AMD modules</h3>
+                <p><a href="https://github.com/amdjs/amdjs-api/wiki/AMD" target="_blank">Asynchronous Module Definition</a></p>
+                <p>Client side modules with implementation <a href="http://requirejs.org/">RequireJS</a></p>
+                <p>Modules are loaded asynchronously</p>
+                <p>Solution which has been long around for loading only files which are needed.</p>
+                <pre><code data-trim>
+require(['lib1','lodash','angular'],function (lib1, _, angular){
+    // use it
+});              </code></pre>
+            </section>
+            <section>
+                <p><a href="https://github.com/umdjs/umd">UMD (Universal Module Definition)</a></p>
+                <p>A module definition which supports the API of both <strong>CommonJS and AMD</strong></p>
+            </section>
+            <section>
+                <h3>Loaders, Bundlers</h3>
+                <p><a href="https://github.com/systemjs/systemjs" target="_blank">SystemJS</a> is a loader which loads CommonJS, AMD, UMD and ES modules</p>
+                <p><a href="https://github.com/systemjs/builder" target="_blank">SystemJS Builder</a> is a bundler to build single file SystemJS bundles.</p>
+                <p><a href="https://webpack.js.org/" target="_blank">webpack</a> is a bundler and loader which creates and loads CommonJS, AMD, UMD and ES modules.</p>
+            </section>
+            <section>
+                <h3>Advanced build features</h3>
+                <p>... have been around for a long time</p>
+                <ul>
+                    <li>minification (uglify)</li>
+                    <li>less / sass</li>
+                    <li>replacing / inserting</li>
+                    <li>compression (gzip)</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Tree shaking</h3>
+                <p>Removing code which is <strong>not imported.</strong></p>
+                <p>Note: This is different to dead code elimination.</p>
+                <pre><code class="typescript">// ----lib.ts----
+export function crazy() { ... }
+export function crazy2() { ... }
+
+// -----main-----
+import { crazy } from './lib';
+</code></pre>
+                <p>Tree shaking removes <code>crazy2()</code> because it is not imported.</p>
+                <p><a href="http://rollupjs.org/" target="_blank">rollup.js</a> and <a href="https://webpack.js.org/" target="_blank">webpack</a></p>
+            </section>
+            <section>
+                <h3>Bundling</h3>
+                <p>For Browser application it is inadvisable to <strong>load hundreds of files</strong> with HTTP overhead slowing the application down.</p>
+                <p>Better solution is to bundle to <strong>reduce HTTP requests</strong>.</p>
+                <p>It is common to have a <strong>vendor</strong> bundle and an <strong>app</strong> bundle.</p>
+                <p>SFX bundles: Independent of loader lib (it is inside the bundle).</p>
+            </section>
+            <section>
+                <h3>Angulars AoT compilation</h3>
+                <p>The <strong>largest part</strong> of angular is the compiler.</p>
+                <p>By <strong>default</strong> Angular uses <strong>JIT</strong> compilation.</p>
+                <p>When using AoT compilation views come prerendered and the <strong>compiler can be removed</strong> by tree shaking.</p>
+            </section>
+            <section>
+                <h3>What should I choose</h3>
+                <p>Angular-CLI <strong>abstracts</strong> from all those tools and features and presents <strong>a single CLI</strong>.</p>
+                <p>Angular-CLI switched from <strong>system.js</strong> to <strong>webpack</strong>.</p>
+                <p>Popular build tools like <a href="http://gruntjs.com/" target="_blank">Grunt</a> and <a href="http://gulpjs.com/" target="_blank">Gulp</a> lost popularity with <strong>npm scripts with webpack</strong> presenting an easy solution to the whole build chain.</p>
+            </section>
+            <section>
+                <h3>Tooling is even more <strong>fragile</strong> then UI frameworks are.</h3>
+                <p>Embrace the change or choose a CLI and let the open source community do the work (e.g. Google).</p>
+            </section>
+            <section>
+                <h3>Webpack 3 Example</h3>
+                <p>webpack.config.js</p>
+                <pre><code class="javascript" data-trim>
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+
+module.exports = {
+  entry: './src/main.js',
+  output: {
+    filename: 'bundle.js'
+  },
+  plugins: [
+    new UglifyJSPlugin()
+  ]
+}
+                </code></pre>
+            </section>
+            <section>
+                <p>src/lib.js</p>
+                <pre><code class="javascript" data-trim>
+export function crazy() {
+  console.log('crazy');
+}
+
+export function crazy2() {
+  console.log('crazy2');
+}                          
+                </code></pre>
+            </section>
+            <section>
+                <p>src/main.js</p>
+                <pre><code class="javascript" data-trim>
+import { crazy } from './lib';
+
+crazy();
+                </code></pre>
+            </section>
+        </section>
+    </div>
+</div>
+
+<script src="../node_modules/reveal.js/lib/js/head.min.js"></script>
+<script src="../node_modules/reveal.js/js/reveal.js"></script>
+
+<script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        history: true,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+            { src: '../node_modules/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: '../node_modules/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../node_modules/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../node_modules/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: '../node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true },
+            { src: '../node_modules/reveal.js/plugin/notes/notes.js', async: true }
+        ]
+    });
+</script>
+</body>
+</html>
