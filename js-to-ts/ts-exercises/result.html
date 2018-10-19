@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <script src="./base/jasmine.min.js"></script>
+  <script src="./base/jasmine-html.min.js"></script>
+  <script src="./base/boot.min.js"></script>
+  <link rel="stylesheet" href="./base/jasmine.min.css">
+  <script src="./exercises.js"></script>
+  <script>
+  describe('reverseFunc', () => {
+    
+    it('reverses 1234 to 4321', () => {
+      expect(reverseFunc(1234)).toBe(4321);
+    });
+
+    it('reverses 364 to 463', () => {
+      expect(reverseFunc(364)).toBe(463);
+    })
+
+  });
+
+  describe('findLongestWordFunc', () => {
+    
+    it('finds there', () => {
+      expect(findLongestWordFunc('Are we there yet')).toBe('there');
+    });
+
+    it('finds Guillaume', () => {
+      expect(findLongestWordFunc('Guillaume likes ice cream a lot more than you might think')).toBe('Guillaume');
+    })
+
+  });
+
+  describe('getElementsGreater', () => {
+    
+    it('filters 0,9 to 9', () => {
+      expect(getElementsGreater([0,9], 5)).toEqual([9]);
+    });
+
+    it('filters 2,0,3 to 3', () => {
+      expect(getElementsGreater([2,0,3], 2)).toEqual([3]);
+    })
+
+  });
+
+  describe('parseAndBuild', () => {
+        
+    it('parses single object', () => {
+      const json = '[{ "color": "red", "isNew": true }]'
+      const expected = {
+        red: {
+          count: 1,
+          allNew: true
+        }
+      };
+
+      const actual = parseAndBuild(json);
+      
+      expect(actual).toEqual(expected);
+    });
+
+    it('parses multiple objects', () => {
+      const json = '[{ "color": "blue", "isNew": true },{ "color": "blue", "isNew": false },{ "color": "red", "isNew": true }]'
+      const expected = {
+        blue: {
+          count: 2,
+          allNew: false
+        },
+        red: {
+          count: 1,
+          allNew: true
+        }
+      };
+
+      const actual = parseAndBuild(json);
+      
+      expect(actual).toEqual(expected);
+    })
+
+  });
+  </script>
+</body>
+</html>
