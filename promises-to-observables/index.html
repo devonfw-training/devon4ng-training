@@ -433,62 +433,6 @@ export class AppComponent {
                 </ul>
             </section>
             <section>
-                <section>
-                    <p>Do advanced stuff without any state inside components</p>
-                    <pre><code data-trim class="typescript">
-@Component({
-  selector: 'app-root',
-  template: `&lt;h1&gt;{{salutation$ | async}}&lt;/h1&gt;
-  &lt;button (click)="changeSalutation()"&gt;Change salutation&lt;/button&gt;
-  &lt;button (click)="changeName()"&gt;Change name&lt;/button&gt;`
-})
-export class AppComponent {
-  salutation$ = combineLatest(
-    this.salutationService.salutation$,
-    this.salutationService.name$,
-    (salutation, name) => `${salutation} ${name}`
-  );
-
-  constructor(private salutationService: SalutationService) { }
-
-  changeSalutation(): void {
-    this.salutationService.changeSalutation();
-  }
-
-  changeName(): void {
-    this.salutationService.changeName();
-  }
-}
-                    </code></pre>
-                </section>
-                <section>
-                    <pre class="width-100-percent"><code data-trim class="typescript max-height-unset">
-@Injectable()
-export class SalutationService {
-  private names = ['Waldo', 'Caspar', 'Azizi', 'Otto', 'Kathreen', 'Dorothee'];
-  private salutations = ['Hallo', 'Hola', 'Hello', 'Salut', 'Ciao'];
-  private nameSource = new BehaviorSubject&lt;string&gt;(this.names[0]);
-  private salutationSource = new BehaviorSubject&lt;string&gt;(this.salutations[0]);
-  name$ = this.nameSource.asObservable();
-  salutation$ = this.salutationSource.asObservable();
-
-  changeName(): void {
-    this.nameSource.next(this.getNextValue(this.names, this.nameSource.getValue()));
-  }
-
-  changeSalutation(): void {
-    this.salutationSource.next(this.getNextValue(this.salutations, this.salutationSource.getValue()));
-  }
-
-  private getNextValue(vals: string[], current: string): string {
-    let nextIndex = vals.indexOf(current) + 1;
-    return vals[nextIndex >= vals.length ? 0 : nextIndex];
-  }
-}
-                    </code></pre>
-                </section>
-            </section>
-            <section>
                 <p>These examples <strong>only scratched the surface</strong> of what Observables can do.</p>
                 <p>They are key to so called <strong>reactive architectures</strong>.</p>
                 <p>Further reading:</p>
