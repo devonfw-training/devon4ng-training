@@ -71,7 +71,7 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root',
+  provideIn: 'root',
 })
 export class BookService {
 }
@@ -81,7 +81,7 @@ export class BookService {
         <section>
             <pre><code class="hljs typescript" data-trim data-noescape>
 @Injectable({
-  providedIn: 'root'
+  provideIn: 'root'
 })
 export class BookService {
   private books: Book[] = [{...}, {...}];
