@@ -53,7 +53,7 @@
                     <li>Show the component</li>
                     <li>Show dummy data in the component</li>
                 </ol>
-                <p class="branch-hint">Fallback branch: excercise/1-project-seed<br>Solution branch: excercise/2-simple-component</p>
+                <p class="branch-hint">Fallback branch: exercise/1-project-seed<br>Solution branch: exercise/2-simple-component</p>
                 <a class="branch-hint" target="_blank" href="../git-intro/git-intro.html#/2">Git Cheat Sheet</a>
             </section>
             <section>
@@ -103,7 +103,7 @@
                     <li>Use the details component to show details of a movie selected in the list</li>
                     <li>Change movie details and update the list</li>
                 </ol>
-                <p class="branch-hint">Fallback branch: excercise/2-simple-components<br>Solution branch: excercise/3-master-details-input</p>
+                <p class="branch-hint">Fallback branch: exercise/2-simple-components<br>Solution branch: exercise/3-master-details-input</p>
                 <a class="branch-hint" target="_blank" href="../git-intro/git-intro.html#/2">Git Cheat Sheet</a>
             </section>
             <section>
@@ -213,7 +213,7 @@
                     <li>Clicking on a button propagates the changes to the list</li>
                     <li>Add a button to create new movie entries</li>
                 </ol>
-                <p class="branch-hint">Fallback branch: excercise/3-master-details-input<br>Solution branch: excercise/4-master-details-output</p>
+                <p class="branch-hint">Fallback branch: exercise/3-master-details-input<br>Solution branch: exercise/4-master-details-output</p>
                 <a class="branch-hint" target="_blank" href="../git-intro/git-intro.html#/2">Git Cheat Sheet</a>
             </section>
             <section>
@@ -308,7 +308,7 @@
                     <li>The data is asynchronously retrieved (like it would be via a REST service)</li>
                     <li>The async pipe is used to subscribe to the service</li>
                 </ol>
-                <p class="branch-hint">Fallback branch: excercise/4-master-details-output<br>Solution branch: excercise/5-services</p>
+                <p class="branch-hint">Fallback branch: exercise/4-master-details-output<br>Solution branch: exercise/5-services</p>
                 <a class="branch-hint" target="_blank" href="../git-intro/git-intro.html#/2">Git Cheat Sheet</a>
             </section>
             <section>
@@ -317,22 +317,32 @@
                     <li>Create a new <span class="highlight monospace">Movie</span> service (<span class="highlight monospace">ng g service movies/movie</span>) with the private
                         <span class="highlight monospace">movies</span> property.</li>
                     <li>Initialize the property with movies from <span class="highlight monospace">MovieOverviewComponent.ngOnInit()</span> the service.</li>
-                    <li>Add <span class="highlight monospace">findAll(): Observable&lt;Movie[]&gt;</span> method
-                        which returns the <span class="highlight monospace">movie</span> array as an <span class="highlight monospace">Observable</span>. For example with <span class="highlight monospace">of(this.movies)</span></li>
                 </ol>
             </section>
             <section>
                 <h3>Service (2/5)</h3>
                 <ol>
-                    <li>Make use of the dependency injection and pass a reference to the
-                        <span class="highlight monospace">MovieService</span> in the
-                        <span class="highlight monospace">MovieOverviewComponent</span>'s constructor.
+                    <li>Implement <span class="highlight monospace">findAll(): Observable&lt;Movie[]&gt;</span> method
+                        which returns the <span class="highlight monospace">movie</span> array as an <span class="highlight monospace">Observable</span>.</li>
+                    <li>
+                        Implement <span class="highlight monospace">save(movieToSave: Movie): Observable&lt;Movie&gt;.</span>
+                        Move in the logic for updating/saving movies and return the created/updated movie.
                     </li>
-                    <li>In <span class="highlight monospace">MovieOverviewComponent.ngOnInit()</span> call the <span class="highlight monospace">MovieService.findAll()</span> method. <span class="highlight monospace">Subscribe</span> to the returned <span class="highlight monospace">Observable</span> to initialize the movie list.</li>
                 </ol>
             </section>
             <section>
                 <h3>Service (3/5)</h3>
+                <ol>
+                    <li>Make use of dependency injection and inject <span class="highlight monospace">MovieService</span> in
+                        <span class="highlight monospace">MovieOverviewComponent</span>'s constructor.
+                    </li>
+                    <li>In <span class="highlight monospace">MovieOverviewComponent.ngOnInit()</span> call the <span class="highlight monospace">MovieService.findAll()</span> method. <span class="highlight monospace">Subscribe</span> to the returned <span class="highlight monospace">Observable</span> to initialize the movie list.</li>
+                    <li>Use the <span class="highlight monospace">save(movieToSave: Movie): Observable&lt;Movie&gt;</span> in the
+                        <span class="highlight monospace">MovieOverviewComponent.onMovieUpdated</span> and reload the movies after the update Observable completes.</li>
+                </ol>
+            </section>
+            <section>
+                <h3>Service (4/5)</h3>
                 <ol>
                     <li>
                         In the <span class="highlight monospace">MovieOverviewComponent</span> change the <span class="highlight monospace">movies</span> array to <span class="highlight monospace">movies$</span> of type <span class="highlight monospace">Observable&lt;Movie[]&gt;</span>. Do not subscribe to the <span class="highlight monospace">MovieService.findAll()</span> but assign the resulting Observable to the <span class="highlight monospace">movies$</span> property.
@@ -343,21 +353,12 @@
                 </ol>
             </section>
             <section>
-                <h3>Service (4/5)</h3>
-                <ol>
-                    <li>Use the <span class="highlight monospace">save(movieToSave: Movie): Observable&lt;Movie&gt;</span> in the
-                        <span class="highlight monospace">MovieOverviewComponent.onMovieUpdated</span></li>
-                </ol>
-            </section>
-            <section>
                 <h3>Service (5/5)</h3>
                 <ol>Extend the <span class="highlight monospace">MovieService</span>:
                     <li>Implement the <span class="highlight monospace">findOne(id: number): Observable&lt;Movie&gt;</span> method which finds a
                         book by the ID passed and returns its copy.</li>
-                    <li>Implement the <span class="highlight monospace">save(movieToSave: Movie): Observable&lt;Movie&gt;</span> method. If the ID of the passed movie
-                        is set, update the existing movie (copying values from the passed movie to it) from the list.
-                        Otherwise set the id and add the passed movie to the list as a new element.</li>
-                </ol>            </section>
+                </ol>            
+            </section>
             <section>
                 <h3>Service (extra)</h3>
                 <ol>Extend the <span class="highlight monospace">MovieService</span>:
@@ -375,7 +376,7 @@
                     <li>The service retrieves the data from a REST service</li>
                     <li>The service posts changes to the REST service</li>
                 </ol>
-                <p class="branch-hint">Fallback branch: excercise/5-services<br>Solution branch: excercise/6-http</p>
+                <p class="branch-hint">Fallback branch: exercise/5-services<br>Solution branch: exercise/6-http</p>
                 <a class="branch-hint" target="_blank" href="../git-intro/git-intro.html#/2">Git Cheat Sheet</a>
             </section>
             <section>
@@ -425,7 +426,7 @@
                         <li>NavBar</li>
                     </ul>
                     <p>All components are displayed on application-startup.</p>
-                    <p class="branch-hint">Fallback branch: excercise/routing<br>Solution branch: excercise/routing-solution</p>
+                    <p class="branch-hint">Fallback branch: exercise/routing<br>Solution branch: exercise/routing-solution</p>
                     <a class="branch-hint" target="_blank" href="../git-intro/git-intro.html#/2">Git Cheat Sheet</a>
                 </div>
             </section>
@@ -493,7 +494,7 @@
                     <li>A: Reactive Forms</li>
                     <li>B: Template-driven Forms</li>
                 </ul>
-                <p class="branch-hint">Fallback branch: excercise/forms<br>Solution branch: excercise/forms-solution</p>
+                <p class="branch-hint">Fallback branch: exercise/forms<br>Solution branch: exercise/forms-solution</p>
                 <a class="branch-hint" target="_blank" href="../git-intro/git-intro.html#/2">Git Cheat Sheet</a>
             </section>
             <section>
