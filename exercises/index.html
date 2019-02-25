@@ -57,28 +57,35 @@
                 <a class="branch-hint" target="_blank" href="../git-intro/git-intro.html#/2">Git Cheat Sheet</a>
             </section>
             <section>
-                <h3>Simple Component (1/3)</h3>
+                <h3>Simple Component (1/4)</h3>
                 <ol>
                     <li>Create a new module <span class="monospace highlight">Movies</span> (<span class="monospace highlight">ng g m movies</span>).</li>
                     <li>Create <span class="monospace highlight">MovieDetails</span> component in movies directory (<span class="monospace highlight">ng g c movies/movie-details</span>).</li>
                     <li>Export the <span class="monospace highlight">MovieDetailsComponent</span> from the <span class="monospace highlight">MoviesModule</span> - both of them you've just created.</li>
-                    <li>Import the <span class="monospace highlight">MoviesModule</span> in the <span class="monospace highlight">AppModule</span>. Remove the <span class="monospace highlight">AppComponent.title</span> property.</li>
-                    <li>Add <span class="monospace highlight">&lt;app-movie-details&gt;</span> to the <span class="monospace highlight">AppComponent</span>'s template. <i>movie-details works!</i> appears on the page.</li>
+                    <li>Import the <span class="monospace highlight">MoviesModule</span> in the <span class="monospace highlight">AppModule</span></li>
                 </ol>
             </section>
             <section>
-                <h3>Simple Component (2/3)</h3>
+                    <h3>Simple Component (2/4)</h3>
+                    <ol>
+                        <li>In the <span class="monospace highlight">AppComponent</span> class Remove the <span class="monospace highlight">title</span> property.</li>
+                        <li>In the <span class="monospace highlight">AppComponent</span> template add <span class="monospace highlight">&lt;app-movie-details&gt;</span>. <br>
+                            <i>movie-details works!</i> appears on the page.</li>
+                    </ol>
+                </section>
+            <section>
+                <h3>Simple Component (3/4)</h3>
                 <ol>
-                    <li>Create an interface <span class="monospace highlight">Movie</span> in the <span class="monospace highlight">movies</span> directory (<span class="monospace highlight">ng g interface movies/movie</span>). Add the <span class="monospace highlight">id</span>, <span class="monospace highlight">directors</span>
-                        , <span class="monospace highlight">title</span>, <span class="monospace highlight">description</span> and <span class="monospace highlight">year</span> properties.</li>
+                    <li>Create an interface <span class="monospace highlight">Movie</span> in the <span class="monospace highlight">movies</span> directory (<span class="monospace highlight">ng g interface movies/movie</span>). 
+                        Add the following properties:<br> 
+                        <span class="monospace highlight">id: number, directors: string, title: string, description: string, year: number</span>.</li>
                     <li>Add a public <span class="monospace highlight">currentMovie</span> property of type <span class="monospace highlight">Movie</span> to the <span class="monospace highlight">MovieDetailsComponent</span>
                     </li>
-                    <li>In the <span class="monospace highlight">OnInit</span> lifecycle hook (an empty <span class="monospace highlight">ngOnInit()</span> method should have been generated) assign a newly created <span class="monospace highlight">Movie</span> object with the <span class="monospace highlight">director</span>,
-                        <span class="monospace highlight">title</span> and other properties with any values of your choice. <span class="monospace">{id:1, title: 'a movie',...}</span>
+                    <li>In the <span class="monospace highlight">OnInit</span> lifecycle hook (an empty <span class="monospace highlight">ngOnInit()</span> method should have been generated) assign a newly created <span class="monospace highlight">Movie</span> object with the properties of your choice. <span class="monospace">{id:1, title: 'a movie',...}</span>
                 </ol>
             </section>
             <section>
-                <h3>Simple Component (3/3)</h3>
+                <h3>Simple Component (4/4)</h3>
                 <ol>
                     <li>in the file <span class="monospace highlight">movie-details.component.html</span>
                     <ul>
@@ -107,7 +114,7 @@
                 <a class="branch-hint" target="_blank" href="../git-intro/git-intro.html#/2">Git Cheat Sheet</a>
             </section>
             <section>
-                <h3>Master/Details Pattern @Input (1/7)</h3>
+                <h3>Master/Details Pattern @Input (1/6)</h3>
                 <ol>
                     <li>Create <span class="monospace highlight">MovieOverview</span> component (<span class="monospace highlight">ng g c movies/movie-overview</span>) and export it from the <span class="monospace highlight">MoviesModule</span>.</li>
                     <li>Remove <span class="monospace highlight">MovieDetails</span> from the exports of <span class="monospace highlight">MoviesModule</span>.
@@ -116,7 +123,7 @@
                 </ol>
             </section>
             <section>
-                <h3>Master/Details Pattern @Input (2/7)</h3>
+                <h3>Master/Details Pattern @Input (2/6)</h3>
                 <ol>
                     <li>Add properties to the <span class="highlight monospace">MovieOverviewComponent</span> class:
                     <ul>
@@ -130,7 +137,7 @@
                 </ol>
             </section>
             <section>
-                <h3>Master/Details Pattern @Input (3/7)</h3>
+                <h3>Master/Details Pattern @Input (3/6)</h3>
                 <ol>
                     <li>
                         Add two <span class="highlight monospace">&lt;div&gt;</span> elements to the overview component.
@@ -141,34 +148,19 @@
                 </ol>
             </section>
             <section>
-                <h3>Master/Details Pattern @Input (4/7)</h3>
+                <h3>Master/Details Pattern @Input (4/6)</h3>
 
-                <ol>Extend the <span class="highlight monospace">MovieOverviewComponent</span> class:
-                    <li>Implement the <span class="highlight monospace">selectMovie(movie: Movie): void</span> method
+                <ul>
+                    <li>Extend the <span class="highlight monospace">MovieOverviewComponent</span> class: Implement the <span class="highlight monospace">selectMovie(movie: Movie): void</span> method
                         which sets the passed movie as the selected one.
                     </li>
-                    <li>Implement the <span class="highlight monospace">isMovieSelected(movie: Movie): boolean</span>
-                        method
-                        which checks if the movie passed is the selected one.
+                    <li>In the template add the <span class="highlight monospace">(click)</span> event binding to table rows to call the
+                        <span class="highlight monospace">selectMovie(movie:Movie)</span> method
                     </li>
                 </ol>
             </section>
             <section>
-                <h3>Master/Details Pattern @Input (5/7)</h3>
-                <ol>
-                <li>Add the following bindings to the table rows:</li>
-                    <ul>
-                        <li>the <span class="highlight monospace">(click)</span> event binding to the
-                            <span class="highlight monospace">selectMovie(movie:Movie):void</span> method,</li>
-                        <li>the <a href="https://angular.io/docs/ts/latest/guide/template-syntax.html#!#class-binding" target="_blank"  class="monospace">class binding</a>
-                            <span class="highlight monospace">[class.row-active]</span> to the
-                            <span class="highlight monospace">isMovieSelected(movie: Movie): boolean</span> method.</li>
-                    </ul>
-                    <li>Set a style for the <span class="highlight monospace">row-active</span> CSS-class</li>
-                </ol>
-            </section>
-            <section>
-                <h3>Master/Details Pattern @Input (6/7)</h3>
+                <h3>Master/Details Pattern @Input (5/6)</h3>
                 <ol>
                     <li>Go to the <span class="highlight monospace">MovieDetailsComponent</span> class and remove all
                         its content except for the <span class="highlight monospace">currentMovie</span> property. Rename it to <span class="highlight monospace">movie</span>.</li>
@@ -180,7 +172,7 @@
                 </ol>
             </section>
             <section>
-                <h3>Master/Details Pattern @Input (7/7)</h3>
+                <h3>Master/Details Pattern @Input (6/6)</h3>
                 <ol>
                     <li>Go to the <span class="highlight highlight">MovieOverviewComponent</span> template</li>
                     <li>Put the <span class="monospace highlight">&lt;app-movie-details&gt;</span> element in the second <span class="highlight monospace">&lt;div&gt;</span></li>
@@ -189,7 +181,22 @@
                 </ol>
             </section>
             <section>
-                <h3>Master/Details Pattern @Input (Optional)</h3>
+                <h3>Master/Details Pattern @Input (Optional 1/2)</h3>
+                <ol>
+                    <li>Implement the <span class="highlight monospace">isMovieSelected(movie: Movie): boolean</span>
+                        method
+                        which checks if the movie passed is the selected one.
+                    </li>
+                    <li>Add the <a href="https://angular.io/docs/ts/latest/guide/template-syntax.html#!#class-binding" target="_blank"  class="monospace">class binding</a>
+                        <span class="highlight monospace">[class.row-active]</span> to the
+                        <span class="highlight monospace">isMovieSelected(movie: Movie): boolean</span> method.
+                    </li>
+                    
+                    <li>Set a style for the <span class="highlight monospace">row-active</span> CSS-class</li>
+                </ol>
+            </section>
+            <section>
+                <h3>Master/Details Pattern @Input (Optional 2/2)</h3>
                 <ol>
                     <li>Show the row number in the list as well</li>
                     <li>Give the <span class="highlight monospace">&lt;body&gt;</span> a light gray background</li>
@@ -217,7 +224,7 @@
                 <a class="branch-hint" target="_blank" href="../git-intro/git-intro.html#/2">Git Cheat Sheet</a>
             </section>
             <section>
-                <h3>Master/Details Pattern @Output (1/8)</h3>
+                <h3>Master/Details Pattern @Output (1/7)</h3>
                 <ol>
                     <li>Import the <span class="highlight monospace"><a href="https://angular.io/api/forms/FormsModule">FormsModule</a></span> in the <span class="highlight monospace">MoviesModule</span>.</li>
                     <li>Add two-way binding (<span class="highlight monospace">[(ngModel)]</span>) to the input fields. In the <span class="highlight monospace">MovieDetailsComponent</span>'s template replace
@@ -226,21 +233,29 @@
                 </ol>
             </section>
             <section>
-                <h3>Master/Details Pattern @Output (2/8)</h3>
+                <h3>Master/Details Pattern @Output (2/7)</h3>
                 <p>Check the result. Every change in an <span class="highlight monospace">input</span> immediatly changes the corresponding entry in the list. Nice feature, but that's not exactly what we want here
                 </p>
             </section>
             <section>
-                <h3>Master/Details Pattern @Output (3/8)</h3>
+                <h3>Master/Details Pattern @Output (3/7)</h3>
                 <ol>
                     <li>Go to the <span class="highlight monospace">MovieDetailsComponent</span> class and add a setter and a getter of the <span class="monospace highlight">movie</span> property <br>(<span class="monospace highlight">get movie(){..}</span>). You need to rename the <span class="monospace highlight">movie</span> property for that. Recommendation: <span class="monospace highlight">_movie</span></li>
                     <li>Move the <span class="highlight monospace">@Input()</span> decorator from the property to the setter.</li>
                     <li>Change the <span class="monospace highlight">_movie</span> property's visibility to private</li>
-                    <li>Change the setter implementation so that instead of a direct assignment a copy of the passed object is made. (<a href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">Object.assign</a>)
                 </ol>
             </section>
             <section>
-                <h3>Master/Details Pattern @Output (4/8)</h3>
+                    <h3>Master/Details Pattern @Output (4/7)</h3>
+                    <ol>
+                        <li>
+                            Change the setter implementation so that instead of a direct assignment a copy of the passed object is made.  Use the <a href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Operators/Spread_operator">Spread Operator</a><br>
+                            <span class="monospace">this._movie = {...movie}</span>
+                        </li>
+                    </ol>
+                </section>
+            <section>
+                <h3>Master/Details Pattern @Output (5/7)</h3>
                 <ol>
                     <li>Add the <span class="highlight monospace">movieUpdate</span> property of type <span class="highlight monospace">EventEmitter&lt;Movie&gt;</span>.</li>
                     <li>Put the decorator <span class="highlight monospace">@Output()</span> on the <span class="highlight monospace">movieUpdate</span> property.</li>
@@ -250,7 +265,7 @@
                 </ol>
             </section>
             <section>
-                <h3>Master/Details Pattern @Output (5/8)</h3>
+                <h3>Master/Details Pattern @Output (6/7)</h3>
                 <ol>
                     <li>Go to the <span class="highlight monospace">MovieOverviewComponent</span> class and implement
                         the <span class="highlight monospace">onMovieUpdated(updatedMovie: Movie): void</span> method.</li>
@@ -260,7 +275,7 @@
                 </ol>
             </section>
             <section>
-                <h3>Master/Details Pattern @Output (6/8)</h3>
+                <h3>Master/Details Pattern @Output (7/7)</h3>
                 <ol>
                     <li>Go to the <span class="monospace highlight">MovieOverviewComponent</span>'s template and add the
                         <span class="highlight monospace">(movieUpdate)</span> event binding to the
@@ -268,7 +283,7 @@
                 </ol>
             </section>
             <section>
-                <h3>Master/Details Pattern @Output (7/8)</h3>
+                <h3>Master/Details Pattern @Output (optional 1/3)</h3>
                 <ol>
                     <li>In the <span class="monospace highlight">movie-details</span> class add a <span class="monospace highlight">movieCreate</span> EventEmitter</li>
                     <li>Add a <span class="monospace highlight">create(): void</span> method that triggers the <span class="monospace highlight">movieCreate</span> EventEmitter
@@ -277,7 +292,7 @@
                 </ol>
             </section>
             <section>
-                <h3>Master/Details Pattern @Output (8/8)</h3>
+                <h3>Master/Details Pattern @Output (optional 2/3)</h3>
                 <ol>
                     <li>In the <span class="monospace highlight">movie overview</span> class add a <span class="monospace highlight">onCreateMovie()</span> method that initializes the <span class="monospace highlight">selectedMovie</span> with a new object with all properties set to null
                     </li>
@@ -288,7 +303,7 @@
                 </ol>
             </section>
             <section>
-                <h3>Master/Details Pattern @Output (optional)</h3>
+                <h3>Master/Details Pattern @Output (optional 3/3)</h3>
                 <ol>
                     <li>Style the input fields and the button</li>
                     <!--<li>Import the <a href="https://material.angular.io/components/input/overview">MatInputModule</a> and <a href="https://material.angular.io/components/button/overview">MatButtonModule</a> into the BookModule</li>-->
