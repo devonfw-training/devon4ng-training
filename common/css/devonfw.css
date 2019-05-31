@@ -3,11 +3,42 @@
   src: url('../fonts/Montserrat-Light.ttf');
 }
 
-body {
-  position: relative;
+.devonfw-headline {
+  z-index: 5;
+  padding: 3rem !important;
+  position: absolute;
+  left: 0%;
+  right: 0%;
 }
 
-body::before{
+.devonfw-headline h1 {
+  margin-top: 3rem !important;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.2;
+  color: inherit;
+  font-family: montserrat-light;
+}
+
+.devonfw-footer {
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  bottom: 0%;
+  z-index: 1000;
+  padding: 3rem !important;
+  background-color: #343a40 !important;
+}
+
+.devonfw-footer footer {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.devonfw-headline::before{
     content: '';
     position: absolute;
     top: 0%;
@@ -19,29 +50,6 @@ body::before{
     clear: both;
     z-index: 1;
     clip: rect(auto);
-}
-
-body {
-  background-image: url(../img/Capgemini_Logo_Color_RGB.png);
-  background-size: 20%;
-  background-repeat: no-repeat;
-  background-position: 3% 97%;
-}
-
-.reveal .devonfw-headline {
-  z-index: 5;
-  padding: 3rem !important;
-}
-
-.reveal .devonfw-headline h1 {
-  margin-top: 3rem !important;
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-  font-family: inherit;
-  font-weight: 500;
-  line-height: 1.2;
-  color: inherit;
-  font-family: montserrat-light;
 }
 
 .underline-devon-blue:after {
