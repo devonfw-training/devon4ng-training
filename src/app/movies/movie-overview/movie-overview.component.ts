@@ -1,23 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Movie } from '../movie';
 import { MovieService } from '../movie.service';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { tap, first } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-movie-overview',
   templateUrl: './movie-overview.component.html',
   styleUrls: ['./movie-overview.component.scss']
 })
-export class MovieOverviewComponent {
+export class MovieOverviewComponent implements OnInit {
 
   selectedMovie?: Movie;
   movies$ = this.movieService.findAll();
 
-  constructor(private movieService: MovieService) {}
+  constructor(private movieService: MovieService, private activatedRoute: ActivatedRoute, private router: Router) {}
+
+  ngOnInit(): void {
+    this.activatedRoute.params.subscribe(params => this.selectMovieById (+params.id));
+  }
+
+  selectMovieById(searchId: number) {
+    this.movies$.pipe(first()).subscribe((movies => ( this.selectedMovie = movies.find(movie => movie.id === searchId))));
+  }
 
   selectMovie(movie: Movie) {
-    this.selectedMovie = movie;
+    this.router.navigate(['movies/', movie.id]);
   }
 
   isMovieSelected(movie: Movie) {
@@ -26,7 +34,7 @@ export class MovieOverviewComponent {
 
   onMovieUpdated(updatedMovie: Movie) {
     this.movieService.save(updatedMovie)
-      .pipe(tap(m => this.selectedMovie = m))
+      .pipe(tap(m => this.selectMovie(m)))
       .subscribe({
         complete: () => this.movies$ = this.movieService.findAll()
       });

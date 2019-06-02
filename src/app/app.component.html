@@ -1,1 +1,8 @@
-<app-movie-overview></app-movie-overview>
+<nav> 
+    <ul> 
+        <li><a [routerLink]="['/home']" routerLinkActive="active" >Home</a></li>
+        <li><a [routerLink]="['/movies']" routerLinkActive="active" >Movies</a></li>
+        <li><a [routerLink]="['/about']" routerLinkActive="active" >About</a></li>
+    </ul>
+</nav>
+<router-outlet></router-outlet>
