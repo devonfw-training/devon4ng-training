@@ -432,31 +432,27 @@
             <section>
                 <h3>Routing (1/5)</h3>
                 <div style="text-align: left">
-                    <p>The project-setup for this exercise contains five components:</p>
                     <ul>
-                        <li>Homepage</li>
-                        <li>NotFound</li>
-                        <li>AnimalList</li>
-                        <li>AnimalDetails</li>
-                        <li>NavBar</li>
+                        <p>Goals:</p>
+                        <ol>
+                            <li>Add some sample components (Home, About)</li>
+                            <li>Add a navigation bar to our application</li>
+                            <li>Highlighting active navigation-links</li>
+                            <li>Navigate to movies directly by different URLs</li>
+                            <li>Display an Error-Page when invalid URLs are used</li>
+                        </ol>
                     </ul>
-                    <p>All components are displayed on application-startup.</p>
-                    <p class="branch-hint">Fallback branch: exercise/routing<br>Solution branch: exercise/routing-solution</p>
-                    <a class="branch-hint" target="_blank" href="../git-intro/git-intro.html#/2">Git Cheat Sheet</a>
                 </div>
             </section>
 
             <section>
                 <h3>Routing (2/5)</h3>
                 <div style="text-align: left">
+                    <p>Create three new sample components:</p>
                     <ul>
-                        <p>Goals:</p>
-                        <ol>
-                            <li><b>NavigationBar Links work</b> as expected</li>
-                            <li>Navigation-Links are <b>highlighted</b> correctly</li>
-                            <li>AnimalDetails can be accessed by using Animal-ID as <b>URL-Parameter</b></li>
-                            <li><b>Error-Page</b> is shown when non-defined URLs are used</li>
-                        </ol>
+                        <li>"Home"-component shows a warm Welcome to our users.</li>
+                        <li>"About"-component tells the user who you are</li>
+                        <li>"Page-Not-Found" Shows an Error-Message when a URL could be resolved. (typical 404-Error Page)</li>
                     </ul>
                 </div>
             </section>
@@ -467,11 +463,11 @@
                     <p>Import the <span class="highlight monospace">RouterModule</span> in the <span class="highlight monospace">AppModule</span>. Use the <span class="highlight monospace">RouterModule.forRoot</span> static method passing the the following app-routes:</p>
                     <ul>
                         <li>user is redirected to /home on application startup</li>
-                        <li><span class="highlight monospace">/animals</span> -> AnimalListComponent</li>
-                        <li><span class="highlight monospace">/animal</span> -> AnimaldetailsComponent (error)</li>
-                        <li><span class="highlight monospace">/animal/2</span> -> AnimaldetailsComponent with Details of the Animal with animalID=2</li>
-                        <li><span class="highlight monospace">/home</span> -> HomepageComponent</li>
-                        <li>other paths -> NotFoundComponent</li>
+                        <li><span class="highlight monospace">/home</span> -> Home component</li>
+                        <li><span class="highlight monospace">/movies</span> -> Animaldetails component (error)</li>
+                        <li><span class="highlight monospace">/movies/2</span> -> MovieOverview component with Details of Movie with id=2</li>
+                        <li><span class="highlight monospace">/about</span> -> About component</li>
+                        <li>other paths -> Page-Not-Found component</li>
                     </ul>
                 </div>
             </section>
@@ -479,11 +475,12 @@
             <section>
                 <h3>Routing (4/5)</h3>
                 <div style="text-align: left">
-                    <p>Adjust navigation-bar and content-area of the application to work with previously defined paths</p>
+                    <p>Add a navigationbar to your App component Template</p>
                     <ul>
-                        <li>replace href with routerLink directive and add correct paths</li>
-                        <li>add css-class "active" for currently active Link</li>
-                        <li>put the router-outlet below the navigation-bar.</li>
+                        <li>Add a navigationbar to your App component Template with three links on it (home, movies, about).</li>
+                        <li>Use the router-outlet instead of the movie-overview-selector </li>
+                        <li>User the routerLink directive on your menu-links to enable navigation.</li>
+                        <li>Add css-class "active" for currently active Link and style it using some css</li>
                     </ul>
                 </div>
             </section>
@@ -491,11 +488,10 @@
             <section>
                 <h3>Routing (5/5)</h3>
                 <div style="text-align: left">
-                    <p>Add the master-detail functionality while using the router module</p>
+                    <p>Change the behaviour of your movie-overview component to use routing</p>
                     <ul>
-                        <li>Use typescript in AnimalListComponent to trigger an action when any of the list-items is clicked.</li>
-                        <li>Navigate the user to the AnimalDetailsComponent and provide the animalID as a URL-parameter.</li>
-                        <li>retrieve this parameter in AnimalAnimalDetailComponent to show the Details of the selected animal.</li>
+                        <li>When the path-variable (id) changes, the movie shown in the movie-detail-component changes accordingy</li>
+                        <li>When the user clicks on any of the movies, the app navigates to the according app-url (e.g. movies/2)</li>
                     </ul>
                 </div>
             </section>
