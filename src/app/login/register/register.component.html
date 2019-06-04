@@ -1,3 +1,44 @@
 <p>
   Before you can use this movie-databse, you have to register.
 </p>
+
+<form [formGroup]="registrationForm" (ngSubmit)="register()">
+  <div>
+    <label>First Name</label>
+    <input type="text" formControlName="firstname">
+    <div class="alert" *ngIf="registrationForm.controls.firstname.touched && registrationForm.controls.firstname.errors?.required">
+      firstname is a required field.
+    </div>
+  </div>
+  <div>
+    <label>Last Name</label>
+    <input type="text" formControlName="lastname">
+    <div class="alert" *ngIf="registrationForm.controls.lastname.touched && registrationForm.controls.lastname.errors?.required">
+      lastname is a required field.
+    </div>
+  </div>
+  <div>
+    <label>E-Mail</label>
+    <input type="text" formControlName="email">
+    <div class="alert" *ngIf="registrationForm.controls.email.errors?.email">
+      please enter a valid email address.
+    </div>
+  </div>
+  <div formGroupName="passwords">
+    <div>
+      <label>Password</label>
+      <input type="password" formControlName="password">
+      <div class="alert" *ngIf="registrationForm.controls.passwords.controls.password.errors?.minlength">
+        Password should have at least 8 characters.
+      </div>
+    </div>
+    <div>
+      <label>Repeat Password</label>
+      <input type="password" formControlName="passwordRepeat">
+    </div>
+  </div>
+  <div class="alert" *ngIf="registrationForm.controls.passwords.errors?.notequal">
+    both passwords have to be equal.
+  </div>
+  <button type="submit">Submit</button>
+</form>
