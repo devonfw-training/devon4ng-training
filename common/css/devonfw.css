@@ -25,9 +25,16 @@
   left: 0%;
   right: 0%;
   bottom: 0%;
-  z-index: 1000;
   padding: 1.5rem !important;
-  background-color: #343a40 !important;
+}
+
+.devonfw-footer .reveal {
+  margin-top: 20px;
+}
+
+.reveal:not(.paused) .devonfw-footer {
+  background-color: #343a40;
+  z-index: 1000;
 }
 
 .devonfw-footer footer {
@@ -36,18 +43,17 @@
   flex-wrap: wrap;
 }
 
-.devonfw-headline::after{
-    content: '';
-    position: absolute;
-    top: 0%;
-    right: 0%;
-    width: 0;
-    height: 0;
-    border-left: 100em solid transparent !important;
-    border-top: 7em solid #4bbdec;
-    clear: both;
-    z-index: -1;
-    clip: rect(auto);
+.devonfw-headline::after {
+  content: '';
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  width: 0;
+  height: 0;
+  border-left: 29em solid transparent !important;
+  border-top: 2em solid #4bbdec;
+  z-index: -1;
+  clip: rect(auto);
 }
 
 .underline-devon-blue:after {
