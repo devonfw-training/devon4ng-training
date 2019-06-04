@@ -1,3 +1,15 @@
+function createArray(first: number|string, second: number|string) {
+  // TODO
+
+  return [];
+}
+
+function createObject(name: string, age?: number) {
+  // TODO
+
+  return {};
+}
+
 function reverseFunc(val: number): number {
   // TODO
   

@@ -7,6 +7,26 @@
   <link rel="stylesheet" href="./base/jasmine.min.css">
   <script src="./exercises.js"></script>
   <script>
+  describe('createArray', () => {
+    it ('creates [123, 456] for 123 and 456', () => {
+      expect(createArray(123, 456)).toEqual([123, 456]);
+    });
+
+    it ('creates [\'otto\', \'karl\'] for otto and karl', () => {
+      expect(createArray('otto', 'karl')).toEqual(['otto', 'karl']);
+    });
+  });
+  
+  describe('createObject', () => {
+    it ('creates {name: \'otto\'} for otto', () => {
+      expect(createObject('otto')).toEqual({name: 'otto'});
+    });
+
+    it ('creates creates {name: \'karl\', age: 7} for karl and 7', () => {
+      expect(createObject('karl', 7)).toEqual({name: 'karl', age: 7});
+    });
+  });
+
   describe('reverseFunc', () => {
     
     it('reverses 1234 to 4321', () => {
