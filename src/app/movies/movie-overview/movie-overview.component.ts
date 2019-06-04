@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie } from '../movie';
 import { MovieService } from '../movie.service';
-import { tap, first } from 'rxjs/operators';
+import { tap, switchMap } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -17,11 +17,8 @@ export class MovieOverviewComponent implements OnInit {
   constructor(private movieService: MovieService, private activatedRoute: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => this.selectMovieById (+params.id));
-  }
-
-  selectMovieById(searchId: number) {
-    this.movies$.pipe(first()).subscribe((movies => ( this.selectedMovie = movies.find(movie => movie.id === searchId))));
+    this.activatedRoute.params.pipe(
+      switchMap(params => this.movieService.findOne(+params.id))).subscribe(movie => this.selectedMovie = movie);
   }
 
   selectMovie(movie: Movie) {
