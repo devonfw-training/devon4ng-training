@@ -8,8 +8,10 @@ import { AppComponent } from './app.component';
 import { MoviesModule } from './movies/movies.module';
 import { MovieOverviewComponent } from './movies/movie-overview/movie-overview.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './welcome/home.component';
 import { AboutComponent } from './about/about.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { WelcomeModule } from './welcome/welcome.module';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -24,14 +26,14 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    HomeComponent,
     AboutComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
     BrowserModule,
     MoviesModule,
-    HttpClientModule
+    HttpClientModule,
+    WelcomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
