@@ -7,33 +7,32 @@ import {RouterModule, Routes} from '@angular/router';
 import { AppComponent } from './app.component';
 import { MoviesModule } from './movies/movies.module';
 import { MovieOverviewComponent } from './movies/movie-overview/movie-overview.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { HomeComponent } from './welcome/home.component';
-import { AboutComponent } from './about/about.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { WelcomeModule } from './welcome/welcome.module';
+import { PageNotFoundComponent } from './static-pages/page-not-found/page-not-found.component';
+import { StaticPagesModule } from './static-pages/static-pages.module';
+import { LoginModule } from './login/login.module';
+import { RegisterComponent } from './login/register/register.component';
+import { AboutComponent } from './static-pages/about/about.component';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  { path: '', redirectTo: '/register', pathMatch: 'full' },
+  { path: 'register', component: RegisterComponent },
+  { path: 'about', component: AboutComponent },
   { path: 'movies', component: MovieOverviewComponent },
   { path: 'movies/:id', component: MovieOverviewComponent },
-  { path: 'about', component: AboutComponent },
   { path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({
   declarations: [
-    AppComponent,
-    PageNotFoundComponent,
-    AboutComponent
+    AppComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
     BrowserModule,
     MoviesModule,
     HttpClientModule,
-    WelcomeModule
+    StaticPagesModule,
+    LoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]
