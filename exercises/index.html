@@ -444,7 +444,7 @@
                             <li>Navigation through our movie-list using the movie-ID as part of URL</li>
                         </ol>
                     </ul>
-                    <p class="branch-hint">Fallback branch: exercise/exercise/6-http<br>Solution branch: exercise/7-router</p>
+                    <p class="branch-hint">Fallback branch: exercise/6-http<br>Solution branch: exercise/7-router</p>
                     <a class="branch-hint" target="_blank" href="../git-intro/git-intro.html#/2">Git Cheat Sheet</a>
                 </div>
             </section>
@@ -512,123 +512,76 @@
         <section id="forms">
             <section>
                 <h3>Forms</h3>
-                <p>This exercise is divided into two parts:</p>
-                <ul>
-                    <li>A: Reactive Forms</li>
-                    <li>B: Template-driven Forms</li>
-                </ul>
-                <p class="branch-hint">Fallback branch: exercise/forms<br>Solution branch: exercise/forms-solution</p>
+                <p>In this exercise, you will create a reactive registration form with form validations.</p>
+                <p class="branch-hint">Fallback branch: exercise/7-router<br>Solution branch: exercise/8-forms</p>
                 <a class="branch-hint" target="_blank" href="../git-intro/git-intro.html#/2">Git Cheat Sheet</a>
             </section>
             <section>
-                <h3>Forms (reactive Forms 1/4)</h3>
+                <h3>Forms (1/4)</h3>
                 <ul>
                     <li>
-                        Import the ReactiveFormsModule in your AppModule.
+                        Import the ReactiveFormsModule in your <span class="highlight monospace">LoginModule</span>.
                     </li>
                     <li>
-                        Create a Form-Model with following structure by using FormGroup and FormControl:
+                        In <span class="highlight monospace">RegisterComponent</span>, create a FormGroup <span class="highlight monospace">registrationForm</span> with following structure by using FormGroup and FormControl or (preferred) the formBuilder:
                     </li>
                 </ul>
                 <pre>{ 
-name: { 
-  firstname: string, 
-  lastname: string }, 
+firstname: string, 
+lastname: string, 
 email: string,
-password: string, 
-passwordRepeat: string 
+passwords: {
+  password: string, 
+  passwordRepeat: string}
 }</pre>
             </section>
             <section>
-                <h3>Forms (reactive Forms 2/4)</h3>
+                <h3>Forms (2/4)</h3>
                 <ul>
                     <li>
-                        EMail should contain the default value "example@mail.com"
+                        Email should contain the default value "example@mail.com"
                     </li>
                     <li>
-                            When the user submits the form, trigger the prepared function in ReactiveFormComponent and pass the form content.
+                        Create an according form in the template of your <span class="highlight monospace">RegisterComponent</span> and bind it to your FormGroup.
+                        </li>
+                    <li>
+                        Add a submit button to your form. When the user submits the form, log the formGroups content (value) to the console.
                     </li>
                 </ul>
             </section>
             <section>
-                <h3>Forms (reactive Forms 3/4)</h3>
+                <h3>Forms (3/4)</h3>
                 <ul>
                     <li>
-                        add following validators:
+                        add following validations:
                         <ul>
-                            <li>name is validated for a minimum length of 4 chars</li>
-                            <li>name contains only a-z,A-Z," "</li>
-                            <li>name and password are required fields</li>
-                            <li>password should have at least 8 chars</li>
-                            <li>repeat-password-field is validated for exact match with the password-field. (definde validator on your own)</li>
+                            <li>Both names are validated for a minimum length of 4 characters</li>
+                            <li>Email has a valid e-mail format</li>
+                            <li>Password is a required field</li>
                         </ul>
                     </li>
                 </ul>
             </section>
             <section>
-                <h3>Forms (reactive Forms 4/4)</h3>
+                <h3>Forms (4/4)</h3>
                 <ul>
                     <lI>
-                        Show the prepared textual descriptions (currently hidden with display:none) on validation errors for each field validated to give the user guidance on how to fix the errror.
-                        Use *ngIf to hide messages and use null conditional notation to check for different validation-errors.
+                        Show textual descriptions on each field validated to give the user guidance on how to fix the errror.
+                        Use *ngIf to hide messages and use null conditional notation (errors?...) to check for different validation-errors.
                     </lI>
                 </ul>
             </section>
             <section>
-                <h3>Forms (template-driven Forms 1/4)</h3>
-                <ul>
-                    <li>
-                        Import the FormsModule in your AppModule.
-                    </li>
-                    <li>
-                        use the ngModel directive to create a user-object in the form <pre>{
-"firstname": "",
-"lastname": "",
-"eMail": "yourName@domain.com",
-"password": "",
-"passwordRepeat": ""
-}</pre>
-                    </li>
-                </ul>
-            </section>
-            <section>
-                <h3>Forms (template-driven Forms 2/4)</h3>
-                <ul>
-                    <li>
-                        when the user clicks the submit-button, call the prepared function "onSubmitTemplateBased" and pass the whole form content as parameter.
-                    </li>
-                    <li>
-                        Use one-way binding to fill the eMail input field with exampleEmail-property of the according component
-                    </li>
-                </ul>
-            </section>
-            <section>
-                <h3>Forms (template-driven Forms 3/4)</h3>
-                <ul>
-                    <li>
-                        Add Form directives to the html-template of the TemplateFormComponent, to achieve following:
-                        <ul>
-                            <li> name is validated for a minimum length of 4 chars</li>
-                            <li>name contains only a-z,A-Z," ", use a pattern-validator</li>
-                            <li>name and password are required fields</li>
-                            <li>password should have at least 8 characters</li>
-                            <li>"Repeat Password" should use ValidateEqualDirective to validate it matches the password-field</li>
-                        </ul>
-                    </li>
-                </ul>
-            </section>
-            <section>
-                <h3>Forms (template-driven Forms 4/4)</h3>
-                <ul>
-                    <lI>
-                        Show the prepared error-messages only when according validation-error occur. check the state of an input-field by using a local template variable. Show the whole alert only if an validation-error for the according field exists.
-                    </lI>
-                    <li>
-                        Figure out, why input fields are marked as valid/invalid by the red/blue indicaror-bar?
-                    </li>
-                </ul>
-            </section>
-        </section>
+                    <h3>Forms (optional)</h3>
+                    <ul>
+                        <lI>
+                            Repeat-password-field is validated for exact match with the password-field. (use a custom validator)
+                        </lI>
+                        <lI>
+                            You already used the template-driven form in your movie-details-component. Try to add some validations and validation error messages for movies by your own.
+                        </lI>
+                    </ul>
+                </section>
     </div>
 </div>
 
