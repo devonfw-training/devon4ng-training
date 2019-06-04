@@ -438,24 +438,32 @@
                     <ul>
                         <p>Goals:</p>
                         <ol>
-                            <li>Add some sample components (Home, About)</li>
-                            <li>Add a navigation bar to our application</li>
-                            <li>Highlighting active navigation-links</li>
-                            <li>Navigate to movies directly by different URLs</li>
-                            <li>Display an Error-Page when invalid URLs are used</li>
+                            <li>Navigate through components using URLs or navigation-buttons</li>
+                            <li>Highlighting active navigation-buttons</li>
+                            <li>Display an error-page for invalid URLs</li>
+                            <li>Navigation through our movie-list using the movie-ID as part of URL</li>
                         </ol>
                     </ul>
+                    <p class="branch-hint">Fallback branch: exercise/exercise/6-http<br>Solution branch: exercise/7-router</p>
+                    <a class="branch-hint" target="_blank" href="../git-intro/git-intro.html#/2">Git Cheat Sheet</a>
                 </div>
             </section>
 
             <section>
                 <h3>Routing (2/5)</h3>
                 <div style="text-align: left">
-                    <p>Create three new sample components:</p>
                     <ul>
-                        <li>"Home"-component shows a warm Welcome to our users.</li>
-                        <li>"About"-component tells the user who you are</li>
-                        <li>"Page-Not-Found" Shows an Error-Message when a URL could be resolved. (typical 404-Error Page)</li>
+                        <li>Create a new Module <span class="monospace highlight">Login</span> (<span class="monospace">ng g m login</span>)
+                            <ul>
+                                <li>containing a <span class="monospace highlight">Register</span> component (<span class="monospace">ng g c login/register</span>)</li>
+                            </ul>    
+                        </li>
+                        <li>Create a new Module <span class="monospace highlight">Static-Pages</span> (<span class="monospace">ng g m static-pages</span>)
+                            <ul>
+                                <li>containing <span class="monospace highlight">Page-Not-Found</span> component</li>
+                                <li>and an <span class="monospace highlight">About</span> component</li>
+                            </ul>    
+                        </li>
                     </ul>
                 </div>
             </section>
@@ -463,14 +471,14 @@
             <section>
                 <h3>Routing (3/5)</h3>
                 <div style="text-align: left">
-                    <p>Import the <span class="highlight monospace">RouterModule</span> in the <span class="highlight monospace">AppModule</span>. Use the <span class="highlight monospace">RouterModule.forRoot</span> static method passing the the following app-routes:</p>
+                    <p>Import the <span class="highlight monospace">RouterModule</span> in <span class="highlight monospace">AppModule</span>. Use the <span class="highlight monospace">RouterModule.forRoot</span> defining following routes:</p>
                     <ul>
-                        <li>user is redirected to /home on application startup</li>
-                        <li><span class="highlight monospace">/home</span> -> Home component</li>
-                        <li><span class="highlight monospace">/movies</span> -> Animaldetails component (error)</li>
-                        <li><span class="highlight monospace">/movies/2</span> -> MovieOverview component with Details of Movie with id=2</li>
-                        <li><span class="highlight monospace">/about</span> -> About component</li>
-                        <li>other paths -> Page-Not-Found component</li>
+                        <li>redirection to /register on application startup</li>
+                        <li><span class="highlight monospace">/register</span> shows the <span class="highlight monospace">register</span> component</li>
+                        <li><span class="highlight monospace">/movies</span> shows <span class="highlight monospace">movie-overview</span> component</li>
+                        <li><span class="highlight monospace">/movies/2</span> shows <span class="highlight monospace">movie-overview</span> component (with Details of Movie with id=2)</li>
+                        <li><span class="highlight monospace">/about</span> shows <span class="highlight monospace">about</span> component</li>
+                        <li>other paths -> show <span class="highlight monospace">page-not-found</span> component</li>
                     </ul>
                 </div>
             </section>
@@ -478,12 +486,12 @@
             <section>
                 <h3>Routing (4/5)</h3>
                 <div style="text-align: left">
-                    <p>Add a navigationbar to your App component Template</p>
+                    <p>In your app component:</p>
                     <ul>
-                        <li>Add a navigationbar to your App component Template with three links on it (home, movies, about).</li>
-                        <li>Use the router-outlet instead of the movie-overview-selector </li>
-                        <li>User the routerLink directive on your menu-links to enable navigation.</li>
-                        <li>Add css-class "active" for currently active Link and style it using some css</li>
+                        <li>Add a navigationbar to your App component template with three links on it (register, movies, about).</li>
+                        <li>Use the <span class="highlight monospace">router-outlet</span> instead of the <span class="highlight monospace">movie-overview</span> selector </li>
+                        <li>Use the routerLink directive on menu-items to enable navigation.</li>
+                        <li>Add css-class "active" for currently active menu-item and style it using some css</li>
                     </ul>
                 </div>
             </section>
@@ -491,10 +499,11 @@
             <section>
                 <h3>Routing (5/5)</h3>
                 <div style="text-align: left">
-                    <p>Change the behaviour of your movie-overview component to use routing</p>
+                    <p>change movie-overview component so that</p>
                     <ul>
-                        <li>When the path-variable (id) changes, the movie shown in the movie-detail-component changes accordingy</li>
-                        <li>When the user clicks on any of the movies, the app navigates to the according app-url (e.g. movies/2)</li>
+                        <li>The movie shown in the movie-detail-component changes whenever the movie-id in the URL-path changes.
+                        Hint: there is an unused method in your movie-service you could use here.</li>
+                        <li>When the user clicks on any of the movies, the app navigates to the according app-url (e.g. movies/2)</li>                        
                     </ul>
                 </div>
             </section>
