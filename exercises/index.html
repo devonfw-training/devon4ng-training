@@ -227,8 +227,9 @@
                 <h3>Master/Details Pattern @Output (1/7)</h3>
                 <ol>
                     <li>Import the <span class="highlight monospace"><a href="https://angular.io/api/forms/FormsModule">FormsModule</a></span> in the <span class="highlight monospace">MoviesModule</span>.</li>
-                    <li>Add two-way binding (<span class="highlight monospace">[(ngModel)]</span>) to the input fields. In the <span class="highlight monospace">MovieDetailsComponent</span>'s template replace
-                        the interpolation of movies's title, directors etc. with text input fields having the id and name attributes set.</li>
+                    <li>In the <span class="highlight monospace">MovieDetailsComponent</span>'s template replace
+                        the interpolation of movies's title, directors etc. with text input fields. 
+                        Add two-way binding (<span class="highlight monospace">[(ngModel)]</span>) to the input fields.</li>
                     <li>Move the <span class="highlight monospace">*ngIf</span> from the <span class="highlight monospace">movie-details</span> template to the <span class="highlight monospace">&lt;app-movie-details&gt;</span> in the <span class="highlight monospace">movie-overview</span> template</li>
                 </ol>
             </section>
@@ -331,7 +332,9 @@
                 <ol>
                     <li>Create a new <span class="highlight monospace">Movie</span> service (<span class="highlight monospace">ng g service movies/movie</span>) with the private
                         <span class="highlight monospace">movies</span> property.</li>
-                    <li>Initialize the property with movies from <span class="highlight monospace">MovieOverviewComponent.ngOnInit()</span> the service.</li>
+                    <li>Move the code initializing the movies from 
+                        <span class="highlight monospace">MovieOverviewComponent.ngOnInit()</span>
+                        into the service.</li>
                 </ol>
             </section>
             <section>
