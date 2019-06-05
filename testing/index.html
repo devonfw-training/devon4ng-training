@@ -248,14 +248,12 @@ export class HelloService {
             <section>
                 <h3>HelloService spec</h3>
                 <pre><code data-trim class="max-height-unset javascript">
-const speakerFake = {
-  speak: (v: string) => {}
-} as Speaker;
-let sut: HelloService;
-
 describe('HelloService', () => {
-
+  const speakerFake: Speaker;
+  let sut: HelloService;
+        
   beforeEach(() => {
+    speakerFake = jasmine.createSpyObj('Speaker', ['speak']);
     sut = new HelloService(speakerFake);
   });
 
@@ -263,7 +261,6 @@ describe('HelloService', () => {
 
     it('should call Speaker', () => {
       const speechLine = 'This is Sparta!';
-      spyOn(speakerFake, 'speak');
 
       sut.say(speechLine);
 
