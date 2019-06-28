@@ -7,13 +7,14 @@
     <title>RWC Angular Exercises</title>
     <link rel="icon" href="../common/img/favicon.ico">
 
-
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <link rel="stylesheet" href="../node_modules/reveal.js/css/reveal.css">
     <link rel="stylesheet" href="../node_modules/reveal.js/css/theme/white.css">
     <link rel="stylesheet" href="../common/css/common.css">
 
     <!-- Theme used for syntax highlighting of code -->
-    <link rel="stylesheet" href="../node_modules/reveal.js/lib/css/github-gist.css">
+    <link rel="stylesheet" href="../common/css/github-gist.css">
 
     <!-- Printing and PDF exports -->
     <script>
@@ -89,9 +90,7 @@
                 <ol>
                     <li>in the file <span class="monospace highlight">movie-details.component.html</span>
                     <ul>
-                        <li>Create a <span class="monospace highlight">&lt;div&gt;</span></li>
-                        <li>Display the movies properties inside the <span class="monospace highlight">&lt;div&gt;</span>
-                        </li>
+                        <li>Create a <span class="monospace highlight">&lt;div&gt;</span> and display the movies properties inside</li>
                         <li>For now don't use <span class="monospace highlight">&lt;input&gt;</span>. Just display labels and values of the <span class="monospace highlight">director</span> and
                             <span class="monospace highlight">title</span> properties (using the interpolation <span class="monospace highlight">{{currentMovie.title}}</span>).</li>
                     </ul>
@@ -164,8 +163,7 @@
                 <ol>
                     <li>Go to the <span class="highlight monospace">MovieDetailsComponent</span> class and remove all
                         its content except for the <span class="highlight monospace">currentMovie</span> property. Rename it to <span class="highlight monospace">movie</span>.</li>
-                    <li>Add the <span class="highlight monospace">@Input()</span> decorator to the
-                        <span class="highlight monospace">movie</span> property.</li>
+                    <li>Add <span class="highlight monospace">@Input()</span> decorator to <span class="highlight monospace">movie</span> property.</li>
                     <li>Go to the <span class="highlight monospace">MovieDetailsComponent</span>'s template.
                         The <span class="highlight monospace">&lt;div&gt;</span> element containing the MovieDetailsComponent should only be displayed if the <span class="highlight monospace">movie</span> property is set.
                         Use the <a href="https://angular.io/docs/ts/latest/api/common/index/NgIf-directive.html" target="_blank" class="monospace">*ngIf</a> directive.</li>
@@ -181,7 +179,7 @@
                 </ol>
             </section>
             <section>
-                <h3>Master/Details Pattern @Input (Optional 1/2)</h3>
+                <h3>Master/Details Pattern @Input (Optional 1/3)</h3>
                 <ol>
                     <li>Implement the <span class="highlight monospace">isMovieSelected(movie: Movie): boolean</span>
                         method
@@ -196,7 +194,7 @@
                 </ol>
             </section>
             <section>
-                <h3>Master/Details Pattern @Input (Optional 2/2)</h3>
+                <h3>Master/Details Pattern @Input (Optional 2/3)</h3>
                 <ol>
                     <li>Show the row number in the list as well</li>
                     <li>Give the <span class="highlight monospace">&lt;body&gt;</span> a light gray background</li>
@@ -206,7 +204,12 @@
                             <li>box shadow</li>
                             <li>16px of padding and margin</li>
                         </ol>
-                        </li>
+                    </li>
+                </ol>
+            </section>
+            <section>
+                <h3>Master/Details Pattern @Input (Optional 3/3)</h3>
+                <ol>
                     <li>Use Flex Box Styling to create a responsive design. The <span class="highlight monospace">&lt;div&gt;</span>'s should be next to each other or below each other depending on the screen width</li>
                 </ol>
             </section>
@@ -300,12 +303,12 @@
                     <li>Bind the <span class="monospace highlight">onCreateMovie()</span> to the <span class="monospace highlight">movieCreate</span> event of <span class="highlight monospace">&lt;app-movie-details&gt;</span>
                     </li>
                     <li>Add a private property <span class="monospace highlight">movieIdSequence</span></li>
-                    <li>Modify the <span class="monospace highlight">onMovieUpdated()</span>function. If no movie with the id of the updated movie is found, set the id to the next from <span class="monospace highlight">movieIdSequence</span> and push the updated movie to the array.</li>
                 </ol>
             </section>
             <section>
                 <h3>Master/Details Pattern @Output (optional 3/3)</h3>
                 <ol>
+                    <li>Modify the <span class="monospace highlight">onMovieUpdated()</span>function. If no movie with the id of the updated movie is found, set the id to the next from <span class="monospace highlight">movieIdSequence</span> and push the updated movie to the array.</li>
                     <li>Style the input fields and the button</li>
                     <!--<li>Import the <a href="https://material.angular.io/components/input/overview">MatInputModule</a> and <a href="https://material.angular.io/components/button/overview">MatButtonModule</a> into the BookModule</li>-->
                     <!--<li>Wrap the each of the &lt;input&gt; elements in a &lt;mat-form-field&gt;</li>-->
@@ -351,7 +354,7 @@
             <section>
                 <h3>Service (3/5)</h3>
                 <ol>
-                    <li>Make use of dependency injection and inject <span class="highlight monospace">MovieService</span> in
+                    <li>Inject <span class="highlight monospace">MovieService</span> in
                         <span class="highlight monospace">MovieOverviewComponent</span>'s constructor.
                     </li>
                     <li>In <span class="highlight monospace">MovieOverviewComponent.ngOnInit()</span> call the <span class="highlight monospace">MovieService.findAll()</span> method. <span class="highlight monospace">Subscribe</span> to the returned <span class="highlight monospace">Observable</span> to initialize the movie list.</li>
@@ -585,7 +588,6 @@ passwords: {
     </div>
 </div>
 
-<script src="../node_modules/reveal.js/lib/js/head.min.js"></script>
 <script src="../node_modules/reveal.js/js/reveal.js"></script>
 
 <script>
