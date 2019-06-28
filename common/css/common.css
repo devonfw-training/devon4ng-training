@@ -7,7 +7,11 @@
 .reveal .slides h3 {
     font-family: 'Ubuntu Mono';
     font-size: 44pt;
+}
+
+.reveal .slides .header-align-left {
     margin-left: 43pt;
+    text-align: left;
 }
 
 .reveal .slides iframe {
