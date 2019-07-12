@@ -10,35 +10,112 @@
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <link rel="icon" href="../common/img/favicon.ico">
     <link rel="stylesheet" href="../node_modules/reveal.js/css/reveal.css">
-    <link rel="stylesheet" href="../node_modules/reveal.js/css/theme/white.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/theme/simple.css">
     <link rel="stylesheet" href="../common/css/common.css">
     <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="../common/css/github-gist.css">
 </head>
 <body>
+  <style>
+  .reveal .slides .cap-blue {
+    color: #0070AD;
+  }
+
+  .reveal .fullscreen {
+    height: 100%;
+    width: 100%
+  }
+  .reveal .header-bottom-left {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 16rem;
+    max-width: 65rem;
+    color: white;
+    text-align: left;
+  }
+  .reveal .slides .event-loop-scribble {
+    width: 50%;
+    border: 0;
+    box-shadow: none;
+    background: transparent;
+    color: white;
+  }
+  </style>
 
 <div class="reveal">
     <div class="slides">
-        <section data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-            <h1>Asynchronous Development</h2>
+        <section class="fullscreen" data-background-size="80rem" data-background-position="0% 100%" data-background-image="../common/img/shapes/Fixed_Shape_5_SVG/Fixed_Shape_5_CapgeminiBlue_RGB.svg">
+          <h1 class="header-bottom-left">Asynchronous development with Angular</h1>
+        </section>
+        <section class="fullscreen">
+          <h2>What do you know about the JavaScript Eventloop?</h2>
+          <div style="display:flex; justify-content: center;padding-top: 4rem">
+            <img class="event-loop-scribble" src="./img/event-loop.svg" alt="JavaScript Event Loop">
+          </div>
+          <ul>
+            <li>You know about <span class="cap-blue">Tasks</span> and <span class="cap-blue">Jobs</span>/<span class="cap-blue">Microtasks</span>?</li>
+          </ul>
+        </section>
+        <section class="fullscreen">
+          <h2>What will be the log result?</h2>
+          <pre><code class="javascript" data-trim data-line-numbers="">
+console.log('script start');
+
+setTimeout(function() {
+  console.log('setTimeout');
+}, 0);
+
+Promise.resolve().then(function() {
+  console.log('promise1');
+}).then(function() {
+  console.log('promise2');
+});
+
+console.log('script end');
+          </code></pre>
+        </section>
+        <section class="fullscreen">
+          <h2>What is a <span class="cap-blue">Microtask</span>?</h2>
+          <pre><code data-noescape data-trim class="typescript" data-line-numbers="">
+  import { fakeAsync, flushMicrotasks } from '@angular/core/testing';
+  
+  it('should set flag to true', fakeAsync(() => {
+    let flag = false;
+    Promise.resolve().then(() => { flag = true; });
+
+    expect(flag).toBeFalsy();
+
+    flushMicrotasks();
+
+    expect(flag).toBeTruthy();
+  }));
+            </code></pre>
+        </section>
+        <section class="fullscreen">
+          <h2>What is a <span class="cap-blue">Macrotask</span>?</h2>
+          <pre><code data-noescape data-trim class="typescript" data-line-numbers="">
+import { fakeAsync, tick } from '@angular/core/testing';
+
+it('should set flag to true', fakeAsync(() => {
+  let flag = false;
+  setTimeout(() => { flag = true; });
+
+  expect(flag).toBeFalsy();
+
+  tick();
+
+  expect(flag).toBeTruthy();
+}));
+            </code></pre>
         </section>
         <section>
-<pre><code class="hljs" data-line-numbers="4,8-11">
-import React, { useState } from 'react';
- 
-function Example() {
-  const [count, setCount] = useState(0);
- 
-  return (
-    <div>
-      <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>
-        Click me
-      </button>
-    </div>
-  );
-}
-</code></pre>
+          <h2>Resources</h2>
+          <ul>
+            <li>
+              <p><cite>When I told my colleague [...] I was thinking of writing a piece on microtask queueing and execution within the browser's event loop, he said "I'll be honest with you Jake, I'm not going to read that".</cite></p>
+              <a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/">Deep Dive: Blog Post by Chrome Dev. Expert.</a>
+            </li>
+          </ul>
         </section>
     </div>
 </div>
@@ -48,6 +125,8 @@ function Example() {
 <script>
     // More info https://github.com/hakimel/reveal.js#configuration
     Reveal.initialize({
+        width: '100%',
+        height: '100%',
         history: true,
 
         // More info https://github.com/hakimel/reveal.js#dependencies
