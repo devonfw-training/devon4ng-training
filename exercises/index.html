@@ -273,7 +273,7 @@
                 <ol>
                     <li>Go to the <span class="highlight monospace">MovieOverviewComponent</span> class and implement
                         the <span class="highlight monospace">onMovieUpdated(updatedMovie: Movie): void</span> method.</li>
-                    <li>The <span class="highlight monospace">onMovieUpdated(updatedMovie: Movie): void</span> method should find a book (among movies in the <span class="highlight monospace">movies</span> array)
+                    <li>The <span class="highlight monospace">onMovieUpdated(updatedMovie: Movie): void</span> method should find a movie (among movies in the <span class="highlight monospace">movies</span> array)
                         with the same ID as the passed movie (consider using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find" target="_blank" class="monospace">Array.prototype.find</a> function)
                         and update the found movie accordingly.
                 </ol>
@@ -310,7 +310,7 @@
                 <ol>
                     <li>Modify the <span class="monospace highlight">onMovieUpdated()</span>function. If no movie with the id of the updated movie is found, set the id to the next from <span class="monospace highlight">movieIdSequence</span> and push the updated movie to the array.</li>
                     <li>Style the input fields and the button</li>
-                    <!--<li>Import the <a href="https://material.angular.io/components/input/overview">MatInputModule</a> and <a href="https://material.angular.io/components/button/overview">MatButtonModule</a> into the BookModule</li>-->
+                    <!--<li>Import the <a href="https://material.angular.io/components/input/overview">MatInputModule</a> and <a href="https://material.angular.io/components/button/overview">MatButtonModule</a> into the MovieModule</li>-->
                     <!--<li>Wrap the each of the &lt;input&gt; elements in a &lt;mat-form-field&gt;</li>-->
                     <!--<li>Add the <span class="highlight monospace">matInput</span> directive to the &lt;input&gt; elements</li>-->
                     <!--<li>Remove the <span class="highlight monospace">label</span> elements and put their value into the <span class="highlight monospace">placeholder</span> attributes of the <span class="highlight monospace">&lt;input&gt; elements</li>-->
@@ -377,7 +377,7 @@
                 <h3>Service (5/5)</h3>
                 <ol>Extend the <span class="highlight monospace">MovieService</span>:
                     <li>Implement the <span class="highlight monospace">findOne(id: number): Observable&lt;Movie&gt;</span> method which finds a
-                        book by the ID passed and returns its copy.</li>
+                        movie by the ID passed and returns its copy.</li>
                 </ol>            
             </section>
             <section>
@@ -427,9 +427,9 @@
                 <h3>Http (2/2)</h3>
                 <ol>
                     <li>Import the <span class="highlight monospace">HttpClientModule</span> into the <span class="highlight monospace">AppModule</span>, add it to the imports array</li>
-                    <li>Refactor the <span class="highlight monospace">findAll()</span> books method - use <span class="highlight monospace">http.get</span></li>
+                    <li>Refactor the <span class="highlight monospace">findAll()</span> movie method - use <span class="highlight monospace">http.get</span></li>
                     <li>Refactor the <span class="highlight monospace">findOne(id: Number)</span> method - use <span class="highlight monospace">http.get</span></li>
-                    <li>Refactor the <span class="highlight monospace">save(book: Book)</span> method  - use <span class="highlight monospace">http.post</span></li>
+                    <li>Refactor the <span class="highlight monospace">save(movie: Movie)</span> method  - use <span class="highlight monospace">http.post</span></li>
                 </ol>
             </section>
         </section>
