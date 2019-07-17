@@ -21,6 +21,10 @@
     color: #0070AD;
   }
 
+  .reveal pre code.no-max-height {
+    max-height: unset;
+  }
+
   .reveal .fullscreen {
     height: 100%;
     width: 100%
@@ -125,6 +129,35 @@ it('should set flag to true', fakeAsync(() => {
     expect(flag).toBeTruthy();
   }));
           </code></pre>
+          <p>microtask queue is processed after callbacks as long as no other JavaScript is mid-execution, and at the end of each task</p>
+        </section>
+        <section class="fullscreen">
+          <!-- <p>What's going on here?</p> -->
+          <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+button.addEventListener("click", function CB1() {
+  console.log("Listener 1");
+  
+  setTimeout(function ST1() {
+    console.log("Settimeout 1");  
+  }, 0);
+  
+  Promise.resolve().then(function P1() {
+    console.log("Promise 1");
+  });  
+});
+button.addEventListener("click", function CB2() {
+  console.log("Listener 2");
+  
+  setTimeout(function ST2() {
+    console.log("Settimeout 2");  
+  }, 0);
+
+  Promise.resolve().then(function P2() {
+    console.log("Promise 2");
+  });
+});
+          </code></pre>
+          <p>Whats the correct order?</p>
         </section>
         <section>
           <h2>Resources</h2>
