@@ -28,10 +28,15 @@
   .reveal .header-bottom-left {
     position: absolute;
     bottom: 0;
-    margin-bottom: 16rem;
+    margin-bottom: 10rem;
     max-width: 65rem;
-    color: white;
     text-align: left;
+  }
+  .reveal .header-bottom-left p {
+    font-size: 2rem;
+  }
+  .reveal .cap-white {
+    color: white;
   }
   .reveal .slides .event-loop-scribble {
     width: 50%;
@@ -45,7 +50,10 @@
 <div class="reveal">
     <div class="slides">
         <section class="fullscreen" data-background-size="80rem" data-background-position="0% 100%" data-background-image="../common/img/shapes/Fixed_Shape_5_SVG/Fixed_Shape_5_CapgeminiBlue_RGB.svg">
-          <h1 class="header-bottom-left">Asynchronous development with Angular</h1>
+          <div class="header-bottom-left">
+            <h1 class="cap-white">Asynchronous development with Angular</h1>
+            <p class="cap-white">Philip Schmökel</p>
+          </div>
         </section>
         <section class="fullscreen">
           <h2>What do you know about the JavaScript Eventloop?</h2>
@@ -54,6 +62,13 @@
           </div>
           <ul>
             <li>You know about <span class="cap-blue">Tasks</span> and <span class="cap-blue">Jobs</span>/<span class="cap-blue">Microtasks</span>?</li>
+          </ul>
+        </section>
+        <section>
+          <p>Each thread has its own event loop.</p>
+          <ul>
+            <li>UI per origin</li>
+            <li>web workers</li>
           </ul>
         </section>
         <section class="fullscreen">
@@ -75,24 +90,7 @@ console.log('script end');
           </code></pre>
         </section>
         <section class="fullscreen">
-          <h2>What is a <span class="cap-blue">Microtask</span>?</h2>
-          <pre><code data-noescape data-trim class="typescript" data-line-numbers="">
-  import { fakeAsync, flushMicrotasks } from '@angular/core/testing';
-  
-  it('should set flag to true', fakeAsync(() => {
-    let flag = false;
-    Promise.resolve().then(() => { flag = true; });
-
-    expect(flag).toBeFalsy();
-
-    flushMicrotasks();
-
-    expect(flag).toBeTruthy();
-  }));
-            </code></pre>
-        </section>
-        <section class="fullscreen">
-          <h2>What is a <span class="cap-blue">Macrotask</span>?</h2>
+          <h2>What is a <span class="cap-blue">Task</span>?</h2>
           <pre><code data-noescape data-trim class="typescript" data-line-numbers="">
 import { fakeAsync, tick } from '@angular/core/testing';
 
@@ -107,6 +105,26 @@ it('should set flag to true', fakeAsync(() => {
   expect(flag).toBeTruthy();
 }));
             </code></pre>
+            <ul>
+              <li>The Browser needs a task to render changes.</li>
+            </ul>
+        </section>
+        <section class="fullscreen">
+          <h2>What is a <span class="cap-blue">Microtask</span>?</h2>
+          <pre><code data-noescape data-trim class="typescript" data-line-numbers="">
+  import { fakeAsync, flushMicrotasks } from '@angular/core/testing';
+  
+  it('should set flag to true', fakeAsync(() => {
+    let flag = false;
+    Promise.resolve().then(() => { flag = true; });
+
+    expect(flag).toBeFalsy();
+
+    flushMicrotasks();
+
+    expect(flag).toBeTruthy();
+  }));
+          </code></pre>
         </section>
         <section>
           <h2>Resources</h2>
