@@ -75,6 +75,9 @@
             <li>web workers</li>
           </ul>
         </section>
+        <section>
+          <p>Explain the relatio of <strong class="cap-blue">Event Loop</strong>, <strong class="cap-blue">Tasks</strong> and <strong class="cap-blue">Microtasks</strong></p>
+        </section>
         <section class="fullscreen">
           <h2>What will be the log result?</h2>
           <pre><code class="javascript" data-trim data-line-numbers="">
@@ -108,10 +111,8 @@ it('should set flag to true', fakeAsync(() => {
 
   expect(flag).toBeTruthy();
 }));
-            </code></pre>
-            <ul>
-              <li>The Browser needs a task to render changes.</li>
-            </ul>
+          </code></pre>
+          <p>The Browser needs a task to render changes.</p>
         </section>
         <section class="fullscreen">
           <h2>What is a <span class="cap-blue">Microtask</span>?</h2>
@@ -129,10 +130,13 @@ it('should set flag to true', fakeAsync(() => {
     expect(flag).toBeTruthy();
   }));
           </code></pre>
-          <p>microtask queue is processed after callbacks as long as no other JavaScript is mid-execution, and at the end of each task</p>
+          <p>microtask queue is processed</p>
+          <ul>
+            <li>after a callback when Event Loop idles</li>
+            <li>at the end of a task</li>
+          </ul>
         </section>
         <section class="fullscreen">
-          <!-- <p>What's going on here?</p> -->
           <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
 button.addEventListener("click", function CB1() {
   console.log("Listener 1");
@@ -159,9 +163,81 @@ button.addEventListener("click", function CB2() {
           </code></pre>
           <p>Whats the correct order?</p>
         </section>
+        <section class="fullscreen">
+          <p>Let's talk rxjs</p>
+          <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+const subject = new Subject&lt;boolean&gt;();
+
+const obs = subject.asObservable();
+obs.subscribe(v => console.log('next value', v));
+
+subject.next(true);
+
+console.log('Send next value');
+          </code></pre>
+          <p>What's happening here? What's the correct order?</p>
+        </section>
+        <section>
+          <p>rxjs Obervable callbacks are not always microtasks!</p>
+        </section>
+        <section>
+          <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+const subject = new Subject&lt;boolean&gt;();
+
+const obs = subject.asObservable();
+obs.pipe(observeOn(asyncScheduler))
+   .subscribe(v => console.log('next value', v));
+
+subject.next(true);
+
+console.log('Send next value');
+          </code></pre>
+          <p>What is happening now?</p>
+        </section>
+        <section>
+          <h2>From the rxjs docs</h2>
+          <cite>
+            <p>A Scheduler lets you define in what execution context will an Observable deliver notifications to its Observer.</p>
+          </cite>
+          <p>Please explain!</p>
+        </section>
+        <section>
+          <p>What's different here?</p>
+          <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+this.httpClient.get('/api/books').subscribe(v => console.log('next value', v));
+
+console.log('after');
+          </code></pre>
+        </section>
+        <section>
+          <p>So Angular does it right. Why should I care?</p>
+          <img class="no-border" src="./img/changed-after-checked-exception.png" alt="Angular Exception: Changed after Checked">
+          <p>You know this? Can you explain what happened?</p>
+          <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+// dumb example, just for the kicks :-)
+ngAfterViewInit() {
+  this.title = 'karl';
+}
+          </code></pre>
+        </section>
+        <section>
+          <p>How to fix it?</p>
+          <pre><code>
+Promise.resolve().then(() => this.title = 'karl');
+          </code></pre>              
+          <pre><code>
+Promise.resolve().then(() => this.title = 'karl');
+          </code></pre>
+        </section>
         <section>
           <h2>Resources</h2>
           <ul>
+            <li>
+              <a href="http://reactivex.io/rxjs/manual/overview.html">RXJS Docs</a>
+            </li>
+            <li>
+              <a href="https://html.spec.whatwg.org/multipage/webappapis.html#event-loops">HTML Spec: Event Loops</a>
+            </li>
             <li>
               <p><cite>When I told my colleague [...] I was thinking of writing a piece on microtask queueing and execution within the browser's event loop, he said "I'll be honest with you Jake, I'm not going to read that".</cite></p>
               <a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/">Deep Dive: Blog Post by Chrome Dev. Expert.</a>
