@@ -76,7 +76,7 @@
           </ul>
         </section>
         <section>
-          <p>Explain the relatio of <strong class="cap-blue">Event Loop</strong>, <strong class="cap-blue">Tasks</strong> and <strong class="cap-blue">Microtasks</strong></p>
+          <p>Explain the relatio between <strong class="cap-blue">Event Loop</strong>, <strong class="cap-blue">Tasks</strong> and <strong class="cap-blue">Microtasks</strong></p>
         </section>
         <section class="fullscreen">
           <h2>What will be the log result?</h2>
@@ -138,30 +138,30 @@ it('should set flag to true', fakeAsync(() => {
         </section>
         <section class="fullscreen">
           <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
-button.addEventListener("click", function CB1() {
+button.addEventListener("click", () => {
   console.log("Listener 1");
   
-  setTimeout(function ST1() {
+  setTimeout(() => {
     console.log("Settimeout 1");  
   }, 0);
   
-  Promise.resolve().then(function P1() {
+  Promise.resolve().then(() =>) {
     console.log("Promise 1");
   });  
 });
-button.addEventListener("click", function CB2() {
+button.addEventListener("click", () => {
   console.log("Listener 2");
   
-  setTimeout(function ST2() {
+  setTimeout(() => {
     console.log("Settimeout 2");  
   }, 0);
 
-  Promise.resolve().then(function P2() {
+  Promise.resolve().then(() => {
     console.log("Promise 2");
   });
 });
           </code></pre>
-          <p>Whats the correct order?</p>
+          <p>What's the correct order?</p>
         </section>
         <section class="fullscreen">
           <p>Let's talk rxjs</p>
@@ -221,13 +221,91 @@ ngAfterViewInit() {
           </code></pre>
         </section>
         <section>
-          <p>How to fix it?</p>
-          <pre><code>
+          <p>How to fix it? What's the better option?</p>
+          <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+// Promise
 Promise.resolve().then(() => this.title = 'karl');
-          </code></pre>              
-          <pre><code>
-Promise.resolve().then(() => this.title = 'karl');
+
+// Timeout
+setTimeout(() => this.title = 'karl');
+
+// Change Detector
+this.title = 'karl';
+this.changeDetectorRef.detectChanges();
+
+// asyncScheduler
+asyncScheduler.schedule(() => {
+  this.title = 'karl';
+});
+            </code></pre>
+        </section>
+        <section>
+          <h2>An advanced example</h2>
+          <ul>
+            <li>OttoComponent uses OttoService</li>
+            <li>OttoService.get() returns Observable&lt;Otto[]&gt;</li>
+            <li>OttoComponent calls get() in ngOnInit()</li>
+          </ul>
+        </section>
+        <section class="fullscreen">
+          <h2>Basic unit test</h2>
+          <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+describe('OttoComponent', () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [ OttoComponent ],
+      providers: [{
+        provide: OttoService,
+        useValue: jasmine.createSpyObj('OttoService', {
+          get: of([{id: 1}])
+        })
+      }]
+    })
+  });
+
+  it('loads Ottos', () => {
+    fixture.detectChanges();
+    expect(element.querySelectorAll('.otto').length).toEqual(1);
+  });
+});
           </code></pre>
+          <p>What's wrong? Why is this not a good unit test?</p>
+        </section>
+        <section>
+          <p>To understand the problem a little further</p>
+          <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+ngOnInit() {
+  this.loading = true;
+  this.todosService.get().subscribe(todos => {
+    this.todos = todos;
+    this.loading = false;
+  });
+}
+          </code></pre>
+          <p>How's this code run in test and how in production?</p>
+        </section>
+        <section class="fullscreen">
+            <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="8">
+describe('OttoComponent', () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [ OttoComponent ],
+      providers: [{
+        provide: OttoService,
+        useValue: jasmine.createSpyObj('OttoService', {
+          get: of([{id: 1}, asyncScheduler])
+        })
+      }]
+    })
+  });
+
+  it('loads Ottos', () => {
+    fixture.detectChanges();
+    expect(element.querySelectorAll('.otto').length).toEqual(1);
+  });
+});
+            </code></pre>
+            <p>Please explain the fix and why this small change makes all the difference</p>
         </section>
         <section>
           <h2>Resources</h2>
@@ -241,6 +319,9 @@ Promise.resolve().then(() => this.title = 'karl');
             <li>
               <p><cite>When I told my colleague [...] I was thinking of writing a piece on microtask queueing and execution within the browser's event loop, he said "I'll be honest with you Jake, I'm not going to read that".</cite></p>
               <a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/">Deep Dive: Blog Post by Chrome Dev. Expert.</a>
+            </li>
+            <li>
+              <a href="https://netbasal.com/testing-observables-in-angular-a2dbbfaf5329">Blog Article: Testing Observables in Angular</a>
             </li>
           </ul>
         </section>
