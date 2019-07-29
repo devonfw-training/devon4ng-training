@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>RxJS in Action</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="icon" href="../common/img/favicon.ico">
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/theme/simple.css">
+    <link rel="stylesheet" href="../common/css/common.css">
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../common/css/github-gist.css">
+</head>
+<body>
+  <style>
+  .reveal .slides .cap-blue {
+    color: #0070AD;
+  }
+
+  .reveal pre code.no-max-height {
+    max-height: unset;
+  }
+
+  .reveal .fullscreen {
+    height: 100%;
+    width: 100%
+  }
+  .reveal .header-bottom-left {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 10rem;
+    max-width: 65rem;
+    text-align: left;
+  }
+  .reveal .header-bottom-left p {
+    font-size: 2rem;
+  }
+  .reveal .cap-white {
+    color: white;
+  }
+  </style>
+
+<div class="reveal">
+  <div class="slides">
+    <section class="fullscreen" data-background-size="80rem" data-background-position="0% 100%" data-background-image="../common/img/shapes/Fixed_Shape_5_SVG/Fixed_Shape_5_CapgeminiBlue_RGB.svg">
+      <div class="header-bottom-left">
+        <h1 class="cap-white">RxJS in Action</h1>
+        <p class="cap-white">Philip Schmökel</p>
+      </div>
+    </section>
+    <section>
+      <h2>Please explain the marble diagram</h2>
+      <div style="background-color: rgb(255, 255, 255); box-shadow: rgba(0, 0, 0, 0.17) 0px 1px 2px 1px; border-radius: 2px;"><div style="padding: 10px 22px;"><svg viewBox="0 0 7 10" style="width: 48px; height: 68px; overflow: visible;"><line x1="0" x2="112" y1="5" y2="5" style="stroke: black; stroke-width: 0.3;"></line><polygon points="111.7,6.1 111.7,3.9 114,5"></polygon></svg><svg viewBox="0 0 100 10" style="width: 680px; height: 68px; overflow: visible;"><line class="end-marker" x1="100" x2="100" y1="3.2" y2="6.8" style="stroke: black; stroke-width: 0.3; cursor: ew-resize;"></line><g class="marble" transform="translate(0, 5)" style="cursor: default;"><circle r="2.3" style="fill: rgb(62, 161, 203); stroke: black; stroke-width: 0.3;"></circle><text text-anchor="middle" y="0.8" style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">A</text></g><g class="marble" transform="translate(42, 5)" style="cursor: default;"><circle r="2.3" style="fill: rgb(130, 215, 54); stroke: black; stroke-width: 0.3;"></circle><text text-anchor="middle" y="0.8" style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">B</text></g><g class="marble" transform="translate(55, 5)" style="cursor: default;"><circle r="2.3" style="fill: rgb(255, 105, 70); stroke: black; stroke-width: 0.3;"></circle><text text-anchor="middle" y="0.8" style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">C</text></g></svg></div><div style="padding: 10px 22px;"><svg viewBox="0 0 7 10" style="width: 48px; height: 68px; overflow: visible;"><line x1="0" x2="112" y1="5" y2="5" style="stroke: black; stroke-width: 0.3;"></line><polygon points="111.7,6.1 111.7,3.9 114,5"></polygon></svg><svg viewBox="0 0 100 10" style="width: 680px; height: 68px; overflow: visible;"><line class="end-marker" x1="25" x2="25" y1="3.2" y2="6.8" style="stroke: black; stroke-width: 0.3; cursor: ew-resize;"></line><g class="marble" transform="translate(0, 5)" style="cursor: default;"><circle r="2.3" style="fill: rgb(62, 161, 203); stroke: black; stroke-width: 0.3;"></circle><text text-anchor="middle" y="0.8" style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">1</text></g><g class="marble" transform="translate(10, 5)" style="cursor: default;"><circle r="2.3" style="fill: rgb(130, 215, 54); stroke: black; stroke-width: 0.3;"></circle><text text-anchor="middle" y="0.8" style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">2</text></g><g class="marble" transform="translate(20, 5)" style="cursor: default;"><circle r="2.3" style="fill: rgb(255, 203, 70); stroke: black; stroke-width: 0.3;"></circle><text text-anchor="middle" y="0.8" style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">3</text></g></svg></div><div class="operatorBox" style="border: 1px solid rgba(0, 0, 0, 0.06); padding: 22px; text-align: center; position: relative;"><div style="display: block; position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; box-shadow: rgba(0, 0, 0, 0.17) 0px 2px 10px 0px;"></div><span class="operatorLabel" style="font-weight: 400; font-size: 1.3rem; font-family: &quot;Source Code Pro&quot;, monospace;">obs1$.switchMap(() =&gt; obs2$, (x, y) =&gt; "" + x + y)</span><div style="display: block; position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; box-shadow: rgba(0, 0, 0, 0.26) 0px 2px 5px 0px;"></div></div><div style="padding: 10px 22px;"><svg viewBox="0 0 7 10" style="width: 48px; height: 68px; overflow: visible;"><line x1="0" x2="112" y1="5" y2="5" style="stroke: black; stroke-width: 0.3;"></line><polygon points="111.7,6.1 111.7,3.9 114,5"></polygon></svg><svg viewBox="0 0 100 10" style="width: 680px; height: 68px; overflow: visible;"><line class="end-marker" x1="100.01" x2="100.01" y1="3.2" y2="6.8" style="stroke: black; stroke-width: 0.3; cursor: ew-resize;"></line><g class="marble" transform="translate(0, 5)" style="cursor: default;"><circle r="2.3" style="fill: rgb(62, 161, 203); stroke: black; stroke-width: 0.3;"></circle><text text-anchor="middle" y="0.8" style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">A1</text></g><g class="marble" transform="translate(10, 5)" style="cursor: default;"><circle r="2.3" style="fill: rgb(130, 215, 54); stroke: black; stroke-width: 0.3;"></circle><text text-anchor="middle" y="0.8" style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">A2</text></g><g class="marble" transform="translate(20, 5)" style="cursor: default;"><circle r="2.3" style="fill: rgb(255, 203, 70); stroke: black; stroke-width: 0.3;"></circle><text text-anchor="middle" y="0.8" style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">A3</text></g><g class="marble" transform="translate(42, 5)" style="cursor: default;"><circle r="2.3" style="fill: rgb(255, 105, 70); stroke: black; stroke-width: 0.3;"></circle><text text-anchor="middle" y="0.8" style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">B1</text></g><g class="marble" transform="translate(52, 5)" style="cursor: default;"><circle r="2.3" style="fill: rgb(62, 161, 203); stroke: black; stroke-width: 0.3;"></circle><text text-anchor="middle" y="0.8" style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">B2</text></g><g class="marble" transform="translate(55.00000000000001, 5)" style="cursor: default;"><circle r="2.3" style="fill: rgb(255, 203, 70); stroke: black; stroke-width: 0.3;"></circle><text text-anchor="middle" y="0.8" style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">C1</text></g><g class="marble" transform="translate(65, 5)" style="cursor: default;"><circle r="2.3" style="fill: rgb(255, 105, 70); stroke: black; stroke-width: 0.3;"></circle><text text-anchor="middle" y="0.8" style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">C2</text></g><g class="marble" transform="translate(75, 5)" style="cursor: default;"><circle r="2.3" style="fill: rgb(62, 161, 203); stroke: black; stroke-width: 0.3;"></circle><text text-anchor="middle" y="0.8" style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">C3</text></g></svg></div></div>
+      <small>Taken from: https://rxmarbles.com/#switchMap</small>
+    </section>
+    <section class="fullscreen">
+      <h2>Please explain the code</h2>
+      <pre><code class="javascript" data-trim data-line-numbers="">
+ngOnInit() {
+  this.todo$ = this.route.params.pipe(
+    switchMap(params => this.todoService.getTodo(+params['id']))
+  )
+}
+      </code></pre>
+      <p>... and how does it differ to the following?</p>
+      <pre><code class="javascript" data-trim data-line-numbers="">
+ngOnInit() {
+  this.route.params.subscribe(params => {
+    this.todoService.getTodo(+params['id']).subscribe(todo => {
+      this.todo = todo;
+    });
+  });
+}
+      </code></pre>
+      <p>Which version is better and why?</p>
+    </section>
+  </div>
+</div>
+
+<script src="../node_modules/reveal.js/js/reveal.js"></script>
+
+<script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        width: '100%',
+        height: '100%',
+        history: true,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+            { src: '../node_modules/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: '../node_modules/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../node_modules/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../node_modules/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: '../node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true },
+            { src: '../node_modules/reveal.js/plugin/notes/notes.js', async: true }
+        ]
+    });
+</script>
+</body>
+</html>
