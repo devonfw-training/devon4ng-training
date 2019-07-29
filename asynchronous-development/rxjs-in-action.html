@@ -78,6 +78,36 @@ ngOnInit() {
       </code></pre>
       <p>Which version is better and why?</p>
     </section>
+    <section class="fullscreen">
+      <h2>Please explain the following code</h2>
+      <pre><code class="javascript stretch" data-trim data-line-numbers="">
+import { fromEvent } from 'rxjs';
+import { ajax } from 'rxjs/ajax';
+import { map, filter, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+  
+const searchBox = document.getElementById('search-box');
+  
+const typeahead = fromEvent(searchBox, 'input').pipe(
+  map((e: KeyboardEvent) => e.target.value),
+  filter(text => text.length > 2),
+  debounceTime(150),
+  distinctUntilChanged(),
+  switchMap(() => ajax('/api/endpoint'))
+);
+  
+typeahead.subscribe(data => {
+  // Handle the data from the API
+});
+      </code></pre>
+    </section>
+    <section>
+      <h2>Exercise</h2>
+      <ul>
+        <li><p>Switch to branch <strong>exercise/rxjs</strong></p></li>
+        <li>Run UnitTests</li>
+        <li>Implement the features. Do not alter the tests.</li>
+      </ul>
+    </section>
   </div>
 </div>
 
