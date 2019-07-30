@@ -85,20 +85,21 @@ import { fromEvent } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
 import { map, filter, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
   
-const searchBox = document.getElementById('search-box');
+const searchInput = document.getElementById('search-box');
   
-const typeahead = fromEvent(searchBox, 'input').pipe(
+const typeahead = fromEvent(searchInput, 'input').pipe(
   map((e: KeyboardEvent) => e.target.value),
-  filter(text => text.length > 2),
+  filter(text => text.length > 3),
   debounceTime(150),
   distinctUntilChanged(),
-  switchMap(() => ajax('/api/endpoint'))
+  switchMap(() => ajax('/api/search'))
 );
   
 typeahead.subscribe(data => {
-  // Handle the data from the API
+  // handle search result
 });
       </code></pre>
+      <p>... what does each operator do exactly? What about the order? Is it important?</p>
     </section>
     <section>
       <h2>Exercise</h2>
