@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>RxJS in Action</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="icon" href="../common/img/favicon.ico">
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/theme/simple.css">
+    <link rel="stylesheet" href="../common/css/common.css">
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../common/css/github-gist.css">
+</head>
+<body>
+  <style>
+  .reveal .slides .cap-blue {
+    color: #0070AD;
+  }
+
+  .reveal pre code.no-max-height {
+    max-height: unset;
+  }
+
+  .reveal .fullscreen {
+    height: 100%;
+    width: 100%
+  }
+  .reveal .header-bottom-left {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 10rem;
+    max-width: 65rem;
+    text-align: left;
+  }
+  .reveal .header-bottom-left p {
+    font-size: 2rem;
+  }
+  .reveal .cap-white {
+    color: white;
+  }
+  </style>
+
+<div class="reveal">
+  <div class="slides">
+    <section class="fullscreen" data-background-size="80rem" data-background-position="0% 100%" data-background-image="../common/img/shapes/Fixed_Shape_5_SVG/Fixed_Shape_5_CapgeminiBlue_RGB.svg">
+      <div class="header-bottom-left">
+        <h1 class="cap-white">Angular Advanced</h1>
+      </div>
+    </section>
+    <section>
+      <h2>Agenda</h2>
+      <ul>
+        <li>
+          <p>
+            <p><a href="./asynchronous-development/async-dev.html">Asynchronous development</a></p>
+            <p><a href="./asynchronous-development/rxjs-in-action.html">Rxjs in action</a></p>
+          </p>
+        </li>
+      </ul>
+    </section>
+  </div>
+</div>
+
+<script src="../node_modules/reveal.js/js/reveal.js"></script>
+
+<script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        width: '100%',
+        height: '100%',
+        history: true,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+            { src: '../node_modules/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: '../node_modules/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../node_modules/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../node_modules/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: '../node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true },
+            { src: '../node_modules/reveal.js/plugin/notes/notes.js', async: true }
+        ]
+    });
+</script>
+</body>
+</html>
