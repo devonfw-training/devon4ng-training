@@ -25,6 +25,11 @@
     color: rgb(255, 48, 76);
   }
 
+  .reveal .slides .header-left {
+    text-align: left;
+    color: #0070AD;
+  }
+
   .reveal .slides .message-sum {
     padding: 2rem;
     background: rgb(236, 236, 236);
@@ -62,31 +67,32 @@
         <p class="cap-white">Philip Schmökel</p>
       </div>
     </section>
-    <section>
-      <p class="cap-blue">What's WebComponents about? Can I use it?</p>
+    <section class="fullscreen">
+      <h2 class="header-left">WebComponents</h2>
+      <p class="cap-blue"></p>
       <img src="./img/support.png" alt="supported browsers" width="1000px" class="no-border">
-      <p><small>taken from <a href="https://www.webcomponents.org/">webcomponents.org/</a> in August 2019</small></p>
+      <p><small>taken from <a href="https://www.webcomponents.org">webcomponents.org</a> in August 2019</small></p>
     </section>
     <section class="fullscreen">
-      <h2>Template</h2>
-      <ul>
-        <li>The template element is used to <strong class="cap-blue">declare fragments of HTML that can be cloned and inserted in the document</strong> by script.</li>
-        <li>In a rendering, the template element represents nothing.</li>
-      </ul>
+      <h2 class="header-left">Template</h2>
       <pre><code data-trim class="html">&lt;template id="template"&gt;
   &lt;p style="font-size: 5rem"&gt;Do you remember handlebars.js?&lt;/p&gt;
 &lt;/template&gt;</code></pre>
-      <pre><code data-trim class="js">
-// paste this in dev console
+      <ul>
+        <li>declare fragments of HTML that can be cloned and inserted in the document by script</li>
+        <li>
+          Try out by pasting this in Chrome dev console
+          <pre><code data-trim class="js">
 document.querySelector('section.present').appendChild(
   document.querySelector('#template').content.cloneNode(true)
 )
-      </code></pre>
+          </code></pre>
+        </li>
+      </ul>
       <template id="template"><p style="font-size: 5rem">Do you remember handlebars.js?</p></template>
     </section>
     <section class="fullscreen">
-      <h2>Custom Elements</h2>
-      <p>Provide a way for authors to build their own fully-featured DOM elements.</p>
+      <h2 class="header-left">Custom Elements</h2>
       <pre><code data-trim class="js">
 class HelloParagraph extends HTMLElement {
   constructor() {
@@ -119,26 +125,34 @@ class HelloParagraph extends HTMLElement {
 }
 customElements.define('hello-paragraph', HelloParagraph);
       </code></pre>
-      <pre><code class="js" data-trim>
-// paste this in dev console
+      <ul>
+          <li>Provide a way for authors to build their own fully-featured DOM elements.</li>
+          <li>
+              Try out by pasting this in Chrome dev console
+              <pre><code class="js" data-trim>
 document.querySelector('section.present').appendChild(
   document.createElement('hello-paragraph')
 )
 document.querySelector('hello-paragraph').setAttribute('firstname', 'Karl');
-      </code></pre>
+                </code></pre>
+          </li>
+      </ul>  
+
     </section>
     <section class="fullscreen">
-      <h2>Shadow Dom</h2>
+      <h2 class="header-left">Shadow Dom</h2>
 <img width="700px" src="./img/shadow-dom.png" alt="Shadowdom explained" class="no-border">
       <p><small>taken from <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM">developer.mozilla.org/</a> in August 2019</small></p>
       <pre><code class="js" data-trim>
 let shadow = elementRef.attachShadow({mode: 'open'});
 let shadow = elementRef.attachShadow({mode: 'closed'});
       </code></pre>
-      <p>Property <code>mode</code> controls whether or not the shadow tree can be accessed from outside.</p>
+      <ul>
+        <li>Property <code>mode</code> controls whether or not the shadow tree can be accessed by JavaScript from outside.</li>
+      </ul>
     </section>
-    <section>
-      <h2>Combine Custom Elements and Shadow Dom</h2>
+    <section class="fullscreen">
+      <h2 class="header-left">Combine Custom Elements and Shadow Dom</h2>
       <pre><code class="js" data-trim>
 customElements.define('hello-paragraph', class extends HTMLElement {
   constructor() {
@@ -155,9 +169,10 @@ customElements.define('hello-paragraph', class extends HTMLElement {
 });
       </code></pre>
     </section>
-    <section>
-      <h2>ES Modules are finally implemented</h2>
+    <section class="fullscreen">
+      <h2 class="header-left">ES Modules are finally implemented</h2>
       <pre><code class="html" data-trim>
+  &lt;!-- index.html --&gt;
   &lt;hello-paragraph&gt;&lt;/hello-paragraph&gt;
   &lt;script src="main.js" type="module"&gt;&lt;/script&gt;
       </code></pre>
@@ -173,7 +188,9 @@ export class HelloParagraph extends HTMLElement {
   // ...
 }         
       </code></pre>
-      <p>This is what we did to showcase CustomElements three slides back.</p>
+      <ul>
+        <li>This is what we did to showcase CustomElements three slides back.</li>
+      </ul>
     </section>
     <section class="fullscreen" data-background="url(./img/ng-elements-intro.png)">
       <div class="header-bottom-left message-sum">
@@ -181,7 +198,7 @@ export class HelloParagraph extends HTMLElement {
       </div>
     </section>
     <section class="fullscreen">
-      <p style="text-align: left">Angular Elements lets you <strong class="cap-blue">compile Angular components as CustomElements</strong>.</p>
+      <h2 class="header-left">Angular Elements compile Angular components as CustomElements.</h2>
       <pre style="margin: auto;"><code class="ts" data-trim>
 @NgModule({
   declarations: [SayHelloComponent],
@@ -200,15 +217,31 @@ export class AppModule DoBootStrap {
       </code></pre>
     </section>
     <section class="fullscreen">
+      <h2 class="header-left">Why do we need this?</h2>
+      <ul>
+        <li class="fragment">Move closer to HTML standards</li>
+        <li class="fragment">Integrate with different technologies</li>
+        <li class="fragment">Go for Microfrontend application landscapes</li>
+        <li class="fragment">Enable Lazy Migrations</li>
+        <li class="fragment">Develop Design Systems</li>
+        <li class="fragment">Make Angular easier. Hardest concepts are Angular Modules, rxjs and zone.js. In the future, Angular Elements will work without them all.</li>
+      </ul>
+    </section>
+    <section class="fullscreen">
       <p style="text-align: left" class="cap-blue">Flashback</p>
       <ul>
         <li>
           <p>How does Angular compilation work?</p>
-          <fake-console prompts='["ngc -p tsconfig.app.json"]'></fake-console>
+          <fake-console prompts='["ngc -p tsconfig.app.json", "ng build", "ng serve"]'></fake-console>
         </li>
         <li>
           <p>How does Angular bootstrap work?</p>
-          <fake-console prompts='["ng build", "ng serve"]'></fake-console>
+          <pre><code class="ts" data-trim>
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic'
+import {AppModule} from './app.module';
+
+platformBrowserDynamic().bootstrapModule(AppModule);
+          </code></pre>
         </li>
         <li>
           <p>Is this compatible with the idea of small CustomElements loaded asynchronously into the browser?</p>
@@ -219,10 +252,83 @@ export class AppModule DoBootStrap {
           </code></pre>
         </li>
       </ul>
-      <p class="fragment cap-red">BTW: The sexy console is a CustomElement</p>
+    </section>
+    <section class="fullscreen">
+      <h2 class="header-left">Bundle up</h2>
+      <fake-console
+        showSmall="false"
+        prompts='["ng build my-component --prod --output-hashing=none", "concat -o ./dist/my-component.bundle.js ./dist/my-component/runtime.js ./dist/my-component/polyfills.js ./dist/my-component/main.js"]'>
+      </fake-console>
+      <pre style="margin: 20px 15px; width: unset"><code class="html" data-trim>
+        &lt;!-- index.html --&gt;
+        &lt;my-component&gt;&lt;/my-component&gt;
+        &lt;script src="my-component.bundle.js"&gt;&lt;/script&gt;
+      </code></pre>
+    </section>
+    <section data-background="linear-gradient(to bottom right, #0070AD, rgb(18,171,219))">
+      <h2 class="cap-white">Exercise Time</h2>
     </section>
     <section>
       <p>With Angular 8 the new <strong>Ivy Compiler</strong> has been shipped.</p>
+      <p>It's a compiler, why should I care?</p>
+    </section>
+    <section class="fullscreen">
+      <h2 class="header-left">Bootstrap Angular Elements with Ivy</h2>
+      <pre><code style="max-height: 600px;" data-trim class="ts">
+import {ɵrenderComponent as renderComponent, ɵdetectChanges as detectChanges} from '@angular/core';
+import {SayHelloComponent} from './say-hello.component';
+
+class SayHelloElement extends HTMLElement {
+  component: SayHelloComponent;
+
+  constructor(){
+    super();
+    this.component = renderComponent(SayHelloComponent, {host: this}); // no modules
+  }
+
+  set name(v){
+    this.component.name = v;
+    detectChanges(this.component); // no zone.js, no ChangeDetectorRef, just a function
+  }
+  // ...
+}
+
+customElements.define('say-hello', SayHelloElement);
+      </code></pre>
+      <p><small>It's in the early stage and there is still heavy development going on. ɵ means private.</small></p> 
+    </section>
+    <section class="fullscreen">
+      <h2 class="header-left">Possible bootstrap with Ivy in Angular 9+</h2>
+      <pre><code class="ts" data-trim>
+import {withNgComponent} from '@angular/elements';
+import {SayHelloComponent} from './say-hello.component';
+
+const SayHelloElement = withNgComponent(SayHelloComponent);
+
+customElements.define('hello-world', HelloWorldElement);
+      </code></pre>
+      <p><small>shown at ng-conf in <a href="https://www.youtube.com/watch?v=JX5GGu_7JKc">Not Every App is a SPA | Rob Wormald</a></small></p>
+      <p><code>withNgComponent()</code> is a higher order component. Finally coming to Angular.</p>
+    </section>
+    <section class="fullscreen">
+      <h2 class="header-left">Modules</h2>
+      <pre><code class="ts" data-trim>
+import {NgElement, withNgElement} from '@angular/elements';
+import {SomeService} from 'some-lib'
+import {SomeDirective, SomePipe} from 'some-lib';
+
+@NgElement({
+  selector: 'say-hello',
+  template: '...',
+  providers: [SomeService]
+  deps: [SomeDirective, SomePipe]
+})
+class SayHelloComponent extends withNgElement() {}
+      </code></pre>
+      <p>Remember Angular 2.0.0-rc.4?</p>
+    </section>
+    <section data-background="linear-gradient(to bottom right, #0070AD, rgb(18,171,219))">
+      <h2 class="cap-white">You can use all of it today. It will only become better!</h2>
     </section>
   </div>
 </div>

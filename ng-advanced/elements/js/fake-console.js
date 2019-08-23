@@ -1,13 +1,25 @@
 export class FakeConsole extends HTMLElement {
   constructor() {
     super();
-    this._prompts = [];
+    this.attachShadow({mode: 'open'});
+    this._prompts = "[]";
+    this._showsmall = 'true';
   }
 
-  static get observedAttributes() { return ["prompts"]; }
+  static get observedAttributes() { return ["prompts", "showsmall"]; }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    this._prompts = newValue;
+    switch(name) {
+      case "prompts": {
+        this._prompts = newValue;
+        break;
+      }
+      case "showsmall": {
+        this._showsmall = newValue;
+        break;
+      }
+      default: {}
+    }
     this.render();
   }
 
@@ -22,12 +34,19 @@ export class FakeConsole extends HTMLElement {
     this.setAttribute("prompts", v);
   }
 
+  get showsmall() {
+    return this._showsmall.toLowerCase() === "true";
+  }
+  set showsmall(v) {
+    this.setAttribute("showsmall", v);
+  }
+
   renderPrompts() {
     return this.prompts.map(p => `<kbd class="console__prompt">${p}</kbd>`).join('');
   }
 
   render() {
-    this.innerHTML = `
+    this.shadowRoot.innerHTML = `
 <style>
   .logo-container {
     overflow: hidden;
@@ -35,10 +54,9 @@ export class FakeConsole extends HTMLElement {
   }
 
   .console {
-      width: 360px;
-      max-width: 92vw;
+${this.showsmall ? 'width: 360px;max-width: 92vw;margin-right: 40px;' : 'margin-right: 15px;'}
       margin-left: 15px;
-      margin-right: 40px;
+      
       text-align: left;
       border-radius: 5px;
       margin-bottom: 10px;
