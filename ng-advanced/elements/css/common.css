@@ -1,74 +1,74 @@
 .reveal .slides {
-    font-family: 'Ubuntu'
+  font-family: "Ubuntu";
 }
 
 .reveal .slides h1,
 .reveal .slides h2,
 .reveal .slides h3 {
-    font-family: 'Ubuntu Mono';
-    font-size: 44pt;
+  font-family: "Ubuntu Mono";
+  font-size: 44pt;
 }
 
 .reveal .slides .header-align-left {
-    margin-left: 43pt;
-    text-align: left;
+  margin-left: 43pt;
+  text-align: left;
 }
 
 .reveal .slides iframe {
-    border: 0;
+  border: 0;
 }
 
 .devon.reveal section img.reset {
-    background: none;
-    border: 0;
-    box-shadow: none;
+  background: none;
+  border: 0;
+  box-shadow: none;
 }
 
 .devon-link {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
 }
 
 .angular-link {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    z-index: 1000;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
 }
 
 .devon.reveal .highlight {
-    color: #01b1c1;
+  color: #01b1c1;
 }
 
 .devon.reveal .no-text-transform {
-    text-transform: none;
+  text-transform: none;
 }
 
 .devon.reveal .monospace {
-    font-family: monospace;
-    font-size: smaller;
+  font-family: monospace;
+  font-size: smaller;
 }
 
 .devon.reveal .title-with-image {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .devon.reveal .tables-of-content {
-    display: flex;
+  display: flex;
 }
 
 html .reveal section .max-height-unset {
-    max-height: unset;
+  max-height: unset;
 }
 
 html .reveal section div.quote-source {
-    margin-top: 25px;
-    text-align: right;
-    font-size: 30px;
+  margin-top: 25px;
+  text-align: right;
+  font-size: 30px;
 }
 
 html .reveal section img.no-border {
@@ -78,72 +78,113 @@ html .reveal section img.no-border {
 }
 
 .reveal section .width-70-percent {
-    width: 70%;
+  width: 70%;
 }
 
 .reveal section .width-80-percent {
-    width: 70%;
+  width: 70%;
 }
 
 .reveal section .width-100-percent {
-    width: 100%;
+  width: 100%;
 }
 
 .reveal section .size-medium {
-    font-size: 75%
+  font-size: 75%;
 }
 
 .reveal section .header-logo.margin-top-6-em {
-    margin-top: 6em;
+  margin-top: 6em;
 }
 
 .reveal p.foot-note {
-    text-align: left;
-    line-height: 1;
+  text-align: left;
+  line-height: 1;
 }
 
-.reveal section .priorities{
-    color: red;
+.reveal section .priorities {
+  color: red;
 }
 
 .reveal section .priorities span {
-    font-size: 0.7em;
-    color: black;
+  font-size: 0.7em;
+  color: black;
 }
 
 .reveal section .blue {
-    color: blue;
+  color: blue;
 }
 
 .reveal section .header-logo {
-    height: 200px;
-    width: auto;
-    border: none;
-    margin: 25px;
-    box-shadow: none;
-    background: transparent;
+  height: 200px;
+  width: auto;
+  border: none;
+  margin: 25px;
+  box-shadow: none;
+  background: transparent;
 }
 
 .bannerTextHeadline {
-    color: #FFA700;
-    font-size: 1.5em;
-    padding: 0 1.4em;
-    padding-bottom: .5em;
+  color: #ffa700;
+  font-size: 1.5em;
+  padding: 0 1.4em;
+  padding-bottom: 0.5em;
 }
 
 .bannerText p {
-    font-size: 0.7em;
-    line-height: 0.7em;
+  font-size: 0.7em;
+  line-height: 0.7em;
 }
 
 .reveal .bannerTextHeadline,
 .reveal .bannerText {
-    font-family: 'Segoe UI';
-    font-weight: lighter;
+  font-family: "Segoe UI";
+  font-weight: lighter;
 }
 
 .reveal .code-in-list {
-    padding: 0;
-    margin: 0;
-    font-size: 0.44em;
+  padding: 0;
+  margin: 0;
+  font-size: 0.44em;
+}
+
+.reveal .slides .cap-blue {
+  color: #0070ad;
+}
+
+.reveal .slides .cap-red {
+  color: rgb(255, 48, 76);
+}
+
+.reveal .slides .header-left {
+  text-align: left;
+  color: #0070ad;
+}
+
+.reveal .slides .message-sum {
+  padding: 2rem;
+  background: rgb(236, 236, 236);
+  color: rgb(255, 48, 76);
+}
+
+.reveal pre code.no-max-height {
+  max-height: unset;
+}
+
+.reveal .fullscreen {
+  height: 100%;
+  width: 100%;
+}
+.reveal .header-bottom-left {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 5rem;
+  max-width: 65rem;
+  text-align: left;
+}
+.reveal .header-bottom-left p {
+  font-size: 2rem;
+}
+.reveal .cap-white {
+  color: white;
 }
