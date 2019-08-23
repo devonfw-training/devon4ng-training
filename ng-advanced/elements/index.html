@@ -1,0 +1,252 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Angular Elements</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="icon" href="../../common/img/favicon.ico">
+    <link rel="stylesheet" href="../../node_modules/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../../node_modules/reveal.js/css/theme/simple.css">
+    <link rel="stylesheet" href="../../common/css/common.css">
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../../common/css/github-gist.css">
+</head>
+<body>
+  <style>
+  .reveal .slides .cap-blue {
+    color: #0070AD;
+  }
+
+  .reveal .slides .cap-red {
+    color: rgb(255, 48, 76);
+  }
+
+  .reveal .slides .message-sum {
+    padding: 2rem;
+    background: rgb(236, 236, 236);
+    color: rgb(255, 48, 76);
+  }
+
+  .reveal pre code.no-max-height {
+    max-height: unset;
+  }
+
+  .reveal .fullscreen {
+    height: 100%;
+    width: 100%
+  }
+  .reveal .header-bottom-left {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 5rem;
+    max-width: 65rem;
+    text-align: left;
+  }
+  .reveal .header-bottom-left p {
+    font-size: 2rem;
+  }
+  .reveal .cap-white {
+    color: white;
+  }
+  </style>
+
+<div class="reveal">
+  <div class="slides">
+    <section class="fullscreen" data-background="url(../../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg) no-repeat 0 500px, url(./img/raindrops.jpg)">
+      <div class="header-bottom-left">
+        <h1 class="cap-white">Angular Elements</h1>
+        <p class="cap-white">Philip Schmökel</p>
+      </div>
+    </section>
+    <section>
+      <p class="cap-blue">What's WebComponents about? Can I use it?</p>
+      <img src="./img/support.png" alt="supported browsers" width="1000px" class="no-border">
+      <p><small>taken from <a href="https://www.webcomponents.org/">webcomponents.org/</a> in August 2019</small></p>
+    </section>
+    <section class="fullscreen">
+      <h2>Template</h2>
+      <ul>
+        <li>The template element is used to <strong class="cap-blue">declare fragments of HTML that can be cloned and inserted in the document</strong> by script.</li>
+        <li>In a rendering, the template element represents nothing.</li>
+      </ul>
+      <pre><code data-trim class="html">&lt;template id="template"&gt;
+  &lt;p style="font-size: 5rem"&gt;Do you remember handlebars.js?&lt;/p&gt;
+&lt;/template&gt;</code></pre>
+      <pre><code data-trim class="js">
+// paste this in dev console
+document.querySelector('section.present').appendChild(
+  document.querySelector('#template').content.cloneNode(true)
+)
+      </code></pre>
+      <template id="template"><p style="font-size: 5rem">Do you remember handlebars.js?</p></template>
+    </section>
+    <section class="fullscreen">
+      <h2>Custom Elements</h2>
+      <p>Provide a way for authors to build their own fully-featured DOM elements.</p>
+      <pre><code data-trim class="js">
+class HelloParagraph extends HTMLElement {
+  constructor() {
+    super();
+    this._firstname = 'Otto';
+  }
+
+  static get observedAttributes() { return ["firstname"]; }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    this._firstname = newValue;
+    this.render();
+  }
+
+  connectedCallback() {
+    this.render();
+  }
+
+  get firstname() {
+    return this._firstname;
+  }
+
+  set firstname(v) {
+    this.setAttribute("firstname", v);
+  }
+
+  render() {
+    this.innerHTML = `&lt;p&gt;Hello ${this.firstname}!&lt;/p&gt;`;
+  }
+}
+customElements.define('hello-paragraph', HelloParagraph);
+      </code></pre>
+      <pre><code class="js" data-trim>
+// paste this in dev console
+document.querySelector('section.present').appendChild(
+  document.createElement('hello-paragraph')
+)
+document.querySelector('hello-paragraph').setAttribute('firstname', 'Karl');
+      </code></pre>
+    </section>
+    <section class="fullscreen">
+      <h2>Shadow Dom</h2>
+<img width="700px" src="./img/shadow-dom.png" alt="Shadowdom explained" class="no-border">
+      <p><small>taken from <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM">developer.mozilla.org/</a> in August 2019</small></p>
+      <pre><code class="js" data-trim>
+let shadow = elementRef.attachShadow({mode: 'open'});
+let shadow = elementRef.attachShadow({mode: 'closed'});
+      </code></pre>
+      <p>Property <code>mode</code> controls whether or not the shadow tree can be accessed from outside.</p>
+    </section>
+    <section>
+      <h2>Combine Custom Elements and Shadow Dom</h2>
+      <pre><code class="js" data-trim>
+customElements.define('hello-paragraph', class extends HTMLElement {
+  constructor() {
+    super();
+
+    const shadowRoot = this.attachShadow({mode: 'open'});
+    shadowRoot.innerHTML = `
+      &lt;style&gt;...&lt;/style&gt;
+      &lt;div id="tabs"&gt;...&lt;/div&gt;
+      &lt;div id="panels"&gt;...&lt;/div&gt;
+    `;
+  }
+  ...
+});
+      </code></pre>
+    </section>
+    <section>
+      <h2>ES Modules are finally implemented</h2>
+      <pre><code class="html" data-trim>
+  &lt;hello-paragraph&gt;&lt;/hello-paragraph&gt;
+  &lt;script src="main.js" type="module"&gt;&lt;/script&gt;
+      </code></pre>
+      <pre><code data-trim class="js">
+// main.js
+import {HelloParagraph} from './hello-paragraph.js';
+
+customElements.define('hello-paragraph', HelloParagraph);
+      </code></pre>
+      <pre><code data-trim class="js">
+// hello-paragraph.js
+export class HelloParagraph extends HTMLElement {
+  // ...
+}         
+      </code></pre>
+      <p>This is what we did to showcase CustomElements three slides back.</p>
+    </section>
+    <section class="fullscreen" data-background="url(./img/ng-elements-intro.png)">
+      <div class="header-bottom-left message-sum">
+        <p>With Angular 6 project <strong>Angular Elements</strong> has been shipped.</p>
+      </div>
+    </section>
+    <section class="fullscreen">
+      <p style="text-align: left">Angular Elements lets you <strong class="cap-blue">compile Angular components as CustomElements</strong>.</p>
+      <pre style="margin: auto;"><code class="ts" data-trim>
+@NgModule({
+  declarations: [SayHelloComponent],
+  imports: [BrowserModule],
+  bootstrap: [], // empty
+  entryComponents: [] // empty
+})
+export class AppModule DoBootStrap {
+  constructor(private injector: Injector) {}
+
+  ngDoBootstrap() {
+    const sayHelloEl = createCustomElement(SayHelloComponent, {injector: this.injector});
+    customElements.define('say-hello', sayHelloEl);
+  }
+}
+      </code></pre>
+    </section>
+    <section class="fullscreen">
+      <p style="text-align: left" class="cap-blue">Flashback</p>
+      <ul>
+        <li>
+          <p>How does Angular compilation work?</p>
+          <fake-console prompts='["ngc -p tsconfig.app.json"]'></fake-console>
+        </li>
+        <li>
+          <p>How does Angular bootstrap work?</p>
+          <fake-console prompts='["ng build", "ng serve"]'></fake-console>
+        </li>
+        <li>
+          <p>Is this compatible with the idea of small CustomElements loaded asynchronously into the browser?</p>
+          <pre><code class="html" data-trim>
+&lt;!-- this is what we want. --&gt;
+&lt;hello-paragraph&gt;&lt;/hello-paragraph&gt;
+&lt;script src="main.js" type="module"&gt;&lt;/script&gt;
+          </code></pre>
+        </li>
+      </ul>
+      <p class="fragment cap-red">BTW: The sexy console is a CustomElement</p>
+    </section>
+    <section>
+      <p>With Angular 8 the new <strong>Ivy Compiler</strong> has been shipped.</p>
+    </section>
+  </div>
+</div>
+
+<script src="../../node_modules/reveal.js/js/reveal.js"></script>
+
+<script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        width: '100%',
+        height: '100%',
+        history: true,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+            { src: '../../node_modules/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: '../../node_modules/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../../node_modules/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../../node_modules/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: '../../node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true },
+            { src: '../../node_modules/reveal.js/plugin/notes/notes.js', async: true }
+        ]
+    });
+</script>
+<script src="./js/main.js" type="module"></script>
+</body>
+</html>
