@@ -8,12 +8,12 @@
 
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-    <link rel="icon" href="../../common/img/favicon.ico">
-    <link rel="stylesheet" href="../../node_modules/reveal.js/css/reveal.css">
-    <link rel="stylesheet" href="../../node_modules/reveal.js/css/theme/simple.css">
-    <link rel="stylesheet" href="../../common/css/common.css">
+    <link rel="icon" href="./img/favicon.ico">
+    <link rel="stylesheet" href="./reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="./reveal.js/css/theme/simple.css">
+    <link rel="stylesheet" href="./css/common.css">
     <!-- Theme used for syntax highlighting of code -->
-    <link rel="stylesheet" href="../../common/css/github-gist.css">
+    <link rel="stylesheet" href="./css/github-gist.css">
 </head>
 <body>
   <style>
@@ -61,7 +61,7 @@
 
 <div class="reveal">
   <div class="slides">
-    <section class="fullscreen" data-background="url(../../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg) no-repeat 0 500px, url(./img/raindrops.jpg)">
+    <section class="fullscreen" data-background="url(./img/Fixed_Shape_3_CapgeminiBlue_RGB.svg) no-repeat 0 500px, url(./img/raindrops.jpg)">
       <div class="header-bottom-left">
         <h1 class="cap-white">Angular Elements</h1>
         <p class="cap-white">Philip Schmökel</p>
@@ -333,7 +333,7 @@ class SayHelloComponent extends withNgElement() {}
   </div>
 </div>
 
-<script src="../../node_modules/reveal.js/js/reveal.js"></script>
+<script src="./reveal.js/js/reveal.js"></script>
 
 <script>
     // More info https://github.com/hakimel/reveal.js#configuration
@@ -344,12 +344,12 @@ class SayHelloComponent extends withNgElement() {}
 
         // More info https://github.com/hakimel/reveal.js#dependencies
         dependencies: [
-            { src: '../../node_modules/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-            { src: '../../node_modules/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-            { src: '../../node_modules/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-            { src: '../../node_modules/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-            { src: '../../node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true },
-            { src: '../../node_modules/reveal.js/plugin/notes/notes.js', async: true }
+            { src: './reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: './reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: './reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: './reveal.js/plugin/zoom-js/zoom.js', async: true },
+            { src: './reveal.js/plugin/notes/notes.js', async: true }
         ]
     });
 </script>
