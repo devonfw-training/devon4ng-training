@@ -163,7 +163,7 @@ export class HelloParagraph extends HTMLElement {
   bootstrap: [], // empty
   entryComponents: [] // empty
 })
-export class AppModule DoBootStrap {
+export class AppModule implements DoBootStrap {
   constructor(private injector: Injector) {}
 
   ngDoBootstrap() {
@@ -262,7 +262,7 @@ import {SayHelloComponent} from './say-hello.component';
 
 const SayHelloElement = withNgComponent(SayHelloComponent);
 
-customElements.define('hello-world', HelloWorldElement);
+customElements.define('say-hello', SayHelloElement);
       </code></pre>
       <p><small>shown at ng-conf in <a href="https://www.youtube.com/watch?v=JX5GGu_7JKc">Not Every App is a SPA | Rob Wormald</a></small></p>
       <p><code>withNgComponent()</code> is a higher order component. Finally coming to Angular.</p>
