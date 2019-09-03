@@ -165,7 +165,7 @@
                         its content except for the <span class="highlight monospace">currentMovie</span> property. Rename it to <span class="highlight monospace">movie</span>.</li>
                     <li>Add <span class="highlight monospace">@Input()</span> decorator to <span class="highlight monospace">movie</span> property.</li>
                     <li>Go to the <span class="highlight monospace">MovieDetailsComponent</span>'s template.
-                        The <span class="highlight monospace">&lt;div&gt;</span> element containing the MovieDetailsComponent should only be displayed if the <span class="highlight monospace">movie</span> property is set.
+                        The <span class="highlight monospace">&lt;div&gt;</span> element containing the movie details should only be displayed if the <span class="highlight monospace">movie</span> property is set.
                         Use the <a href="https://angular.io/docs/ts/latest/api/common/index/NgIf-directive.html" target="_blank" class="monospace">*ngIf</a> directive.</li>
                 </ol>
             </section>
@@ -173,7 +173,7 @@
                 <h3>Master/Details Pattern @Input (6/6)</h3>
                 <ol>
                     <li>Go to the <span class="highlight highlight">MovieOverviewComponent</span> template</li>
-                    <li>Put the <span class="monospace highlight">&lt;app-movie-details&gt;</span> element in the second <span class="highlight monospace">&lt;div&gt;</span></li>
+                    <li>Put the <span class="monospace highlight">&lt;app-movie-details&gt;</span> element in a second <span class="highlight monospace">&lt;div&gt;</span></li>
                     <li>
                         Bind the <span class="highlight monospace">selectedMovie</span> to the <span class="monospace highlight">&lt;app-movie-details&gt;</span> element with the <span class="highlight monospace">[movie]</span> property binding.
                 </ol>
