@@ -418,7 +418,7 @@ export class AppComponent {
     let index = 0;
     setInterval(() => {
       index = ++index >= this.names.length ? 0 : index;
-      subscriber.next(names[index]);
+      subscriber.next(this.names[index]);
     }, 500);
   });
   private names = ['Waldo', 'Caspar', 'Azizi'];

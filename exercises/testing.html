@@ -51,18 +51,23 @@
                 <p>Extend hello.service.spec.ts and test</p>
                 <ol>
                     <li>speech is initialized correctly</li>
-                    <li>speech builds correct string after calling say()</li>
-                    <li>speech builds correct string after calling say() 2 times</li>
+                    <li>getSpeech() builds correct string after calling say()</li>
+                    <li>getSpeech() builds correct string after calling say() 2 times</li>
                     <li>speaker is called 3 times if say is called 3 times</li>
                 </ol>
             </section>
             <section>
                 <h3>Exercise: New Feature</h3>
-                <p>As the project grows new features are required.</p>
-                <blockquote>There is the requirement for a book writer.</blockquote>
+                <p>As the project grows new features are required.<br>
+                    There is the requirement for a book writer.<br>
+                    HelloService should expose <span class="highlight">say methods for speaker and book</span> - <code>sayOnSpeaker()</code> and <code>writeToBook()</code><br>
+                    <ul>
+                        <li><code>sayOnSpeaker()</code> adds a line to the speech.</li>
+                        <li><code>writeToBook()</code> adds to the book and to the speech.</li>
+                    </ul>
+                </p>
             </section>
             <section>
-                <p>HelloService should expose <span class="highlight">say methods for speaker and book</span> - e.g. <code>sayOnSpeaker()</code> and <code>writeToBook()</code></p>
                 <ol>
                     <li>Implement the new requirements.</li>
                     <li>Refactor existing tests.</li>

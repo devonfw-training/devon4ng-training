@@ -165,7 +165,7 @@
                         its content except for the <span class="highlight monospace">currentMovie</span> property. Rename it to <span class="highlight monospace">movie</span>.</li>
                     <li>Add <span class="highlight monospace">@Input()</span> decorator to <span class="highlight monospace">movie</span> property.</li>
                     <li>Go to the <span class="highlight monospace">MovieDetailsComponent</span>'s template.
-                        The <span class="highlight monospace">&lt;div&gt;</span> element containing the MovieDetailsComponent should only be displayed if the <span class="highlight monospace">movie</span> property is set.
+                        The <span class="highlight monospace">&lt;div&gt;</span> element containing the movie details should only be displayed if the <span class="highlight monospace">movie</span> property is set.
                         Use the <a href="https://angular.io/docs/ts/latest/api/common/index/NgIf-directive.html" target="_blank" class="monospace">*ngIf</a> directive.</li>
                 </ol>
             </section>
@@ -173,7 +173,7 @@
                 <h3>Master/Details Pattern @Input (6/6)</h3>
                 <ol>
                     <li>Go to the <span class="highlight highlight">MovieOverviewComponent</span> template</li>
-                    <li>Put the <span class="monospace highlight">&lt;app-movie-details&gt;</span> element in the second <span class="highlight monospace">&lt;div&gt;</span></li>
+                    <li>Put the <span class="monospace highlight">&lt;app-movie-details&gt;</span> element in a second <span class="highlight monospace">&lt;div&gt;</span></li>
                     <li>
                         Bind the <span class="highlight monospace">selectedMovie</span> to the <span class="monospace highlight">&lt;app-movie-details&gt;</span> element with the <span class="highlight monospace">[movie]</span> property binding.
                 </ol>
@@ -264,7 +264,7 @@
                     <li>Add the <span class="highlight monospace">movieUpdate</span> property of type <span class="highlight monospace">EventEmitter&lt;Movie&gt;</span>.</li>
                     <li>Put the decorator <span class="highlight monospace">@Output()</span> on the <span class="highlight monospace">movieUpdate</span> property.</li>
                     <li>Implement the <span class="highlight monospace">apply(): void</span> method which uses the <span class="highlight monospace">movieUpdate</span>
-                        EventEmitter and emits the <span class="highlight monospace">movie</span> property.</li>
+                        EventEmitter and emits the <span class="highlight monospace">_movie</span> property.</li>
                     <li>Add a <span class="highlight monospace">button</span> to the template and assign the <span class="highlight monospace">apply()</span> method to the <span class="highlight monospace">(click)</span> event binding</li>
                 </ol>
             </section>
@@ -404,14 +404,10 @@
                 <h3>Http (1/2)</h3>
                 <p>
                     We prepared a server for you.<br>
-                    User the following commands for startup
+                    User the following commands to start the angular server with reverse proxy 
+                    and a server with rest services:
+                    <span class="highlight monospace">npm run start</span>
                 </p>
-
-                <ul>
-                    <li>"npm run start" - starts angular server with reverse proxy</li>
-                    <li>"npm run server" - starts the rest server</li>
-                </ul>
-
                 <p>
                     Possible REST calls:
                 </p>

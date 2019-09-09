@@ -241,7 +241,7 @@ export class FormTestComponent implements OnInit {
             <p>behaves just like Angular Validators</p>
             <p>FormControl.errors is extended by custom error key-value pairs from validation method.</p>
             <pre><code class="html">&lt;div 
-  *ngIf="contactForm.controls.name.controls.first.errors?.forbiddenName"&gt;
+  *ngIf="contactForm.get('name').get('first').getError('forbiddenName')"&gt;
   The name is not allowed.
 &lt;/div&gt;</code></pre>
         </section>
