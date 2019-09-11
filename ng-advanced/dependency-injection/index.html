@@ -32,27 +32,43 @@
                 <p class="cap-white">Philipp Huber</p>
             </div>
         </section>
-        <section class="fullscreen">
-            <h2>What do you already know about Dependency Injection in Angular?</h2>
-            <ul>
-                <li><span class="cap-blue">Why</span> Dependency Injection?</li>
-                <li><span class="cap-blue">What</span> is the Angular Injector?</li>
-                <li><span class="cap-blue">Where</span> do injected dependencies come from?</li>
-                <li><span class="cap-blue">How</span> does it work in Angular?</li>
-            </ul>
+        <section>
+            <p>What do you already know about Dependency Injection in Angular?</p>
 
             <aside class="notes">
                 <ul>
                     <li>Why? testability, exchangeability, independent, maintainability</li>
-                    <li>What? Tree of Key Value Storages</li>
-                    <li>Where? @NgModule/Injectable() & elements (components/directives)</li>
+                    <li>What? Tree of Key Value storage</li>
+                    <li>Where? @NgModule/Injectable() & elements (@Component/@Directive)</li>
+                    <li>How? Injected in constructor</li>
+                </ul>
+            </aside>
+        </section>
+        <section>
+            <p>Where to provide dependencies?</p>
+
+            <aside class="notes">
+                <ul>
+                    <li>Why? testability, exchangeability, independent, maintainability</li>
+                    <li>What? Tree of Key Value storage</li>
+                    <li>Where? @NgModule/Injectable() & elements (@Component/@Directive)</li>
                     <li>How? Injected in constructor</li>
                 </ul>
             </aside>
         </section>
         <section class="fullscreen">
-            <h2>Get the injectable via</h2>
+            <h2>How to provide dependencies (1/2)</h2>
             <ul>
+                <li>@Injectable()</li>
+                <pre class="full-width"><code class="javascript" data-trim data-line-numbers="">
+                    @Injectable({providedIn: 'root'})
+                    export class Service {..}
+                </code></pre>
+                <pre class="full-width"><code class="javascript" data-trim data-line-numbers="">@Injectable({
+  providedIn: 'root',
+  useFactory: () => new MusicService('dependency'),
+})
+                </code></pre>
                 <li>useClass</li>
                 <pre class="full-width"><code class="javascript" data-trim data-line-numbers="">
                     [{ provide: Logger, useClass: TimestampedLogger }],
@@ -64,7 +80,7 @@
             </ul>
         </section>
         <section class="fullscreen">
-            <h2>Get the injectable via</h2>
+            <h2>How to provide dependencies (2/2)</h2>
             <ul>
                 <li>useValue</li>
                 <pre class="full-width"><code class="javascript" data-trim data-line-numbers="">export function SilentLoggerFn() {}
@@ -92,9 +108,13 @@ const silentLogger = {
         <section>
             <p><strong class="cap-blue">How</strong> does Angular resolve tokens?</p>
             <aside class="notes">
-                Looking for Tokent at Element Injector, Parent Element Injector, Parent Parent..
+                Looking for Token at Element Injector, Parent Element Injector, Parent Parent..
                 If nothing found -> ModuleInjector -> Hierarchy -> No Provider for xy
             </aside>
+        </section>
+
+        <section>
+            <p>What is the difference between <strong class="cap-blue">providers</strong> and <strong class="cap-blue">viewProviders?</strong></p>
         </section>
 
         <section>
