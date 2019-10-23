@@ -502,7 +502,9 @@
                     <ul>
                         <li>The movie shown in the movie-detail-component changes whenever the movie-id in the URL-path changes.
                         Hint: there is an unused method in your movie-service you could use here.</li>
-                        <li>When the user clicks on any of the movies, the app navigates to the according app-url (e.g. movies/2)</li>                        
+                        <li>When the user clicks on any of the movies, the app navigates to the according app-url (e.g. movies/2). 
+                            Change this in <span class="highlight monospace">selectMovie()</span>
+                        </li>
                     </ul>
                 </div>
             </section>
@@ -566,19 +568,22 @@ passwords: {
                 <ul>
                     <lI>
                         Show textual descriptions on each field validated to give the user guidance on how to fix the errror.
-                        Use *ngIf to hide messages and use null conditional notation (errors?...) to check for different validation-errors.
+                        Use *ngIf to hide messages (<span class="monospace">get('fieldname').getError('minlength')</span>) to check for different validation-errors.
                     </lI>
                 </ul>
             </section>
             <section>
                     <h3>Forms (optional)</h3>
                     <ul>
-                        <lI>
+                        <li>
+                            Show errors for required fields only after the field was touched.
+                        </li>
+                        <li>
                             Repeat-password-field is validated for exact match with the password-field. (use a custom validator)
-                        </lI>
-                        <lI>
+                        </li>
+                        <li>
                             You already used the template-driven form in your movie-details-component. Try to add some validations and validation error messages for movies by your own.
-                        </lI>
+                        </li>
                     </ul>
                 </section>
     </div>
