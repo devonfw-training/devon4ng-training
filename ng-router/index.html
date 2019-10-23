@@ -137,14 +137,12 @@ const appRoutes: Routes = [
 				<pre><code class="hljs typescript"  data-trim>
 // import
 import { Router } from '@angular/router';
-import { Location } from '@angular/common';
 
 // injection
-constructor(private router: Router, private location: Location) {}
+constructor(private router: Router) {}
 
 // navigation
 this.router.navigate(['/dashboard']);
-this.location.back();
 				</code></pre>
 			</section>
         </section>
