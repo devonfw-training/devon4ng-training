@@ -223,7 +223,7 @@ export class FormTestComponent implements OnInit {
             <pre><code class="typescript">interface ValidatorFn {
     (c: AbstractControl): {
         [key: string]: any;
-    };
+    } | null;
 }</code></pre>
             <p><code class="typescript">ValidatorFn</code> takes an <code>AbstractControl</code> to validate.</p>
             <p>Returns <span class="highlight">null if valid</span>, returns <span class="highlight">{[key: string]} if errors</span>.</p>
@@ -258,7 +258,7 @@ export class FormTestComponent implements OnInit {
         <section>
             <h3>Directive Validator example</h3>
             <pre><code class="typescript max-height-unset">@Directive({
-  selector: '[noForbiddenName][ngModel],[noForbiddenName][formControl]',
+  selector: '[noForbiddenName][ngModel],[noForbiddenName][formControl],[noForbiddenName][formControlName]',
   providers: [{ 
         provide: NG_VALIDATORS, 
         useExisting: forwardRef(() => ForbiddenNameValidator), 
