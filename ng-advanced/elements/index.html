@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Angular Elements</title>
+    <title>Microfrontends</title>
 
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
@@ -17,100 +17,537 @@
 </head>
 <body>
 <div class="reveal">
-  <div class="slides">
-    <section class="fullscreen" data-background="url(./img/Fixed_Shape_3_CapgeminiBlue_RGB.svg) no-repeat 0 500px, url(./img/raindrops.jpg)">
-      <div class="header-bottom-left">
-        <h1 class="cap-white">Angular Elements</h1>
-        <p class="cap-white">Philip Schmökel</p>
-      </div>
-    </section>
-    <section class="fullscreen">
-      <h2 class="header-left">WebComponents</h2>
-      <p class="cap-blue"></p>
-      <img src="./img/support.png" alt="supported browsers" width="1000px" class="no-border">
-      <p><small>taken from <a href="https://www.webcomponents.org">webcomponents.org</a> in August 2019</small></p>
-    </section>
-    <section class="fullscreen">
-      <h2 class="header-left">Template</h2>
-      <pre><code data-trim class="html">&lt;template id="template"&gt;
+    <section class="slides">
+        <section class="fullscreen"
+                 data-background="url(./img/Fixed_Shape_3_CapgeminiBlue_RGB.svg) no-repeat 0 500px, url(./img/raindrops.jpg)">
+            <div class="header-bottom-left">
+                <h1 class="cap-white">Microfrontends</h1>
+                <p class="cap-white">Philip Schmökel, Bernd Olleck</p>
+            </div>
+        </section>
+        <section class="fullscreen">
+            <section>
+                <h2 class="header-left">Microfrontends - what does that mean?</h2>
+                <ul>
+                    <li>Split your UI into parts that can be developed independently
+                        <img src="./img/Amazon-Split.PNG" alt="a microfrontend split example" width="1000px"
+                             class="no-border">
+                        <p><small>Background image taken from <a href="http://amazon.com">amazon.com</a> in April
+                            2019</small>
+                        </p>
+                    </li>
+                </ul>
+                <aside class="notes">
+                    <UL>
+                        <LI>
+                            Note: This image does not imply that Amazon uses a microfrontend with this split.
+                            It is only a good example how a split could be done.
+                        </LI>
+                        <LI>
+                            This is nothing new!
+                            Tagline: Well, where I’m from, we called that Dialogs and UI Components, more than 10 years
+                            ago…
+                        </LI>
+                    </UL>
+                </aside>
+            </section>
+            <section class="fullscreen">
+                <h2 class="header-left">Microfrontends - New Constraints - New Reasons</h2>
+                <UL>
+                    <LI>Time to Market!</LI>
+                    <UL>
+                        <LI>Faster change speed because of smaller scope</LI>
+                        <LI>Individual deployments of parts</LI>
+                    </UL>
+                    <LI>Technology: Web Components</LI>
+                    <LI>Long term cost reduction</LI>
+                    <UL>
+                        <LI>Better code/architecture through enforced splits</LI>
+                    </UL>
+                    <LI>Multi supplier integration in one application</LI>
+                    <LI>Most other reasons for Microservices (backend) apply: Replacabilty, encapsulated domain,
+                        independent deployment
+                    </LI>
+                </UL>
+            </section>
+            <section class="fullscreen">
+                <h2 class="header-left">Reasons for not doing Microfrontends</h2>
+                <ul>
+                    <LI>Politics a.k.a. Lemmings: everybody else is doing it!</LI>
+                    <UL>
+                        <LI>“Everybody else” typically has different use cases!</LI>
+                    </UL>
+                    <LI>Short term cost reduction</LI>
+                    <UL>
+                        <LI>The opposite will happen!</LI>
+                    </UL>
+                    <p><br/></p>
+                    <A href="https://www.thoughtworks.com/radar/techniques/micro-frontends">Technology Radar: Adopt
+                        (April 2019)</A>
+                </ul>
+            </section>
+            <section>
+                <h2 class="header-left">Categorization: Functional - Portal</h2>
+                <ul style="width: 27%; float:left; ">
+                    <li>Loosely coupled applications</li>
+                    <li>Minimal shared state</li>
+                    <li>Common menu/navigation system</li>
+                    <li>Common user context</li>
+                    <li>Typical example: Internal web workplaces</li>
+                </ul>
+                <img src="./img/microfrontend-category-portal.PNG" alt="example for a 'portal'"
+                     style="width:67%; float: right; " class="no-border">
+                <aside class="notes">
+                    <UL>
+                        <LI>
+                            Note: The names of the categories "portal" - "portlet" - "integrated" are not really defined
+                            but my own characterization.
+                        </LI>
+                    </UL>
+                </aside>
+            </section>
+            <section>
+                <h2 class="header-left">Categorization: Functional - Portlet</h2>
+                <ul style="width: 27%; float:left; ">
+                    <li>Parts of an application</li>
+                    <li>Integrated display</li>
+                    <li>Some shared state</li>
+                    <li>Little data integration</li>
+                    <li>Typical example: The shopping world</li>
+                </ul>
+                <img src="./img/microfrontend-category-portlet.PNG" alt="example for a 'portlet'"
+                     style="width:67%; float: right; " class="no-border">
+                <aside class="notes">
+                    <UL>
+                        <LI>
+                            Note: The names of the categories "portal" - "portlet" - "integrated" are not really defined
+                            but my own characterization.
+                        </LI>
+                    </UL>
+                </aside>
+            </section>
+            <section>
+                <h2 class="header-left">Categorization: Functional - Integrated</h2>
+                <div>
+                    <ul style="width: 27%; float:left; ">
+                        <li>Functional Parts of Dialogs</li>
+                        <li>Integrated display</li>
+                        <li>Integrated state</li>
+                        <li>Integrated data</li>
+                        <li>Example: Editing a complex business object</li>
+                    </ul>
+                    <img src="./img/microfrontend-category-integrated.PNG"
+                         alt="example for a 'integrated' microfrontend"
+                         style="width:67%; float: right; " class="no-border">
+                </div>
+                <div style="clear:both;"></div>
+                Always consider the API!
+                <aside class="notes">
+                    <UL>
+                        <LI>
+                            Note: The names of the categories "portal" - "portlet" - "integrated" are not really defined
+                            but my own characterization.
+                        </LI>
+                        <LI>
+                            Think:
+                            <br/>
+                            When splitting, always consider the API! That can be the difference between success and
+                            failure!
+                        </LI>
+                    </UL>
+                </aside>
+            </section>
+            <section>
+                <h2 class="header-left">Categorization: Backend Integration</h2>
+                What is the relationship between<br/>
+                Microfrontend Component and Microservice Backend?
+                <img src="./img/microfrontend-integration-behaviour.PNG" alt="integration behaviour"
+                     style="width:90%;" class="no-border">
+                <aside class="notes">
+                    <UL>
+                        <LI>
+                            Tagline: Mix and match!
+                        </LI>
+                    </UL>
+                </aside>
+            </section>
+            <section>
+                <h2 class="header-left">Team Structure</h2>
+                <img src="./img/microfrontend-team-structure.PNG" alt="integration behaviour"
+                     style="width:90%;" class="no-border">
+                <p><small>Source: <a href="https://micro-frontends.org/">https://micro-frontends.org/</a> April
+                    2019</small>
+                </p>
+                <aside class="notes">
+                    <UL>
+                        <LI>
+                            Tagline: Developers of the Full Stack! Masters of Nothing!
+                        </LI>
+                    </UL>
+                </aside>
+            </section>
+            <section>
+                <h2 class="header-left">Microfrontend Technology Flowchart</h2>
+                <img src="./img/microfrontend-technology-flowchart.PNG" alt="integration behaviour"
+                     style="width:90%;" class="no-border">
+                <p><small>Source: <a href="www.softwarearchitekt.at">www.softwarearchitekt.at</a> April 2019</small>
+                </p>
+                <aside class="notes">
+                    <UL>
+                        <LI>
+                            Note: Reusing code - no matter how - helps!
+                        </LI>
+                        <LI>
+                            There is also the option to use server based technology,
+                            e.g. (old) server side includes (but javascript is not merged easily, or Zalando's "Project
+                            Mosaic"
+                        </LI>
+                        <LI>
+                            Concerning iframes: For integrating legacy apps or apps with incompatible frameworks.
+                            Iframe isolation can be overcome by postMessage(...), deep linking is possible with some
+                            work.
+                        </LI>
+                        <LI>
+                            Followup: Spotlight on Deployment Monolith, and then on to "Web Components".
+                        </LI>
+                    </UL>
+                </aside>
+            </section>
+            <section>
+                <h2 class="header-left">Majestic Deployment Monolith</h2>
+                Idea: Build functional components separately (npm modules),
+                <br/>join them in a shell application
+                <img src="./img/microfrontend-deployment-monolith.jpg" alt="deployment monolith module structure"
+                     style="width:70%;" class="no-border">
+                <aside class="notes">
+                    <UL>
+                        <LI>
+                        </LI>
+                    </UL>
+                </aside>
+            </section>
+            <section>
+                <h2 class="header-left">Majestic Deployment Monolith</h2>
+                <ul>
+                    <li>Separate development, build and test is possible</li>
+                    <ul>
+                        <li>E.g. using Stub-Applications</li>
+                    </ul>
+                    <li>Works well if the same framework is used</li>
+                    <ul>
+                        <li>But 3rd party library versions should be synchronized</li>
+                    </ul>
+                    <li>Joint application build can use framework features<br/>(e.g. tree shaking, lazy loading)</li>
+                    <ul>
+                        <li>Build may take considerable time</li>
+                    </ul>
+                    <li>Independent deployment not possible</li>
+                    <ul>
+                        <li>But with a good build infrastructure you almost get there</li>
+                    </ul>
+                    <li>API: Everything you want, even type safe (with api library projects)</li>
+                </ul>
+                <aside class="notes">
+                    <UL>
+                        <LI>
+                        </LI>
+                    </UL>
+                </aside>
+            </section>
+        </section>
+        <section class="fullscreen">
+            <h2 class="header-left">WebComponents</h2>
+            <p class="cap-blue"></p>
+            <img src="./img/support.png" alt="supported browsers" style="width:85%;" class="no-border">
+            <p><small>taken from <a href="https://www.webcomponents.org">webcomponents.org</a> in November 2019</small>
+            </p>
+            <aside class="notes">
+                <UL>
+                    <LI>
+                        Web Component standard actually means 4 different things.
+                    </LI>
+                    <LI>
+                        Note: IE is not mentioned!
+                        There are two different polyfills to make custom elements work with IE 11:
+                        One offers incomplete functionality and the other one has a serious performance impact.
+                    </LI>
+                </UL>
+            </aside>
+        </section>
+        <section class="fullscreen">
+            <h2 class="header-left">Template</h2>
+            <pre><code data-trim class="html">&lt;template id="template"&gt;
   &lt;p style="font-size: 5rem"&gt;Do you remember handlebars.js?&lt;/p&gt;
 &lt;/template&gt;</code></pre>
-      <ul>
-        <li>declare fragments of HTML that can be cloned and inserted in the document by script</li>
-        <li>
-          Try out by pasting this in Chrome dev console
-          <pre><code data-trim class="js">
+            <ul>
+                <li>declare fragments of HTML that can be cloned and inserted in the document by script</li>
+                <li>
+                    Try out by pasting this in Chrome dev console
+                    <pre><code data-trim class="js">
 document.querySelector('section.present').appendChild(
   document.querySelector('#template').content.cloneNode(true)
 )
           </code></pre>
-        </li>
-      </ul>
-      <template id="template"><p style="font-size: 5rem">Do you remember handlebars.js?</p></template>
-    </section>
-    <section class="fullscreen">
-      <h2 class="header-left">Custom Elements</h2>
-      <pre><code data-trim class="js">
-class HelloParagraph extends HTMLElement {
-  constructor() {
-    super();
-    this._firstname = 'Otto';
-  }
+                </li>
+            </ul>
+            <template id="template"><p style="font-size: 5rem">Do you remember handlebars.js?</p></template>
+            <aside class="notes">
+                <UL>
+                    <LI>
+                        Tag name: template, content is not a child, but read only accessible by DOM attribute "content".
+                    </LI>
+                    <LI>
+                        Content is not displayed, only parsed to check for correctness
+                    </LI>
+                    <LI>
+                        Placeholders are not supported (opposed to what "templating" suggests).
+                        But there is another tag 'slot'. And in combination with custom elements that allows
+                        for a great templating mechanism.
+                    </LI>
+                    <LI>
+                        Difference cloneNode / importNode: owner document is the same / where it is imported
+                    </LI>
+                    <LI>
+                        Info: Handlebars = Mustache - an "old" web templating system
+                        https://en.wikipedia.org/wiki/Mustache_(template_system)
+                    </LI>
+                </UL>
+            </aside>
 
-  static get observedAttributes() { return ["firstname"]; }
+        </section>
+        <section>
+            <section class="fullscreen">
+                <h2 class="header-left">Custom Elements</h2>
+                <pre><code data-trim class="js">
+    class HelloParagraph extends HTMLElement {
+      constructor() {
+        super();
+        this._firstname = 'Otto';
+      }
 
-  attributeChangedCallback(name, oldValue, newValue) {
-    this._firstname = newValue;
-    this.render();
-  }
+      static get observedAttributes() { return ["firstname"]; }
 
-  connectedCallback() {
-    this.render();
-  }
+      attributeChangedCallback(name, oldValue, newValue) {
+        this._firstname = newValue;
+        this.render();
+      }
 
-  get firstname() {
-    return this._firstname;
-  }
+      connectedCallback() {
+        this.render();
+      }
 
-  set firstname(v) {
-    this.setAttribute("firstname", v);
-  }
-
-  render() {
-    this.innerHTML = `&lt;p&gt;Hello ${this.firstname}!&lt;/p&gt;`;
-  }
-}
-customElements.define('hello-paragraph', HelloParagraph);
-      </code></pre>
-      <ul>
-          <li>Provide a way for authors to build their own fully-featured DOM elements.</li>
-          <li>
-              Try out by pasting this in Chrome dev console
-              <pre><code class="js" data-trim>
-document.querySelector('section.present').appendChild(
-  document.createElement('hello-paragraph')
-)
-document.querySelector('hello-paragraph').setAttribute('firstname', 'Karl');
-                </code></pre>
-          </li>
-      </ul>  
-
-    </section>
-    <section class="fullscreen">
-      <h2 class="header-left">Shadow Dom</h2>
-<img width="700px" src="./img/shadow-dom.png" alt="Shadowdom explained" class="no-border">
-      <p><small>taken from <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM">developer.mozilla.org/</a> in August 2019</small></p>
-      <pre><code class="js" data-trim>
+      render() {
+        this.innerHTML = `&lt;p&gt;Hello ${this._firstname}!&lt;/p&gt;`;
+      }
+    }
+    customElements.define('hello-paragraph', HelloParagraph);
+          </code></pre>
+                <ul>
+                    <li>Provide a way for authors to build their own fully-featured DOM elements.</li>
+                    <li>
+                        Try out by pasting this in Chrome dev console
+                        <pre><code class="js" data-trim>
+    document.querySelector('section.present').appendChild(
+      document.createElement('hello-paragraph')
+    )
+    document.querySelector('hello-paragraph').setAttribute('firstname', 'Karl');
+                    </code></pre>
+                    </li>
+                </ul>
+                <aside class="notes">
+                    <UL>
+                        <LI>
+                            Source code is in js/hello-paragraph.js (reused with modules example below)
+                        </LI>
+                        <LI>
+                            Types:
+                            <UL>
+                                <LI>Autonomous: derive from HTMLElement, use with custom tag name</LI>
+                                <LI>Customized build in: derive from desired (e.g. HTMLParagraphElement),
+                                    use with original tag name and is="custom-tag-name"
+                                </LI>
+                            </UL>
+                        </LI>
+                        <LI>
+                            Register using "customElements.define(&lt;new-tag-name"&gt;, &lt;class-name&gt;)".
+                        </LI>
+                        <LI>
+                            Required: custom element tag names must have a dash '-'
+                        </LI>
+                        <LI>
+                            Lifecycle callbacks:
+                            <UL>
+                                <LI>connectedCallback: when added to or moved in the DOM</LI>
+                                <LI>disconnectedCallback: when removed from DOM</LI>
+                                <LI>adoptedCallback: when moved to new document</LI>
+                                <LI>attributeChangedCallback: when a declared attribute is changed</LI>
+                                <LI>static get observedAttributes: declaring the attributes we're interested in</LI>
+                            </UL>
+                        </LI>
+                        <LI>
+                            Show what is happening in the DOM when executing the code
+                            <UL>
+                                <LI>Node hello-paragraph with its own properties (_firstname)</LI>
+                                <LI>Child structure visible</LI>
+                            </UL>
+                        </LI>
+                    </UL>
+                </aside>
+            </section>
+            <section class="fullscreen">
+                <h2 class="header-left">Custom Elements Pitfalls</h2>
+                <UL>
+                    <LI>JavaScript scope is still global!</LI>
+                    <LI>Some other things are also still shared:</LI>
+                    <UL>
+                        <LI>window. &amp; document.</LI>
+                        <LI>Progressive Web APIs, e.g. local storage</LI>
+                        <LI>Namespace of custom elements</LI>
+                    </UL>
+                    <LI>...?</LI>
+                </UL>
+                <aside class="notes">
+                    <UL>
+                        <LI>
+                            There may be other pitfalls - this is relatively new technology...
+                        </LI>
+                    </UL>
+                </aside>
+            </section>
+        </section>
+        <section>
+            <section class="fullscreen">
+                <h2 class="header-left">Shadow Dom</h2>
+                <img width="700px" src="./img/shadow-dom.png" alt="Shadowdom explained" class="no-border">
+                <p><small>taken from <a
+                        href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM">developer.mozilla.org/</a>
+                    in August 2019</small></p>
+                <pre><code class="js" data-trim>
 let shadow = elementRef.attachShadow({mode: 'open'});
 let shadow = elementRef.attachShadow({mode: 'closed'});
       </code></pre>
-      <ul>
-        <li>Property <code>mode</code> controls whether or not the shadow tree can be accessed by JavaScript from outside.</li>
-      </ul>
-    </section>
-    <section class="fullscreen">
-      <h2 class="header-left">Combine Custom Elements and Shadow Dom</h2>
-      <pre><code class="js" data-trim>
+                <ul>
+                    <li>Property <code>mode</code> controls whether or not the shadow tree can be accessed by JavaScript
+                        from outside.
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h2 class="header-left">Shadow Dom Example</h2>
+                <style>
+                    /* global style definitions */
+                    .ClassOfDiv {
+                        background-color: lightblue;
+                    }
+                </style>
+                <div>
+                    <div id="outside">
+                        <h1>H1 in DIV inside the page</h1>
+                    </div>
+                    <div id="inside"
+                    ">
+                    <h1>H1 in DIV inside the page - this will be replaced by shadow</h1>
+                </div>
+</div>
+<pre><code class="js" data-trim>
+function createDivWithP() {
+    var div = document.createElement('div');
+    div.classList.add('ClassOfDiv');
+    div.innerHTML = 'text in div'
+        + '<p>text in p</p>';
+    return div;
+}
+// add child without shadow dom
+document.getElementById('outside').appendChild(createDivWithP());
+// add child with shadow dom
+var inside = document.getElementById('inside');
+var insideShadow = inside.attachShadow({mode: 'open'});
+insideShadow.innerHTML = '<h1>Inside the shadow</h1>';
+insideShadow.appendChild(createDivWithP());
+var styleInsideShadow = document.createElement('style');
+styleInsideShadow.textContent =
+      '.ClassOfDiv {'
+    + '   color: red;'
+    + '}'
+    + 'body {'
+    + '   background-color:red;'
+    + '}';
+insideShadow.appendChild(styleInsideShadow);
+      </code></pre>
+<aside class="notes">
+    <UL>
+        <LI>
+            Show the example step by step, show what happens in the DOM tree.
+        </LI>
+        <LI>
+            Initially point out the setup:
+            <UL>
+                <LI>Two DIV with H1 inside. First has class 'outside', second has class 'inside'.</LI>
+                <LI>Helper function that creates a DIV with 'ClassOfDiv' and a text and a P with another test</LI>
+                <LI>CSS Style is configured for 'ClassOfDiv' with background color</LI>
+            </UL>
+        </LI>
+        <LI>
+            When adding the child to the 'outside': H1 remains, background is colored as expected.
+        </LI>
+        <LI>
+            When attachShadow: H1 disappears.<br/>
+            Show DOM!
+        </LI>
+        <LI>
+            When defining content of shadow: H1 with new text appears
+            Show DOM!
+        </LI>
+        <LI>
+            When appending the child: it is not affected by the background of 'ClassOfDiv'
+        </LI>
+        <LI>
+            When defining styles for the shadow dom:
+            <UL>
+                <LI>text color does not affect outside</LI>
+                <LI>body does not affect anything</LI>
+            </UL>
+        </LI>
+        <LI>
+            Demonstrate the leaks of 'inheritable attributes':
+            Define style="background:green; color:white" on the parent div.
+            <br/>
+            And then add the style ':host { all:initial; }' to the shadow's style.
+            Observe that other things now look strange, because font side, has been reset as well...
+        </LI>
+        <LI>
+            Show what happens when you select divs with '.ClassOfDiv'
+        </LI>
+        <LI>
+            Demonstrate the same thing with closed shadow.
+            Difference: shadowRoot is null
+        </LI>
+    </UL>
+</aside>
+</section>
+<section class="fullscreen">
+    <h2 class="header-left">Shadow Dom Pitfalls</h2>
+    <UL>
+        <LI>There are some features ... or are they bugs?</LI>
+        <UL>
+            <LI>Fonts are global</LI>
+            <LI>'inheritable styles' leak - reset with 'all: initial' may be good.</LI>
+        </UL>
+        <LI>Automated UI-Testing: Find Elements</LI>
+        <UL>
+            <LI>
+                Open Shadow: You need to combine queries with the 'shadowRoot' in between.
+            </LI>
+            <LI>
+                Closed Shadow: You're out of luck (unless you can hack something)
+            </LI>
+        </UL>
+    </UL>
+</section>
+</section>
+<section class="fullscreen">
+    <h2 class="header-left">Combine Custom Elements and Shadow Dom</h2>
+    <pre><code class="js" data-trim>
 customElements.define('hello-paragraph', class extends HTMLElement {
   constructor() {
     super();
@@ -125,38 +562,60 @@ customElements.define('hello-paragraph', class extends HTMLElement {
   ...
 });
       </code></pre>
-    </section>
-    <section class="fullscreen">
-      <h2 class="header-left">ES Modules are finally implemented</h2>
-      <pre><code class="html" data-trim>
+</section>
+<section class="fullscreen">
+    <h2 class="header-left">ES Modules are finally implemented</h2>
+    <pre><code class="html" data-trim>
   &lt;!-- index.html --&gt;
   &lt;hello-paragraph&gt;&lt;/hello-paragraph&gt;
   &lt;script src="main.js" type="module"&gt;&lt;/script&gt;
       </code></pre>
-      <pre><code data-trim class="js">
+    <pre><code data-trim class="js">
 // main.js
 import {HelloParagraph} from './hello-paragraph.js';
 
 customElements.define('hello-paragraph', HelloParagraph);
       </code></pre>
-      <pre><code data-trim class="js">
+    <pre><code data-trim class="js">
 // hello-paragraph.js
 export class HelloParagraph extends HTMLElement {
   // ...
 }         
       </code></pre>
-      <ul>
-        <li>This is what we did to showcase CustomElements three slides back.</li>
-      </ul>
-    </section>
+    <ul>
+        <li>This is what we did to showcase CustomElements a few slides back.</li>
+    </ul>
+    <aside class="notes">
+        <UL>
+            <LI>
+                Modules introduce a top level scope:
+                <UL>
+                    <LI>var xyz = 17 does not set window.xyz</LI>
+                    <LI>this is not window</LI>
+                    <LI>Imports/export work like you know from typescript</LI>
+                </UL>
+            </LI>
+            <LI>
+                This has the potential to replace bundlers like webpack
+                <UL>
+                    <LI>But they provide other advantages like tree shaking...</LI>
+                </UL>
+            </LI>
+            <LI>Important effect: the module type ensures that the browser has a minimum level of language:
+                no old legacy code needed in modules
+            </LI>
+        </UL>
+    </aside>
+</section>
+<section>
     <section class="fullscreen" data-background="url(./img/ng-elements-intro.png)">
-      <div class="header-bottom-left message-sum">
-        <p>With Angular 6 project <strong>Angular Elements</strong> has been shipped.</p>
-      </div>
+        <div class="header-bottom-left message-sum">
+            <p>With Angular 6 project <strong>Angular Elements</strong> has been shipped.</p>
+        </div>
     </section>
     <section class="fullscreen">
-      <h2 class="header-left">Angular Elements compile Angular components as CustomElements.</h2>
-      <pre style="margin: auto;"><code class="ts" data-trim>
+        <h2 class="header-left">Angular Elements compile Angular components as CustomElements.</h2>
+        <pre style="margin: auto;"><code class="ts" data-trim>
 @NgModule({
   declarations: [SayHelloComponent],
   imports: [BrowserModule],
@@ -174,64 +633,139 @@ export class AppModule implements DoBootStrap {
       </code></pre>
     </section>
     <section class="fullscreen">
-      <h2 class="header-left">Why do we need this?</h2>
-      <ul>
-        <li class="fragment">Move closer to HTML standards</li>
-        <li class="fragment">Integrate with different technologies</li>
-        <li class="fragment">Go for Microfrontend application landscapes</li>
-        <li class="fragment">Enable Lazy Migrations</li>
-        <li class="fragment">Develop Design Systems</li>
-        <li class="fragment">Make Angular easier. Hardest concepts are Angular Modules, rxjs and zone.js. In the future, Angular Elements will work without them all.</li>
-      </ul>
+        <h2 class="header-left">Why do we need this?</h2>
+        <ul>
+            <li class="fragment">Move closer to HTML standards</li>
+            <li class="fragment">Integrate with different technologies</li>
+            <li class="fragment">Go for Microfrontend application landscapes</li>
+            <li class="fragment">Enable Lazy Migrations</li>
+            <li class="fragment">Develop Design Systems</li>
+            <li class="fragment">Make Angular easier. Hardest concepts are Angular Modules, rxjs and zone.js. In the
+                future, Angular Elements will work without them all.
+            </li>
+        </ul>
+    </section>
+</section>
+<section>
+    <section data-background="linear-gradient(to bottom right, #0070AD, rgb(18,171,219))">
+        <h2 class="cap-white">Exercise Time</h2>
     </section>
     <section class="fullscreen">
-      <p style="text-align: left" class="cap-blue">Flashback</p>
-      <ul>
-        <li>
-          <p>How does Angular compilation work?</p>
-          <fake-console prompts='["ngc -p tsconfig.app.json", "ng build", "ng serve"]'></fake-console>
-        </li>
-        <li>
-          <p>How does Angular bootstrap work?</p>
-          <pre><code class="ts" data-trim>
+        <h2 class="header-left">Pitfalls (1)</h2>
+        <ul>
+            <li>
+                "Bleeding Edge" Technology
+                <UL>
+                    <LI>There may be issues in Angular</LI>
+                    <LI>Some things are subject to change (but then that's generally the case with Angular)</LI>
+                    <LI>And we do not have a lot of experience yet in the scope of enterprise applications</LI>
+                </UL>
+            </li>
+            <li>
+                Caching of your sources
+                <UL>
+                    <LI>For build purposes we strip the hash - but that hurts with caching</LI>
+                </UL>
+            </li>
+            <LI>
+                Size of the build result is large
+                <UL>
+                    <LI>Will get better with Ivy</LI>
+                </UL>
+            </LI>
+        </ul>
+    </section>
+    <section class="fullscreen">
+        <h2 class="header-left">Pitfalls (2)</h2>
+        <ul>
+            <LI>
+                Services
+                <UL>
+                    <LI>
+                        Services are not shared with host application - extra work necessary
+                    </LI>
+                    <LI>
+                        Global service lifetime - may keep obsolete stuff in memory
+                    </LI>
+                    <LI>
+                        Zone.js should be shared when running separate webcomponents in Angular
+                        <UL>
+                            <LI>Will get better with Ivy</LI>
+                        </UL>
+                    </LI>
+                </UL>
+            </LI>
+            <LI>
+                Some browser features are not scoped or behave 'interestingly'<br>
+                (progressive web APIs, shadow dom leaks)
+            </LI>
+            <LI>
+                Angular build result must be scoped (e.g. using ngx-build-plus)
+            </LI>
+            <LI>
+                Namespacing of custom elements
+            </LI>
+            <LI>
+                E2E-Testing requires some adjustments with shadow dom
+            </LI>
+        </ul>
+        <aside class="notes">
+            <UL>
+                <LI>
+                    Zone.js: https://medium.com/@tomastrajan/the-best-way-to-lazy-load-angular-elements-97a51a5c2007
+                </LI>
+            </UL>
+        </aside>
+    </section>
+</section>
+<section>
+    <section>
+        <p>With Angular 8 the new <strong>Ivy Compiler</strong> has been shipped.</p>
+        <p>It's a compiler, why should I care?</p>
+    </section>
+    <section class="fullscreen">
+        <p style="text-align: left" class="cap-blue">Flashback</p>
+        <ul>
+            <li>
+                <p>How does Angular compilation work?</p>
+                <fake-console prompts='["ng build [--aot]", "ng serve [--aot]"]'></fake-console>
+            </li>
+            <li>
+                <p>How does Angular bootstrap work?</p>
+                <pre><code class="ts" data-trim>
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic'
 import {AppModule} from './app.module';
 
 platformBrowserDynamic().bootstrapModule(AppModule);
           </code></pre>
-        </li>
-        <li>
-          <p>Is this compatible with the idea of small CustomElements loaded asynchronously into the browser?</p>
-          <pre><code class="html" data-trim>
+            </li>
+            <li>
+                <p>Is this compatible with the idea of small CustomElements loaded asynchronously into the
+                    browser?</p>
+                <pre><code class="html" data-trim>
 &lt;!-- this is what we want. --&gt;
 &lt;hello-paragraph&gt;&lt;/hello-paragraph&gt;
 &lt;script src="main.js" type="module"&gt;&lt;/script&gt;
           </code></pre>
-        </li>
-      </ul>
+            </li>
+        </ul>
+        <aside class="notes">
+            <UL>
+                <LI>
+                    Compile: During development the code is compiled in the browser at runtime (JIT = just in time).
+                    For deployments (prod-builds), the code is compiled before (AOT = ahead of time).
+                    <br/>
+                    Compilation steps: typescript compilation + code analysis + code generation
+                </LI>
+                <LI>
+                    Build result contains angular framework - can be large
+                </LI>
+            </UL>
+        </aside>
     </section>
     <section class="fullscreen">
-      <h2 class="header-left">Bundle up</h2>
-      <fake-console
-        showSmall="false"
-        prompts='["ng build my-component --prod --output-hashing=none", "concat -o ./dist/my-component.bundle.js ./dist/my-component/runtime.js ./dist/my-component/polyfills.js ./dist/my-component/main.js"]'>
-      </fake-console>
-      <pre style="margin: 20px 15px; width: unset"><code class="html" data-trim>
-        &lt;!-- index.html --&gt;
-        &lt;my-component&gt;&lt;/my-component&gt;
-        &lt;script src="my-component.bundle.js"&gt;&lt;/script&gt;
-      </code></pre>
-    </section>
-    <section data-background="linear-gradient(to bottom right, #0070AD, rgb(18,171,219))">
-      <h2 class="cap-white">Exercise Time</h2>
-    </section>
-    <section>
-      <p>With Angular 8 the new <strong>Ivy Compiler</strong> has been shipped.</p>
-      <p>It's a compiler, why should I care?</p>
-    </section>
-    <section class="fullscreen">
-      <h2 class="header-left">Bootstrap Angular Elements with Ivy</h2>
-      <pre><code style="max-height: 600px;" data-trim class="ts">
+        <h2 class="header-left">Bootstrap Angular Elements with Ivy</h2>
+        <pre><code style="max-height: 600px;" data-trim class="ts">
 import {ɵrenderComponent as renderComponent, ɵdetectChanges as detectChanges} from '@angular/core';
 import {SayHelloComponent} from './say-hello.component';
 
@@ -252,11 +786,12 @@ class SayHelloElement extends HTMLElement {
 
 customElements.define('say-hello', SayHelloElement);
       </code></pre>
-      <p><small>It's in the early stage and there is still heavy development going on. ɵ means private.</small></p> 
+        <p><small>It's in the early stage and there is still heavy development going on. ɵ means private.</small>
+        </p>
     </section>
     <section class="fullscreen">
-      <h2 class="header-left">Possible bootstrap with Ivy in Angular 9+</h2>
-      <pre><code class="ts" data-trim>
+        <h2 class="header-left">Possible bootstrap with Ivy in Angular 9+</h2>
+        <pre><code class="ts" data-trim>
 import {withNgComponent} from '@angular/elements';
 import {SayHelloComponent} from './say-hello.component';
 
@@ -264,12 +799,13 @@ const SayHelloElement = withNgComponent(SayHelloComponent);
 
 customElements.define('say-hello', SayHelloElement);
       </code></pre>
-      <p><small>shown at ng-conf in <a href="https://www.youtube.com/watch?v=JX5GGu_7JKc">Not Every App is a SPA | Rob Wormald</a></small></p>
-      <p><code>withNgComponent()</code> is a higher order component. Finally coming to Angular.</p>
+        <p><small>shown at ng-conf in <a href="https://www.youtube.com/watch?v=JX5GGu_7JKc">Not Every App is a SPA |
+            Rob Wormald</a></small></p>
+        <p><code>withNgComponent()</code> is a higher order component. Finally coming to Angular.</p>
     </section>
     <section class="fullscreen">
-      <h2 class="header-left">Modules</h2>
-      <pre><code class="ts" data-trim>
+        <h2 class="header-left">Modules</h2>
+        <pre><code class="ts" data-trim>
 import {NgElement, withNgElement} from '@angular/elements';
 import {SomeService} from 'some-lib'
 import {SomeDirective, SomePipe} from 'some-lib';
@@ -282,12 +818,13 @@ import {SomeDirective, SomePipe} from 'some-lib';
 })
 class SayHelloComponent extends withNgElement() {}
       </code></pre>
-      <p>Remember Angular 2.0.0-rc.4?</p>
+        <p>Remember Angular 2.0.0-rc.4?</p>
     </section>
     <section data-background="linear-gradient(to bottom right, #0070AD, rgb(18,171,219))">
-      <h2 class="cap-white">You can use all of it today. It will only become better!</h2>
+        <h2 class="cap-white">You can use all of it today. It will only become better!</h2>
     </section>
-  </div>
+</section>
+</div>
 </div>
 
 <script src="./reveal.js/js/reveal.js"></script>
@@ -301,12 +838,28 @@ class SayHelloComponent extends withNgElement() {}
 
         // More info https://github.com/hakimel/reveal.js#dependencies
         dependencies: [
-            { src: './reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-            { src: './reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-            { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-            { src: './reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-            { src: './reveal.js/plugin/zoom-js/zoom.js', async: true },
-            { src: './reveal.js/plugin/notes/notes.js', async: true }
+            {
+                src: './reveal.js/lib/js/classList.js', condition: function () {
+                    return !document.body.classList;
+                }
+            },
+            {
+                src: './reveal.js/plugin/markdown/marked.js', condition: function () {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            },
+            {
+                src: './reveal.js/plugin/markdown/markdown.js', condition: function () {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            },
+            {
+                src: './reveal.js/plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            },
+            {src: './reveal.js/plugin/zoom-js/zoom.js', async: true},
+            {src: './reveal.js/plugin/notes/notes.js', async: true}
         ]
     });
 </script>

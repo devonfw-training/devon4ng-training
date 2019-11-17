@@ -15,16 +15,9 @@ export class HelloParagraph extends HTMLElement {
     this.render();
   }
 
-  get firstname() {
-    return this._firstname;
-  }
-  set country(v) {
-    this.setAttribute("country", v);
-  }
-
   render() {
     this.innerHTML = `
-<p>Hello ${this.firstname}!</p>    
+<p>Hello ${this._firstname}!</p>    
     `;
   }
 }
