@@ -688,7 +688,7 @@ export class AppModule implements DoBootStrap {
                         Global service lifetime - may keep obsolete stuff in memory
                     </LI>
                     <LI>
-                        Zone.js should be shared when running separate webcomponents in Angular
+                        Zone.js should be shared when running separate webcomponents in Angular with shared services
                         <UL>
                             <LI>Will get better with Ivy</LI>
                         </UL>
@@ -705,9 +705,6 @@ export class AppModule implements DoBootStrap {
             <LI>
                 Namespacing of custom elements
             </LI>
-            <LI>
-                E2E-Testing requires some adjustments with shadow dom
-            </LI>
         </ul>
         <aside class="notes">
             <UL>
@@ -716,6 +713,28 @@ export class AppModule implements DoBootStrap {
                 </LI>
             </UL>
         </aside>
+    </section>
+    <section class="fullscreen">
+        <h2 class="header-left">Pitfalls (3)</h2>
+        <ul>
+            <LI>
+                E2E-Testing requires some adjustments with shadow dom
+            </LI>
+            <LI>
+                @Input data may not be filled before first lifecycle calls, so use ?. (or if ...)
+            </LI>
+            <LI>
+                @Output event data is wrapped in the browser's custom event
+                <UL>
+                    <LI>
+                        access data using $event.detail
+                    </LI>
+                    <LI>
+                        be wary of unexpected type changes.
+                    </LI>
+                </UL>
+            </LI>
+        </ul>
     </section>
 </section>
 <section>
