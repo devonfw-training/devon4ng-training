@@ -511,12 +511,14 @@ insideShadow.appendChild(styleInsideShadow);
         <LI>
             Demonstrate the leaks of 'inheritable attributes':
             Define style="background:green; color:white" on the parent div.
+            Background changes because it is transparent by default, but text color changes because it is inheritable.
             <br/>
             And then add the style ':host { all:initial; }' to the shadow's style.
             Observe that other things now look strange, because font side, has been reset as well...
         </LI>
         <LI>
-            Show what happens when you select divs with '.ClassOfDiv'
+            Show what happens when you select divs with '.ClassOfDiv' in Javascript,
+            and demonstrate how to get the nodes of the open shadow root.
         </LI>
         <LI>
             Demonstrate the same thing with closed shadow.
