@@ -23,8 +23,8 @@
     </script>
 </head>
 <body>
-<div class="reveal">
-    <div class="slides">
+    <div class="devon reveal">
+        <div class="slides">
         <section class="fullscreen" data-background-size="80rem" data-background-position="0% 100%"
                  data-background-image="./img/Fixed_Shape_5_CapgeminiBlue_RGB.svg">
             <div class="header-bottom-left">
@@ -57,52 +57,98 @@
             </aside>
         </section>
         <section class="fullscreen">
-            <h2>How to provide dependencies (1/2)</h2>
-            <ul>
-                <li>@Injectable()</li>
-                <pre class="full-width"><code class="javascript" data-trim data-line-numbers="">
+            <section>
+                <h2>How to provide dependencies (1/2)</h2>
+                <ul>
+                    <li>@Injectable()</li>
+                    <pre class="full-width"><code class="javascript" data-trim data-line-numbers="">
                     @Injectable({providedIn: 'root'})
                     export class Service {..}
                 </code></pre>
-                <pre class="full-width"><code class="javascript" data-trim data-line-numbers="">@Injectable({
+                    <pre class="full-width"><code class="javascript" data-trim data-line-numbers="">@Injectable({
   providedIn: 'root',
   useFactory: () => new MusicService('dependency'),
 })
                 </code></pre>
-                <li>useClass</li>
-                <pre class="full-width"><code class="javascript" data-trim data-line-numbers="">
+                    <li>useClass</li>
+                    <pre class="full-width"><code class="javascript" data-trim data-line-numbers="">
                     [{ provide: Logger, useClass: TimestampedLogger }],
                     [Logger]</code></pre>
-                <li>useExisting</li>
-                <pre class="full-width"><code class="javascript" data-trim data-line-numbers="">
+                    <li>useExisting</li>
+                    <pre class="full-width"><code class="javascript" data-trim data-line-numbers="">
                     [{ provide: Logger, useClass: TimestampedLogger },
                      { provide: BasicLogger, useExisting: Logger}]</code></pre>
-            </ul>
-        </section>
-        <section class="fullscreen">
-            <h2>How to provide dependencies (2/2)</h2>
-            <ul>
-                <li>useValue</li>
-                <pre class="full-width"><code class="javascript" data-trim data-line-numbers="">export function SilentLoggerFn() {}
+                </ul>
+            </section>
+            <section>
+                <h2>How to provide dependencies (2/2)</h2>
+                <ul>
+                    <li>useValue</li>
+                    <pre class="full-width"><code class="javascript" data-trim data-line-numbers="">export function SilentLoggerFn() {}
 const silentLogger = {
   logs: ['Silent logger says "Shhhhh!". Provided via "useValue"'],
   log: SilentLoggerFn
 };
 [{ provide: Logger, useValue: silentLogger }]</code></pre>
-                <li>useFactory</li>
-                <pre class="full-width"><code class="javascript" data-trim data-line-numbers="">
+                    <li>useFactory</li>
+                    <pre class="full-width"><code class="javascript" data-trim data-line-numbers="">
                     [{ provide: MusicService,
                       useFactory: musicServiceFactory,
                       deps: [Logger, UserService]}]</code></pre>
-            </ul>
+                </ul>
+            </section>
         </section>
 
         <section>
-            <p>What is the injection <strong class="cap-blue">tree</strong>?</p>
-            <p><strong class="cap-blue">ModuleInjector</strong> & <strong class="cap-blue">ElementInjector</strong></p>
-            <aside class="notes">
-                ModuleInjector is 'child' of root-Injector : Element Injector @ Dom Element
-            </aside>
+            <section>
+
+                <p>What is the injection <strong class="cap-blue">tree</strong>?</p>
+                <p><strong class="cap-blue">ModuleInjector</strong> & <strong class="cap-blue">ElementInjector</strong>
+                </p>
+                <aside class="notes">
+                    ModuleInjector is 'child' of root-Injector : Element Injector @ Dom Element
+                </aside>
+            </section>
+            <section>
+                <img height="100%" class="no-background no-border no-margin no-shadow" alt="dependency-hierarchy"
+                     src="./img/dependency-hierarchy/Slide1.PNG">
+            </section>
+            <section>
+                <img height="100%" class="no-background no-border no-margin no-shadow" alt="dependency-hierarchy"
+                     src="./img/dependency-hierarchy/Slide2.PNG">
+            </section>
+            <section>
+                <img height="100%" class="no-background no-border no-margin no-shadow" alt="dependency-hierarchy"
+                     src="./img/dependency-hierarchy/Slide3.PNG">
+            </section>
+            <section>
+                <img height="100%" class="no-background no-border no-margin no-shadow" alt="dependency-hierarchy"
+                     src="./img/dependency-hierarchy/Slide4.PNG">
+            </section>
+            <section>
+                <img height="100%" class="no-background no-border no-margin no-shadow" alt="dependency-hierarchy"
+                     src="./img/dependency-hierarchy/Slide5.PNG">
+            </section>
+            <section>
+                <img height="100%" class="no-background no-border no-margin no-shadow" alt="dependency-hierarchy"
+                     src="./img/dependency-hierarchy/Slide6.PNG">
+            </section>
+            <section>
+                <img height="100%" class="no-background no-border no-margin no-shadow" alt="dependency-hierarchy"
+                     src="./img/dependency-hierarchy/Slide7.PNG">
+            </section>
+            <section>
+                <img height="100%" class="no-background no-border no-margin no-shadow" alt="dependency-hierarchy"
+                     src="./img/dependency-hierarchy/Slide8.PNG">
+            </section>
+            <section>
+                <img height="100%" class="no-background no-border no-margin no-shadow" alt="dependency-hierarchy"
+                     src="./img/dependency-hierarchy/Slide9.PNG">
+            </section>
+            <section>
+                <img height="100%" class="no-background no-border no-margin no-shadow" alt="dependency-hierarchy"
+                     src="./img/dependency-hierarchy/Slide10.PNG">
+            </section>
         </section>
 
         <section>
@@ -114,7 +160,8 @@ const silentLogger = {
         </section>
 
         <section>
-            <p>What is the difference between <strong class="cap-blue">providers</strong> and <strong class="cap-blue">viewProviders?</strong></p>
+            <p>What is the difference between <strong class="cap-blue">providers</strong> and <strong class="cap-blue">viewProviders?</strong>
+            </p>
         </section>
 
         <section>
