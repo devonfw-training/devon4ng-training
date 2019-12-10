@@ -370,7 +370,7 @@ describe('OttoComponent', () => {
       providers: [{
         provide: OttoService,
         useValue: jasmine.createSpyObj('OttoService', {
-          get: of([{id: 1}, asyncScheduler])
+          get: of([{id: 1}], asyncScheduler)
         })
       }]
     })
