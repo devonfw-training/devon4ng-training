@@ -707,6 +707,10 @@ export class AppModule implements DoBootStrap {
             <LI>
                 Namespacing of custom elements
             </LI>
+            <LI>
+                Angular Elements only support @Input and @Output, no public method calls.
+                Workaround needed like element.ngElementStrategy.componentRef.instance.yourMethod().
+            </LI>
         </ul>
         <aside class="notes">
             <UL>
