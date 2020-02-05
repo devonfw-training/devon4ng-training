@@ -98,7 +98,7 @@ export class BookService {
             <p class="no-text-transform">Component consumes a service making use of the <span class="highlight">Dependency Injection</span></p>
             <pre><code class="hljs typescript" data-trim data-noescape>
 @Component({...})
-export class BookOverviewComponent implements OnInit {
+export class BookOverviewComponent{
   books$ = this.bookService.findAll();
 
   constructor(private <mark>bookService: BookService</mark>) {}
