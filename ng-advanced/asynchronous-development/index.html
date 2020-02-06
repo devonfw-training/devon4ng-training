@@ -213,9 +213,65 @@ subject.next(true);
 console.log('Sent next value');
           </code></pre>
             <p>What's happening here? What's the correct order?</p>
+            <aside class="notes">
+                Sample code is part of the RxJs Examples repository:
+                <UL>
+                    <LI>https://github.com/BerndOlleckCap/RxJsExamples</LI>
+                    <LI>start angular application</LI>
+                    <LI>Tab "Training Examples"</LI>
+                    <LI>Button "Timing without scheduler"</LI>
+                    <LI>Code: TrainingExamplesComponent.startNoScheduler</LI>
+                </UL>
+            </aside>
         </section>
         <section>
             <p>rxjs Obervable callbacks are not always microtasks!</p>
+            <UL>
+                <LI>Synchronous execution "when nothing else is required"</LI>
+                <LI>Schedulers determine the "something else"</LI>
+                <UL>
+                    <LI>Microtasks when using asapScheduler</LI>
+                    <LI>Macrotasks when using asyncScheduler</LI>
+                </UL>
+                <LI>Can be controlled with</LI>
+                <UL>
+                    <LI>observeOn(...)</LI>
+                    <LI>subscribeOn(...)</LI>
+                    <LI>Implementation of observables and operators</LI>
+                </UL>
+            </UL>
+            <aside class="notes">
+                <UL>
+                    <LI>
+                        https://rxjs.dev/api/operators/observeOn
+                    </LI>
+                    <LI>
+                        https://blog.strongbrew.io/what-are-schedulers-in-rxjs/
+                    </LI>
+                    <LI>observeOn relates to the steps after it</LI>
+                    <LI>subscribeOn to the complete execution</LI>
+                    <LI>
+                        Schedulers:
+                        <UL>
+                            <LI>Queue: As synchronously as possible</LI>
+                            <LI>Asap: Microtask</LI>
+                            <LI>Async: Macrotask</LI>
+                            <LI>And some others, e.g. for testing or animation</LI>
+                        </UL>
+                    </LI>
+                    <LI>
+                        Some sample code is part of the RxJs Examples repository:
+                        <UL>
+                            <LI>https://github.com/BerndOlleckCap/RxJsExamples</LI>
+                            <LI>start angular application</LI>
+                            <LI>Tab "Training Examples"</LI>
+                            <LI>Button "Scheduler comparison"</LI>
+                            <LI>Code: TrainingExamplesComponent.startSchedulerComparison</LI>
+                            <LI>And with a surprise: Button "Microtask vs. Promise", Code TrainingExamplesComponent.startMicrotaskVsPromise</LI>
+                        </UL>
+                    </LI>
+                </UL>
+            </aside>
         </section>
         <section>
           <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
@@ -230,38 +286,14 @@ subject.next(true);
 console.log('Send next value');
           </code></pre>
             <p>What is happening now?</p>
-        </section>
-        <section>
-            <h2>From the rxjs docs</h2>
-            <cite>
-                <p>A Scheduler lets you define in what execution context will an Observable deliver notifications to its
-                    Observer.</p>
-            </cite>
-            <p>Please explain!</p>
             <aside class="notes">
+                Sample code is part of the RxJs Examples repository:
                 <UL>
-                    <LI>
-                        https://rxjs.dev/api/operators/observeOn
-                    </LI>
-                    <LI>
-                        https://blog.strongbrew.io/what-are-schedulers-in-rxjs/
-                    </LI>
-                    <LI>
-                        There is also a subscribeOn()
-                        <UL>
-                            <LI>observeOn relates to the steps after it</LI>
-                            <LI>subscribeOn to the complete execution</LI>
-                        </UL>
-                    </LI>
-                    <LI>
-                        Schedulers:
-                        <UL>
-                            <LI>Queue: As synchronously as possible</LI>
-                            <LI>Asap: Microtask</LI>
-                            <LI>Async: Macrotask</LI>
-                            <LI>And some others, e.g. for testing or animation</LI>
-                        </UL>
-                    </LI>
+                    <LI>https://github.com/BerndOlleckCap/RxJsExamples</LI>
+                    <LI>start angular application</LI>
+                    <LI>Tab "Training Examples"</LI>
+                    <LI>Button "Timing with asyncScheduler"</LI>
+                    <LI>Code: TrainingExamplesComponent.startAsyncScheduler</LI>
                 </UL>
             </aside>
         </section>
@@ -273,17 +305,15 @@ this.httpClient.get('/api/books').subscribe(v => console.log('next value', v));
 console.log('after');
           </code></pre>
             <p>Please explain the expected timing in this situation.</p>
+            <aside class="notes">
+                The important point here is: This is really asynchronous.
+                The http response will come "later". And it will still be processed as a Microtask when it arrives...
+            </aside>
         </section>
         <section>
             <p>Do you know this?</p>
             <img class="no-border" src="./img/changed-after-checked-exception.png"
                  alt="Angular Exception: Changed after Checked">
-            <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
-/* dumb example, just for the kicks :-) */
-ngAfterViewInit() {
-  this.title = 'karl';
-}
-          </code></pre>
             <p>Can you explain what happened?</p>
             <p>What does it have to do with microtasks / macrotasks?</p>
             <aside class="notes">
@@ -302,6 +332,16 @@ ngAfterViewInit() {
                         Detailed explanation:
                         https://indepth.dev/everything-you-need-to-know-about-the-expressionchangedafterithasbeencheckederror-error/
                     </LI>
+                    <LI>
+                        Sample code is part of the RxJs Examples repository:
+                        <UL>
+                            <LI>https://github.com/BerndOlleckCap/RxJsExamples</LI>
+                            <LI>start angular application</LI>
+                            <LI>Tab "Change Detection Error"</LI>
+                            <LI>Button "Activate Child"</LI>
+                            <LI>Code: ExpressionChangedExceptionComponent</LI>
+                        </UL>
+                    </LI>
                 </UL>
             </aside>
         </section>
@@ -309,18 +349,18 @@ ngAfterViewInit() {
             <p>How to fix it? What's the better option?</p>
             <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
 /* Promise */
-Promise.resolve().then(() => this.title = 'karl');
+Promise.resolve().then(() => ...bad change...);
 
 /* Timeout */
-setTimeout(() => this.title = 'karl');
+setTimeout(() => ...bad change...);
 
 /* Change Detector */
-this.title = 'karl';
+...bad change...
 this.changeDetectorRef.detectChanges();
 
 /* asyncScheduler */
 asyncScheduler.schedule(() => {
-  this.title = 'karl';
+  ...bad change...;
 });
             </code></pre>
             <aside class="notes">
@@ -330,39 +370,46 @@ asyncScheduler.schedule(() => {
                         removing the dependency.
                     </LI>
                     <LI>
-                        Again: detailed explanation see
+                        Detailed explanation see
                         https://indepth.dev/everything-you-need-to-know-about-the-expressionchangedafterithasbeencheckederror-error/
                     </LI>
                 </UL>
             </aside>
         </section>
         <section>
-            <h2>An advanced example</h2>
+            <h2>Another problem with unit tests and async behaviour</h2>
             <ul>
-                <li>OttoComponent uses OttoService</li>
-                <li>OttoService.get() returns Observable&lt;Otto[]&gt;</li>
-                <li>OttoComponent calls get() in ngOnInit()</li>
+                <li>ListComponent uses ListService</li>
+                <li>ListService.get() returns Observable&lt;Entry[]&gt;</li>
+                <li>ListComponent calls get() in ngOnInit()</li>
             </ul>
+            <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+  constructor(private service: ListService) {}
+
+  ngOnInit(): void {
+    this.service.get().subscribe(res => this.list = res);
+  }
+          </code></pre>
         </section>
         <section class="fullscreen">
             <h2>Basic unit test</h2>
             <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
-describe('OttoComponent', () => {
+describe('ListComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ OttoComponent ],
+      declarations: [ ListComponent ],
       providers: [{
-        provide: OttoService,
-        useValue: jasmine.createSpyObj('OttoService', {
+        provide: ListService,
+        useValue: jasmine.createSpyObj('ListService', {
           get: of([{id: 1}])
         })
       }]
     })
   });
 
-  it('loads Ottos', () => {
+  it('loads list', () => {
     fixture.detectChanges();
-    expect(element.querySelectorAll('.otto').length).toEqual(1);
+    expect(element.querySelectorAll('.list').length).toEqual(1);
   });
 });
           </code></pre>
@@ -390,22 +437,22 @@ ngOnInit() {
         </section>
         <section class="fullscreen">
             <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="8">
-describe('OttoComponent', () => {
+describe('ListComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ OttoComponent ],
+      declarations: [ ListComponent ],
       providers: [{
-        provide: OttoService,
-        useValue: jasmine.createSpyObj('OttoService', {
+        provide: ListService,
+        useValue: jasmine.createSpyObj('ListService', {
           get: of([{id: 1}], asyncScheduler)
         })
       }]
     })
   });
 
-  it('loads Ottos', () => {
+  it('loads list', () => {
     fixture.detectChanges();
-    expect(element.querySelectorAll('.otto').length).toEqual(1);
+    expect(element.querySelectorAll('.list').length).toEqual(1);
   });
 });
             </code></pre>
@@ -605,6 +652,15 @@ describe('OttoComponent', () => {
     });
           </code></pre>
             <p>... what does each operator do exactly? What about the order? Is it important?</p>
+            <aside class="notes">
+                Some sample code (more complex) is part of the RxJs Examples repository:
+                <UL>
+                    <LI>https://github.com/BerndOlleckCap/RxJsExamples</LI>
+                    <LI>start angular application</LI>
+                    <LI>Tab "Search"</LI>
+                    <LI>Code: SearchComponent</LI>
+                </UL>
+            </aside>
         </section>
         <section>
             <h2>Exercise</h2>
