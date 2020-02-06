@@ -250,7 +250,7 @@ export class HelloService {
                 <h3>HelloService spec</h3>
                 <pre><code data-trim class="max-height-unset javascript">
 describe('HelloService', () => {
-  const speakerFake: Speaker;
+  let speakerFake: Speaker;
   let sut: HelloService;
         
   beforeEach(() => {
