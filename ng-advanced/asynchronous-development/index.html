@@ -169,7 +169,34 @@ button.addEventListener("click", () => {
   });
 });
           </code></pre>
-            <button><h2>What's the correct order?</h2></button>
+            <button id="ListenerOrderExampleButton"><h2>What's the correct order?</h2></button>
+            <script type="application/javascript">
+                {
+                    const button = document.getElementById('ListenerOrderExampleButton');
+                    button.addEventListener("click", () => {
+                        console.log("Listener 1");
+
+                        setTimeout(() => {
+                            console.log("SetTimeout 1");
+                        }, 0);
+
+                        Promise.resolve().then(() => {
+                            console.log("Promise 1");
+                        });
+                    });
+                    button.addEventListener("click", () => {
+                        console.log("Listener 2");
+
+                        setTimeout(() => {
+                            console.log("SetTimeout 2");
+                        }, 0);
+
+                        Promise.resolve().then(() => {
+                            console.log("Promise 2");
+                        });
+                    });
+                }
+            </script>
         </section>
         <section class="fullscreen">
             <p>Let's talk rxjs</p>
