@@ -1,0 +1,24 @@
+<ng-container *ngIf="(username$ | async) as username; else login">
+  <section class="top-corner">
+    <h3>Welcome home {{username}}</h3>
+    <button (click)="onLogoutClicked()"
+            class="float-right margin-top--small">Logout
+    </button>
+  </section>
+</ng-container>
+
+<ng-template #login>
+  <div class="login-page">
+    <div class="form">
+      <form [formGroup]="form" class="login-form">
+        <label>
+          <input formControlName="username" placeholder="username" type="text"/>
+        </label>
+        <label>
+          <input formControlName="password" placeholder="password" type="password"/>
+        </label>
+        <button (click)="onLoginClicked()" class="float-right margin-top--small">login</button>
+      </form>
+    </div>
+  </div>
+</ng-template>

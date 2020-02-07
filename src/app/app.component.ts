@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
-import {select, Store} from '@ngrx/store';
-import {AppState} from './root.reducer';
+import {AuthState} from './state/auth.state';
+import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
-import {decrementCounter, incrementCounter, resetCounter} from './number/number.reducer';
+import {selectIsLoggedIn} from './state/auth.selector';
 
 @Component({
   selector: 'app-root',
@@ -10,20 +10,9 @@ import {decrementCounter, incrementCounter, resetCounter} from './number/number.
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  numberValue$: Observable<number> = this.store.pipe(select(s => s.number.value));
+  isLoggedIn$: Observable<boolean> = this.store$.select(selectIsLoggedIn);
 
-  constructor(private store: Store<AppState>) {
-  }
+  constructor(private store$: Store<AuthState>) {
 
-  onResetClick() {
-    this.store.dispatch(resetCounter());
-  }
-
-  onIncrementClick() {
-    this.store.dispatch(incrementCounter());
-  }
-
-  onDecrementClick() {
-    this.store.dispatch(decrementCounter());
   }
 }

@@ -5,15 +5,21 @@ import {AppComponent} from './app.component';
 import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {REDUCER_TOKEN, reducers} from './root.reducer';
+import {NumberComponent} from './number/number.component';
+import {LoginComponent} from './login/login.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NumberComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     StoreModule.forRoot(reducers),
-    StoreDevtoolsModule.instrument()
+    StoreDevtoolsModule.instrument(),
+    ReactiveFormsModule
   ],
   bootstrap: [AppComponent],
   providers: [{

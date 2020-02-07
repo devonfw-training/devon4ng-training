@@ -1,0 +1,11 @@
+<div class="login-page">
+  <div class="form">
+    <h2>Number functionality</h2>
+    <p>Current: {{ numberValue$ | async }}</p>
+    <section>
+      <button (click)="onIncrementClick()" class="button-color--green">+</button>
+      <button (click)="onResetClick()" class="button-color--red">0</button>
+      <button (click)="onDecrementClick()" class="button-color--red">-</button>
+    </section>
+  </div>
+</div>
