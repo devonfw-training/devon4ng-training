@@ -1,6 +1,4 @@
 import {Component} from '@angular/core';
-import {Store} from '@ngrx/store';
-import {AppState} from './root.reducer';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +8,6 @@ import {AppState} from './root.reducer';
 export class AppComponent {
   title = 'ngrx-simple-app';
 
-  // todo inject store here
   constructor() {
   }
 }

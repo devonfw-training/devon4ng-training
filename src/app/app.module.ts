@@ -6,16 +6,20 @@ import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {REDUCER_TOKEN, reducers} from './root.reducer';
 
-// import StoreModule.forRoot(reducers) & StoreDevtoolsModule.instrument()
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
     BrowserModule,
+    StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument()
   ],
   bootstrap: [AppComponent],
-  providers: [],
+  providers: [{
+    provide: REDUCER_TOKEN,
+    useValue: reducers,
+  }],
 })
 export class AppModule {
 }
