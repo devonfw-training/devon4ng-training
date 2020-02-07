@@ -13,7 +13,7 @@ export function numberReducer(state = initialNumberState, action: Action): Numbe
     case 'INCREMENT':
       return {...state, value: state.value + 1};
     case 'DECREMENT':
-      return {...state, value: state.value + 1};
+      return {...state, value: state.value - 1};
     case 'RESET':
       return {...state, value: 0};
     default:
