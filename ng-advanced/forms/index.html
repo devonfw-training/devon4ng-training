@@ -254,7 +254,7 @@ providers: [
                     <h3 class="cap-white">Control Value Accessor</h3>
                     <h5 class="cap-white" style="color: #10e0ff">Exercise (1/5)</h5>
                     <ol class="cap-white">
-                        <li>Pull or fork a repository from <a href="https://github.com/phhbr/forms-aa.git">here</a></li>
+                        <li>Pull or fork a repository from <a href="https://github.com/phhbr/forms-cva">here</a></li>
                         <li>Check out the master state</li>
                         <li>Get to know the application</li>
                     </ol>
@@ -271,16 +271,18 @@ providers: [
                             <li>Create a custom control component with a select box (ng g c customized-select-box)
                                 <p style="font-size:smaller">where will you create it?</p>
                             </li>
-                            <li>Define customized select box template - the list should consist of icon and genres
-                                <p style="font-size:smaller">implementation hints: use the following material components
-                                </p>
+                            <li>Define customized select box template - the list should consist of the item's name (i.e. genre name)
+                                <p>use select for the select box</p>
+                                <p>use option for the list items</p>
+                                <p>fill options via input</p>
                             </li>
+                            </p>
+                        </ul>
                             <ul>
-                                <li>Use mat-form-field</li>
-                                <li>Use mat-select for the list</li>
-                                <li>Use mat-select-trigger to define how and what should be displayed in the list</li>
-                                <li>Use mat-option</li>
-                                <li>Documentation can be found <a
+                                <p style="font-size:smaller">more advanced material users: you may use the following material components
+                                <li style="font-size:smaller">Use mat-select for the list</li>
+                                <li style="font-size:smaller">Use mat-option</li>
+                                <li style="font-size:smaller">Documentation can be found <a
                                         href="https://material.angular.io/components/select/overview">here</a></li>
                             </ul>
                         </ul>
@@ -294,12 +296,10 @@ providers: [
                     <ol class="cap-white">
                         <p class="cap-white">Implement ControlValueAccessor</p>
                         <ul>
-                            <li>You need access to MatSelect to access the current value</li>
-                            <li>Add field: propagateChange (val: any) => {}</li>
-                            <li>Add genres (list) and placeholder as Inputs
-                                <p style="font-size:smaller">you can also defined a more generic interface for the
-                                    component ('selectboxItem' instead of 'genre' i.e.)</p>
-                            </li>
+                            <li>Use your new component in the book detail component</li>
+                            <li>use the input and fill it with genres</li>
+                            <li>Test your application</li>
+                            <li style="font-size:smaller">fallback branch: cva/1-select-options-added</li>
                         </ul>
                     </ol>
                 </section>
@@ -309,15 +309,16 @@ providers: [
                     <h3 class="cap-white">Control Value Accessor</h3>
                     <h5 class="cap-white" style="color: #10e0ff">Exercise (4/5)</h5>
                     <ul class="cap-white">
+                        <li>Make the select box component part of your Form Control Group via formControlName</li>
+                        <li>The SelectBoxComponent shall implement the ControlValueAccessor interface</li>
+                        <li>The SelectBoxComponent shall have one formControl</li>
                         <li>Implement following methods</li>
                         <ul>
                             <li>writeValue</li>
                             <li>registerOnChange</li>
                         </ul>
-                        <p style="font-size:smaller">You need to add (selectionChange) event to mat-select.
-                            Implement this method in a component and select the option from the list and trigger
-                            propagateOnChange
-                        </p>
+                        <li>Add Genres to existing books in backend, extend book class by genre (number)</li>
+                        <li style="font-size:smaller">fallback branch: cva/2-adding-control-value-accessor</li>
                     </ul>
                 </section>
 
@@ -328,10 +329,9 @@ providers: [
                     <ul class="cap-white">
                         <li>Register CVA in the application</li>
                     </ul>
-                    <p style="font-size:smaller">Don't forget to register new services and components in the modules
-                    </p>
+                    <p style="font-size:smaller">Don't forget to register new services and components in the modules<p>
+                    <li style="font-size:smaller">fancy solution with material, resolvers etc: cva/3-final</li>
                 </section>
-
             </section>
 
 
@@ -381,6 +381,7 @@ viewProviders: [
                     <h3 class="cap-white">With Form Group Directive</h3>
                     <h5 class="cap-white" style="color: #10e0ff">Exercise (1/3)</h5>
                     <ol class="cap-white">
+                        <li>Start on branch nested/fgd-0-start</li>
                         <li>Create an order module (ng g m order)</li>
                         <li>Create order-overview component (ng g c order-overview)</li>
                         <ul class="cap-white">
@@ -406,6 +407,8 @@ viewProviders: [
                             <li>Inject parent in the constructor (this.form = parent)</li>
                         </ul>
                     </ol>
+                    <p>you're here now: nested/fgd-1-add-components-group-directive</p>
+                    <p>material version: nested/fgd-2-final</p>
                 </section>
 
                 <section
@@ -421,6 +424,7 @@ viewProviders: [
                             <li>Add mat-error to the template</li>
                             <li>Don't forget all needed imports in the order.module</li>
                         </ul>
+                        <p>you're here now nested/fgd-2-final</p>
                     </ol>
                 </section>
 
@@ -456,8 +460,8 @@ viewProviders: [
                     <h3 class="cap-white">With Control Value Accessor</h3>
                     <h5 class="cap-white" style="color: #10e0ff">Exercise (1/5)</h5>
                     <ol class="cap-white">
-                        <li>Pull or fork a repository from <a href="https://github.com/phhbr/forms-aa.git">here</a></li>
-                        <li>Check out nested/start</li>
+                        <li>Pull or fork a repository from <a href="https://github.com/phhbr/forms-cva">here</a></li>
+                        <li>Check out nested/cva-0-start</li>
                         <li>Add address component (ng g c address)</li>
                         <ul class="cap-white">
                             <li>Implement Control Value Accessor</li>
@@ -467,6 +471,7 @@ viewProviders: [
                             <li>All the fields are required - add validators and mat-error</li>
                         </ul>
                     </ol>
+                    <p>You're here now: nested/cva-1-initialized-address-component</p>
                 </section>
 
                 <section
@@ -481,7 +486,7 @@ viewProviders: [
                             <li>Use valueChanges (from form) to subscribe on changes in the registerOnChange method</li>
                         </ul>
                     </ol>
-                    <div class="cap-white" style="font-size:x-small">branch: nested/step-1</div>
+                    <p class="cap-white">You're here now: nested/cva-2-finishing-basic-cva-implementation</p>
                 </section>
 
                 <section
@@ -500,6 +505,7 @@ viewProviders: [
 }
                     </code></pre>
                         <li>Implement validate method</li>
+                        <p>You're here now: nested/cva-3-adding-validators</p>
                     </ol>
                 </section>
 
@@ -535,7 +541,6 @@ viewProviders: [
                         <li>Define in child @Input() isParentSubmitted</li>
                         <li>Add address as FormControl in parent (including formControlName)</li>
                     </ol>
-                    <div class="cap-white" style="font-size:x-small">branch: nested/step-2</div>
 
                 </section>
 
@@ -556,7 +561,7 @@ export class AddressErrorStateMatcher implements ErrorStateMatcher {
                             </code></pre>
                         <li>Use Error State Matcher in Providers</li>
                     </ol>
-                    <div class="cap-white" style="font-size: x-small">branch: nested/final</div>
+                    <p class="cap-white">You're here now: nested/cva-4-adding-error-state-matcher-and-submitted</p>
                 </section>
             </section>
         </div>
