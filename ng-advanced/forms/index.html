@@ -254,7 +254,7 @@ providers: [
                     <h3 class="cap-white">Control Value Accessor</h3>
                     <h5 class="cap-white" style="color: #10e0ff">Exercise (1/5)</h5>
                     <ol class="cap-white">
-                        <li>Pull or fork a repository from <a href="https://github.com/phhbr/forms-aa.git">here</a></li>
+                        <li>Pull or fork a repository from <a href="https://github.com/phhbr/forms-cva">here</a></li>
                         <li>Check out the master state</li>
                         <li>Get to know the application</li>
                     </ol>
@@ -332,7 +332,6 @@ providers: [
                     <p style="font-size:smaller">Don't forget to register new services and components in the modules<p>
                     <li style="font-size:smaller">fancy solution with material, resolvers etc: cva/3-final</li>
                 </section>
-
             </section>
 
 
@@ -382,6 +381,7 @@ viewProviders: [
                     <h3 class="cap-white">With Form Group Directive</h3>
                     <h5 class="cap-white" style="color: #10e0ff">Exercise (1/3)</h5>
                     <ol class="cap-white">
+                        <li>Start on branch nested/fgd-0-start</li>
                         <li>Create an order module (ng g m order)</li>
                         <li>Create order-overview component (ng g c order-overview)</li>
                         <ul class="cap-white">
@@ -407,6 +407,8 @@ viewProviders: [
                             <li>Inject parent in the constructor (this.form = parent)</li>
                         </ul>
                     </ol>
+                    <p>you're here now: nested/fgd-1-add-components-group-directive</p>
+                    <p>material version: nested/fgd-2-final</p>
                 </section>
 
                 <section
@@ -422,6 +424,7 @@ viewProviders: [
                             <li>Add mat-error to the template</li>
                             <li>Don't forget all needed imports in the order.module</li>
                         </ul>
+                        <p>you're here now nested/fgd-2-final</p>
                     </ol>
                 </section>
 
@@ -457,8 +460,8 @@ viewProviders: [
                     <h3 class="cap-white">With Control Value Accessor</h3>
                     <h5 class="cap-white" style="color: #10e0ff">Exercise (1/5)</h5>
                     <ol class="cap-white">
-                        <li>Pull or fork a repository from <a href="https://github.com/phhbr/forms-aa.git">here</a></li>
-                        <li>Check out nested/start</li>
+                        <li>Pull or fork a repository from <a href="https://github.com/phhbr/forms-cva">here</a></li>
+                        <li>Check out nested/cva-0-start</li>
                         <li>Add address component (ng g c address)</li>
                         <ul class="cap-white">
                             <li>Implement Control Value Accessor</li>
@@ -468,6 +471,7 @@ viewProviders: [
                             <li>All the fields are required - add validators and mat-error</li>
                         </ul>
                     </ol>
+                    <p>You're here now: nested/cva-1-initialized-address-component</p>
                 </section>
 
                 <section
@@ -482,7 +486,7 @@ viewProviders: [
                             <li>Use valueChanges (from form) to subscribe on changes in the registerOnChange method</li>
                         </ul>
                     </ol>
-                    <div class="cap-white" style="font-size:x-small">branch: nested/step-1</div>
+                    <p class="cap-white">You're here now: nested/cva-2-finishing-basic-cva-implementation</p>
                 </section>
 
                 <section
@@ -501,6 +505,7 @@ viewProviders: [
 }
                     </code></pre>
                         <li>Implement validate method</li>
+                        <p>You're here now: nested/cva-3-adding-validators</p>
                     </ol>
                 </section>
 
@@ -536,7 +541,6 @@ viewProviders: [
                         <li>Define in child @Input() isParentSubmitted</li>
                         <li>Add address as FormControl in parent (including formControlName)</li>
                     </ol>
-                    <div class="cap-white" style="font-size:x-small">branch: nested/step-2</div>
 
                 </section>
 
@@ -557,7 +561,7 @@ export class AddressErrorStateMatcher implements ErrorStateMatcher {
                             </code></pre>
                         <li>Use Error State Matcher in Providers</li>
                     </ol>
-                    <div class="cap-white" style="font-size: x-small">branch: nested/final</div>
+                    <p class="cap-white">You're here now: nested/cva-4-adding-error-state-matcher-and-submitted</p>
                 </section>
             </section>
         </div>
