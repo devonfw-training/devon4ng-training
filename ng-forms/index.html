@@ -265,7 +265,7 @@ export class FormTestComponent implements OnInit {
         multi: true 
   }]
 })
-export class ForbiddenNameValidator {
+export class ForbiddenNameValidator implements Validator {
 
   validator = forbiddenNameValidatorFn;
 

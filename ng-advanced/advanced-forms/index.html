@@ -1,0 +1,543 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Dependency Injection</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="icon" href="./img/favicon.ico">
+    <link rel="stylesheet" href="./reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="./reveal.js/css/theme/simple.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="./css/github-gist.css">
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section data-background-image="./img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
+            <h3 class="white">Advanced Forms</h3>
+            <h4 class="white">March 2019 State</h4>
+            <img height="250em" class="no-background no-border no-margin no-shadow" src="./img/angular-forms.png">
+            <!--Image taken from: https://egghead.io/courses/learn-the-basics-of-angular-forms -->
+        </section>
+
+        <section id="agenda-1" data-transition="slide"
+                 data-background-image="./img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
+            <h2 class="white">Agenda</h2>
+            <ul class="white">
+                <li>Recap: Template Driven & Reactive Forms</li>
+                <li>Custom Form Controls</li>
+                <li>Nested Forms</li>
+                <ul class="white">
+                    <li>with Form Group Directive</li>
+                    <li>with Control Value Accessor</li>
+                </ul>
+            </ul>
+        </section>
+
+        <section>
+            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <h3 class="white">Template Driven & Reactive Forms</h3>
+            </section>
+
+            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <h3 class="white">Template Driven Forms</h3>
+                <h5 class="white" style="color: #10e0ff">Template as the source of truth</h5>
+                <ul class="white">
+                    <li>Normally <strong>simple forms </strong>such as email or sign up form</li>
+                    <li>They are <strong>asynchronous</strong></li>
+                    <li><strong>Two way</strong> data binding</li>
+                    <li><strong>Testing</strong> is more difficult</li>
+                    <li>They don't <strong>scale </strong>well</li>
+                    <li>Use if the forms and forms logic in your app are <strong>simple</strong></li>
+                </ul>
+            </section>
+
+            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <h3 class="white">Template Driven Forms</h3>
+                <h5 class="white">Example</h5>
+                <pre><code>
+@Component({
+  selector: "app-login",
+  template: `
+     <form #form="ngForm" (submit)="submit(form.value)">
+       <input type="email" [ngModel]="email" name="email">
+       <input type="submit" value="submit">
+     </form>
+  `
+})
+export class LoginComponent {
+  email = '';
+
+  @ViewChild('form') form: FormGroup;
+
+  submit(value) {
+    console.log(value);
+  }
+
+}
+                </code></pre>
+            </section>
+
+            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <h3 class="white">Template Driven Forms</h3>
+                <img src="img/template-driven-forms.png" class="no-background no-border no-margin no-shadow">
+            </section>
+
+            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <h3 class="white">Reactive Forms</h3>
+                <h5 class="white" style="color: #10e0ff">The form model as the source of truth</h5>
+                <ul class="white">
+                    <li>More <strong>scalable, reusable and testable </strong></li>
+                    <li>They are <strong>synchronous</strong></li>
+                    <li><strong>Immutable</strong></li>
+                </ul>
+            </section>
+
+            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <h3 class="white">Reactive Forms</h3>
+                <h5 class="white">Example</h5>
+                <pre><code>
+@Component({
+  selector: "app-login",
+  template: `
+     <form [formGroup]="loginForm" (submit)="submit()">
+       <input type="email" formControlName="email">
+       <input type="submit" value="submit">
+     </form>
+  `
+})
+export class LoginComponent implements OnInit {
+  loginForm: FormGroup;
+
+  ngOnInit() {
+    this.loginForm = new FormGroup({
+      email: new FormControl()
+    });
+  }
+
+  submit() {
+    console.log(this.loginForm.value);
+  }
+
+}
+                </code>
+                </pre>
+            </section>
+
+            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <h3 class="white">Reactive Forms</h3>
+                <img src="img/reactive-forms.png" class="no-background no-border no-margin no-shadow">
+            </section>
+
+            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <h3 class="white">Template Driven vs. Reactive Forms</h3>
+                <table class="white">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th style="color: #10e0ff">Template Driven</th>
+                        <th style="color: #10e0ff">Reactive</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Form model</td>
+                        <td>HTML template</td>
+                        <td>Defined in a component</td>
+                    </tr>
+                    <tr>
+                        <td>Data model</td>
+                        <td>Unstructured</td>
+                        <td>Structured</td>
+                    </tr>
+                    <tr>
+                        <td>Predictability</td>
+                        <td>Asynchronous</td>
+                        <td>Synchronous</td>
+                    </tr>
+                    <tr>
+                        <td>Form validation</td>
+                        <td>Directives</td>
+                        <td>Functions</td>
+                    </tr>
+                    <tr>
+                        <td>Mutability</td>
+                        <td>Mutable</td>
+                        <td>Immutable</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </section>
+
+        </section>
+
+        <section>
+            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <h3 class="white">Custom Form Control</h3>
+                <h5 class="white" style="color: #10e0ff">With Control Value Accessor</h5>
+                <blockquote class="white">
+                    CVA - is an interface that acts as a <strong>bridge </strong>between the <strong>Angular forms
+                    API </strong>and a <strong>native element in the DOM</strong>.
+                </blockquote>
+                <span class="white">It propagates changes from the <span
+                        style="color: #10e0ff"><strong>model</strong></span> to the <span
+                        style="color: #10e0ff"><strong>view</strong></span>
+                    and from the <span style="color: #10e0ff"><strong>view</strong></span> to the <span
+                            style="color: #10e0ff"><strong>model</strong></span></span>
+            </section>
+
+            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <h3 class="white">Control Value Accessor</h3>
+                <img src="img/cva.jpeg" class="no-background no-border no-margin no-shadow">
+                <!--Image taken from: https://blog.angularindepth.com/never-again-be-confused-when-implementing-controlvalueaccessor-in-angular-forms-93b9eee9ee83-->
+            </section>
+
+            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <h3 class="white">Control Value Accessor</h3>
+                <h5 class="white" style="color: #10e0ff">API</h5>
+                <pre><code>
+// is the method that writes a new value from the form model
+// into the view or (if needed) DOM property
+writeValue(obj: any)
+// is a method that registers a handler that should be called
+// when something in the view has changed
+registerOnChange(fn: any)
+// it registers a handler specifically for when a control receives
+// a touch event
+registerOnTouched(fn: any)
+                </code></pre>
+            </section>
+
+            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <h3 class="white">Control Value Accessor</h3>
+                <h5 class="white" style="color: #10e0ff">Implementation steps</h5>
+                <ul class="white">
+                    <li>Implement ControlValueAccessor interface and implement its methods</li>
+                    <li>Register ControlValueAccessor (in a Component)</li>
+                </ul>
+                <pre><code>
+providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => CustomComponent),
+      multi: true
+    }
+  ]
+                </code></pre>
+            </section>
+
+            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <h3 class="white">Control Value Accessor</h3>
+                <h5 class="white" style="color: #10e0ff">Exercise (1/5)</h5>
+                <ol class="white">
+                    <li>Pull or fork a repository from <a
+                            href="https://github.com/devonfw-ng-adv-training/advanced-forms.git">here</a></li>
+                    <li>Get a master state</li>
+                    <li>First of all we need to extend our book model:</li>
+                    <ul>
+                        <li>Create a genre.ts interface with following fields: id, name, icon</li>
+                        <li>Add new endpoint in server.ts (GET /api/genres)</li>
+                        <li>Add genres.json with 4 genres, e.g.: {"id": 1, "name": "IT", "icon": "favorite"}</li>
+                    </ul>
+                </ol>
+            </section>
+
+            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <h3 class="white">Control Value Accessor</h3>
+                <h5 class="white" style="color: #10e0ff">Exercise (2/5)</h5>
+                <ol class="white">
+                    <ul>
+                        <li>Add to isBook method (server.ts) an extra check if genre is defined</li>
+                        <li>Add book-genres.service (ng g s book-genres) and implement a method getGenres() which
+                            returns a json with genres
+                        </li>
+                        <li>Add BookGenresResolver and implement the resolve method</li>
+                    </ul>
+                </ol>
+            </section>
+
+            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <h3 class="white">Control Value Accessor</h3>
+                <h5 class="white" style="color: #10e0ff">Exercise (3/5)</h5>
+                <ol class="white">
+                    <ul>
+                        <li>Create a custom control component with a select box (ng g c customized-select-box)</li>
+                        <li>Define customized select box template - the list should consist of icon and genre</li>
+                        <ul>
+                            <li>Use mat-form-field</li>
+                            <li>Use mat-select fot the list</li>
+                            <li>Use mat-select-trigger to define how and what should be displayed in the list</li>
+                            <li>Use mat-option</li>
+                            <li>Documentation can be found <a
+                                    href="https://material.angular.io/components/select/overview">here</a></li>
+                        </ul>
+                        <li>Add BookGenresResolver and implement the resolve method</li>
+                    </ul>
+                </ol>
+            </section>
+
+            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <h3 class="white">Control Value Accessor</h3>
+                <h5 class="white" style="color: #10e0ff">Exercise (4/5)</h5>
+                <ol class="white">
+                    <ul>
+                        <li>Implement ControlValueAccessor</li>
+                        <li>To get MatSelect, use a @ViewChild: @ViewChild(MatSelect) matSelect: MatSelect;</li>
+                        <li>Add field: propagateChange (val: any) => {}</li>
+                        <li>Add genres (list) and placeholder as Inputs</li>
+                    </ul>
+                </ol>
+            </section>
+
+            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <h3 class="white">Control Value Accessor</h3>
+                <h5 class="white" style="color: #10e0ff">Exercise (5/5)</h5>
+                <ol class="white">
+                    <li>Implement following methods: writeValue and registerOnChange</li>
+                    <ul>
+                        <li>You need to add (selectionChange) event to mat-select, implement this method
+                            in a component and select the option from the list and trigger propagateOnChange
+                        </li>
+                        <li>You need to register CVA</li>
+                    </ul>
+                    <li>Don't forget to register new services and components in the modules</li>
+                </ol>
+            </section>
+
+        </section>
+
+
+        <section>
+
+            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <h3 class="white">Nested Forms</h3>
+                <h5 class="white" style="color: #10e0ff">With Form Group Directive</h5>
+                <span class="white">Control Container looks in the tree for any of these directives (looks for a parent):</span>
+                <ul class="white">
+                    <li>ngForm</li>
+                    <li>FormGroupDirective</li>
+                    <li>NgModelGroup</li>
+                    <li>FormGroupName</li>
+                    <li>FormArrayName</li>
+                </ul>
+            </section>
+
+            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <h3 class="white">With Form Group Directive</h3>
+                <h5 class="white" style="color: #10e0ff">Implementation</h5>
+                <pre><code>
+viewProviders: [
+    { provide: ControlContainer, useExisting: FormGroupDirective }
+  ]
+                </code></pre>
+                <span class="white">ViewProviders instead of providers: providers cannot reach up the parent (if the structure is complex)</span>
+            </section>
+
+            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <h3 class="white">With Form Group Directive</h3>
+                <h5 class="white" style="color: #10e0ff">Pros & cons</h5>
+                <ul class="white">
+                    <li>Pro: quicker to set up</li>
+                    <li>Con: limited to one forms module</li>
+                </ul>
+            </section>
+
+            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <h3 class="white">With Form Group Directive</h3>
+                <h5 class="white" style="color: #10e0ff">Exercise (1/3)</h5>
+                <ol class="white">
+                    <li>Create an order module (ng g m order)</li>
+                    <li>Create order-overview component (ng g c order-overview)</li>
+                    <ul class="white">
+                        <li>This is the parent form - add [formGroup] directive</li>
+                        <li>Add apply and cancel buttons</li>
+                        <li>On apply show the form (rawValue) in the console</li>
+                        <li>Form can be submitted only if it's valid (add a flag submitted)</li>
+                    </ul>
+                </ol>
+            </section>
+
+            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <h3 class="white">With Form Group Directive</h3>
+                <h5 class="white" style="color: #10e0ff">Exercise (2/3)</h5>
+                <ol class="white">
+                    <li>Add general-info component (ng g c general-info)</li>
+                    <ul class="white">
+                        <li>Add formGroupName (to the div in the template)</li>
+                        <li>Add 2 matInputs: with first and last name</li>
+                        <li>Define viewProviders ( provide: ControlContainer, useExisting: FormGroupDirective })</li>
+                        <li>Inject parent in the constructor (this.form = parent)</li>
+                    </ul>
+                </ol>
+            </section>
+
+            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <h3 class="white">With Form Group Directive</h3>
+                <h5 class="white" style="color: #10e0ff">Exercise (3/3)</h5>
+                <ol class="white">
+                    <li>Build the form structure in the general-info component</li>
+                    <ul class="white">
+                        <li>Use addControl (this.form.form.addControl)</li>
+                        <li>Add first and lastName controls</li>
+                        <li>Add required validators for each field</li>
+                        <li>Add mat-error to the template</li>
+                        <li>Don't forget all needed imports in the order.module</li>
+                    </ul>
+                </ol>
+            </section>
+
+            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <h3 class="white">Nested Forms</h3>
+                <h5 class="white" style="color: #10e0ff">With Control Value Accessor</h5>
+                <ul class="white">
+                    <li>Pro: Reusable & portable</li>
+                    <li>Pro: Best practise (Google)</li>
+                    <li>Pro: Supports many nested levels</li>
+                    <li>Cons: Implement interface</li>
+                    <li>Cons: Problems with mat-error in Angular Material (if there is no form, only a control)</li>
+                </ul>
+
+            </section>
+
+            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <h3 class="white">With Control Value Accessor</h3>
+                <h5 class="white" style="color: #10e0ff">Validation</h5>
+                <blockquote class="white">
+                    For Re-validation, the validators will need to be on the top-level form, not at the child component,
+                    if you want it to be part of the parent form’s validation.
+                </blockquote>
+
+            </section>
+
+            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <h3 class="white">With Control Value Accessor</h3>
+                <h5 class="white" style="color: #10e0ff">Exercise (1/4)</h5>
+                <ol class="white">
+                    <li>Add address component (ng g c address)</li>
+                    <ul class="white">
+                        <li>Implement Control Value Accessor</li>
+                        <li>Define form in the template [formGroup]="form"</li>
+                        <li>Add following fields (as MatInputs): street, zipCode, city</li>
+                        <li>All the fields are required - add validators and mat-error</li>
+                    </ul>
+                </ol>
+            </section>
+
+            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <h3 class="white">With Control Value Accessor</h3>
+                <h5 class="white" style="color: #10e0ff">Exercise (2/4)</h5>
+                <ol class="white">
+                    <li>Implement CVA methods:</li>
+                    <ul class="white">
+                        <li>Define form in the template [formGroup]="form"</li>
+                        <li>In writeValue use setValue and set emitEvent as false (good for the performance)</li>
+                        <li>Use valueChanges (from form) to subscribe on changes in the registerOnChange method</li>
+                        <li>All the fields are required - add validators and mat-error</li>
+                    </ul>
+                </ol>
+            </section>
+
+            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <h3 class="white">With Control Value Accessor</h3>
+                <h5 class="white" style="color: #10e0ff">Exercise (3/4)</h5>
+                <ol class="white">
+                    <li>Implement Validator in providers</li>
+                    <pre><code>
+{
+   provide: NG_VALIDATORS,
+   useExisting: forwardRef(() => AddressComponent),
+   multi: true
+}
+                    </code></pre>
+                    <li>Implement validate method</li>
+                </ol>
+            </section>
+
+            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <h3 class="white">With Control Value Accessor</h3>
+                <h5 class="white" style="color: #10e0ff">Exercise (3/4)</h5>
+                <ol class="white">
+                    <li>We need to know in the child if parent was submitted (parent has the submit button)</li>
+                    <ul class="white">
+                        <li>Define in child @Input() isParentSubmitted</li>
+                        <li>Implement OnChanges interface</li>
+                        <li>We need a workaround in Angular Material to trigger a validation on submit (bug in Angular
+                            Material)
+                        </li>
+                    </ul>
+                </ol>
+                <pre><code>
+   Object.keys(this.form.controls).forEach(key => {
+      this.form.get(key).markAsTouched();
+   });
+                        </code></pre>
+            </section>
+
+
+            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <h3 class="white">With Control Value Accessor</h3>
+                <h5 class="white" style="color: #10e0ff">Exercise (4/4)</h5>
+                <ol class="white">
+                    <li>Set an Input in parent (order-overview) [isParentSubmitted]="submitted"
+                    <li>
+                        <ul class="white">
+                            <li>Define in child @Input() isParentSubmitted</li>
+                            <li>Add address as FormControl in parent</li>
+                        </ul>
+                </ol>
+            </section>
+        </section>
+
+    </div>
+</div>
+
+<script src="./reveal.js/js/reveal.js"></script>
+
+<script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        width: '100%',
+        height: '100%',
+        history: true,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+            {
+                src: './reveal.js/lib/js/classList.js', condition: function () {
+                    return !document.body.classList;
+                }
+            },
+            {
+                src: './reveal.js/plugin/markdown/marked.js', condition: function () {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            },
+            {
+                src: './reveal.js/plugin/markdown/markdown.js', condition: function () {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            },
+            {
+                src: './reveal.js/plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            },
+            {src: './reveal.js/plugin/zoom-js/zoom.js', async: true},
+            {src: './reveal.js/plugin/notes/notes.js', async: true}
+        ]
+    });
+</script>
+</body>
+</html>
