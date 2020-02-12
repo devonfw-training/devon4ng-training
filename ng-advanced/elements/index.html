@@ -616,18 +616,20 @@ export class HelloParagraph extends HTMLElement {
         </div>
     </section>
     <section class="fullscreen">
-        <h2 class="header-left">Angular Elements compile Angular components as CustomElements.</h2>
+        <h2 class="header-left">Angular Elements compiles Angular components as CustomElements.</h2>
         <pre style="margin: auto;"><code class="ts" data-trim>
+// The separate angular application module that produces the custom elements
 @NgModule({
   declarations: [SayHelloComponent],
   imports: [BrowserModule],
   bootstrap: [], // empty
-  entryComponents: [] // empty
+  entryComponents: [SayHelloComponent] // empty
 })
-export class AppModule implements DoBootStrap {
+export class AppModule implements DoBootstrap {
   constructor(private injector: Injector) {}
 
   ngDoBootstrap() {
+    // when building with a separate module, use ngDoBootstrap()
     const sayHelloEl = createCustomElement(SayHelloComponent, {injector: this.injector});
     customElements.define('say-hello', sayHelloEl);
   }

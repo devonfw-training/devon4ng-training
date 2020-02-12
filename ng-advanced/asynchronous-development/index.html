@@ -281,9 +281,11 @@ const obs = subject.asObservable();
 obs.pipe(observeOn(asyncScheduler))
    .subscribe(v => console.log('next value', v));
 
+this.log('Going to send next value');
+
 subject.next(true);
 
-console.log('Send next value');
+console.log('Sent next value');
           </code></pre>
             <p>What is happening now?</p>
             <aside class="notes">
@@ -407,10 +409,10 @@ describe('ListComponent', () => {
     })
   });
 
-  it('loads list', () => {
+  it('loads list', fakeAsync(() => {
     fixture.detectChanges();
     expect(element.querySelectorAll('.list').length).toEqual(1);
-  });
+  }));
 });
           </code></pre>
             <p>What's wrong? Why is this not a good unit test?</p>
@@ -423,7 +425,7 @@ describe('ListComponent', () => {
             </aside>
         </section>
         <section>
-            <p>To understand the problem a little further</p>
+            <p>To focus the problem a little further</p>
             <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
 ngOnInit() {
   this.loading = true;
@@ -436,7 +438,8 @@ ngOnInit() {
             <p>How's this code run in test and how in production?</p>
         </section>
         <section class="fullscreen">
-            <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="8">
+            <p>Please explain the fix and why this small change makes all the difference</p>
+            <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="8,15">
 describe('ListComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -444,19 +447,18 @@ describe('ListComponent', () => {
       providers: [{
         provide: ListService,
         useValue: jasmine.createSpyObj('ListService', {
-          get: of([{id: 1}], asyncScheduler)
+          get: scheduled(of([{id: 1}]), asyncScheduler)
         })
       }]
     })
   });
 
-  it('loads list', () => {
-    fixture.detectChanges();
+  it('loads list', fakeAsync(() => {
+    tick();
     expect(element.querySelectorAll('.list').length).toEqual(1);
-  });
+  }));
 });
             </code></pre>
-            <p>Please explain the fix and why this small change makes all the difference</p>
         </section>
         <section>
             <h2>Please explain the marble diagram</h2>
@@ -661,6 +663,14 @@ describe('ListComponent', () => {
                     <LI>Code: SearchComponent</LI>
                 </UL>
             </aside>
+        </section>
+        <section>
+            <h2>How do you find the functions and operators?</h2>
+            <ul>
+                <li><a href="https://rxjs.dev/guide/operators">Introduction and grouped list of operators (rxjs.dev)</a></li>
+                <li><a href="https://rxjs.dev/operator-decision-tree">Operator Decision Tree (rxjs.dev)</a></li>
+                <li><a href="http://reactivex.io/documentation/operators.html">Similar information from ReactiveX.io</a></li>
+            </ul>
         </section>
         <section>
             <h2>Exercise</h2>
