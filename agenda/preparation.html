@@ -37,37 +37,60 @@
 	<style>
 
 	</style>
-	<div class="reveal">
+	<div class="reveal devon">
 		<div class="slides">
 			<section data-background-size="70% auto" data-background-position="0% 0%" data-background-image="common/img/shapes/Fixed_Shape_1_SVG/Fixed_Shape_1_CapgeminiBlue_RGB.svg">
-				<h1 class="header-align-left">devonfw Angular Introduction</h1>
-				<p class="header-align-left">Framework basics</p>
+				<h1 class="header-align-left">Preparation</h1>
+				<p>The following steps need to be taken to prepare for the Angular Training</p>
 			</section>
-			<section data-markdown>
-				<textarea data-template>
-| Morning       		  ||
-| :---------------- |:---
-| **09:00 - 10:00** | <a href="js-to-ts/index.html" target="_blank">JavaScript and TypeScript</a>
-| **10:00 - 10:15** | <a href="angular-in-3-hours/whats-in-the-box.html" target="_blank">Angular - What's in the box?</a>
-| *10:15 - 10:30*   | *Break*
-| **10:30 - 12:00** | <a href="ng-module/index.html" target="_blank">Angular Modules</a> and <a href="ng-components/index.html" target="_blank">Components</a> <br> with <a href="exercises/index.html#/1" target="_blank">exercise</a>
-| *12:00 - 13:00*   | *Lunch*
-				</textarea>
+			<section>
+				<h2>Install Node.js</h2>
+				<ul>
+					<li>Download and install the LTS version (12.x) from <a href="https://nodejs.org/en/">https://nodejs.org/en/</a>.</li>
+					<li>After the installation check in the command line
+						<ul>
+							<li><span class="monospace">node --version</span> returns the version (12.x)</li>
+							<li><span class="monospace">npm --version</span> returns the version (6.x)</li>
+						</ul>
+					</li>
+				</ul>
+
 			</section>
-			<section data-markdown>
-				<textarea data-template>
-| Afternoon        		  ||
-| :---------------- |:---
-| *12:00 - 13:00*   | *Lunch*
-| **13:00 - 13:30** | <a href="ng-data-binding/index.html" target="_blank">Angular Data Binding</a>
-| **13:30 - 14:30** | <a href="ng-data-binding/index.html" target="_blank">Data Binding</a> exercise <a href="exercises/index.html#/2" target="_blank">1</a> and <a href="exercises/index.html#/3" target="_blank">2</a>
-| *14:30 - 14:45*   | *Break*
-| **14:45 - 16:00** | <a href="promises-to-observables/index.html" target="_blank">Promises and Observables</a>
-| *16:00 - 16:15*   | *Break*
-| **16:15 - 17:25** | <a href="ng-services/index.html" target="_blank">Angular Services</a> with <a href="exercises/index.html#/4" target="_blank">exercise</a>
-| *17:25 - 17:30*   | *Break*
-| **17:30 - 18:00**  | <a href="ng-http/index.html" target="_blank">Angular Http</a> with <a href="exercises/index.html#/5" target="_blank">exercise</a>
-				</textarea>
+			<section>
+				<h2>Install Visual Studio Code</h2>
+				<p>
+					<ul>
+						<li>Download and install Visual Studio Code from <a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a></li>
+						<li>Open VS Code</li>
+						<li>Select "Extensions" (the symbol on the bottom on the left side)</li>
+						<li>Install the "Angular Language Service" (https://marketplace.visualstudio.com/items?itemName=Angular.ng-template)</li>
+					</ul>
+				</p>
+			</section>
+			<section>
+				<h2>Install Angular Command Line Interface</h2>
+				<p>
+					<ul>
+						<li>In the command line run <span class="monospace">npm install -g @angular/cli@latest</span></li>
+						<li><span class="monospace">ng --version</span> should print the installed version (9.x.x)</li>
+					</ul>
+				</p>
+			</section>
+			<section>
+				<h2>Install Git</h2>
+				<p>
+				Download and install git from <a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a><br>
+				After the installation the git bash (bash emulator for Windows) should be availabe<br>
+				If you open the bash and call <span class="monospace">git --version</span> the according version should be displayed<br><br>
+
+				Now you can navigate a folder of your choice using the bash<br>
+				Please enter the following commands to clone the repository, checkout the project seed branch and download the dependencies.
+</p>
+<pre><code class="typescript max-height-unset">git clone https://github.com/devonfw/devon4ng-training
+cd devon4ng-training
+git checkout exercise/1-project-seed
+npm install
+</code></pre>
 			</section>
 		</div>
 

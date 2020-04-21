@@ -1,0 +1,159 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>Devonfw</title>
+        <link rel="icon" href="../common/img/favicon.ico">
+
+        <!-- Showing Examples -->
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+        <link rel="stylesheet" href="../node_modules/reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="../css/lib/style.css">
+        <link rel="stylesheet" href="../node_modules/reveal.js/css/theme/white.css" id="theme">
+        <link rel="stylesheet" href="../common/css/common.css">
+        
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="../common/css/github-gist.css">
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match(/print-pdf/gi) ? '../node_modules/reveal.js/css/print/pdf.css' : '../node_modules/reveal.js/css/print/paper.css';
+            document.getElementsByTagName('head')[0].appendChild(link);
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="base/reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+
+        <style type="text/css">
+            .technology-wrapper {
+                display: flex;
+                margin-bottom: 20px;
+            }
+            
+            .technology-layer {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+            }
+        </style>
+    </head>
+<body>
+<section class="angular-link">
+    <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
+</section>
+<section class="devon-link">
+    <a href="http://devonfw.github.io" target="_blank"><img height="30px" src="../common/img/devon_logo_blue.png"></a>
+</section>
+<div class="devon reveal">
+    <div class="slides">
+        <section>
+            <div>
+                <img id="title-img" src="./devonfw.png" alt="devonfw logo">
+            </div>
+        </section>
+        <section>
+          <img id="title-img" src="./devonfw.png" alt="devonfw logo" width="420px">
+          <ul>
+            <li>is Capgemini's blueprint for software projects</li>
+            <li>provides a standardized architecture</li>
+            <li>consists of open source best-of-breed technology</li>
+            <li>covers the entire software development lifecycle</li>
+            <li>contains architectural blueprints, guidelines, templates and proven industry patterns</li>
+          </ul>
+        </section>
+        <section>
+            <div class="technology-wrapper">
+                <div class="technology-layer">
+                    <h3>Server</h3>
+                    <img src="./java.png">
+                    <img src="./dotnet.png">
+                    <img src="./node.png">
+                </div>
+                <div class="technology-layer" style="margin: 0 200px;">
+                    <h3>Runs on</h3>
+                    <img src="./docker.png"><br>
+                    <img src="./openshift.png"><br>
+                    <img src="./kubernetes.png">
+                </div>
+                <div class="technology-layer">
+                    <h3>Client</h3>
+                    <img src="./angular.png"><br>
+                    <img src="./Xamarin.png"><br><br>
+                    <img src="./ionic.png">
+                </div>
+            </div>
+            <div style="border-top: 2px solid black ;">
+                <img src="./oracle-cloud.png">
+                <img src="./aws.png">
+                <img src="./google-cloud.png">
+                <img src="./azure.png">
+                <img src="./ibm-cloud.png">
+            </div>
+        </section>
+        <section>
+            <img id="title-img" src="./CobiGen.png" alt="devonfw logo" width="420px">
+            <p>
+              CobiGen is a generic incremental generator for end to end code generation tasks, for JavaScript, .NET and Java projects.<br><br>
+              It is able to generate both server-side as well as UI (“screens”) components.<br><br>
+              Due to a template-based approach, CobiGen generates any set of text-based documents and document fragments.
+            </p>
+        </section>
+        <section>
+            <h2>Resources</h2>
+            <a href="https://devonfw.com/website/pages/docs/master.html" target="_blank">Devonfw documentation</a><br>
+            <a href="https://github.com/devonfw/my-thai-star" target="_blank">My Thai Star on Github</a><br>
+        </section>
+
+    </div>
+</div>
+
+<script src="../node_modules/reveal.js/js/reveal.js"></script>
+
+<script>
+
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        minScale: 1,
+        maxScale: 1,
+        width: 1080,
+        height: 800,
+        margin: 0.01,
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+            { src: '../node_modules/reveal.js/lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            } },
+            { src: '../node_modules/reveal.js/plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../node_modules/reveal.js/plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../node_modules/reveal.js/plugin/highlight/highlight.js', async: true, condition: function () {
+                return !!document.querySelector('pre code');
+            }, callback: function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src: '../node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true },
+            { src: '../node_modules/reveal.js/plugin/notes/notes.js', async: true }
+        ]
+    });
+
+</script>
+</body>
+</html>
