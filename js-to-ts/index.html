@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -26,92 +27,94 @@
         document.getElementsByTagName('head')[0].appendChild(link);
     </script>
 </head>
+
 <body>
-<style>
-</style>
-<section class="angular-link">
-    <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
-</section>
-<section class="devon-link">
-    <a href="http://devonfw.github.io" target="_blank"><img height="30px" src="../common/img/devon_logo_blue.png"></a>
-</section>
-<div class="devon reveal">
-  <div class="slides">
-    <section>
-        <img class="header-logo" src="img/js-logo.png" alt="javascript logo">
-        <p>ECMAScript (<strong>JavaScript</strong>)</p>
+    <style>
+
+    </style>
+    <section class="angular-link">
+        <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
     </section>
-    <section>
-        <p>
-            <p>ECMAScript (ES) first <strong>introduced 1997</strong> turned 20 in 2017 and its popularity is <strong>still growing.</strong></p>
-            <p><small><strong>3th</strong> PYPL (Aug. 2018), <strong>8th</strong> TIOBE Index (Aug. 2018)<br>
+    <section class="devon-link">
+        <a href="http://devonfw.github.io" target="_blank"><img height="30px" src="../common/img/devon_logo_blue.png"></a>
+    </section>
+    <div class="devon reveal">
+        <div class="slides">
+            <section>
+                <img class="header-logo" src="img/js-logo.png" alt="javascript logo">
+                <p>ECMAScript (<strong>JavaScript</strong>)</p>
+            </section>
+            <section>
+                <p>
+                    <p>ECMAScript (ES) first <strong>introduced 1997</strong> turned 20 in 2017 and its popularity is <strong>still growing.</strong></p>
+                    <p><small><strong>3th</strong> PYPL (June 2020), <strong>7th</strong> TIOBE Index (June 2020)<br>
                 (TypeScript is listed separately)</small></p>
-        </p>
-    </section>
-    <section>
-    <h2>JavaScript is everywhere...</h2>
-        <div style="display: flex; justify-content: space-around;">
-            <div style="display: flex; flex-direction: column; align-items: start">
-                <div style="display: flex; justify-content: center; align-items: center">
-                    <img class="header-logo" style="height: 138px; margin: -30px" src="img/edge-logo.png" alt="javascript logo">                    
-                    <img class="header-logo" style="height: 90px" src="img/chrome-logo.png" alt="javascript logo">
-                    <img class="header-logo" style="height: 90px" src="img/firefox-logo.png" alt="javascript logo">
-                    <img class="header-logo" style="height: 90px" src="img/safari-logo.png" alt="javascript logo">
+                </p>
+            </section>
+            <section>
+                <h2>JavaScript is everywhere...</h2>
+                <div style="display: flex; justify-content: space-around;">
+                    <div style="display: flex; flex-direction: column; align-items: start">
+                        <div style="display: flex; justify-content: center; align-items: center">
+                            <img class="header-logo" style="height: 138px; margin: -30px" src="img/edge-logo.png" alt="javascript logo">
+                            <img class="header-logo" style="height: 90px" src="img/chrome-logo.png" alt="javascript logo">
+                            <img class="header-logo" style="height: 90px" src="img/firefox-logo.png" alt="javascript logo">
+                            <img class="header-logo" style="height: 90px" src="img/safari-logo.png" alt="javascript logo">
+                        </div>
+                        <p style="text-align: left; margin-left: 28px">on the client</p>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: start">
+                        <img class="header-logo" style="height: 90px; margin-left: 0" src="img/nodejs-logo.png" alt="javascript logo">
+                        <p style="text-align: left">on the server</p>
+                    </div>
                 </div>
-                <p style="text-align: left; margin-left: 28px">on the client</p>
-            </div>
-            <div style="display: flex; flex-direction: column; align-items: start">
-                <img class="header-logo" style="height: 90px; margin-left: 0" src="img/nodejs-logo.png" alt="javascript logo">
-                <p style="text-align: left">on the server</p>
-            </div>
-        </div>
-    </section>
-    <section>
-            <h2>ECMAScript versions</h2>
-            <ul>
-                <li>ES3 1999</li>
-                <li>ES5 2009</li>
-                <li>ES2015 (f.k.a. ES6) 2015</li>
-                <li>ES2016, ES2017, ..., ES.Next</li>
-            </ul>
-            <p>
-                <small>
+            </section>
+            <section>
+                <h2>ECMAScript versions</h2>
+                <ul>
+                    <li>ES3 1999</li>
+                    <li>ES5 2009</li>
+                    <li>ES2015 (f.k.a. ES6) 2015</li>
+                    <li>ES2016, ES2017, ..., ES.Next</li>
+                </ul>
+                <p>
+                    <small>
                     <a href="http://caniuse.com/#search=es6" target="_blank">Can I use ES6 (Browsers Support)</a><br>
                     <a href="http://node.green/" target="_blank">node.green (Node.js Support)</a>
                 </small>
-            </p>
-        </section>
-        <section>
-            <h3>Why is ES5 still relevant</h3>
-            <p>Todays go to version considering <strong>compatibility</strong>.</p>
-            <p>Older browsers (IE ...) can support ES5 code via <strong>polyfills</strong>.</p>
-            <p>Most TypeScript projects <strong>compile</strong> to it.</p>
-            <p>There are lots of <strong>legacy projects</strong>, <strong>build scripts</strong>, etc. written in ES5.</p>
-        </section>
-        <section>
-            <h2>A word on ES5</h2>
-            <p style="text-align: left"><strong>JavaScript...</strong></p>
-            <p>...has nothing in common with Java&nbsp;<small>* except for some key words</small></p>
-            <p>...is more like <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">&ldquo;Lisp in C's clothing&rdquo;</q>&nbsp;<small>*Douglas Crockford</small>
-            </p>
-            <p>...has objects, but is class-free</p>
-            <p>...is of single-threaded nature</p>
-            <p>...has asynchronous programming model</p>
-            <p>...is object oriented and functional at the same time</p>
-        </section>
-        <section>
-            <p>Classic JavaScript has very confusing concepts (at least for Java / .Net devs...). Here are a few...</p>
-            <ul>
-                <li>Hoisting (undefined, null)</li>
-                <li>Lexical Scope</li>
-                <li><code>this</code></li>
-                <li>Object literals</li>
-                <li>Coercion (always use <code>===</code>)</li>
-            </ul>
-        </section>
-        <section>
-            <p>An example for a well known JavaScript pattern (<strong>IIFE</strong>)</p>
-            <pre><code class="max-height-unset" data-trim class="javascript">
+                </p>
+            </section>
+            <section>
+                <h3>Why is ES5 still relevant</h3>
+                <p>Todays go to version considering <strong>compatibility</strong>.</p>
+                <p>Older browsers (IE ...) can support ES5 code via <strong>polyfills</strong>.</p>
+                <p>Most TypeScript projects <strong>compile</strong> to it.</p>
+                <p>There are lots of <strong>legacy projects</strong>, <strong>build scripts</strong>, etc. written in ES5.</p>
+            </section>
+            <section>
+                <h2>A word on ES5</h2>
+                <p style="text-align: left"><strong>JavaScript...</strong></p>
+                <p>...has nothing in common with Java&nbsp;<small>* except for some key words</small></p>
+                <p>...is more like <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">&ldquo;Lisp in C's clothing&rdquo;</q>&nbsp;<small>*Douglas Crockford</small>
+                </p>
+                <p>...has objects, but is class-free</p>
+                <p>...is of single-threaded nature</p>
+                <p>...has asynchronous programming model</p>
+                <p>...is object oriented and functional at the same time</p>
+            </section>
+            <section>
+                <p>Classic JavaScript has very confusing concepts (at least for Java / .Net devs...). Here are a few...</p>
+                <ul>
+                    <li>Hoisting (undefined, null)</li>
+                    <li>Lexical Scope</li>
+                    <li><code>this</code></li>
+                    <li>Object literals</li>
+                    <li>Coercion (always use <code>===</code>)</li>
+                </ul>
+            </section>
+            <section>
+                <p>An example for a well known JavaScript pattern (<strong>IIFE</strong>)</p>
+                <pre><code class="max-height-unset" data-trim class="javascript">
 var person = (function () {
     var details = {
         firstName: 'John',
@@ -130,19 +133,16 @@ var person = (function () {
 person.letMeIntroduceMyself(); // My name is John Example
 person.details; // undefined
             </code></pre>
-        </section>
-        <section>
-            <p>Newer ES versions introduced concepts like classes, modules and block scope variables.</p>
-            <p>With TypeScript we can use those features today - and that's where we will continue.</p>
-        </section>
-        <section
-                id="typescript"
-                data-background-image="img/foreground_bluprint.svg"
-                data-background-position="top"
-                data-background-size="100% auto"
-                data-background-color="#152740">
+            </section>
+            <section>
+                <p>Newer ES versions introduced concepts like classes, modules and block scope variables.</p>
+                <p>With TypeScript we can use those features today - and that's where we will continue.</p>
+            </section>
+            <section id="typescript" data-background-image="img/foreground_bluprint.svg" data-background-position="top" data-background-size="100% auto" data-background-color="#152740">
                 <img style="height: 100px" class="header-logo plain margin-top-6-em" src="img/ts-logo.svg" alt="TS logo">
-                <div class="bannerTextHeadline"><p>JavaScript that scales.</p></div>
+                <div class="bannerTextHeadline">
+                    <p>JavaScript that scales.</p>
+                </div>
                 <div class="bannerText">
                     <p>TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.</p>
                     <p>Any browser. Any host. Any OS. Open source.</p>
@@ -219,7 +219,7 @@ document.body.innerHTML = greeter(user);
                 <p>TypeScript works well with VS Code</p>
             </section>
             <section>
-              <pre><code data-trim class="typescript">
+                <pre><code data-trim class="typescript">
 interface OnInit {
   ngOnInit(): void
 }
@@ -232,7 +232,7 @@ class MyComponent implements OnInit {
 
 }
               </code></pre>
-              <p>Interfaces can be implemented.</p>
+                <p>Interfaces can be implemented.</p>
             </section>
             <section>
                 <pre><code data-trim class="max-height-unset typescript">
@@ -293,8 +293,8 @@ function sayHelloTo(person: NamedPerson) {
 }</code></pre>
             </section>
             <section>
-              <h2>Type Inference</h2>
-              <pre><code data-trim class="typescript">
+                <h2>Type Inference</h2>
+                <pre><code data-trim class="typescript">
 let x = [1, 2, 3]; // x becomes number[]
 
 // zoo becomes (Rhino | Elephant | Snake)[]
@@ -305,8 +305,8 @@ let zoo: Animal[] = [new Rhino(), new Elephant(), new Snake()];
               </code></pre>
             </section>
             <section>
-              <h2>Advanced Types / Type Narrowing</h2>
-              <pre><code class="typescript" data-trim>
+                <h2>Advanced Types / Type Narrowing</h2>
+                <pre><code class="typescript" data-trim>
 function padLeft(value: string, padding: any) {
   if (typeof padding === 'number') {
     return Array(padding + 1).join(' ') + value;
@@ -321,8 +321,8 @@ function padLeft(value: string, padding: any) {
               </code></pre>
             </section>
             <section>
-              <h2>Strict Null Checks</h2>
-              <pre><code class="typescript" data-trim>
+                <h2>Strict Null Checks</h2>
+                <pre><code class="typescript" data-trim>
 interface MyType {
   name: string;
 }
@@ -349,26 +349,47 @@ query('otto');
                     <p>More specific than a string - cool, right?</p>
                 </div>
             </section>
-  </div>
-</div>
+        </div>
+    </div>
 
-<script src="../node_modules/reveal.js/js/reveal.js"></script>
+    <script src="../node_modules/reveal.js/js/reveal.js"></script>
 
-<script>
-    // More info https://github.com/hakimel/reveal.js#configuration
-    Reveal.initialize({
-        history: true,
+    <script>
+        // More info https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            history: true,
 
-        // More info https://github.com/hakimel/reveal.js#dependencies
-        dependencies: [
-            { src: '../node_modules/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-            { src: '../node_modules/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-            { src: '../node_modules/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-            { src: '../node_modules/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-            { src: '../node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true },
-            { src: '../node_modules/reveal.js/plugin/notes/notes.js', async: true }
-        ]
-    });
-</script>
+            // More info https://github.com/hakimel/reveal.js#dependencies
+            dependencies: [{
+                src: '../node_modules/reveal.js/lib/js/classList.js',
+                condition: function() {
+                    return !document.body.classList;
+                }
+            }, {
+                src: '../node_modules/reveal.js/plugin/markdown/marked.js',
+                condition: function() {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            }, {
+                src: '../node_modules/reveal.js/plugin/markdown/markdown.js',
+                condition: function() {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            }, {
+                src: '../node_modules/reveal.js/plugin/highlight/highlight.js',
+                async: true,
+                callback: function() {
+                    hljs.initHighlightingOnLoad();
+                }
+            }, {
+                src: '../node_modules/reveal.js/plugin/zoom-js/zoom.js',
+                async: true
+            }, {
+                src: '../node_modules/reveal.js/plugin/notes/notes.js',
+                async: true
+            }]
+        });
+    </script>
 </body>
+
 </html>
