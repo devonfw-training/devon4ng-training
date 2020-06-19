@@ -2,7 +2,6 @@
 
 import { Injectable } from '@angular/core';
 import { Movie } from './movie';
-import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -35,25 +34,26 @@ export class MovieService {
         description: 'Jake Blues, just out from prison, puts together his old band to save the Catholic home where he and brother Elwood were raised.',
         year: 1980
       }];
-   }
-
-  findAll(): Observable<Movie[]> {
-     return of(this.movies);
   }
 
-  findOne(id: number): Observable<Movie|undefined> {
-    return of(this.movies.find(m => m.id === id));
+  findAll(): Movie[] {
+    return this.movies;
   }
 
-  save(movieToSave: Movie): Observable<Movie> {
-    const movie = this.movies.find(m => m.id === movieToSave.id );
+  findOne(id: number): Movie | undefined {
+    return this.movies.find(m => m.id === id);
+  }
+
+  save(movieToSave: Movie): Movie {
+    debugger;
+    const movie = this.movies.find(m => m.id === movieToSave.id);
     if (movie != null) {
       Object.assign(movie, movieToSave);
-      return of(movie);
+      return movie;
     } else {
       movieToSave.id = this.movieIdSequence++;
       this.movies.push(movieToSave);
-      return of(movieToSave);
+      return movieToSave;
     }
   }
 

@@ -12,9 +12,11 @@ import { tap } from 'rxjs/operators';
 export class MovieOverviewComponent {
 
   selectedMovie?: Movie;
-  movies$ = this.movieService.findAll();
+  movies: Movie[];
 
-  constructor(private movieService: MovieService) {}
+  constructor(private movieService: MovieService) {
+    this.movies = this.movieService.findAll()
+  }
 
   selectMovie(movie: Movie) {
     this.selectedMovie = movie;
@@ -25,11 +27,11 @@ export class MovieOverviewComponent {
   }
 
   onMovieUpdated(updatedMovie: Movie) {
-    this.movieService.save(updatedMovie)
-      .pipe(tap(m => this.selectedMovie = m))
-      .subscribe({
-        complete: () => this.movies$ = this.movieService.findAll()
-      });
+    debugger;
+    if (this.movieService.save(updatedMovie)) {
+      this.movies = this.movieService.findAll();
+    };
+
   }
 
   onMovieCreate() {

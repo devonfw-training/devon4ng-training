@@ -1,22 +1,18 @@
 <div class="card">
-  <table>
-    <tr>
-      <th></th>
-      <th>Title</th>
-      <th>Movie</th>
-    </tr>
-    <tr *ngFor="let movie of movies$ | async; index as index" (click)="selectMovie(movie)" [class.row-active]="isMovieSelected(movie)">
-        <td>{{index}}</td>
-        <td>{{movie.title}}</td>
-      <td>{{movie.directors}}</td>
-    </tr>
-  </table>
+    <table>
+        <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Movie</th>
+        </tr>
+        <tr *ngFor="let movie of movies; index as index" (click)="selectMovie(movie)" [class.row-active]="isMovieSelected(movie)">
+            <td>{{index}}</td>
+            <td>{{movie.title}}</td>
+            <td>{{movie.directors}}</td>
+        </tr>
+    </table>
 </div>
 <div class="card">
-  <app-movie-details 
-    *ngIf="selectedMovie" 
-    [movie]="selectedMovie"  
-    (movieUpdate)="onMovieUpdated($event)" 
-    (movieCreate)="onMovieCreate()">
-  </app-movie-details>
+    <app-movie-details *ngIf="selectedMovie" [movie]="selectedMovie" (movieUpdate)="onMovieUpdated($event)" (movieCreate)="onMovieCreate()">
+    </app-movie-details>
 </div>
