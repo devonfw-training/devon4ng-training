@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -31,42 +32,43 @@
         }
     </style>
 </head>
+
 <body>
-<section class="angular-link">
-    <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
-</section>
-<section class="devon-link">
-    <a href="http://devonfw.github.io" target="_blank"><img height="30px" src="../common/img/devon_logo_blue.png"></a>
-</section>
-<div class="devon reveal">
-    <div class="slides">
-        <section>
-            <h2>Angular Exercises</h2>
-        </section>
-        <section id="simple-component">
+    <section class="angular-link">
+        <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
+    </section>
+    <section class="devon-link">
+        <a href="http://devonfw.github.io" target="_blank"><img height="30px" src="../common/img/devon_logo_blue.png"></a>
+    </section>
+    <div class="devon reveal">
+        <div class="slides">
             <section>
-                <h3>Simple Component</h3>
-                <p>Goals:</p>
-                <ol>
-                    <li>Create a new module</li>
-                    <li>Create a new component</li>
-                    <li>Import the component into the module</li>
-                    <li>Show the component</li>
-                    <li>Show dummy data in the component</li>
-                </ol>
-                <p class="branch-hint">Initial branch: exercise/1-project-seed<br>Solution branch: exercise/2-simple-component</p>
-                <a class="branch-hint" target="_blank" href="../git-intro/git-intro.html#/2">Git Cheat Sheet</a>
+                <h2>Angular Exercises</h2>
             </section>
-            <section>
-                <h3>Simple Component (1/4)</h3>
-                <ol>
-                    <li>Create a new module <span class="monospace highlight">Movies</span> (<span class="monospace highlight">ng g m movies</span>).</li>
-                    <li>Create <span class="monospace highlight">MovieDetails</span> component in movies directory (<span class="monospace highlight">ng g c movies/movie-details</span>).</li>
-                    <li>Export the <span class="monospace highlight">MovieDetailsComponent</span> from the <span class="monospace highlight">MoviesModule</span> - both of them you've just created.</li>
-                    <li>Import the <span class="monospace highlight">MoviesModule</span> in the <span class="monospace highlight">AppModule</span></li>
-                </ol>
-            </section>
-            <section>
+            <section id="simple-component">
+                <section>
+                    <h3>Simple Component</h3>
+                    <p>Goals:</p>
+                    <ol>
+                        <li>Create a new module</li>
+                        <li>Create a new component</li>
+                        <li>Import the component into the module</li>
+                        <li>Show the component</li>
+                        <li>Show dummy data in the component</li>
+                    </ol>
+                    <p class="branch-hint">Initial branch: exercise/1-project-seed<br>Solution branch: exercise/2-simple-component</p>
+                    <a class="branch-hint" target="_blank" href="../git-intro/git-intro.html#/2">Git Cheat Sheet</a>
+                </section>
+                <section>
+                    <h3>Simple Component (1/4)</h3>
+                    <ol>
+                        <li>Create a new module <span class="monospace highlight">Movies</span> (<span class="monospace highlight">ng g m movies</span>).</li>
+                        <li>Create <span class="monospace highlight">MovieDetails</span> component in movies directory (<span class="monospace highlight">ng g c movies/movie-details</span>).</li>
+                        <li>Export the <span class="monospace highlight">MovieDetailsComponent</span> from the <span class="monospace highlight">MoviesModule</span> - both of them you've just created.</li>
+                        <li>Import the <span class="monospace highlight">MoviesModule</span> in the <span class="monospace highlight">AppModule</span></li>
+                    </ol>
+                </section>
+                <section>
                     <h3>Simple Component (2/4)</h3>
                     <ol>
                         <li>In the <span class="monospace highlight">AppComponent</span> class Remove the <span class="monospace highlight">title</span> property.</li>
@@ -74,460 +76,444 @@
                             <i>movie-details works!</i> appears on the page.</li>
                     </ol>
                 </section>
-            <section>
-                <h3>Simple Component (3/4)</h3>
-                <ol>
-                    <li>Create an interface <span class="monospace highlight">Movie</span> in the <span class="monospace highlight">movies</span> directory (<span class="monospace highlight">ng g interface movies/movie</span>). 
-                        Add the following properties:<br> 
-                        <span class="monospace highlight">id: number, directors: string, title: string, description: string, year: number</span>.</li>
-                    <li>Add a public <span class="monospace highlight">currentMovie</span> property of type <span class="monospace highlight">Movie</span> to the <span class="monospace highlight">MovieDetailsComponent</span>
-                    </li>
-                    <li>In the <span class="monospace highlight">OnInit</span> lifecycle hook (an empty <span class="monospace highlight">ngOnInit()</span> method should have been generated) assign a newly created <span class="monospace highlight">Movie</span> object with the properties of your choice. <span class="monospace">{id:1, title: 'a movie',...}</span>
-                </ol>
-            </section>
-            <section>
-                <h3>Simple Component (4/4)</h3>
-                <ol>
-                    <li>in the file <span class="monospace highlight">movie-details.component.html</span>
-                    <ul>
-                        <li>Create a <span class="monospace highlight">&lt;div&gt;</span> and display the movies properties inside</li>
-                        <li>For now don't use <span class="monospace highlight">&lt;input&gt;</span>. Just display labels and values of the <span class="monospace highlight">director</span> and
-                            <span class="monospace highlight">title</span> properties (using the interpolation <span class="monospace highlight">{{currentMovie.title}}</span>).</li>
-                    </ul>
-                    </li>
+                <section>
+                    <h3>Simple Component (3/4)</h3>
+                    <ol>
+                        <li>Create an interface <span class="monospace highlight">Movie</span> in the <span class="monospace highlight">movies</span> directory (<span class="monospace highlight">ng g interface movies/movie</span>). Add the following properties:<br>
+                            <span class="monospace highlight">id: number, directors: string, title: string, description: string, year: number</span>.</li>
+                        <li>Add a public <span class="monospace highlight">currentMovie</span> property of type <span class="monospace highlight">Movie</span> to the <span class="monospace highlight">MovieDetailsComponent</span>
+                        </li>
+                        <li>In the <span class="monospace highlight">OnInit</span> lifecycle hook (an empty <span class="monospace highlight">ngOnInit()</span> method should have been generated) assign a newly created <span class="monospace highlight">Movie</span>                            object with the properties of your choice. <span class="monospace">{id:1, title: 'a movie',...}</span>
+                    </ol>
+                </section>
+                <section>
+                    <h3>Simple Component (4/4)</h3>
+                    <ol>
+                        <li>in the file <span class="monospace highlight">movie-details.component.html</span>
+                            <ul>
+                                <li>Create a <span class="monospace highlight">&lt;div&gt;</span> and display the movies properties inside</li>
+                                <li>For now don't use <span class="monospace highlight">&lt;input&gt;</span>. Just display labels and values of the <span class="monospace highlight">director</span> and
+                                    <span class="monospace highlight">title</span> properties (using the interpolation <span class="monospace highlight">{{currentMovie.title}}</span>).</li>
+                            </ul>
+                        </li>
 
-                    <li>Add some component's styling (to the file <span class="monospace highlight">movie-details.component.scss</span>) , e.g. make the labels' font weight bold. Make use of the <span class="monospace highlight">:host</span> pseudo selector.</li>
-                </ol>
+                        <li>Add some component's styling (to the file <span class="monospace highlight">movie-details.component.scss</span>) , e.g. make the labels' font weight bold. Make use of the <span class="monospace highlight">:host</span> pseudo selector.</li>
+                    </ol>
+                </section>
             </section>
-        </section>
-        <section id="master-details">
-            <section>
-                <h3>Master/Details Pattern @Input</h3>
-                <p>Goals:</p>
-                <ol>
-                    <li>Create a component for a list of movies</li>
-                    <li>Use the details component to show details of a movie selected in the list</li>
-                    <li>Change movie details and update the list</li>
-                </ol>
-                <p class="branch-hint">Fallback branch: exercise/2-simple-component<br>Solution branch: exercise/3-master-details-input</p>
-                <a class="branch-hint" target="_blank" href="../git-intro/git-intro.html#/2">Git Cheat Sheet</a>
-            </section>
-            <section>
-                <h3>Master/Details Pattern @Input (1/6)</h3>
-                <ol>
-                    <li>Create <span class="monospace highlight">MovieOverview</span> component (<span class="monospace highlight">ng g c movies/movie-overview</span>) and export it from the <span class="monospace highlight">MoviesModule</span>.</li>
-                    <li>Remove <span class="monospace highlight">MovieDetails</span> from the exports of <span class="monospace highlight">MoviesModule</span>.
-                    </li>
-                    <li>Replace <span class="monospace highlight">&lt;app-movie-details&gt;</span> with <span class="monospace highlight">&lt;app-movie-overview&gt;</span> in the <span class="monospace highlight">AppComponent</span>'s template. <i>movie-overview works!</i> should appear on the page.</li>
-                </ol>
-            </section>
-            <section>
-                <h3>Master/Details Pattern @Input (2/6)</h3>
-                <ol>
-                    <li>Add properties to the <span class="highlight monospace">MovieOverviewComponent</span> class:
-                    <ul>
-                        <li>the array <span class="highlight monospace">movies</span> which keeps available movies,</li>
-                        <li>the <span class="highlight monospace">selectedMovie</span> which keeps currently a selected movie of the available ones.</li>
-                    </ul>
-                    </li>
-                    <li>Initialize <span class="highlight monospace">movies</span> with an empty array.</li>
-                    <li>Add some movie entries to the <span class="highlight monospace">movies</span> array (In the <span class="highlight monospace">OnInit</span> lifecycle hook).
-                    </li>
-                </ol>
-            </section>
-            <section>
-                <h3>Master/Details Pattern @Input (3/6)</h3>
-                <ol>
-                    <li>
-                        Add two <span class="highlight monospace">&lt;div&gt;</span> elements to the overview component.
-                    </li>
-                    <li>To the first <span class="highlight monospace">&lt;div&gt;</span> add a table with rows. Generate the table's rows iterating over the
-                        <span class="highlight monospace">movies</span>. Make use of the
-                        <a href="https://angular.io/docs/ts/latest/api/common/index/NgFor-directive.html" target="_blank" class="monospace">*ngFor</a> directive. For each movie element show its directors and title.</li>
-                </ol>
-            </section>
-            <section>
-                <h3>Master/Details Pattern @Input (4/6)</h3>
+            <section id="master-details">
+                <section>
+                    <h3>Master/Details Pattern @Input</h3>
+                    <p>Goals:</p>
+                    <ol>
+                        <li>Create a component for a list of movies</li>
+                        <li>Use the details component to show details of a movie selected in the list</li>
+                        <li>Change movie details and update the list</li>
+                    </ol>
+                    <p class="branch-hint">Fallback branch: exercise/2-simple-component<br>Solution branch: exercise/3-master-details-input</p>
+                    <a class="branch-hint" target="_blank" href="../git-intro/git-intro.html#/2">Git Cheat Sheet</a>
+                </section>
+                <section>
+                    <h3>Master/Details Pattern @Input (1/6)</h3>
+                    <ol>
+                        <li>Create <span class="monospace highlight">MovieOverview</span> component (<span class="monospace highlight">ng g c movies/movie-overview</span>) and export it from the <span class="monospace highlight">MoviesModule</span>.</li>
+                        <li>Remove <span class="monospace highlight">MovieDetails</span> from the exports of <span class="monospace highlight">MoviesModule</span>.
+                        </li>
+                        <li>Replace <span class="monospace highlight">&lt;app-movie-details&gt;</span> with <span class="monospace highlight">&lt;app-movie-overview&gt;</span> in the <span class="monospace highlight">AppComponent</span>'s template. <i>movie-overview works!</i>                            should appear on the page.</li>
+                    </ol>
+                </section>
+                <section>
+                    <h3>Master/Details Pattern @Input (2/6)</h3>
+                    <ol>
+                        <li>Add properties to the <span class="highlight monospace">MovieOverviewComponent</span> class:
+                            <ul>
+                                <li>the array <span class="highlight monospace">movies</span> which keeps available movies,</li>
+                                <li>the <span class="highlight monospace">selectedMovie</span> which keeps currently a selected movie of the available ones.</li>
+                            </ul>
+                        </li>
+                        <li>Initialize <span class="highlight monospace">movies</span> with an empty array.</li>
+                        <li>Add some movie entries to the <span class="highlight monospace">movies</span> array (In the <span class="highlight monospace">OnInit</span> lifecycle hook).
+                        </li>
+                    </ol>
+                </section>
+                <section>
+                    <h3>Master/Details Pattern @Input (3/6)</h3>
+                    <ol>
+                        <li>
+                            Add two <span class="highlight monospace">&lt;div&gt;</span> elements to the overview component.
+                        </li>
+                        <li>To the first <span class="highlight monospace">&lt;div&gt;</span> add a table with rows. Generate the table's rows iterating over the
+                            <span class="highlight monospace">movies</span>. Make use of the
+                            <a href="https://angular.io/docs/ts/latest/api/common/index/NgFor-directive.html" target="_blank" class="monospace">*ngFor</a> directive. For each movie element show its directors and title.</li>
+                    </ol>
+                </section>
+                <section>
+                    <h3>Master/Details Pattern @Input (4/6)</h3>
 
-                <ul>
-                    <li>Extend the <span class="highlight monospace">MovieOverviewComponent</span> class: Implement the <span class="highlight monospace">selectMovie(movie: Movie): void</span> method
-                        which sets the passed movie as the selected one.
-                    </li>
-                    <li>In the template add the <span class="highlight monospace">(click)</span> event binding to table rows to call the
-                        <span class="highlight monospace">selectMovie(movie:Movie)</span> method
-                    </li>
-                </ol>
-            </section>
-            <section>
-                <h3>Master/Details Pattern @Input (5/6)</h3>
-                <ol>
-                    <li>Go to the <span class="highlight monospace">MovieDetailsComponent</span> class and remove all
-                        its content except for the <span class="highlight monospace">currentMovie</span> property. Rename it to <span class="highlight monospace">movie</span>.</li>
-                    <li>Add <span class="highlight monospace">@Input()</span> decorator to <span class="highlight monospace">movie</span> property.</li>
-                    <li>Go to the <span class="highlight monospace">MovieDetailsComponent</span>'s template.
-                        The <span class="highlight monospace">&lt;div&gt;</span> element containing the movie details should only be displayed if the <span class="highlight monospace">movie</span> property is set.
-                        Use the <a href="https://angular.io/docs/ts/latest/api/common/index/NgIf-directive.html" target="_blank" class="monospace">*ngIf</a> directive.</li>
-                </ol>
-            </section>
-            <section>
-                <h3>Master/Details Pattern @Input (6/6)</h3>
-                <ol>
-                    <li>Go to the <span class="highlight highlight">MovieOverviewComponent</span> template</li>
-                    <li>Put the <span class="monospace highlight">&lt;app-movie-details&gt;</span> element in a second <span class="highlight monospace">&lt;div&gt;</span></li>
-                    <li>
-                        Bind the <span class="highlight monospace">selectedMovie</span> to the <span class="monospace highlight">&lt;app-movie-details&gt;</span> element with the <span class="highlight monospace">[movie]</span> property binding.
-                </ol>
-            </section>
-            <section>
-                <h3>Master/Details Pattern @Input (Optional 1/3)</h3>
-                <ol>
-                    <li>Implement the <span class="highlight monospace">isMovieSelected(movie: Movie): boolean</span>
-                        method
-                        which checks if the movie passed is the selected one.
-                    </li>
-                    <li>Add the <a href="https://angular.io/docs/ts/latest/guide/template-syntax.html#!#class-binding" target="_blank"  class="monospace">class binding</a>
-                        <span class="highlight monospace">[class.row-active]</span> to the
-                        <span class="highlight monospace">isMovieSelected(movie: Movie): boolean</span> method.
-                    </li>
-                    
-                    <li>Set a style for the <span class="highlight monospace">row-active</span> CSS-class</li>
-                </ol>
-            </section>
-            <section>
-                <h3>Master/Details Pattern @Input (Optional 2/3)</h3>
-                <ol>
-                    <li>Show the row number in the list as well</li>
-                    <li>Give the <span class="highlight monospace">&lt;body&gt;</span> a light gray background</li>
-                    <li>Go to the MovieOverviewComponent. Give the <span class="highlight monospace">&lt;div&gt;</span>s
-                        <ol>
-                            <li>a white background</li>
-                            <li>box shadow</li>
-                            <li>16px of padding and margin</li>
+                    <ul>
+                        <li>Extend the <span class="highlight monospace">MovieOverviewComponent</span> class: Implement the <span class="highlight monospace">selectMovie(movie: Movie): void</span> method which sets the passed movie as the selected one.
+                        </li>
+                        <li>In the template add the <span class="highlight monospace">(click)</span> event binding to table rows to call the
+                            <span class="highlight monospace">selectMovie(movie:Movie)</span> method
+                        </li>
                         </ol>
-                    </li>
-                </ol>
+                </section>
+                <section>
+                    <h3>Master/Details Pattern @Input (5/6)</h3>
+                    <ol>
+                        <li>Go to the <span class="highlight monospace">MovieDetailsComponent</span> class and remove all its content except for the <span class="highlight monospace">currentMovie</span> property. Rename it to <span class="highlight monospace">movie</span>.</li>
+                        <li>Add <span class="highlight monospace">@Input()</span> decorator to <span class="highlight monospace">movie</span> property.</li>
+                        <li>Go to the <span class="highlight monospace">MovieDetailsComponent</span>'s template. The <span class="highlight monospace">&lt;div&gt;</span> element containing the movie details should only be displayed if the <span class="highlight monospace">movie</span>                            property is set. Use the <a href="https://angular.io/docs/ts/latest/api/common/index/NgIf-directive.html" target="_blank" class="monospace">*ngIf</a> directive.</li>
+                    </ol>
+                </section>
+                <section>
+                    <h3>Master/Details Pattern @Input (6/6)</h3>
+                    <ol>
+                        <li>Go to the <span class="highlight highlight">MovieOverviewComponent</span> template</li>
+                        <li>Put the <span class="monospace highlight">&lt;app-movie-details&gt;</span> element in a second <span class="highlight monospace">&lt;div&gt;</span></li>
+                        <li>
+                            Bind the <span class="highlight monospace">selectedMovie</span> to the <span class="monospace highlight">&lt;app-movie-details&gt;</span> element with the <span class="highlight monospace">[movie]</span> property binding.
+                    </ol>
+                </section>
+                <section>
+                    <h3>Master/Details Pattern @Input (Optional 1/3)</h3>
+                    <ol>
+                        <li>Implement the <span class="highlight monospace">isMovieSelected(movie: Movie): boolean</span> method which checks if the movie passed is the selected one.
+                        </li>
+                        <li>Add the <a href="https://angular.io/docs/ts/latest/guide/template-syntax.html#!#class-binding" target="_blank" class="monospace">class binding</a>
+                            <span class="highlight monospace">[class.row-active]</span> to the
+                            <span class="highlight monospace">isMovieSelected(movie: Movie): boolean</span> method.
+                        </li>
+
+                        <li>Set a style for the <span class="highlight monospace">row-active</span> CSS-class</li>
+                    </ol>
+                </section>
+                <section>
+                    <h3>Master/Details Pattern @Input (Optional 2/3)</h3>
+                    <ol>
+                        <li>Show the row number in the list as well</li>
+                        <li>Give the <span class="highlight monospace">&lt;body&gt;</span> a light gray background</li>
+                        <li>Go to the MovieOverviewComponent. Give the <span class="highlight monospace">&lt;div&gt;</span>s
+                            <ol>
+                                <li>a white background</li>
+                                <li>box shadow</li>
+                                <li>16px of padding and margin</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </section>
+                <section>
+                    <h3>Master/Details Pattern @Input (Optional 3/3)</h3>
+                    <ol>
+                        <li>Use Flex Box Styling to create a responsive design. The <span class="highlight monospace">&lt;div&gt;</span>'s should be next to each other or below each other depending on the screen width</li>
+                    </ol>
+                </section>
             </section>
-            <section>
-                <h3>Master/Details Pattern @Input (Optional 3/3)</h3>
-                <ol>
-                    <li>Use Flex Box Styling to create a responsive design. The <span class="highlight monospace">&lt;div&gt;</span>'s should be next to each other or below each other depending on the screen width</li>
-                </ol>
-            </section>
-        </section>
-        <section id="data-binding">
-            <section>
-                <h3>Master/Details Pattern @Output </h3>
-                <p>Goals</p>
-                <ol>
-                    <li>Movie Details are editable</li>
-                    <li>Clicking on a button propagates the changes to the list</li>
-                    <li>Add a button to create new movie entries</li>
-                </ol>
-                <p class="branch-hint">Fallback branch: exercise/3-master-details-input<br>Solution branch: exercise/4-master-details-output</p>
-                <a class="branch-hint" target="_blank" href="../git-intro/git-intro.html#/2">Git Cheat Sheet</a>
-            </section>
-            <section>
-                <h3>Master/Details Pattern @Output (1/7)</h3>
-                <ol>
-                    <li>Import the <span class="highlight monospace"><a href="https://angular.io/api/forms/FormsModule">FormsModule</a></span> in the <span class="highlight monospace">MoviesModule</span>.</li>
-                    <li>In the <span class="highlight monospace">MovieDetailsComponent</span>'s template replace
-                        the interpolation of movies's title, directors etc. with text input fields. 
-                        Add two-way binding (<span class="highlight monospace">[(ngModel)]</span>) to the input fields.</li>
-                    <li>Move the <span class="highlight monospace">*ngIf</span> from the <span class="highlight monospace">movie-details</span> template to the <span class="highlight monospace">&lt;app-movie-details&gt;</span> in the <span class="highlight monospace">movie-overview</span> template</li>
-                </ol>
-            </section>
-            <section>
-                <h3>Master/Details Pattern @Output (2/7)</h3>
-                <p>Check the result. Every change in an <span class="highlight monospace">input</span> immediatly changes the corresponding entry in the list. Nice feature, but that's not exactly what we want here
-                </p>
-            </section>
-            <section>
-                <h3>Master/Details Pattern @Output (3/7)</h3>
-                <ol>
-                    <li>Go to the <span class="highlight monospace">MovieDetailsComponent</span> class and add a setter and a getter of the <span class="monospace highlight">movie</span> property <br>(<span class="monospace highlight">get movie(){..}</span>). You need to rename the <span class="monospace highlight">movie</span> property for that. Recommendation: <span class="monospace highlight">_movie</span></li>
-                    <li>Move the <span class="highlight monospace">@Input()</span> decorator from the property to the setter.</li>
-                    <li>Change the <span class="monospace highlight">_movie</span> property's visibility to private</li>
-                </ol>
-            </section>
-            <section>
+            <section id="data-binding">
+                <section>
+                    <h3>Master/Details Pattern @Output </h3>
+                    <p>Goals</p>
+                    <ol>
+                        <li>Movie Details are editable</li>
+                        <li>Clicking on a button propagates the changes to the list</li>
+                        <li>Add a button to create new movie entries</li>
+                    </ol>
+                    <p class="branch-hint">Fallback branch: exercise/3-master-details-input<br>Solution branch: exercise/4-master-details-output</p>
+                    <a class="branch-hint" target="_blank" href="../git-intro/git-intro.html#/2">Git Cheat Sheet</a>
+                </section>
+                <section>
+                    <h3>Master/Details Pattern @Output (1/7)</h3>
+                    <ol>
+                        <li>Import the <span class="highlight monospace"><a href="https://angular.io/api/forms/FormsModule">FormsModule</a></span> in the <span class="highlight monospace">MoviesModule</span>.</li>
+                        <li>In the <span class="highlight monospace">MovieDetailsComponent</span>'s template replace the interpolation of movies's title, directors etc. with text input fields. Add two-way binding (<span class="highlight monospace">[(ngModel)]</span>)
+                            to the input fields.</li>
+                        <li>Move the <span class="highlight monospace">*ngIf</span> from the <span class="highlight monospace">movie-details</span> template to the <span class="highlight monospace">&lt;app-movie-details&gt;</span> in the <span class="highlight monospace">movie-overview</span>                            template</li>
+                    </ol>
+                </section>
+                <section>
+                    <h3>Master/Details Pattern @Output (2/7)</h3>
+                    <p>Check the result. Every change in an <span class="highlight monospace">input</span> immediatly changes the corresponding entry in the list. Nice feature, but that's not exactly what we want here
+                    </p>
+                </section>
+                <section>
+                    <h3>Master/Details Pattern @Output (3/7)</h3>
+                    <ol>
+                        <li>Go to the <span class="highlight monospace">MovieDetailsComponent</span> class and add a setter and a getter of the <span class="monospace highlight">movie</span> property <br>(<span class="monospace highlight">get movie(){..}</span>).
+                            You need to rename the <span class="monospace highlight">movie</span> property for that. Recommendation: <span class="monospace highlight">_movie</span></li>
+                        <li>Move the <span class="highlight monospace">@Input()</span> decorator from the property to the setter.</li>
+                        <li>Change the <span class="monospace highlight">_movie</span> property's visibility to private</li>
+                    </ol>
+                </section>
+                <section>
                     <h3>Master/Details Pattern @Output (4/7)</h3>
                     <ol>
                         <li>
-                            Change the setter implementation so that instead of a direct assignment a copy of the passed object is made.  Use the <a href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Operators/Spread_operator">Spread Operator</a><br>
+                            Change the setter implementation so that instead of a direct assignment a copy of the passed object is made. Use the <a href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Operators/Spread_operator">Spread Operator</a><br>
                             <span class="monospace">this._movie = {...movie}</span>
                         </li>
                     </ol>
                 </section>
-            <section>
-                <h3>Master/Details Pattern @Output (5/7)</h3>
-                <ol>
-                    <li>Add the <span class="highlight monospace">movieUpdate</span> property of type <span class="highlight monospace">EventEmitter&lt;Movie&gt;</span>.</li>
-                    <li>Put the decorator <span class="highlight monospace">@Output()</span> on the <span class="highlight monospace">movieUpdate</span> property.</li>
-                    <li>Implement the <span class="highlight monospace">apply(): void</span> method which uses the <span class="highlight monospace">movieUpdate</span>
-                        EventEmitter and emits the <span class="highlight monospace">_movie</span> property.</li>
-                    <li>Add a <span class="highlight monospace">button</span> to the template and assign the <span class="highlight monospace">apply()</span> method to the <span class="highlight monospace">(click)</span> event binding</li>
-                </ol>
+                <section>
+                    <h3>Master/Details Pattern @Output (5/7)</h3>
+                    <ol>
+                        <li>Add the <span class="highlight monospace">movieUpdate</span> property of type <span class="highlight monospace">EventEmitter&lt;Movie&gt;</span>.</li>
+                        <li>Put the decorator <span class="highlight monospace">@Output()</span> on the <span class="highlight monospace">movieUpdate</span> property.</li>
+                        <li>Implement the <span class="highlight monospace">apply(): void</span> method which uses the <span class="highlight monospace">movieUpdate</span> EventEmitter and emits the <span class="highlight monospace">_movie</span> property.</li>
+                        <li>Add a <span class="highlight monospace">button</span> to the template and assign the <span class="highlight monospace">apply()</span> method to the <span class="highlight monospace">(click)</span> event binding</li>
+                    </ol>
+                </section>
+                <section>
+                    <h3>Master/Details Pattern @Output (6/7)</h3>
+                    <ol>
+                        <li>Go to the <span class="highlight monospace">MovieOverviewComponent</span> class and implement the <span class="highlight monospace">onMovieUpdated(updatedMovie: Movie): void</span> method.</li>
+                        <li>The <span class="highlight monospace">onMovieUpdated(updatedMovie: Movie): void</span> method should find a movie (among movies in the <span class="highlight monospace">movies</span> array) with the same ID as the passed movie
+                            (consider using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find" target="_blank" class="monospace">Array.prototype.find</a> function) and update the found movie accordingly.
+                    </ol>
+                </section>
+                <section>
+                    <h3>Master/Details Pattern @Output (7/7)</h3>
+                    <ol>
+                        <li>Go to the <span class="monospace highlight">MovieOverviewComponent</span>'s template and add the
+                            <span class="highlight monospace">(movieUpdate)</span> event binding to the
+                            <span class="highlight monospace">&lt;app-movie-details&gt;</span> element and assign the <span class="highlight monospace">onMovieUpdated($event)</span> method call</li>
+                    </ol>
+                </section>
+                <section>
+                    <h3>Master/Details Pattern @Output (optional 1/3)</h3>
+                    <ol>
+                        <li>In the <span class="monospace highlight">movie-details</span> class add a <span class="monospace highlight">movieCreate</span> EventEmitter</li>
+                        <li>Add a <span class="monospace highlight">create(): void</span> method that triggers the <span class="monospace highlight">movieCreate</span> EventEmitter
+                        </li>
+                        <li>Add a <span class="monospace highlight">button</span> to the template to use the <span class="monospace highlight">create()</span> function</li>
+                    </ol>
+                </section>
+                <section>
+                    <h3>Master/Details Pattern @Output (optional 2/3)</h3>
+                    <ol>
+                        <li>In the <span class="monospace highlight">movie overview</span> class add a <span class="monospace highlight">onCreateMovie()</span> method that initializes the <span class="monospace highlight">selectedMovie</span> with a new object
+                            with all properties set to null
+                        </li>
+                        <li>Bind the <span class="monospace highlight">onCreateMovie()</span> to the <span class="monospace highlight">movieCreate</span> event of <span class="highlight monospace">&lt;app-movie-details&gt;</span>
+                        </li>
+                        <li>Add a private property <span class="monospace highlight">movieIdSequence</span></li>
+                    </ol>
+                </section>
+                <section>
+                    <h3>Master/Details Pattern @Output (optional 3/3)</h3>
+                    <ol>
+                        <li>Modify the <span class="monospace highlight">onMovieUpdated()</span>function. If no movie with the id of the updated movie is found, set the id to the next from <span class="monospace highlight">movieIdSequence</span> and push
+                            the updated movie to the array.</li>
+                        <li>Style the input fields and the button</li>
+                        <!--<li>Import the <a href="https://material.angular.io/components/input/overview">MatInputModule</a> and <a href="https://material.angular.io/components/button/overview">MatButtonModule</a> into the MovieModule</li>-->
+                        <!--<li>Wrap the each of the &lt;input&gt; elements in a &lt;mat-form-field&gt;</li>-->
+                        <!--<li>Add the <span class="highlight monospace">matInput</span> directive to the &lt;input&gt; elements</li>-->
+                        <!--<li>Remove the <span class="highlight monospace">label</span> elements and put their value into the <span class="highlight monospace">placeholder</span> attributes of the <span class="highlight monospace">&lt;input&gt; elements</li>-->
+                        <!--<li>Add the <span class="highlight monospace">mat-raised-button</span> directive to the <span class="highlight monospace">button</span> element</li>-->
+                    </ol>
+                </section>
             </section>
-            <section>
-                <h3>Master/Details Pattern @Output (6/7)</h3>
-                <ol>
-                    <li>Go to the <span class="highlight monospace">MovieOverviewComponent</span> class and implement
-                        the <span class="highlight monospace">onMovieUpdated(updatedMovie: Movie): void</span> method.</li>
-                    <li>The <span class="highlight monospace">onMovieUpdated(updatedMovie: Movie): void</span> method should find a movie (among movies in the <span class="highlight monospace">movies</span> array)
-                        with the same ID as the passed movie (consider using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find" target="_blank" class="monospace">Array.prototype.find</a> function)
-                        and update the found movie accordingly.
-                </ol>
-            </section>
-            <section>
-                <h3>Master/Details Pattern @Output (7/7)</h3>
-                <ol>
-                    <li>Go to the <span class="monospace highlight">MovieOverviewComponent</span>'s template and add the
-                        <span class="highlight monospace">(movieUpdate)</span> event binding to the
-                        <span class="highlight monospace">&lt;app-movie-details&gt;</span> element and assign the <span class="highlight monospace">onMovieUpdated($event)</span> method call</li>
-                </ol>
-            </section>
-            <section>
-                <h3>Master/Details Pattern @Output (optional 1/3)</h3>
-                <ol>
-                    <li>In the <span class="monospace highlight">movie-details</span> class add a <span class="monospace highlight">movieCreate</span> EventEmitter</li>
-                    <li>Add a <span class="monospace highlight">create(): void</span> method that triggers the <span class="monospace highlight">movieCreate</span> EventEmitter
-                    </li>
-                    <li>Add a <span class="monospace highlight">button</span> to the template to use the <span class="monospace highlight">create()</span> function</li>
-                </ol>
-            </section>
-            <section>
-                <h3>Master/Details Pattern @Output (optional 2/3)</h3>
-                <ol>
-                    <li>In the <span class="monospace highlight">movie overview</span> class add a <span class="monospace highlight">onCreateMovie()</span> method that initializes the <span class="monospace highlight">selectedMovie</span> with a new object with all properties set to null
-                    </li>
-                    <li>Bind the <span class="monospace highlight">onCreateMovie()</span> to the <span class="monospace highlight">movieCreate</span> event of <span class="highlight monospace">&lt;app-movie-details&gt;</span>
-                    </li>
-                    <li>Add a private property <span class="monospace highlight">movieIdSequence</span></li>
-                </ol>
-            </section>
-            <section>
-                <h3>Master/Details Pattern @Output (optional 3/3)</h3>
-                <ol>
-                    <li>Modify the <span class="monospace highlight">onMovieUpdated()</span>function. If no movie with the id of the updated movie is found, set the id to the next from <span class="monospace highlight">movieIdSequence</span> and push the updated movie to the array.</li>
-                    <li>Style the input fields and the button</li>
-                    <!--<li>Import the <a href="https://material.angular.io/components/input/overview">MatInputModule</a> and <a href="https://material.angular.io/components/button/overview">MatButtonModule</a> into the MovieModule</li>-->
-                    <!--<li>Wrap the each of the &lt;input&gt; elements in a &lt;mat-form-field&gt;</li>-->
-                    <!--<li>Add the <span class="highlight monospace">matInput</span> directive to the &lt;input&gt; elements</li>-->
-                    <!--<li>Remove the <span class="highlight monospace">label</span> elements and put their value into the <span class="highlight monospace">placeholder</span> attributes of the <span class="highlight monospace">&lt;input&gt; elements</li>-->
-                    <!--<li>Add the <span class="highlight monospace">mat-raised-button</span> directive to the <span class="highlight monospace">button</span> element</li>-->
-                </ol>
-            </section>
-        </section>
-        <section id="service">
-            <section>
-                <h3>Service</h3>
-                <p>Goals: </p>
-                <ol>
-                    <li>The data is retrieved from a service by the component</li>
-                    <li>The data is asynchronously retrieved (like it would be via a REST service)</li>
-                    <li>The async pipe is used to subscribe to the service</li>
-                </ol>
-                <p class="branch-hint">Fallback branch: exercise/4-master-details-output<br>Solution branch: exercise/5-services</p>
-                <a class="branch-hint" target="_blank" href="../git-intro/git-intro.html#/2">Git Cheat Sheet</a>
-            </section>
-            <section>
-                <h3>Service (1/5)</h3>
-                <ol>
-                    <li>Create a new <span class="highlight monospace">Movie</span> service (<span class="highlight monospace">ng g service movies/movie</span>) with the private
-                        <span class="highlight monospace">movies</span> property.</li>
-                    <li>Move the code initializing the movies from 
-                        <span class="highlight monospace">MovieOverviewComponent.ngOnInit()</span>
-                        into the service.</li>
-                </ol>
-            </section>
-            <section>
-                <h3>Service (2/5)</h3>
-                <ol>
-                    <li>Implement <span class="highlight monospace">findAll(): Observable&lt;Movie[]&gt;</span> method
-                        which returns the <span class="highlight monospace">movie</span> array as an <span class="highlight monospace">Observable</span>.</li>
-                    <li>
-                        Implement <span class="highlight monospace">save(movieToSave: Movie): Observable&lt;Movie&gt;.</span>
-                        Move in the logic for updating/saving movies and return the created/updated movie.
-                    </li>
-                </ol>
-            </section>
-            <section>
-                <h3>Service (3/5)</h3>
-                <ol>
-                    <li>Inject <span class="highlight monospace">MovieService</span> in
-                        <span class="highlight monospace">MovieOverviewComponent</span>'s constructor.
-                    </li>
-                    <li>In <span class="highlight monospace">MovieOverviewComponent.ngOnInit()</span> call the <span class="highlight monospace">MovieService.findAll()</span> method. <span class="highlight monospace">Subscribe</span> to the returned <span class="highlight monospace">Observable</span> to initialize the movie list.</li>
-                    <li>Use the <span class="highlight monospace">save(movieToSave: Movie): Observable&lt;Movie&gt;</span> in the
-                        <span class="highlight monospace">MovieOverviewComponent.onMovieUpdated</span> and reload the movies after the update Observable completes.</li>
-                </ol>
-            </section>
-            <section>
-                <h3>Service (4/5)</h3>
-                <ol>
-                    <li>
-                        In the <span class="highlight monospace">MovieOverviewComponent</span> change the <span class="highlight monospace">movies</span> array to <span class="highlight monospace">movies$</span> of type <span class="highlight monospace">Observable&lt;Movie[]&gt;</span>. Do not subscribe to the <span class="highlight monospace">MovieService.findAll()</span> but assign the resulting Observable to the <span class="highlight monospace">movies$</span> property.
-                    </li>
-                    <li>
-                        In the <span class="highlight monospace">MovieOverviewComponent</span> template use the <a href="https://blog.thoughtram.io/angular/2017/02/27/three-things-you-didnt-know-about-the-async-pipe.html" target="_blank">async pipe</a> in the <span class="highlight monospace">*ngFor</span> to automatically subscribe to the Observable.
-                    </li>
-                </ol>
-            </section>
-            <section>
-                <h3>Service (5/5)</h3>
-                <ol>Extend the <span class="highlight monospace">MovieService</span>:
-                    <li>Implement the <span class="highlight monospace">findOne(id: number): Observable&lt;Movie&gt;</span> method which finds a
-                        movie by the ID passed and returns its copy.</li>
-                </ol>            
-            </section>
-            <section>
-                <h3>Service (extra)</h3>
-                <ol>Extend the <span class="highlight monospace">MovieService</span>:
-                   <li>Implement unit tests using the <a href="https://jasmine.github.io/2.5/introduction" target="_blank" class="monospace">Jasmine</a> framework.</li>
-                </ol>
-            </section>
-        </section>
-        <section id="http">
-            <section>
-                <h3>Http</h3>
-                <p>
-                    Goals:
-                </p>
-                <ol>
-                    <li>The service retrieves the data from a REST service</li>
-                    <li>The service posts changes to the REST service</li>
-                </ol>
-                <p class="branch-hint">Fallback branch: exercise/5-services<br>Solution branch: exercise/6-http</p>
-                <a class="branch-hint" target="_blank" href="../git-intro/git-intro.html#/2">Git Cheat Sheet</a>
-            </section>
-            <section>
-                <h3>Http (1/2)</h3>
-                <p>
-                    We prepared a server for you.<br>
-                    User the following commands to start the angular server with reverse proxy 
-                    and a server with rest services:
-                    <span class="highlight monospace">npm run start</span>
-                </p>
-                <p>
-                    Possible REST calls:
-                </p>
-
-                <ul>
-                    <li><code>GET /services/rest/movies</code></li>
-                    <li><code>GET /services/rest/movies/:id</code></li>
-                    <li><code>POST /services/rest/movies</code></li>
-                </ul>
-
-            </section>
-            <section>
-                <h3>Http (2/2)</h3>
-                <ol>
-                    <li>Import the <span class="highlight monospace">HttpClientModule</span> into the <span class="highlight monospace">AppModule</span>, add it to the imports array</li>
-                    <li>Refactor the <span class="highlight monospace">findAll()</span> movie method - use <span class="highlight monospace">http.get</span></li>
-                    <li>Refactor the <span class="highlight monospace">findOne(id: Number)</span> method - use <span class="highlight monospace">http.get</span></li>
-                    <li>Refactor the <span class="highlight monospace">save(movie: Movie)</span> method  - use <span class="highlight monospace">http.post</span></li>
-                </ol>
-            </section>
-        </section>
-
-		<section id="routing">
-            <section>
-                <h3>Routing (1/5)</h3>
-                <div style="text-align: left">
-                    <ul>
-                        <p>Goals:</p>
-                        <ol>
-                            <li>Navigate through components using URLs or navigation-buttons</li>
-                            <li>Highlighting active navigation-buttons</li>
-                            <li>Display an error-page for invalid URLs</li>
-                            <li>Navigation through our movie-list using the movie-ID as part of URL</li>
-                        </ol>
-                    </ul>
-                    <p class="branch-hint">Fallback branch: exercise/6-http<br>Solution branch: exercise/7-router</p>
+            <section id="service">
+                <section>
+                    <h3>Service</h3>
+                    <p>Goals: </p>
+                    <ol>
+                        <li>The data is retrieved from a service by the component</li>
+                        <li><s>The data is asynchronously retrieved (like it would be via a REST service)</s></li>
+                        <li><s>The async pipe is used to subscribe to the service</s></li>
+                    </ol>
+                    <p class="branch-hint">Fallback branch: exercise/4-master-details-output<br>Solution branch: exercise/5-services</p>
                     <a class="branch-hint" target="_blank" href="../git-intro/git-intro.html#/2">Git Cheat Sheet</a>
-                </div>
-            </section>
-
-            <section>
-                <h3>Routing (2/5)</h3>
-                <div style="text-align: left">
-                    <ul>
-                        <li>Create a new Module <span class="monospace highlight">Login</span> (<span class="monospace">ng g m login</span>)
-                            <ul>
-                                <li>containing a <span class="monospace highlight">Register</span> component (<span class="monospace">ng g c login/register</span>)</li>
-                            </ul>    
+                </section>
+                <section>
+                    <h3>Service (1/5)</h3>
+                    <ol>
+                        <li>Create a new <span class="highlight monospace">Movie</span> service (<span class="highlight monospace">ng g service movies/movie</span>) with the private
+                            <span class="highlight monospace">movies</span> property.</li>
+                        <li>Move the code initializing the movies from
+                            <span class="highlight monospace">MovieOverviewComponent.ngOnInit()</span> into the service.</li>
+                    </ol>
+                </section>
+                <section>
+                    <h3>Service (2/5)</h3>
+                    <ol>
+                        <li>Implement <span class="highlight monospace">findAll(): Movie[]</span> method which returns the <span class="highlight monospace">movie</span> array.</li>
+                        <li>
+                            Implement <span class="highlight monospace">save(movieToSave: Movie): Movie.</span> Move in the logic for updating/saving movies and return the created/updated movie.
                         </li>
-                        <li>Create a new Module <span class="monospace highlight">Static-Pages</span> (<span class="monospace">ng g m static-pages</span>)
-                            <ul>
-                                <li>containing <span class="monospace highlight">Page-Not-Found</span> component</li>
-                                <li>and an <span class="monospace highlight">About</span> component</li>
-                            </ul>    
+                    </ol>
+                </section>
+                <section>
+                    <h3>Service (3/5)</h3>
+                    <ol>
+                        <li>Inject <span class="highlight monospace">MovieService</span> in
+                            <span class="highlight monospace">MovieOverviewComponent</span>'s constructor.
+                        </li>
+                        <li>In <span class="highlight monospace">MovieOverviewComponent.ngOnInit()</span> call the <span class="highlight monospace">MovieService.findAll()</span> method and initialize the movie list</li>
+                        <li>Use the <span class="highlight monospace">save(movieToSave: Movie): Movie</span> in the
+                            <span class="highlight monospace">MovieOverviewComponent.onMovieUpdated</span> and re-assign the correct movies after the update.</li>
+                    </ol>
+                </section>
+                <section>
+                    <h3>Service (4/5)</h3>
+                    <ol>
+                        <li>
+                            <s>     In the <span class="highlight monospace">MovieOverviewComponent</span> change the <span class="highlight monospace">movies</span> array to <span class="highlight monospace">movies$</span> of type <span class="highlight monospace">Observable&lt;Movie[]&gt;</span>. Do not subscribe to the <span class="highlight monospace">MovieService.findAll()</span> but assign the resulting Observable to the <span class="highlight monospace">movies$</span> property.</s>
+                        </li>
+                        <li>
+                            <s>In the <span class="highlight monospace">MovieOverviewComponent</span> template use the <a href="https://blog.thoughtram.io/angular/2017/02/27/three-things-you-didnt-know-about-the-async-pipe.html" target="_blank">async pipe</a>                            in the <span class="highlight monospace">*ngFor</span> to automatically subscribe to the Observable.</s>
+                        </li>
+                    </ol>
+                </section>
+                <section>
+                    <h3>Service (5/5)</h3>
+                    <ol>Extend the <span class="highlight monospace">MovieService</span>:
+                        <li>Implement the <span class="highlight monospace">findOne(id: number): Movie</span> method which finds a movie by the ID passed and returns its copy.</li>
+                    </ol>
+                </section>
+                <section>
+                    <h3>Service (extra)</h3>
+                    <ol>Extend the <span class="highlight monospace">MovieService</span>:
+                        <li>Implement unit tests using the <a href="https://jasmine.github.io/2.5/introduction" target="_blank" class="monospace">Jasmine</a> framework.</li>
+                    </ol>
+                </section>
+            </section>
+            <section id="http">
+                <section>
+                    <h3>Http</h3>
+                    <p>
+                        Goals:
+                    </p>
+                    <ol>
+                        <li>The service retrieves the data from a REST service</li>
+                        <li>The service posts changes to the REST service</li>
+                    </ol>
+                    <p class="branch-hint">Fallback branch: exercise/5-services<br>Solution branch: exercise/6-http</p>
+                    <a class="branch-hint" target="_blank" href="../git-intro/git-intro.html#/2">Git Cheat Sheet</a>
+                </section>
+                <section>
+                    <h3>Http (1/2)</h3>
+                    <p>
+                        We prepared a server for you.<br> User the following commands to start the angular server with reverse proxy and a server with rest services:
+                        <span class="highlight monospace">npm run start</span>
+                    </p>
+                    <p>
+                        Possible REST calls:
+                    </p>
+
+                    <ul>
+                        <li><code>GET /services/rest/movies</code></li>
+                        <li><code>GET /services/rest/movies/:id</code></li>
+                        <li><code>POST /services/rest/movies</code></li>
+                    </ul>
+
+                </section>
+                <section>
+                    <h3>Http (2/2)</h3>
+                    <ol>
+                        <li>Import the <span class="highlight monospace">HttpClientModule</span> into the <span class="highlight monospace">AppModule</span>, add it to the imports array</li>
+                        <li>Refactor the <span class="highlight monospace">findAll()</span> movie method - use <span class="highlight monospace">http.get</span></li>
+                        <li>Refactor the <span class="highlight monospace">findOne(id: Number)</span> method - use <span class="highlight monospace">http.get</span></li>
+                        <li>Refactor the <span class="highlight monospace">save(movie: Movie)</span> method - use <span class="highlight monospace">http.post</span></li>
+                    </ol>
+                </section>
+            </section>
+
+            <section id="routing">
+                <section>
+                    <h3>Routing (1/5)</h3>
+                    <div style="text-align: left">
+                        <ul>
+                            <p>Goals:</p>
+                            <ol>
+                                <li>Navigate through components using URLs or navigation-buttons</li>
+                                <li>Highlighting active navigation-buttons</li>
+                                <li>Display an error-page for invalid URLs</li>
+                                <li>Navigation through our movie-list using the movie-ID as part of URL</li>
+                            </ol>
+                        </ul>
+                        <p class="branch-hint">Fallback branch: exercise/6-http<br>Solution branch: exercise/7-router</p>
+                        <a class="branch-hint" target="_blank" href="../git-intro/git-intro.html#/2">Git Cheat Sheet</a>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Routing (2/5)</h3>
+                    <div style="text-align: left">
+                        <ul>
+                            <li>Create a new Module <span class="monospace highlight">Login</span> (<span class="monospace">ng g m login</span>)
+                                <ul>
+                                    <li>containing a <span class="monospace highlight">Register</span> component (<span class="monospace">ng g c login/register</span>)</li>
+                                </ul>
+                            </li>
+                            <li>Create a new Module <span class="monospace highlight">Static-Pages</span> (<span class="monospace">ng g m static-pages</span>)
+                                <ul>
+                                    <li>containing <span class="monospace highlight">Page-Not-Found</span> component</li>
+                                    <li>and an <span class="monospace highlight">About</span> component</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Routing (3/5)</h3>
+                    <div style="text-align: left">
+                        <p>Import the <span class="highlight monospace">RouterModule</span> in <span class="highlight monospace">AppModule</span>. Use the <span class="highlight monospace">RouterModule.forRoot</span> defining following routes:</p>
+                        <ul>
+                            <li>redirection to /register on application startup</li>
+                            <li><span class="highlight monospace">/register</span> shows the <span class="highlight monospace">register</span> component</li>
+                            <li><span class="highlight monospace">/movies</span> shows <span class="highlight monospace">movie-overview</span> component</li>
+                            <li><span class="highlight monospace">/movies/2</span> shows <span class="highlight monospace">movie-overview</span> component (with Details of Movie with id=2)</li>
+                            <li><span class="highlight monospace">/about</span> shows <span class="highlight monospace">about</span> component</li>
+                            <li>other paths -> show <span class="highlight monospace">page-not-found</span> component</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Routing (4/5)</h3>
+                    <div style="text-align: left">
+                        <p>In your app component:</p>
+                        <ul>
+                            <li>Add a navigationbar to your App component template with three links on it (register, movies, about).</li>
+                            <li>Use the <span class="highlight monospace">router-outlet</span> instead of the <span class="highlight monospace">movie-overview</span> selector </li>
+                            <li>Use the routerLink directive on menu-items to enable navigation.</li>
+                            <li>Add css-class "active" for currently active menu-item and style it using some css</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Routing (5/5)</h3>
+                    <div style="text-align: left">
+                        <p>change movie-overview component so that</p>
+                        <ul>
+                            <li>The movie shown in the movie-detail-component changes whenever the movie-id in the URL-path changes. Hint: there is an unused method in your movie-service you could use here.</li>
+                            <li>When the user clicks on any of the movies, the app navigates to the according app-url (e.g. movies/2). Change this in <span class="highlight monospace">selectMovie()</span>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </section>
+
+            <section id="forms">
+                <section>
+                    <h3>Forms</h3>
+                    <p>In this exercise, you will create a reactive registration form with form validations.</p>
+                    <p class="branch-hint">Fallback branch: exercise/7-router<br>Solution branch: exercise/8-forms</p>
+                    <a class="branch-hint" target="_blank" href="../git-intro/git-intro.html#/2">Git Cheat Sheet</a>
+                </section>
+                <section>
+                    <h3>Forms (1/4)</h3>
+                    <ul>
+                        <li>
+                            Import the ReactiveFormsModule in your <span class="highlight monospace">LoginModule</span>.
+                        </li>
+                        <li>
+                            In <span class="highlight monospace">RegisterComponent</span>, create a FormGroup <span class="highlight monospace">registrationForm</span> with following structure by using FormGroup and FormControl or (preferred) the formBuilder:
                         </li>
                     </ul>
-                </div>
-            </section>
-
-            <section>
-                <h3>Routing (3/5)</h3>
-                <div style="text-align: left">
-                    <p>Import the <span class="highlight monospace">RouterModule</span> in <span class="highlight monospace">AppModule</span>. Use the <span class="highlight monospace">RouterModule.forRoot</span> defining following routes:</p>
-                    <ul>
-                        <li>redirection to /register on application startup</li>
-                        <li><span class="highlight monospace">/register</span> shows the <span class="highlight monospace">register</span> component</li>
-                        <li><span class="highlight monospace">/movies</span> shows <span class="highlight monospace">movie-overview</span> component</li>
-                        <li><span class="highlight monospace">/movies/2</span> shows <span class="highlight monospace">movie-overview</span> component (with Details of Movie with id=2)</li>
-                        <li><span class="highlight monospace">/about</span> shows <span class="highlight monospace">about</span> component</li>
-                        <li>other paths -> show <span class="highlight monospace">page-not-found</span> component</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section>
-                <h3>Routing (4/5)</h3>
-                <div style="text-align: left">
-                    <p>In your app component:</p>
-                    <ul>
-                        <li>Add a navigationbar to your App component template with three links on it (register, movies, about).</li>
-                        <li>Use the <span class="highlight monospace">router-outlet</span> instead of the <span class="highlight monospace">movie-overview</span> selector </li>
-                        <li>Use the routerLink directive on menu-items to enable navigation.</li>
-                        <li>Add css-class "active" for currently active menu-item and style it using some css</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section>
-                <h3>Routing (5/5)</h3>
-                <div style="text-align: left">
-                    <p>change movie-overview component so that</p>
-                    <ul>
-                        <li>The movie shown in the movie-detail-component changes whenever the movie-id in the URL-path changes.
-                        Hint: there is an unused method in your movie-service you could use here.</li>
-                        <li>When the user clicks on any of the movies, the app navigates to the according app-url (e.g. movies/2). 
-                            Change this in <span class="highlight monospace">selectMovie()</span>
-                        </li>
-                    </ul>
-                </div>
-            </section>
-        </section>
-
-        <section id="forms">
-            <section>
-                <h3>Forms</h3>
-                <p>In this exercise, you will create a reactive registration form with form validations.</p>
-                <p class="branch-hint">Fallback branch: exercise/7-router<br>Solution branch: exercise/8-forms</p>
-                <a class="branch-hint" target="_blank" href="../git-intro/git-intro.html#/2">Git Cheat Sheet</a>
-            </section>
-            <section>
-                <h3>Forms (1/4)</h3>
-                <ul>
-                    <li>
-                        Import the ReactiveFormsModule in your <span class="highlight monospace">LoginModule</span>.
-                    </li>
-                    <li>
-                        In <span class="highlight monospace">RegisterComponent</span>, create a FormGroup <span class="highlight monospace">registrationForm</span> with following structure by using FormGroup and FormControl or (preferred) the formBuilder:
-                    </li>
-                </ul>
-                <pre>{ 
+                    <pre>{ 
 firstname: string, 
 lastname: string, 
 email: string,
@@ -535,44 +521,44 @@ passwords: {
   password: string, 
   passwordRepeat: string}
 }</pre>
-            </section>
-            <section>
-                <h3>Forms (2/4)</h3>
-                <ul>
-                    <li>
-                        Email should contain the default value "example@mail.com"
-                    </li>
-                    <li>
-                        Create an according form in the template of your <span class="highlight monospace">RegisterComponent</span> and bind it to your FormGroup.
+                </section>
+                <section>
+                    <h3>Forms (2/4)</h3>
+                    <ul>
+                        <li>
+                            Email should contain the default value "example@mail.com"
                         </li>
-                    <li>
-                        Add a submit button to your form. When the user submits the form, log the formGroups content (value) to the console.
-                    </li>
-                </ul>
-            </section>
-            <section>
-                <h3>Forms (3/4)</h3>
-                <ul>
-                    <li>
-                        add following validations:
-                        <ul>
-                            <li>Both names are validated for a minimum length of 4 characters</li>
-                            <li>Email has a valid e-mail format</li>
-                            <li>Password is a required field</li>
-                        </ul>
-                    </li>
-                </ul>
-            </section>
-            <section>
-                <h3>Forms (4/4)</h3>
-                <ul>
-                    <lI>
-                        Show textual descriptions on each field validated to give the user guidance on how to fix the errror.
-                        Use *ngIf to hide messages (<span class="monospace">get('fieldname').getError('minlength')</span>) to check for different validation-errors.
-                    </lI>
-                </ul>
-            </section>
-            <section>
+                        <li>
+                            Create an according form in the template of your <span class="highlight monospace">RegisterComponent</span> and bind it to your FormGroup.
+                        </li>
+                        <li>
+                            Add a submit button to your form. When the user submits the form, log the formGroups content (value) to the console.
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Forms (3/4)</h3>
+                    <ul>
+                        <li>
+                            add following validations:
+                            <ul>
+                                <li>Both names are validated for a minimum length of 4 characters</li>
+                                <li>Email has a valid e-mail format</li>
+                                <li>Password is a required field</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Forms (4/4)</h3>
+                    <ul>
+                        <lI>
+                            Show textual descriptions on each field validated to give the user guidance on how to fix the errror. Use *ngIf to hide messages (<span class="monospace">get('fieldname').getError('minlength')</span>) to check for different
+                            validation-errors.
+                        </lI>
+                    </ul>
+                </section>
+                <section>
                     <h3>Forms (optional)</h3>
                     <ul>
                         <li>
@@ -586,26 +572,47 @@ passwords: {
                         </li>
                     </ul>
                 </section>
+        </div>
     </div>
-</div>
 
-<script src="../node_modules/reveal.js/js/reveal.js"></script>
+    <script src="../node_modules/reveal.js/js/reveal.js"></script>
 
-<script>
-    // More info https://github.com/hakimel/reveal.js#configuration
-    Reveal.initialize({
-        history: true,
+    <script>
+        // More info https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            history: true,
 
-        // More info https://github.com/hakimel/reveal.js#dependencies
-        dependencies: [
-            { src: '../node_modules/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-            { src: '../node_modules/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-            { src: '../node_modules/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-            { src: '../node_modules/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-            { src: '../node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true },
-            { src: '../node_modules/reveal.js/plugin/notes/notes.js', async: true }
-        ]
-    });
-</script>
+            // More info https://github.com/hakimel/reveal.js#dependencies
+            dependencies: [{
+                src: '../node_modules/reveal.js/lib/js/classList.js',
+                condition: function() {
+                    return !document.body.classList;
+                }
+            }, {
+                src: '../node_modules/reveal.js/plugin/markdown/marked.js',
+                condition: function() {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            }, {
+                src: '../node_modules/reveal.js/plugin/markdown/markdown.js',
+                condition: function() {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            }, {
+                src: '../node_modules/reveal.js/plugin/highlight/highlight.js',
+                async: true,
+                callback: function() {
+                    hljs.initHighlightingOnLoad();
+                }
+            }, {
+                src: '../node_modules/reveal.js/plugin/zoom-js/zoom.js',
+                async: true
+            }, {
+                src: '../node_modules/reveal.js/plugin/notes/notes.js',
+                async: true
+            }]
+        });
+    </script>
 </body>
+
 </html>
