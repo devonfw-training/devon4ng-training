@@ -198,8 +198,316 @@ button.addEventListener("click", () => {
                 }
             </script>
         </section>
+        <section>
+            <section>
+                <h2>RxJS - Levelling Up - Basics</h2>
+                <ul>
+                    <li>Basic Consumption of an Observable
+                        <pre><code class="javascript stretch" data-trim>
+                            subscription = observable$.subscribe(
+                                value => this.doSomethingWith(value));
+                            ...
+                            subscription.unsubscribe();
+
+                            <span>{{ observable$ | async }}</span>
+                        </code></pre>
+                        Mind the memory leak - unsubscribe!
+                    </li>
+                    <li>Basic Creation
+                        <pre><code class="javascript stretch" data-trim>
+                            of( 1, 2, 3, 4 );
+                            from( [ 1, 2, 3, 4 ] );
+
+                            subject$ = new Subject();
+                            subject.next('A');
+                        </code></pre>
+                    </li>
+                </ul>
+                <aside class="notes">
+                    <UL>
+                        <LI>of: one parameter after another</LI>
+                        <LI>from: values from the array in order, can also take iterator and promise as</LI>
+                        <LI>what happens if you give an array to from? You get the complete array as a value.</LI>
+                    </UL>
+                </aside>
+            </section>
+            <section>
+                <h2>RxJS - Basics: Lifecycle</h2>
+                <ul>
+                    <li>Parameters of subscribe(...)</li>
+                </ul>
+                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+                            observable$.subscribe(
+                                value => this.doSomethingWith(value),
+                                error => this.displayError(error),
+                                () => this.weAreDone());
+
+                            observable$.subscribe({
+                                next: value => this.doSomethingWith(value),
+                                error: error => this.displayError(error),
+                                complete: () => this.weAreDone()
+                            });
+                        </code></pre>
+                <ul>
+                    <li>And what happens on the source's side</li>
+                </ul>
+                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+                            subject$ = new Subject();
+                            subject.next('A');
+                            subject.error('Something went wrong');
+                            // or
+                            subject.complete();
+                        </code></pre>
+                <aside class="notes">
+                    <UL>
+                        <LI>Most observables do not produce values before the first subscribe (possible exception: hot observables)</LI>
+                        <LI>Nothing after error or complete</LI>
+                    </UL>
+                </aside>
+            </section>
+            <section>
+                <h2>RxJS - Level 1: Basic Operators</h2>
+                <ul>
+                    <li>Manipulation and side effects</li>
+                </ul>
+                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+                    observable$.pipe(
+                        map( value => value * 2),
+                        tap( value => this.doSomething(value))
+                    );
+                        </code></pre>
+                </li>
+                <ul>
+                    <li>Simple selection and filtering</li>
+                </ul>
+                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+                    // Input: 5, 3, 3, 11, 7, 7, 19
+                    filter( value => value > 10)  // 11, 19
+                    take( 5 )               // 5, 3, 3, 11, 7
+                    distinctUntilChanged()  // 5, 3, 11, 7, 19
+                        </code></pre>
+            </section>
+            <section>
+                <h2>RxJS - Level 2: Simple Combinations</h2>
+                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+                    // timeline:   1      2  3  4  5  6  7
+                    // a$:                a     a     a|
+                    // b$:         b b b|
+                    // c$:         c         c     c     c|
+                    concat( a$, b$, c$)
+                    merge( a$, b$, c$)
+                </code></pre>
+                <aside class="notes">
+                    <ul>
+                        <LI>concat: all values of the first observable, then the second, then the third</LI>
+                        <li>merge: all values when they arrive</li>
+                    </ul>
+                    solution next page
+                </aside>
+            </section>
+            <section>
+                <h2>RxJS - Level 2: Simple Combinations (Solution)</h2>
+                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+                    // timeline:   1        2  3  4  5  6        7
+                    // a$:                  a     a     a|
+                    // b$:         b b b|
+                    // c$:         c           c     c           c|
+                    concat( a$, b$, c$)
+                    //                      a     a     abbbccc  c|
+                    merge( a$, b$, c$)
+                    //             b b b c  a  c  a  c  a        c|
+                </code></pre>
+                <aside class="notes">
+                    further questions:
+                    <UL>
+                        <LI>What happens if b$ emits at timeslot 2?</LI>
+                        <LI>What happens if b$ never completes?</LI>
+                    </UL>
+                </aside>
+            </section>
+            <section>
+                <h2>RxJS - Level 3: Value Combinations</h2>
+                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+                    // timeline:   1         2  3  4  5  6  7
+                    // a$:                   a1    a2    a3|
+                    // b$:         b1 b2 b3|
+                    // c$:         c1           c2    c3|
+                    forkJoin( a$, b$, c$)
+                    combineLatest( a$, b$, c$)
+                    zip( a$, b$, c$)
+                </code></pre>
+                <aside class="notes">
+                    <ul>
+                        <LI>forkJoin: wait until complete, then emit last values</LI>
+                        <li>combineLatest: emit combinations once you have a complete set of values</li>
+                        <li>zip: emit tupels of values in order</li>
+                    </ul>
+                    solution next page
+                </aside>
+            </section>
+            <section>
+                <h2>RxJS - Level 3: Value Combinations (Solution)</h2>
+                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+                    // timeline:   1         2      3      4      5      6
+                    // a$:                   a1            a2            a3|
+                    // b$:         b1 b2 b3|
+                    // c$:         c1               c2            c3|
+                    forkJoin( a$, b$, c$)
+                    //                                                   a3b3c3|
+                    combineLatest( a$, b$, c$)
+                    //                       a1b3c1 a1b3c2 a2b3c2 a2b3c3 a3b3c3|
+                    zip( a$, b$, c$)
+                    //                       a1b1c1        2b2bc2        a3b3c3|
+                </code></pre>
+                <aside class="notes">
+                    Further questions:
+                    <ul>
+                        <li>What happens if b$ emits at timeslot 2?</li>
+                        <li>What happens if b$ never completes?</li>
+                        <li>What happens if b$ only emits two values?</li>
+                        <li>What is a typical usage for forkJoin? (-> do some parallel backend calls)</li>
+                        <li>What is a typical usage for combineLatest? (-> something depends on two changing sources)</li>
+                    </ul>
+                </aside>
+            </section>
+            <section>
+                <h2>RxJS - Level 4: Simple Sub Processes</h2>
+                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+                    // timeline:         1  2    3  4  5    6
+                    // source:           a       b  c|
+                    // inner response:      r:a|       r:c| r:b|
+                    switchMap( input => getOneResponse(input))
+                    concatMap( input => getOneResponse(input))
+                    mergeMap( input => getOneResponse(input))
+                </code></pre>
+                <aside class="notes">
+                    <ul>
+                        <LI>switchMap: If you get a new input, ignore the previous result if it is still pending</li>
+                        <LI>concatMap: Return values for all inputs in order until inner observable completes, wait if necessary</li>
+                        <LI>mergeMap: Return values for all inputs in order of the results</LI>
+                    </ul>
+                    Solution next page
+                </aside>
+            </section>
+            <section>
+                <h2>RxJS - Level 4: Simple Sub Processes (Solution)</h2>
+                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+                    // timeline:         1  2    3  4  5    6
+                    // source:           a       b  c|
+                    // response a:          r:a|
+                    // response b:                          r:b|
+                    // response c:                     r:c|
+                    switchMap( input => getOneResponse(input))
+                    //                      r:a        r:c|
+                    concatMap( input => getOneResponse(input))
+                    //                      r:a             r:b r:c|
+                    mergeMap( input => getOneResponse(input))
+                    //                      r:a        r:c  r:b|
+                </code></pre>
+                <aside class="notes">
+                    Followup questions:
+                    <ul>
+                        <LI>What happens if the inner observable returns multiple values? -> next page</LI>
+                    </ul>
+                </aside>
+            </section>
+            <section>
+                <h2>RxJS - Level 5: Complex Sub Processes</h2>
+                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+                    // timeline:         1  2     3        4   5     6     7
+                    // source:           a        b        c|
+                    // response a:          r:a1               r:a2|
+                    // response b:                   r:b1|
+                    // response c:                                   r:c1  r:c2|
+                    switchMap( input => getResponses(input))
+                    concatMap( input => getResponses(input))
+                    mergeMap( input => getResponses(input))
+                </code></pre>
+                <aside class="notes">
+                    <ul>
+                        <LI>switchMap: If you get a new input, ignore the previous result if it is still pending</li>
+                        <LI>concatMap: Return values for all inputs in order until inner observable completes, wait if necessary</li>
+                        <LI>mergeMap: Return values for all inputs in order of the results</LI>
+                    </ul>
+                    Solution next page
+                </aside>
+            </section>
+            <section>
+                <h2>RxJS - Level 5: Complex Sub Processes (Solution)</h2>
+                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+                    // timeline:         1  2     3        4   5         6               7
+                    // source:           a        b        c|
+                    // response a:          r:a1                         r:a2|
+                    // response b:                   r:b1|
+                    // response c:                             r:c1                      r:c2|
+                    switchMap( input => getResponses(input))
+                    //                      r:a1     r:b1      r:c1                      r:c2|
+                    concatMap( input => getResponses(input))
+                    //                      r:a1                         r:a2 r:b1 r:c1  r:c2|
+                    mergeMap( input => getResponses(input))
+                    //                      r:a1     r:b1      r:c1      r:a2            r:c2|
+                </code></pre>
+                <aside class="notes">
+                    Followup questions:
+                    <ul>
+                        <LI>What happens if the inner observable does not return a value? (-> timeout, timeoutWith)</LI>
+                        <LI>What happens if the inner observable completes late or does not complete?</LI>
+                    </ul>
+                </aside>
+            </section>
+            <section>
+                <h2>RxJS - Level 6: Control Timing: Backpressure</h2>
+                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+                    // timeline (ms):   0  100  200  300  400  500  600  700  800  900  1000
+                    // source:          a  b    c                        d    e         f
+                    delay( 300)
+                    debounceTime( 300)
+                    sampleTime( 300)
+                    throttleTime( 300)
+                </code></pre>
+                <aside class="notes">
+                    Solution next page
+                </aside>
+            </section>
+            <section>
+                <h2>RxJS - Level 6: Control Timing: Backpressure (Solution)</h2>
+                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+                    // timeline (ms):   0  100  200  300  400  500  600  700  800  900  1000  1100  1200  1300
+                    // source:          a  b    c                        d    e         f
+                    delay( 300)
+                    //                               a    b    c                        d    e            f
+                    debounceTime( 300)
+                    //                                         c                                          f
+                    sampleTime( 300)
+                    //                               c                             e                f
+                    throttleTime( 300)
+                    //                  a            c                   d              f
+                </code></pre>
+                <aside class="notes">
+                </aside>
+            </section>
+            <section>
+                <h2>RxJS - Pattern: unsubscribe using takeUntil</h2>
+                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+                    class MyComponent implements OnInit, OnDestroy {
+                        private onDestroy$ = new Subject();
+                        ngOnInit() {
+                            interval(1000).pipe(takeUntil(onDestroy$)).subscribe( () => {
+                                // do something every second until the component is destroyed
+                            });
+                        }
+                        ngOnDestroy(): void {
+                            this.onDestroy$.next();
+                            this.onDestroy$.complete();
+                        }
+                    }
+                </code></pre>
+                <aside class="notes">
+                </aside>
+            </section>
+        </section>
         <section class="fullscreen">
-            <p>Let's talk rxjs</p>
+            <p>Let's talk about async rxjs</p>
             <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
 const subject = new Subject&lt;boolean&gt;();
 
