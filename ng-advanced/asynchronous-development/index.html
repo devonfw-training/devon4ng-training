@@ -332,9 +332,9 @@ button.addEventListener("click", () => {
                     // a$:                   a1    a2    a3|
                     // b$:         b1 b2 b3|
                     // c$:         c1           c2    c3|
-                    forkJoin( a$, b$, c$)
-                    combineLatest( a$, b$, c$)
-                    zip( a$, b$, c$)
+                    forkJoin( [a$, b$, c$])
+                    combineLatest( [a$, b$, c$])
+                    zip( [a$, b$, c$])
                 </code></pre>
                 <aside class="notes">
                     <ul>
@@ -352,11 +352,11 @@ button.addEventListener("click", () => {
                     // a$:                   a1            a2            a3|
                     // b$:         b1 b2 b3|
                     // c$:         c1               c2            c3|
-                    forkJoin( a$, b$, c$)
+                    forkJoin( [a$, b$, c$])
                     //                                                   a3b3c3|
-                    combineLatest( a$, b$, c$)
+                    combineLatest( [a$, b$, c$])
                     //                       a1b3c1 a1b3c2 a2b3c2 a2b3c3 a3b3c3|
-                    zip( a$, b$, c$)
+                    zip( [a$, b$, c$])
                     //                       a1b1c1        2b2bc2        a3b3c3|
                 </code></pre>
                 <aside class="notes">
