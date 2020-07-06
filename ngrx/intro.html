@@ -49,76 +49,158 @@
                 </blockquote>
             </section>
             <section>
-                <p>Remember from <a href="../web-app-architecture/index.html#/23/8">Architecture Session</a> of Angular Foundations?
-                </p>
-                <img class="no-border" src="img/store-view-actions.png" alt="Store View Actions Relations">
+                <section>
+                    <h3>The Angular Component Tree</h3>
+                    <img class="no-border" src="img/component-tree.svg">
+                </section>
+                <section>
+                    <img class="no-border" style="height:400px" src="img/highlighted-smart-component.png" alt="">
+                    <p>A <strong>Dialog Component</strong> is typically an Angular toplevel component, that is activated by a route.</p>
+                </section>
+                <section>
+                    <h3>Dialog Components</h3>
+                    <img class="no-border" src="img/component-tree-highlight.svg">
+                </section>
+                <section>
+                    <img style="border: none; box-shadow: none" src="./img/smart-dumb-components-interaction.svg">
+                    <p>A <strong>must-know</strong> pattern: Smart vs Dumb Components</p>
+                </section>
+                <section>
+                    <table style="width: 100%; font-size: 26px">
+                        <thead>
+                            <tr style="font-size: 45px;">
+                                <td style="width: 50%">Smart Components</td>
+                                <td style="width: 50%">Dumb Components</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>contain the current view state</td>
+                                <td data-markdown>show data via `@Input` binding and contain no view state</td>
+                            </tr>
+                            <tr>
+                                <td data-markdown>handle events emited by _Dumb Components_</td>
+                                <td data-markdown>pass events up the component tree to be handled by _Smart Components_ (`@Output`)</td>
+                            </tr>
+                            <tr>
+                                <td>subscribe to application state from stores</td>
+                                <td>never use stores</td>
+                            </tr>
+                            <tr>
+                                <td data-markdown>consists of n _Dumb Components_</td>
+                                <td data-markdown>is independent of _Smart Components_</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3 data-markdown>A _Smart Component_ is typically a toplevel dialog</h3>
+                    <ul>
+                        <li>a component that can be routed to</li>
+                        <li>a modal dialog</li>
+                        <li>a component which is placed inside AppComponent</li>
+                    </ul>
+                </section>
             </section>
             <section>
-                <p>State is a single, immutable data structure.</p>
-                <pre class="fragment"><code class="typescript" data-trim>
-export interface AppState {
-  name: string;
-  age: number;
-  showDropdown: boolean;
-  isUserLoggedIn: boolean;
-}
-          </code></pre>
+                <section>
+                    <h3>Reactive Architecture</h3>
+                </section>
+                <section>
+                    <h2>Scaling MVC Applications</h2>
+                    <div class="image-box">
+                        <img width="600px" style="margin-right: 50px" src="img/ng-state-everwhere.png">
+                        <ul style="width: 500px">
+                            <li>Debugging?</li>
+                            <li>Testing?</li>
+                            <li>Understanding?</li>
+                            <li>Server Side Rendering?</li>
+                        </ul>
+                    </div>
+                    <p style="font-size: 18px; display:flex"><a href="http://onehungrymind.com/build-better-angular-2-application-redux-ngrx/">http://onehungrymind.com/build-better-angular-2-application-redux-ngrx/</a></p>
+                </section>
+                <section>
+                    <p style="font-style: italic">UI = f ( State )</p>
+                </section>
+                <section data-background-image="img/uifunction.png" data-background-size="contain">
+                </section>
+                <section data-background-image="img/state-example-1.png" data-background-size="contain">
+                </section>
+                <section data-background-image="img/state-example-2.png" data-background-size="contain">
+                </section>
+                <section data-background-image="img/state-example-3.png" data-background-size="contain">
+                </section>
             </section>
             <section>
-                <p>Actions describe state changes.</p>
-                <pre class="fragment"><code class="typescript" data-trim>
-                  this.store.dispatch(
-                      FlightAction.loadFlight({flightId: '4711ABC'})
-                  );
-          </code></pre>
-                <pre class="fragment"><code class="typescript" data-trim>
-                  this.store.dispatch(
-                      FlightAction.loadFlightSuccess({flight: loadedFlight})
-                  );
-          </code></pre>
-                <pre class="fragment"><code class="typescript" data-trim>
-                  this.store.dispatch(
-                      FlightAction.loadFlightError({error: loadingError})
-                  );
-          </code></pre>
+                <section>ngrx in Angular</section>
+                <section>
+                    <p>State is a single, immutable data structure.</p>
+                    <pre class="fragment"><code class="typescript" data-trim>
+    export interface AppState {
+      name: string;
+      age: number;
+      showDropdown: boolean;
+      isUserLoggedIn: boolean;
+    }
+              </code></pre>
+                </section>
+                <section>
+                    <p>Actions describe state changes.</p>
+                    <pre class="fragment"><code class="typescript" data-trim>
+                      this.store.dispatch(
+                          FlightAction.loadFlight({flightId: '4711ABC'})
+                      );
+              </code></pre>
+                    <pre class="fragment"><code class="typescript" data-trim>
+                      this.store.dispatch(
+                          FlightAction.loadFlightSuccess({flight: loadedFlight})
+                      );
+              </code></pre>
+                    <pre class="fragment"><code class="typescript" data-trim>
+                      this.store.dispatch(
+                          FlightAction.loadFlightError({error: loadingError})
+                      );
+              </code></pre>
+                </section>
+                <section>
+                    <p>Pure functions called reducers take the previous state and the next action to compute the new state.</p>
+                    <pre class="fragment"><code class="typescript" data-trim>
+      const counterReducer = createReducer(
+        initialState,
+        on(FlightAction.loadFlight, 
+          (state: FlightState, { flightId }) => 
+            ({ ...state, isLoading: true })
+        ),
+        on(FlightAction.loadFlightSuccess, 
+          (state: FlightState, { flight: loadedFlight }) => 
+            ({ ...state, 
+              error: null,
+              isLoading: false,
+              flight: loadedFlight })
+        ),
+        on(FlightAction.loadFlightError...));
+              </code></pre>
+                </section>
+                <section>
+                    <p>State accessed with the Store, an observable of state and an observer of actions.</p>
+                    <pre class="fragment"><code class="typescript" data-trim>
+    export class FlightComponent {
+      showSpinner$ = this.store.pipe(
+        select(state => state.isLoading));
+    
+      constructor(private store: Store&lt;AppState&gt;) {}
+    
+      onInput(flightId: string) {
+        this.store.dispatch(FlightAction.loadFlight({flightId}));
+      }
+    }
+              </code></pre>
+                </section>
+                <section>
+                    <p>Let's try this out and feel the power of reactive architecture!</p>
+                </section>
             </section>
-            <section>
-                <p>Pure functions called reducers take the previous state and the next action to compute the new state.</p>
-                <pre class="fragment"><code class="typescript" data-trim>
-  const counterReducer = createReducer(
-    initialState,
-    on(FlightAction.loadFlight, 
-      (state: FlightState, { flightId }) => 
-        ({ ...state, isLoading: true })
-    ),
-    on(FlightAction.loadFlightSuccess, 
-      (state: FlightState, { flight: loadedFlight }) => 
-        ({ ...state, 
-          error: null,
-          isLoading: false,
-          flight: loadedFlight })
-    ),
-    on(FlightAction.loadFlightError...));
-          </code></pre>
-            </section>
-            <section>
-                <p>State accessed with the Store, an observable of state and an observer of actions.</p>
-                <pre class="fragment"><code class="typescript" data-trim>
-export class FlightComponent {
-  showSpinner$ = this.store.pipe(
-    select(state => state.isLoading));
 
-  constructor(private store: Store&lt;AppState&gt;) {}
-
-  onInput(flightId: string) {
-    this.store.dispatch(FlightAction.loadFlight({flightId}));
-  }
-}
-          </code></pre>
-            </section>
-            <section>
-                <p>Let's try this out and feel the power of reactive architecture!</p>
-            </section>
         </div>
     </div>
 
