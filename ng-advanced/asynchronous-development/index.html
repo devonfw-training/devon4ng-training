@@ -55,32 +55,76 @@
             </ul>
         </section>
         <section>
-            <p>Explain the relation between <strong class="cap-blue">Event Loop</strong>, <strong
-                    class="cap-blue">Tasks</strong> and <strong class="cap-blue">Microtasks</strong></p>
-            <aside class="notes">
-                Discuss
-                <UL>
-                    <LI>
-                        Samples of Tasks / Macrotasks
-                        <UL>
-                            <LI>User events</LI>
-                            <LI>Executing the code loaded with a &lt;script src=&quot;...&quot;&gt; tag</LI>
-                            <LI>Timeouts which are ready</LI>
-                        </UL>
-                        Samples of Microtasks
-                        <UL>
-                            <LI>Promise-Result/Error</LI>
-                            <LI>queueMicrotask(...)</LI>
-                        </UL>
-                    </LI>
-                    <LI>Task synonymous with Macrotask, Job with Microtask</LI>
-                    <LI>Rendering happens between tasks, not while a task is running</LI>
-                    <LI>The microtaskqueue is emptied after the macrotask and before rendering</LI>
-                    <LI>How do we create a macrotask / microtask</LI>
-                    <LI>How do we display a progress dialog if we do not use Web Workers?</LI>
-                    <LI>How do we do something after our current code is finished and the result rendered?</LI>
-                </UL>
-            </aside>
+            <section>
+                <p>Explain the relation between <strong class="cap-blue">Event Loop</strong>, <strong
+                        class="cap-blue">Tasks</strong> and <strong class="cap-blue">Microtasks</strong></p>
+                <aside class="notes">
+                    Discuss
+                    <UL>
+                        <LI>
+                            Samples of Tasks / Macrotasks
+                            <UL>
+                                <LI>User events</LI>
+                                <LI>Executing the code loaded with a &lt;script src=&quot;...&quot;&gt; tag</LI>
+                                <LI>Timeouts which are ready</LI>
+                            </UL>
+                            Samples of Microtasks
+                            <UL>
+                                <LI>Promise-Result/Error</LI>
+                                <LI>queueMicrotask(...)</LI>
+                            </UL>
+                        </LI>
+                        <LI>Task synonymous with Macrotask, Job with Microtask</LI>
+                        <LI>Rendering happens between tasks, not while a task is running</LI>
+                        <LI>The microtaskqueue is emptied after the macrotask and before rendering</LI>
+                        <LI>How do we create a macrotask / microtask</LI>
+                        <LI>How do we display a progress dialog if we do not use Web Workers?</LI>
+                        <LI>How do we do something after our current code is finished and the result rendered?</LI>
+                    </UL>
+                </aside>
+            </section>
+            <section>
+                <p>Explain the relation between <strong class="cap-blue">Event Loop</strong>, <strong
+                        class="cap-blue">Tasks</strong> and <strong class="cap-blue">Microtasks</strong></p>
+                <pre><code class="javascript" data-trim data-line-numbers="">
+                    eventLoop() {
+                      while (!endOfWorld) {
+                        task = getNextMacrotaskOrNullIfEmpty();
+                        if (task) {
+                          task.execute();
+                        }
+                        while (task = getNextMicrotaskOrNullIfEmpty()) {
+                          task.execute();
+                        }
+                        render();
+                      }
+                    }
+                </code></pre>
+                <aside class="notes">
+                    Discuss
+                    <UL>
+                        <LI>
+                            Samples of Tasks / Macrotasks
+                            <UL>
+                                <LI>User events</LI>
+                                <LI>Executing the code loaded with a &lt;script src=&quot;...&quot;&gt; tag</LI>
+                                <LI>Timeouts which are ready</LI>
+                            </UL>
+                            Samples of Microtasks
+                            <UL>
+                                <LI>Promise-Result/Error</LI>
+                                <LI>queueMicrotask(...)</LI>
+                            </UL>
+                        </LI>
+                        <LI>Task synonymous with Macrotask, Job with Microtask</LI>
+                        <LI>Rendering happens between tasks, not while a task is running</LI>
+                        <LI>The microtaskqueue is emptied after the macrotask and before rendering</LI>
+                        <LI>How do we create a macrotask / microtask</LI>
+                        <LI>How do we display a progress dialog if we do not use Web Workers?</LI>
+                        <LI>How do we do something after our current code is finished and the result rendered?</LI>
+                    </UL>
+                </aside>
+            </section>
         </section>
         <section class="fullscreen">
             <h2>What will be the log result?</h2>
