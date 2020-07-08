@@ -21,17 +21,15 @@
 <body>
     <div class="reveal">
         <section class="slides">
-            <section class="fullscreen"
-                data-background="url(./img/Fixed_Shape_3_CapgeminiBlue_RGB.svg) no-repeat 0 500px">
+            <section class="fullscreen" data-background="url(./img/Fixed_Shape_3_CapgeminiBlue_RGB.svg) no-repeat 0 500px">
                 <div class="header-bottom-left">
                     <h3 class="cap-white">Unit Testing</h3>
                     <h4 class="cap-white">Philipp Huber</h4>
                 </div>
             </section>
 
-            <section id="agenda-1" data-transition="slide" class="fullscreen"
-                data-background-image="../common/img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
-                <h2 class="header">Agenda</h2>
+            <section id="agenda-1" data-transition="slide" class="fullscreen" data-background-image="../common/img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
+                <h2 class="header white">Agenda</h2>
 
                 <body class="white">
                     <ul>
@@ -57,20 +55,18 @@
 
             <!-- Basics -->
             <section class="fullscreen">
-                <section id="basics" data-transition="slide"
-                    data-background-image="../common/img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
+                <section id="basics" data-transition="slide">
                     <h2 class="header">Examples</h2>
 
-                    <body class="white">
-                        <a href="https://github.com/devonfw-ng-adv-training/defonfw-testing">
-                            https://github.com/devonfw-ng-adv-training/defonfw-testing</a>
+                    <body class="">
+                        <a href="https://github.com/devonfw-ng-adv-training/devonfw-testing">
+                            https://github.com/devonfw-ng-adv-training/devonfw-testing</a>
                     </body>
                 </section>
-                <section data-transition="slide"
-                    data-background-image="../common/img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
-                    <h2 class="header">Why unit tests?</h2>
+                <section data-transition="slide">
+                    <h2 class="header ">Why unit tests?</h2>
 
-                    <body class="white">
+                    <body class="">
                         <ul>
                             <li>
                                 recognize bad component design
@@ -84,11 +80,70 @@
                         </ul>
                     </body>
                 </section>
-                <section data-transition="slide"
-                    data-background-image="../common/img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
-                    <h2 class="header">Basics / jasmine</h2>
+                <section data-transition="slide">
+                    <h2 class="header">How to keep your code testable (& maintainable & readable...)?</h2>
 
-                    <body class="white">
+                    <body class="">
+                        <ul>
+                            <li>
+                                Dumb & Smart
+                            </li>
+                            <li>
+                                Thin & Fat
+                            </li>
+                        </ul>
+                    </body>
+                </section>
+                <section data-transition="slide">
+                    <h2 class="header ">Template (HTML) = Dumb & Declarative</h2>
+
+                    <body class="">
+                        <img height="300em" class="no-background no-border no-margin no-shadow" src="./img/donald-trump.jpg">
+                        <ul>
+                            <li>
+                                Declarative code says WHAT to do
+                            </li>
+                            <li>
+                                Avoid complicated logic
+                            </li>
+                            <li>Small and simple</li>
+                            <li>*ngIf</li>
+                            <li>knows its component & its sub-component</li>
+                        </ul>
+                    </body>
+                </section>
+                <section data-transition="slide">
+                    <h2 class="header ">Component (TS / Controller) = Smart & Thin</h2>
+
+                    <body class="">
+                        <img height="300em" class="no-background no-border no-margin no-shadow" src="./img/tesla.png">
+                        <ul>
+                            <li>Manage the view</li>
+                            <li>Invoke Services</li>
+                            <li>No http</li>
+                            <li>Smarter = Fatter?</li>
+                            <li>Component decides, services processes</li>
+                            <li>as thin as possible - but no thinner.</li>
+                        </ul>
+                    </body>
+                </section>
+                <section data-transition="slide">
+                    <h2 class="header ">Services = Fat, Happy and Specific</h2>
+
+                    <body class="">
+                        <img height="300em" class="no-background no-border no-margin no-shadow" src="./img/sumo.gif">
+                        <ul>
+                            <li>holds business logic</li>
+                            <li>fatten services, starve components</li>
+                            <li>SOLID (Single Responsible & Interface Segregation most importantly)</li>
+                            <li>may manage state or have no state at all</li>
+                        </ul>
+                    </body>
+                </section>
+                <section data-transition="slide">
+                    <h2 class="header ">Basics / jasmine</h2>
+
+                    <body class="">
                         <ul>
                             <li>
                                 suites: describe(string, function)
@@ -105,11 +160,10 @@
                         </ul>
                     </body>
                 </section>
-                <section data-transition="slide"
-                    data-background-image="../common/img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
-                    <h2 class="header">.. / setup & teardown</h2>
+                <section data-transition="slide">
+                    <h2 class="header ">.. / setup & teardown</h2>
 
-                    <body class="white">
+                    <body class="">
                         <ul>
                             <li>
                                 beforeAll
@@ -130,9 +184,8 @@
 
             <!-- Child components -->
             <section class="fullscreen">
-                <section id="mocking" data-transition="slide"
-                    data-background-image="../common/img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
-                    <h2 class="header">Why mocking?</h2>
+                <section id="mocking" data-transition="slide" data-background-image="../common/img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
+                    <h2 class="header white">Why mocking?</h2>
 
                     <body class="white">
                         <ul>
@@ -151,9 +204,8 @@
                         </ul>
                     </body>
                 </section>
-                <section data-transition="slide"
-                    data-background-image="../common/img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
-                    <h2 class="header">how to handle child components</h2>
+                <section data-transition="slide" data-background-image="../common/img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
+                    <h2 class="header white">how to handle child components</h2>
 
                     <body class="white">
                         <ul>
@@ -174,9 +226,8 @@
                     </body>
                 </section>
 
-                <section class="fullscreen" data-transition="slide"
-                    data-background-image="../common/img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
-                    <h2 class="header">how to mock services?</h2>
+                <section class="fullscreen" data-transition="slide" data-background-image="../common/img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
+                    <h2 class="header white">how to mock services?</h2>
 
                     <body class="white">
                         <ul>
@@ -200,9 +251,8 @@
 
             <!-- Async -->
             <section class="fullscreen">
-                <section id="async" data-transition="slide"
-                    data-background-image="../common/img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
-                    <h2 class="header">Testing asynchronous code</h2>
+                <section id="async" data-transition="slide" data-background-image="../common/img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
+                    <h2 class="header white">Testing asynchronous code</h2>
 
                     <body class="white">
                         <ul>
@@ -218,9 +268,8 @@
                         </ul>
                     </body>
                 </section>
-                <section data-transition="slide"
-                    data-background-image="../common/img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
-                    <h3 class="header">async</h3>
+                <section data-transition="slide" data-background-image="../common/img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
+                    <h3 class="header white">async</h3>
 
                     <body class="white">
                         <pre style="margin: 0; width: 100%"><code class="hljs ts" data-trim>
@@ -242,9 +291,8 @@ it('should show quote after getQuote (async)', async(() => {
                         </small>
                     </body>
                 </section>
-                <section data-transition="slide"
-                    data-background-image="../common/img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
-                    <h3 class="header">fakeAsync</h3>
+                <section data-transition="slide" data-background-image="../common/img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
+                    <h3 class="header white">fakeAsync</h3>
 
                     <body class="white">
                         <pre style="margin: 0; width: 100%"><code class="hljs ts" data-trim>
@@ -268,9 +316,8 @@ it('Button label via fakeAsync() and tick()', fakeAsync(() => {
                         </small>
                     </body>
                 </section>
-                <section data-transition="slide"
-                    data-background-image="../common/img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
-                    <h3 class="header">done</h3>
+                <section data-transition="slide" data-background-image="../common/img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
+                    <h3 class="header white">done</h3>
 
                     <body class="white">
                         <pre style="margin: 0; width: 100%"><code class="hljs ts" data-trim>
@@ -296,9 +343,8 @@ it('should show last quote (quote done)', (done: DoneFn) => {
 
             <!-- pact -->
             <section class="fullscreen">
-                <section id="pacts" data-transition="slide"
-                    data-background-image="../common/img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
-                    <h2 class="header">consumer-driven contract testing</h2>
+                <section id="pacts" data-transition="slide" data-background-image="../common/img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
+                    <h2 class="header white">consumer-driven contract testing</h2>
 
                     <body class="white">
                         <ul>
@@ -320,33 +366,26 @@ it('should show last quote (quote done)', (done: DoneFn) => {
                         </ul>
                     </body>
                 </section>
-                <section data-transition="slide"
-                    data-background-image="../common/img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
-                    <h3 class="header">pact / interface</h3>
+                <section data-transition="slide" data-background-image="../common/img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
+                    <h3 class="header white">pact / interface</h3>
 
-                    <img height="300em" class="no-background no-border no-margin no-shadow"
-                        src="./img/pact-basic-interface.JPG">
+                    <img height="300em" class="no-background no-border no-margin no-shadow" src="./img/pact-basic-interface.JPG">
                     <!--Image taken from FT Testing days presentation -->
                 </section>
-                <section data-transition="slide"
-                    data-background-image="../common/img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
-                    <h3 class="header">pact / consumer</h3>
+                <section data-transition="slide" data-background-image="../common/img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
+                    <h3 class="header white">pact / consumer</h3>
 
-                    <img height="400em" class="no-background no-border no-margin no-shadow"
-                        src="./img/pact-consumer.JPG">
+                    <img height="400em" class="no-background no-border no-margin no-shadow" src="./img/pact-consumer.JPG">
                     <!--Image taken from FT Testing days presentation -->
                 </section>
-                <section data-transition="slide"
-                    data-background-image="../common/img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
-                    <h3 class="header">pact / provider</h3>
+                <section data-transition="slide" data-background-image="../common/img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
+                    <h3 class="header white">pact / provider</h3>
 
-                    <img height="400em" class="no-background no-border no-margin no-shadow"
-                        src="./img/pact-provider.JPG">
+                    <img height="400em" class="no-background no-border no-margin no-shadow" src="./img/pact-provider.JPG">
                     <!--Image taken from FT Testing days presentation -->
                 </section>
-                <section data-transition="slide"
-                    data-background-image="../common/img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
-                    <h3 class="whheaderite">consumer code (java spring)</h3>
+                <section data-transition="slide" data-background-image="../common/img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
+                    <h3 class="whheader whiteite">consumer code (java spring)</h3>
 
                     <body class="white">
                         <pre style="margin: 0; width: 100%"><code class="hljs ts" data-trim>
@@ -383,30 +422,34 @@ public class ContractTest {
             history: true,
 
             // More info https://github.com/hakimel/reveal.js#dependencies
-            dependencies: [
-                {
-                    src: './reveal.js/lib/js/classList.js', condition: function () {
-                        return !document.body.classList;
-                    }
-                },
-                {
-                    src: './reveal.js/plugin/markdown/marked.js', condition: function () {
-                        return !!document.querySelector('[data-markdown]');
-                    }
-                },
-                {
-                    src: './reveal.js/plugin/markdown/markdown.js', condition: function () {
-                        return !!document.querySelector('[data-markdown]');
-                    }
-                },
-                {
-                    src: './reveal.js/plugin/highlight/highlight.js', async: true, callback: function () {
-                        hljs.initHighlightingOnLoad();
-                    }
-                },
-                { src: './reveal.js/plugin/zoom-js/zoom.js', async: true },
-                { src: './reveal.js/plugin/notes/notes.js', async: true }
-            ]
+            dependencies: [{
+                src: './reveal.js/lib/js/classList.js',
+                condition: function() {
+                    return !document.body.classList;
+                }
+            }, {
+                src: './reveal.js/plugin/markdown/marked.js',
+                condition: function() {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            }, {
+                src: './reveal.js/plugin/markdown/markdown.js',
+                condition: function() {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            }, {
+                src: './reveal.js/plugin/highlight/highlight.js',
+                async: true,
+                callback: function() {
+                    hljs.initHighlightingOnLoad();
+                }
+            }, {
+                src: './reveal.js/plugin/zoom-js/zoom.js',
+                async: true
+            }, {
+                src: './reveal.js/plugin/notes/notes.js',
+                async: true
+            }]
         });
     </script>
 </body>

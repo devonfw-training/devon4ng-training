@@ -206,6 +206,15 @@ registerOnChange(fn: any)
 // a touch event
 registerOnTouched(fn: any)
                 </code></pre>
+                    <aside class="notes">
+                        <ul>
+                            <li>writeValue() - writes a new value to an element; the new value comes from the MODEL(FormControl.setValue -> ControlValueAccessor.writeValue -> update element -> change is visible in the UI) registerOnChange() - registers a
+                                callback function that will</li>
+                            <li>be called whenever the value changes in the UI and will propagate the new value to the model. registerOnTouched() - registers a callback function that will be called when the blur event occurs; the FormControl will be notified</li>
+                            <li>of this event as it may need to perform some updates when this event occurs. setDisabledState - will disable/enable the DOM element depending on the value provided; this method is usually called as a result of a change in the
+                                MODEL.</li>
+                        </ul>
+                    </aside>
                 </section>
 
                 <section data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
