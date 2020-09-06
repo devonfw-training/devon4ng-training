@@ -1,0 +1,486 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="Philipp Huber">
+
+    <title>Angular Advanced - Architecture</title>
+
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section data-transition="zoom">
+                <div>
+                    <h1 class="blue">Architecture Refresher</h1>
+                    <a class="blue" rel="author" href="mailto:philipp.huber@capgemini.com">Philipp Huber</a>
+                </div>
+            </section>
+            <section data-transition="zoom">
+                <ul class="blue">
+                    <li>TI-Architecture:
+                        <span>
+                            technical infrastructure...
+                        </span>
+                    </li>
+                    <li>T-Architecture:
+                        <span>
+                            technical...
+                        </span>
+                    </li>
+                    <li>A-Architecture:
+                        <span>
+                            application...
+                        </span>
+                    </li>
+                </ul>
+                <aside class="notes">
+
+                </aside>
+            </section>
+            <section data-transition="zoom">
+                <section>
+                    <h2 class="blue">TI-Architecture</h2>
+                </section>
+                <section>
+                    <h3 class="blue">Past</h3>
+                    <p>pageload-centric web applications</p>
+                    <figure>
+                        <img src="./img/classical-web-apps.png" height=300>
+                        <figcaption>from <a href="https://devonfw-training.github.io/devon4ng-training/web-app-architecture/">Web
+                                App Architecture</a>
+                        </figcaption>
+                    </figure>
+                    <aside class="notes">
+
+                    </aside>
+                </section>
+                <section>
+                    <h3 class="blue">Present</h3>
+                    <p>singlepage web applications (SPA)</p>
+                    <figure>
+                        <img src="./img/singlepage-web-apps.png" height=300>
+                        <figcaption>from <a href="https://devonfw-training.github.io/devon4ng-training/web-app-architecture/">Web
+                                App Architecture</a>
+                        </figcaption>
+                    </figure>
+                    <!-- TODO: src -->
+                    <aside class="notes">
+
+                    </aside>
+                </section>
+                <section>
+                    <ul class="blue">
+                        <li>TI-Architecture:
+                            <span>
+                                technical infrastructure...
+                            </span>
+                            <i class="margin-left fa fa-check-circle green"></i>
+                        </li>
+                        <li>T-Architecture:
+                            <span>
+                                technical...
+                            </span>
+                        </li>
+                        <li>A-Architecture:
+                            <span>
+                                application...
+                            </span>
+                        </li>
+                    </ul>
+                    <aside class="notes">
+
+                    </aside>
+                </section>
+            </section>
+            <section data-transition="zoom">
+                <section>
+                    <h2 class="blue">T-Architecture</h2>
+                    <aside class="notes">
+
+                    </aside>
+                </section>
+                <section>
+                    <p class="blue">explained by the <a href="https://devonfw.com/website/pages/docs/master-devon4ng.asciidoc_architecture.html#meta-architecture.asciidoc">devonfw
+                            meta architecture for clients</a></p>
+                    <aside class="notes">
+                        <p>ti: out of scope - meta architecture should work native & web</p>
+                        <p>a: out of scope - differs from project to project</p>
+                    </aside>
+                </section>
+                <section>
+                    <figure>
+                        <img src="./img/OASP_ClientArchitecture_Overview.png" height=400 alt="Client Architecture - Overview">
+                        <figcaption>Client Architecture - Overview</figcaption>
+                    </figure>
+
+                    <aside class="notes">
+                        <ol>
+                            <li>
+                                dialog component
+                                <ul>
+                                    <li>logical, self-contained part of the ui</li>
+                                    <li>accepts user input</li>
+                                    <li>actions & controls communication with user</li>
+                                    <li>uses services to execute business logic</li>
+                                    <li>has own data, state & logic</li>
+                                    <li>can be used to form a hierarchy</li>
+                                    <li>can interact with each other</li>
+                                </ul>
+                            </li>
+                            <li>
+                                dialog container
+                                <ul>
+                                    <li>bootstrapping client</li>
+                                    <li>application & environment configuration</li>
+                                    <li>initialization of application server access</li>
+                                    <li>controlling the lifecycle</li>
+                                    <li>controlling dialog flow & interactions between dialogs</li>
+                                    <li>providing services to dialog components (i.e. caching, data storage)</li>
+                                    <li>shutdown of application</li>
+                                </ul>
+                            </li>
+                            <li>
+                                application server access
+                                <ul>
+                                    <li>
+                                        handles backend calls
+                                    </li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </aside>
+                </section>
+                <section>
+                    <figure>
+                        <img src="./img/OASP_ClientArchitecture_DialogComponent.png" height=400 alt="Client Architecture - Dialog Component">
+                        <figcaption>Client Architecture - Dialog Component</figcaption>
+                    </figure>
+
+                    <aside class="notes">
+                        <ul>
+                            <li>
+                                presentation layer
+                                <ul>
+                                    <li>generates and displays the user interface</li>
+                                    <li>accepts user input & actions</li>
+                                    <li>binds user interaction to dialog core layer</li>
+                                </ul>
+                            </li>
+                            <li>
+                                dialog core layer
+                                <ul>
+                                    <li>processing of user interaction</li>
+                                    <li>valdidating</li>
+                                    <li>logical dialog state</li>
+                                    <li>communication with application server</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                    <figure>
+                        <img src="./img/OASP_ClientArchitecture_DialogContainer.png" height=400 alt="Client Architecture - Dialog Container">
+                        <figcaption>Client Architecture - Dialog Container</figcaption>
+                    </figure>
+
+                    <aside class="notes">
+                        <ul>
+                            <li>configuration management: deployment to different environments, using specific configuration there</li>
+                            <li>dialog management: defining, creating, destroying dialog components - basic lifecycle capabilities
+                            </li>
+                            <li>service registry: define, register, lookup services - independent of dialog hierarchy
+                            </li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                    <figure>
+                        <img src="./img/OASP_ClientArchitecture_DialogInteractions.png" height=400 alt="Client Architecture - Dialog Interactions">
+                        <figcaption>Client Architecture - Dialog Interactions</figcaption>
+                    </figure>
+
+                    <aside class="notes">
+                        support for a-architecture
+                    </aside>
+                </section>
+                <section data-transition="zoom">
+                    <ul class="blue">
+                        <li>TI-Architecture:
+                            <span>
+                                technical infrastructure...
+                            </span>
+                            <i class="margin-left fa fa-check-circle green"></i>
+                        </li>
+                        <li>T-Architecture:
+                            <span>
+                                technical...
+                            </span>
+                            <i class="margin-left fa fa-check-circle green"></i>
+                        </li>
+                        <li>A-Architecture:
+                            <span>
+                                application...
+                            </span>
+                        </li>
+                    </ul>
+                </section>
+            </section>
+
+            <section data-transition="zoom">
+                <section>
+                    <h2 class="blue">A-Architecture</h2>
+                </section>
+                <section>
+                    <h3>
+                        Terminology
+                    </h3>
+                    <ul>
+                        <li>A component describes an UI element containing HTML, CSS and JavaScript - structure, design and logic encapsulated inside a reusable container called component.</li>
+                        <li>A module describes an applications feature area. The application flight-app may have a module called booking. ES2015 modules are not meant here.</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Feature Modules</h3>
+                    <figure>
+                        <img src="./img/compilation-context.png" height=400 alt="angular.io compilation context">
+                        <figcaption>angular.io: compilation context</figcaption>
+                    </figure>
+
+                    <aside class="notes">
+                        The compilation context is basically just a fancy term for grouping of the files that TypeScript will parse and analyze to determine what is valid and what isn't.
+                        <!-- https://basarat.gitbook.io/typescript/project/compilation-context -->
+
+                        <ul>
+                            <li>buckets for components, directives, pipes & services</li>
+                            <li>structure following business domains</li>
+                            <li>nested modules possible</li>
+                            <li>lazy loading supported</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                    <h3>Components</h3>
+                    <figure>
+                        <img style="padding: 12px 0;" src="./img/component-tree.svg" height=400 alt="Angular Component Tree">
+                        <figcaption>component tree from <a href="https://devonfw-training.github.io/devon4ng-training/web-app-architecture/">Web
+                                App Architecture</a></figcaption>
+                    </figure>
+
+                    <aside class="notes">
+                        container components / presentation components smart vs dumb
+                    </aside>
+                </section>
+                <section>
+                    <h3>Smart & Dumb Components</h3>
+                    <figure>
+                        <img style="padding: 12px 0;" src="./img/smart-dumb-components-interaction.svg" height=400 alt="Component Interactions in Angular">
+                        <figcaption>component interaction from <a href="https://devonfw-training.github.io/devon4ng-training/web-app-architecture/">Web
+                                App Architecture</a></figcaption>
+                    </figure>
+
+                    <aside class="notes">
+                        <ul>
+                            <li>
+                                smart components
+                                <ul>
+                                    <li>consist of dumb components</li>
+                                    <li>contain current view state</li>
+                                    <li>handle events emitted by dumb components</li>
+                                    <li>subscribe to application state</li>
+                                    <li>can be: a modal, a route, a component inside app-component</li>
+                                </ul>
+                            </li>
+                            <li>
+                                dumb components
+                                <ul>
+                                    <li>show data via @Input binding</li>
+                                    <li>pass events up the component tree via @Output</li>
+                                    <li>is independant of smart components</li>
+                                    <li>does not use store</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                    <h3>Smart, Thin, Fat, Dumb, Happy, Specific..</h3>
+
+                    <p>but where to put my code? 😕</p>
+                </section>
+                <section>
+                    <h3>Template (HTML)</h3>
+                    <h4>Dumb & Declarative</h4>
+                    <div class="img-grid">
+                        <figure>
+                            <img src="./img/Dumb-and-dumber-poster.jpg" height=400 alt="Dumb & Dumber Movie Poster">
+                            <figcaption>dumb & dumber from <a href="https://fi.wikipedia.org/wiki/Nuija_ja_tosinuija">Wikipedia FI</a>
+                            </figcaption>
+                        </figure>
+                        <div>
+                            <ul>
+                                <li>Declarative code says WHAT to do</li>
+                                <li>Avoid complicated logic</li>
+                                <li>Small and simple</li>
+                                <li>*ngIf</li>
+                                <li>knows its component & its sub-component</li>
+                                <li>Dumb = Better</li>
+                            </ul>
+                            <pre>
+                                <code>
+<div class="btn-group-toggle">
+    <app-zipcode
+        *ngFor="let zipcode of city.zipcodes"
+        [(flag)]="city.state"
+        [label]="zipcode"
+    >
+    </app-zipcode>
+</div>
+                                </code>
+                            </pre>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h3>Component (TS)</h3>
+                    <h4>Smart & Thin</h4>
+                    <div class="img-grid">
+                        <figure>
+                            <img src="./img/Nikola_Tesla_by_Sarony_c1898.jpg" height=400 alt="angular.io compilation context">
+                            <figcaption>Nikola Tesla from <a href="https://commons.wikimedia.org/wiki/File:Nikola_Tesla_by_Sarony_c1898.jpg">Wikimedia</a>
+                            </figcaption>
+                        </figure>
+                        <div>
+                            <ul>
+                                <li>Manage the view</li>
+                                <li>Invoke Services</li>
+                                <li>No http</li>
+                                <li>Smarter = Fatter?</li>
+                                <li>Component decides - who processes?</li>
+                                <li>as thin as possible - but no thinner.</li>
+                            </ul>
+                            <pre>
+                                <code>
+@Component({
+    selector: 'app-resource',
+    template: "
+        <button (click)="done()">Done</button>
+        <button (click)="remove()">Remove</button>",
+    })
+    export class ResourceComponent {
+    @Input() task: Task;
+    
+    constructor(private resourceService: ResourceService) { }
+    
+    done() { this.resourceService.completeTask(this.task) }
+    
+    remove() { this.resourceService.removeTask(this.task) }
+    }
+                                </code>
+                            </pre>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h3>Services</h3>
+                    <h4>Fat, Happy and Specific</h4>
+                    <div class="img-grid">
+                        <figure>
+                            <img src="./img/Kuniyoshi_Utagawa,_The_sumo_wrestler_2.jpg" height=400 alt="Kuniyoshi Utagawa, a sumo wrestler">
+                            <figcaption>Kuniyoshi Utagawa from <a href="https://commons.wikimedia.org/wiki/File:Kuniyoshi_Utagawa,_The_sumo_wrestler_2.jpg">Wikimedia</a>
+                            </figcaption>
+                        </figure>
+                        <div>
+                            <ul>
+                                <li>holds business logic</li>
+                                <li>fatten services, starve components</li>
+                                <li>SOLID (Single Responsible & Interface Segregation most importantly)</li>
+                                <li>may manage state <u>or</u> have no state at all</li>
+                                <li>may always be private in component constructor</li>
+                            </ul>
+                            <pre>
+                                <code>
+@Component({
+    selector: 'app-resource',
+    template: "
+        <button (click)="done()">Done</button>
+        <button (click)="remove()">Remove</button>",
+    })
+    export class ResourceComponent {
+    @Input() task: Task;
+    
+    constructor(private resourceService: ResourceService) { }
+    
+    done() { this.resourceService.completeTask(this.task) }
+    
+    remove() { this.resourceService.removeTask(this.task) }
+    }
+                                </code>
+                            </pre>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <ul class="blue">
+                        <li>TI-Architecture:
+                            <span>
+                                technical infrastructure...
+                            </span>
+                            <i class="margin-left fa fa-check-circle green"></i>
+                        </li>
+                        <li>T-Architecture:
+                            <span>
+                                technical...
+                            </span>
+                            <i class="margin-left fa fa-check-circle green"></i>
+                        </li>
+                        <li>A-Architecture:
+                            <span>
+                                application...
+                            </span>
+                            <i class="margin-left fa fa-check-circle green"></i>
+                        </li>
+                    </ul>
+                </section>
+            </section>
+
+            <section data-transition="slide">
+                data-markdown="draft.md" data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:" data-charset="iso-8859-15">
+
+                <section> yolo</section>
+            </section>
+        </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+        // More info about initialization & config:
+        // - https://revealjs.com/initialization/
+        // - https://revealjs.com/config/
+        Reveal.initialize({
+            hash: true,
+
+            // Learn about plugins: https://revealjs.com/plugins/
+            plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+        });
+    </script>
+</body>
+
+</html>
