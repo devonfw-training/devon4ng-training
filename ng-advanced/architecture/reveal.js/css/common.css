@@ -18,7 +18,8 @@
 }
 
 li {
-    list-style: none;
+    margin-left: 24px;
+    list-style: circle;
 }
 
 .reveal .slides .header-align-left {
@@ -180,12 +181,25 @@ html .reveal section img.no-border {
     text-align: left;
 }
 
+.reveal .img-grid figure img,
+.reveal .img-grid figure figcaption {
+    float: right;
+}
+
 .reveal .img-grid ul li {
     font-size: 2rem;
 }
 
 .reveal pre code.no-max-height {
     max-height: unset;
+}
+
+.reveal pre code {
+    text-align: left;
+}
+
+.reveal pre {
+    margin-top: 12px;
 }
 
 .reveal .fullscreen {

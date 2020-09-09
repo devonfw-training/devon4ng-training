@@ -209,6 +209,91 @@
                     </aside>
                 </section>
                 <section>
+                    <h4 class="blue">Dialog Container - Configuration Management</h4>
+
+                    <figure>
+                        <img src="./img/OASP_ClientArchitecture_DialogContainer.png" height=200 alt="Client Architecture - Dialog Container">
+                        <figcaption>Client Architecture - Dialog Container</figcaption>
+                    </figure>
+                    <pre><code>"environmentSource": "environments/environment.ts",
+"environments": {
+    "dev": "environments/environment.ts",
+    "ci": "environments/environment.ci.ts",
+    "staging": "environments/environment.staging.ts",
+    "prod": "environments/environment.prod.ts"
+}</code></pre>
+                    <aside class="notes">
+                        <ul>
+                            <li>configuration management: deployment to different environments, using specific configuration there</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                    <h4 class="blue">Dialog Container - Configuration Management</h4>
+
+                    <figure>
+                        <img src="./img/OASP_ClientArchitecture_DialogContainer.png" height=200 alt="Client Architecture - Dialog Container">
+                        <figcaption>Client Architecture - Dialog Container</figcaption>
+                    </figure>
+                    <pre><code>// Import Statement
+import { environment } from '../../../environments/environment';     
+// Usage
+this.http.get(environment.backendUrl + '/flights');</code></pre>
+                    <aside class="notes">
+                        <ul>
+                            <li>configuration management: deployment to different environments, using specific configuration there</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                    <h4 class="blue">Dialog Container - Dialog Management</h4>
+
+                    <figure>
+                        <img src="./img/hooks-in-sequence.png" height=400 alt="Angular Lifecycle Hooks">
+                        <figcaption>Angular Lifecycle Hooks from <a href="https://v2.angular.io/docs/ts/latest/guide/lifecycle-hooks.html">angular.io</a>
+                        </figcaption>
+                    </figure>
+
+
+                    <aside class="notes">
+                        <ul>
+                            <li>dialog management: defining, creating, destroying dialog components - basic lifecycle capabilities
+                            </li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                    <h4 class="blue">Dialog Container - Service Registry</h4>
+
+                    <figure>
+                        <img src="./img/injector-bubbling.svg" height=400 alt="Client Architecture - Dependency Management - Injectors">
+                        <figcaption>Angular Dependency Management - Injector Bubbling</figcaption>
+                    </figure>
+                    <aside class="notes">
+                        <ul>
+                            <li>service registry: define, register, lookup services - independent of dialog hierarchy
+                            </li>
+                            <li>When Angular compiler creates HeaderComponent, injectors are asked until the dependency can be found or root injector can not handle</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                    <figure>
+                        <img src="./img/OASP_ClientArchitecture_DialogContainer.png" height=400 alt="Client Architecture - Dialog Container">
+                        <figcaption>Client Architecture - Dialog Container</figcaption>
+                    </figure>
+
+                    <aside class="notes">
+                        <ul>
+                            <li>configuration management: deployment to different environments, using specific configuration there</li>
+                            <li>dialog management: defining, creating, destroying dialog components - basic lifecycle capabilities
+                            </li>
+                            <li>service registry: define, register, lookup services - independent of dialog hierarchy
+                            </li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
                     <figure>
                         <img src="./img/OASP_ClientArchitecture_DialogInteractions.png" height=400 alt="Client Architecture - Dialog Interactions">
                         <figcaption>Client Architecture - Dialog Interactions</figcaption>
@@ -435,6 +520,33 @@
                     </div>
                 </section>
                 <section>
+                    <h4>State Management</h4>
+                    <figure>
+                        <img src="./img/ui-fn.png" height=300>
+                        <figcaption>from <a href="https://devonfw-training.github.io/devon4ng-training/web-app-architecture/">Web
+                                App Architecture</a>
+                        </figcaption>
+                    </figure>
+                </section>
+                <section>
+                    <h4>...with store</h4>
+                    <figure>
+                        <img src="./img/store-view-actions.png" height=300>
+                        <figcaption>from <a href="https://devonfw-training.github.io/devon4ng-training/web-app-architecture/">Web
+                                App Architecture</a>
+                        </figcaption>
+                    </figure>
+                    <aside class="notes">
+                        <p>Forget Everything And Go Reactive?</p>
+                        <p>Abstraction is the tradeoff which is not always worth it.</p>
+                        <ul>
+                            <li>For small applications it's simply overkill.</li>
+                            <li>Lack of know how.</li>
+                            <li>Use it when you need it.</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
                     <ul class="blue">
                         <li>TI-Architecture:
                             <span>
@@ -456,12 +568,6 @@
                         </li>
                     </ul>
                 </section>
-            </section>
-
-            <section data-transition="slide">
-                data-markdown="draft.md" data-separator="^\n\n\n" data-separator-vertical="^\n\n" data-separator-notes="^Note:" data-charset="iso-8859-15">
-
-                <section> yolo</section>
             </section>
         </div>
     </div>
