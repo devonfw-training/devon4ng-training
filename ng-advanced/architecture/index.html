@@ -8,13 +8,13 @@
 
     <title>Angular Advanced - Architecture</title>
 
-    <link rel="stylesheet" href="dist/reset.css">
-    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="./reveal/reset.css">
+    <link rel="stylesheet" href="./reveal/reveal.css">
 
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <!-- Theme used for syntax highlighted code -->
-    <link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+    <link rel="stylesheet" href="./plugin/highlight/monokai.css" id="highlight-theme">
 
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -607,15 +607,14 @@ this.http.get(environment.backendUrl + '/flights');</code></pre>
     </div>
 
     <script type="module">
-        import Reveal from './dist/reveal.esm.js';
+        import Reveal from './reveal/reveal.esm.js';
         import Markdown from './plugin/markdown/markdown.esm.js';
         import Highlight from './plugin/highlight/highlight.esm.js';
         import Notes from './plugin/notes/notes.esm.js';
-        import Zoom from './plugin/notes/zoom.esm.js';
+        import Zoom from './plugin/zoom/zoom.esm.js';
 
         Reveal.initialize({
             hash: true,
-
             // Learn about plugins: https://revealjs.com/plugins/
             plugins: [Markdown, Highlight, Notes, Zoom]
         });
