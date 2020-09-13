@@ -250,15 +250,23 @@ button.addEventListener("click", () => {
                     <li>
                         <a href="rxjs.dev">rxjs.dev: Library Documentation</a>
                         <ul>
-                            <li><a href="https://rxjs.dev/guide/operators">https://rxjs.dev/guide/operators</a>: structured overview of operators</li>
-                            <li><a href="https://rxjs.dev/operator-decision-tree">https://rxjs.dev/operator-decision-tree</a>: I need to do something - what can I use?</li>
+                            <li><a href="https://rxjs.dev/guide/operators">https://rxjs.dev/guide/operators</a>:
+                                structured overview of operators
+                            </li>
+                            <li><a href="https://rxjs.dev/operator-decision-tree">https://rxjs.dev/operator-decision-tree</a>:
+                                I need to do something - what can I use?
+                            </li>
                         </ul>
                     </li>
                     <li>
                         From the Angular Documentation
                         <ul>
-                            <li><a href="https://angular.io/guide/rx-library">https://angular.io/guide/rx-library</a> : Brief introduction into some concepts</li>
-                            <li><a href="https://angular.io/guide/observables-in-angular">https://angular.io/guide/observables-in-angular</a> : How Angular uses RxJS</li>
+                            <li><a href="https://angular.io/guide/rx-library">https://angular.io/guide/rx-library</a> :
+                                Brief introduction into some concepts
+                            </li>
+                            <li><a href="https://angular.io/guide/observables-in-angular">https://angular.io/guide/observables-in-angular</a>
+                                : How Angular uses RxJS
+                            </li>
                         </ul>
                     </li>
                 </ul>
@@ -352,6 +360,14 @@ button.addEventListener("click", () => {
                     take( 5 )               // 5, 3, 3, 11, 7
                     distinctUntilChanged()  // 5, 3, 11, 7, 19
                         </code></pre>
+                <aside class="notes">
+                    <UL>
+                        <LI>Hint for later (exercise level 7): distinctUntilChanged by default makes a comparison using
+                            ===
+                            but allows a comparator as parameter.
+                        </LI>
+                    </UL>
+                </aside>
             </section>
             <section>
                 <h2>RxJS - Level 2: Simple Combinations</h2>
@@ -373,7 +389,8 @@ button.addEventListener("click", () => {
                 </ul>
                 <aside class="notes">
                     <ul>
-                        <LI>concat: all values of the first observable, then the subscribe the second, then the third</LI>
+                        <LI>concat: all values of the first observable, then the subscribe the second, then the third
+                        </LI>
                         <li>merge: immediate subscribe, all values when they arrive</li>
                     </ul>
                     solution next page
@@ -563,7 +580,7 @@ button.addEventListener("click", () => {
                     // timeline (ms):   0  100  200  300  400  500  600  700  800  900  1000  1100  1200  1300
                     // source:          a  b    c                        d    e         f
                     delay( 300)
-                    //                               a    b    c                        d    e            f
+                    //                               a    b    c                        d     e           f
                     debounceTime( 300)
                     //                                         c                                          f
                     sampleTime( 300)
@@ -571,6 +588,22 @@ button.addEventListener("click", () => {
                     throttleTime( 300)
                     //                  a            c                   d              f
                 </code></pre>
+                <aside class="notes">
+                </aside>
+            </section>
+            <section>
+                <h2>RxJS - Level 7: A bit of flow control</h2>
+                iif(...): do something conditionally
+                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+                    iif( () => condition, a$, b$)
+                    // condition is evaluated at subscription time
+                    </code></pre>
+                timeoutWith(...): fallback to another observable when a timeout is reached
+                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+                    source$.timeoutWith( 1000, fallback$)
+                    // Timeout starts at subscription time.
+                    // Once the timeout of 1000ms is triggered, only values from fallback$ are returned
+                    </code></pre>
                 <aside class="notes">
                 </aside>
             </section>
