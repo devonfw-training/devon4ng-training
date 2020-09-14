@@ -589,21 +589,17 @@ export class HelloParagraph extends HTMLElement {
     <section class="fullscreen ">
         <h2 class="header-left ">Angular Elements compiles Angular components as CustomElements.</h2>
         <pre style="margin: auto; "><code class="ts " data-trim>
-// The separate angular application module that produces the custom elements
-@NgModule({
-  declarations: [SayHelloComponent],
-  imports: [BrowserModule],
-  bootstrap: [], // empty
-  entryComponents: [SayHelloComponent] // empty
+@Component({
+    selector: 'app-root',
+    template: `<h1>Some Component Stuff</h1>`,
 })
-export class AppModule implements DoBootstrap {
-  constructor(private injector: Injector) {}
-
-  ngDoBootstrap() {
-    // when building with a separate module, use ngDoBootstrap()
-    const sayHelloEl = createCustomElement(SayHelloComponent, {injector: this.injector});
-    customElements.define('say-hello', sayHelloEl);
-  }
+export class AppComponent {
+    constructor(injector: Injector, public popup: PopupService) {
+        // Convert `PopupComponent` to a custom element.
+        const PopupElement = createCustomElement(PopupComponent, {injector});
+        // Register the custom element with the browser.
+        customElements.define('popup-element', PopupElement);
+    }
 }
       </code></pre>
     </section>
@@ -642,12 +638,6 @@ export class AppModule implements DoBootstrap {
                     <LI>For build purposes we strip the hash - but that hurts with caching</LI>
                 </UL>
             </li>
-            <LI>
-                Size of the build result is large
-                <UL>
-                    <LI>Will get better with Ivy</LI>
-                </UL>
-            </LI>
         </ul>
     </section>
     <section class="fullscreen ">
@@ -664,9 +654,9 @@ export class AppModule implements DoBootstrap {
                     </LI>
                     <LI>
                         Zone.js should be shared when running separate webcomponents in Angular with shared services
-                        <UL>
-                            <LI>Will get better with Ivy</LI>
-                        </UL>
+                    </LI>
+                    <LI>
+                        or even be without zone.js...
                     </LI>
                 </UL>
             </LI>
@@ -716,9 +706,9 @@ export class AppModule implements DoBootstrap {
         </ul>
     </section>
 </section>
-<section>
+<!-- <section>
     <section>
-        <p>With Angular 8 the new <strong>Ivy Compiler</strong> has been shipped.</p>
+        <p>With Angular 8 <strong>Ivy Compiler</strong> has been shipped.</p>
         <p>It's a compiler, why should I care?</p>
     </section>
     <section class="fullscreen ">
@@ -828,7 +818,7 @@ class SayHelloComponent extends withNgElement() {}
     <section data-background="linear-gradient(to bottom right, #0070AD, rgb(18,171,219)) ">
         <h2 class="cap-white ">You can use all of it today. It will only become better!</h2>
     </section>
-</section>
+</section> -->
 </div>
 </div>
 
