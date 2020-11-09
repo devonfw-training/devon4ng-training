@@ -1,6 +1,6 @@
 # devon4ng training
 
-Hosted slides are here https://devonfw.github.io/devon4ng-training
+Hosted slides are here https://devonfw-training.github.io/devon4ng-training/#/
 
 ## Branches
 
