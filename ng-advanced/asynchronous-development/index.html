@@ -248,7 +248,7 @@ button.addEventListener("click", () => {
                 Documentation + Reference
                 <ul>
                     <li>
-                        <a href="rxjs.dev">rxjs.dev: Library Documentation</a>
+                        <a href="https://rxjs.dev/">rxjs.dev: Library Documentation</a>
                         <ul>
                             <li><a href="https://rxjs.dev/guide/operators">https://rxjs.dev/guide/operators</a>:
                                 structured overview of operators
@@ -571,6 +571,12 @@ button.addEventListener("click", () => {
                     throttleTime( 300)
                 </code></pre>
                 <aside class="notes">
+                    <ul>
+                        <li>delay: simply delay each individual value</li>
+                        <li>debounceTime: wait until the value is unchanged for the given time, then emit it</li>
+                        <li>sampleTime: emit the last value for each interval or none if no value was received</li>
+                        <li>throttleTime: emit a value and then ignore values for the interval</li>
+                    </ul>
                     Solution next page
                 </aside>
             </section>
@@ -608,6 +614,175 @@ button.addEventListener("click", () => {
                 </aside>
             </section>
             <section>
+                <h2>Exercise</h2>
+                <ul>
+                    <li><a href="https://github.com/devonfw-ng-adv-training/rxjs-exercises">Source</a></li>
+                    <li>Start with branch master</li>
+                    <li>
+                        Check README.md for information:
+                        <ul>
+                            <li>Pick level or challenge to work on, 'fdescribe' the corresponding tests</li>
+                            <li>Run UnitTests</li>
+                            <li>Implement the features. Do not alter the tests.</li>
+                        </ul>
+                    </li>
+                    <li>Sample solution is available on a separate branch</li>
+                </ul>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>RxJS - Patterns / Examples</h2>
+                Some patterns and other examples:
+                <ul>
+                    <li>Marble diagrams</li>
+                    <li>takeUntil - how to elegantly unsubscribe</li>
+                    <li>nested subscribes</li>
+                    <li>typeahead</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Please explain the marble diagram</h2>
+                <div style="background-color: rgb(255, 255, 255); box-shadow: rgba(0, 0, 0, 0.17) 0px 1px 2px 1px; border-radius: 2px;">
+                    <div style="padding: 10px 22px;">
+                        <svg viewBox="0 0 7 10" style="width: 48px; height: 68px; overflow: visible;">
+                            <line x1="0" x2="112" y1="5" y2="5" style="stroke: black; stroke-width: 0.3;"></line>
+                            <polygon points="111.7,6.1 111.7,3.9 114,5"></polygon>
+                        </svg>
+                        <svg viewBox="0 0 100 10" style="width: 680px; height: 68px; overflow: visible;">
+                            <line class="end-marker" x1="100" x2="100" y1="3.2" y2="6.8"
+                                  style="stroke: black; stroke-width: 0.3; cursor: ew-resize;"></line>
+                            <g class="marble" transform="translate(0, 5)" style="cursor: default;">
+                                <circle r="2.3" style="fill: rgb(62, 161, 203); stroke: black; stroke-width: 0.3;"></circle>
+                                <text text-anchor="middle" y="0.8"
+                                      style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
+                                    A
+                                </text>
+                            </g>
+                            <g class="marble" transform="translate(42, 5)" style="cursor: default;">
+                                <circle r="2.3" style="fill: rgb(130, 215, 54); stroke: black; stroke-width: 0.3;"></circle>
+                                <text text-anchor="middle" y="0.8"
+                                      style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
+                                    B
+                                </text>
+                            </g>
+                            <g class="marble" transform="translate(55, 5)" style="cursor: default;">
+                                <circle r="2.3" style="fill: rgb(255, 105, 70); stroke: black; stroke-width: 0.3;"></circle>
+                                <text text-anchor="middle" y="0.8"
+                                      style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
+                                    C
+                                </text>
+                            </g>
+                        </svg>
+                    </div>
+                    <div style="padding: 10px 22px;">
+                        <svg viewBox="0 0 7 10" style="width: 48px; height: 68px; overflow: visible;">
+                            <line x1="0" x2="112" y1="5" y2="5" style="stroke: black; stroke-width: 0.3;"></line>
+                            <polygon points="111.7,6.1 111.7,3.9 114,5"></polygon>
+                        </svg>
+                        <svg viewBox="0 0 100 10" style="width: 680px; height: 68px; overflow: visible;">
+                            <line class="end-marker" x1="25" x2="25" y1="3.2" y2="6.8"
+                                  style="stroke: black; stroke-width: 0.3; cursor: ew-resize;"></line>
+                            <g class="marble" transform="translate(0, 5)" style="cursor: default;">
+                                <circle r="2.3" style="fill: rgb(62, 161, 203); stroke: black; stroke-width: 0.3;"></circle>
+                                <text text-anchor="middle" y="0.8"
+                                      style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
+                                    1
+                                </text>
+                            </g>
+                            <g class="marble" transform="translate(10, 5)" style="cursor: default;">
+                                <circle r="2.3" style="fill: rgb(130, 215, 54); stroke: black; stroke-width: 0.3;"></circle>
+                                <text text-anchor="middle" y="0.8"
+                                      style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
+                                    2
+                                </text>
+                            </g>
+                            <g class="marble" transform="translate(20, 5)" style="cursor: default;">
+                                <circle r="2.3" style="fill: rgb(255, 203, 70); stroke: black; stroke-width: 0.3;"></circle>
+                                <text text-anchor="middle" y="0.8"
+                                      style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
+                                    3
+                                </text>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="operatorBox"
+                         style="border: 1px solid rgba(0, 0, 0, 0.06); padding: 22px; text-align: center; position: relative;">
+                        <div style="display: block; position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; box-shadow: rgba(0, 0, 0, 0.17) 0px 2px 10px 0px;"></div>
+                        <span class="operatorLabel"
+                              style="font-weight: 400; font-size: 1.3rem; font-family: &quot;Source Code Pro&quot;, monospace;">obs1$.switchMap(() =&gt; obs2$, (x, y) =&gt; "" + x + y)</span>
+                        <div style="display: block; position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; box-shadow: rgba(0, 0, 0, 0.26) 0px 2px 5px 0px;"></div>
+                    </div>
+                    <div style="padding: 10px 22px;">
+                        <svg viewBox="0 0 7 10" style="width: 48px; height: 68px; overflow: visible;">
+                            <line x1="0" x2="112" y1="5" y2="5" style="stroke: black; stroke-width: 0.3;"></line>
+                            <polygon points="111.7,6.1 111.7,3.9 114,5"></polygon>
+                        </svg>
+                        <svg viewBox="0 0 100 10" style="width: 680px; height: 68px; overflow: visible;">
+                            <line class="end-marker" x1="100.01" x2="100.01" y1="3.2" y2="6.8"
+                                  style="stroke: black; stroke-width: 0.3; cursor: ew-resize;"></line>
+                            <g class="marble" transform="translate(0, 5)" style="cursor: default;">
+                                <circle r="2.3" style="fill: rgb(62, 161, 203); stroke: black; stroke-width: 0.3;"></circle>
+                                <text text-anchor="middle" y="0.8"
+                                      style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
+                                    A1
+                                </text>
+                            </g>
+                            <g class="marble" transform="translate(10, 5)" style="cursor: default;">
+                                <circle r="2.3" style="fill: rgb(130, 215, 54); stroke: black; stroke-width: 0.3;"></circle>
+                                <text text-anchor="middle" y="0.8"
+                                      style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
+                                    A2
+                                </text>
+                            </g>
+                            <g class="marble" transform="translate(20, 5)" style="cursor: default;">
+                                <circle r="2.3" style="fill: rgb(255, 203, 70); stroke: black; stroke-width: 0.3;"></circle>
+                                <text text-anchor="middle" y="0.8"
+                                      style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
+                                    A3
+                                </text>
+                            </g>
+                            <g class="marble" transform="translate(42, 5)" style="cursor: default;">
+                                <circle r="2.3" style="fill: rgb(255, 105, 70); stroke: black; stroke-width: 0.3;"></circle>
+                                <text text-anchor="middle" y="0.8"
+                                      style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
+                                    B1
+                                </text>
+                            </g>
+                            <g class="marble" transform="translate(52, 5)" style="cursor: default;">
+                                <circle r="2.3" style="fill: rgb(62, 161, 203); stroke: black; stroke-width: 0.3;"></circle>
+                                <text text-anchor="middle" y="0.8"
+                                      style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
+                                    B2
+                                </text>
+                            </g>
+                            <g class="marble" transform="translate(55.00000000000001, 5)" style="cursor: default;">
+                                <circle r="2.3" style="fill: rgb(255, 203, 70); stroke: black; stroke-width: 0.3;"></circle>
+                                <text text-anchor="middle" y="0.8"
+                                      style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
+                                    C1
+                                </text>
+                            </g>
+                            <g class="marble" transform="translate(65, 5)" style="cursor: default;">
+                                <circle r="2.3" style="fill: rgb(255, 105, 70); stroke: black; stroke-width: 0.3;"></circle>
+                                <text text-anchor="middle" y="0.8"
+                                      style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
+                                    C2
+                                </text>
+                            </g>
+                            <g class="marble" transform="translate(75, 5)" style="cursor: default;">
+                                <circle r="2.3" style="fill: rgb(62, 161, 203); stroke: black; stroke-width: 0.3;"></circle>
+                                <text text-anchor="middle" y="0.8"
+                                      style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
+                                    C3
+                                </text>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+                <small>Taken from: https://rxmarbles.com/#switchMap</small>
+            </section>
+            <section>
                 <h2>RxJS - Pattern: unsubscribe using takeUntil</h2>
                 <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
                     class MyComponent implements OnInit, OnDestroy {
@@ -624,6 +799,69 @@ button.addEventListener("click", () => {
                     }
                 </code></pre>
                 <aside class="notes">
+                </aside>
+            </section>
+            <section class="fullscreen">
+                <h2>Please explain the code</h2>
+                <pre><code class="javascript" data-trim data-line-numbers="">
+    ngOnInit() {
+      this.todo$ = this.route.params.pipe(
+        switchMap(params => this.todoService.getTodo(+params['id']))
+      )
+    }
+          </code></pre>
+                <p>... and how does it differ to the following?</p>
+                <pre><code class="javascript" data-trim data-line-numbers="">
+    ngOnInit() {
+      this.route.params.subscribe(params => {
+        this.todoService.getTodo(+params['id']).subscribe(todo => {
+          this.todo = todo;
+        });
+      });
+    }
+          </code></pre>
+                <p>Which version is better and why?</p>
+                <aside class="notes">
+                    <UL>
+                        <LI>
+                            Discuss: Observable chains
+                        </LI>
+                        <LI>
+                            Discuss: Subscribe in subscribe
+                        </LI>
+                    </UL>
+                </aside>
+            </section>
+            <section class="fullscreen">
+                <h2>Please explain the following code</h2>
+                <pre><code class="javascript stretch" data-trim data-line-numbers="">
+    import { fromEvent } from 'rxjs';
+    import { ajax } from 'rxjs/ajax';
+    import { map, filter, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+
+    const searchInput = document.getElementById('search-box');
+
+    const typeahead = fromEvent(searchInput, 'input').pipe(
+      map((e: KeyboardEvent) => e.target.value),
+      filter(text => text.length > 3),
+      debounceTime(150),
+      distinctUntilChanged(),
+      switchMap(() => ajax('/api/search'))
+    );
+
+    typeahead.subscribe(data => {
+      // handle search result
+    });
+          </code></pre>
+                <p>... what does each operator do exactly? What about the order? Is it important?</p>
+                <aside class="notes">
+                    Some sample code (more complex) is part of the RxJs Examples repository:
+                    <UL>
+                        <LI>https://github.com/BerndOlleckCap/RxJsExamples</LI>
+                        <LI>start angular application</LI>
+                        <LI>Tab "Search"</LI>
+                        <LI>Code: SearchComponent</LI>
+                    </UL>
                 </aside>
             </section>
         </section>
@@ -890,236 +1128,6 @@ describe('ListComponent', () => {
   }));
 });
             </code></pre>
-        </section>
-        <section>
-            <h2>Please explain the marble diagram</h2>
-            <div style="background-color: rgb(255, 255, 255); box-shadow: rgba(0, 0, 0, 0.17) 0px 1px 2px 1px; border-radius: 2px;">
-                <div style="padding: 10px 22px;">
-                    <svg viewBox="0 0 7 10" style="width: 48px; height: 68px; overflow: visible;">
-                        <line x1="0" x2="112" y1="5" y2="5" style="stroke: black; stroke-width: 0.3;"></line>
-                        <polygon points="111.7,6.1 111.7,3.9 114,5"></polygon>
-                    </svg>
-                    <svg viewBox="0 0 100 10" style="width: 680px; height: 68px; overflow: visible;">
-                        <line class="end-marker" x1="100" x2="100" y1="3.2" y2="6.8"
-                              style="stroke: black; stroke-width: 0.3; cursor: ew-resize;"></line>
-                        <g class="marble" transform="translate(0, 5)" style="cursor: default;">
-                            <circle r="2.3" style="fill: rgb(62, 161, 203); stroke: black; stroke-width: 0.3;"></circle>
-                            <text text-anchor="middle" y="0.8"
-                                  style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
-                                A
-                            </text>
-                        </g>
-                        <g class="marble" transform="translate(42, 5)" style="cursor: default;">
-                            <circle r="2.3" style="fill: rgb(130, 215, 54); stroke: black; stroke-width: 0.3;"></circle>
-                            <text text-anchor="middle" y="0.8"
-                                  style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
-                                B
-                            </text>
-                        </g>
-                        <g class="marble" transform="translate(55, 5)" style="cursor: default;">
-                            <circle r="2.3" style="fill: rgb(255, 105, 70); stroke: black; stroke-width: 0.3;"></circle>
-                            <text text-anchor="middle" y="0.8"
-                                  style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
-                                C
-                            </text>
-                        </g>
-                    </svg>
-                </div>
-                <div style="padding: 10px 22px;">
-                    <svg viewBox="0 0 7 10" style="width: 48px; height: 68px; overflow: visible;">
-                        <line x1="0" x2="112" y1="5" y2="5" style="stroke: black; stroke-width: 0.3;"></line>
-                        <polygon points="111.7,6.1 111.7,3.9 114,5"></polygon>
-                    </svg>
-                    <svg viewBox="0 0 100 10" style="width: 680px; height: 68px; overflow: visible;">
-                        <line class="end-marker" x1="25" x2="25" y1="3.2" y2="6.8"
-                              style="stroke: black; stroke-width: 0.3; cursor: ew-resize;"></line>
-                        <g class="marble" transform="translate(0, 5)" style="cursor: default;">
-                            <circle r="2.3" style="fill: rgb(62, 161, 203); stroke: black; stroke-width: 0.3;"></circle>
-                            <text text-anchor="middle" y="0.8"
-                                  style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
-                                1
-                            </text>
-                        </g>
-                        <g class="marble" transform="translate(10, 5)" style="cursor: default;">
-                            <circle r="2.3" style="fill: rgb(130, 215, 54); stroke: black; stroke-width: 0.3;"></circle>
-                            <text text-anchor="middle" y="0.8"
-                                  style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
-                                2
-                            </text>
-                        </g>
-                        <g class="marble" transform="translate(20, 5)" style="cursor: default;">
-                            <circle r="2.3" style="fill: rgb(255, 203, 70); stroke: black; stroke-width: 0.3;"></circle>
-                            <text text-anchor="middle" y="0.8"
-                                  style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
-                                3
-                            </text>
-                        </g>
-                    </svg>
-                </div>
-                <div class="operatorBox"
-                     style="border: 1px solid rgba(0, 0, 0, 0.06); padding: 22px; text-align: center; position: relative;">
-                    <div style="display: block; position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; box-shadow: rgba(0, 0, 0, 0.17) 0px 2px 10px 0px;"></div>
-                    <span class="operatorLabel"
-                          style="font-weight: 400; font-size: 1.3rem; font-family: &quot;Source Code Pro&quot;, monospace;">obs1$.switchMap(() =&gt; obs2$, (x, y) =&gt; "" + x + y)</span>
-                    <div style="display: block; position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; box-shadow: rgba(0, 0, 0, 0.26) 0px 2px 5px 0px;"></div>
-                </div>
-                <div style="padding: 10px 22px;">
-                    <svg viewBox="0 0 7 10" style="width: 48px; height: 68px; overflow: visible;">
-                        <line x1="0" x2="112" y1="5" y2="5" style="stroke: black; stroke-width: 0.3;"></line>
-                        <polygon points="111.7,6.1 111.7,3.9 114,5"></polygon>
-                    </svg>
-                    <svg viewBox="0 0 100 10" style="width: 680px; height: 68px; overflow: visible;">
-                        <line class="end-marker" x1="100.01" x2="100.01" y1="3.2" y2="6.8"
-                              style="stroke: black; stroke-width: 0.3; cursor: ew-resize;"></line>
-                        <g class="marble" transform="translate(0, 5)" style="cursor: default;">
-                            <circle r="2.3" style="fill: rgb(62, 161, 203); stroke: black; stroke-width: 0.3;"></circle>
-                            <text text-anchor="middle" y="0.8"
-                                  style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
-                                A1
-                            </text>
-                        </g>
-                        <g class="marble" transform="translate(10, 5)" style="cursor: default;">
-                            <circle r="2.3" style="fill: rgb(130, 215, 54); stroke: black; stroke-width: 0.3;"></circle>
-                            <text text-anchor="middle" y="0.8"
-                                  style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
-                                A2
-                            </text>
-                        </g>
-                        <g class="marble" transform="translate(20, 5)" style="cursor: default;">
-                            <circle r="2.3" style="fill: rgb(255, 203, 70); stroke: black; stroke-width: 0.3;"></circle>
-                            <text text-anchor="middle" y="0.8"
-                                  style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
-                                A3
-                            </text>
-                        </g>
-                        <g class="marble" transform="translate(42, 5)" style="cursor: default;">
-                            <circle r="2.3" style="fill: rgb(255, 105, 70); stroke: black; stroke-width: 0.3;"></circle>
-                            <text text-anchor="middle" y="0.8"
-                                  style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
-                                B1
-                            </text>
-                        </g>
-                        <g class="marble" transform="translate(52, 5)" style="cursor: default;">
-                            <circle r="2.3" style="fill: rgb(62, 161, 203); stroke: black; stroke-width: 0.3;"></circle>
-                            <text text-anchor="middle" y="0.8"
-                                  style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
-                                B2
-                            </text>
-                        </g>
-                        <g class="marble" transform="translate(55.00000000000001, 5)" style="cursor: default;">
-                            <circle r="2.3" style="fill: rgb(255, 203, 70); stroke: black; stroke-width: 0.3;"></circle>
-                            <text text-anchor="middle" y="0.8"
-                                  style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
-                                C1
-                            </text>
-                        </g>
-                        <g class="marble" transform="translate(65, 5)" style="cursor: default;">
-                            <circle r="2.3" style="fill: rgb(255, 105, 70); stroke: black; stroke-width: 0.3;"></circle>
-                            <text text-anchor="middle" y="0.8"
-                                  style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
-                                C2
-                            </text>
-                        </g>
-                        <g class="marble" transform="translate(75, 5)" style="cursor: default;">
-                            <circle r="2.3" style="fill: rgb(62, 161, 203); stroke: black; stroke-width: 0.3;"></circle>
-                            <text text-anchor="middle" y="0.8"
-                                  style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
-                                C3
-                            </text>
-                        </g>
-                    </svg>
-                </div>
-            </div>
-            <small>Taken from: https://rxmarbles.com/#switchMap</small>
-        </section>
-        <section class="fullscreen">
-            <h2>Please explain the code</h2>
-            <pre><code class="javascript" data-trim data-line-numbers="">
-    ngOnInit() {
-      this.todo$ = this.route.params.pipe(
-        switchMap(params => this.todoService.getTodo(+params['id']))
-      )
-    }
-          </code></pre>
-            <p>... and how does it differ to the following?</p>
-            <pre><code class="javascript" data-trim data-line-numbers="">
-    ngOnInit() {
-      this.route.params.subscribe(params => {
-        this.todoService.getTodo(+params['id']).subscribe(todo => {
-          this.todo = todo;
-        });
-      });
-    }
-          </code></pre>
-            <p>Which version is better and why?</p>
-            <aside class="notes">
-                <UL>
-                    <LI>
-                        Discuss: Observable chains
-                    </LI>
-                    <LI>
-                        Discuss: Subscribe in subscribe
-                    </LI>
-                </UL>
-            </aside>
-        </section>
-        <section class="fullscreen">
-            <h2>Please explain the following code</h2>
-            <pre><code class="javascript stretch" data-trim data-line-numbers="">
-    import { fromEvent } from 'rxjs';
-    import { ajax } from 'rxjs/ajax';
-    import { map, filter, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-      
-    const searchInput = document.getElementById('search-box');
-      
-    const typeahead = fromEvent(searchInput, 'input').pipe(
-      map((e: KeyboardEvent) => e.target.value),
-      filter(text => text.length > 3),
-      debounceTime(150),
-      distinctUntilChanged(),
-      switchMap(() => ajax('/api/search'))
-    );
-      
-    typeahead.subscribe(data => {
-      // handle search result
-    });
-          </code></pre>
-            <p>... what does each operator do exactly? What about the order? Is it important?</p>
-            <aside class="notes">
-                Some sample code (more complex) is part of the RxJs Examples repository:
-                <UL>
-                    <LI>https://github.com/BerndOlleckCap/RxJsExamples</LI>
-                    <LI>start angular application</LI>
-                    <LI>Tab "Search"</LI>
-                    <LI>Code: SearchComponent</LI>
-                </UL>
-            </aside>
-        </section>
-        <section>
-            <h2>How do you find the functions and operators?</h2>
-            <ul>
-                <li><a href="https://rxjs.dev/guide/operators">Introduction and grouped list of operators (rxjs.dev)</a>
-                </li>
-                <li><a href="https://rxjs.dev/operator-decision-tree">Operator Decision Tree (rxjs.dev)</a></li>
-                <li><a href="http://reactivex.io/documentation/operators.html">Similar information from ReactiveX.io</a>
-                </li>
-            </ul>
-        </section>
-        <section>
-            <h2>Exercise</h2>
-            <ul>
-                <li><a href="https://github.com/devonfw-ng-adv-training/rxjs-exercises">Source</a></li>
-                <li>Start with branch master</li>
-                <li>
-                    Check README.md for information:
-                    <ul>
-                        <li>Pick level or challenge to work on, 'fdescribe' the corresponding tests</li>
-                        <li>Run UnitTests</li>
-                        <li>Implement the features. Do not alter the tests.</li>
-                    </ul>
-                </li>
-                <li>Sample solution is available on a separate branch</li>
-            </ul>
         </section>
         <section>
             <h2>Resources</h2>
