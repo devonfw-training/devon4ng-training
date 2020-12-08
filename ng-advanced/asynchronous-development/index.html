@@ -241,6 +241,12 @@ button.addEventListener("click", () => {
                     });
                 }
             </script>
+            <aside class="notes">
+                Note: addEventListener creates a macrotask for each listener when the button is clicked by the user.
+                However, depending on the browser:
+                When the button is clicked by code (unit test), both listeners may be executed within one macrotask thus
+                resulting in a different order of output.
+            </aside>
         </section>
         <section>
             <section>
@@ -950,7 +956,7 @@ const obs = subject.asObservable();
 obs.pipe(observeOn(asyncScheduler))
    .subscribe(v => console.log('next value', v));
 
-this.log('Going to send next value');
+console.log('Going to send next value');
 
 subject.next(true);
 
