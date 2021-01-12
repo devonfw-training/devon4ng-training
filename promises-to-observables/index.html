@@ -396,7 +396,7 @@ setTimeout(() => {
             <section>
                 <h3>Error handling</h3>
                 <p>As described earlier when calling <code>subscribe()</code> the <strong>second parameter is a function which gets called if the observable collection emits an error</strong> by calling <code>error()</code>.</p>
-                <p class="margin-top-70">Note: Throwing inside the function given to <code>Observable.create()</code> leads to an unhandled exception - calling <code>error()</code> fulfills the contract.</p>
+                <p class="margin-top-70">Note: Throwing inside the function given to <code>new Observable()</code> leads to an unhandled exception - calling <code>error()</code> fulfills the contract.</p>
             </section>
             <section>
                 <h3>Operators</h3>
