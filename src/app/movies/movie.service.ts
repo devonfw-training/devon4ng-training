@@ -45,7 +45,6 @@ export class MovieService {
   }
 
   save(movieToSave: Movie): Movie {
-    debugger;
     const movie = this.movies.find(m => m.id === movieToSave.id);
     if (movie != null) {
       Object.assign(movie, movieToSave);
