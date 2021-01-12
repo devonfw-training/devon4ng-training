@@ -21,7 +21,7 @@ const hasMovie = (req, res, next) => {
     if (isMovie(req.body)) {
         next();
     } else {
-        res.status(404).json({ error: 'invalid payload structure' });
+        res.status(400).json({ error: 'invalid payload structure\nIs the year a number as specified? Consider using <input type="number">' });
     }
 }
 const byId = (id) => (movie) => movie.id === +id;
