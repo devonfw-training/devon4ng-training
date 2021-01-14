@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie } from '../movie';
 import { MovieService } from '../movie.service';
-import { tap, switchMap } from 'rxjs/operators';
+import { tap, switchMap, filter } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -18,6 +18,7 @@ export class MovieOverviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.pipe(
+      filter((params) => params.id !== undefined),
       switchMap(params => this.movieService.findOne(+params.id))).subscribe(movie => this.selectedMovie = movie);
   }
 
