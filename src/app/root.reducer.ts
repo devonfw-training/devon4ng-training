@@ -1,6 +1,6 @@
 import {ActionReducerMap} from '@ngrx/store';
 import {InjectionToken} from '@angular/core';
-import * as fromNumber from './number/number.state';
+import {key as numberKey} from './number/number.state';
 import {NumberState} from './number/number.state';
 import * as fromAuth from './state/auth.state';
 import {AuthState} from './state/auth.state';
@@ -10,11 +10,11 @@ import {reducer as AuthReducer} from './state/auth.reducer';
 export const REDUCER_TOKEN = new InjectionToken<ActionReducerMap<AppState>>('app reducer');
 
 export interface AppState {
-  [fromNumber.key]: NumberState;
+  [numberKey]: NumberState;
   [fromAuth.key]: AuthState;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
-  [fromNumber.key]: NumberReducer,
+  [numberKey]: NumberReducer,
   [fromAuth.key]: AuthReducer
 };
