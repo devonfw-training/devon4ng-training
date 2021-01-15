@@ -39,12 +39,12 @@ import { Speaker } from './speaker';
 <div>`
 })
 export class HelloComponent {
-  @ViewChild('helloInput') vc: any;
+  @ViewChild('helloInput', { static: true }) vc: any;
   currentLine: string;
 
   constructor(private helloService: HelloService) {}
 
-  private clearAndFocus(): void {
+  clearAndFocus(): void {
     this.currentLine = '';
     this.vc.nativeElement.focus();
   }

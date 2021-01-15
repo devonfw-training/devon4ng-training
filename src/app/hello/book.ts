@@ -1,5 +1,7 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Injectable } from "@angular/core";
 
+@Injectable()
 export class Book {
   private linesSource = new BehaviorSubject<string[]>([]);
   lines$ = this.linesSource.asObservable();
