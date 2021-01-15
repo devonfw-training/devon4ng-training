@@ -39,7 +39,7 @@ import { Speaker } from './speaker';
 <div>`
 })
 export class HelloComponent {
-  @ViewChild('helloInput') vc: any;
+  @ViewChild('helloInput', { static: true }) vc: any;
   currentLine: string;
 
   constructor(private helloService: HelloService) {}
