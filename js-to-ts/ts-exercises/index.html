@@ -41,24 +41,26 @@
       <h2>TypeScript Exercises</h2>
     </section>
     <section>
-      <p>Start by installing TypeScript</p>
+      <p>
+        Open the training folder in VS Code <br>
+        (&lt;your-custom-path&gt;/devon4ng-training).<br>
+        Open a console (ctrl + shift + ö)
+      </p>
+      <p>In the console start by installing TypeScript</p>
       <pre><code data-trim>
         npm install typescript --global
-      </code></pre>
-      or
-      <pre><code data-trim>
-        yarn global add typescript
       </code></pre>
       If complete
       <pre><code>tsc --version</code></pre>
       should return the installed version.
     </section>
     <section>
-      <p>cd into /js-to-ts/ts-exercises and run</p>
+      <p>and run</p>
       <pre><code data-trim>
+        cd /js-to-ts/ts-exercises
         tsc -w exercises.ts --lib es2015
       </code></pre>
-      <p>open <a target="target="_blank"" href="./result.html">/js-to-ts/ts-exercises/result.html</a></p>
+      <p>open devon4ng-training/js-to-ts/ts-exercises/result.html</p>
       <p>... you will see failing UnitTests. Open /ts-exercises/exercises.ts and fix them.</p>
       <p>With every file change, tsc will recompile and you can refresh your Browser to see the result - e.g. press F5.</p>
     </section>

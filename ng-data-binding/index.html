@@ -49,8 +49,8 @@
                   </code></pre>
                   <pre><code class="hljs typescript" data-trim data-noescape>
 @Component(...)
-export class BookDetailsComponent {
-  <mark>currentBook</mark> = new Book('John Example', 'Angular in a nutshell');
+export class BookEntryComponent {
+  <mark>currentBook</mark> = { author:'John Example', title: 'Angular in a nutshell' };
 }
                   </code></pre>
         </section>
@@ -64,7 +64,7 @@ export class BookDetailsComponent {
   &lt;li (click)="selectBook(firstBook)">{{ firstBook.title }}&lt;/li&gt;
   &lt;li (click)="selectBook(secondBook)">{{ secondBook.title }}&lt;/li&gt;
 &lt;/ul&gt;
-&lt;book-details <mark>[book]="selectedBook"</mark>&gt;&lt;/book-details &gt;
+&lt;book-entry <mark>[book]="selectedBook"</mark>&gt;&lt;/book-entry &gt;
                   </code></pre>
             <pre><code class="hljs typescript" data-trim data-noescape>
 @Component(...)
@@ -89,12 +89,12 @@ export class BookOverviewComponent {
   &lt;li (click)="selectBook(firstBook)">{{ firstBook.title }}&lt;/li&gt;
   &lt;li (click)="selectBook(secondBook)">{{ secondBook.title }}&lt;/li&gt;
 &lt;/ul&gt;
-&lt;book-details <mark>[book]="selectedBook"</mark>&gt;&lt;/book-details &gt;
+&lt;book-entry <mark>[book]="selectedBook"</mark>&gt;&lt;/book-entry &gt;
                   </code></pre>
 
 <pre><code class="hljs typescript" data-trim data-noescape>
 @Component(...)
-export class BookDetailsComponent {
+export class BookEntryComponent {
   <mark>@Input() book: Book|null;</mark>
 }
                   </code></pre>
@@ -109,12 +109,12 @@ export class BookDetailsComponent {
                 <h2>Event Binding</h2>
             </div>
             <pre><code class="hljs html" data-trim data-noescape>
-&lt;bookEntry [currentBook]="books[0]"
+&lt;book-entry [currentBook]="books[0]"
            <mark>(selectBook)="rentBook($event)"</mark>&gt;
-&lt;/bookEntry&gt;
-&lt;bookEntry [currentBook]="books[1]"
+&lt;/book-entry&gt;
+&lt;book-entry [currentBook]="books[1]"
            <mark>(selectBook)="rentBook($event)"</mark>&gt;
-&lt;/bookEntry&gt;
+&lt;/book-entry&gt;
                   </code></pre>
             <pre><code class="hljs typescript" data-trim data-noescape>
 @Component(...)
@@ -134,8 +134,8 @@ export class BookOverviewComponent {
                 <h2>Event Binding</h2>
             </div>
             <pre class="width-100-percent"><code class="hljs html" data-trim data-noescape>
-&lt;bookEntry [currentBook]="books[0]"
-           <mark>(selectBook)="rentBook($event)"</mark>&gt;&lt;/bookEntry&gt;
+&lt;book-entry [currentBook]="books[0]"
+           <mark>(selectBook)="rentBook($event)"</mark>&gt;&lt;/book-entry&gt;
             </code></pre>
 			<pre class="width-100-percent"><code class="max-height-unset typescript" data-trim data-noescape>
 @Component(...)
@@ -143,15 +143,15 @@ export class BookEntryComponent {
   @Input() currentBook: Book;
   <mark>@Output() selectBook = new EventEmitter&lt;Book&gt;();</mark>
 
-  onButtonClick(): void {
+  onSelectBtnClick(): void {
     this.selectBook.emit(this.currentBook);
-  } 
+  }
 }
             </code></pre>
-            <pre class="width-100-percent"><code class="hljs typescript" data-trim data-noescape>
+            <pre class="width-100-percent"><code class=""hljs html" data-trim data-noescape>
 &lt;div&gt;
     &lt;div&gt;Book title: {{ currentBook.title }}&lt;/div&gt;
-    &lt;button (click)="onButtonClick()"&gt;Rent the book&lt;/button&gt;
+    &lt;button (click)="onSelectBtnClick()"&gt;Rent the book&lt;/button&gt;
 &lt;/div&gt;
             </code></pre>
         </section>
@@ -169,8 +169,8 @@ export class BookEntryComponent {
                   </code></pre>
             <pre><code class="hljs typescript" data-trim data-noescape>
 @Component(...)
-export class BookDetailsComponent {
-  <mark>currentBook</mark> = new Book('John Example', 'Angular in a nutshell');
+export class BookEntryComponent {
+  <mark>currentBook</mark> = { author:'John Example', title: 'Angular in a nutshell' };
 }
                   </code></pre>
         </section>
@@ -182,11 +182,11 @@ export class BookDetailsComponent {
   &lt;p>{{ book.description }}&lt;/p&gt;
 &lt;/div&gt;
             </code></pre>
-            <p><span class="highlight">Removes element from the DOM</span> if book not present (this prevents errors - undefined.book is not valid).</p>
+            <p><span class="highlight">Removes element from the DOM</span> if the book is not present.</p>
             <h4>ng-for</h4>
             <pre><code class="html" data-trim>
 &lt;ul&gt;
-  &lt;li *ngFor="let item of list"&gt;{{ item.property }}&lt;/li&gt;
+  &lt;li *ngFor="let myItem of myList"&gt;{{ myItem.someProperty }}&lt;/li&gt;
 &lt;/ul&gt;
             </code></pre>
             <p><span class="highlight">Creates an element</span> for every item of the collection.</p>
@@ -195,14 +195,14 @@ export class BookDetailsComponent {
             <h3>Example - Parent</h3>
             <pre><code class="max-height-unset typescript" data-trim>
 @Component({
-  selector: 'app-parent',
+  selector: 'app-book-overview',
   template: `&lt;app-book-entry
                  *ngFor="let book of books"
                  [currentBook]="book"
                  (selectBook)="rentBook($event)"&gt;
              &lt;/app-book-entry&gt;`
 })
-export class ParentComponent {
+export class BookOverviewComponent {
   books = [new Book(...), new Book(...)];
   rentedBook: Book|null = null;
 
@@ -220,14 +220,14 @@ export class ParentComponent {
   template: `&lt;div *ngIf="currentBook"&gt;
                &lt;div&gt;Book author: {{ currentBook.author }}&lt;/div&gt;
                &lt;div&gt;Book title: {{ currentBook.title }}&lt;/div&gt;
-               &lt;button (click)="onButtonClick()"&gt;Rent book&lt;/button&gt;
+               &lt;button (click)="onSelectBtnClick()"&gt;Rent book&lt;/button&gt;
             &lt;/div&gt;`
 })
 export class BookEntryComponent {
   @Input() currentBook: Book;
   @Output() selectBook = new EventEmitter&lt;Book&gt;();
 
-  onButtonClick(): void {
+  onSelectBtnClick(): void {
     this.selectBook.emit(this.currentBook);
   }
 }
