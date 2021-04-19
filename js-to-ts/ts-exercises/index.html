@@ -44,8 +44,13 @@
       <p>
         Open the training folder in VS Code <br>
         (&lt;your-custom-path&gt;/devon4ng-training).<br>
-        Open a console (ctrl + shift + ö)
+        Open a console (ctrl + shift + ö)<br>
+        In the terminal window open the dropdown and select your default shell (or default profile) to git bash<br>
+        Press the plus sign to open a new git bash
+        <img src="vs-code-screen.png" height="300">
       </p>
+    </section>
+    <section>
       <p>In the console start by installing TypeScript</p>
       <pre><code data-trim>
         npm install typescript --global
@@ -58,11 +63,11 @@
       <p>and run</p>
       <pre><code data-trim>
         git checkout gh-pages
-        cd /js-to-ts/ts-exercises
+        cd js-to-ts/ts-exercises
         tsc -w exercises.ts --lib es2015
       </code></pre>
-      <p>open devon4ng-training/js-to-ts/ts-exercises/result.html</p>
-      <p>... you will see failing UnitTests. Open /ts-exercises/exercises.ts and fix them.</p>
+      <p>open devon4ng-training/js-to-ts/ts-exercises/result.html with your browser</p>
+      <p>... you will see failing UnitTests. Open /ts-exercises/exercises.ts in VS Code and fix them.</p>
       <p>With every file change, tsc will recompile and you can refresh your Browser to see the result - e.g. press F5.</p>
     </section>
   </div>
