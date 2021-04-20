@@ -391,7 +391,7 @@
                     <a class="branch-hint" target="_blank" href="../git-intro/git-intro.html#/2">Git Cheat Sheet</a>
                 </section>
                 <section>
-                    <h3>Http (1/2)</h3>
+                    <h3>Http (1/3)</h3>
                     <p>
                         We prepared a server for you.<br> User the following commands to start the angular server with reverse proxy and a server with rest services:
                         <span class="highlight monospace">npm run start</span>
@@ -408,7 +408,17 @@
 
                 </section>
                 <section>
-                    <h3>Http (2/2)</h3>
+                    <h3>Http (2/3)</h3>
+                    In the next steps the methods' return types will change to <span class="highlight monospace">Observable&lt;Movie&gt;</span>
+                    instead of <span class="highlight monospace">Observable&lt;Movie&gt;</span>. <br>
+                    You will need to refactor the overview component accordingly and use one of the following:
+                    <ul>
+                        <li><span class="highlight monospace">subscribe(...)</span> - Easier for now</li>
+                        <li>The async pipe - Better solution for most use cases</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Http (3/3)</h3>
                     <ol>
                         <li>Import the <span class="highlight monospace">HttpClientModule</span> into the <span class="highlight monospace">AppModule</span>, add it to the imports array</li>
                         <li>Refactor the <span class="highlight monospace">findAll()</span> movie method - use <span class="highlight monospace">http.get</span></li>
