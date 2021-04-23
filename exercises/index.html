@@ -317,24 +317,23 @@
                     <h3>Service</h3>
                     <p>Goals: </p>
                     <ol>
-                        <li>The data is retrieved from a service by the component</li>
-                        <li><s>The data is asynchronously retrieved (like it would be via a REST service)</s></li>
-                        <li><s>The async pipe is used to subscribe to the service</s></li>
+                        <li>A service is created and injected into the component</li>
+                        <li>The movie data is retrieved from the service by the component</li>
                     </ol>
                     <p class="branch-hint">Fallback branch: exercise/4-master-details-output<br>Solution branch: exercise/5-services</p>
                     <a class="branch-hint" target="_blank" href="../git-intro/git-intro.html#/2">Git Cheat Sheet</a>
                 </section>
                 <section>
-                    <h3>Service (1/5)</h3>
+                    <h3>Service (1/4)</h3>
                     <ol>
                         <li>Create a new <span class="highlight monospace">Movie</span> service (<span class="highlight monospace">ng g service movies/movie</span>) with the private
                             <span class="highlight monospace">movies</span> property.</li>
-                        <li>Move the code initializing the movies from
+                        <li>Move the code initializing the movies array from
                             <span class="highlight monospace">MovieOverviewComponent.ngOnInit()</span> into the service.</li>
                     </ol>
                 </section>
                 <section>
-                    <h3>Service (2/5)</h3>
+                    <h3>Service (2/4)</h3>
                     <ol>
                         <li>Implement <span class="highlight monospace">findAll(): Movie[]</span> method which returns the <span class="highlight monospace">movie</span> array.</li>
                         <li>
@@ -343,7 +342,7 @@
                     </ol>
                 </section>
                 <section>
-                    <h3>Service (3/5)</h3>
+                    <h3>Service (3/4)</h3>
                     <ol>
                         <li>Inject <span class="highlight monospace">MovieService</span> in
                             <span class="highlight monospace">MovieOverviewComponent</span>'s constructor.
@@ -353,7 +352,7 @@
                             <span class="highlight monospace">MovieOverviewComponent.onMovieUpdated</span> and re-assign the correct movies after the update.</li>
                     </ol>
                 </section>
-                <section>
+                <!-- <section>
                     <h3>Service (4/5)</h3>
                     <ol>
                         <li>
@@ -363,9 +362,9 @@
                             <s>In the <span class="highlight monospace">MovieOverviewComponent</span> template use the <a href="https://blog.thoughtram.io/angular/2017/02/27/three-things-you-didnt-know-about-the-async-pipe.html" target="_blank">async pipe</a>                            in the <span class="highlight monospace">*ngFor</span> to automatically subscribe to the Observable.</s>
                         </li>
                     </ol>
-                </section>
+                </section> -->
                 <section>
-                    <h3>Service (5/5)</h3>
+                    <h3>Service (4/4)</h3>
                     <ol>Extend the <span class="highlight monospace">MovieService</span>:
                         <li>Implement the <span class="highlight monospace">findOne(id: number): Movie</span> method which finds a movie by the ID passed and returns its copy.</li>
                     </ol>
@@ -419,6 +418,7 @@
                 </section>
                 <section>
                     <h3>Http (3/3)</h3>
+                    <p>We want to get rid of the movies array in the server and get the data from the server instead</p>
                     <ol>
                         <li>Import the <span class="highlight monospace">HttpClientModule</span> into the <span class="highlight monospace">AppModule</span>, add it to the imports array</li>
                         <li>Refactor the <span class="highlight monospace">findAll()</span> movie method - use <span class="highlight monospace">http.get</span></li>
