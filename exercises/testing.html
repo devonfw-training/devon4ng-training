@@ -140,7 +140,7 @@ describe('BookComponent', () => {
                 <h3>Set up speaker.component.spec.ts</h3>
                 <pre><code class="typescript">import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Observable, of, empty } from 'rxjs';
+import { Observable, of, EMPTY } from 'rxjs';
 
 import { Speaker } from './speaker';
 import { SpeakerComponent } from './speaker.component';
@@ -160,7 +160,7 @@ describe('SpeakerComponent', () => {
     });
 
     it('displays default value', () => {
-        spyOn(speaker, 'getLine').and.returnValue(Observable.empty());
+        spyOn(speaker, 'getLine').and.returnValue(EMPTY);
         fixture.componentInstance.ngOnInit();
 
         // TODO
