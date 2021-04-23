@@ -1,3 +1,10 @@
 .devon.reveal  .title-with-image img {
     margin-right: 0.5em;
 }
+
+.reveal .references {
+    font-size: 15px;
+    position: absolute;
+    bottom: 0.5em;
+    left: 0px;
+}
