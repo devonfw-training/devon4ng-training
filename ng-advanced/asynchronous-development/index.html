@@ -620,6 +620,49 @@ button.addEventListener("click", () => {
                 </aside>
             </section>
             <section>
+                <h2>RxJS - Level 8: Error handling</h2>
+                catchError(...): catch errors emitted by the observable and gracefully handle them
+                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+                    source$.pipe(catchError(error) => of([]))
+                    // fall back to an empty array if the source observable emits an error
+                    </code></pre>
+                retry(...): retry the observable sequence a given number of times if an error occurs
+                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+                    source$.pipe(retry(3))
+                    // Retry the observable sequence three times. Especially useful for retrying http requests
+                    // Gives up after three retries and emits the original error
+                    </code></pre>
+                 retryWhen(...): retry the observable sequence based on a custom criteria
+                 <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+                    source$
+                      .pipe(
+                        retryWhen(errors =>
+                          errors.pipe(
+                            mergeMap(error =>
+                              iif(
+                                () => error.code === TOO_MANY_REQUESTS,
+                                timer(5000),
+                                throwError(error)
+                              )
+                            )
+                          )
+                        )
+                      )
+                    // Retry the observable sequence three times. Especially useful for retrying http requests
+                    // Gives up after three tries and emits the original error
+                     </code></pre>
+                <aside class="notes">
+                    <ul>
+                        <LI>catchError: Gracefully handle errors emitted by the observable sequence</li>
+                        <LI>retry: Retry the observable sequence n times in case an error occurs
+                        </li>
+                        <LI>retryWhen: Conditionally retry the observable sequence. Errors emitted are streamed through the errors parameter. Web
+                            can access the errors and either throw or delay execution depending on the error.
+                        </LI>
+                    </ul>
+                </aside>
+            </section>
+            <section>
                 <h2>Exercise</h2>
                 <ul>
                     <li><a href="https://github.com/devonfw-ng-adv-training/rxjs-exercises">Source</a></li>
