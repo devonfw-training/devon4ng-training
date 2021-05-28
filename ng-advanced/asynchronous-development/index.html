@@ -652,6 +652,7 @@ button.addEventListener("click", () => {
                     // Otherwise rethrow the error 
                      </code></pre>
                 <aside class="notes">
+                    Talk about observable lifecycle, how does it actually deal with errors (resubscribe), potential problems with cold observables
                     <ul>
                         <LI>catchError: Gracefully handle errors emitted by the observable sequence</li>
                         <LI>retry: Retry the observable sequence n times in case an error occurs
@@ -660,6 +661,42 @@ button.addEventListener("click", () => {
                             can access the errors and either throw or delay execution depending on the error.
                         </LI>
                     </ul>
+                </aside>
+            </section>
+            <section>
+                <h2>RxJS - Level 8: Error Handling</h2>
+                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+                    // source:          a b c x1|
+                    //                  d e f x2|
+                    //                  g h i x3|
+                    //                  j k l x4|
+                    catchError(() => of('z'))
+                    retry( 2 )
+                    retryWhen(errors => errors.pipe(switchMap(error => iif(error => error === x1, of(error), throwError(error)))))
+                </code></pre>
+                <ul>
+                    <li>Note: xN is an error</li>
+                    <li>source is a cold observable producing different values with each subscription</li>
+                </ul>
+                <aside class="notes">
+                    Solution next page
+                </aside>
+            </section>
+            <section>
+                <h2>RxJS - Level 8: Error Handling (Solution)</h2>
+                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+                    // source:          a b c x1|
+                    //                  d e f x2|
+                    //                  g h i x3|
+                    //                  j k l x4|
+                    catchError(() => of('z'))
+                    // a b c z
+                    retry( 2 )
+                    // a b c d e f g h i x3
+                    retryWhen(errors => errors.pipe(switchMap(error => iif(error => error === x1, of(error), throwError(error)))))
+                    // a b c d e f x2
+                </code></pre>
+                <aside class="notes">
                 </aside>
             </section>
             <section>
