@@ -648,8 +648,8 @@ button.addEventListener("click", () => {
                           )
                         )
                       )
-                    // Retry the observable sequence three times. Especially useful for retrying http requests
-                    // Gives up after three tries and emits the original error
+                    // Retry the observable sequence after 5000ms if an error with code TOO_MANY_REQUESTS occurs
+                    // Otherwise rethrow the error 
                      </code></pre>
                 <aside class="notes">
                     <ul>
