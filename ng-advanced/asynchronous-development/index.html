@@ -297,7 +297,7 @@ button.addEventListener("click", () => {
                             from( [ 1, 2, 3, 4 ] );
 
                             subject$ = new Subject();
-                            subject.next('A');
+                            subject$.next('A');
                         </code></pre>
                     </li>
                 </ul>
@@ -331,10 +331,10 @@ button.addEventListener("click", () => {
                 </ul>
                 <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
                             subject$ = new Subject();
-                            subject.next('A');
-                            subject.error('Something went wrong');
+                            subject$.next('A');
+                            subject$.error('Something went wrong');
                             // or
-                            subject.complete();
+                            subject$.complete();
                         </code></pre>
                 <aside class="notes">
                     <UL>
