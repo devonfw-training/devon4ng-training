@@ -636,8 +636,8 @@ button.addEventListener("click", () => {
                  <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
                     source$
                       .pipe(
-                        retryWhen(errors =>
-                          errors.pipe(
+                        retryWhen(errors$ =>
+                          errors$.pipe(
                             mergeMap(error =>
                               iif(
                                 () => error.code === TOO_MANY_REQUESTS,
