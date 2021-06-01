@@ -927,15 +927,15 @@ button.addEventListener("click", () => {
 
     const searchInput = document.getElementById('search-box');
 
-    const typeahead = fromEvent(searchInput, 'input').pipe(
+    const typeahead$ = fromEvent(searchInput, 'input').pipe(
       map((e: KeyboardEvent) => e.target.value),
       filter(text => text.length > 3),
       debounceTime(150),
       distinctUntilChanged(),
-      switchMap(() => ajax('/api/search'))
+      switchMap(text => ajax(`/api/search?q=${text}`))
     );
 
-    typeahead.subscribe(data => {
+    typeahead$.subscribe(data => {
       // handle search result
     });
           </code></pre>
