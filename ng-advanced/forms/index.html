@@ -21,81 +21,42 @@
 <body>
     <div class="reveal">
         <div class="slides">
-            <section class="fullscreen" data-background="url(./img/Fixed_Shape_3_CapgeminiBlue_RGB.svg) no-repeat 0 500px">
+            <section class="fullscreen"
+                data-background="url(./img/Fixed_Shape_3_CapgeminiBlue_RGB.svg) no-repeat 0 500px">
 
                 <h1>Forms</h1>
-                <p>July 2020 State</p>
+                <p>August 2021 State</p>
             </section>
 
-            <section id="agenda-1" data-transition="slide" data-background-image="../common/img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
+            <section id="agenda-1" data-transition="slide"
+                data-background-image="../common/img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
                 <h2 class="cap-white">Agenda</h2>
                 <ul class="cap-white">
-                    <li>Recap: Template Driven & Reactive Forms</li>
+                    <li>Reactive Forms - A Recap</li>
                     <li>Custom Form Controls</li>
-                    <li>Nested Forms</li>
                 </ul>
             </section>
 
             <section>
-                <section data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                    <h3 class="cap-white">Template Driven & Reactive Forms</h3>
-                </section>
-
-                <section data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                    <h3 class="cap-white">Template Driven Forms</h3>
-                    <h5 class="cap-white" style="color: #10e0ff">Template as the source of truth</h5>
-                    <ul class="cap-white">
-                        <li>Normally <strong>simple forms </strong>such as email or sign up form</li>
-                        <li>They are <strong>asynchronous</strong></li>
-                        <li><strong>Two way</strong> data binding</li>
-                        <li><strong>Testing</strong> is more difficult</li>
-                        <li>They don't <strong>scale </strong>well</li>
-                        <li>Use if the forms and forms logic in your app are <strong>simple</strong></li>
-                    </ul>
-                </section>
-
-                <section data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                    <h3 class="cap-white">Template Driven Forms</h3>
-                    <h5 class="cap-white">Example</h5>
-                    <pre><code>
-@Component({
-  selector: "app-login",
-  template: `
-     <form #form="ngForm" (submit)="submit(form.value)">
-       <input type="email" [ngModel]="email" name="email">
-       <input type="submit" value="submit">
-     </form>
-  `
-})
-export class LoginComponent {
-  email = '';
-
-  @ViewChild('form') form: FormGroup;
-
-  submit(value) {
-    console.log(value);
-  }
-
-}
-                </code></pre>
-                </section>
-
-                <section data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                    <h3 class="cap-white">Template Driven Forms</h3>
-                    <img src="img/template-driven-forms.png" class="no-background no-border no-margin no-shadow">
-                </section>
-
-                <section data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <section
+                    data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
                     <h3 class="cap-white">Reactive Forms</h3>
-                    <h5 class="cap-white" style="color: #10e0ff">The form model as the source of truth</h5>
+                </section>
+
+                <section
+                    data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                    <h3 class="cap-white">Reactive Forms</h3>
+                    <h5 class="cap-white" style="color: #10e0ff">The form model defined in code as the source of truth
+                    </h5>
                     <ul class="cap-white">
-                        <li>More <strong>scalable, reusable and testable </strong></li>
+                        <li><strong>Scalable, reusable and testable </strong></li>
                         <li>They are <strong>synchronous</strong></li>
-                        <li><strong>Immutable</strong></li>
+                        <li><strong>They are immutable</strong></li>
                     </ul>
                 </section>
 
-                <section data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <section
+                    data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
                     <h3 class="cap-white">Reactive Forms</h3>
                     <h5 class="cap-white">Example</h5>
                     <pre><code>
@@ -126,55 +87,16 @@ export class LoginComponent implements OnInit {
                 </pre>
                 </section>
 
-                <section data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <section
+                    data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
                     <h3 class="cap-white">Reactive Forms</h3>
                     <img src="img/reactive-forms.png" class="no-background no-border no-margin no-shadow">
                 </section>
-
-                <section data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                    <h3 class="cap-white">Template Driven vs. Reactive Forms</h3>
-                    <table class="cap-white">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th style="color: #10e0ff">Template Driven</th>
-                                <th style="color: #10e0ff">Reactive</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Form model</td>
-                                <td>HTML template</td>
-                                <td>Defined in a component</td>
-                            </tr>
-                            <tr>
-                                <td>Data model</td>
-                                <td>Unstructured</td>
-                                <td>Structured</td>
-                            </tr>
-                            <tr>
-                                <td>Predictability</td>
-                                <td>Asynchronous</td>
-                                <td>Synchronous</td>
-                            </tr>
-                            <tr>
-                                <td>Form validation</td>
-                                <td>Directives</td>
-                                <td>Functions</td>
-                            </tr>
-                            <tr>
-                                <td>Mutability</td>
-                                <td>Mutable</td>
-                                <td>Immutable</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </section>
-
             </section>
 
             <section>
-                <section data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <section
+                    data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
                     <h3 class="cap-white">Custom Form Control</h3>
                     <h5 class="cap-white" style="color: #10e0ff">With Control Value Accessor</h5>
                     <blockquote class="cap-white">
@@ -183,41 +105,138 @@ export class LoginComponent implements OnInit {
                             API </strong>and a <strong>native element in the DOM</strong>.
                     </blockquote>
                     <span class="cap-white">It propagates changes from the <span
-                            style="color: #10e0ff"><strong>model</strong></span> to the <span style="color: #10e0ff"><strong>view</strong></span> and from the <span style="color: #10e0ff"><strong>view</strong></span> to the <span style="color: #10e0ff"><strong>model</strong></span></span>
+                            style="color: #10e0ff"><strong>model</strong></span> to the <span
+                            style="color: #10e0ff"><strong>view</strong></span> and from the <span
+                            style="color: #10e0ff"><strong>view</strong></span> to the <span
+                            style="color: #10e0ff"><strong>model</strong></span></span>
                 </section>
 
-                <section data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <section
+                    data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
                     <h3 class="cap-white">Control Value Accessor</h3>
                     <img src="img/cva.jpeg" class="no-background no-border no-margin no-shadow">
                     <!--Image taken from: https://blog.angularindepth.com/never-again-be-confused-when-implementing-controlvalueaccessor-in-angular-forms-93b9eee9ee83-->
                 </section>
 
-                <section data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <section
+                    data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                    <h3 class="cap-white">CVA: Use Cases</h3>
+                    <h5 class="cap-white" style="color: #10e0ff">With the Control Value Accessor we can</h5>
+                    <ul class="cap-white">
+                        <li>Create reusable, non-native form controls</li>
+                        <li>Implement a core component library exposing form controls</li>
+                        <li>Wrap web components without forms support</li>
+                        <li>Divide complex forms into manageable, maintainable parts</li>
+                    </ul>
+                </section>
+
+                <section
+                    data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                    <h3 class="cap-white">Create reusable form controls</h3>
+                    <h5 class="cap-white" style="color: #10e0ff">A "star" rating control</h5>
+                    <img src="img/star-example.png" class="no-background no-border no-margin no-shadow">
+                    <div>
+                        <ul class="cap-white">
+                            <li>Not natively supported control</li>
+                            <li>Could have an implementation similar to</li>
+                        </ul>
+                    </div>
+                    <pre><code>
+@Component({
+    selector: "app-rate",
+    template: `
+       <form (submit)="submit()">
+         Rate this training: <app-star-input (changeRating)="rating = $event"></app-star-input>
+         <input type="submit" value="submit">
+       </form>
+    `
+  })
+  export class RateComponent implements OnInit {
+    rating: number;
+  
+    ngOnInit() {
+    }
+  
+    submit() {
+      console.log(this.rating);
+    }
+  }
+                    </code></pre>
+                </section>
+
+                <section
+                    data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                    <h3 class="cap-white">But do we want that...?</h3>
+                </section>
+
+                <section
+                    data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                    <h3 class="cap-white">Implementing CVA</h3>
+                    <pre><code>
+@Component({
+    selector: "app-rate",
+    template: `
+       <form [formGroup]="ratingForm" (submit)="submit()">
+         Rate this training: <app-star-input [formControlName]="rating"></app-star-input>
+         <input type="submit" value="submit">
+       </form>
+    `
+  })
+  export class RateComponent implements OnInit {
+    ratingForm: FormGroup;
+  
+    ngOnInit() {
+      this.ratingForm = new FormGroup({
+           rating: new FormControl()
+      });
+    }
+  
+    submit() {
+      console.log(this.ratingForm.value);
+    }
+  }
+                    </code></pre>
+                </section>
+
+                <section
+                    data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
                     <h3 class="cap-white">Control Value Accessor</h3>
                     <h5 class="cap-white" style="color: #10e0ff">API</h5>
                     <pre><code>
-// is the method that writes a new value from the form model
-// into the view or (if needed) DOM property
-writeValue(obj: any)
-// is a method that registers a handler that should be called
-// when something in the view has changed
-registerOnChange(fn: any)
-// it registers a handler specifically for when a control receives
-// a touch event
-registerOnTouched(fn: any)
+interface ControlValueAccessor {
+    // is the method that writes a new value from the form model
+    // into the view or (if needed) DOM property
+    writeValue(obj: any)
+    // is a method that registers a handler that should be called
+    // when something in the view has changed
+    registerOnChange(fn: any)
+    // it registers a handler specifically for when a control receives
+    // a touch event
+    registerOnTouched(fn: any)
+    // is called when we disable or enable the form control. Can be used
+    // to propagate the change to child components
+    setDisabledState?(isDisabled: boolean): void;
+}
                 </code></pre>
                     <aside class="notes">
                         <ul>
-                            <li>writeValue() - writes a new value to an element; the new value comes from the MODEL(FormControl.setValue -> ControlValueAccessor.writeValue -> update element -> change is visible in the UI) registerOnChange() - registers a
+                            <li>writeValue() - writes a new value to an element; the new value comes from the
+                                MODEL(FormControl.setValue -> ControlValueAccessor.writeValue -> update element ->
+                                change is visible in the UI) registerOnChange() - registers a
                                 callback function that will</li>
-                            <li>be called whenever the value changes in the UI and will propagate the new value to the model. registerOnTouched() - registers a callback function that will be called when the blur event occurs; the FormControl will be notified</li>
-                            <li>of this event as it may need to perform some updates when this event occurs. setDisabledState - will disable/enable the DOM element depending on the value provided; this method is usually called as a result of a change in the
+                            <li>be called whenever the value changes in the UI and will propagate the new value to the
+                                model. registerOnTouched() - registers a callback function that will be called when the
+                                blur event occurs; the FormControl will be notified</li>
+                            <li>of this event as it may need to perform some updates when this event occurs.
+                                setDisabledState - will disable/enable the DOM element depending on the value provided;
+                                this method is usually called as a result of a change in the
                                 MODEL.</li>
                         </ul>
                     </aside>
                 </section>
 
-                <section data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <section
+                    data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
                     <h3 class="cap-white">Control Value Accessor</h3>
                     <h5 class="cap-white" style="color: #10e0ff">Implementation steps</h5>
                     <ul class="cap-white">
@@ -235,72 +254,130 @@ providers: [
                 </code></pre>
                 </section>
 
-                <section data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <section
+                    data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                    <h3 class="cap-white">Implementing the interface in our custom component</h3>
+                    <pre><code>
+@Component({
+    selector: 'app-rating',
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => RatingComponent),
+            multi: true
+        }
+    ],
+    templateUrl: './rating.component.html'
+})
+export class RatingComponent implements ControlValueAccessor {
+    rating = 0;
+    isDisabled = false;
+
+    private onChange = (rating: number) => {};
+    private onTouched = () => {};
+
+    writeValue(rating: number) {
+        this.rating = rating;
+    }
+
+    registerOnChange(fn: (rating: number) => void) {
+        this.onChange = fn;
+    }
+
+    registerOnTouched(fn: () => void) {
+        this.onTouched = fn;
+    }
+
+    setDisabledState(isDisabled: boolean) {
+        this.isDisabled = isDisabled;
+    }
+}
+                </code></pre>
+                </section>
+
+                <section
+                    data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
                     <h3 class="cap-white">Control Value Accessor</h3>
-                    <h5 class="cap-white" style="color: #10e0ff">Exercise (1/4)</h5>
+                    <h5 class="cap-white" style="color: #10e0ff">Exercise (1/5)</h5>
                     <ol class="cap-white">
-                        <li>Pull or fork a repository from <a href="https://github.com/devonfw-ng-adv-training/forms-simplified">here</a></li>
-                        <li>Check out the master state</li>
-                        <li>Get to know the application - We will focus on book first</li>
+                        <li>Pull or fork a repository from <a
+                                href="https://github.com/devonfw-ng-adv-training/forms-simplified">here</a></li>
+                        <li>Check out the rating/1-baseline state</li>
+                        <li>Familiarize yourself with the code</li>
                     </ol>
                 </section>
 
-                <section data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <section
+                    data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
                     <h3 class="cap-white">Control Value Accessor</h3>
-                    <h5 class="cap-white" style="color: #10e0ff">Exercise (2/4)</h5>
-                    <p class="cap-white">We want to implement a dropwndown selection for 'Genre' in the book detail page.
+                    <h5 class="cap-white" style="color: #10e0ff">Exercise (2/5)</h5>
+                    <p class="cap-white">We want to refactor the RatingComponent to implement the CVA interface.
                     </p>
                     <ol class="cap-white">
                         <ul>
-                            <li>Create a custom control component with a select box (ng g c customized-select-box)
-                                <p style="font-size:smaller">where will you create it?</p>
+                            <li>
+                                Implement the ControlValueAccessor interface for the RatingComponent class
                             </li>
-                            <li>Define customized select box template - the list should show the item's name (i.e. genre name)
-                                <ul>
-                                    <li>use select for the select box / use option for the list items / <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select">How to in HTML</a></li>
-                                    <li>fill options via input</li>
-                                </ul>
+                            <li>
+                                Remove Input/Output properties
                             </li>
-                            </p>
-                        </ul>
+                            <li>
+                                Remove Input/Output bindings. Directly bind to the FormControl using the formControlName
+                                directive
+                            </li>
                         </ul>
                     </ol>
                 </section>
 
-                <section data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <section
+                    data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
                     <h3 class="cap-white">Control Value Accessor</h3>
-                    <h5 class="cap-white" style="color: #10e0ff">Exercise (3/4)</h5>
+                    <h5 class="cap-white" style="color: #10e0ff">Exercise (3/5)</h5>
                     <ol class="cap-white">
-                        <p class="cap-white">Implement ControlValueAccessor</p>
+                        <p class="cap-white">Add validation & opt-out</p>
                         <ul>
-                            <li>Use your new component in the book detail component</li>
-                            <li>use the input and fill it with genres (optional via resolver, same as book details)</li>
-                            <li>Test your application</li>
-                            <li style="font-size:smaller">fallback branch: 2-added-genres-to-dropdown</li>
+                            <li>Add a required validator to the rating form control</li>
+                            <li>Add a checkbox for the user to opt-out of the rating:</li>
+                            <ul>
+                                <li>When the checkbox is checked, disable and reset the rating control</li>
+                                <li>When the checkbox is unchecked, enable the rating control</li>
+                            </ul>
+                            <li>Test your application. See, how the reactive forms handle enabled/disabled state in combination with validation</li>
+                            <li style="font-size:smaller">fallback branch: rating/2-implement-cva</li>
                         </ul>
                     </ol>
                 </section>
 
-                <section data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <section
+                    data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
                     <h3 class="cap-white">Control Value Accessor</h3>
-                    <h5 class="cap-white" style="color: #10e0ff">Exercise (4/4)</h5>
+                    <h5 class="cap-white" style="color: #10e0ff">Exercise (4/5)</h5>
                     <ul class="cap-white">
-                        <li>Make the select box component part of your Form Control Group via formControlName</li>
-                        <li>The SelectBoxComponent shall implement the ControlValueAccessor interface</li>
-                        <li>Implement following methods</li>
-                        <ul>
-                            <li>writeValue</li>
-                            <li>registerOnChange</li>
-                        </ul>
-                        <li>register CVA in the application (use providers in component) </li>
-                        <li style="font-size:smaller">fallback branch: 3-extended-control-value-accessor</li>
+                        <p class="cap-white">Reuse the custom control</p>
+                        <li>Add another control to the form group for an overall site rating</li>
+                        <li>Reuse the RatingComponent</li>
+                        <li style="font-size:smaller">fallback branch: rating/3-validation-opt-out</li>
+                    </ul>
+                </section>
+
+                <section
+                    data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                    <h3 class="cap-white">Control Value Accessor</h3>
+                    <h5 class="cap-white" style="color: #10e0ff">Exercise (5/5)</h5>
+                    <ul class="cap-white">
+                        <p class="cap-white">Add custom validation</p>
+                        <li>Add a custom validator to the form control to only allow ratings greater than 3</li>
+                        <li>Show a validation message if the custom validation failed and the control was touched by the user</li>
+                        <li style="font-size:smaller">fallback branch: rating/4-reusability</li>
+                        <li style="font-size:smaller">final solution branch: rating/5-custom-validation</li>
                     </ul>
                 </section>
             </section>
 
 
             <section>
-                <section data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <section
+                    data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
                     <h3 class="cap-white">Nested Forms</h3>
                     <h5 class="cap-white" style="color: #10e0ff">With Control Value Accessor</h5>
                     <ul class="cap-white">
@@ -313,28 +390,33 @@ providers: [
 
                 </section>
 
-                <section data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <section
+                    data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
                     <h3 class="cap-white">Nested Forms</h3>
                     <h5 class="cap-white" style="color: #10e0ff">Validation</h5>
                     <blockquote class="cap-white">
-                        For Re-validation, the validators will need to be on the top-level form, not at the child component, if you want it to be part of the parent form’s validation.
+                        For Re-validation, the validators will need to be on the top-level form, not at the child
+                        component, if you want it to be part of the parent form’s validation.
                     </blockquote>
 
                 </section>
 
-                <section data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <section
+                    data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
                     <h3 class="cap-white">Nested Forms</h3>
                     <h5 class="cap-white" style="color: #10e0ff">Exercise (1/5)</h5>
                     <ol class="cap-white">
-                        <li>Pull or fork a repository from <a href="https://github.com/devonfw-ng-adv-training/forms-simplified">here</a></li>
-                        <li>We will now focus on order</li>
+                        <li>Pull or fork a repository from <a
+                                href="https://github.com/devonfw-ng-adv-training/forms-simplified">here</a></li>
+                        <li>We will focus on order</li>
                         <li>Add address properties to form</li>
                         <ul>street, zip, city, country</ul>
                     </ol>
                     <p class="cap-white" style="font-size:smaller">fallback branch: nested/1-including-address</p>
                 </section>
 
-                <section data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <section
+                    data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
                     <h3 class="cap-white">Nested Forms</h3>
                     <h5 class="cap-white" style="color: #10e0ff">Exercise (2/5)</h5>
                     <ol class="cap-white">
@@ -348,26 +430,31 @@ providers: [
                     <p class="cap-white" style="font-size:smaller">fallback branch: nested/2-extracted-address</p>
                 </section>
 
-                <section data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <section
+                    data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
                     <h3 class="cap-white">Nested Forms</h3>
                     <h5 class="cap-white" style="color: #10e0ff">Exercise (3/5)</h5>
                     <ol class="cap-white">
                         <li>implement CVA interface to address</li>
                         <li>In writeValue use setValue and set emitEvent as false (good for the performance)</li>
                     </ol>
-                    <p class="cap-white" style="font-size:smaller">fallback branch: nested/3-basic-cva-implementation</p>
+                    <p class="cap-white" style="font-size:smaller">fallback branch: nested/3-basic-cva-implementation
+                    </p>
                 </section>
 
-                <section data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <section
+                    data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
                     <h3 class="cap-white">Nested Forms</h3>
                     <h5 class="cap-white" style="color: #10e0ff">Exercise (4/5)</h5>
                     <ol class="cap-white">
                         <li>refactor general address to invoice address & delivery address in order</li>
                     </ol>
-                    <p class="cap-white" style="font-size:smaller">fallback branch: nested/4-introducing-delivery-and-invoice-address</p>
+                    <p class="cap-white" style="font-size:smaller">fallback branch:
+                        nested/4-introducing-delivery-and-invoice-address</p>
                 </section>
 
-                <section data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
+                <section
+                    data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
                     <h3 class="cap-white">Nested Forms</h3>
                     <h5 class="cap-white" style="color: #10e0ff">Exercise (5/5) - Optionals</h5>
                     <ol class="cap-white">
@@ -392,23 +479,23 @@ providers: [
             // More info https://github.com/hakimel/reveal.js#dependencies
             dependencies: [{
                 src: './reveal.js/lib/js/classList.js',
-                condition: function() {
+                condition: function () {
                     return !document.body.classList;
                 }
             }, {
                 src: './reveal.js/plugin/markdown/marked.js',
-                condition: function() {
+                condition: function () {
                     return !!document.querySelector('[data-markdown]');
                 }
             }, {
                 src: './reveal.js/plugin/markdown/markdown.js',
-                condition: function() {
+                condition: function () {
                     return !!document.querySelector('[data-markdown]');
                 }
             }, {
                 src: './reveal.js/plugin/highlight/highlight.js',
                 async: true,
-                callback: function() {
+                callback: function () {
                     hljs.initHighlightingOnLoad();
                 }
             }, {
