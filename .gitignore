@@ -9,5 +9,6 @@ java/target
 /nbproject/private/
 dist
 **/*.log
+/js-to-ts/ts-exercises/exercises.js
 
 .DS_STORE

@@ -25,18 +25,11 @@
     it ('creates creates {name: \'karl\', age: 7} for karl and 7', () => {
       expect(createObject('karl', 7)).toEqual({name: 'karl', age: 7});
     });
-  });
 
-  describe('reverseFunc', () => {
     
-    it('reverses 1234 to 4321', () => {
-      expect(reverseFunc(1234)).toBe(4321);
+    it ('creates creates {name: \'heinz\', age: 0} for heinz and 0', () => {
+      expect(createObject('heinz', 0)).toEqual({name: 'heinz', age: 0});
     });
-
-    it('reverses 364 to 463', () => {
-      expect(reverseFunc(364)).toBe(463);
-    })
-
   });
 
   describe('findLongestWordFunc', () => {
@@ -59,6 +52,54 @@
 
     it('filters 2,0,3 to 3', () => {
       expect(getElementsGreater([2,0,3], 2)).toEqual([3]);
+    })
+
+  });
+
+  describe('sort', () => {
+    class ComparableItem {
+      constructor(value) {
+        this.value = value;
+      }
+
+      compare(other){
+        if(other.value > this.value) {
+          return -1;
+        }
+        if(other.value < this.value) {
+          return 1;
+        }
+        return 0;
+      }
+
+      toString() {
+        return this.value;
+      }
+    }
+
+    it('orders 103, 5, 3, 15, -3 to -3, 3, 5, 15, 103', () => {
+      const given=[new ComparableItem(103), new ComparableItem(5), new ComparableItem(3), new ComparableItem(15), new ComparableItem(-3)];
+      // const expected=[given[4], given[2], given[1], given[3], given[0]];
+      const expected=[new ComparableItem(-3), new ComparableItem(3), new ComparableItem(5), new ComparableItem(15), new ComparableItem(103)];;
+      expect(sort(given)).toEqual(expected);
+    });
+
+    it('orders qwer, asdf, yxcv, aadf in decending order', () => {
+      const given=[new ComparableItem('qwer'), new ComparableItem('asdf'), new ComparableItem('yxcv'), new ComparableItem('aadf')];
+      const expected=[given[2], given[0], given[1], given[3]];
+      expect(sort(given, false)).toEqual(expected);
+    })
+
+  });
+
+  describe('reverseFunc', () => {
+    
+    it('reverses 1234 to 4321', () => {
+      expect(reverseFunc(1234)).toBe(4321);
+    });
+
+    it('reverses 364 to 463', () => {
+      expect(reverseFunc(364)).toBe(463);
     })
 
   });
