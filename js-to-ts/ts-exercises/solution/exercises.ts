@@ -9,9 +9,6 @@ function createObject(name: string, age?: number) {
   return { name };
 }
 
-function reverseFunc(val: number): number {
-  return +val.toString().split("").reverse().join("");
-}
 
 function findLongestWordFunc(sentence: string): string {
   const reducer = (longestWord: string, currentWord: string): string =>
@@ -22,6 +19,21 @@ function findLongestWordFunc(sentence: string): string {
 
 function getElementsGreater(numbers: number[], threshold: number): number[] {
   return numbers.filter((number) => number > threshold);
+}
+
+/**
+ * Sorts an array of comparable objects.
+ *
+ * @param list
+ * @param ascending
+ * @returns
+ */
+function sort(list: Comparable[], ascending = true) {
+  return list.sort((a,b) => ascending ? a.compare(b) : b.compare(a));
+}
+
+function reverseFunc(val: number): number {
+  return +val.toString().split("").reverse().join("");
 }
 
 function parseAndBuild(
