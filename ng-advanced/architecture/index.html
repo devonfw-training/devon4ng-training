@@ -79,7 +79,10 @@
                     </figure>
                     <!-- TODO: src -->
                     <aside class="notes">
-
+                        Why is the "singlepage" important? -> User convenience, no loading times on page change.
+                        Before we also had javascript enhanced pages, but each page was responsible
+                        for a single part/step of the application, so ui, context and data had to be reloaded for
+                        another part.
                     </aside>
                 </section>
                 <section>
@@ -117,8 +120,11 @@
                     <p class="blue">explained by the <a href="https://devonfw.com/website/pages/docs/master-devon4ng.asciidoc_architecture.html#meta-architecture.asciidoc">devonfw
                             meta architecture for clients</a></p>
                     <aside class="notes">
-                        <p>ti: out of scope - meta architecture should work native & web</p>
-                        <p>a: out of scope - differs from project to project</p>
+                        difference to other architectures:
+                        <ul>
+                            <li>ti-architecture: meta architecture should work native & web and independent of place of client tier location</li>
+                            <li>a-architecture: differs from project to project</li>
+                        </ul>
                     </aside>
                 </section>
                 <section>
