@@ -623,7 +623,7 @@ button.addEventListener("click", () => {
                 <h2>RxJS - Level 8: Error handling</h2>
                 catchError(...): catch errors emitted by the observable and gracefully handle them
                 <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
-                    source$.pipe(catchError(error) => of([]))
+                    source$.pipe(catchError(error => of([])))
                     // fall back to an empty array if the source observable emits an error
                     </code></pre>
                 retry(...): retry the observable sequence a given number of times if an error occurs
