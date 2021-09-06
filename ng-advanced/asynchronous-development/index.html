@@ -546,17 +546,17 @@ button.addEventListener("click", () => {
             <section>
                 <h2>RxJS - Level 5: Complex Sub Processes (Solution)</h2>
                 <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
-                    // timeline(r):   0  1     2    3     4   5     6          7     8     9
+                    // timeline(r):   0  1     2    3     4   5     6     7     8     9
                     // source:        a        b          c|
                     // response a:       r:a1                 r:a2|
                     // response b:       r:b1|
                     // response c:             r:c1 r:c2|
                     switchMap( input => getResponses(input))
-                    //                   r:a1       r:b1            r:c1       r:c2|
+                    //                   r:a1       r:b1            r:c1  r:c2|
                     concatMap( input => getResponses(input))
-                    //                   r:a1                 r:a2  r:b1             r:c1  r:c2|
+                    //                   r:a1                 r:a2  r:b1        r:c1  r:c2|
                     mergeMap( input => getResponses(input))
-                    //                   r:a1       r:b1      r:a2  r:c1 r:c2|
+                    //                   r:a1       r:b1      r:a2  r:c1  r:c2|
                 </code></pre>
                 <aside class="notes">
                     Followup questions:
