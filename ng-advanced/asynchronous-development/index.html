@@ -693,7 +693,7 @@ button.addEventListener("click", () => {
                     // a b c z
                     retry( 2 )
                     // a b c d e f g h i x3
-                    retryWhen(errors => errors.pipe(switchMap(error => iif(error => error === x1, of(error), throwError(error)))))
+                    retryWhen(errors => errors.pipe(switchMap(error => iif(error => error === x1, of(true), throwError(error)))))
                     // a b c d e f x2
                 </code></pre>
                 <aside class="notes">
