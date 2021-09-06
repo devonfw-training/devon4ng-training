@@ -612,7 +612,7 @@ button.addEventListener("click", () => {
                     </code></pre>
                 timeoutWith(...): fallback to another observable when a timeout is reached
                 <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
-                    source$.timeoutWith( 1000, fallback$)
+                    timeoutWith( 1000, fallback$)
                     // Timeout starts at subscription time.
                     // Once the timeout of 1000ms is triggered, only values from fallback$ are returned
                     </code></pre>
