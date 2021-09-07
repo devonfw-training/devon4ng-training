@@ -14,6 +14,11 @@
     text-align: left;
 }
 
+.reveal .slides .header-align-right {
+    margin-right: 43pt;
+    text-align: right;
+}
+
 .reveal .slides iframe {
     border: 0;
 }
@@ -75,6 +80,10 @@ html .reveal section img.no-border {
   background: none;
   border: 0;
   box-shadow: none;
+}
+
+.reveal section .width-60-percent {
+    width: 60%;
 }
 
 .reveal section .width-70-percent {
