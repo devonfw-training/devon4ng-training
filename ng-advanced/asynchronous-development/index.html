@@ -125,6 +125,105 @@
                     </UL>
                 </aside>
             </section>
+          <section>
+                <p>Why does this progress bar not work?</p>
+                <pre><code class="javascript" data-trim data-line-numbers="">
+                      console.log('starting work');
+                      updateProgressSync(0);
+                      for( let i=1; i<=10; i++) {
+                          busyWaitMs(1000);
+                          let percent = i/10*100;
+                          updateProgressSync(percent);
+                      }
+                      console.log('finished with work');
+                </code></pre>
+              <div>
+                  <button id="buttonSyncProgressBar">Do A Lot Of Work</button>
+                  Progress: <span id="syncProgressBarValue">0%</span>
+                  <progress id="syncProgressBar" max="100" value="0"></progress>
+              </div>
+              <script>
+                  function busyWaitMs(waitMs) {
+                      if (!waitMs) {
+                          waitMs = 100;
+                      }
+                      console.log('waiting '+waitMs+'ms');
+                      let startTime = Date.now();
+                      while (startTime + waitMs > Date.now()) {
+                          // oh my, we're busy
+                      }
+                  }
+                  function updateProgressSync(percent) {
+                      let progressResultSpan = document.querySelector('#syncProgressBarValue');
+                      let progressResult = document.querySelector('#syncProgressBar');
+                      console.log('work partially done '+percent+'%');
+                      progressResultSpan.textContent = percent + '%';
+                      progressResult.setAttribute('value', percent);
+                  }
+                  document.querySelector('#buttonSyncProgressBar').addEventListener('click', function () {
+                      console.log('starting work');
+                      updateProgressSync(0);
+                      for( let i=1; i<=10; i++) {
+                          busyWaitMs(1000);
+                          let percent = i/10*100;
+                          updateProgressSync(percent);
+                      }
+                      console.log('finished with work');
+                  });
+              </script>
+                <aside class="notes">
+                </aside>
+            </section>
+            <section>
+                <p>Why does this progress bar work?</p>
+                <pre><code class="javascript" data-trim data-line-numbers="">
+                        console.log('starting work');
+                        updateProgressAsync(0);
+                        let i = 1;
+                        function chunkOfWork() {
+                            busyWaitMs(1000);
+                            updateProgressAsync(i/10*100);
+                            if (++i<=10) {
+                                setTimeout(chunkOfWork, 0);
+                            } else {
+                                console.log('finished with work');
+                            }
+                        }
+                        setTimeout(chunkOfWork, 0);
+                </code></pre>
+                <div>
+                    <button id="buttonAsyncProgressBar">Do A Lot Of Work</button>
+                    Progress: <span id="asyncProgressBarValue">0%</span>
+                    <progress id="asyncProgressBar" max="100" value="0"></progress>
+                </div>
+                <script>
+                    // function busyWaitMs is reused from above
+                    function updateProgressAsync(percent) {
+                        let progressResultSpan = document.querySelector('#asyncProgressBarValue');
+                        let progressResult = document.querySelector('#asyncProgressBar');
+                        console.log('work partially done '+percent+'%');
+                        progressResultSpan.textContent = percent + '%';
+                        progressResult.setAttribute('value', percent);
+                    }
+                    document.querySelector('#buttonAsyncProgressBar').addEventListener('click', function () {
+                        console.log('starting work');
+                        updateProgressAsync(0);
+                        let i = 1;
+                        function chunkOfWork() {
+                            busyWaitMs(1000);
+                            updateProgressAsync(i/10*100);
+                            if (++i<=10) {
+                                setTimeout(chunkOfWork, 0);
+                            } else {
+                                console.log('finished with work');
+                            }
+                        }
+                        setTimeout(chunkOfWork, 0);
+                    });
+                </script>
+                <aside class="notes">
+                </aside>
+            </section>
         </section>
         <section class="fullscreen">
             <h2>What will be the log result?</h2>
