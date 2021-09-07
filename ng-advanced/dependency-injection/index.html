@@ -162,6 +162,15 @@ const silentLogger = {
         <section>
             <p>What is the difference between <strong class="cap-blue">providers</strong> and <strong class="cap-blue">viewProviders?</strong>
             </p>
+            <aside class="notes">
+                <ul>
+                    <li>providers: works for both content children and view children</li>
+                    <li>viewProviders: works only for the view children (fallback is the providers-injector)</li>
+                </ul>
+                content children:
+                Those which are not included in the template but given from the outside to be filled
+                in an &lt;ng-content&gt;
+            </aside>
         </section>
 
         <section>
