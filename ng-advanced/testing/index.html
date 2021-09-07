@@ -257,7 +257,7 @@
                     <body class="white">
                         <ul>
                             <li>
-                                async
+                                waitForAsync
                             </li>
                             <li>
                                 fakeAsync
@@ -269,11 +269,11 @@
                     </body>
                 </section>
                 <section data-transition="slide" data-background-image="../common/img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
-                    <h3 class="header white">async</h3>
+                    <h3 class="header white">waitForAsync</h3>
 
                     <body class="white">
                         <pre style="margin: 0; width: 100%"><code class="hljs ts" data-trim>
-it('should show quote after getQuote (async)', async(() => {
+it('should show quote after getQuote (async)', waitForAsync(() => {
   fixture.detectChanges(); // ngOnInit()
   expect(quoteEl.textContent).toBe('...', 'should show placeholder');
 
@@ -287,7 +287,7 @@ it('should show quote after getQuote (async)', async(() => {
 
                         <small>
                             <a
-                                href="https://angular.io/guide/testing#async-test-with-async">https://angular.io/guide/testing#async-test-with-async</a>
+                                href="https://angular.io/guide/testing-components-scenarios#async-test-with-waitforasync">https://angular.io/guide/testing-components-scenarios#async-test-with-waitforasync</a>
                         </small>
                     </body>
                 </section>
@@ -312,7 +312,7 @@ it('Button label via fakeAsync() and tick()', fakeAsync(() => {
 
                         <small>
                             <a
-                                href="https://angular.io/guide/testing#async-test-with-fakeasync">https://angular.io/guide/testing#async-test-with-fakeasync</a>
+                                href="https://angular.io/guide/testing-components-scenarios#async-test-with-fakeasync">https://angular.io/guide/testing-components-scenarios#async-test-with-fakeasync</a>
                         </small>
                     </body>
                 </section>
@@ -335,7 +335,7 @@ it('should show last quote (quote done)', (done: DoneFn) => {
 
                         <small>
                             <a
-                                href="https://angular.io/guide/testing#jasmine-done">https://angular.io/guide/testing#jasmine-done</a>
+                                href="https://angular.io/guide/testing-components-scenarios#jasmine-done">https://angular.io/guide/testing-components-scenarios#jasmine-done</a>
                         </small>
                     </body>
                 </section>
