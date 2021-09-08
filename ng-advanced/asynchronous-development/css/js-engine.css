@@ -1,0 +1,90 @@
+#js-engine {
+    position: relative;
+    width: 950px;
+    height: 540px;
+    border: 3px white solid;
+    padding: 8px;
+    color: darkgrey;
+    margin: auto;
+}
+
+#js-engine p {
+    margin: 0;
+}
+
+#js-engine code {
+    font-size: 80%
+}
+
+#js-engine-core {
+    position: relative;
+}
+
+#call-stack {
+    position: absolute;
+    left: 45px;
+    width: 250px;
+    height: 210px;
+    margin: 0 auto 10px;
+    padding: 10px;
+    background-color: darkgrey;
+    color: #000000;
+}
+
+#event-table {
+    position: absolute;
+    left: 335px;
+    width: 250px;
+    height: 90px;
+    margin: 0 auto 10px;
+    padding: 10px;
+    background-color: darkgrey;
+    color: #000000;
+}
+
+#event-queue {
+    position: absolute;
+    top: 120px;
+    left: 335px;
+    width: 250px;
+    height: 90px;
+    margin: 0 auto 10px;
+    padding: 10px;
+    background-color: darkgrey;
+    color: #000000;
+}
+
+#console {
+    position: absolute;
+    left: 625px;
+    width: 265px;
+    height: 210px;
+    margin: 0 auto 10px;
+    padding: 10px;
+    background-color: darkgrey;
+    color: #000000;
+}
+
+#js-engine .code-element {
+    position: absolute;
+    width: 240px;
+    margin: 0 auto;
+    border: none;
+}
+
+#js-engine {
+    border: 2px solid grey;
+}
+
+#js-engine p {
+    color: black;
+}
+
+#js-engine pre {
+    box-shadow: none;
+}
+
+.reveal #js-engine pre code {
+    background: white;
+    color: black;
+}

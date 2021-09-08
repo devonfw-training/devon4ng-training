@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="./css/common.css">
     <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="./css/github-gist.css">
+    <link rel="stylesheet" href="css/js-engine.css">
 </head>
 <body>
 <div class="reveal">
@@ -25,28 +26,66 @@
                 <p class="cap-white">Philip Schmökel, Bernd Olleck</p>
             </div>
         </section>
-        <section class="fullscreen">
-            <h2>What do you know about the JavaScript Eventloop?</h2>
-            <div style="display:flex; justify-content: center;padding-top: 4rem">
-                <img class="event-loop-scribble" src="./img/event-loop.svg" alt="JavaScript Event Loop">
-            </div>
-            <ul>
-                <li>You know about <span class="cap-blue">Tasks</span> and <span class="cap-blue">Jobs</span>/<span
-                        class="cap-blue">Microtasks</span>?
-                </li>
-            </ul>
-            <aside class="notes">
-                Some useful links:
-                <UL>
-                    <LI>
-                        https://javascript.info/event-loop
-                    </LI>
-                    <LI>
-                        https://javascript.info/microtask-queue
-                    </LI>
-                </UL>
-            </aside>
-        </section>
+        <section>
+            <section class="fullscreen">
+                <h2>What do you know about the JavaScript Eventloop?</h2>
+                <div style="display:flex; justify-content: center;padding-top: 4rem">
+                    <img class="event-loop-scribble" src="./img/event-loop.svg" alt="JavaScript Event Loop">
+                </div>
+                <ul>
+                    <li>You know about <span class="cap-blue">Tasks</span> and <span class="cap-blue">Jobs</span>/<span
+                            class="cap-blue">Microtasks</span>?
+                    </li>
+                </ul>
+                <aside class="notes">
+                    Some useful links:
+                    <UL>
+                        <LI>
+                            https://javascript.info/event-loop
+                        </LI>
+                        <LI>
+                            https://javascript.info/microtask-queue
+                        </LI>
+                    </UL>
+                </aside>
+            </section>
+                <section>
+                    <!-- taken from the foundation slides of "promises-to-observables" -->
+                    <div id="js-engine">
+                        <p>JavaScript Engine (simplified)</p>
+                        <pre><code style="border: none;" data-trim class="javascript">
+    var bar = function () {
+            console.log('bar...');
+        },
+        foo = function () {
+            setTimeout(bar, 5000);
+            console.log('foo...');
+        };
+    foo();
+                        </code></pre>
+                        <div id="js-engine-core">
+                            <div id="call-stack">
+                                <p>Call Stack</p>
+                            </div>
+                            <div id="event-table">
+                                <p>Event Table</p>
+                            </div>
+                            <div id="event-queue">
+                                <p>Event Queue</p>
+                            </div>
+                            <div id="console">
+                                <p>Console</p>
+                                <!--<pre class="code-element"><code data-trim class="javascript">"I'm second!"</code></pre>-->
+                            </div>
+                        </div>
+                        <div class="navigate-left enabled"></div>
+                    </div>
+                    <div>
+                        <a href="javascript:jsEngineSteps.backward()">&lt;&lt;</a>&nbsp;
+                        <a href="javascript:jsEngineSteps.forward()">&gt;&gt;</a>
+                    </div>
+                </section>
+            </section>
         <section>
             <p>Each thread has its own event loop.</p>
             <ul>
@@ -1345,6 +1384,8 @@ describe('ListComponent', () => {
 </div>
 
 <script src="./reveal.js/js/reveal.js"></script>
+<script src="lib/jquery/jquery.min.js"></script>
+<script src="js/js-engine.js"></script>
 
 <script>
     // More info https://github.com/hakimel/reveal.js#configuration
