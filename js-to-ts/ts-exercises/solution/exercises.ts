@@ -21,6 +21,10 @@ function getElementsGreater(numbers: number[], threshold: number): number[] {
   return numbers.filter((number) => number > threshold);
 }
 
+type Comparable = {
+  compare(other: Comparable): number;
+}
+
 /**
  * Sorts an array of comparable objects.
  *
