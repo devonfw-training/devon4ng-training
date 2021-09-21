@@ -50,13 +50,13 @@
                 <div id="js-engine">
                     <p>JavaScript Engine (simplified)</p>
                     <pre><code style="border: none;" data-trim class="javascript">
-var bar = function () {
-        console.log('bar...');
-    },
-    foo = function () {
-        setTimeout(bar, 5000);
-        console.log('foo...');
-    };
+function bar() {
+    console.log('bar...');
+}
+function foo() {
+    setTimeout(bar, 5000);
+    console.log('foo...');
+}
 foo();
 					</code></pre>
                     <div id="js-engine-core">
@@ -176,7 +176,6 @@ promise.then(
                 <section>
                     <h3>Hint: Running the following examples via node js</h3>
                     <ul>
-                        <li>node, npm and tsc (TypeScript compiler) need to be installed</li>
                         <li>create folder - e.g. <code>mkdir ts-test</code></li>
                         <li>cd into folder - e.g. <code>cd ts-test</code></li>
                         <li>run <code>npm install rxjs</code></li>
@@ -232,7 +231,7 @@ obs.pipe(
                 <h3>When to call subscribe()</h3>
                 <p>Subscribes an observer to the observable sequence.</p>
                 <div class="margin_top_30">
-                    <p class="align_right"><small><a href="http://reactivex.io/rxjs/manual/overview.html#subscribing-to-observables">RxJS Docs</a></small></p>
+                    <p class="align_right"><small><a href="http://reactivex.io/rxjs/manual/overview.html#subscribing-to-observables" target="_blank">RxJS Docs</a></small></p>
                 </div>
             </section>
             <section>
@@ -279,7 +278,7 @@ of(2, 3).pipe(
                 <h3>An Observables State</h3>
                 <p>In an Observable Execution, <strong>zero to infinite Next notifications</strong> may be delivered. If <strong>either an Error or Complete notification</strong> is delivered, then nothing else can be delivered afterwards.</p>
                 <div class="margin_top_30">
-                    <p class="align_right"><small><a href="http://reactivex.io/rxjs/manual/overview.html">RxJS Docs</a></small>
+                    <p class="align_right"><small><a href="http://reactivex.io/rxjs/manual/overview.html" target="_blank">RxJS Docs</a></small>
                 </p>
             </section>
             <section>
@@ -296,10 +295,11 @@ let obs = new Observable&lt;number&gt;(subscriber => {
   subscriber.next(3); // note: 3 is never shown
 });
 
-obs.subscribe(v => console.log('next value', v),
-  e => console.log('error', e),
-  () => console.log('completed'));                        
-                </code></pre>
+obs.subscribe({
+  next(v) { console.log('next value', v) },
+  error(e) { console.log('error', e) },
+  complete() { console.log('completed') }
+});</code></pre>
                 <ul class="list-style-none font-style-italic">
                     <li>next value 1</li>
                     <li>next value 2</li>
@@ -320,9 +320,11 @@ let obs = new Observable&lt;number&gt;(subscriber => {
   subscriber.next(3); // note: 3 is never shown
 });
 
-obs.subscribe(v => console.log('next value', v),
-    e => console.log('error', e),
-    () => console.log('completed'));</code></pre>
+obs.subscribe({
+  next(v) { console.log('next value', v) },
+  error(e) { console.log('error', e) },
+  complete() { console.log('completed') }
+});</code></pre>
                 <ul class="list-style-none font-style-italic">
                     <li>next value 1</li>
                     <li>next value 2</li>
@@ -333,7 +335,7 @@ obs.subscribe(v => console.log('next value', v),
                 <h3>How to cancel an Observable</h3>
                 <p>When you subscribe, you get back a Subscription, which represents the ongoing execution. <strong>Just call unsubscribe() to cancel the execution.</strong></p>
                 <div class="margin_top_30">
-                    <p class="align_right"><small><a href="http://reactivex.io/rxjs/manual/overview.html#disposing-observable-executions">RxJS Docs</a></small>
+                    <p class="align_right"><small><a href="http://reactivex.io/rxjs/manual/overview.html#disposing-observable-executions" target="_blank">RxJS Docs</a></small>
                 </p>
             </section>
             <section>
@@ -348,10 +350,11 @@ let obs = new Observable&lt;number&gt;(subscriber => {
   }, 1000);
 });
 
-let subscription = obs.subscribe(v => console.log('next value', v),
-  e => console.log('error', e),
-  () => console.log('completed'));
-                </code></pre>
+obs.subscribe({
+  next(v) { console.log('next value', v) },
+  error(e) { console.log('error', e) },
+  complete() { console.log('completed') }
+});</code></pre>
             </section>
             <section>
                 <p>... <code>subscription.unsubscribe()</code> cancels the observable.</p>
@@ -379,8 +382,7 @@ let subscription =
 // calling unsubscribe() after 5,1 seconds
 setTimeout(() => { 
     subscription.unsubscribe();
-}, 5100);
-                        </code></pre>
+}, 5100);</code></pre>
                     </div>
                     <div class="inline-block">
                         <ul class="list-style-none font-style-italic">
@@ -402,7 +404,7 @@ setTimeout(() => {
                 <h3>Operators</h3>
                 <p>An Operator is a function which creates <strong>a new Observable based on the current Observable</strong>. This is a pure operation: the previous Observable stays unmodified.</p>
                 <div class="margin_top_30">
-                    <p class="align_right"><small><a href="http://reactivex.io/rxjs/manual/overview.html#operators">RxJS Docs</a></small>
+                    <p class="align_right"><small><a href="http://reactivex.io/rxjs/manual/overview.html#operators" target="_blank">RxJS Docs</a></small>
                 </p>
                 <p>RxJS comes with many operators. The Docs provide an overview. There are lots of use cases covered like taking only a single value, transformations, debounce time, auto retry, etc.</p>                
             </section>
@@ -422,8 +424,7 @@ export class AppComponent {
     }, 500);
   });
   private names = ['Waldo', 'Caspar', 'Azizi'];
-}
-                </code></pre>
+}</code></pre>
                 <p>Binding to a stream of data - how cool is that?</p>
             </section>
             <section>
@@ -435,7 +436,7 @@ export class AppComponent {
                 </ul>
             </section>
             <section>
-                <p>These examples <strong>only scratched the surface</strong> of what Observables can do.</p>
+                <p>These examples <strong>only scratched the surface</strong> of what Observables <a href="https://rxmarbles.com/" target="_blank">can do.</a></p>
                 <p>They are key to so called <strong>reactive architectures</strong>.</p>
                 <p>Further reading:</p>
                 <p><a href="https://github.com/ngrx/store">ngrx</a><span>: Redux implementation for Angular</span></p>
