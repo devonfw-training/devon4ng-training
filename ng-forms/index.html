@@ -244,6 +244,11 @@ export class FormTestComponent implements OnInit {
   *ngIf="contactForm.get('name').get('first').getError('forbiddenName')"&gt;
   The name is not allowed.
 &lt;/div&gt;</code></pre>
+or
+<pre><code class="html">&lt;div 
+  *ngIf="contactForm.get('name.first').getError('forbiddenName')"&gt;
+  The name is not allowed.
+&lt;/div&gt;</code></pre>
         </section>
         <section>
             <h3>Directive Validator</h3>
