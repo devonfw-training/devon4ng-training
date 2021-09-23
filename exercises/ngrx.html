@@ -138,15 +138,19 @@
             <p class="align-left">
                 Inside <code>app.component.ts</code>
                 <ul>
+                    <li>Inject the store into your component
+                        <pre><code class="typescript" data-trim>
+                        constructor(private store: Store) {}
+                        </code></pre>
+                    </li>
                     <li>
                         Create and initialize property <code>numberValue$</code> with select statement from store
+                        <pre><code class="typescript" data-trim>
+                        numberValue$ = this.store.pipe(select(s => s.number.value));
+                        </code></pre>
                     </li>
-
                 </ul>
             </p>
-            <pre><code class="typescript" data-trim>
-numberValue$ = this.store.pipe(select(s => s.number.value));
-            </code></pre>
         </section>
         <section>
             <h2>Display state and dispatch Actions in AppComponent I</h2>
