@@ -26,9 +26,13 @@
         document.getElementsByTagName('head')[0].appendChild(link);
     </script>
     <style>
-.align-left {
-    text-align: left;
-}
+        .branch-hint {
+            font-size: 16px !important;
+            text-align: left !important;
+        }
+        .align-left {
+            text-align: left;
+        }
     </style>
 </head>
 <body>
@@ -61,7 +65,8 @@
         <section>
             <h2>Basic Setup</h2>
             <ul>
-                <li>Initialize a new Angular application with Angular CLI</li>
+                <li>Initialize a <a href="https://angular.io/tutorial/toh-pt0" target="_blank">new Angular application</a> with Angular CLI</li>
+                <pre><code>ng new ngrx-exercise</code></pre>
                 <li>Add <code>@ngrx/store</code> and <code>@ngrx/store-devtools</code> to the dependencies with npm/yarn</li>
                 <li>Download the <a href="http://zalmoxisus.github.io/redux-devtools-extension/">Redux Devtools Extension</a></li>
             </ul>
@@ -91,27 +96,17 @@
                 <li>Create <code>number.reducer.ts</code> in <code>src/app/number</code></li>
                 <li>Define and export interface <code>NumberState</code> with a single property called <code>value</code></li>
                 <li>Define and export <code>initialState</code> with value 0</li>
-                <li>Define and export <code>numberReducer</code>
-                    <pre class="code-in-list"><code>function numberReducer(state = initialState, action: Action): NumberState</code></pre>
-                </li>
-                <li>Add switch-case statement for <code>action.type</code> inside number reducer</li>
             </ul>
         </section>
         <section>
             <h2>Define number reducer II</h2>
             <ul>
-                <li>
-                    <p>Create case statement for <code>'INCREMENT'</code></p> 
-                    <p class="size-medium">Return new number state with value incremented by 1</p>
+                <li>Define and export 3 <a href="https://ngrx.io/api/store/createAction">Actions</a> without metadata:<br><span class="size-medium">incrementCounter, decrementCounter, resetCounter</span></li>
+                <li>The actions should increment by 1, decrement by 1 and reset to 0 respectively</li>
+                <li>Define and export the <code>numberReducer</code>
+                    <pre class="code-in-list"><code>function numberReducer(state = initialState, action: Action): NumberState</code></pre>
                 </li>
-                <li>
-                    <p>Create case statement for <code>'DECREMENT'</code></p> 
-                    <p class="size-medium">Return new number state with value decremented by 1</p>
-                </li>
-                <li>
-                    <p>Create case statement for <code>'RESET'</code></p> 
-                    <p class="size-medium">Return new number state with value set to 0</p>
-                </li>
+                <li>As return add the <a href="https://ngrx.io/api/store/createReducer" target="_blank">createReducer</a> statement to process the action types.</li>
             </ul>
         </section>
         <section>
@@ -121,9 +116,9 @@
                 <li>
                     Create 3 test cases
                     <ol>
-                        <li class="size-medium"><code>INCREMENT returns 4 if previous state is 3</code></li>
-                        <li class="size-medium"><code>DECREMENT returns -2 if previous state is -1</code></li>
-                        <li class="size-medium"><code>RESET returns 0 if previous state is 3</code></li>
+                        <li class="size-medium"><code>incrementCounter should return 4 if previous state is 3</code></li>
+                        <li class="size-medium"><code>decrementCounter should return -2 if previous state is -1</code></li>
+                        <li class="size-medium"><code>resetCounter should return 0 if previous state is 3</code></li>
                     </ol>
                 </li>
             </ul>
@@ -134,7 +129,7 @@
                 Inside root.reducer.ts
                 <ul>
                     <li>Add property number to <code>AppState</code> with value set to <code>NumberState</code> imported from <code>number.reducer</code></li>
-                    <li>Add property number to reducers with value set to <code>numberReducer</code> imported from <code>number.reducer</code></li>
+                    <li>Add property number to reducers with value set to <code>reducer</code> imported from <code>number.reducer</code></li>
                 </ul>
             </p>
         </section>
@@ -143,15 +138,19 @@
             <p class="align-left">
                 Inside <code>app.component.ts</code>
                 <ul>
+                    <li>Inject the store into your component
+                        <pre><code class="typescript" data-trim>
+                        constructor(private store: Store) {}
+                        </code></pre>
+                    </li>
                     <li>
                         Create and initialize property <code>numberValue$</code> with select statement from store
+                        <pre><code class="typescript" data-trim>
+                        numberValue$ = this.store.pipe(select(s => s.number.value));
+                        </code></pre>
                     </li>
-
                 </ul>
             </p>
-            <pre><code class="typescript" data-trim>
-numberValue$ = this.store.pipe(select(s => s.number.value));
-            </code></pre>
         </section>
         <section>
             <h2>Display state and dispatch Actions in AppComponent I</h2>
@@ -168,15 +167,10 @@ numberValue$ = this.store.pipe(select(s => s.number.value));
         </section>
         <section>
             <h2>Display state and dispatch Actions in AppComponent II</h2>
-            <p class="align-left">
-                Inside <code>AppComponent</code>
-                <ul>
-                    <li>Listen for button events and dispatch Actions</li>
-                </ul>
-            </p>
+            Inside AppComponent listen for button events and dispatch Actions like for example:
             <pre><code class="typescript" data-trim>
 onResetClick() {
-  this.store.dispatch({type: 'RESET'});
+  this.store.dispatch(resetCounter());
 }
             </code></pre>
         </section>
@@ -188,6 +182,7 @@ onResetClick() {
                 <li>See state transitions in redux devtool</li>
             </ul>
             <img src="img/ngrx-basic-exer-result.png" height="300" alt="Basic exercise success" class="no-border">
+            <p class="branch-hint">Solution branch: exercise/ngrx-number-reducer-solution</p>
         </section>
       </section>
       <section>
@@ -198,7 +193,7 @@ onResetClick() {
           <h2>Refactor number application</h2>
           <ul>
               <li>Create new component <code>NumberComponent</code> in <code>src/app/number</code></li>
-              <li>Extract content from <code>AppComponent</code> into <code>NumberComponent</code></li>
+              <li>Extract content from <code>AppComponent</code> into <code>NumberComponent</code> (HTML/CSS/TS)</li>
               <li>Add <code>&lt;app-number&gt;&lt;/app-number&gt;</code> into <code>AppComponent</code> template</li>
               <li>... check if application still works.</li>
           </ul>
@@ -207,6 +202,7 @@ onResetClick() {
             <h2>Create login page</h2>
             <ul>
                 <li>Create <code>LoginPageComponent</code> in <code>src/app/auth</code></li>
+                <pre><code>ng g c auth/login-page</code></pre>
                 <li>LoginPageComponent should be a simple form to log in a user</li>
             </ul>
             <img src="img/ngrx-in-action-login.png" alt="login dialog" class="no-border">
@@ -259,20 +255,19 @@ export type AuthActions = Login|Logout;
             </ul>
         </section>
         <section>
-            <h2>Create auth reducer</h2>
+            <h2>Create auth reducer I</h2>
             <ul>
                 <li>Create <code>auth.reducer.ts</code> in <code>src/app/auth</code></li>
-                <li>Define <code>AuthState</code> and implement <code>initialState</code> and <code>authReducer</code></li>
-                <li><code>AuthState</code> defines the logged in user</li>
-                <li>Register <code>authReducer</code> in <code>root.reducer</code> <code>reducers</code> map</li>
+                <li>Define and export <code>AuthState</code> with username as a property</li>
+                <li>Define and export the Actions login and logout</li>
+                <li>Login should simply check for the password to be 12345</li>
             </ul>
         </section>
         <section>
-            <h2>Implement auth reducer</h2>
+            <h2>Create auth reducer II</h2>
             <ul>
-                <li>Set type of <code>action</code> parameter to <code>action: AuthActions</code></li>
-                <li>Implement case statements for both actions by importing <code>LOGIN</code> and <code>LOGOUT</code> from <code>auth.actions.ts</code></li>
-                <li>Feel the power of typed actions</li>
+                <li>Define and export the <code>initialState</code> and <code>authReducer</code></li>
+                <li>Register <code>authReducer</code> in <code>root.reducer</code> <code>reducers</code> map</li>
             </ul>
         </section>
         <section>
@@ -287,7 +282,7 @@ export type AuthActions = Login|Logout;
             <ul>
                 <li><code>AppComponent</code> should display <code>LoginPageComponent</code> if no user is logged in</li>
                 <li><code>AppComponent</code> should display the current user, <code>NumberComponent</code> and a logout button if a user is logged in.</li>
-                <li>listen for events and dispatch actions</li>
+                <li>Listen for login and logout events and dispatch the proper actions</li>
             </ul>
         </section>
         <section>
