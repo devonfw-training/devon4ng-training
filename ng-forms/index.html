@@ -140,7 +140,7 @@
     first: new FormControl('Juana'),
     last: new FormControl('Garcia')
   }),
-  email: ''
+  email: new FormControl('')
 });</code></pre>
             <p>... represents the data model of</p>
             <pre><code class="typescript">let model: {
@@ -206,7 +206,7 @@ export class FormTestComponent implements OnInit {
             <pre><code class="typescript">this.contactForm = this.formBuilder.group({
   name: {
     first: ['', Validators.required],
-    last: ['', Validators.minLength(2)]
+    last: ['', [Validators.required, Validators.minLength(2)]]
   },
   email: ['', Validators.required],
 });</code></pre>
@@ -242,6 +242,11 @@ export class FormTestComponent implements OnInit {
             <p>FormControl.errors is extended by custom error key-value pairs from validation method.</p>
             <pre><code class="html">&lt;div 
   *ngIf="contactForm.get('name').get('first').getError('forbiddenName')"&gt;
+  The name is not allowed.
+&lt;/div&gt;</code></pre>
+or
+<pre><code class="html">&lt;div 
+  *ngIf="contactForm.get('name.first').getError('forbiddenName')"&gt;
   The name is not allowed.
 &lt;/div&gt;</code></pre>
         </section>
