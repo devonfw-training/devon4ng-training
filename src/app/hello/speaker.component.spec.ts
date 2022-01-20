@@ -1,8 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/empty';
-import 'rxjs/add/observable/of';
+import { EMPTY, of } from 'rxjs';
 
 import { Speaker } from './speaker';
 import { SpeakerComponent } from './speaker.component';
@@ -22,7 +20,7 @@ describe('SpeakerComponent', () => {
     });
 
     it('displays default value', () => {
-        spyOn(speaker, 'getLine').and.returnValue(Observable.empty());
+        spyOn(speaker, 'getLine').and.returnValue(EMPTY);
         fixture.componentInstance.ngOnInit();
 
         fixture.detectChanges();
@@ -33,7 +31,7 @@ describe('SpeakerComponent', () => {
 
     it('displays emitted line', () => {
         const line = 'this line is expected';
-        spyOn(speaker, 'getLine').and.returnValue(Observable.of(line));
+        spyOn(speaker, 'getLine').and.returnValue(of(line));
         fixture.componentInstance.ngOnInit();
 
         fixture.detectChanges();
