@@ -414,18 +414,18 @@ TestBed.configureTestingModule({
                 <p>To stub the real dependency you need to retrieve the runtime instance via</p>
                 <pre><code class="typescript">fixture.debugElement.injector.get(Speaker)</code></pre>
                 <p>or</p>
-                <pre><code class="typescript">TestBed.get(Speaker)</code></pre>
+                <pre><code class="typescript">TestBed.inject(Speaker)</code></pre>
                 <span class="highlight">Using the components fixture should be preferred</span> since it is less error prone.
             </section>
             <section>
                 <h3>Testing asynchronous functionality</h3>
             </section>
             <section>
-                <p>async makes the test wait until all asynchronous operations are completed.</p>
+                <p>waitForAsync makes the test wait until all asynchronous operations are completed.</p>
                 <pre><code data-noescape data-trim class="typescript">
-import { async } from '@angular/core/testing';
+import { waitForAsync } from '@angular/core/testing';
 
-it('should display hello', <mark>async(</mark>() => {
+it('should display hello', <mark>waitForAsync(</mark>() => {
   let sut = new TestService();
 
   sut.doSomething().then(result => {
