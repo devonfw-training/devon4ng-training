@@ -24,5 +24,5 @@ import { Book } from './book';
 </div>`
 })
 export class BookComponent {
-  constructor(private book: Book) {}
+  constructor(public book: Book) {}
 }
