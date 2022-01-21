@@ -120,7 +120,7 @@
                 <li>Define and export 3 <a href="https://ngrx.io/api/store/createAction">Actions</a> without metadata:<br><span class="size-medium">incrementCounter, decrementCounter, resetCounter</span></li>
                 <li>The actions should increment by 1, decrement by 1 and reset to 0 respectively</li>
                 <li>Define and export the <code>numberReducer</code>
-                    <pre class="code-in-list"><code>function numberReducer(state = initialState, action: Action): NumberState</code></pre>
+                    <pre class="code-in-list"><code>function numberReducer(state: NumberState, action: Action): NumberState</code></pre>
                 </li>
                 <li>As return add the <a href="https://ngrx.io/api/store/createReducer" target="_blank">createReducer</a> statement to process the action types.</li>
             </ul>
@@ -224,48 +224,15 @@ onResetClick() {
             <img src="img/ngrx-in-action-login.png" alt="login dialog" class="no-border">
         </section>
                 <section>
-            <h2>Define typed auth Actions I</h2>
+            <h2>Define typed auth Actions</h2>
             <ul>
                 <li>create <code>auth.actions.ts</code> in <code>src/app/auth</code></li>
                 <li>
                     <p>export two constants</p>
                     <pre><code class="typescript" data-trim>
-export const LOGIN =  '[auth] Login';
-export const LOGOUT = '[auth] Logout';
-                    </code></pre>
-                </li>
-            </ul>
-        </section>
-        <section>
-            <h2>Define typed auth Actions II</h2>
-            <ul>
-                <li>
-                    <p>export a class for each Action in <code>auth.actions.ts</code></p>
-                </li>
-            </ul>
-            <pre><code class="typescript" data-trim>
-export class Login implements Action {
-  readonly type = LOGIN;
-
-  constructor(
-    public payload: {
-      user: {username: string, password: string}
-    }
-  ) {}
-}
-
-export class Logout implements Action {
-    readonly type = LOGOUT;
-}
-            </code></pre>
-        </section>
-        <section>
-            <h2>Define typed auth Actions III</h2>
-            <ul>
-                <li>
-                        <p>export a union type called <code>AuthActions</code> in <code>auth.actions.ts</code></p>
-                        <pre><code class="typescript" data-trim>
-export type AuthActions = Login|Logout;
+export const login = createAction('[authentication] login',
+  props<{ username: string, password: string }>());
+export const logout = createAction('[authentication] logout');
                     </code></pre>
                 </li>
             </ul>
@@ -275,7 +242,7 @@ export type AuthActions = Login|Logout;
             <ul>
                 <li>Create <code>auth.reducer.ts</code> in <code>src/app/auth</code></li>
                 <li>Define and export <code>AuthState</code> with username as a property</li>
-                <li>Define and export the Actions login and logout</li>
+                <li>Create a reducer for the Actions login and logout</li>
                 <li>Login should simply check for the password to be 12345</li>
             </ul>
         </section>

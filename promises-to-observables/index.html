@@ -397,7 +397,7 @@ setTimeout(() => {
             </section>
             <section>
                 <h3>Error handling</h3>
-                <p>As described earlier when calling <code>subscribe()</code> the <strong>second parameter is a function which gets called if the observable collection emits an error</strong> by calling <code>error()</code>.</p>
+                <p>As described earlier when calling <a href="https://rxjs.dev/api/index/class/Observable#subscribe">subscribe()</a> the <strong>error property of the passed <a href="https://rxjs.dev/api/index/interface/Observer">Observer</a> is a function which gets called if the observable collection emits an error</strong> by calling <code>error()</code>.</p>
                 <p class="margin-top-70">Note: Throwing inside the function given to <code>new Observable()</code> leads to an unhandled exception - calling <code>error()</code> fulfills the contract.</p>
             </section>
             <section>
