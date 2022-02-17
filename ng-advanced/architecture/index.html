@@ -59,8 +59,9 @@
                     <h3 class="blue">Past</h3>
                     <p>pageload-centric web applications</p>
                     <figure>
-                        <img src="./img/classical-web-apps.png" height=300>
-                        <figcaption>from <a href="https://devonfw-training.github.io/devon4ng-training/web-app-architecture/">Web
+                        <img src="/img/classical-web-apps.png" height=300>
+                        <figcaption>from <a
+                                href="https://devonfw-training.github.io/devon4ng-training/web-app-architecture/">Web
                                 App Architecture</a>
                         </figcaption>
                     </figure>
@@ -72,8 +73,9 @@
                     <h3 class="blue">Present</h3>
                     <p>singlepage web applications (SPA)</p>
                     <figure>
-                        <img src="./img/singlepage-web-apps.png" height=300>
-                        <figcaption>from <a href="https://devonfw-training.github.io/devon4ng-training/web-app-architecture/">Web
+                        <img src="/img/singlepage-web-apps.png" height=300>
+                        <figcaption>from <a
+                                href="https://devonfw-training.github.io/devon4ng-training/web-app-architecture/">Web
                                 App Architecture</a>
                         </figcaption>
                     </figure>
@@ -117,19 +119,22 @@
                     </aside>
                 </section>
                 <section>
-                    <p class="blue">explained by the <a href="https://devonfw.com/website/pages/docs/master-devon4ng.asciidoc_architecture.html#meta-architecture.asciidoc">devonfw
+                    <p class="blue">explained by the <a
+                            href="https://devonfw.com/website/pages/docs/master-devon4ng.asciidoc_architecture.html#meta-architecture.asciidoc">devonfw
                             meta architecture for clients</a></p>
                     <aside class="notes">
                         difference to other architectures:
                         <ul>
-                            <li>ti-architecture: meta architecture should work native & web and independent of place of client tier location</li>
+                            <li>ti-architecture: meta architecture should work native & web and independent of place of
+                                client tier location</li>
                             <li>a-architecture: differs from project to project</li>
                         </ul>
                     </aside>
                 </section>
                 <section>
                     <figure>
-                        <img src="./img/devonfw_ClientArchitecture_Overview.png" height=400 alt="Client Architecture - Overview">
+                        <img src="/img/devonfw_ClientArchitecture_Overview.png" height=400
+                            alt="Client Architecture - Overview">
                         <figcaption>Client Architecture - Overview</figcaption>
                     </figure>
 
@@ -172,7 +177,8 @@
                 </section>
                 <section>
                     <figure>
-                        <img src="./img/devonfw_ClientArchitecture_DialogComponent.png" height=400 alt="Client Architecture - Dialog Component">
+                        <img src="/img/devonfw_ClientArchitecture_DialogComponent.png" height=400
+                            alt="Client Architecture - Dialog Component">
                         <figcaption>Client Architecture - Dialog Component</figcaption>
                     </figure>
 
@@ -200,14 +206,17 @@
                 </section>
                 <section>
                     <figure>
-                        <img src="./img/devonfw_ClientArchitecture_DialogContainer.png" height=400 alt="Client Architecture - Dialog Container">
+                        <img src="/img/devonfw_ClientArchitecture_DialogContainer.png" height=400
+                            alt="Client Architecture - Dialog Container">
                         <figcaption>Client Architecture - Dialog Container</figcaption>
                     </figure>
 
                     <aside class="notes">
                         <ul>
-                            <li>configuration management: deployment to different environments, using specific configuration there</li>
-                            <li>dialog management: defining, creating, destroying dialog components - basic lifecycle capabilities
+                            <li>configuration management: deployment to different environments, using specific
+                                configuration there</li>
+                            <li>dialog management: defining, creating, destroying dialog components - basic lifecycle
+                                capabilities
                             </li>
                             <li>service registry: define, register, lookup services - independent of dialog hierarchy
                             </li>
@@ -218,7 +227,8 @@
                     <h4 class="blue">Dialog Container - Configuration Management</h4>
 
                     <figure>
-                        <img src="./img/devonfw_ClientArchitecture_DialogContainer.png" height=200 alt="Client Architecture - Dialog Container">
+                        <img src="/img/devonfw_ClientArchitecture_DialogContainer.png" height=200
+                            alt="Client Architecture - Dialog Container">
                         <figcaption>Client Architecture - Dialog Container</figcaption>
                     </figure>
                     <pre><code>"environmentSource": "environments/environment.ts",
@@ -230,7 +240,8 @@
 }</code></pre>
                     <aside class="notes">
                         <ul>
-                            <li>configuration management: deployment to different environments, using specific configuration there</li>
+                            <li>configuration management: deployment to different environments, using specific
+                                configuration there</li>
                         </ul>
                     </aside>
                 </section>
@@ -238,7 +249,8 @@
                     <h4 class="blue">Dialog Container - Configuration Management</h4>
 
                     <figure>
-                        <img src="./img/devonfw_ClientArchitecture_DialogContainer.png" height=200 alt="Client Architecture - Dialog Container">
+                        <img src="/img/devonfw_ClientArchitecture_DialogContainer.png" height=200
+                            alt="Client Architecture - Dialog Container">
                         <figcaption>Client Architecture - Dialog Container</figcaption>
                     </figure>
                     <pre><code>// Import Statement
@@ -247,7 +259,8 @@ import { environment } from '../../../environments/environment';
 this.http.get(environment.backendUrl + '/flights');</code></pre>
                     <aside class="notes">
                         <ul>
-                            <li>configuration management: deployment to different environments, using specific configuration there</li>
+                            <li>configuration management: deployment to different environments, using specific
+                                configuration there</li>
                         </ul>
                     </aside>
                 </section>
@@ -255,15 +268,17 @@ this.http.get(environment.backendUrl + '/flights');</code></pre>
                     <h4 class="blue">Dialog Container - Dialog Management</h4>
 
                     <figure>
-                        <img src="./img/hooks-in-sequence.png" height=400 alt="Angular Lifecycle Hooks">
-                        <figcaption>Angular Lifecycle Hooks from <a href="https://v2.angular.io/docs/ts/latest/guide/lifecycle-hooks.html">angular.io</a>
+                        <img src="/img/hooks-in-sequence.png" height=400 alt="Angular Lifecycle Hooks">
+                        <figcaption>Angular Lifecycle Hooks from <a
+                                href="https://v2.angular.io/docs/ts/latest/guide/lifecycle-hooks.html">angular.io</a>
                         </figcaption>
                     </figure>
 
 
                     <aside class="notes">
                         <ul>
-                            <li>dialog management: defining, creating, destroying dialog components - basic lifecycle capabilities
+                            <li>dialog management: defining, creating, destroying dialog components - basic lifecycle
+                                capabilities
                             </li>
                         </ul>
                     </aside>
@@ -272,27 +287,32 @@ this.http.get(environment.backendUrl + '/flights');</code></pre>
                     <h4 class="blue">Dialog Container - Service Registry</h4>
 
                     <figure>
-                        <img src="./img/injector-bubbling.svg" height=400 alt="Client Architecture - Dependency Management - Injectors">
+                        <img src="/img/injector-bubbling.svg" height=400
+                            alt="Client Architecture - Dependency Management - Injectors">
                         <figcaption>Angular Dependency Management - Injector Bubbling</figcaption>
                     </figure>
                     <aside class="notes">
                         <ul>
                             <li>service registry: define, register, lookup services - independent of dialog hierarchy
                             </li>
-                            <li>When Angular compiler creates HeaderComponent, injectors are asked until the dependency can be found or root injector can not handle</li>
+                            <li>When Angular compiler creates HeaderComponent, injectors are asked until the dependency
+                                can be found or root injector can not handle</li>
                         </ul>
                     </aside>
                 </section>
                 <section>
                     <figure>
-                        <img src="./img/devonfw_ClientArchitecture_DialogContainer.png" height=400 alt="Client Architecture - Dialog Container">
+                        <img src="/img/devonfw_ClientArchitecture_DialogContainer.png" height=400
+                            alt="Client Architecture - Dialog Container">
                         <figcaption>Client Architecture - Dialog Container</figcaption>
                     </figure>
 
                     <aside class="notes">
                         <ul>
-                            <li>configuration management: deployment to different environments, using specific configuration there</li>
-                            <li>dialog management: defining, creating, destroying dialog components - basic lifecycle capabilities
+                            <li>configuration management: deployment to different environments, using specific
+                                configuration there</li>
+                            <li>dialog management: defining, creating, destroying dialog components - basic lifecycle
+                                capabilities
                             </li>
                             <li>service registry: define, register, lookup services - independent of dialog hierarchy
                             </li>
@@ -301,7 +321,8 @@ this.http.get(environment.backendUrl + '/flights');</code></pre>
                 </section>
                 <section>
                     <figure>
-                        <img src="./img/devonfw_ClientArchitecture_DialogInteractions.png" height=400 alt="Client Architecture - Dialog Interactions">
+                        <img src="/img/devonfw_ClientArchitecture_DialogInteractions.png" height=400
+                            alt="Client Architecture - Dialog Interactions">
                         <figcaption>Client Architecture - Dialog Interactions</figcaption>
                     </figure>
 
@@ -341,19 +362,22 @@ this.http.get(environment.backendUrl + '/flights');</code></pre>
                         Terminology
                     </h3>
                     <ul>
-                        <li>A component describes an UI element containing HTML, CSS and JavaScript - structure, design and logic encapsulated inside a reusable container called component.</li>
-                        <li>A module describes an applications feature area. The application flight-app may have a module called booking. ES2015 modules are not meant here.</li>
+                        <li>A component describes an UI element containing HTML, CSS and JavaScript - structure, design
+                            and logic encapsulated inside a reusable container called component.</li>
+                        <li>A module describes an applications feature area. The application flight-app may have a
+                            module called booking. ES2015 modules are not meant here.</li>
                     </ul>
                 </section>
                 <section>
                     <h3>Feature Modules</h3>
                     <figure>
-                        <img src="./img/compilation-context.png" height=400 alt="angular.io compilation context">
+                        <img src="/img/compilation-context.png" height=400 alt="angular.io compilation context">
                         <figcaption>angular.io: compilation context</figcaption>
                     </figure>
 
                     <aside class="notes">
-                        The compilation context is basically just a fancy term for grouping of the files that TypeScript will parse and analyze to determine what is valid and what isn't.
+                        The compilation context is basically just a fancy term for grouping of the files that TypeScript
+                        will parse and analyze to determine what is valid and what isn't.
                         <!-- https://basarat.gitbook.io/typescript/project/compilation-context -->
 
                         <ul>
@@ -367,8 +391,10 @@ this.http.get(environment.backendUrl + '/flights');</code></pre>
                 <section>
                     <h3>Components</h3>
                     <figure>
-                        <img style="padding: 12px 0;" src="./img/component-tree.svg" height=400 alt="Angular Component Tree">
-                        <figcaption>component tree from <a href="https://devonfw-training.github.io/devon4ng-training/web-app-architecture/">Web
+                        <img style="padding: 12px 0;" src="/img/component-tree.svg" height=400
+                            alt="Angular Component Tree">
+                        <figcaption>component tree from <a
+                                href="https://devonfw-training.github.io/devon4ng-training/web-app-architecture/">Web
                                 App Architecture</a></figcaption>
                     </figure>
 
@@ -379,8 +405,10 @@ this.http.get(environment.backendUrl + '/flights');</code></pre>
                 <section>
                     <h3>Smart & Dumb Components</h3>
                     <figure>
-                        <img style="padding: 12px 0;" src="./img/smart-dumb-components-interaction.svg" height=400 alt="Component Interactions in Angular">
-                        <figcaption>component interaction from <a href="https://devonfw-training.github.io/devon4ng-training/web-app-architecture/">Web
+                        <img style="padding: 12px 0;" src="/img/smart-dumb-components-interaction.svg" height=400
+                            alt="Component Interactions in Angular">
+                        <figcaption>component interaction from <a
+                                href="https://devonfw-training.github.io/devon4ng-training/web-app-architecture/">Web
                                 App Architecture</a></figcaption>
                     </figure>
 
@@ -418,8 +446,9 @@ this.http.get(environment.backendUrl + '/flights');</code></pre>
                     <h4>Dumb & Declarative</h4>
                     <div class="img-grid">
                         <figure>
-                            <img src="./img/Dumb-and-dumber-poster.jpg" height=400 alt="Dumb & Dumber Movie Poster">
-                            <figcaption>dumb & dumber from <a href="https://fi.wikipedia.org/wiki/Nuija_ja_tosinuija">Wikipedia FI</a>
+                            <img src="/img/Dumb-and-dumber-poster.jpg" height=400 alt="Dumb & Dumber Movie Poster">
+                            <figcaption>dumb & dumber from <a
+                                    href="https://fi.wikipedia.org/wiki/Nuija_ja_tosinuija">Wikipedia FI</a>
                             </figcaption>
                         </figure>
                         <div>
@@ -451,8 +480,10 @@ this.http.get(environment.backendUrl + '/flights');</code></pre>
                     <h4>Smart & Thin</h4>
                     <div class="img-grid">
                         <figure>
-                            <img src="./img/Nikola_Tesla_by_Sarony_c1898.jpg" height=400 alt="angular.io compilation context">
-                            <figcaption>Nikola Tesla from <a href="https://commons.wikimedia.org/wiki/File:Nikola_Tesla_by_Sarony_c1898.jpg">Wikimedia</a>
+                            <img src="/img/Nikola_Tesla_by_Sarony_c1898.jpg" height=400
+                                alt="angular.io compilation context">
+                            <figcaption>Nikola Tesla from <a
+                                    href="https://commons.wikimedia.org/wiki/File:Nikola_Tesla_by_Sarony_c1898.jpg">Wikimedia</a>
                             </figcaption>
                         </figure>
                         <div>
@@ -491,8 +522,10 @@ this.http.get(environment.backendUrl + '/flights');</code></pre>
                     <h4>Fat, Happy and Specific</h4>
                     <div class="img-grid">
                         <figure>
-                            <img src="./img/Kuniyoshi_Utagawa,_The_sumo_wrestler_2.jpg" height=400 alt="Kuniyoshi Utagawa, a sumo wrestler">
-                            <figcaption>Kuniyoshi Utagawa from <a href="https://commons.wikimedia.org/wiki/File:Kuniyoshi_Utagawa,_The_sumo_wrestler_2.jpg">Wikimedia</a>
+                            <img src="/img/Kuniyoshi_Utagawa,_The_sumo_wrestler_2.jpg" height=400
+                                alt="Kuniyoshi Utagawa, a sumo wrestler">
+                            <figcaption>Kuniyoshi Utagawa from <a
+                                    href="https://commons.wikimedia.org/wiki/File:Kuniyoshi_Utagawa,_The_sumo_wrestler_2.jpg">Wikimedia</a>
                             </figcaption>
                         </figure>
                         <div>
@@ -509,8 +542,9 @@ this.http.get(environment.backendUrl + '/flights');</code></pre>
                 <section>
                     <h4>State Management</h4>
                     <figure>
-                        <img src="./img/ui-fn.png" height=300>
-                        <figcaption>from <a href="https://devonfw-training.github.io/devon4ng-training/web-app-architecture/">Web
+                        <img src="/img/ui-fn.png" height=300>
+                        <figcaption>from <a
+                                href="https://devonfw-training.github.io/devon4ng-training/web-app-architecture/">Web
                                 App Architecture</a>
                         </figcaption>
                     </figure>
@@ -518,8 +552,9 @@ this.http.get(environment.backendUrl + '/flights');</code></pre>
                 <section>
                     <h4>...with store</h4>
                     <figure>
-                        <img src="./img/store-view-actions.png" height=300>
-                        <figcaption>from <a href="https://devonfw-training.github.io/devon4ng-training/web-app-architecture/">Web
+                        <img src="/img/store-view-actions.png" height=300>
+                        <figcaption>from <a
+                                href="https://devonfw-training.github.io/devon4ng-training/web-app-architecture/">Web
                                 App Architecture</a>
                         </figcaption>
                     </figure>
