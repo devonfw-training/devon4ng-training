@@ -23,13 +23,13 @@
 <body>
     <div class="reveal">
         <div class="slides">
-            <section data-transition="fade-in slide-out">
+            <section data-transition="slide-in fade-out" data-transition-speed="slow">
                 <div>
                     <h1 class="blue">Architecture Refresher</h1>
                     <a class="blue" rel="author" href="mailto:philipp.Bruchner@capgemini.com">Philipp Bruchner</a>
                 </div>
             </section>
-            <section data-transition="fade-in slide-out">
+            <section data-transition="slide-in fade-out" data-transition-speed="slow">
                 <ul class="blue">
                     <li>TI-Architecture:
                         <span>
@@ -51,7 +51,7 @@
 
                 </aside>
             </section>
-            <section data-transition="fade-in slide-out">
+            <section data-transition="slide-in fade-out" data-transition-speed="slow">
                 <section>
                     <h2 class="blue">TI-Architecture</h2>
                 </section>
@@ -111,17 +111,9 @@
                     </aside>
                 </section>
             </section>
-            <section data-transition="fade-in slide-out">
+            <section data-transition="slide-in fade-out" data-transition-speed="slow">
                 <section>
                     <h2 class="blue">T-Architecture</h2>
-                    <aside class="notes">
-
-                    </aside>
-                </section>
-                <section>
-                    <p class="blue">explained by the <a
-                            href="https://devonfw.com/website/pages/docs/master-devon4ng.asciidoc_architecture.html#meta-architecture.asciidoc">devonfw
-                            meta architecture for clients</a></p>
                     <aside class="notes">
                         difference to other architectures:
                         <ul>
@@ -137,8 +129,12 @@
                             alt="Client Architecture - Overview">
                         <figcaption>Client Architecture - Overview</figcaption>
                     </figure>
+					<p class="fragment">explained by the <a
+                            href="https://devonfw.com/website/pages/docs/devonfw-guide_devon4ng.wiki_meta-architecture.asciidoc.html">devonfw
+                            meta architecture for clients</a></p>
 
                     <aside class="notes">
+						Open the link of the Meta Architecture two show the image with the full complexity.
                         <ol>
                             <li>
                                 dialog component
@@ -223,14 +219,9 @@
                         </ul>
                     </aside>
                 </section>
-                <section>
+                <section data-auto-animate>
                     <h4 class="blue">Dialog Container - Configuration Management</h4>
 
-                    <figure>
-                        <img src="./img/OASP_ClientArchitecture_DialogContainer.png" height=200
-                            alt="Client Architecture - Dialog Container">
-                        <figcaption>Client Architecture - Dialog Container</figcaption>
-                    </figure>
                     <pre><code>"environmentSource": "environments/environment.ts",
 "environments": {
     "dev": "environments/environment.ts",
@@ -238,22 +229,9 @@
     "staging": "environments/environment.staging.ts",
     "prod": "environments/environment.prod.ts"
 }</code></pre>
-                    <aside class="notes">
-                        <ul>
-                            <li>configuration management: deployment to different environments, using specific
-                                configuration there</li>
-                        </ul>
-                    </aside>
-                </section>
-                <section>
-                    <h4 class="blue">Dialog Container - Configuration Management</h4>
 
-                    <figure>
-                        <img src="./img/OASP_ClientArchitecture_DialogContainer.png" height=200
-                            alt="Client Architecture - Dialog Container">
-                        <figcaption>Client Architecture - Dialog Container</figcaption>
-                    </figure>
-                    <pre><code>// Import Statement
+					<p class="fragment" data-fragment-index="1"></p>
+                    <pre class="fragment" data-fragment-index="1"><code>// Import Statement
 import { environment } from '../../../environments/environment';     
 // Usage
 this.http.get(environment.backendUrl + '/flights');</code></pre>
@@ -330,7 +308,7 @@ this.http.get(environment.backendUrl + '/flights');</code></pre>
                         support for a-architecture
                     </aside>
                 </section>
-                <section data-transition="fade-in slide-out">
+                <section data-transition="slide-in fade-out" data-transition-speed="slow">
                     <ul class="blue">
                         <li>TI-Architecture:
                             <span>
@@ -353,7 +331,7 @@ this.http.get(environment.backendUrl + '/flights');</code></pre>
                 </section>
             </section>
 
-            <section data-transition="fade-in slide-out">
+            <section data-transition="slide-in fade-out" data-transition-speed="slow">
                 <section>
                     <h2 class="blue">A-Architecture</h2>
                 </section>
@@ -372,7 +350,7 @@ this.http.get(environment.backendUrl + '/flights');</code></pre>
                     <h3>Feature Modules</h3>
                     <figure>
                         <img src="./img/compilation-context.png" height=400 alt="angular.io compilation context">
-                        <figcaption>angular.io: compilation context</figcaption>
+                        <figcaption><a href="https://angular.io/guide/architecture-modules#ngmodules-and-components">angular.io:</a> compilation context</figcaption>
                     </figure>
 
                     <aside class="notes">
