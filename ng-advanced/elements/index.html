@@ -15,281 +15,278 @@
     <link rel="stylesheet" href="./css/common.css">
     <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="./css/github-gist.css">
-	<script type="module" src="./js/main.js"></script>
+    <script type="module" src="./js/main.js"></script>
 </head>
 
 <body>
-    <div class="reveal">
-        <section class="slides">
-            <section class="fullscreen" data-background="url(./img/Fixed_Shape_3_CapgeminiBlue_RGB.svg) no-repeat 0 500px, url(./img/raindrops.jpg)">
-                <div class="header-bottom-left">
-                    <h1 class="cap-white">Microfrontends</h1>
-                    <p class="cap-white">P. Schmökel, B. Olleck, P. Bruchner</p>
-                </div>
-            </section>
-            <section class="fullscreen">
-                <section>
-                    <h2 class="header-left">Microfrontends - what does that mean?</h2>
-                    <div>
-                        <ul>
-                            <li>
-                                Split your UI into parts that can be developed independently
-                            </li>
-                        </ul>
-                    </div>
-                    <img src="./img/seperation-of-mf.jpg" alt="a microfrontend split example" width="640" class="no-border">
-                    <p><small>image taken from <a href="https://micro-frontends.org/">micro-frontents.org</a> in May 2021</small></p>
-                    <aside class="notes">
-                        <ul>
-                            <li>
-                                Note: This image does not imply that this site uses a microfrontend with this split. It is only a good example how a split could be done.
-                            </li>
-                            <li>
-                                This is nothing new! Tagline: Well, where I’m from, we called that Dialogs and UI Components, more than 10 years ago…
-                            </li>
-                        </ul>
-                    </aside>
-                </section>
-                <section class="fullscreen">
-                    <h2 class="header-left">Microfrontends - New Constraints - New Reasons</h2>
+<div class="reveal">
+    <section class="slides">
+        <section class="fullscreen"
+                 data-background="url(./img/Fixed_Shape_3_CapgeminiBlue_RGB.svg) no-repeat 0 500px, url(./img/raindrops.jpg)">
+            <div class="header-bottom-left">
+                <h1 class="cap-white">Microfrontends</h1>
+                <p class="cap-white">P. Schmökel, B. Olleck, P. Bruchner</p>
+            </div>
+        </section>
+        <section class="fullscreen">
+            <section>
+                <h2 class="header">Microfrontends - what does that mean?</h2>
+                <p>Split your UI into parts that can be developed independently</p>
+                <img src="./img/seperation-of-mf.jpg" alt="a microfrontend split example" width="640" class="no-border">
+                <p><small>image taken from <a href="https://micro-frontends.org/">micro-frontents.org</a> in May
+                    2021</small></p>
+                <aside class="notes">
                     <ul>
-                        <li>Time to Market!</li>
-                        <ul>
-                            <li>Faster change speed because of smaller scope</li>
-                            <li>Individual deployments of parts</li>
-                        </ul>
-                        <li>Technology: Web Components</li>
-                        <li>Long term cost reduction</li>
-                        <ul>
-                            <li>Better code/architecture through enforced splits</li>
-                        </ul>
-                        <li>Multi supplier integration in one application</li>
-                        <li>Most other reasons for Microservices (backend) apply: Replacabilty, encapsulated domain, independent deployment
+                        <li>
+                            Note: This image does not imply that this site uses a microfrontend with this split. It is
+                            only a good example how a split could be done.
+                        </li>
+                        <li>
+                            This is nothing new! Tagline: Well, where I’m from, we called that Dialogs and UI
+                            Components, more than 10 years ago…
                         </li>
                     </ul>
-                </section>
-                <section class="fullscreen">
-                    <h2 class="header-left">Reasons for not doing Microfrontends</h2>
-                    <ul>
-                        <li>Politics a.k.a. Lemmings: everybody else is doing it!</li>
-                        <ul>
-                            <li>“Everybody else” typically has different use cases!</li>
-                        </ul>
-                        <li>Short term cost reduction</li>
-                        <ul>
-                            <li>The opposite will happen!</li>
-                        </ul>
-                        <br />
-                        <a href="https://www.thoughtworks.com/radar/techniques/micro-frontends">Technology Radar: Adopt
-                        (May 2020)</a>
-                    </ul>
-                </section>
-                <section>
-                    <h2 class="header-left">Categorization: Functional - Portal</h2>
-                    <ul style="width: 27%; float:left; ">
-                        <li>Loosely coupled applications</li>
-                        <li>Minimal shared state</li>
-                        <li>Common menu/navigation system</li>
-                        <li>Common user context</li>
-                        <li>Typical example: Internal web workplaces</li>
-                    </ul>
-                    <img src="./img/microfrontend-category-portal.PNG" alt="example for a 'portal'" style="width:67%; float: right; " class="no-border">
-                    <aside class="notes">
-                        <ul>
-                            <li>
-                                Note: The names of the categories "portal" - "portlet" - "integrated" are not really defined but my own characterization.
-                            </li>
-                        </ul>
-                    </aside>
-                </section>
-                <section>
-                    <h2 class="header-left">Categorization: Functional - Portlet</h2>
-                    <ul style="width: 27%; float:left; ">
-                        <li>Parts of an application</li>
-                        <li>Integrated display</li>
-                        <li>Some shared state</li>
-                        <li>Little data integration</li>
-                        <li>Typical example: The shopping world</li>
-                    </ul>
-                    <img src="./img/seperation-of-mf.jpg" alt="example for a 'portlet'" height="640" style="float: right; " class="no-border">
-                    <aside class="notes">
-                        <ul>
-                            <li>
-                                Note: The names of the categories "portal" - "portlet" - "integrated" are not really defined but my own characterization.
-                            </li>
-                        </ul>
-                    </aside>
-                </section>
-                <section>
-                    <h2 class="header-left">Categorization: Functional - Integrated</h2>
-                    <div>
-                        <ul style="width: 27%; float:left; ">
-                            <li>Functional Parts of Dialogs</li>
-                            <li>Integrated display</li>
-                            <li>Integrated state</li>
-                            <li>Integrated data</li>
-                            <li>Example: Editing a complex business object</li>
-                        </ul>
-                        <img src="./img/microfrontend-category-integrated.PNG" alt="example for a 'integrated' microfrontend" style="width:67%; float: right; " class="no-border">
-                    </div>
-                    <div style="clear:both;"></div>
-                    Always consider the API!
-                    <aside class="notes">
-                        <ul>
-                            <li>
-                                Note: The names of the categories "portal" - "portlet" - "integrated" are not really defined but my own characterization.
-                            </li>
-                            <li>
-                                Think:
-                                <br/> When splitting, always consider the API! That can be the difference between success and failure!
-                            </li>
-                        </ul>
-                    </aside>
-                </section>
-                <section>
-                    <h2 class="header-left">Categorization: Backend Integration</h2>
-                    What is the relationship between<br/> Microfrontend Component and Microservice Backend?
-                    <img src="./img/microfrontend-integration-behaviour.PNG" alt="integration behaviour" height="640" class="no-border">
-                    <aside class="notes">
-                        <ul>
-                            <li>
-                                Tagline: Mix and match!
-                            </li>
-                        </ul>
-                    </aside>
-                </section>
-                <section>
-                    <h2 class="header-left">Team Structure</h2>
-                    <img src="./img/microfrontend-team-structure.PNG" alt="integration behaviour" height="640" class="no-border">
-                    <p><small>Source: <a href="https://micro-frontends.org/">https://micro-frontends.org/</a> April
-                    2019</small>
-                    </p>
-                    <aside class="notes">
-                        <ul>
-                            <li>
-                                Tagline: Developers of the Full Stack! Masters of Nothing!
-                            </li>
-                        </ul>
-                    </aside>
-                </section>
-                <section>
-                    <h2 class="header-left">Microfrontend Technology Flowchart</h2>
-                    <img src="./img/microfrontend-technology-flowchart.PNG" alt="integration behaviour" height="640" class="no-border">
-                    <p><small>Source: <a href="www.softwarearchitekt.at">www.softwarearchitekt.at</a> April 2019</small>
-                    </p>
-                    <aside class="notes">
-                        <ul>
-                            <li>
-                                Note: Reusing code - no matter how - helps!
-                            </li>
-                            <li>
-                                There is also the option to use server based technology, e.g. (old) server side includes (but javascript is not merged easily, or Zalando's "Project Mosaic"
-                            </li>
-                            <li>
-                                Concerning iframes: For integrating legacy apps or apps with incompatible frameworks. Iframe isolation can be overcome by postMessage(...), deep linking is possible with some work.
-                            </li>
-                            <li>
-                                Followup: Spotlight on Deployment Monolith, and then on to "Web Components".
-                            </li>
-                        </ul>
-                    </aside>
-                </section>
-                <section>
-                    <h2 class="header-left">Majestic Deployment Monolith</h2>
-                    <p>Idea: Build functional components separately (npm modules),
-                        <br/>join them in a shell application</p>
-                    <img src="./img/microfrontend-deployment-monolith.jpg" alt="deployment monolith module structure" height="640" class="no-border">
-                    <aside class="notes">
-                    </aside>
-                </section>
-                <section>
-                    <h2 class="header-left">Majestic Deployment Monolith</h2>
-                    <ul>
-                        <li>Separate development, build and test is possible</li>
-                        <ul>
-                            <li>E.g. using Stub-Applications</li>
-                        </ul>
-                        <li>Works well if the same framework is used</li>
-                        <ul>
-                            <li>But 3rd party library versions should be synchronized</li>
-                        </ul>
-                        <li>Joint application build can use framework features<br/>(e.g. tree shaking, lazy loading)</li>
-                        <ul>
-                            <li>Build may take considerable time</li>
-                        </ul>
-                        <li>Independent deployment not possible</li>
-                        <ul>
-                            <li>But with a good build infrastructure you almost get there</li>
-                        </ul>
-                        <li>API: Everything you want, even type safe (with api library projects)</li>
-                    </ul>
-                    <aside class="notes">
-                        <ul>
-                            <li>
-                            </li>
-                        </ul>
-                    </aside>
-                </section>
+                </aside>
             </section>
             <section class="fullscreen">
-                <h2 class="header-left">WebComponents</h2>
-                <p class="cap-blue"></p>
-                <img src="./img/support.png" alt="supported browsers" height="640" class="no-border">
-                <p><small>taken from <a href="https://www.webcomponents.org">webcomponents.org</a> in September 2020</small>
+                <h2 class="header-left">Microfrontends - New Constraints - New Reasons</h2>
+                <ul>
+                    <li>Time to Market!</li>
+                    <ul>
+                        <li>Faster change speed because of smaller scope</li>
+                        <li>Individual deployments of parts</li>
+                    </ul>
+                    <li>Technology: Web Components</li>
+                    <li>Long term cost reduction</li>
+                    <ul>
+                        <li>Better code/architecture through enforced splits</li>
+                    </ul>
+                    <li>Multi supplier integration in one application</li>
+                    <li>Most other reasons for Microservices (backend) apply: Replacabilty, encapsulated domain,
+                        independent deployment
+                    </li>
+                </ul>
+            </section>
+            <section class="fullscreen">
+                <h2 class="header">Reasons for not doing Microfrontends</h2>
+                <ul>
+                    <li>Politics a.k.a. Lemmings: everybody else is doing it!</li>
+                    <ul>
+                        <li>“Everybody else” typically has different use cases!</li>
+                    </ul>
+                    <li>Short term cost reduction</li>
+                    <ul>
+                        <li>The opposite will happen!</li>
+                    </ul>
+                    <br/>
+                    <a href="https://www.thoughtworks.com/radar/techniques/micro-frontends">Technology Radar: Adopt
+                        (May 2020)</a>
+                </ul>
+            </section>
+            <section>
+                <h2 class="header-left">Categorization: Functional - Portal</h2>
+                <ul style="width: 27%; float:left; ">
+                    <li>Loosely coupled applications</li>
+                    <li>Minimal shared state</li>
+                    <li>Common menu/navigation system</li>
+                    <li>Common user context</li>
+                    <li>Typical example: Internal web workplaces</li>
+                </ul>
+                <img src="./img/microfrontend-category-portal.PNG" alt="example for a 'portal'"
+                     style="width:67%; float: right; " class="no-border">
+                <aside class="notes">
+                    <ul>
+                        <li>
+                            Note: The names of the categories "portal" - "portlet" - "integrated" are not really defined
+                            but my own characterization.
+                        </li>
+                    </ul>
+                </aside>
+            </section>
+            <section>
+                <h2 class="header-left">Categorization: Functional - Portlet</h2>
+                <ul style="width: 27%; float:left; ">
+                    <li>Parts of an application</li>
+                    <li>Integrated display</li>
+                    <li>Some shared state</li>
+                    <li>Little data integration</li>
+                    <li>Typical example: The shopping world</li>
+                </ul>
+                <img src="./img/seperation-of-mf.jpg" alt="example for a 'portlet'" height="640" style="float: right; "
+                     class="no-border">
+                <aside class="notes">
+                    <ul>
+                        <li>
+                            Note: The names of the categories "portal" - "portlet" - "integrated" are not really defined
+                            but my own characterization.
+                        </li>
+                    </ul>
+                </aside>
+            </section>
+            <section>
+                <h2 class="header-left">Categorization: Functional - Integrated</h2>
+                <div>
+                    <ul style="width: 27%; float:left; ">
+                        <li>Functional Parts of Dialogs</li>
+                        <li>Integrated display</li>
+                        <li>Integrated state</li>
+                        <li>Integrated data</li>
+                        <li>Example: Editing a complex business object</li>
+                    </ul>
+                    <img src="./img/microfrontend-category-integrated.PNG"
+                         alt="example for a 'integrated' microfrontend" style="width:67%; float: right; "
+                         class="no-border">
+                </div>
+                <div style="clear:both;"></div>
+                Always consider the API!
+                <aside class="notes">
+                    <ul>
+                        <li>
+                            Note: The names of the categories "portal" - "portlet" - "integrated" are not really defined
+                            but my own characterization.
+                        </li>
+                        <li>
+                            Think:
+                            <br/> When splitting, always consider the API! That can be the difference between success
+                            and failure!
+                        </li>
+                    </ul>
+                </aside>
+            </section>
+            <section>
+                <h2 class="header-left">Categorization: Backend Integration</h2>
+                What is the relationship between<br/> Microfrontend Component and Microservice Backend?
+                <img src="./img/microfrontend-integration-behaviour.PNG" alt="integration behaviour" height="640"
+                     class="no-border">
+                <aside class="notes">
+                    <ul>
+                        <li>
+                            Tagline: Mix and match!
+                        </li>
+                    </ul>
+                </aside>
+            </section>
+            <section>
+                <h2 class="header-left">Team Structure</h2>
+                <img src="./img/microfrontend-team-structure.PNG" alt="integration behaviour" height="640"
+                     class="no-border">
+                <p><small>Source: <a href="https://micro-frontends.org/">https://micro-frontends.org/</a> April
+                    2019</small>
                 </p>
                 <aside class="notes">
                     <ul>
                         <li>
-                            Web Component standard actually means 4 different things.
-                        </li>
-                        <li>
-                            Note: IE is not mentioned! There are two different polyfills to make custom elements work with IE 11: One offers incomplete functionality and the other one has a serious performance impact.
+                            Tagline: Developers of the Full Stack! Masters of Nothing!
                         </li>
                     </ul>
                 </aside>
             </section>
-            <section class="fullscreen">
-                <h2 class="header-left">Template</h2>
-                <pre><code data-trim class="html">&lt;template id="template"&gt;
+            <section>
+                <h2 class="header">Microfrontend Technology Alternatives</h2>
+                <ul>
+                    <li>Separate pages & navigation by URL
+                        <ul>
+                            <li>not "Microfrontend", but sometimes good enough</li>
+                        </ul>
+                    </li>
+                    <li>&lt;iframe&gt;
+                        <ul>
+                            <li>good for legacy apps that do not play well with others</li>
+                        </ul>
+                    </li>
+                    <li>Deployment Monolith
+                        <ul>
+                            <li>separate development of modules, integrated build and deployment</li>
+                        </ul>
+                    </li>
+                    <li>Web Components
+                        <ul>
+                            <li>the standard for modern web frameworks</li>
+                        </ul>
+                    </li>
+                </ul>
+                <aside class="notes">
+                    <ul>
+                        <li>
+                            Note: Reusing code - no matter how - helps!
+                        </li>
+                        <li>
+                            There is also the option to use server based technology, e.g. (old) server side includes
+                            (but javascript is not merged easily, or Zalando's "Project Mosaic"
+                        </li>
+                        <li>
+                            Concerning iframes: For integrating legacy apps or apps with incompatible frameworks. Iframe
+                            isolation can be overcome by postMessage(...), deep linking is possible with some work.
+                        </li>
+                        <li>
+                            Followup: Spotlight on Deployment Monolith, and then on to "Web Components".
+                        </li>
+                    </ul>
+                </aside>
+            </section>
+        </section>
+        <section class="fullscreen">
+            <h2 class="header-left">WebComponents</h2>
+            <p class="cap-blue"></p>
+            <img src="./img/support.png" alt="supported browsers" height="640" class="no-border">
+            <p><small>taken from <a href="https://www.webcomponents.org">webcomponents.org</a> in September 2020</small>
+            </p>
+            <aside class="notes">
+                <ul>
+                    <li>
+                        Web Component standard actually means 4 different things.
+                    </li>
+                    <li>
+                        Note: IE is not mentioned! There are two different polyfills to make custom elements work with
+                        IE 11: One offers incomplete functionality and the other one has a serious performance impact.
+                    </li>
+                </ul>
+            </aside>
+        </section>
+        <section class="fullscreen">
+            <h2 class="header-left">Template</h2>
+            <pre><code data-trim class="html">&lt;template id="template"&gt;
   &lt;p style="font-size: 5rem"&gt;Do you remember handlebars.js?&lt;/p&gt;
 &lt;/template&gt;</code></pre>
-                <ul>
-                    <li>declare fragments of HTML that can be cloned and inserted in the document by script</li>
-                    <li>
-                        Try out by pasting this in Chrome dev console
-                        <pre><code data-trim class="js">
+            <ul>
+                <li>declare fragments of HTML that can be cloned and inserted in the document by script</li>
+                <li>
+                    Try out by pasting this in Chrome dev console
+                    <pre><code data-trim class="js">
 document.querySelector('section.present').appendChild(
   document.querySelector('#template').content.cloneNode(true)
 )
           </code></pre>
+                </li>
+            </ul>
+            <template id="template"><p style="font-size: 5rem">Do you remember handlebars.js?</p></template>
+            <aside class="notes">
+                <ul>
+                    <li>
+                        Tag name: template, content is not a child, but read only accessible by DOM attribute "content".
+                    </li>
+                    <li>
+                        Content is not displayed, only parsed to check for correctness
+                    </li>
+                    <li>
+                        Placeholders are not supported (opposed to what "templating" suggests). But there is another tag
+                        'slot'. And in combination with custom elements that allows for a great templating mechanism.
+                    </li>
+                    <li>
+                        Difference cloneNode / importNode: owner document is the same / where it is imported
+                    </li>
+                    <li>
+                        Info: Handlebars = Mustache - an "old" web templating system
+                        https://en.wikipedia.org/wiki/Mustache_(template_system)
                     </li>
                 </ul>
-                <template id="template"><p style="font-size: 5rem">Do you remember handlebars.js?</p></template>
-                <aside class="notes">
-                    <ul>
-                        <li>
-                            Tag name: template, content is not a child, but read only accessible by DOM attribute "content".
-                        </li>
-                        <li>
-                            Content is not displayed, only parsed to check for correctness
-                        </li>
-                        <li>
-                            Placeholders are not supported (opposed to what "templating" suggests). But there is another tag 'slot'. And in combination with custom elements that allows for a great templating mechanism.
-                        </li>
-                        <li>
-                            Difference cloneNode / importNode: owner document is the same / where it is imported
-                        </li>
-                        <li>
-                            Info: Handlebars = Mustache - an "old" web templating system https://en.wikipedia.org/wiki/Mustache_(template_system)
-                        </li>
-                    </ul>
-                </aside>
+            </aside>
 
-            </section>
-            <section>
-                <section class="fullscreen">
-                    <h2 class="header-left">Custom Elements</h2>
-                    <pre><code data-trim class="js">
+        </section>
+        <section>
+            <section class="fullscreen">
+                <h2 class="header-left">Custom Elements</h2>
+                <pre><code data-trim class="js">
     class HelloParagraph extends HTMLElement {
       constructor() {
         super();
@@ -313,122 +310,127 @@ document.querySelector('section.present').appendChild(
     }
     customElements.define('hello-paragraph', HelloParagraph);
           </code></pre>
-                    <ul>
-                        <li>Provide a way for authors to build their own fully-featured DOM elements.</li>
-                        <li>
-                            Try out by pasting this in Chrome dev console
-                            <pre><code class="js" data-trim>
+                <ul>
+                    <li>Provide a way for authors to build their own fully-featured DOM elements.</li>
+                    <li>
+                        Try out by pasting this in Chrome dev console
+                        <pre><code class="js" data-trim>
     document.querySelector('section.present').appendChild(
       document.createElement('hello-paragraph')
     )
     document.querySelector('hello-paragraph').setAttribute('firstname', 'Karl');
                     </code></pre>
+                    </li>
+                </ul>
+                <aside class="notes">
+                    <ul>
+                        <li>
+                            Source code is in js/hello-paragraph.js (reused with modules example below)
+                        </li>
+                        <li>
+                            Types:
+                            <ul>
+                                <li>Autonomous: derive from HTMLElement, use with custom tag name</li>
+                                <li>Customized build in: derive from desired (e.g. HTMLParagraphElement), use with
+                                    original tag name and is="custom-tag-name"
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            Register using "customElements.define(&lt;new-tag-name"&gt;, &lt;class-name&gt;)".
+                        </li>
+                        <li>
+                            Required: custom element tag names must have a dash '-'
+                        </li>
+                        <li>
+                            Lifecycle callbacks:
+                            <ul>
+                                <li>connectedCallback: when added to or moved in the DOM</li>
+                                <li>disconnectedCallback: when removed from DOM</li>
+                                <li>adoptedCallback: when moved to new document</li>
+                                <li>attributeChangedCallback: when a declared attribute is changed</li>
+                                <li>static get observedAttributes: declaring the attributes we're interested in</li>
+                            </ul>
+                        </li>
+                        <li>
+                            Show what is happening in the DOM when executing the code
+                            <ul>
+                                <li>Node hello-paragraph with its own properties (_firstname)</li>
+                                <li>Child structure visible</li>
+                            </ul>
                         </li>
                     </ul>
-                    <aside class="notes">
-                        <ul>
-                            <li>
-                                Source code is in js/hello-paragraph.js (reused with modules example below)
-                            </li>
-                            <li>
-                                Types:
-                                <ul>
-                                    <li>Autonomous: derive from HTMLElement, use with custom tag name</li>
-                                    <li>Customized build in: derive from desired (e.g. HTMLParagraphElement), use with original tag name and is="custom-tag-name"
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                Register using "customElements.define(&lt;new-tag-name"&gt;, &lt;class-name&gt;)".
-                            </li>
-                            <li>
-                                Required: custom element tag names must have a dash '-'
-                            </li>
-                            <li>
-                                Lifecycle callbacks:
-                                <ul>
-                                    <li>connectedCallback: when added to or moved in the DOM</li>
-                                    <li>disconnectedCallback: when removed from DOM</li>
-                                    <li>adoptedCallback: when moved to new document</li>
-                                    <li>attributeChangedCallback: when a declared attribute is changed</li>
-                                    <li>static get observedAttributes: declaring the attributes we're interested in</li>
-                                </ul>
-                            </li>
-                            <li>
-                                Show what is happening in the DOM when executing the code
-                                <ul>
-                                    <li>Node hello-paragraph with its own properties (_firstname)</li>
-                                    <li>Child structure visible</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </aside>
-                </section>
-                <section class="fullscreen">
-                    <h2 class="header-left">Custom Elements Pitfalls</h2>
-                    <ul>
-                        <li>JavaScript scope is still global!</li>
-                        <li>Some other things are also still shared:</li>
-                        <ul>
-                            <li>window. &amp; document.</li>
-                            <li>Progressive Web APIs, e.g. local storage</li>
-                            <li>Namespace of custom elements</li>
-                        </ul>
-                        <li>...?</li>
-                    </ul>
-                    <aside class="notes">
-                        <ul>
-                            <li>
-                                There may be other pitfalls - this is relatively new technology...
-                            </li>
-                        </ul>
-                    </aside>
-                </section>
+                </aside>
             </section>
-            <section>
-                <section class="fullscreen">
-                    <h2 class="header-left">Shadow Dom</h2>
-                    <img width="700px" src="./img/shadow-dom.png" alt="Shadowdom explained" class="no-border">
-                    <p><small>taken from <a
+            <section class="fullscreen">
+                <h2 class="header">Custom Elements Pitfalls</h2>
+                <ul>
+                    <li>JavaScript scope is still global!</li>
+                    <li>Some other things are also still shared:</li>
+                    <ul>
+                        <li>window. &amp; document.</li>
+                        <li>Progressive Web APIs, e.g. local storage</li>
+                        <li>Namespace of custom elements</li>
+                    </ul>
+                </ul>
+                <aside class="notes">
+                    <ul>
+                        <li>
+                            There may be other pitfalls - this is relatively new technology...
+                        </li>
+                    </ul>
+                </aside>
+            </section>
+        </section>
+        <section>
+            <section class="fullscreen">
+                <h2 class="header-left">Shadow Dom</h2>
+                <img width="700px" src="./img/shadow-dom.png" alt="Shadowdom explained" class="no-border">
+                <p><small>taken from <a
                         href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM">developer.mozilla.org/</a>
                     in August 2019</small></p>
-                    <pre><code class="js" data-trim>
+                <pre><code class="js" data-trim>
 let shadow = elementRef.attachShadow({mode: 'open'});
 let shadow = elementRef.attachShadow({mode: 'closed'});
       </code></pre>
-                    <aside class="notes">
-                        <ul>
-                            <li> nothing new: compare to <pre><code><video></code></pre> which only exposes control</li>
-                            <li> is a node tree whose root is a shadow root
-                                <ul>
-                                    <li> what is DOM, shadow tree, shadow root, shadow host</li>
-                                </ul>
-                            </li>
-                            <li> allows encapsulation</li>
-                            <li> has different modes: open / closed</li>
-                            <li> contains zero or more elements that are slots</li>
-                            <li> elements & text nodes can be slotted</li>
-                        </ul>
-                    </aside>
+                <aside class="notes">
                     <ul>
-                        <li>Property <code>mode</code> controls whether or not the shadow tree can be accessed by JavaScript from outside.
+                        <li> nothing new: compare to
+                            <pre><code><video></code></pre>
+                            which only exposes control
                         </li>
+                        <li> is a node tree whose root is a shadow root
+                            <ul>
+                                <li> what is DOM, shadow tree, shadow root, shadow host</li>
+                            </ul>
+                        </li>
+                        <li> allows encapsulation</li>
+                        <li> has different modes: open / closed</li>
+                        <li> contains zero or more elements that are slots</li>
+                        <li> elements & text nodes can be slotted</li>
                     </ul>
-                </section>
-                <section>
-                    <h2 class="header-left">Shadow Dom Example</h2>
-                    <style>
-                        /* global style definitions */
-                        
-                        .ClassOfDiv {
-                            background-color: lightblue;
-                        }
-                    </style>
-                    <div>
-                        <div id="outside">
-                            <h1>H1 in DIV inside the page</h1>
-                        </div>
-                        <div id="inside" ">
+                </aside>
+                <ul>
+                    <li>Property <code>mode</code> controls whether or not the shadow tree can be accessed by JavaScript
+                        from outside.
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h2 class="header-left">Shadow Dom Example</h2>
+                <style>
+                    /* global style definitions */
+
+                    .ClassOfDiv {
+                        background-color: lightblue;
+                    }
+                </style>
+                <div>
+                    <div id="outside">
+                        <h1>H1 in DIV inside the page</h1>
+                    </div>
+                    <div id="inside"
+                    ">
                     <h1>H1 in DIV inside the page - this will be replaced by shadow</h1>
                 </div>
 </div>
@@ -549,7 +551,7 @@ customElements.define('hello-paragraph', class extends HTMLElement {
       </code></pre>
 </section>
 <section class="fullscreen ">
-    <h2 class="header-left ">ES Modules are finally implemented</h2>
+    <h2 class="header-left ">ES Modules</h2>
     <pre><code class="html " data-trim>
   &lt;!-- index.html --&gt;
   &lt;hello-paragraph&gt;&lt;/hello-paragraph&gt;
@@ -593,15 +595,9 @@ export class HelloParagraph extends HTMLElement {
     </aside>
 </section>
 <section>
-    <section class=" fullscreen ">
-        <h2>What frameworks / libraries / compiler to know</h2>
-        <img src=" ./img/frameworks.png " alt="collection of js web component frameworks & compiler " height="320 "  class="no-border "/>
-     </section>
-</section>
-<section>
     <section>
         <h2>Angular & web components</h2>
-        <img src="./img/ng-elements-and-wc.png " height="640 "  class="no-border " />
+        <img src="./img/ng-elements-and-wc.png " height="640 " class="no-border "/>
     </section>
     <section class="fullscreen ">
         <h2 class="header-left ">Angular Elements compiles Angular components as CustomElements.</h2>
@@ -621,32 +617,44 @@ export class HelloParagraph extends HTMLElement {
       </code></pre>
     </section>
     <section class="fullscreen ">
-        <h2 class="header-left ">Why do we need this?</h2>
+        <h2>Integration of existing custom elements in Angular</h2>
         <ul>
-            <li class="fragment ">Move closer to HTML standards</li>
-            <li class="fragment ">Integrate with different technologies</li>
-            <li class="fragment ">Go for Microfrontend application landscapes</li>
-            <li class="fragment ">Enable Lazy Migrations</li>
-            <li class="fragment ">Develop Design Systems</li>
-            <li class="fragment ">Make Angular easier. Hardest concepts are Angular Modules, rxjs and zone.js.</li>
+            <li>Get the code
+                <ul>
+                    <li>install web components library (or API/type-definition of it)</li>
+                    <li>or include js-url in your main page</li>
+                </ul>
+            </li>
+            <li>introduce Custom Elements to app modules
+                <pre><code>                  @NgModule({
+                    ...
+                    schemas: [CUSTOM_ELEMENTS_SCHEMA]</code></pre>
+            </li>
+            <li>use the custom elements in your html</li>
+        </ul>
+    </section>
+    <section class="fullscreen ">
+        <h2>Why do we need this?</h2>
+        <ul>
+            <li>Move closer to HTML standards</li>
+            <li>Integrate with different technologies</li>
+            <li>Go for Microfrontend application landscapes</li>
+            <li>Enable Lazy Migrations</li>
+            <li>Develop Design Systems</li>
         </ul>
     </section>
 </section>
 <section>
     <section class="fullscreen ">
-        <h2 class="header-left ">Pitfalls (1)</h2>
+        <h2>Pitfalls (1) Concerning Angular</h2>
         <ul>
             <li>
-                "Bleeding Edge " Technology
-                <ul>
-                    <li>There may be issues in Angular</li>
-                    <li>And we do not have a lot of experience yet in the scope of enterprise applications</li>
-                </ul>
+                Bootstrap of Angular may happen multiple times
             </li>
             <li>
                 Caching of your sources
                 <ul>
-                    <li>For build purposes we strip the hash - but that hurts with caching</li>
+                    <li>For usage purposes stripping the hash from the filenames is better - but that hurts with caching</li>
                 </ul>
             </li>
             <li>
@@ -669,14 +677,10 @@ export class HelloParagraph extends HTMLElement {
         </ul>
     </section>
     <section class="fullscreen ">
-        <h2 class="header-left ">Pitfalls (2)</h2>
+        <h2>Pitfalls (2) Concerning Angular</h2>
         <ul>
             <li>
-                Some browser features are not scoped or behave 'interestingly'<br>
-                (progressive web APIs, shadow dom leaks)
-            </li>
-            <li>
-                Angular build result must be scoped (e.g. using ngx-build-plus)
+                Angular build result must be scoped (e.g. using <a href="https://www.npmjs.com/package/ngx-build-plus">ngx-build-plus</a>)
             </li>
             <li>
                 Namespacing of custom elements
@@ -684,21 +688,6 @@ export class HelloParagraph extends HTMLElement {
             <li>
                 Angular Elements only support @Input and @Output, no public method calls.
                 Workaround needed like element.ngElementStrategy.componentRef.instance.yourMethod().
-            </li>
-        </ul>
-        <aside class="notes ">
-            <ul>
-                <li>
-                    Zone.js: https://medium.com/@tomastrajan/the-best-way-to-lazy-load-angular-elements-97a51a5c2007
-                </li>
-            </ul>
-        </aside>
-    </section>
-    <section class="fullscreen ">
-        <h2 class="header-left ">Pitfalls (3)</h2>
-        <ul>
-            <li>
-                E2E-Testing requires some adjustments with shadow dom
             </li>
             <li>
                 @Input data may not be filled before first lifecycle calls, so use ?. (or if ...)
@@ -709,24 +698,40 @@ export class HelloParagraph extends HTMLElement {
                     <li>
                         access data using $event.detail
                     </li>
-                    <li>
-                        be wary of unexpected type changes.
-                    </li>
+                </ul>
+            </li>
+            <li>
+                Be wary of unexpected type changes to "string"
+            </li>
+        </ul>
+        <aside class="notes ">
+            <ul>
+                <li>
+                    Manfred Steyer / ngx-build-plus:
+                    https://www.angulararchitects.io/aktuelles/your-options-for-building-angular-elements/
+                </li>
+                <li>
+                    Zone.js: https://medium.com/@tomastrajan/the-best-way-to-lazy-load-angular-elements-97a51a5c2007
+                </li>
+            </ul>
+        </aside>
+    </section>
+    <section class="fullscreen ">
+        <h2>Pitfalls (3) Overall</h2>
+        <ul>
+            <li>
+                Some browser features are not scoped or behave 'interestingly'<br>
+                <ul>
+                    <li>progressive web APIs, shadow dom "leaks"</li>
+                </ul>
+            </li>
+            <li>
+                E2E-Testing requires some adjustments with shadow dom
+                <ul>
+                    <li>Queries to find elements will no longer work directly</li>
                 </ul>
             </li>
         </ul>
-    </section>
-    <section class="fullscreen ">
-        <h2>Integration web components in Angular</h2>
-        <ul>
-            <li>
-            introduce Custom Elements to app modules <pre><code> Schemas: [CUSTOM_ELEMENTS_SCHEMA]</code></pre>
-        </li>
-        <li>install web components library (or API/type-definition of it)</li>
-        <li>
-
-            code 🚀
-        </li></ul>
     </section>
 </section>
 </div>
