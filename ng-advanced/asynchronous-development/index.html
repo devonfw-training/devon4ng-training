@@ -386,6 +386,284 @@ button.addEventListener("click", () => {
                 resulting in a different order of output.
             </aside>
         </section>
+        <section class="fullscreen">
+            <p>Intermission: RxJS</p>
+            <p>If you're not familiar with RxJS, now is the time to learn:
+            <ul>
+                <li><a href="https://devonfw-training.github.io/devon4ng-training/ng-advanced/rxjs">Angular Advanced:
+                    RxJS - Levelling Up</a></li>
+                <li><a href="https://rxjs.dev/">rxjs.dev</a></li>
+            </ul>
+            </p>
+        </section>
+        <section class="fullscreen">
+            <p>Let's talk about async rxjs</p>
+            <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+const subject = new Subject&lt;boolean&gt;();
+
+const obs = subject.asObservable();
+obs.subscribe(v => console.log('next value', v));
+
+console.log('Going to send next value');
+
+subject.next(true);
+
+console.log('Sent next value');
+          </code></pre>
+            <p>What's happening here? What's the correct order?</p>
+            <aside class="notes">
+                Sample code is part of the RxJs Examples repository:
+                <UL>
+                    <LI>https://github.com/BerndOlleckCap/RxJsExamples</LI>
+                    <LI>start angular application</LI>
+                    <LI>Tab "Training Examples"</LI>
+                    <LI>Button "Timing without scheduler"</LI>
+                    <LI>Code: TrainingExamplesComponent.startNoScheduler</LI>
+                </UL>
+            </aside>
+        </section>
+        <section>
+            <p>rxjs Obervable callbacks are not always microtasks!</p>
+            <UL>
+                <LI>Synchronous execution "when nothing else is required"</LI>
+                <LI>Schedulers determine the "something else"</LI>
+                <UL>
+                    <LI>Microtasks when using asapScheduler</LI>
+                    <LI>Macrotasks when using asyncScheduler</LI>
+                </UL>
+                <LI>Can be controlled with</LI>
+                <UL>
+                    <LI>observeOn(...)</LI>
+                    <LI>subscribeOn(...)</LI>
+                    <LI>Implementation of observables and operators</LI>
+                </UL>
+            </UL>
+            <aside class="notes">
+                <UL>
+                    <LI>
+                        https://rxjs.dev/api/operators/observeOn
+                    </LI>
+                    <LI>
+                        https://blog.strongbrew.io/what-are-schedulers-in-rxjs/
+                    </LI>
+                    <LI>observeOn relates to the steps after it</LI>
+                    <LI>subscribeOn to the complete execution</LI>
+                    <LI>
+                        Schedulers:
+                        <UL>
+                            <LI>Queue: As synchronously as possible</LI>
+                            <LI>Asap: Microtask</LI>
+                            <LI>Async: Macrotask</LI>
+                            <LI>And some others, e.g. for testing or animation</LI>
+                        </UL>
+                    </LI>
+                    <LI>
+                        Some sample code is part of the RxJs Examples repository:
+                        <UL>
+                            <LI>https://github.com/BerndOlleckCap/RxJsExamples</LI>
+                            <LI>start angular application</LI>
+                            <LI>Tab "Training Examples"</LI>
+                            <LI>Button "Scheduler comparison"</LI>
+                            <LI>Code: TrainingExamplesComponent.startSchedulerComparison</LI>
+                            <LI>And with a surprise: Button "Microtask vs. Promise", Code
+                                TrainingExamplesComponent.startMicrotaskVsPromise
+                            </LI>
+                        </UL>
+                    </LI>
+                </UL>
+            </aside>
+        </section>
+        <section>
+          <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+const subject = new Subject&lt;boolean&gt;();
+
+const obs = subject.asObservable();
+obs.pipe(observeOn(asyncScheduler))
+   .subscribe(v => console.log('next value', v));
+
+console.log('Going to send next value');
+
+subject.next(true);
+
+console.log('Sent next value');
+          </code></pre>
+            <p>What is happening now?</p>
+            <aside class="notes">
+                Sample code is part of the RxJs Examples repository:
+                <UL>
+                    <LI>https://github.com/BerndOlleckCap/RxJsExamples</LI>
+                    <LI>start angular application</LI>
+                    <LI>Tab "Training Examples"</LI>
+                    <LI>Button "Timing with asyncScheduler"</LI>
+                    <LI>Code: TrainingExamplesComponent.startAsyncScheduler</LI>
+                </UL>
+            </aside>
+        </section>
+        <section>
+            <p>What's different here?</p>
+            <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+this.httpClient.get('/api/books').subscribe(v => console.log('next value', v));
+
+console.log('after');
+          </code></pre>
+            <p>Please explain the expected timing in this situation.</p>
+            <aside class="notes">
+                The important point here is: This is really asynchronous.
+                The http response will come "later". And it will still be processed as a Microtask when it arrives...
+            </aside>
+        </section>
+        <section>
+            <p>Do you know this?</p>
+            <img class="no-border" src="./img/changed-after-checked-exception.png"
+                 alt="Angular Exception: Changed after Checked">
+            <p>Can you explain what happened?</p>
+            <p>What does it have to do with microtasks / macrotasks?</p>
+            <aside class="notes">
+                <UL>
+                    <LI>
+                        Hint: Angular change detection runs after a task when the microtask queue is empty.
+                    </LI>
+                    <LI>
+                        https://angular.io/guide/lifecycle-hooks
+                    </LI>
+                    <LI>
+                        Specifically:
+                        https://angular.io/guide/glossary#unidirectional-data-flow
+                    </LI>
+                    <LI>
+                        Explanation of the situation and the exception:
+                        https://angular.io/errors/NG0100
+                    </LI>
+                    <LI>
+                        Detailed explanation:
+                        https://indepth.dev/everything-you-need-to-know-about-the-expressionchangedafterithasbeencheckederror-error/
+                    </LI>
+                    <LI>
+                        Sample code is part of the RxJs Examples repository:
+                        <UL>
+                            <LI>https://github.com/BerndOlleckCap/RxJsExamples</LI>
+                            <LI>start angular application</LI>
+                            <LI>Tab "Change Detection Error"</LI>
+                            <LI>Button "Activate Child"</LI>
+                            <LI>Code: ExpressionChangedExceptionComponent</LI>
+                        </UL>
+                    </LI>
+                </UL>
+            </aside>
+        </section>
+        <section>
+            <p>How to fix it? What's the better option?</p>
+            <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+/* Promise */
+Promise.resolve().then(() => ...bad change...);
+
+/* Timeout */
+setTimeout(() => ...bad change...);
+
+/* Change Detector */
+...bad change...
+this.changeDetectorRef.detectChanges();
+
+/* asyncScheduler */
+asyncScheduler.schedule(() => {
+  ...bad change...;
+});
+            </code></pre>
+            <aside class="notes">
+                <UL>
+                    <LI>
+                        Best solution is not on the page: Avoid if possible, e.g. by moving to other lifecycle hook or
+                        removing the dependency.
+                    </LI>
+                    <LI>
+                        Detailed explanation see
+                        https://indepth.dev/everything-you-need-to-know-about-the-expressionchangedafterithasbeencheckederror-error/
+                    </LI>
+                </UL>
+            </aside>
+        </section>
+        <section>
+            <h2>Another problem with unit tests and async behaviour</h2>
+            <ul>
+                <li>ListComponent uses ListService</li>
+                <li>ListService.get() returns Observable&lt;Entry[]&gt;</li>
+                <li>ListComponent calls get() in ngOnInit()</li>
+            </ul>
+            <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+  constructor(private service: ListService) {}
+
+  ngOnInit(): void {
+    this.service.get().subscribe(res => this.list = res);
+  }
+          </code></pre>
+        </section>
+        <section class="fullscreen">
+            <h2>Basic unit test</h2>
+            <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+describe('ListComponent', () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [ ListComponent ],
+      providers: [{
+        provide: ListService,
+        useValue: jasmine.createSpyObj('ListService', {
+          get: of([{id: 1}])
+        })
+      }]
+    })
+  });
+
+  it('loads list', fakeAsync(() => {
+    fixture.detectChanges();
+    expect(element.querySelectorAll('.list').length).toEqual(1);
+  }));
+});
+          </code></pre>
+            <p>What's wrong? Why is this not a good unit test?</p>
+            <aside class="notes">
+                <UL>
+                    <LI>
+                        Key: Async behaviour is not tested
+                    </LI>
+                </UL>
+            </aside>
+        </section>
+        <section>
+            <p>To focus the problem a little further</p>
+            <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
+ngOnInit() {
+  this.loading = true;
+  this.todosService.get().subscribe(todos => {
+    this.todos = todos;
+    this.loading = false;
+  });
+}
+          </code></pre>
+            <p>How's this code run in test and how in production?</p>
+        </section>
+        <section class="fullscreen">
+            <p>Please explain the fix and why this small change makes all the difference</p>
+            <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="8,15">
+describe('ListComponent', () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [ ListComponent ],
+      providers: [{
+        provide: ListService,
+        useValue: jasmine.createSpyObj('ListService', {
+          get: scheduled(of([{id: 1}]), asyncScheduler)
+        })
+      }]
+    })
+  });
+
+  it('loads list', fakeAsync(() => {
+    tick();
+    expect(element.querySelectorAll('.list').length).toEqual(1);
+  }));
+});
+            </code></pre>
+        </section>
         <section>
             <h2>Resources</h2>
             <ul>
