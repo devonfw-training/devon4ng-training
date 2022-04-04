@@ -49,11 +49,11 @@
                     </UL>
                 </aside>
             </section>
-                <section>
-                    <!-- taken from the foundation slides of "promises-to-observables" -->
-                    <div id="js-engine">
-                        <p>JavaScript Engine (simplified)</p>
-                        <pre><code style="border: none;" data-trim class="javascript">
+            <section>
+                <!-- taken from the foundation slides of "promises-to-observables" -->
+                <div id="js-engine">
+                    <p>JavaScript Engine (simplified)</p>
+                    <pre><code style="border: none;" data-trim class="javascript">
     var bar = function () {
             console.log('bar...');
         },
@@ -63,29 +63,29 @@
         };
     foo();
                         </code></pre>
-                        <div id="js-engine-core">
-                            <div id="call-stack">
-                                <p>Call Stack</p>
-                            </div>
-                            <div id="event-table">
-                                <p>Event Table</p>
-                            </div>
-                            <div id="event-queue">
-                                <p>Event Queue</p>
-                            </div>
-                            <div id="console">
-                                <p>Console</p>
-                                <!--<pre class="code-element"><code data-trim class="javascript">"I'm second!"</code></pre>-->
-                            </div>
+                    <div id="js-engine-core">
+                        <div id="call-stack">
+                            <p>Call Stack</p>
                         </div>
-                        <div class="navigate-left enabled"></div>
+                        <div id="event-table">
+                            <p>Event Table</p>
+                        </div>
+                        <div id="event-queue">
+                            <p>Event Queue</p>
+                        </div>
+                        <div id="console">
+                            <p>Console</p>
+                            <!--<pre class="code-element"><code data-trim class="javascript">"I'm second!"</code></pre>-->
+                        </div>
                     </div>
-                    <div>
-                        <a href="javascript:jsEngineSteps.backward()">&lt;&lt;</a>&nbsp;
-                        <a href="javascript:jsEngineSteps.forward()">&gt;&gt;</a>
-                    </div>
-                </section>
+                    <div class="navigate-left enabled"></div>
+                </div>
+                <div>
+                    <a href="javascript:jsEngineSteps.backward()">&lt;&lt;</a>&nbsp;
+                    <a href="javascript:jsEngineSteps.forward()">&gt;&gt;</a>
+                </div>
             </section>
+        </section>
         <section>
             <p>Each thread has its own event loop.</p>
             <ul>
@@ -164,7 +164,7 @@
                     </UL>
                 </aside>
             </section>
-          <section>
+            <section>
                 <p>Why does this progress bar not work?</p>
                 <pre><code class="javascript" data-trim data-line-numbers="">
                       console.log('starting work');
@@ -176,40 +176,42 @@
                       }
                       console.log('finished with work');
                 </code></pre>
-              <div>
-                  <button id="buttonSyncProgressBar">Do A Lot Of Work</button>
-                  Progress: <span id="syncProgressBarValue">0%</span>
-                  <progress id="syncProgressBar" max="100" value="0"></progress>
-              </div>
-              <script>
-                  function busyWaitMs(waitMs) {
-                      if (!waitMs) {
-                          waitMs = 100;
-                      }
-                      console.log('waiting '+waitMs+'ms');
-                      let startTime = Date.now();
-                      while (startTime + waitMs > Date.now()) {
-                          // oh my, we're busy
-                      }
-                  }
-                  function updateProgressSync(percent) {
-                      let progressResultSpan = document.querySelector('#syncProgressBarValue');
-                      let progressResult = document.querySelector('#syncProgressBar');
-                      console.log('work partially done '+percent+'%');
-                      progressResultSpan.textContent = percent + '%';
-                      progressResult.setAttribute('value', percent);
-                  }
-                  document.querySelector('#buttonSyncProgressBar').addEventListener('click', function () {
-                      console.log('starting work');
-                      updateProgressSync(0);
-                      for( let i=1; i<=10; i++) {
-                          busyWaitMs(1000);
-                          let percent = i/10*100;
-                          updateProgressSync(percent);
-                      }
-                      console.log('finished with work');
-                  });
-              </script>
+                <div>
+                    <button id="buttonSyncProgressBar">Do A Lot Of Work</button>
+                    Progress: <span id="syncProgressBarValue">0%</span>
+                    <progress id="syncProgressBar" max="100" value="0"></progress>
+                </div>
+                <script>
+                    function busyWaitMs(waitMs) {
+                        if (!waitMs) {
+                            waitMs = 100;
+                        }
+                        console.log('waiting ' + waitMs + 'ms');
+                        let startTime = Date.now();
+                        while (startTime + waitMs > Date.now()) {
+                            // oh my, we're busy
+                        }
+                    }
+
+                    function updateProgressSync(percent) {
+                        let progressResultSpan = document.querySelector('#syncProgressBarValue');
+                        let progressResult = document.querySelector('#syncProgressBar');
+                        console.log('work partially done ' + percent + '%');
+                        progressResultSpan.textContent = percent + '%';
+                        progressResult.setAttribute('value', percent);
+                    }
+
+                    document.querySelector('#buttonSyncProgressBar').addEventListener('click', function () {
+                        console.log('starting work');
+                        updateProgressSync(0);
+                        for (let i = 1; i <= 10; i++) {
+                            busyWaitMs(1000);
+                            let percent = i / 10 * 100;
+                            updateProgressSync(percent);
+                        }
+                        console.log('finished with work');
+                    });
+                </script>
                 <aside class="notes">
                 </aside>
             </section>
@@ -240,23 +242,26 @@
                     function updateProgressAsync(percent) {
                         let progressResultSpan = document.querySelector('#asyncProgressBarValue');
                         let progressResult = document.querySelector('#asyncProgressBar');
-                        console.log('work partially done '+percent+'%');
+                        console.log('work partially done ' + percent + '%');
                         progressResultSpan.textContent = percent + '%';
                         progressResult.setAttribute('value', percent);
                     }
+
                     document.querySelector('#buttonAsyncProgressBar').addEventListener('click', function () {
                         console.log('starting work');
                         updateProgressAsync(0);
                         let i = 1;
+
                         function chunkOfWork() {
                             busyWaitMs(1000);
-                            updateProgressAsync(i/10*100);
-                            if (++i<=10) {
+                            updateProgressAsync(i / 10 * 100);
+                            if (++i <= 10) {
                                 setTimeout(chunkOfWork, 0);
                             } else {
                                 console.log('finished with work');
                             }
                         }
+
                         setTimeout(chunkOfWork, 0);
                     });
                 </script>
@@ -283,7 +288,7 @@ console.log('script end');
           </code></pre>
         </section>
         <section class="fullscreen">
-            <h2>What is a <span class="cap-blue">Tasks</span>?</h2>
+            <h2>About <span class="cap-blue">Tasks</span></h2>
             <UL>
                 <LI>Examples for tasks are setTimeout, user events, execution of loaded scripts.</LI>
                 <LI>The Browser renders changes between tasks.</LI>
@@ -305,7 +310,7 @@ it('should set flag to true', fakeAsync(() => {
           </code></pre>
         </section>
         <section class="fullscreen">
-            <h2>What is a <span class="cap-blue">Microtask</span>?</h2>
+            <h2>About <span class="cap-blue">Microtasks</span></h2>
             <ul>
                 <li>Examples: Results and errors of Promises, queueMicrotask()</li>
                 <li>Microtasks are processed after tasks</li>
@@ -513,43 +518,88 @@ console.log('after');
             </aside>
         </section>
         <section>
-            <p>Do you know this?</p>
-            <img class="no-border" src="./img/changed-after-checked-exception.png"
-                 alt="Angular Exception: Changed after Checked">
-            <p>Can you explain what happened?</p>
-            <p>What does it have to do with microtasks / macrotasks?</p>
-            <aside class="notes">
-                <UL>
-                    <LI>
-                        Hint: Angular change detection runs after a task when the microtask queue is empty.
-                    </LI>
-                    <LI>
-                        https://angular.io/guide/lifecycle-hooks
-                    </LI>
-                    <LI>
-                        Specifically:
-                        https://angular.io/guide/glossary#unidirectional-data-flow
-                    </LI>
-                    <LI>
-                        Explanation of the situation and the exception:
-                        https://angular.io/errors/NG0100
-                    </LI>
-                    <LI>
-                        Detailed explanation:
-                        https://indepth.dev/everything-you-need-to-know-about-the-expressionchangedafterithasbeencheckederror-error/
-                    </LI>
-                    <LI>
-                        Sample code is part of the RxJs Examples repository:
-                        <UL>
-                            <LI>https://github.com/BerndOlleckCap/RxJsExamples</LI>
-                            <LI>start angular application</LI>
-                            <LI>Tab "Change Detection Error"</LI>
-                            <LI>Button "Activate Child"</LI>
-                            <LI>Code: ExpressionChangedExceptionComponent</LI>
-                        </UL>
-                    </LI>
-                </UL>
-            </aside>
+            <section>
+                <p>Do you know this?</p>
+                <img class="no-border" src="./img/changed-after-checked-exception.png"
+                     alt="Angular Exception: Changed after Checked">
+                <p>Can you explain what happened?</p>
+                <p>What does it have to do with microtasks / macrotasks?</p>
+                <aside class="notes">
+                    <UL>
+                        <LI>
+                            Hint: Angular change detection runs after a task when the microtask queue is empty.
+                        </LI>
+                        <LI>
+                            https://angular.io/guide/lifecycle-hooks
+                        </LI>
+                        <LI>
+                            Specifically:
+                            https://angular.io/guide/glossary#unidirectional-data-flow
+                        </LI>
+                        <LI>
+                            Explanation of the situation and the exception:
+                            https://angular.io/errors/NG0100
+                        </LI>
+                        <LI>
+                            Detailed explanation:
+                            https://indepth.dev/everything-you-need-to-know-about-the-expressionchangedafterithasbeencheckederror-error/
+                        </LI>
+                        <LI>
+                            Sample code is part of the RxJs Examples repository:
+                            <UL>
+                                <LI>https://github.com/BerndOlleckCap/RxJsExamples</LI>
+                                <LI>start angular application</LI>
+                                <LI>Tab "Change Detection Error"</LI>
+                                <LI>Button "Activate Child"</LI>
+                                <LI>Code: ExpressionChangedExceptionComponent</LI>
+                            </UL>
+                        </LI>
+                    </UL>
+                </aside>
+            </section>
+            <section>
+                <h2>A few things about Angular Change Detection</h2>
+                <ul>
+                    <li>Why?
+                        <ul>
+                            <li>It's Angular's way to decide where the DOM tree has to be updated</li>
+                        </ul>
+                    </li>
+                    <li>How?
+                        <ul>
+                            <li>Go through the complete component tree (yes, really!)</li>
+                            <li>Simplified: Check for each component if the bindings have changed (comparing to previous
+                                value)
+                                or one of a few other things have happened
+                            </li>
+                            <li>If changed, update the DOM and/or apply to child components</li>
+                        </ul>
+                    </li>
+                </ul>
+                <aside class="notes">
+                    <ul>
+                        <li>https://blog.angular-university.io/how-does-angular-2-change-detection-really-work/</li>
+                    </ul>
+                </aside>
+            </section>
+            <section>
+                <h2>A few things about Angular Change Detection</h2>
+                <ul>
+                    <li>When does this happen?
+                        <ul>
+                            <li>Every time an event (i.e. Macrotask) and its corresponding Microtasks has been processed
+                                (implemented using zone.js)
+                            </li>
+                            <li>Development mode: Do it again (for the whole tree), comparing the results between the
+                                passes.
+                                If not equal -> Exception: rule "unidirectional data flow" violated
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <aside class="notes">
+                </aside>
+            </section>
         </section>
         <section>
             <p>How to fix it? What's the better option?</p>
