@@ -425,7 +425,7 @@
                           errors$.pipe(
                             mergeMap(error =>
                               iif(
-                                () => error.code === TOO_MANY_REQUESTS,
+                                () => error.status === TOO_MANY_REQUESTS,
                                 timer(5000),
                                 throwError(error)
                               )
