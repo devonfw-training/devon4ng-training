@@ -244,6 +244,10 @@
                         <li>What is a typical usage for forkJoin? (-> do some parallel backend calls)</li>
                         <li>What is a typical usage for combineLatest? (-> something depends on two changing sources)
                         </li>
+                        <li>Note: a theoretical usage of zip is parallel processing of values: One source,
+                            two observable chains which do something separately but their values should be
+                            combined respectively. If someone knows a real world usage, please document here...
+                        </li>
                     </ul>
                 </aside>
             </section>
@@ -395,6 +399,9 @@
                     // Once the timeout of 1000ms is triggered, only values from fallback$ are returned
                     </code></pre>
                 <aside class="notes">
+                    Note concerning iif: So far we do not have a convincing example where iif has to be used, most of
+                    the time there is an equivalent solution with higher order observables and direct usage of 'if'
+                    or '?:' which seems easier to understand.
                 </aside>
             </section>
             <section>
