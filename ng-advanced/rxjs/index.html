@@ -183,14 +183,14 @@
             <section>
                 <h2>RxJS - Level 2: Simple Combinations (Solution)</h2>
                 <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
-                    // timeline(r): 0        1  2  3  4  5     6  7  8  9  10  11
+                    // timeline(r): 0        1  2  3  4  5         6  7  8  9  10  11
                     // a$:                   a     a     a|
                     // b$:          b b b|
-                    // c$:          c           c     c        c|
+                    // c$:          c           c     c            c|
                     concat( a$, b$, c$)
-                    //                       a     a     abbbc    c     c      c|
+                    //                       a     a     a b b b c    c     c      c|
                     merge( a$, b$, c$)
-                    //              b b b c  a  c  a  c  a     c|
+                    //              b b b c  a  c  a  c  a         c|
                 </code></pre>
                 <aside class="notes">
                     further questions:
