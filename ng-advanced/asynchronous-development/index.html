@@ -286,6 +286,17 @@ Promise.resolve().then(function() {
 
 console.log('script end');
           </code></pre>
+            <aside class="notes">
+                Optional: Include animation frames:
+                <pre><code>
+requestAnimationFrame(()=>{
+  console.log("animation frame 1");
+  requestAnimationFrame(()=>{
+    console.log("animation frame 2");
+  })
+})
+                </code></pre>
+            </aside>
         </section>
         <section class="fullscreen">
             <h2>About <span class="cap-blue">Tasks</span></h2>
@@ -386,9 +397,16 @@ button.addEventListener("click", () => {
             </script>
             <aside class="notes">
                 Note: addEventListener creates a macrotask for each listener when the button is clicked by the user.
-                However, depending on the browser:
-                When the button is clicked by code (unit test), both listeners may be executed within one macrotask thus
-                resulting in a different order of output.
+                <br/>
+                However, this depends on the browser.
+                <br/>
+                By executing <code>document.getElementById("ListenerOrderExampleButton").click()</code>
+                you may get different results (current state March 2022):
+                <ul>
+                    <li>Chrome (and most likely also your unit tests): One macrotask containing both event listeners.
+                    </li>
+                    <li>Firefox: Two macrotasks, one for each event listeners.</li>
+                </ul>
             </aside>
         </section>
         <section class="fullscreen">
