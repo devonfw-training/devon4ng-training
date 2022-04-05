@@ -49,11 +49,11 @@
                     </UL>
                 </aside>
             </section>
-                <section>
-                    <!-- taken from the foundation slides of "promises-to-observables" -->
-                    <div id="js-engine">
-                        <p>JavaScript Engine (simplified)</p>
-                        <pre><code style="border: none;" data-trim class="javascript">
+            <section>
+                <!-- taken from the foundation slides of "promises-to-observables" -->
+                <div id="js-engine">
+                    <p>JavaScript Engine (simplified)</p>
+                    <pre><code style="border: none;" data-trim class="javascript">
     var bar = function () {
             console.log('bar...');
         },
@@ -63,29 +63,29 @@
         };
     foo();
                         </code></pre>
-                        <div id="js-engine-core">
-                            <div id="call-stack">
-                                <p>Call Stack</p>
-                            </div>
-                            <div id="event-table">
-                                <p>Event Table</p>
-                            </div>
-                            <div id="event-queue">
-                                <p>Event Queue</p>
-                            </div>
-                            <div id="console">
-                                <p>Console</p>
-                                <!--<pre class="code-element"><code data-trim class="javascript">"I'm second!"</code></pre>-->
-                            </div>
+                    <div id="js-engine-core">
+                        <div id="call-stack">
+                            <p>Call Stack</p>
                         </div>
-                        <div class="navigate-left enabled"></div>
+                        <div id="event-table">
+                            <p>Event Table</p>
+                        </div>
+                        <div id="event-queue">
+                            <p>Event Queue</p>
+                        </div>
+                        <div id="console">
+                            <p>Console</p>
+                            <!--<pre class="code-element"><code data-trim class="javascript">"I'm second!"</code></pre>-->
+                        </div>
                     </div>
-                    <div>
-                        <a href="javascript:jsEngineSteps.backward()">&lt;&lt;</a>&nbsp;
-                        <a href="javascript:jsEngineSteps.forward()">&gt;&gt;</a>
-                    </div>
-                </section>
+                    <div class="navigate-left enabled"></div>
+                </div>
+                <div>
+                    <a href="javascript:jsEngineSteps.backward()">&lt;&lt;</a>&nbsp;
+                    <a href="javascript:jsEngineSteps.forward()">&gt;&gt;</a>
+                </div>
             </section>
+        </section>
         <section>
             <p>Each thread has its own event loop.</p>
             <ul>
@@ -164,7 +164,7 @@
                     </UL>
                 </aside>
             </section>
-          <section>
+            <section>
                 <p>Why does this progress bar not work?</p>
                 <pre><code class="javascript" data-trim data-line-numbers="">
                       console.log('starting work');
@@ -176,40 +176,42 @@
                       }
                       console.log('finished with work');
                 </code></pre>
-              <div>
-                  <button id="buttonSyncProgressBar">Do A Lot Of Work</button>
-                  Progress: <span id="syncProgressBarValue">0%</span>
-                  <progress id="syncProgressBar" max="100" value="0"></progress>
-              </div>
-              <script>
-                  function busyWaitMs(waitMs) {
-                      if (!waitMs) {
-                          waitMs = 100;
-                      }
-                      console.log('waiting '+waitMs+'ms');
-                      let startTime = Date.now();
-                      while (startTime + waitMs > Date.now()) {
-                          // oh my, we're busy
-                      }
-                  }
-                  function updateProgressSync(percent) {
-                      let progressResultSpan = document.querySelector('#syncProgressBarValue');
-                      let progressResult = document.querySelector('#syncProgressBar');
-                      console.log('work partially done '+percent+'%');
-                      progressResultSpan.textContent = percent + '%';
-                      progressResult.setAttribute('value', percent);
-                  }
-                  document.querySelector('#buttonSyncProgressBar').addEventListener('click', function () {
-                      console.log('starting work');
-                      updateProgressSync(0);
-                      for( let i=1; i<=10; i++) {
-                          busyWaitMs(1000);
-                          let percent = i/10*100;
-                          updateProgressSync(percent);
-                      }
-                      console.log('finished with work');
-                  });
-              </script>
+                <div>
+                    <button id="buttonSyncProgressBar">Do A Lot Of Work</button>
+                    Progress: <span id="syncProgressBarValue">0%</span>
+                    <progress id="syncProgressBar" max="100" value="0"></progress>
+                </div>
+                <script>
+                    function busyWaitMs(waitMs) {
+                        if (!waitMs) {
+                            waitMs = 100;
+                        }
+                        console.log('waiting ' + waitMs + 'ms');
+                        let startTime = Date.now();
+                        while (startTime + waitMs > Date.now()) {
+                            // oh my, we're busy
+                        }
+                    }
+
+                    function updateProgressSync(percent) {
+                        let progressResultSpan = document.querySelector('#syncProgressBarValue');
+                        let progressResult = document.querySelector('#syncProgressBar');
+                        console.log('work partially done ' + percent + '%');
+                        progressResultSpan.textContent = percent + '%';
+                        progressResult.setAttribute('value', percent);
+                    }
+
+                    document.querySelector('#buttonSyncProgressBar').addEventListener('click', function () {
+                        console.log('starting work');
+                        updateProgressSync(0);
+                        for (let i = 1; i <= 10; i++) {
+                            busyWaitMs(1000);
+                            let percent = i / 10 * 100;
+                            updateProgressSync(percent);
+                        }
+                        console.log('finished with work');
+                    });
+                </script>
                 <aside class="notes">
                 </aside>
             </section>
@@ -240,23 +242,26 @@
                     function updateProgressAsync(percent) {
                         let progressResultSpan = document.querySelector('#asyncProgressBarValue');
                         let progressResult = document.querySelector('#asyncProgressBar');
-                        console.log('work partially done '+percent+'%');
+                        console.log('work partially done ' + percent + '%');
                         progressResultSpan.textContent = percent + '%';
                         progressResult.setAttribute('value', percent);
                     }
+
                     document.querySelector('#buttonAsyncProgressBar').addEventListener('click', function () {
                         console.log('starting work');
                         updateProgressAsync(0);
                         let i = 1;
+
                         function chunkOfWork() {
                             busyWaitMs(1000);
-                            updateProgressAsync(i/10*100);
-                            if (++i<=10) {
+                            updateProgressAsync(i / 10 * 100);
+                            if (++i <= 10) {
                                 setTimeout(chunkOfWork, 0);
                             } else {
                                 console.log('finished with work');
                             }
                         }
+
                         setTimeout(chunkOfWork, 0);
                     });
                 </script>
@@ -283,7 +288,7 @@ console.log('script end');
           </code></pre>
         </section>
         <section class="fullscreen">
-            <h2>What is a <span class="cap-blue">Tasks</span>?</h2>
+            <h2>About <span class="cap-blue">Tasks</span></h2>
             <UL>
                 <LI>Examples for tasks are setTimeout, user events, execution of loaded scripts.</LI>
                 <LI>The Browser renders changes between tasks.</LI>
@@ -305,7 +310,7 @@ it('should set flag to true', fakeAsync(() => {
           </code></pre>
         </section>
         <section class="fullscreen">
-            <h2>What is a <span class="cap-blue">Microtask</span>?</h2>
+            <h2>About <span class="cap-blue">Microtasks</span></h2>
             <ul>
                 <li>Examples: Results and errors of Promises, queueMicrotask()</li>
                 <li>Microtasks are processed after tasks</li>
@@ -386,708 +391,15 @@ button.addEventListener("click", () => {
                 resulting in a different order of output.
             </aside>
         </section>
-        <section>
-            <section>
-                <h2>RxJS - Levelling Up</h2>
-                Documentation + Reference
-                <ul>
-                    <li>
-                        <a href="https://rxjs.dev/">rxjs.dev: Library Documentation</a>
-                        <ul>
-                            <li><a href="https://rxjs.dev/guide/operators">https://rxjs.dev/guide/operators</a>:
-                                structured overview of operators
-                            </li>
-                            <li><a href="https://rxjs.dev/operator-decision-tree">https://rxjs.dev/operator-decision-tree</a>:
-                                I need to do something - what can I use?
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        From the Angular Documentation
-                        <ul>
-                            <li><a href="https://angular.io/guide/rx-library">https://angular.io/guide/rx-library</a> :
-                                Brief introduction into some concepts
-                            </li>
-                            <li><a href="https://angular.io/guide/observables-in-angular">https://angular.io/guide/observables-in-angular</a>
-                                : How Angular uses RxJS
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </section>
-            <section>
-                <h2>RxJS - Level 0: Basics</h2>
-                <ul>
-                    <li>Basic Consumption of an Observable
-                        <pre><code class="javascript stretch" data-trim>
-                            subscription = observable$.subscribe(
-                                value => this.doSomethingWith(value));
-                            ...
-                            subscription.unsubscribe();
-
-                            <span>{{ observable$ | async }}</span>
-                        </code></pre>
-                        Mind the memory leak - unsubscribe!
-                    </li>
-                    <li>Basic Creation
-                        <pre><code class="javascript stretch" data-trim>
-                            of( 1, 2, 3, 4 );
-                            from( [ 1, 2, 3, 4 ] );
-
-                            subject$ = new Subject();
-                            subject$.next('A');
-                        </code></pre>
-                    </li>
-                </ul>
-                <aside class="notes">
-                    <UL>
-                        <LI>of: one parameter after another</LI>
-                        <LI>from: values from the array in order, can also take iterator and promise as</LI>
-                        <LI>what happens if you give an array to from? You get the complete array as a value.</LI>
-                    </UL>
-                </aside>
-            </section>
-            <section>
-                <h2>RxJS - Level 0: Lifecycle</h2>
-                <ul>
-                    <li>Parameters of subscribe(...)</li>
-                </ul>
-                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
-                            observable$.subscribe(
-                                value => this.doSomethingWith(value),
-                                error => this.displayError(error),
-                                () => this.weAreDone());
-
-                            observable$.subscribe({
-                                next: value => this.doSomethingWith(value),
-                                error: error => this.displayError(error),
-                                complete: () => this.weAreDone()
-                            });
-                        </code></pre>
-                <ul>
-                    <li>And what happens on the source's side</li>
-                </ul>
-                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
-                            subject$ = new Subject();
-                            subject$.next('A');
-                            subject$.error('Something went wrong');
-                            // or
-                            subject$.complete();
-                        </code></pre>
-                <aside class="notes">
-                    <UL>
-                        <LI>Most observables do not produce values before the first subscribe (possible exception: hot
-                            observables)
-                        </LI>
-                        <LI>Nothing after error or complete</LI>
-                    </UL>
-                </aside>
-            </section>
-            <section>
-                <h2>RxJS - Level 1: Basic Operators</h2>
-                <ul>
-                    <li>Manipulation and side effects</li>
-                </ul>
-                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
-                    observable$.pipe(
-                        map( value => value * 2),
-                        tap( value => this.doSomething(value))
-                    );
-                        </code></pre>
-                </li>
-                <ul>
-                    <li>Simple selection and filtering</li>
-                </ul>
-                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
-                    // Input: 5, 3, 3, 11, 7, 7, 19
-                    filter( value => value > 10)  // 11, 19
-                    take( 5 )               // 5, 3, 3, 11, 7
-                    distinctUntilChanged()  // 5, 3, 11, 7, 19
-                        </code></pre>
-                <aside class="notes">
-                    <UL>
-                        <LI>Hint for later (exercise level 7): distinctUntilChanged by default makes a comparison using
-                            ===
-                            but allows a comparator as parameter.
-                        </LI>
-                    </UL>
-                </aside>
-            </section>
-            <section>
-                <h2>RxJS - Level 2: Simple Combinations</h2>
-                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
-                    // timeline(r): 0      1  2  3  4  5  6  7
-                    // a$:                 a     a     a|
-                    // b$:          b b b|
-                    // c$:          c         c     c     c|
-                    concat( a$, b$, c$)
-                    merge( a$, b$, c$)
-                </code></pre>
-                <ul>
-                    <li>Note: The timeline is intended relatively: timeline(r)</li>
-                    <li>At the time an observable is subscribed, it starts producing values at its time 0.</li>
-                    <li>I.e.: when b$ is subscribed at time 5, then it immediately delivers 3 values and completes.</li>
-                    <li>And when c$ is subscribed at time 5, then it immediately delivers one value, and then delivers
-                        the next one at time 7.
-                    </li>
-                </ul>
-                <aside class="notes">
-                    <ul>
-                        <LI>concat: all values of the first observable, then the subscribe the second, then the third
-                        </LI>
-                        <li>merge: immediate subscribe, all values when they arrive</li>
-                    </ul>
-                    solution next page
-                </aside>
-            </section>
-            <section>
-                <h2>RxJS - Level 2: Simple Combinations (Solution)</h2>
-                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
-                    // timeline(r): 0        1  2  3  4  5     6  7  8  9  10  11
-                    // a$:                   a     a     a|
-                    // b$:          b b b|
-                    // c$:          c           c     c        c|
-                    concat( a$, b$, c$)
-                    //                       a     a     abbbc    c     c      c|
-                    merge( a$, b$, c$)
-                    //              b b b c  a  c  a  c  a     c|
-                </code></pre>
-                <aside class="notes">
-                    further questions:
-                    <UL>
-                        <LI>What happens if b$ emits at timeslot 1?</LI>
-                        <LI>What happens if b$ never completes?</LI>
-                    </UL>
-                </aside>
-            </section>
-            <section>
-                <h2>RxJS - Level 3: Value Combinations</h2>
-                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
-                    // timeline(r): 0         1  2  3  4  5
-                    // a$:                    a1    a2    a3|
-                    // b$:          b1 b2 b3|
-                    // c$:          c1           c2    c3|
-                    forkJoin( [a$, b$, c$])
-                    combineLatest( [a$, b$, c$])
-                    zip( [a$, b$, c$])
-                </code></pre>
-                <aside class="notes">
-                    <ul>
-                        <LI>forkJoin: wait until complete, then emit last values</LI>
-                        <li>combineLatest: emit combinations once you have a complete set of values</li>
-                        <li>zip: emit tupels of values in order</li>
-                        <li>all subscribe immediately to every source</li>
-                    </ul>
-                    solution next page
-                </aside>
-            </section>
-            <section>
-                <h2>RxJS - Level 3: Value Combinations (Solution)</h2>
-                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
-                    // timeline(r): 0         1      2      3      4      5
-                    // a$:                    a1            a2            a3|
-                    // b$:          b1 b2 b3|
-                    // c$:          c1               c2            c3|
-                    forkJoin( [a$, b$, c$])
-                    //                                                    a3b3c3|
-                    combineLatest( [a$, b$, c$])
-                    //                        a1b3c1 a1b3c2 a2b3c2 a2b3c3 a3b3c3|
-                    zip( [a$, b$, c$])
-                    //                        a1b1c1        a2b2c2        a3b3c3|
-                </code></pre>
-                <aside class="notes">
-                    Further questions:
-                    <ul>
-                        <li>What happens if b$ emits at timeslot 1?</li>
-                        <li>What happens if b$ never completes?</li>
-                        <li>What happens if b$ only emits two values?</li>
-                        <li>What is a typical usage for forkJoin? (-> do some parallel backend calls)</li>
-                        <li>What is a typical usage for combineLatest? (-> something depends on two changing sources)
-                        </li>
-                    </ul>
-                </aside>
-            </section>
-            <section>
-                <h2>RxJS - Level 4: Simple Sub Processes</h2>
-                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
-                    // timeline(r):      0   1    2   3  4
-                    // source:           a        b   c|
-                    // inner response a:     r:a|
-                    // inner response b:                 r:b|
-                    // inner response c: r:c|
-                    switchMap( input => getOneResponse(input))
-                    concatMap( input => getOneResponse(input))
-                    mergeMap( input => getOneResponse(input))
-                </code></pre>
-                <UL>
-                    Please note the timing here:
-                    <LI>the response for 'a' is returned at time +1</LI>
-                    <LI>the response for 'b' is returned at time +4</LI>
-                    <LI>the response for 'c' is returned immediately</LI>
-                </UL>
-                <aside class="notes">
-                    <ul>
-                        <LI>switchMap: If you get a new input, ignore the previous result if it is still pending</li>
-                        <LI>concatMap: Return values for all inputs in order until inner observable completes, wait if
-                            necessary
-                        </li>
-                        <LI>mergeMap: Return values for all inputs in order of the results</LI>
-                    </ul>
-                    Solution next page
-                </aside>
-            </section>
-            <section>
-                <h2>RxJS - Level 4: Simple Sub Processes (Solution)</h2>
-                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
-                    // timeline(r):      0   1    2   3  4    5  6         7
-                    // source:           a        b   c|
-                    // inner response a:     r:a|
-                    // inner response b:                 r:b|
-                    // inner response c: r:c|
-                    switchMap( input => getOneResponse(input))
-                    //                       r:a      r:c|
-                    concatMap( input => getOneResponse(input))
-                    //                       r:a                 r:b r:c|
-                    mergeMap( input => getOneResponse(input))
-                    //                       r:a      r:c        r:b|
-                </code></pre>
-                <aside class="notes">
-                    Followup questions:
-                    <ul>
-                        <LI>What happens if the inner observable returns multiple values? -> next page</LI>
-                    </ul>
-                </aside>
-            </section>
-            <section>
-                <h2>RxJS - Level 5: Complex Sub Processes</h2>
-                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
-                    // timeline(r):   0  1     2    3     4   5
-                    // source:        a        b          c|
-                    // response a:       r:a1                 r:a2|
-                    // response b:       r:b1|
-                    // response c:             r:c1 r:c2|
-                    switchMap( input => getResponses(input))
-                    concatMap( input => getResponses(input))
-                    mergeMap( input => getResponses(input))
-                </code></pre>
-                <aside class="notes">
-                    <ul>
-                        <LI>switchMap: If you get a new input, ignore the previous result if it is still pending</li>
-                        <LI>concatMap: Return values for all inputs in order until inner observable completes, wait if
-                            necessary
-                        </li>
-                        <LI>mergeMap: Return values for all inputs in order of the results</LI>
-                    </ul>
-                    Solution next page
-                </aside>
-            </section>
-            <section>
-                <h2>RxJS - Level 5: Complex Sub Processes (Solution)</h2>
-                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
-                    // timeline(r):   0  1     2    3     4   5     6     7     8     9
-                    // source:        a        b          c|
-                    // response a:       r:a1                 r:a2|
-                    // response b:       r:b1|
-                    // response c:             r:c1 r:c2|
-                    switchMap( input => getResponses(input))
-                    //                   r:a1       r:b1            r:c1  r:c2|
-                    concatMap( input => getResponses(input))
-                    //                   r:a1                 r:a2  r:b1        r:c1  r:c2|
-                    mergeMap( input => getResponses(input))
-                    //                   r:a1       r:b1      r:a2  r:c1  r:c2|
-                </code></pre>
-                <aside class="notes">
-                    Followup questions:
-                    <ul>
-                        <LI>What happens if the inner observable does not return a value? (-> timeout, timeoutWith)</LI>
-                        <LI>What happens if the inner observable completes late or does not complete?</LI>
-                    </ul>
-                </aside>
-            </section>
-            <section>
-                <h2>RxJS - Level 6: Control Timing: Backpressure</h2>
-                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
-                    // timeline (ms):   0  100  200  300  400  500  600  700  800  900  1000  1100  1200  1300  1400
-                    // source:          a  b    c                        d    e         f
-                    delay( 300)
-                    debounceTime( 300)
-                    sampleTime( 300)
-                    throttleTime( 300)
-                </code></pre>
-                <aside class="notes">
-                    <ul>
-                        <li>delay: simply delay each individual value</li>
-                        <li>debounceTime: wait until the value is unchanged for the given time, then emit it</li>
-                        <li>sampleTime: emit the last value for each interval or none if no value was received</li>
-                        <li>throttleTime: emit a value and then ignore values for the interval</li>
-                    </ul>
-                    Solution next page
-                </aside>
-            </section>
-            <section>
-                <h2>RxJS - Level 6: Control Timing: Backpressure (Solution)</h2>
-                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
-                    // timeline (ms):   0  100  200  300  400  500  600  700  800  900  1000  1100  1200  1300
-                    // source:          a  b    c                        d    e         f
-                    delay( 300)
-                    //                               a    b    c                        d     e           f
-                    debounceTime( 300)
-                    //                                         c                                          f
-                    sampleTime( 300)
-                    //                               c                             e                f
-                    throttleTime( 300)
-                    //                  a                                d              f
-                </code></pre>
-                <aside class="notes">
-                </aside>
-            </section>
-            <section>
-                <h2>RxJS - Level 7: A bit of flow control</h2>
-                iif(...): do something conditionally
-                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
-                    iif( () => condition, a$, b$)
-                    // condition is evaluated at subscription time
-                    </code></pre>
-                timeoutWith(...): fallback to another observable when a timeout is reached
-                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
-                    timeoutWith( 1000, fallback$)
-                    // Timeout starts at subscription time.
-                    // Once the timeout of 1000ms is triggered, only values from fallback$ are returned
-                    </code></pre>
-                <aside class="notes">
-                </aside>
-            </section>
-            <section>
-                <h2>RxJS - Level 8: Error handling</h2>
-                catchError(...): catch errors emitted by the observable and gracefully handle them
-                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
-                    source$.pipe(catchError(error => of([])))
-                    // fall back to an empty array if the source observable emits an error
-                    </code></pre>
-                retry(...): retry the observable sequence a given number of times if an error occurs
-                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
-                    source$.pipe(retry(3))
-                    // Retry the observable sequence three times. Especially useful for retrying http requests
-                    // Gives up after three retries and emits the original error
-                    </code></pre>
-                 retryWhen(...): retry the observable sequence based on a custom criteria
-                 <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
-                    source$
-                      .pipe(
-                        retryWhen(errors$ =>
-                          errors$.pipe(
-                            mergeMap(error =>
-                              iif(
-                                () => error.code === TOO_MANY_REQUESTS,
-                                timer(5000),
-                                throwError(error)
-                              )
-                            )
-                          )
-                        )
-                      )
-                    // Retry the observable sequence after 5000ms if an error with code TOO_MANY_REQUESTS occurs
-                    // Otherwise rethrow the error 
-                     </code></pre>
-                <aside class="notes">
-                    Talk about observable lifecycle, how does it actually deal with errors (resubscribe), potential problems with cold observables
-                    <ul>
-                        <LI>catchError: Gracefully handle errors emitted by the observable sequence</li>
-                        <LI>retry: Retry the observable sequence n times in case an error occurs
-                        </li>
-                        <LI>retryWhen: Conditionally retry the observable sequence. Errors emitted are streamed through the errors parameter. Web
-                            can access the errors and either throw or delay execution depending on the error.
-                        </LI>
-                    </ul>
-                </aside>
-            </section>
-            <section>
-                <h2>RxJS - Level 8: Error Handling</h2>
-                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
-                    // source:          a b c x1|
-                    //                  d e f x2|
-                    //                  g h i x3|
-                    //                  j k l x4|
-                    catchError(() => of('z'))
-                    retry( 2 )
-                    retryWhen(errors => errors.pipe(switchMap(error => iif(error => error === x1, of(error), throwError(error)))))
-                </code></pre>
-                <ul>
-                    <li>Note: xN is an error</li>
-                    <li>source is a cold observable producing different values with each subscription</li>
-                </ul>
-                <aside class="notes">
-                    Solution next page
-                </aside>
-            </section>
-            <section>
-                <h2>RxJS - Level 8: Error Handling (Solution)</h2>
-                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
-                    // source:          a b c x1|
-                    //                  d e f x2|
-                    //                  g h i x3|
-                    //                  j k l x4|
-                    catchError(() => of('z'))
-                    // a b c z
-                    retry( 2 )
-                    // a b c d e f g h i x3
-                    retryWhen(errors => errors.pipe(switchMap(error => iif(error => error === x1, of(true), throwError(error)))))
-                    // a b c d e f x2
-                </code></pre>
-                <aside class="notes">
-                </aside>
-            </section>
-            <section>
-                <h2>Exercise</h2>
-                <ul>
-                    <li><a href="https://github.com/devonfw-ng-adv-training/rxjs-exercises">Source</a></li>
-                    <li>Start with branch master</li>
-                    <li>
-                        Check README.md for information:
-                        <ul>
-                            <li>Pick level or challenge to work on, 'fdescribe' the corresponding tests</li>
-                            <li>Run UnitTests</li>
-                            <li>Implement the features. Do not alter the tests.</li>
-                        </ul>
-                    </li>
-                    <li>Sample solution is available on a separate branch</li>
-                </ul>
-            </section>
-        </section>
-        <section>
-            <section>
-                <h2>RxJS - Patterns / Examples</h2>
-                <div>Some patterns and other examples:</div>
-                <ul>
-                    <li>Marble diagrams</li>
-                    <li>takeUntil - how to elegantly unsubscribe</li>
-                    <li>nested subscribes</li>
-                    <li>typeahead</li>
-                </ul>
-            </section>
-            <section>
-                <h2>Please explain the marble diagram</h2>
-                <div style="background-color: rgb(255, 255, 255); box-shadow: rgba(0, 0, 0, 0.17) 0px 1px 2px 1px; border-radius: 2px;">
-                    <div style="padding: 10px 22px;">
-                        <svg viewBox="0 0 7 10" style="width: 48px; height: 68px; overflow: visible;">
-                            <line x1="0" x2="112" y1="5" y2="5" style="stroke: black; stroke-width: 0.3;"></line>
-                            <polygon points="111.7,6.1 111.7,3.9 114,5"></polygon>
-                        </svg>
-                        <svg viewBox="0 0 100 10" style="width: 680px; height: 68px; overflow: visible;">
-                            <line class="end-marker" x1="100" x2="100" y1="3.2" y2="6.8"
-                                  style="stroke: black; stroke-width: 0.3; cursor: ew-resize;"></line>
-                            <g class="marble" transform="translate(0, 5)" style="cursor: default;">
-                                <circle r="2.3" style="fill: rgb(62, 161, 203); stroke: black; stroke-width: 0.3;"></circle>
-                                <text text-anchor="middle" y="0.8"
-                                      style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
-                                    A
-                                </text>
-                            </g>
-                            <g class="marble" transform="translate(42, 5)" style="cursor: default;">
-                                <circle r="2.3" style="fill: rgb(130, 215, 54); stroke: black; stroke-width: 0.3;"></circle>
-                                <text text-anchor="middle" y="0.8"
-                                      style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
-                                    B
-                                </text>
-                            </g>
-                            <g class="marble" transform="translate(55, 5)" style="cursor: default;">
-                                <circle r="2.3" style="fill: rgb(255, 105, 70); stroke: black; stroke-width: 0.3;"></circle>
-                                <text text-anchor="middle" y="0.8"
-                                      style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
-                                    C
-                                </text>
-                            </g>
-                        </svg>
-                    </div>
-                    <div style="padding: 10px 22px;">
-                        <svg viewBox="0 0 7 10" style="width: 48px; height: 68px; overflow: visible;">
-                            <line x1="0" x2="112" y1="5" y2="5" style="stroke: black; stroke-width: 0.3;"></line>
-                            <polygon points="111.7,6.1 111.7,3.9 114,5"></polygon>
-                        </svg>
-                        <svg viewBox="0 0 100 10" style="width: 680px; height: 68px; overflow: visible;">
-                            <line class="end-marker" x1="25" x2="25" y1="3.2" y2="6.8"
-                                  style="stroke: black; stroke-width: 0.3; cursor: ew-resize;"></line>
-                            <g class="marble" transform="translate(0, 5)" style="cursor: default;">
-                                <circle r="2.3" style="fill: rgb(62, 161, 203); stroke: black; stroke-width: 0.3;"></circle>
-                                <text text-anchor="middle" y="0.8"
-                                      style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
-                                    1
-                                </text>
-                            </g>
-                            <g class="marble" transform="translate(10, 5)" style="cursor: default;">
-                                <circle r="2.3" style="fill: rgb(130, 215, 54); stroke: black; stroke-width: 0.3;"></circle>
-                                <text text-anchor="middle" y="0.8"
-                                      style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
-                                    2
-                                </text>
-                            </g>
-                            <g class="marble" transform="translate(20, 5)" style="cursor: default;">
-                                <circle r="2.3" style="fill: rgb(255, 203, 70); stroke: black; stroke-width: 0.3;"></circle>
-                                <text text-anchor="middle" y="0.8"
-                                      style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
-                                    3
-                                </text>
-                            </g>
-                        </svg>
-                    </div>
-                    <div class="operatorBox"
-                         style="border: 1px solid rgba(0, 0, 0, 0.06); padding: 22px; text-align: center; position: relative;">
-                        <div style="display: block; position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; box-shadow: rgba(0, 0, 0, 0.17) 0px 2px 10px 0px;"></div>
-                        <span class="operatorLabel"
-                              style="font-weight: 400; font-size: 1.3rem; font-family: &quot;Source Code Pro&quot;, monospace;">obs1$.switchMap(() =&gt; obs2$, (x, y) =&gt; "" + x + y)</span>
-                        <div style="display: block; position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; box-shadow: rgba(0, 0, 0, 0.26) 0px 2px 5px 0px;"></div>
-                    </div>
-                    <div style="padding: 10px 22px;">
-                        <svg viewBox="0 0 7 10" style="width: 48px; height: 68px; overflow: visible;">
-                            <line x1="0" x2="112" y1="5" y2="5" style="stroke: black; stroke-width: 0.3;"></line>
-                            <polygon points="111.7,6.1 111.7,3.9 114,5"></polygon>
-                        </svg>
-                        <svg viewBox="0 0 100 10" style="width: 680px; height: 68px; overflow: visible;">
-                            <line class="end-marker" x1="100.01" x2="100.01" y1="3.2" y2="6.8"
-                                  style="stroke: black; stroke-width: 0.3; cursor: ew-resize;"></line>
-                            <g class="marble" transform="translate(0, 5)" style="cursor: default;">
-                                <circle r="2.3" style="fill: rgb(62, 161, 203); stroke: black; stroke-width: 0.3;"></circle>
-                                <text text-anchor="middle" y="0.8"
-                                      style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
-                                    A1
-                                </text>
-                            </g>
-                            <g class="marble" transform="translate(10, 5)" style="cursor: default;">
-                                <circle r="2.3" style="fill: rgb(130, 215, 54); stroke: black; stroke-width: 0.3;"></circle>
-                                <text text-anchor="middle" y="0.8"
-                                      style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
-                                    A2
-                                </text>
-                            </g>
-                            <g class="marble" transform="translate(20, 5)" style="cursor: default;">
-                                <circle r="2.3" style="fill: rgb(255, 203, 70); stroke: black; stroke-width: 0.3;"></circle>
-                                <text text-anchor="middle" y="0.8"
-                                      style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
-                                    A3
-                                </text>
-                            </g>
-                            <g class="marble" transform="translate(42, 5)" style="cursor: default;">
-                                <circle r="2.3" style="fill: rgb(255, 105, 70); stroke: black; stroke-width: 0.3;"></circle>
-                                <text text-anchor="middle" y="0.8"
-                                      style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
-                                    B1
-                                </text>
-                            </g>
-                            <g class="marble" transform="translate(52, 5)" style="cursor: default;">
-                                <circle r="2.3" style="fill: rgb(62, 161, 203); stroke: black; stroke-width: 0.3;"></circle>
-                                <text text-anchor="middle" y="0.8"
-                                      style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
-                                    B2
-                                </text>
-                            </g>
-                            <g class="marble" transform="translate(55.00000000000001, 5)" style="cursor: default;">
-                                <circle r="2.3" style="fill: rgb(255, 203, 70); stroke: black; stroke-width: 0.3;"></circle>
-                                <text text-anchor="middle" y="0.8"
-                                      style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
-                                    C1
-                                </text>
-                            </g>
-                            <g class="marble" transform="translate(65, 5)" style="cursor: default;">
-                                <circle r="2.3" style="fill: rgb(255, 105, 70); stroke: black; stroke-width: 0.3;"></circle>
-                                <text text-anchor="middle" y="0.8"
-                                      style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
-                                    C2
-                                </text>
-                            </g>
-                            <g class="marble" transform="translate(75, 5)" style="cursor: default;">
-                                <circle r="2.3" style="fill: rgb(62, 161, 203); stroke: black; stroke-width: 0.3;"></circle>
-                                <text text-anchor="middle" y="0.8"
-                                      style="font-size: 2.5px; font-family: &quot;Source Sans Pro&quot;, sans-serif; user-select: none;">
-                                    C3
-                                </text>
-                            </g>
-                        </svg>
-                    </div>
-                </div>
-                <small>Taken from: https://rxmarbles.com/#switchMap</small>
-            </section>
-            <section>
-                <h2>RxJS - Pattern: unsubscribe using takeUntil</h2>
-                <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
-                    class MyComponent implements OnInit, OnDestroy {
-                        private onDestroy$ = new Subject();
-                        ngOnInit() {
-                            interval(1000).pipe(takeUntil(onDestroy$)).subscribe( () => {
-                                // do something every second until the component is destroyed
-                            });
-                        }
-                        ngOnDestroy(): void {
-                            this.onDestroy$.next();
-                            this.onDestroy$.complete();
-                        }
-                    }
-                </code></pre>
-                <aside class="notes">
-                </aside>
-            </section>
-            <section class="fullscreen">
-                <h2>Please explain the code</h2>
-                <pre><code class="javascript" data-trim data-line-numbers="">
-    ngOnInit() {
-      this.todo$ = this.route.params.pipe(
-        switchMap(params => this.todoService.getTodo(+params['id']))
-      )
-    }
-          </code></pre>
-                <p>... and how does it differ to the following?</p>
-                <pre><code class="javascript" data-trim data-line-numbers="">
-    ngOnInit() {
-      this.route.params.subscribe(params => {
-        this.todoService.getTodo(+params['id']).subscribe(todo => {
-          this.todo = todo;
-        });
-      });
-    }
-          </code></pre>
-                <p>Which version is better and why?</p>
-                <aside class="notes">
-                    <UL>
-                        <LI>
-                            Discuss: Observable chains
-                        </LI>
-                        <LI>
-                            Discuss: Subscribe in subscribe
-                        </LI>
-                    </UL>
-                </aside>
-            </section>
-            <section class="fullscreen">
-                <h2>Please explain the following code</h2>
-                <pre><code class="javascript stretch" data-trim data-line-numbers="">
-    import { fromEvent } from 'rxjs';
-    import { ajax } from 'rxjs/ajax';
-    import { map, filter, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-
-    const searchInput = document.getElementById('search-box');
-
-    const typeahead$ = fromEvent(searchInput, 'input').pipe(
-      map((e: KeyboardEvent) => e.target.value),
-      filter(text => text.length > 3),
-      debounceTime(150),
-      distinctUntilChanged(),
-      switchMap(text => ajax(`/api/search?q=${text}`))
-    );
-
-    typeahead$.subscribe(data => {
-      // handle search result
-    });
-          </code></pre>
-                <p>... what does each operator do exactly? What about the order? Is it important?</p>
-                <aside class="notes">
-                    Some sample code (more complex) is part of the RxJs Examples repository:
-                    <UL>
-                        <LI>https://github.com/BerndOlleckCap/RxJsExamples</LI>
-                        <LI>start angular application</LI>
-                        <LI>Tab "Search"</LI>
-                        <LI>Code: SearchComponent</LI>
-                    </UL>
-                </aside>
-            </section>
+        <section class="fullscreen">
+            <p>Intermission: RxJS</p>
+            <p>If you're not familiar with RxJS, now is the time to learn:
+            <ul>
+                <li><a href="https://devonfw-training.github.io/devon4ng-training/ng-advanced/rxjs">Angular Advanced:
+                    RxJS - Levelling Up</a></li>
+                <li><a href="https://rxjs.dev/">rxjs.dev</a></li>
+            </ul>
+            </p>
         </section>
         <section class="fullscreen">
             <p>Let's talk about async rxjs</p>
@@ -1206,43 +518,88 @@ console.log('after');
             </aside>
         </section>
         <section>
-            <p>Do you know this?</p>
-            <img class="no-border" src="./img/changed-after-checked-exception.png"
-                 alt="Angular Exception: Changed after Checked">
-            <p>Can you explain what happened?</p>
-            <p>What does it have to do with microtasks / macrotasks?</p>
-            <aside class="notes">
-                <UL>
-                    <LI>
-                        Hint: Angular change detection runs after a task when the microtask queue is empty.
-                    </LI>
-                    <LI>
-                        https://angular.io/guide/lifecycle-hooks
-                    </LI>
-                    <LI>
-                        Specifically:
-                        https://angular.io/guide/glossary#unidirectional-data-flow
-                    </LI>
-                    <LI>
-                        Explanation of the situation and the exception:
-                        https://angular.io/errors/NG0100
-                    </LI>
-                    <LI>
-                        Detailed explanation:
-                        https://indepth.dev/everything-you-need-to-know-about-the-expressionchangedafterithasbeencheckederror-error/
-                    </LI>
-                    <LI>
-                        Sample code is part of the RxJs Examples repository:
-                        <UL>
-                            <LI>https://github.com/BerndOlleckCap/RxJsExamples</LI>
-                            <LI>start angular application</LI>
-                            <LI>Tab "Change Detection Error"</LI>
-                            <LI>Button "Activate Child"</LI>
-                            <LI>Code: ExpressionChangedExceptionComponent</LI>
-                        </UL>
-                    </LI>
-                </UL>
-            </aside>
+            <section>
+                <p>Do you know this?</p>
+                <img class="no-border" src="./img/changed-after-checked-exception.png"
+                     alt="Angular Exception: Changed after Checked">
+                <p>Can you explain what happened?</p>
+                <p>What does it have to do with microtasks / macrotasks?</p>
+                <aside class="notes">
+                    <UL>
+                        <LI>
+                            Hint: Angular change detection runs after a task when the microtask queue is empty.
+                        </LI>
+                        <LI>
+                            https://angular.io/guide/lifecycle-hooks
+                        </LI>
+                        <LI>
+                            Specifically:
+                            https://angular.io/guide/glossary#unidirectional-data-flow
+                        </LI>
+                        <LI>
+                            Explanation of the situation and the exception:
+                            https://angular.io/errors/NG0100
+                        </LI>
+                        <LI>
+                            Detailed explanation:
+                            https://indepth.dev/everything-you-need-to-know-about-the-expressionchangedafterithasbeencheckederror-error/
+                        </LI>
+                        <LI>
+                            Sample code is part of the RxJs Examples repository:
+                            <UL>
+                                <LI>https://github.com/BerndOlleckCap/RxJsExamples</LI>
+                                <LI>start angular application</LI>
+                                <LI>Tab "Change Detection Error"</LI>
+                                <LI>Button "Activate Child"</LI>
+                                <LI>Code: ExpressionChangedExceptionComponent</LI>
+                            </UL>
+                        </LI>
+                    </UL>
+                </aside>
+            </section>
+            <section>
+                <h2>A few things about Angular Change Detection</h2>
+                <ul>
+                    <li>Why?
+                        <ul>
+                            <li>It's Angular's way to decide where the DOM tree has to be updated</li>
+                        </ul>
+                    </li>
+                    <li>How?
+                        <ul>
+                            <li>Go through the complete component tree (yes, really!)</li>
+                            <li>Simplified: Check for each component if the bindings have changed (comparing to previous
+                                value)
+                                or one of a few other things have happened
+                            </li>
+                            <li>If changed, update the DOM and/or apply to child components</li>
+                        </ul>
+                    </li>
+                </ul>
+                <aside class="notes">
+                    <ul>
+                        <li>https://blog.angular-university.io/how-does-angular-2-change-detection-really-work/</li>
+                    </ul>
+                </aside>
+            </section>
+            <section>
+                <h2>A few things about Angular Change Detection</h2>
+                <ul>
+                    <li>When does this happen?
+                        <ul>
+                            <li>Every time an event (i.e. Macrotask) and its corresponding Microtasks has been processed
+                                (implemented using zone.js)
+                            </li>
+                            <li>Development mode: Do it again (for the whole tree), comparing the results between the
+                                passes.
+                                If not equal -> Exception: rule "unidirectional data flow" violated
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <aside class="notes">
+                </aside>
+            </section>
         </section>
         <section>
             <p>How to fix it? What's the better option?</p>
@@ -1361,9 +718,6 @@ describe('ListComponent', () => {
             <h2>Resources</h2>
             <ul>
                 <li>
-                    <a href="http://reactivex.io/rxjs/manual/overview.html">RXJS Docs</a>
-                </li>
-                <li>
                     <a href="https://html.spec.whatwg.org/multipage/webappapis.html#event-loops">HTML Spec: Event
                         Loops</a>
                 </li>
@@ -1373,10 +727,6 @@ describe('ListComponent', () => {
                         to read that".</cite></p>
                     <a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/">Deep Dive: Blog Post
                         by Chrome Dev. Expert.</a>
-                </li>
-                <li>
-                    <a href="https://netbasal.com/testing-observables-in-angular-a2dbbfaf5329">Blog Article: Testing
-                        Observables in Angular</a>
                 </li>
             </ul>
         </section>
