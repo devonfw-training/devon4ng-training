@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Angular Material</title>
+    <link rel="icon" href="../common/img/favicon.ico">
+
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/theme/white.css">
+    <link rel="stylesheet" href="../common/css/common.css">
+    
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../common/css/github-gist.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../node_modules/reveal.js/css/print/pdf.css' : '../node_modules/reveal.js/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<section class="devon-link">
+    <a href="http://devonfw.github.io" target="_blank"><img height="30px" src="../common/img/devon_logo_blue.png"></a>
+</section>
+<section class="angular-link">
+    <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
+</section>
+<div class="devon reveal">
+    <div class="slides">
+        <section>
+            <h1>Angular Material</h1>
+			<p class="align_right"><small><a href="https://material.angular.io/">Angular Material Docs</a></small></p>
+			<p class="align_right"><small><a href="https://material.io/">Material Design Docs</a></small></p>
+        </section>
+        <section>
+			<p>Material is a <span class="highlight">design system</span> created by Google to help teams build high-quality digital experiences for Android, iOS, Flutter, and the web.</p>
+            <p>Angular Material is a <span class="highlight">Material Design components library</span> for Angular.</p>
+        </section>
+		<section>
+            <h3>Material Theming</h3>
+            <p>Material Theming gives the ability to systematically change aspects of your UI, such as color and typography.</p>
+        </section>
+		<section>
+            <h3>Material Components</h3>
+            <p>Material Components are interactive building blocks for creating a user interface, and include a built-in states system to communicate focus, selection, activation, error, hover, press, drag, and disabled states.</p><p>Component libraries are available for Android, iOS, Flutter, and the web.</p>
+			<p class="align_right"><small><a href="https://material.io/">Material Design Docs</a></small></p>
+        </section>
+		<section>
+            <h3>Angular Material</h3>
+            <p>Angular Material offers a wide variety of UI components based on the Material Design specification.</p>
+			<p class="align_right"><small><a href="https://material.angular.io/">Angular Material Docs</a></small></p>
+        </section>
+		<section>
+            <h3>Material Form Field</h3>
+            <p>&lt;mat-form-field&gt; is a component used to wrap several Angular Material components and apply common Text field styles such as the underline, floating label, and hint/error messages.</p>
+        </section>
+        <section>
+            <h2 class="no-text-transform">Material Form Field in HTML...</h2>
+            <pre><code class="hljs html" data-trim data-noescape>
+  &lt;mat-form-field appearance="standard"&gt;
+    &lt;mat-label&gt;Legacy form field&lt;/mat-label&gt;
+    &lt;input matInput placeholder="Placeholder"&gt;
+    &lt;mat-icon matSuffix&gt;sentiment_very_satisfied&lt;/mat-icon&gt;
+    &lt;mat-hint&gt;Hint&lt;/mat-hint&gt;
+  &lt;/mat-form-field&gt;
+            </code></pre>
+        </section>
+        <section>
+            <h2 class="no-text-transform">Custom form field controls</h2>
+			<p>In addition to the form field controls that Angular Material provides, it is possible to create custom form field controls that work with &lt;mat-form-field&gt; in the same way.</p>
+			<p class="align_right"><small><a href="https://material.angular.io/guide/creating-a-custom-form-field-control">Custom form field Docs</a></small></p>
+        </section>
+		<section>
+            <h2 class="no-text-transform">MatFormFieldControl</h2>
+			<p>The main step is to provide our new component as an implementation of the MatFormFieldControl interface that the &lt;mat-form-field&gt; knows how to work with.</p>
+        </section>
+        <section>
+            <p class="no-text-transform">MatFormFieldControl</p>
+            <pre><code class="hljs typescript" data-trim  data-noescape>
+@Component({
+  ...
+  providers: [{provide: MatFormFieldControl, useExisting: MyTelInput}],
+})
+export class MyTelInput implements MatFormFieldControl&lt;MyTel&gt; {
+  ...
+}
+            </code></pre>
+        </section>
+    </div>
+</div>
+
+<script src="../node_modules/reveal.js/js/reveal.js"></script>
+
+<script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        history: true,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+            { src: '../node_modules/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: '../node_modules/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../node_modules/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../node_modules/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: '../node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true },
+            { src: '../node_modules/reveal.js/plugin/notes/notes.js', async: true }
+        ]
+    });
+</script>
+</body>
+</html>

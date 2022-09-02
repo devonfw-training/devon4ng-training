@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>NG/NX Workspace</title>
+    <link rel="icon" href="../common/img/favicon.ico">
+
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/theme/white.css">
+    <link rel="stylesheet" href="../common/css/common.css">
+    
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../common/css/github-gist.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../node_modules/reveal.js/css/print/pdf.css' : '../node_modules/reveal.js/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<section class="devon-link">
+    <a href="http://devonfw.github.io" target="_blank"><img height="30px" src="../common/img/devon_logo_blue.png"></a>
+</section>
+<section class="angular-link">
+    <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
+</section>
+<div class="devon reveal">
+    <div class="slides">
+        <section>
+            <h1>NG/NX Workspace</h1>
+			<p class="align_right"><small><a href="https://angular.io/guide/file-structure">NG Workspace Docs</a></small></p>
+			<p class="align_right"><small><a href="https://nx.dev/">NX Workspace Docs</a></small></p>
+        </section>
+		<section>
+			<h3>NG Workspace</h3>
+            <p>You develop applications in the context of an Angular workspace. A workspace contains the files for one or more projects. A project is the set of files that comprise a standalone application or a shareable library.</p>
+        </section>
+		<section>
+			<h3>Multirepo Workspace</h3>
+            <p>By default, ng new creates an initial skeleton application at the root level of the workspace, along with its end-to-end tests. The skeleton is for a simple Welcome application that is ready to run and easy to modify. The root-level application has the same name as the workspace, and the source files reside in the src/ subfolder of the workspace.</p>
+        </section>
+		<section>
+			<h3>Workspace configuration files</h3>
+            <p class="align_right"><small><a href="https://angular.io/guide/file-structure#workspace-configuration-files">NG Workspace Docs</a></small></p>
+        </section>
+		<section>
+			<h3>Monorepo Workspace</h3>
+            <p>Angular also supports workspaces with multiple projects. This type of development environment is suitable for advanced users who are developing shareable libraries, and for enterprises that use a "monorepo" development style, with a single repository and global configuration for all Angular projects.</p>
+        </section>
+		<section>
+			<h3>Multiple project file structure</h3>
+            <p class="align_right"><small><a href="https://angular.io/guide/file-structure#multiple-project-file-structure">NG Workspace Docs</a></small></p>
+        </section>
+        <section>
+			<h3>NX Workspace</h3>
+            <p>A next generation <span class="highlight">build system</span> with first class <span class="highlight">monorepo</span> support and powerful integrations.</p>
+        </section>
+		<section>
+			<h3>Nx CLI</h3>
+            <p>The Nx CLI syntax is similar to the Angular CLI. The nx serve command produces the same result as ng serve, and nx build produces the same results as ng build. However, the Nx CLI supports advanced capabilities that aren't supported by the Angular CLI.</p>
+        </section>
+		<section>
+            <p>Nx builds a project graph by analyzing your workspace, which it then uses to only rebuild what is necessary and to never run the same computation twice.</p>
+			<p>Nx also helps establish structured code sharing and ownership management to keep the workspace maintainable.</p>
+        </section>
+		<section>
+			<h3>Nx project file structure</h3>
+			<p class="align_right"><small><a href="https://nx.dev/concepts/mental-model">NX Workspace Docs</a></small></p>
+        </section>
+    </div>
+</div>
+
+<script src="../node_modules/reveal.js/js/reveal.js"></script>
+
+<script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        history: true,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+            { src: '../node_modules/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: '../node_modules/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../node_modules/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../node_modules/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: '../node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true },
+            { src: '../node_modules/reveal.js/plugin/notes/notes.js', async: true }
+        ]
+    });
+</script>
+</body>
+</html>

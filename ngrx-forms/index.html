@@ -1,0 +1,338 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>NGRX Forms</title>
+    <link rel="icon" href="../common/img/favicon.ico">
+
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/theme/white.css">
+    <link rel="stylesheet" href="../common/css/common.css">
+    
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../common/css/github-gist.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../node_modules/reveal.js/css/print/pdf.css' : '../node_modules/reveal.js/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<section class="devon-link">
+    <a href="http://devonfw.github.io" target="_blank"><img height="30px" src="../common/img/devon_logo_blue.png"></a>
+</section>
+<section class="angular-link">
+    <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
+</section>
+<div class="devon reveal">
+    <div class="slides">
+        <section>
+            <h1>NGRX-FORMS</h1>
+	    <p class="align_right"><small><a href="https://ngrx-forms.readthedocs.io/en/master/">Docs</a></small></p>
+        </section>
+        <section>
+            <p>A <span class="highlight">forms library</span> that brings the strengths of the redux state management model to the world of forms in applications that are using Angular and ngrx.</p>
+        </section>
+		<section>
+            <p>Instead of storing the <span class="highlight">state of form controls</span> inside the components we put them in the <span class="highlight">ngrx store</span>. We update the state with <span class="highlight">actions</span> which allows easy debugging just like any other redux application.</p>
+        </section>
+        <section>
+            <h2 class="no-text-transform">It all starts with a model...</h2>
+            <pre><code class="hljs typescript"  data-trim data-noescape>
+export interface MyFormValue {
+  someTextInput: string;
+  someCheckbox: boolean;
+  nested: {
+    someNumber: number;
+  };
+}
+            </code></pre>
+        </section>
+        <section>
+            <h2 class="no-text-transform">...which is transformed into form state</h2>
+            <pre><code class="hljs typescript"  data-trim data-noescape>
+const FORM_ID = 'uniqueFormId';
+
+const initialFormState = createFormGroupState<MyFormValue>(FORM_ID, {
+  someTextInput: '',
+  someCheckbox: false,
+  nested: {
+    someNumber: 0,
+  },
+});
+            </code></pre>
+        </section>
+        <section>
+            <h2 class="no-text-transform">...that can be updated in the reducer</h2>
+            <pre><code class="hljs typescript"  data-trim data-noescape>
+export const formReducer = createReducer(
+  initialFormState,
+  onNgrxForms(),
+  // your other reducers...
+);
+            </code></pre>
+        </section>
+		<section>
+            <h2 class="no-text-transform">Let's expose the form state inside a component</h2>
+            <pre><code class="hljs typescript"  data-trim data-noescape>
+@Component({
+  selector: 'my-component',
+  templateUrl: './my-component.html',
+})
+export class MyComponent {
+  formState$: Observable&lt;FormGroupState&lt;MyFormValue&gt;&gt;;
+
+  constructor(private store: Store&lt;AppState&gt;) {
+    this.formState$ = store.select(s => s.myForm);
+  }
+}
+            </code></pre>
+        </section>
+		<section>
+            <h2 class="no-text-transform">And set the control states in a template</h2>
+            <pre><code class="hljs html" data-trim data-noescape>
+&lt;ng-container *ngIf="formState$ | async as fs"&gt;
+  &lt;form novalidate [ngrxFormState]="fs"&gt;
+    &lt;input type="text"
+           [ngrxFormControlState]="fs.controls.someTextInput"&gt;
+
+    &lt;input type="checkbox"
+           [ngrxFormControlState]="fs.controls.someCheckbox"&gt;
+
+    &lt;input type="number"
+           [ngrxFormControlState]="fs.controls.nested.controls.someNumber"&gt;
+  &lt;/form&gt;
+&lt;/ng-container&gt;
+            </code></pre>
+        </section>
+		<section>
+			<h2 class="no-text-transform">Form State</h2>
+            <p>A form state is a complete representation of one or many form controls including its value, validation errors, and other metadata.</p>
+			<p>Form states are plain objects without behaviour and can be embedded anywhere in your application's state.</p>
+        </section>
+		<section>
+			<h2 class="no-text-transform">3 kinds of form states</h2>
+            <p>Form Controls represent a single value in your form.</p>
+			<p>Form Groups are a logical grouping of multiple named form states</p>
+			<p>Form Arrays are similar to groups in that they are a logical grouping of multiple form states.</p>
+        </section>
+		<section>
+            <h2 class="no-text-transform">FormControlState</h2>
+            <pre><code class="hljs typescript" data-trim data-noescape>
+export interface FormControlState&lt;TValue&gt; {
+  id: string;
+  value: TValue;
+  isValid: boolean;
+  isInvalid: boolean;
+  errors: { [key: string]: any; };
+  pendingValidations: string[];
+  isValidationPending: boolean;
+  isEnabled: boolean;
+  isDisabled: boolean;
+  isDirty: boolean;
+  isPristine: boolean;
+  isTouched: boolean;
+  isUntouched: boolean;
+  isSubmitted: boolean;
+  isUnsubmitted: boolean;
+  isFocused: boolean;
+  isUnfocused: boolean;
+  userDefinedProperties: { [key: string]: any; };
+}
+            </code></pre>
+        </section>		
+		<section>
+            <h2 class="no-text-transform">FormGroupState</h2>
+            <pre><code class="hljs typescript" data-trim data-noescape>
+export interface FormGroupState&lt;TValue&gt; {
+  id: string;
+  value: TValue;
+  isValid: boolean;
+  isInvalid: boolean;
+  errors: { [key: string]: any; };
+  pendingValidations: string[];
+  isValidationPending: boolean;
+  isEnabled: boolean;
+  isDisabled: boolean;
+  isDirty: boolean;
+  isPristine: boolean;
+  isTouched: boolean;
+  isUntouched: boolean;
+  isSubmitted: boolean;
+  isUnsubmitted: boolean;
+  userDefinedProperties: { [key: string]: any; };
+  controls: { 
+    [controlId in keyof TValue]: FormState&lt;TValue[controlId]&gt;;
+  };
+}
+            </code></pre>
+        </section>
+		<section>
+            <p>NGRX-Forms determines the type of a form state based on its value. Primitive values result in form controls, non-array objects result in form groups, and arrays result in form arrays.</p>
+			<p>Therefore it is not possible to directly use objects and arrays as values of form controls.</p>
+        </section>
+		<section>
+			<h2 class="no-text-transform">Value Boxing</h2>
+            <p>A boxed value is wrapped in an object that contains a marker property that allows ngrx-forms to infer that the value should always be a control regardless of its type.</p>
+			            <pre><code class="hljs typescript"  data-trim data-noescape>
+interface MyFormValue {
+  selections: Boxed&lt;string[]&gt;;
+}
+
+const formState = createFormGroupState&lt;MyFormValue&gt;('form ID', {
+  selections: box([]),
+});
+            </code></pre>
+        </section>
+		<section>
+			<h2 class="no-text-transform">Managing the state</h2>
+            <p>NGRX-Forms provides powerful mechanisms to <span class="highlight">update, validate and generally manage</span> large complex forms. It contains APIs for synchronous and asynchronous validation, creating dynamic forms, integrating with custom form elements, and much more.</p>
+        </section>		
+		<section>
+            <h2 class="no-text-transform">Updating the state</h2>
+            <pre><code class="hljs typescript"  data-trim data-noescape>
+const formReducer = createReducer(
+  initialState,
+  onNgrxForms(),
+  onNgrxFormsAction(SetValueAction, (state, action) => {
+    if (action.controlId === 'uniqueFormId.someTextInput') {
+      // react to someTextInput changing...
+      // action is of type SetValueAction
+    }
+    return state;
+  }),
+  // your other reducers...
+);
+}
+            </code></pre>
+        </section>
+		<section>
+            <h2 class="no-text-transform">With a setter functions</h2>
+            <pre><code class="hljs typescript"  data-trim data-noescape>
+const formReducer = createReducer(
+  initialState,
+  onNgrxForms(),
+  onNgrxFormsAction(SetValueAction, (state, action) => {
+    if (action.controlId === 'uniqueFormId.someTextInput') {
+      return setValue(state, {
+        ...state,
+        someCheckbox: false,
+      });
+    }
+    return state;
+  }),
+);
+}
+            </code></pre>
+        </section>	
+		<section>
+            <h2 class="no-text-transform">With the UpdateGroup function</h2>
+            <pre><code class="hljs typescript"  data-trim data-noescape>
+const formReducer = createReducer(
+  initialState,
+  onNgrxForms(),
+  onNgrxFormsAction(SetValueAction, (state, action) => {
+    if (action.controlId === 'uniqueFormId.someTextInput') {
+      return updateGroup&lt;MyFormValue&gt;({
+        someCheckbox: (someCheckbox) => disable(someCheckbox),
+      })(state);
+    }
+    return state;
+  }),
+);
+}
+            </code></pre>
+        </section>				
+		<section>
+            <h2 class="no-text-transform">Validating the state</h2>
+            <pre><code class="hljs typescript"  data-trim data-noescape>
+export const reducer = wrapReducerWithFormStateUpdate(
+  formReducer,
+  // point to the form state to update
+  s => s,
+  // this function is always called after the reducer
+  validateMyForm,
+);
+            </code></pre>
+        </section>
+		<section>
+            <h2 class="no-text-transform">Simple Validation</h2>
+            <pre><code class="hljs typescript"  data-trim data-noescape>
+const validateMyForm = updateGroup&lt;MyFormValue&gt;({
+  someTextInput: validate(required),
+  nested: updateGroup&lt;MyFormValue['nested']&gt;({
+    someNumber: validate(required, greaterThanOrEqualTo(2)),
+  }),
+  someNumbers: validate(minLength(3)),
+});
+            </code></pre>
+        </section>		
+		<section>
+            <h2 class="no-text-transform">Advanced Validation</h2>
+            <pre><code class="hljs typescript"  data-trim data-noescape>
+const validateMyForm = updateGroup&lt;MyFormValue&gt;(
+  {
+    nested: (nested: FormGroupState&lt;MyFormValue['nested']&gt;, 
+	myForm: FormGroupState&lt;MyFormValue&gt;) =>
+      updateGroup&lt;MyFormValue['nested']&gt;(nested, {
+        someNumber: (someNumber: FormControlState&lt;number&gt;) => {
+          if (myForm.controls.someTextInput.errors.required) {
+            // sets the control's value to 1 and clears all errors
+            return setErrors(setValue(someNumber, 1), {});
+          }
+
+          return someNumber;
+        },
+      }),
+  },
+);
+            </code></pre>
+        </section>
+		<section>
+            <h2 class="no-text-transform">Asynchronous Validation</h2>
+            <pre><code class="hljs typescript"  data-trim data-noescape>
+@Effect()
+validateBookExists$: Observable<Action> = this.actions$
+  .ofType(StartBookSearchAction.TYPE)
+  .switchMap(a =>
+    this.http.get(`api/books/search/${a.searchTerm}`)
+      .map(resp =>
+        resp.status === 404
+          ? new SetAsyncErrorAction(a.controlId, "exists", true)
+          : new ClearAsyncErrorAction(a.controlId, "exists")
+      )
+      .startWith(new StartAsyncValidationAction(a.controlId, "exists"))
+  );
+            </code></pre>
+        </section>
+    </div>
+</div>
+
+<script src="../node_modules/reveal.js/js/reveal.js"></script>
+
+<script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        history: true,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+            { src: '../node_modules/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: '../node_modules/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../node_modules/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../node_modules/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: '../node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true },
+            { src: '../node_modules/reveal.js/plugin/notes/notes.js', async: true }
+        ]
+    });
+</script>
+</body>
+</html>
