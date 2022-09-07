@@ -1,0 +1,191 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>E2E Testing</title>
+  <link rel="icon" href="../common/img/favicon.ico">
+
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <link rel="stylesheet" href="../node_modules/reveal.js/css/reveal.css">
+  <link rel="stylesheet" href="../node_modules/reveal.js/css/theme/white.css">
+  <link rel="stylesheet" href="../common/css/common.css">
+  <link rel="stylesheet" href="css/own.css">
+
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="../common/css/github-gist.css">
+
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match(/print-pdf/gi) ? '../node_modules/reveal.js/css/print/pdf.css' : '../node_modules/reveal.js/css/print/paper.css';
+    document.getElementsByTagName('head')[0].appendChild(link);
+  </script>
+</head>
+
+<body>
+  <section class="devon-link">
+    <a href="http://devonfw.github.io" target="_blank"><img height="30px" src="../common/img/devon_logo_blue.png"></a>
+  </section>
+  <section class="angular-link">
+    <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
+  </section>
+  <div class="devon reveal">
+    <div class="slides">
+      <section>
+        <h1>E2E-TESING USING CYPRESS</h1>
+        <p><small><a href="https://docs.cypress.io/guides/overview/why-cypress/">Docs</a></small></p>
+      </section>
+      <section>
+        <h3>Why test end-to-end?</h3>
+        <p class="text-align-left">We test...</p>
+        <ul>
+          <li>to ensure our application works within the <span class="highlight">target eco-system</span>.</li>
+          <li>automated to get <span class="highlight">quick and reliable</span> feedback.</li>
+          <li>to detect <span class="highlight">breaking features</span> as soon as possible.</li>
+          <li>to ensure the best <span class="highlight">quality</span>.</li>
+        </ul>
+      </section>
+      <section>
+        <h3>End-to-end testing our Angular applications</h3>
+        <p>
+          <span class="highlight">Protractor</span> is deprecated as of May 2021 due to...
+        </p>
+        <ul>
+          <li>outdated Selenium based testing.</li>
+          <li>many modern alternatives exist.</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Cypress as an alternative</h3>
+        <p>"Cypress is a next generation <span class="highlight">front end testing tool</span> built for the modern web.
+          We address the key pain points developers and QA engineers face when testing modern applications."</p>
+        <div class="margin_top_30">
+          <p class="align_right"><small><a
+                href="https://docs.cypress.io/guides/overview/why-cypress#In-a-nutshell">Cypress in a
+                nutshell</a></small>
+          </p>
+        </div>
+      </section>
+      <section>
+        <h3>It is just another node module...</h3>
+        <pre><code class="hljs typescript"  data-trim data-noescape>
+npm install cypress --save-dev
+            </code></pre>
+      </section>
+      <section>
+        <h3>...which comes with everything you need to start testing!</h3>
+        <img src="img/cypress-start.png" alt="Cypress start page">
+      </section>
+      <section>
+        <h3>You can interact with elements...</h3>
+        <pre><code class="hljs typescript"  data-trim data-noescape>
+// click on a fancy button
+cy.get('[data-cy="my-fancy-button"]').click();
+// clear and type into a fancy input
+cy.get('[data-cy="my-fancy-input"]').clear().type('Important stuff');
+            </code></pre>
+            <div class="margin_top_30">
+              <p class="align_right"><small><a
+                    href="https://docs.cypress.io/api/table-of-contents">Cypress docs</a></small>
+              </p>
+            </div>
+      </section>
+      <section>
+        <h3>...make assertions...</h3>
+        <pre><code class="hljs typescript"  data-trim data-noescape>
+// check whether the input value is something
+cy.get('[data-cy="my-fancy-input"]').should('have.value', 'Important stuff');
+            </code></pre>
+            <div class="margin_top_30">
+              <p class="align_right"><small><a
+                    href="https://docs.cypress.io/api/commands/should">Cypress docs</a></small>
+              </p>
+            </div>
+      </section>
+      <section>
+        <h3>...and even intercept backend calls!</h3>
+        <pre><code class="hljs typescript"  data-trim data-noescape>
+// use a static response
+cy.intercept('GET', '/services/rest/movies', [...]);
+// wait for a request before moving on
+cy.intercept('GET', '/services/rest/movies').as('getMovies');
+cy.wait('@getMovies');
+// intercept a call and work with the response
+let movies;
+cy.intercept('GET', '/services/rest/movies', (request) => {
+  request.continue((response) => {
+    movies = response.body;
+  });
+}).as('getMovies');
+cy.wait('@getMovies').then(() => {
+  // we can work with movies only when the request is done
+});
+            </code></pre>
+            <div class="margin_top_30">
+              <p class="align_right"><small><a
+                    href="https://docs.cypress.io/api/commands/intercept">Cypress docs</a></small>
+              </p>
+            </div>
+      </section>
+      <section>
+        <h3>The test structure looks familiar!</h3>
+        <pre><code class="hljs typescript"  data-trim data-noescape>
+describe('Movie Page', () => {
+  let moviesPage: MoviesPage;
+
+  beforeEach(() => {
+    moviesPage = new MoviesPage();
+  });
+
+  it('should create a new movie', () => {
+    moviesPage.addButton.click();
+    // do something to add a new movie...
+  });
+});
+            </code></pre>
+            <div class="margin_top_30">
+              <p class="align_right"><small><a
+                    href="https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests">Cypress docs</a></small>
+              </p>
+            </div>
+      </section>
+      <section>
+        <h3>Some best practices:</h3>
+        <ul>
+          <li>using the <span class="highlight">PageObject</span> pattern is always a good idea!</li>
+          <li>use <span class="highlight">data-* attributes</span> to uniquely identify elements.</li>
+          <li>do not store the result of a <span class="highlight">chainable command</span> in a variable.</li>
+          <li>tests should <span class="highlight">not depend</span> on another.</li>
+          <li>use as <span class="highlight">many assertions</span> as needed. It's not unit testing.</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+
+  <script src="../node_modules/reveal.js/js/reveal.js"></script>
+
+  <script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+      history: true,
+
+      // More info https://github.com/hakimel/reveal.js#dependencies
+      dependencies: [
+        { src: '../node_modules/reveal.js/lib/js/classList.js', condition: function () { return !document.body.classList; } },
+        { src: '../node_modules/reveal.js/plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+        { src: '../node_modules/reveal.js/plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+        { src: '../node_modules/reveal.js/plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+        { src: '../node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true },
+        { src: '../node_modules/reveal.js/plugin/notes/notes.js', async: true }
+      ]
+    });
+  </script>
+</body>
+
+</html>
