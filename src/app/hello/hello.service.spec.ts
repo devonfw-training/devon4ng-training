@@ -7,8 +7,8 @@ let bookSpy: Book;
 let sut: HelloService;
 describe('HelloService', () => {
   beforeEach(() => {
-    speakerSpy = jasmine.createSpyObj('speaker', ['speak']);
-    bookSpy = jasmine.createSpyObj('book', ['write']);
+    speakerSpy = jasmine.createSpyObj<Speaker>(['speak']);
+    bookSpy = jasmine.createSpyObj<Book>(['write']);
     sut = new HelloService(speakerSpy, bookSpy);
   });
 
