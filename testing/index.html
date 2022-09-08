@@ -173,8 +173,8 @@ describe('TestService', () => {
             <pre><code class="typescript">jasmine.createSpy('methodName').and.returnValue(4711)</code></pre>
             <p>create object with spies</p>
             <pre><code data-trim class="typescript">
-jasmine.createSpyObj('ServiceName', ['func1', 'func2']);
-jasmine.createSpyObj('ServiceName', {
+jasmine.createSpyObj&lt;ServiceName&gt;(['func1', 'func2']);
+jasmine.createSpyObj&lt;ServiceName&gt;({
     func1: true,
     func2: 'otto'
 });
@@ -254,7 +254,7 @@ describe('HelloService', () => {
   let sut: HelloService;
         
   beforeEach(() => {
-    speakerFake = jasmine.createSpyObj('Speaker', ['speak']);
+    speakerFake = jasmine.createSpyObj&lt;Speaker&gt;(['speak']);
     sut = new HelloService(speakerFake);
   });
 
