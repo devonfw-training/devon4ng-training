@@ -83,6 +83,17 @@ npm install cypress --save-dev
         <img src="img/cypress-start.png" alt="Cypress start page">
       </section>
       <section>
+        <h3>You can visit your app...</h3>
+        <pre><code class="hljs typescript"  data-trim data-noescape>
+cy.visit('/movies');
+            </code></pre>
+            <div class="margin_top_30">
+              <p class="align_right"><small><a
+                    href="https://docs.cypress.io/api/commands/visit">Cypress docs</a></small>
+              </p>
+            </div>
+      </section>
+      <section>
         <h3>You can interact with elements...</h3>
         <pre><code class="hljs typescript"  data-trim data-noescape>
 // click on a fancy button
@@ -144,6 +155,10 @@ describe('Movie Page', () => {
   });
 
   it('should create a new movie', () => {
+    // visit the movie overview
+    cy.visit('/movies'):
+
+    // do stuff
     moviesPage.addButton.click();
     // do something to add a new movie...
   });
