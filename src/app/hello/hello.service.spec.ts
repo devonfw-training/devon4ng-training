@@ -5,7 +5,7 @@ let speakerSpy: Speaker;
 let sut: HelloService;
 describe('HelloService', () => {
   beforeEach(() => {
-    speakerSpy = jasmine.createSpyObj('speaker', ['speak']);
+    speakerSpy = jasmine.createSpyObj<Speaker>(['speak']);
     sut = new HelloService(speakerSpy);
   });
 
