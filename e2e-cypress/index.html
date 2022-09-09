@@ -123,13 +123,13 @@ cy.get('[data-cy="my-fancy-input"]').should('have.value', 'Important stuff');
         <h3>...and even intercept backend calls!</h3>
         <pre><code class="hljs typescript"  data-trim data-noescape>
 // use a static response
-cy.intercept('GET', '/services/rest/movies', [...]);
+cy.intercept({ method: 'GET', url: '/services/rest/movies' }, [...]);
 // wait for a request before moving on
-cy.intercept('GET', '/services/rest/movies').as('getMovies');
+cy.intercept({ method: 'GET', url: '/services/rest/movies' }).as('getMovies');
 cy.wait('@getMovies');
 // intercept a call and work with the response
 let movies;
-cy.intercept('GET', '/services/rest/movies', (request) => {
+cy.intercept({ method: 'GET', url: '/services/rest/movies' }, (request) => {
   request.continue((response) => {
     movies = response.body;
   });
