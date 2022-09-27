@@ -457,22 +457,11 @@ person.details; // undefined
 </div>
 
 <script src="../node_modules/reveal.js/js/reveal.js"></script>
+<script src="../common/reveal-config.js"></script>
 
 <script>
     // More info https://github.com/hakimel/reveal.js#configuration
-    Reveal.initialize({
-        history: true,
-
-        // More info https://github.com/hakimel/reveal.js#dependencies
-        dependencies: [
-            { src: '../node_modules/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-            { src: '../node_modules/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-            { src: '../node_modules/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-            { src: '../node_modules/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-            { src: '../node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true },
-            { src: '../node_modules/reveal.js/plugin/notes/notes.js', async: true }
-        ]
-    });
+    Reveal.initialize({ ...revealConfig });
 </script>
 </body>
 </html>
