@@ -46,10 +46,13 @@
             </section>
             <section>
                 <p>
-                    <p>ECMAScript (ES) first <strong>introduced 1997</strong> turned 20 in 2017 and its popularity is <strong>still growing.</strong></p>
+                    <p>ECMAScript (ES) first <strong>introduced 1997</strong> turned 25 in 2022 and its popularity is <strong>still growing.</strong></p>
                     <p><small><strong>3th</strong> <a href="https://pypl.github.io/PYPL.html" target="_blank">PYPL</a> (September 2021), <strong>7th</strong> <a href="https://www.tiobe.com/tiobe-index/" target="_blank">TIOBE Index</a> (September 2021)<br>
                 (TypeScript is listed separately)</small></p>
                 </p>
+                <aside class="notes">
+                    For a long time is what not very popular, until the browser engines got faster engines.
+                </aside>
             </section>
             <section>
                 <h2>JavaScript is everywhere...</h2>
@@ -68,6 +71,9 @@
                         <p style="text-align: left">on the server</p>
                     </div>
                 </div>
+                <aside class="notes">
+                    Java slogan from 95 "Write once, run anywhere". Still not true for Java. Javascript achieved it.
+                </aside>
             </section>
             <section>
                 <h2>ECMAScript versions</h2>
@@ -83,6 +89,10 @@
                     <a href="http://node.green/" target="_blank">node.green (Node.js Support)</a>
                 </small>
                 </p>
+                <aside class="notes">
+                    Long time without new versions. Since ES2015 new useful features are introduced every year.
+                    The amount of JS projects increased massively since then.
+                </aside>
             </section>
             <section>
                 <h3>Why is ES5 still relevant</h3>
@@ -90,6 +100,10 @@
                 <p>Older browsers (IE ...) can support ES5 code via <strong>polyfills</strong>.</p>
                 <p>Most TypeScript projects <strong>compile</strong> to it.</p>
                 <p>There are lots of <strong>legacy projects</strong>, <strong>build scripts</strong>, etc. written in ES5.</p>
+                <aside class="notes">
+                    IE did not update itself to a new version. So new language features did not arrive at the users automatically.
+                    Nowadays the "evergreen" browsers get new features constantly.
+                </aside>
             </section>
             <section>
                 <h2>A word on ES5</h2>
@@ -110,6 +124,10 @@
                     <li>Object literals</li>
                     <li>Coercion (always use <code>===</code>)</li>
                 </ul>
+                <aside class="notes">
+                    Show coercion example in console. Coercion is still relevant for TypeScript.
+                    Coercion works for other operators as well. "1"+1 === "11". "1"-1 === 0
+                </aside>
             </section>
             <section>
                 <p>An example for a well known JavaScript pattern (<strong>IIFE</strong>)</p>
@@ -132,6 +150,11 @@ var person = (function () {
 person.letMeIntroduceMyself(); // My name is John Example
 person.details; // undefined
             </code></pre>
+            <aside class="notes">
+               Immediatly Invoked Functional Expression.<br>
+               This was the go to pattern to create private variables.<br>
+               TypeScript classes compile to this, if you set the target version to ES5.
+            </aside>
             </section>
             <section>
                 <p>Newer ES versions introduced concepts like classes, modules and block scope variables.</p>
@@ -288,8 +311,13 @@ play(new Headphones()); // in ear: la la la
 }
 
 function sayHelloTo(person: NamedPerson) {
-  console.log(person.name);   
+  console.log(person.name);
 }</code></pre>
+<aside class="notes">
+    Implications of interfaces transpiling to nothing: <br>
+    Marker interfaces are not possible in TS. <br>
+    You can not call instanceof with interfaces.<br>
+ </aside>
             </section>
             <section>
                 <h2>Type Inference</h2>
