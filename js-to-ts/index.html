@@ -72,7 +72,7 @@
                     </div>
                 </div>
                 <aside class="notes">
-                    Java slogan from 95 "Write once, run anywhere". Still not true for Java. Javascript achieved it.
+                    Java's slogan from 95 was "Write once, run anywhere". It is still not true for Java. Javascript achieved it.
                 </aside>
             </section>
             <section>
@@ -90,19 +90,30 @@
                 </small>
                 </p>
                 <aside class="notes">
-                    Long time without new versions. Since ES2015 new useful features are introduced every year.
+                    Long time without new versions.<br>
+                    Since ES2015 new useful features are introduced every year.<br>
                     The amount of JS projects increased massively since then.
                 </aside>
             </section>
             <section>
-                <h3>Why is ES5 still relevant</h3>
-                <p>Current go to version considering <strong>compatibility</strong>.</p>
-                <p>Older browsers (IE ...) can support ES5 code via <strong>polyfills</strong>.</p>
-                <p>Most TypeScript projects <strong>compile</strong> to it.</p>
-                <p>There are lots of <strong>legacy projects</strong>, <strong>build scripts</strong>, etc. written in ES5.</p>
+                <h3>Why ES5 was relevant for so long</h3>
+                <ul>
+                    <li>Basically every browser supported it</li>
+                    <li>Internet Explorer did not support newer versions</li>
+                    <li>Most TypeScript projects (still) <strong>compile</strong> to it.</li>
+                    <li>There are lots of <strong>legacy projects</strong>, <strong>build scripts</strong>, etc. written in ES5.</li>
+                    <li>In 2022 Internet Explorer's market share is &lt;1% Projects don't need to support it anymore</li>
+                    <li>Today's projects should compile to ES2016+</li>
+                </ul>
                 <aside class="notes">
-                    IE did not update itself to a new version. So new language features did not arrive at the users automatically.
-                    Nowadays the "evergreen" browsers get new features constantly.
+                    <ul>
+                        <li>IE did not update itself to a new version. So new language features did not arrive at the users automatically</li>
+                        <li>Other browsers like Chrome and Firefox updated themselfes and got new language features. Only IE was missing</li>
+                        <li>Nowadays the "evergreen" browsers get new features constantly</li>
+                        <li>Node.js supported new ES versions for a long time</li>
+                        <li>Setting the target version to ES2016 instead of ES5 significally reduces the file size. All browsers support it</li>
+                    </ul>
+                    <br>
                 </aside>
             </section>
             <section>
@@ -114,19 +125,36 @@
                 <p>...is of single-threaded nature</p>
                 <p>...has asynchronous programming model</p>
                 <p>...is object oriented & functional at the same time</p>
+                <aside class="notes">
+                    <ul>
+                        <li>The name was given for marketing. It is the result of a deal between Nescape (creator of JS) and Sun (owner of Java)</li>
+                        <li>JavaScript was create in just 10 days by Brendan Eich</li>
+                        <li>JavaScript belonged to Netscape. Microsoft created JScript for their browser. In 97 standardized as ECMAScript</li>
+                        <li>Nowadays the "evergreen" browsers get new features constantly</li>
+                    </ul>
+                    <br>
+                </aside>
             </section>
             <section>
                 <p>Classic JavaScript has very confusing concepts (at least for Java / .Net devs...). Here are a few...</p>
                 <ul>
-                    <li>Hoisting (undefined, null)</li>
+                    <li>Hoisting</li>
+                    <li><code>this</code> is function scoped instead of block scoped</li>
                     <li>Lexical Scope</li>
-                    <li><code>this</code></li>
                     <li>Object literals</li>
                     <li>Coercion (always use <code>===</code>)</li>
                 </ul>
                 <aside class="notes">
-                    Show coercion example in console. Coercion is still relevant for TypeScript.
-                    Coercion works for other operators as well. "1"+1 === "11". "1"-1 === 0
+                    <ul>
+                        <li>All new versions need to be backwards compatible to not break old websites. "Don't break the web!"</li>
+                        <li>Hoisting and scope of "this" is tackled by using const/let instead of var</li>
+                        <li>Lexical Scope, object literals and coercion are still present in JavaScript and TypeScript</li>
+                        <li>In console show creation of an object with {...} as example for object literals. No "new ..." needed</li>
+                        <li>In console show coercion example. 1 == "1" is true <br>
+                            Coercion works for other operators as well. "1"+1 === "11". "1"-1 === 0<br>
+                            let a=+"42"; => a is number. This is actually a good way to transform a string to a number.
+                        </li>
+                    </ul>
                 </aside>
             </section>
             <section>
@@ -153,7 +181,7 @@ person.details; // undefined
             <aside class="notes">
                Immediatly Invoked Functional Expression.<br>
                This was the go to pattern to create private variables.<br>
-               TypeScript classes compile to this, if you set the target version to ES5.
+               TypeScript classes still compile to this, if you set the target version to ES5. Newer versions have support for classes.
             </aside>
             </section>
             <section>
@@ -174,9 +202,15 @@ person.details; // undefined
                 <h2>Facts</h2>
                 <ul>
                     <li>invented by <strong>Microsoft</strong></li>
-                    <li>valid JavaScript syntax is valid TypeScript syntax</li>
                     <li><strong>Google</strong> dropped AtScript and chose <strong>TypeScript for Angular</strong></li>
+                    <li>valid JavaScript syntax is valid TypeScript syntax</li>
                 </ul>
+                <aside class="notes">
+                    <ul>
+                        <li>Support from Microsoft and Google -> TypeScript has strong support by major web corporations</li>
+                        <li>Some old JavaScript weirdness could not be removed to stay compatible</li>
+                    </ul>
+                 </aside>
             </section>
             <section>
                 <p>Let's start with the quickstart example from <a href="https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html">typescriptlang.org</a></p>
@@ -189,6 +223,12 @@ let user = "Jane User";
 
 document.body.innerHTML = greeter(user);
                 </code></pre>
+                <aside class="notes">
+                    <ul>
+                        <li>"user" could be of any type and it still works</li>
+                        <li>if "user" is no string it will be converted automatically</li>
+                    </ul>
+                 </aside>
             </section>
             <section>
                 <p>Could be written in TypeScript...</p>
@@ -201,8 +241,10 @@ let user = "Jane User";
 
 document.body.innerHTML = greeter(user);
                 </code></pre>
+                <br><br><br>
             </section>
             <section>
+                <p>...and be type safe...</p>
                 <pre><code class="typescript" data-trim>
 function greeter(person: string) {
     return "Hello, " + person;
@@ -235,6 +277,11 @@ let user = { firstName: "Jane", lastName: "User" };
 document.body.innerHTML = greeter(user);
                 </code></pre>
                 <p>In TypeScript, two types are compatible if their internal structure is compatible.</p>
+                <aside class="notes">
+                    <ul>
+                        <li>Any object that has at least the properties "firstName" and "lastName" fulfills the interface Person</li>
+                    </ul>
+                 </aside>
             </section>
             <section>
                 <img src="img/greet_person.png" class="plain no-border" alt="">
@@ -313,11 +360,13 @@ play(new Headphones()); // in ear: la la la
 function sayHelloTo(person: NamedPerson) {
   console.log(person.name);
 }</code></pre>
-<aside class="notes">
-    Implications of interfaces transpiling to nothing: <br>
-    Marker interfaces are not possible in TS. <br>
-    You can not call instanceof with interfaces.<br>
- </aside>
+                <aside class="notes">
+                    Implications of interfaces transpiling to nothing: <br>
+                    <ul>
+                        <li>Marker interfaces are not possible in TS</li>
+                        <li>You can not call instanceof with interfaces</li>
+                    </ul>
+                </aside>
             </section>
             <section>
                 <h2>Type Inference</h2>
@@ -361,6 +410,12 @@ function myFunc(val: MyType) {
 myFunc(null); // compiler error
 myFunc(undefined); // compiler error
               </code></pre>
+              <aside class="notes">
+                <ul>
+                    <li>Sometimes confusing for beginners and therefore turned of for the exercises</li>
+                    <li>Should be turned on in real world projects. Default is false though</li>
+                </ul>
+            </aside>
             </section>
             <section>
                 <pre><code class="typescript" data-trim>
