@@ -43,6 +43,12 @@
 				<h1>Preparation</h1>
 				<p>The following steps need to be taken to prepare for the Angular Training.</p>
 				<p>(Press '>' in the bottom right corner to continue...)</p>
+				<aside class="notes">
+					<ul>
+						<li>Create a teams channel for the training and add the participants</li>
+						<li>Share links to repo and slides in the teams channel</li>
+					</ul>
+				</aside>
 			</section>
 			<section>
 				<h2>Install Node.js</h2>
@@ -94,6 +100,34 @@ git checkout exercise/1-project-seed
 npm install
 </code></pre>
 			</section>
+			<section>
+				<h2>Run the application</h2>
+				<p>
+					Start the application. The following command starts the angular application and a mock backend that you will need for the HTTP exercise
+				</p>
+				<pre><code class="typescript max-height-unset">npm run start</code></pre>
+				<p>You might get an error saying that you can't run scripts, because they are disabled on your system. In this case you need to run the following command in a powershell and try again</p>
+				<pre><code class="typescript max-height-unset">Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser</code></pre>
+			</section>
+			<section>Menti</section>
+			<section>
+				<h2>For Groups</h2>
+				<ul>
+					<li>In Visual Studio Code install the Extension "Live Share" (https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare)</li>
+					<li>Try out the sharing with your partner. You need to sign in with Github or Microsoft account. One person shares the other one joins</li>
+				</ul>
+
+				<p>
+					You can't push to the Github repo. To share the code with your group you can use
+					<pre><code class="typescript max-height-unset">git format-patch &lt;commit-hash of last pushed commit&gt;</code></pre>
+					This will create a patch in the "/patch" directory. You can send it to your team. Your team mate(s) can apply the patch to their own local repo using the command
+					<pre><code class="typescript max-height-unset">git am &lt;file name&gt;</code></pre>
+				</p>
+				<aside class="notes">
+					Help to form groups. <br>
+					Put "I want to work in a group" into the chat and ask participants to put thumbs on it if they are interested
+				</aside>
+			</section>
 		</div>
 
 	</div>
@@ -103,7 +137,7 @@ npm install
 	<script>
 		// Full list of configuration options available at:
 		// https://github.com/hakimel/reveal.js#configuration
-		Reveal.initialize({ ...revealConfig });
+		Reveal.initialize({ ...revealConfig, width: 1004,  height: 1004, });
 	</script>
 
 </body>
