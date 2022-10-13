@@ -59,7 +59,7 @@ var revealConfig = {
       {
         title: "Links",
         icon: '<i class="fa fa-link">',
-        src: "./navigation/links.html",
+        src: "../common/navigation/links.html",
       },
     ],
   },
