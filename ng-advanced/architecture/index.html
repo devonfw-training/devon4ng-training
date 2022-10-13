@@ -572,9 +572,13 @@ this.http.get(environment.backendUrl + '/flights');</code></pre>
         </div>
     </div>
 
-    <script type="module">
-        import Reveal from './reveal/reveal.esm.js'; import Markdown from './plugin/markdown/markdown.esm.js'; import Highlight from './plugin/highlight/highlight.esm.js'; import Notes from './plugin/notes/notes.esm.js'; import Zoom from './plugin/zoom/zoom.esm.js';
-        Reveal.initialize({ hash: true, plugins: [Markdown, Highlight, Notes, Zoom] });
+    <script src="./reveal/reveal.js"></script>
+    <script src="../common/reveal-config.js"></script>
+    <script>
+        // More info https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            ...revealConfig
+        });
     </script>
 </body>
 
