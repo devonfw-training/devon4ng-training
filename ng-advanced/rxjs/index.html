@@ -93,10 +93,7 @@
                     <li>Parameters of subscribe(...)</li>
                 </ul>
                 <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
-                            observable$.subscribe(
-                                value => this.doSomethingWith(value),
-                                error => this.displayError(error),
-                                () => this.weAreDone());
+                            observable$.subscribe(value => this.doSomethingWith(value));
 
                             observable$.subscribe({
                                 next: value => this.doSomethingWith(value),
