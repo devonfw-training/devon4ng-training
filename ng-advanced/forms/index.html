@@ -59,14 +59,14 @@
                     data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
                     <h3 class="cap-white">Reactive Forms</h3>
                     <h5 class="cap-white">Example</h5>
-                    <pre><code>
+                    <pre><code class="hljs typescript" data-trim>
 @Component({
   selector: "app-login",
   template: `
-     <form [formGroup]="loginForm" (submit)="submit()">
-       <input type="email" formControlName="email">
-       <input type="submit" value="submit">
-     </form>
+     &lt;form [formGroup]="loginForm" (submit)="submit()"&gt;
+       &lt;input type="email" formControlName="email"&gt;
+       &lt;input type="submit" value="submit"&gt;
+     &lt;/form&gt;
   `
 })
 export class LoginComponent implements OnInit {
@@ -146,14 +146,14 @@ export class LoginComponent implements OnInit {
                             <li>Could have an implementation similar to</li>
                         </ul>
                     </div>
-                    <pre><code>
+                    <pre><code class="hljs typescript" data-trim>
 @Component({
     selector: "app-rate",
     template: `
-       <form (submit)="submit()">
-         Rate this training: <app-star-input (changeRating)="rating = $event"></app-star-input>
-         <input type="submit" value="submit">
-       </form>
+       &lt;form (submit)="submit()"&gt;
+         Rate this training: &lt;app-star-input (changeRating)="rating = $event"&gt;&lt;/app-star-input&gt;
+         &lt;input type="submit" value="submit"&gt;
+       &lt;/form&gt;
     `
   })
   export class RateComponent implements OnInit {
@@ -177,14 +177,14 @@ export class LoginComponent implements OnInit {
                 <section
                     data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
                     <h3 class="cap-white">Implementing CVA</h3>
-                    <pre><code>
+                    <pre><code class="hljs typescript" data-trim>
 @Component({
     selector: "app-rate",
     template: `
-       <form [formGroup]="ratingForm" (submit)="submit()">
-         Rate this training: <app-star-input formControlName="rating"></app-star-input>
-         <input type="submit" value="submit">
-       </form>
+       &lt;form [formGroup]="ratingForm" (submit)="submit()"&gt;
+         Rate this training: &lt;app-star-input formControlName="rating"&gt;&lt;/app-star-input&gt;
+         &lt;input type="submit" value="submit"&gt;
+       &lt;/form&gt;
     `
   })
   export class RateComponent implements OnInit {
@@ -207,7 +207,7 @@ export class LoginComponent implements OnInit {
                     data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
                     <h3 class="cap-white">Control Value Accessor</h3>
                     <h5 class="cap-white" style="color: #10e0ff">API</h5>
-                    <pre><code>
+                    <pre><code class="hljs typescript" data-trim>
 interface ControlValueAccessor {
     // is the method that writes a new value from the form model
     // into the view or (if needed) DOM property
@@ -248,7 +248,7 @@ interface ControlValueAccessor {
                         <li>Implement ControlValueAccessor interface and implement its methods</li>
                         <li>Register ControlValueAccessor (in a Component)</li>
                     </ul>
-                    <pre><code>
+                    <pre><code class="hljs typescript" data-trim>
 providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -262,7 +262,7 @@ providers: [
                 <section
                     data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
                     <h3 class="cap-white">Implementing the interface in our custom component</h3>
-                    <pre><code>
+                    <pre><code class="hljs typescript" data-trim>
 @Component({
     selector: 'app-rating',
     providers: [
@@ -410,7 +410,7 @@ export class RatingComponent implements ControlValueAccessor {
                     data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
                     <h3 class="cap-white">Nested Forms</h3>
                     <h5 class="cap-white" style="color: #10e0ff">Validator API</h5>
-                    <pre><code>
+                    <pre><code class="hljs typescript" data-trim>
 interface Validator {
     // is the method that is called for validation
     validate(control: AbstractControl): ValidationErrors | null
@@ -431,7 +431,7 @@ interface Validator {
                         <li>Implement Validator interface and implement its methods</li>
                         <li>Register Validator (in a Component)</li>
                     </ul>
-                    <pre><code>
+                    <pre><code class="hljs typescript" data-trim>
 providers: [
     {
       provide: NG_VALIDATORS,
@@ -445,7 +445,7 @@ providers: [
                 <section
                     data-background-image="../common/img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
                     <h3 class="cap-white">Implementing the interface for a nested form</h3>
-                    <pre><code>
+                    <pre><code class="hljs typescript" data-trim>
 @Component({
     selector: 'app-address',
     providers: [
