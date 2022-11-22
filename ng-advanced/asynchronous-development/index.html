@@ -625,6 +625,9 @@ console.log('after');
 /* Promise */
 Promise.resolve().then(() => ...bad change...);
 
+/* QueueMicrotask */
+queueMicrotask(() => ...bad change...)
+
 /* Timeout */
 setTimeout(() => ...bad change...);
 
