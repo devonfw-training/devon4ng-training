@@ -182,7 +182,7 @@ export class LoginComponent implements OnInit {
     selector: "app-rate",
     template: `
        <form [formGroup]="ratingForm" (submit)="submit()">
-         Rate this training: <app-star-input [formControlName]="rating"></app-star-input>
+         Rate this training: <app-star-input formControlName="rating"></app-star-input>
          <input type="submit" value="submit">
        </form>
     `
