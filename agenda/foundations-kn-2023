@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>Angular Training</title>
+	<link rel="icon" href="../common/img/favicon.ico">
+	<meta name="description" content="Richwebclient">
+	<meta name="author" content="Richwebclient Team">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+	<link rel="stylesheet" href="../node_modules/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="../node_modules/reveal.js/css/theme/simple.css" id="theme">
+	<link rel="stylesheet" href="../common/css/common.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? '../node_modules/reveal.js/css/print/pdf.css' : '../node_modules/reveal.js/css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="../node_modules/reveal.js/lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+	<style>
+
+	</style>
+	<div class="reveal">
+		<div class="slides">
+			<section data-background-size="70% auto" data-background-position="0% 0%" data-background-image="../common/img/shapes/Fixed_Shape_1_SVG/Fixed_Shape_1_CapgeminiBlue_RGB.svg">
+				<h1 class="header-align-left">Angular Foundations</h1>
+			</section>
+			<section>
+				<p>Please prepare your local setup for the training exercises and ask the trainers for help up front if needed:</p>
+				<ul>
+					<li><a href="preparation.html" target="_blank">Preparation slides</a></li>
+				</ul>
+				<p>Basic knowledge regarding HTML and CSS is a prerequisite. You can find some material for self study here:</p>
+				<ul>
+					<li><a href="../html5/index.html" target="_blank">HTML 5</a></li>
+					<li><a href="../css/index.html" target="_blank">CSS</a></li>
+				</ul>
+			</section>
+			<section data-markdown>
+				<textarea data-template>
+| Day 1        		  | Times | |
+| :---------------- |:---- |:----
+| Warm-up | 10:00 - 10:15 | Krzysztof
+| <a href="../js-to-ts/index.html" target="_blank">JavaScript and TypeScript</a> | 10:15 - 11:00 | Arnold
+| <a href="../js-to-ts/ts-exercises/index.html" target="_blank">TypeScript Exercises</a> | 11:00 - 12:00 |
+|
+| <a href="../ng-module/index.html" target="_blank">Angular Modules</a> | 12:15 - 12:35 | Krzysztof
+| <a href="../ng-components/index.html" target="_blank">Angular Components</a> <br> with <a href="../exercises/index.html#/1" target="_blank">exercise</a>| 12:35 - 13:15
+| <a href="../ng-data-binding/index.html" target="_blank">Angular Data Binding</a> <br>with exercise <a href="../exercises/index.html#/2" target="_blank">1</a> and <a href="../exercises/index.html#/3" target="_blank">2</a>| 13:15 - 14:00 | Arnold
+|
+| Exercise Discussion & Quiz | 16:00 - 16:30
+				</textarea>
+			</section>
+			<section data-markdown>
+				<textarea data-template>
+| Day 2        		  | Times | |
+| :---------------- |:---- |:----
+| Exercise Discussion  | 10:00 - 11:00
+| <a href="../promises-to-observables/index.html" target="_blank">Promises and Observables</a> | 11:00 - 12:00 | Arnold
+|
+| <a href="../ng-services/index.html" target="_blank">Angular Services</a> with <a href="../exercises/index.html#/4" target="_blank">exercise</a> | 12:15 - 13:00 | Krzysztof
+| <a href="../ng-http/index.html" target="_blank">Angular Http</a> with <a href="../exercises/index.html#/5" target="_blank">exercise</a> | 13:00 - 13:30 | 
+| <a href="../swagger/index.html" target="_blank">Swagger</a> | 13:30 - 13:45 |
+| Quiz  | 13:45 - 14:00
+|
+| Exercise Discussion | 16:00 - 16:30
+				</textarea>
+			</section>
+			<section data-markdown>
+				<textarea data-template>
+| Day 3        		  | Times | |
+| :---------------- |:---- |:----
+| Exercise Discussion  | 10:00 - 11:00
+| <a href="../testing/index.html" target="_blank">Isolated Unit Testing</a> with <a href="../exercises/testing.html" target="_blank">exercise</a> | 11:00 - 11:30 | Krzysztof
+| <a href="../ng-router/index.html" target="_blank">Angular Router</a> with <a href="../exercises/index.html#/6" target="_blank">exercise</a> | 11:30 - 12:00 |
+| 
+| <a href="../ng-forms/index.html" target="_blank">Angular Forms</a> with <a href="../exercises/index.html#/7" target="_blank">exercise</a> | 12:15 - 13:45 | Arnold
+| Quiz  | 13:45 - 14:00
+|
+| Exercise Discussion | 16:00 - 16:30 | 
+				</textarea>
+			</section>
+			<section data-markdown>
+				<textarea data-template>
+| Day 4        		  | Times | |
+| :---------------- |:---- |:----
+| Exercise Discussion  | 10:00 - 11:00
+| <a href="../ng-material/index.html" target="_blank">Angular Material</a> | 11:00 - 11:30 | Krzysztof
+| <a href="../web-app-architecture/index.html" target="_blank">Web Application Architecture</a> Basics | 11:30 - 12:00 |
+| 
+| <a href="../ngrx/intro.html" target="_blank">ngrx intro</a> with <a href="../exercises/ngrx.html#/0" target="_blank">exercise 1</a> | 12:15 - 13:45 | Arnold
+| Quiz  | 13:45 - 14:00
+|
+| Exercise Discussion | 16:00 - 16:30
+				</textarea>
+			</section>
+			<section data-markdown>
+				<textarea data-template>
+| Day 5        		  | Times | |
+| :---------------- |:---- |:----
+| Exercise Discussion  | 10:00 - 11:00
+| <a href="../ngrx-forms/index.html" target="_blank">NGRX-Forms</a> | 11:00 - 11:45 | Krzysztof
+| <a href="../testing/index.html#/16" target="_blank">Angular Unit Testing Utilities</a> with <a href="../exercises/testing.html#/1" target="_blank">exercise</a> | 11:45 - 12:45 | Arnold
+|
+| <a href="../e2e-cypress/index.html" target="_blank">Cypress</a> | 13:00 - 13:30 | Krzysztof
+| <a href="../nx-workspace/index.html" target="_blank">Project Setup</a> | 13:30 - 13:45 |
+| Feedback session | 13:45 - 14:00 |
+|
+| Exercise Discussion & Quiz | 16:00 - 16:30
+				</textarea>
+			</section>
+		</div>
+
+	</div>
+    <script src="../node_modules/reveal.js/js/reveal.js"></script>
+    <script src="../common/reveal-config.js"></script>
+
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({ ...revealConfig, width: "100%", height: "100%" });
+	</script>
+
+</body>
+
+</html>
