@@ -1,43 +1,66 @@
-<p>
-  Before you can use this movie-databse, you have to register.
-</p>
+<p>Before you can use this movie-databse, you have to register.</p>
 
 <form [formGroup]="registrationForm" (ngSubmit)="register()">
   <div>
     <label>First Name</label>
-    <input type="text" formControlName="firstname">
-    <div class="alert" *ngIf="registrationForm.get('firstname').touched && registrationForm.get('firstname').getError('required')">
-      firstname is a required field.
+    <input type="text" formControlName="firstName" />
+    <div
+      class="alert"
+      *ngIf="
+        registrationForm.controls.firstName.touched &&
+        registrationForm.controls.firstName.getError('required')
+      "
+    >
+      firstName is a required field.
     </div>
   </div>
   <div>
     <label>Last Name</label>
-    <input type="text" formControlName="lastname">
-    <div class="alert" *ngIf="registrationForm.get('lastname').touched && registrationForm.get('lastname').getError('required')">
-      lastname is a required field.
+    <input type="text" formControlName="lastName" />
+    <div
+      class="alert"
+      *ngIf="
+        registrationForm.controls.lastName.touched &&
+        registrationForm.controls.lastName.getError('required')
+      "
+    >
+      lastName is a required field.
     </div>
   </div>
   <div>
     <label>E-Mail</label>
-    <input type="text" formControlName="email">
-    <div class="alert" *ngIf="registrationForm.get('email').getError('email')">
+    <input type="text" formControlName="email" />
+    <div
+      class="alert"
+      *ngIf="registrationForm.controls.email.getError('email')"
+    >
       please enter a valid email address.
     </div>
   </div>
   <div formGroupName="passwords">
     <div>
       <label>Password</label>
-      <input type="password" formControlName="password">
-      <div class="alert" *ngIf="registrationForm.get('passwords').get('password').getError('minlength')">
+      <input type="password" formControlName="password" />
+      <div
+        class="alert"
+        *ngIf="
+          registrationForm.controls.passwords.controls.password.getError(
+            'minlength'
+          )
+        "
+      >
         Password should have at least 8 characters.
       </div>
     </div>
     <div>
       <label>Repeat Password</label>
-      <input type="password" formControlName="passwordRepeat">
+      <input type="password" formControlName="passwordRepeat" />
     </div>
   </div>
-  <div class="alert" *ngIf="registrationForm.get('passwords').getError('notequal')">
+  <div
+    class="alert"
+    *ngIf="registrationForm.controls.passwords.getError('notequal')"
+  >
     both passwords have to be equal.
   </div>
   <button type="submit">Submit</button>
