@@ -1,5 +1,5 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
 import {StoreModule} from '@ngrx/store';
@@ -22,10 +22,11 @@ import {ReactiveFormsModule} from '@angular/forms';
     ReactiveFormsModule
   ],
   bootstrap: [AppComponent],
-  providers: [{
-    provide: REDUCER_TOKEN,
-    useValue: reducers,
-  }],
+  providers: [
+    {
+      provide: REDUCER_TOKEN,
+      useValue: reducers,
+    },
+  ],
 })
-export class AppModule {
-}
+export class AppModule {}

@@ -7,7 +7,7 @@ import {selectIsLoggedIn} from './state/auth.selector';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   isLoggedIn$: Observable<boolean> = this.store$.select(selectIsLoggedIn);
