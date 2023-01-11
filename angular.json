@@ -107,7 +107,6 @@
       }
     }
   },
-  "defaultProject": "testing-exercise",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
