@@ -567,7 +567,7 @@ passwords: {
                     <h3>Forms (4/4)</h3>
                     <ul>
                         <lI>
-                            Show textual descriptions on each field validated to give the user guidance on how to fix the errror. Use *ngIf to hide messages (<span class="monospace">get('fieldname').getError('minlength')</span>) to check for different
+                            Show textual descriptions on each field validated to give the user guidance on how to fix the errror. Use *ngIf to hide messages (<span class="monospace">controls.fieldname.getError('minlength')</span>) to check for different
                             validation-errors.
                         </lI>
                     </ul>
@@ -583,6 +583,9 @@ passwords: {
                         </li>
                         <li>
                             You already used the template-driven form in your movie-details-component. Try to add some validations and validation error messages for movies by your own.
+                        </li>
+                        <li>
+                            Make the form group type safe. (use a TypeScript interface)
                         </li>
                     </ul>
                 </section>
