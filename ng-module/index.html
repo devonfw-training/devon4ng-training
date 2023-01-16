@@ -45,6 +45,9 @@
             <div class="margin_top_30">
                 <p class="align_right"><small><a href="https://angular.io/docs/ts/latest/guide/ngmodule.html#!#angular-modularity">Angular Docs</a></small></p>
             </div>
+            <aside class="notes">
+                A module contains different technical parts belonging to specific business area.
+            </aside>
         </section>
         <section>
             <section>
@@ -62,12 +65,17 @@ exports: [],
 
 // components, directives and pipes which belong to the module
 // -> they can only be used in components templates inside this modules
-declarations: [], 
+declarations: [],
 
-// services which should be application wide useable
-providers: [] 
+// services which should be useable by any other module that imports this "TestModule"
+providers: []
 })
 export class TestModule { }</code></pre>
+                <aside class="notes">
+                    Most imported slide of this deck, needed for the exercise. <br>
+                    The class itself is mostly empty. The important information is in the decorator.<br>
+                    The different arrays describe the content of the module, separated in dependencies, components (and other code) available for other modules, internal code and services to be provided for dependency injection
+                </aside>
             </section>
             <section>
                 <h3>... example</h3>
@@ -102,6 +110,10 @@ import { AppComponent }  from './app.component';
 })
 export class AppModule { }</code></pre>
 <small>app.module.ts</small>
+            <aside class="notes">
+                The root module is called AppModule by convention. It contains the root component that contains all other components displayed by the application.<br>
+                The root module usually contains no business logic or components, but it provides services that are supposed to be available for the entire application like logging or a config service.
+            </aside>
         </section>
         <section>
             <h3>Application Start (2/2)</h3>
@@ -120,6 +132,10 @@ platformBrowserDynamic().bootstrapModule(AppModule);</code></pre>
 })
 export class AppComponent { }</code></pre>
             <small>app.component.ts</small>
+            <aside class="notes">
+                After defining the root module we need to start the actual bootstrapping of the application. By convention we do that in the main.ts file.
+                We need to include the root component in our index.html to indicate where in the Html our application is supposed to be rendered.
+            </aside>
         </section>
         <section>
             <h3>Core and Shared Module</h3>
@@ -136,6 +152,10 @@ export class AppComponent { }</code></pre>
         <section>
             <p>Default Application Structure from <a href="https://angular.io/styleguide#!#04-06">Angular Docs</a></p>
             <iframe id="default-structure-iframe" src="./default-structure/index.html" frameborder="0"></iframe>
+            <aside class="notes">
+                "heroes" and "villains" are examples for modules for specific business areas also called feature modules. "core" and "shared" are the mentioned modules with conventions.<br>
+                feature modules can contain "core" and "shared" sub modules and feature modules.
+            </aside>
         </section>
     </div>
 </div>
