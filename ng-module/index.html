@@ -38,6 +38,10 @@
             <h2>Modules</h2>
             <p class="italic-font">Structuring Angular applications</p>
             <img class="module-header-image" src="./img/project-sample-module-separation.png" alt="module separation example">
+            <aside class="notes">
+                Modules are building blocks group business areas or feature areas.<br>
+                Different to other frameworks in Angular it is mandatory to use modules.
+            </aside>
 		</section>
         <section>
             <h3>Definition</h3>
@@ -46,7 +50,7 @@
                 <p class="align_right"><small><a href="https://angular.io/docs/ts/latest/guide/ngmodule.html#!#angular-modularity">Angular Docs</a></small></p>
             </div>
             <aside class="notes">
-                A module contains different technical parts belonging to specific business area.
+                A module contains different technical building blocks belonging to a common specific business area.
             </aside>
         </section>
         <section>
@@ -67,7 +71,8 @@ exports: [],
 // -> they can only be used in components templates inside this modules
 declarations: [],
 
-// services which should be useable by any other module that imports this "TestModule"
+// services which should be useable by child modules and components
+// details on providers and injection are in the services presentation
 providers: []
 })
 export class TestModule { }</code></pre>
@@ -91,7 +96,7 @@ export class BookModule { }</code></pre>
                     <li>Common module is exported - so a module importing BookModule can <strong>use Common without importing it</strong></li>
                     <li>BookListComponent can be <strong>used inside templates in modules importing BookModule</strong> - 'it's public'</li>
                     <li>BookListComponent and BookDetailComponent are declared and can therefore be <strong>used inside modules templates</strong> - good practice if for instance BookDetailComponent is part of BookListComponent and should <strong>never be used alone</strong></li>
-                    <li>BookService is made <strong>application wide</strong> available - can be used via DI</li>
+                    <li>BookService is provided for alle components within BookModule and child modules</li>
                 </ul>
             </section>
         </section>
@@ -141,9 +146,9 @@ export class AppComponent { }</code></pre>
             <h3>Core and Shared Module</h3>
             <ul>
                 <li>Core- and SharedModule are <strong>modules with conventions</strong></li>
-                <li>CoreModule has <strong>single use components</strong> - e.g. NavigationComponent, SpinnerComponent, etc. to be <strong>used inside AppComponents template</strong></li>
+                <li>CoreModule has <strong>single use components</strong> - e.g. NavigationComponent, FooterComponent, etc. to be <strong>used inside AppComponents template</strong></li>
                 <li>CoreModule is <strong>only imported in AppModule</strong></li>
-                <li>SharedModule has common components, directives and pipes. <strong>Imported by multiple modules</strong></li>
+                <li>SharedModule has common components, directives and pipes. <strong>Imported by multiple modules</strong> - e.g. SpinnerComponent, ModalComponent</li>
             </ul>
             <div class="margin_top_30">
                 <p class="align_right"><small><a href="https://angular.io/styleguide">Angular Docs</a></small></p>
