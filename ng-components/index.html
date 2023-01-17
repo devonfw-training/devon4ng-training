@@ -26,37 +26,47 @@
     </script>
 </head>
 <body>
-<section class="devon-link">
-    <a href="http://devonfw.github.io" target="_blank"><img height="30px" src="../common/img/devon_logo_blue.png"></a>
-</section>
-<section class="angular-link">
-    <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
-</section>
-<div class="devon reveal">
+  <section class="devon-link">
+      <a href="http://devonfw.github.io" target="_blank"><img height="30px" src="../common/img/devon_logo_blue.png"></a>
+  </section>
+  <section class="angular-link">
+      <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
+  </section>
+  <div class="devon reveal">
     <div class="slides">
-        <section>
-            <h1>Components</h1>
-            <img class="reset" src="img/template-metadata-component.png">
-	    <p class="align_right"><small><a href="https://angular.io/guide/architecture-components">Angular Docs</a></small></p>
-        </section>
-        <section>
-            <p>A <span class="highlight">component</span> controls a patch of screen called a view.</p>
-            <p><span class="highlight">Component's application logic</span> is defined inside a <span class="highlight">class</span>. The class <span class="highlight">interacts</span> with the view through an API of <span class="highlight">properties and methods</span></p>
-        </section>
-		<section>
-            <h3>Component Tree</h3>
-            <img class="reset" src="img/component-tree.svg">
-        </section>
-		<section>
-            <p>Angular <span class="highlight">creates, updates, and destroys components</span> as the user moves through the application. Your app can <span class="highlight">take action</span> at each moment in this lifecycle through optional <span class="highlight">lifecycle hooks</span></p>
-        </section>
-		<section>
-            <h3>Lifecycle Hooks</h3>
-			<img class="reset" height="550px" src="img/lifecycle-hooks.png">
-        </section>
-        <section>
-            <h2 class="no-text-transform">Component is just a class...</h2>
-            <pre><code class="hljs typescript"  data-trim data-noescape>
+      <section>
+        <h1>Components</h1>
+        <img class="reset" src="img/template-metadata-component.png">
+        <p class="align_right"><small><a href="https://angular.io/guide/architecture-components">Angular Docs</a></small></p>
+      </section>
+      <section>
+          <p>A <span class="highlight">component</span> controls a patch of screen called a view.</p>
+          <p><span class="highlight">Component's application logic</span> is defined inside a <span class="highlight">class</span>. The class <span class="highlight">interacts</span> with the view through an API of <span class="highlight">properties and methods</span></p>
+      </section>
+      <section>
+        <h3>Component Tree</h3>
+        <img class="reset" src="img/component-tree.svg">
+        <aside class="notes">
+          Components of a web application form a tree structure just as regular HTML elements form a tree structure. <br>
+          There can be multiple instances of the same component.
+        </aside>
+      </section>
+      <section>
+        <p>Angular <span class="highlight">creates, updates, and destroys components</span> as the user moves through the application. Your app can <span class="highlight">take action</span> at each moment in this lifecycle through optional <span class="highlight">lifecycle hooks</span></p>
+      </section>
+      <section>
+        <h3>Lifecycle Hooks</h3>
+        <img class="reset" height="550px" src="img/lifecycle-hooks.png">
+        <a href="https://angular.io/guide/lifecycle-hooks" class="references" target="_blank">Angular Docs</a>
+        <aside class="notes">
+          Color explanation: <br>
+          High saturation events are called once per component instance. Low saturation events are called multiple times.<br>
+          Green lifecycle hooks occur when the component itself enters the corresponding state. Blue lifecycle hooks occur when the child elements enter the corresponding state.<br><br>
+        </aside>
+      </section>
+      <section>
+        <h2 class="no-text-transform">Component is just a class...</h2>
+        <pre><code class="hljs typescript"  data-trim data-noescape>
 export class BookDetailsComponent implements OnInit {
   currentBook = new Book();
 
@@ -79,6 +89,11 @@ export class BookDetailsComponent implements OnInit {
   }
 }
             </code></pre>
+            <aside class="notes">
+              'currentBook' is publicly accessible.<br>
+              Class variables are public by default.<br>
+              Why? Because it is valid EcmaScript and the original version did not have visibility modifiers. All object properties were public.
+            </aside>
         </section>
         <section>
             <h2 class="no-text-transform">...and can take action in the lifecycle</h2>
@@ -92,6 +107,9 @@ export class BookDetailsComponent implements <mark>OnInit</mark> {
   }</mark>
 }
             </code></pre>
+            <aside class="notes">
+              What happens if 'implements OnInit' is missing? Still works as long as 'ngOnInit()' is present. At runtime interfaces are gone anyway.
+            </aside>
         </section>
         <section>
             <img class="reset" src="img/template.png">
@@ -144,7 +162,7 @@ export class BookDetailsComponent implements OnInit {
             </code></pre>
         </section>
         <section>
-            <p class="no-text-transform">CSS <span class="highlight">selector</span> tells Angular to <span class="highlight">create and insert an instance of this component</span> where it finds a <span class="highlight">&lt;app-book-details&gt; tag</span> in parent HTML</p>
+            <p class="no-text-transform"><span class="highlight">selector</span> tells Angular to <span class="highlight">create and insert an instance of this component</span> where it finds a <span class="highlight">&lt;app-book-details&gt; tag</span> in parent HTML</p>
             <pre><code class="hljs typescript" data-trim  data-noescape>
 @Component({
   <mark>selector: 'app-book-details'</mark>,
@@ -209,6 +227,10 @@ export class BookDetailsComponent implements OnInit {
   font-weight: bold;
 }
             </code></pre>
+            <a href="https://angular.io/guide/component-styles" class="references" target="_blank">Angular Docs</a>
+            <aside class="notes">
+              ":host" is used to style the angular component itself. Other styles apply to the elements inside of the component, but not the component itself.
+            </aside>
         </section>
         <section>
             <p class="no-text-transform"></p>
@@ -222,6 +244,9 @@ export class BookDetailsComponent implements OnInit {
 ...
 }
             </code></pre>
+            <aside class="notes">
+              Note that styleUrls expects an array of URLs. Therefore you can have multiple style documents for one component (but it is uncommon)
+            </aside>
         </section>
     </div>
 </div>
