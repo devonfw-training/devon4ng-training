@@ -93,7 +93,7 @@
             </div>
             <div>
                 <pre><code class="html"><!-- syntactic sugar (banana in a box) -->
-&lt;input name=first [(ngModel)]="varName"&gt; 
+&lt;input name=first [(ngModel)]="varName"&gt;
 &lt;input name=first [ngModel]="varName" (ngModelChange)="varName=$event"&gt;</code></pre>
                 <p>
                     creates <span class="highlight">two-way</span> binding. Note: <span class="highlight">state at two places</span> (component member and forms model)
@@ -135,22 +135,22 @@
                 <li>are written <span class="highlight">by code</span></li>
                 <li>are <span class="highlight">easily testable</span></li>
             </ul>
-            <pre><code class="typescript">const contactForm = new FormGroup({
-  name: new FormGroup({
+            <pre><code class="typescript max-height-unset">interface ContactFormType {
+  name: FormGroup&lt;NameFormType&gt;;
+  email: FormControl&lt;string | null&gt;;
+}
+type NameFormType = {
+  first: FormControl&lt;string | null&gt;;
+  last: FormControl&lt;string | null&gt;;
+};
+
+const contactForm = new FormGroup&lt;ContactFormType&gt;({
+  name: new FormGroup&lt;NameFormType&gt;({
     first: new FormControl('Juana'),
     last: new FormControl('Garcia')
   }),
   email: new FormControl('')
 });</code></pre>
-            <p>... represents the data model of</p>
-            <pre><code class="typescript">let model: {
-  name: {
-    first: string,
-    last: string
-  },
-  email: string;
-};
-</code></pre>
         </section>
         <section>
             <p>... and can be bound by</p>
@@ -180,8 +180,14 @@
         <section>
             <h3>FormBuilder</h3>
             <p>... creates the same FormGroup-FormControl tree</p>
-            <pre><code class="typescript max-height-unset">import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+            <pre><code class="typescript max-height-unset">interface ContactFormType {
+  name: FormGroup&lt;NameFormType&gt;;
+  email: FormControl&lt;string | null&gt;;
+}
+type NameFormType = {
+  first: FormControl&lt;string | null&gt;;
+  last: FormControl&lt;string | null&gt;;
+};
 
 @Component({ ... })
 export class FormTestComponent implements OnInit {
@@ -190,8 +196,8 @@ export class FormTestComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.contactForm = this.formBuilder.group({
-      name: this.formBuilder.group({
+    this.contactForm = this.formBuilder.group&lt;ContactFormType&gt;({
+      name: this.formBuilder.group&lt;NameFormType&gt;({
         first: 'Juana',
         last: 'Garcia'
       }),
@@ -237,16 +243,11 @@ export class FormTestComponent implements OnInit {
             <p><code class="typescript">'forbiddenName' -> name </code> if RegExp matches</p>
         </section>
         <section>
-            <h3>Displaying Custom Validation</h3>
+            <h3>Displaying (Custom) Validation</h3>
             <p>behaves just like Angular Validators</p>
             <p>FormControl.errors is extended by custom error key-value pairs from validation method.</p>
-            <pre><code class="html">&lt;div 
-  *ngIf="contactForm.get('name').get('first').getError('forbiddenName')"&gt;
-  The name is not allowed.
-&lt;/div&gt;</code></pre>
-or
-<pre><code class="html">&lt;div 
-  *ngIf="contactForm.get('name.first').getError('forbiddenName')"&gt;
+            <pre class="width-100-percent"><code class="html">&lt;div 
+  *ngIf="contactForm.controls.name.controls.first.getError('forbiddenName')"&gt;
   The name is not allowed.
 &lt;/div&gt;</code></pre>
         </section>
