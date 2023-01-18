@@ -369,6 +369,9 @@
                     <ol>Extend the <span class="highlight monospace">MovieService</span>:
                         <li>Implement the <span class="highlight monospace">findOne(id: number): Movie</span> method which finds a movie by the ID passed and returns its copy.</li>
                     </ol>
+                    <p>
+                        <i>Note: This method will only be called by a component in a later exercise, but should already be implemented here.</i>
+                    </p>
                 </section>
                 <section>
                     <h3>Service (extra)</h3>
@@ -393,7 +396,7 @@
                 <section>
                     <h3>Http (1/3)</h3>
                     <p>
-                        We prepared a server for you.<br> User the following commands to start the angular server with reverse proxy and a server with rest services:
+                        We prepared a server for you.<br> Use the following command to start the Angular server with reverse proxy and a server with the REST service:
                         <span class="highlight monospace">npm run start</span>
                     </p>
                     <p>
@@ -409,7 +412,7 @@
                 </section>
                 <section>
                     <h3>Http (2/3)</h3>
-                    In the next steps the methods' return types will change from <span class="highlight monospace">Movie</span>
+                    In the next steps the return types of the service methods will change from <span class="highlight monospace">Movie</span>
                     to <span class="highlight monospace">Observable&lt;Movie&gt;</span>. <br>
                     You will need to refactor the overview component accordingly and use one of the following:
                     <ul>
