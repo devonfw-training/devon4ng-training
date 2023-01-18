@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie } from '../movie';
 import { MovieService } from '../movie.service';
-import { tap, switchMap, filter } from 'rxjs/operators';
+import { switchMap, filter } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -31,11 +31,14 @@ export class MovieOverviewComponent implements OnInit {
   }
 
   onMovieUpdated(updatedMovie: Movie) {
-    this.movieService.save(updatedMovie)
-      .pipe(tap(m => this.selectMovie(m)))
-      .subscribe({
-        complete: () => this.movies$ = this.movieService.findAll()
-      });
+    this.movies$ = this.movieService.save(updatedMovie)
+      .pipe(
+        switchMap((movie) => {
+          this.selectedMovie = movie;
+          return this.movieService.findAll()
+        }
+      )
+    );
   }
 
   onMovieCreate() {
