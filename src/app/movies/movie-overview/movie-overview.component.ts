@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Movie } from '../movie';
 import { MovieService } from '../movie.service';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-movie-overview',
@@ -25,11 +25,14 @@ export class MovieOverviewComponent {
   }
 
   onMovieUpdated(updatedMovie: Movie) {
-    this.movieService.save(updatedMovie)
-      .pipe(tap(m => this.selectedMovie = m))
-      .subscribe({
-        complete: () => this.movies$ = this.movieService.findAll()
-      });
+    this.movies$ = this.movieService.save(updatedMovie)
+      .pipe(
+        switchMap((movie) => {
+          this.selectedMovie = movie;
+          return this.movieService.findAll()
+        }
+      )
+    );
   }
 
   onMovieCreate() {
