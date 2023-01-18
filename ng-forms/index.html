@@ -199,9 +199,9 @@ export class FormTestComponent implements OnInit {
     this.contactForm = this.formBuilder.group&lt;ContactFormType&gt;({
       name: this.formBuilder.group&lt;NameFormType&gt;({
         first:  this.formBuilder.control("Juana"),
-        last: this.formBuilder.control("Garcia", Validators.required),
+        last: this.formBuilder.control("Garcia"),
       }),
-      email: this.formBuilder.control("", Validators.email),
+      email: this.formBuilder.control(""),
     });
   }
 }</code></pre>
@@ -209,12 +209,12 @@ export class FormTestComponent implements OnInit {
         <section>
             <h3>Validation</h3>
             <p>... in Model Driven forms</p>
-            <pre><code class="typescript">this.contactForm = this.formBuilder.group({
-  name: {
-    first: ['', Validators.required],
-    last: ['', [Validators.required, Validators.minLength(2)]]
-  },
-  email: ['', Validators.required],
+            <pre><code class="typescript">this.contactForm = this.formBuilder.group&lt;ContactFormType&gt;({
+  name: this.formBuilder.group&lt;NameFormType&gt;({
+    first:  this.formBuilder.control("Juana"),
+    last: this.formBuilder.control("Garcia", Validators.required),
+  }),
+  email: this.formBuilder.control("", Validators.email),
 });</code></pre>
             <ul>
               <li><code>FormControl</code> and <code>FormGroup</code> both extend <code class="highlight">AbstractControl</code></li>
