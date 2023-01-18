@@ -198,10 +198,10 @@ export class FormTestComponent implements OnInit {
   ngOnInit(): void {
     this.contactForm = this.formBuilder.group&lt;ContactFormType&gt;({
       name: this.formBuilder.group&lt;NameFormType&gt;({
-        first: 'Juana',
-        last: 'Garcia'
+        first:  this.formBuilder.control("Juana"),
+        last: this.formBuilder.control("Garcia", Validators.required),
       }),
-      email: '',
+      email: this.formBuilder.control("", Validators.email),
     });
   }
 }</code></pre>
