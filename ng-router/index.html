@@ -92,7 +92,7 @@
 					<li><span class="highlight">RouterModule</span> - A separate Angular module that provides the necessary service providers and directives for navigating through application views.</li>
 					<li><span class="highlight">Routes</span> - Defines an array of Routes, each mapping a URL path to a component.</li>
 				</ul>
-				<pre><code class="hljs typescript"  data-trim>
+				<pre><code class="hljs typescript"  data-trim>// AppModule.ts
 import { RouterModule, Routes } from '@angular/router';
 				</code></pre>
 			</section>
@@ -100,7 +100,7 @@ import { RouterModule, Routes } from '@angular/router';
 			
 			<section>
 				<h3>Paths configuration</h3>
-				<pre><code class="hljs typescript"  data-trim>
+				<pre><code class="hljs typescript"  data-trim> // AppModule.ts
 const appRoutes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
@@ -118,7 +118,7 @@ const appRoutes: Routes = [
 })
 				</code></pre>
 			</section>
-			
+
 			<section>
 				<h3>Router Outlet</h3>
 
@@ -127,40 +127,60 @@ const appRoutes: Routes = [
 <!-- Routed views go here -->
 				</code></pre>
 			</section>
-			
+
 			<section>
 				<h3>Router Link</h3>
 
 				<pre><code class="html"  data-trim>
-&lt;nav&gt;				
+&lt;nav&gt;
    &lt;a routerLink="/heroes" routerLinkActive="active"&gt;Heroes&lt;/a&gt;
 &lt;/nav&gt;
 				</code></pre>
 			</section>
-			
+
 			<section>
 				<h3>Navigating from component's code</h3>
 
-				<pre><code class="hljs typescript"  data-trim>
+				<pre><code class="hljs typescript"  data-trim> //*.component.ts
 // import
 import { Router } from '@angular/router';
-
+...
 // injection
 constructor(private router: Router) {}
-
+...
 // navigation
 this.router.navigate(['/dashboard']);
 				</code></pre>
 			</section>
+			<section>
+				<h3>Main Navigation Example</h3>
+
+				<pre><code class="html max-height-unset"  data-trim><!-- *.component.html file -->
+<nav>
+  <ul>
+    <li>
+      <a [routerLink]="['/']" routerLinkActive="active" >Home</a>
+    </li>
+    <li>
+      <a [routerLink]="['/feature1']" routerLinkActive="active" >Awesome Feature</a>
+    </li>
+    <li>
+    <a [routerLink]="['/about']" routerLinkActive="active" >About</a>
+    </li>
+  </ul>
+</nav>
+<router-outlet></router-outlet>
+				</code></pre>
+			</section>
         </section>
-		
+
 		<section>
 			<section>
 				<h3>Routing with path variables</h3>
 				<ul>
-					<li class="fragment fade-up">configuring the <span class="highlight">router</span> paths with variables</li>
-					<li class="fragment fade-up">building navigation with <span class="highlight">routerLink</span> directive</li>
-					<li class="fragment fade-up">receiving <span class="highlight">params</span> from a route</li>
+					<li class="">configuring the <span class="highlight">router</span> paths with variables</li>
+					<li class="">building navigation with <span class="highlight">routerLink</span> directive</li>
+					<li class="">receiving <span class="highlight">params</span> from a route</li>
 				</ul>
 			</section>
 
