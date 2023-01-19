@@ -318,12 +318,15 @@ div.slides section img {
                 <h3>Angular Configuration Management</h3>
                 <h4>Definition</h4>
                 <pre data-trim><code data-trim class="json">
-"environmentSource": "environments/environment.ts",
-"environments": {
-    "dev": "environments/environment.ts",
-    "ci": "environments/environment.ci.ts",
-    "staging": "environments/environment.staging.ts",
-    "prod": "environments/environment.prod.ts"
+"configurations": {
+  "production": {
+    "fileReplacements": [
+      {
+        "replace": "src/environments/environment.ts",
+        "with": "src/environments/environment.prod.ts"
+      }
+    ]
+  }
 }
                 </code></pre>
             </section>
