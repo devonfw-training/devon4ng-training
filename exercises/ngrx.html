@@ -119,10 +119,7 @@
             <ul>
                 <li>Define and export 3 <a href="https://ngrx.io/api/store/createAction">Actions</a> without metadata:<br><span class="size-medium">incrementCounter, decrementCounter, resetCounter</span></li>
                 <li>The actions should increment by 1, decrement by 1 and reset to 0 respectively</li>
-                <li>Define and export the <code>numberReducer</code>
-                    <pre class="code-in-list"><code>function numberReducer(state: NumberState, action: Action): NumberState</code></pre>
-                </li>
-                <li>As return add the <a href="https://ngrx.io/api/store/createReducer" target="_blank">createReducer</a> statement to process the action types.</li>
+                <li>Define and export the <code>numberReducer</code> using the <a href="https://ngrx.io/api/store/createReducer" target="_blank">createReducer</a> statement to process the action types.</li>
             </ul>
         </section>
         <section>
@@ -162,7 +159,7 @@
                     <li>
                         Create and initialize property <code>numberValue$</code> with select statement from store
                         <pre><code class="typescript" data-trim>
-                        numberValue$ = this.store.pipe(select(s => s.number.value));
+                        numberValue$ = this.store.select(s => s.number.value);
                         </code></pre>
                     </li>
                 </ul>
