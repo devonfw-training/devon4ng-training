@@ -8,12 +8,8 @@ let sut: HelloService;
 describe('HelloService', () => {
   beforeEach(() => {
     speakerSpy = jasmine.createSpyObj<Speaker>(['speak']);
-<<<<<<< HEAD
     bookSpy = jasmine.createSpyObj<Book>(['write']);
     sut = new HelloService(speakerSpy, bookSpy);
-=======
-    sut = new HelloService(speakerSpy);
->>>>>>> df43103 (Use generic createSpyObj)
   });
 
   it('should build correct speech after calling sayOnSpeaker', () => {
