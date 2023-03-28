@@ -714,7 +714,7 @@ ngOnInit() {
         </section>
         <section class="fullscreen">
             <p>Please explain the fix and why this small change makes all the difference</p>
-            <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="8,15">
+            <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="8,15,16,17">
 describe('ListComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -729,7 +729,10 @@ describe('ListComponent', () => {
   });
 
   it('loads list', fakeAsync(() => {
+    // ngOnInit is called with the first change detection cycle
+    fixture.detectChanges();
     tick();
+    fixture.detectChanges();
     expect(element.querySelectorAll('.list').length).toEqual(1);
   }));
 });
