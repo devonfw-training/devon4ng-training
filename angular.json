@@ -114,6 +114,9 @@
           }
         }
       }
-    }},
-  "defaultProject": "CapMovieDb"
+    }
+  },
+  "cli": {
+    "analytics": false
+  }
 }
