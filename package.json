@@ -4,13 +4,11 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "concurrently \"npm run server\" \"npm run start-ng\"",
-    "start-ng": "ng serve --proxy-config proxy.conf.json -o",
+    "start": "ng serve -o",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "server": "node server/index.js"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -22,9 +20,7 @@
     "@angular/platform-browser": "^15.0.4",
     "@angular/platform-browser-dynamic": "^15.0.4",
     "@angular/router": "^15.0.4",
-    "express": "^4.16.3",
     "lodash": "^4.17.21",
-    "morgan": "^1.9.0",
     "rxjs": "~6.5.4",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"
@@ -38,8 +34,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
-    "concurrently": "^3.5.1",
-    "jasmine-core": "~3.6.0",
+    "jasmine-core": "~3.8.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~6.3.10",
     "karma-chrome-launcher": "~3.1.0",
