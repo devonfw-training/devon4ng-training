@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
+import { switchMap } from 'rxjs/operators';
 import { Movie } from '../movie';
 import { MovieService } from '../movie.service';
-import { Observable } from 'rxjs';
-import { switchMap, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-movie-overview',
