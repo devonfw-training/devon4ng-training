@@ -155,9 +155,9 @@
             <p class="align-left">
                 Inside <code>app.component.ts</code>
                 <ul>
-                    <li>Inject the store into your component
+                    <li>Inject the store into your component and use the <code>AppState</code> interface
                         <pre><code class="typescript" data-trim>
-                        constructor(private store: Store) {}
+                        constructor(private store: Store<AppState>) {}
                         </code></pre>
                     </li>
                     <li>
