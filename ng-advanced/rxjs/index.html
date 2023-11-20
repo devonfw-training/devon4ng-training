@@ -436,7 +436,7 @@
                         <LI>catchError: Gracefully handle errors emitted by the observable sequence</li>
                         <LI>retry: Retry the observable sequence n times in case an error occurs
                         </li>
-                        <LI>retryWhen: Conditionally retry the observable sequence. Errors emitted are streamed through the errors parameter. Web
+                        <LI>retry: Conditionally retry the observable sequence. Errors emitted are streamed through the errors parameter. Web
                             can access the errors and either throw or delay execution depending on the error.
                         </LI>
                     </ul>
@@ -451,7 +451,7 @@
                     //                  j k l x4|
                     catchError(() => of('z'))
                     retry( 2 )
-                    retryWhen(errors => errors.pipe(switchMap(error => iif(error => error === x1, of(error), throwError(() => error)))))
+                    retry({ delay: (error) => error === x1 : of(error) : throwError(() => error) })
                 </code></pre>
                 <ul>
                     <li>Note: xN is an error</li>
@@ -472,7 +472,7 @@
                     // a b c z
                     retry( 2 )
                     // a b c d e f g h i x3
-                    retryWhen(errors => errors.pipe(switchMap(error => iif(error => error === x1, of(true), throwError(() => error)))))
+                    retry({ delay: (error) => error === x1 : of(error) : throwError(() => error) })
                     // a b c d e f x2
                 </code></pre>
                 <aside class="notes">
