@@ -13,13 +13,14 @@ export class MovieOverviewComponent implements OnInit {
 
   selectedMovie?: Movie;
   movies$ = this.movieService.findAll();
+  selectedMovie$ = this.activatedRoute.params.pipe(
+    filter((params) => params.id !== undefined),
+    switchMap(params => this.movieService.findOne(+params.id)));
 
   constructor(private movieService: MovieService, private activatedRoute: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
-    this.activatedRoute.params.pipe(
-      filter((params) => params.id !== undefined),
-      switchMap(params => this.movieService.findOne(+params.id))).subscribe(movie => this.selectedMovie = movie);
+    this.selectedMovie$.subscribe(movie => this.selectedMovie = movie);
   }
 
   selectMovie(movie: Movie) {

@@ -2,7 +2,7 @@
 
 import { Injectable } from '@angular/core';
 import { Movie } from './movie';
-import { Observable, of } from 'rxjs';
+import { Observable, from, filter, toArray, mergeMap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -14,6 +14,14 @@ export class MovieService {
 
   findAll(): Observable<Movie[]> {
     return this.http.get<Movie[]>('/services/rest/movies');
+  }
+
+  findAllByYear(year: number): Observable<Movie[]> {
+    return this.http.get<Movie[]>('/services/rest/movies').pipe(
+      mergeMap(movies => from(movies)),
+      filter(movie => movie.year == year),
+      toArray(),
+    )
   }
 
   findOne(id: number): Observable<Movie|undefined> {
