@@ -389,9 +389,9 @@
                     iif( () => condition, a$, b$)
                     // condition is evaluated at subscription time
                     </code></pre>
-                timeoutWith(...): fallback to another observable when a timeout is reached
+                timeout(...): throw an error or fallback to another observable when a timeout is reached
                 <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
-                    timeoutWith( 1000, fallback$)
+                    timeout({ each: 1000, with: fallback$ })
                     // Timeout starts at subscription time.
                     // Once the timeout of 1000ms is triggered, only values from fallback$ are returned
                     </code></pre>
@@ -408,27 +408,24 @@
                     source$.pipe(catchError(error => of([])))
                     // fall back to an empty array if the source observable emits an error
                     </code></pre>
-                retry(...): retry the observable sequence a given number of times if an error occurs
+                retry(number): retry the observable sequence a given number of times if an error occurs
                 <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
                     source$.pipe(retry(3))
                     // Retry the observable sequence three times. Especially useful for retrying http requests
                     // Gives up after three retries and emits the original error
                     </code></pre>
-                 retryWhen(...): retry the observable sequence based on a custom criteria
+                 retry(RetryConfig): retry the observable sequence based on a custom criteria
                  <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
                     source$
                       .pipe(
-                        retryWhen(errors$ =>
-                          errors$.pipe(
-                            mergeMap(error =>
-                              iif(
-                                () => error.status === TOO_MANY_REQUESTS,
-                                timer(5000),
-                                throwError(error)
-                              )
-                            )
-                          )
-                        )
+                        retry({
+                            delay: (error) => {
+                              if (error instanceof HttpErrorResponse && error.status === HttpStatusCode.TooManyRequests) {
+                                return timer(5000);
+                              }
+                              return throwError(() => error);
+                            },
+                          })
                       )
                     // Retry the observable sequence after 5000ms if an error with code TOO_MANY_REQUESTS occurs
                     // Otherwise rethrow the error 
@@ -439,7 +436,7 @@
                         <LI>catchError: Gracefully handle errors emitted by the observable sequence</li>
                         <LI>retry: Retry the observable sequence n times in case an error occurs
                         </li>
-                        <LI>retryWhen: Conditionally retry the observable sequence. Errors emitted are streamed through the errors parameter. Web
+                        <LI>retry: Conditionally retry the observable sequence. Errors emitted are streamed through the errors parameter. Web
                             can access the errors and either throw or delay execution depending on the error.
                         </LI>
                     </ul>
@@ -454,7 +451,7 @@
                     //                  j k l x4|
                     catchError(() => of('z'))
                     retry( 2 )
-                    retryWhen(errors => errors.pipe(switchMap(error => iif(error => error === x1, of(error), throwError(error)))))
+                    retry({ delay: (error) => error === x1 : of(error) : throwError(() => error) })
                 </code></pre>
                 <ul>
                     <li>Note: xN is an error</li>
@@ -475,7 +472,7 @@
                     // a b c z
                     retry( 2 )
                     // a b c d e f g h i x3
-                    retryWhen(errors => errors.pipe(switchMap(error => iif(error => error === x1, of(true), throwError(error)))))
+                    retry({ delay: (error) => error === x1 : of(error) : throwError(() => error) })
                     // a b c d e f x2
                 </code></pre>
                 <aside class="notes">
@@ -666,6 +663,7 @@
                         }
                     }
                 </code></pre>
+                With Angular 16+ this can also be done using <a href="https://angular.io/api/core/rxjs-interop/takeUntilDestroyed">takeUntilDestroyed</a>.
                 <aside class="notes">
                 </aside>
             </section>
