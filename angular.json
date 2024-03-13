@@ -70,18 +70,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "CapMovieDb:build"
+            "buildTarget": "CapMovieDb:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "CapMovieDb:build:production"
+              "buildTarget": "CapMovieDb:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "CapMovieDb:build"
+            "buildTarget": "CapMovieDb:build"
           }
         },
         "test": {
