@@ -11,7 +11,7 @@ import { reducers, REDUCER_TOKEN } from './root.reducer';
   imports: [
     BrowserModule,
     StoreModule.forRoot(reducers),
-    StoreDevtoolsModule.instrument(),
+    StoreDevtoolsModule.instrument({connectInZone: true}),
   ],
   bootstrap: [AppComponent],
   providers: [
