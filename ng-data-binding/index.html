@@ -218,12 +218,23 @@ export class BookEntryComponent {
         </section>
         <section>
             <h3>Structural Directives</h3>
-            <h4>ng-if</h4>
-            <pre><code class="html" data-trim>
-&lt;div *ngIf="book"&gt;
-  &lt;p>{{ book.description }}&lt;/p&gt;
-&lt;/div&gt;
-            </code></pre>
+            <h4>ng-if (Old Syntax)</h4>
+            <pre>
+              <code class="html" data-trim>
+                &lt;div *ngIf="book"&gt;
+                &lt;p>{{ book.description }}&lt;/p&gt;
+                &lt;/div&gt;
+              </code>
+            </pre>
+            <h4>&#64;if (Angular v17 onwards)</h4>
+            <pre>
+              <code class="html" data-trim>
+                &#64;if(book) 
+                {
+                  &lt;p>{{ book.description }}&lt;/p&gt;
+                }
+              </code>
+            </pre>
             <p><span class="highlight">Removes element from the DOM</span> if the book is not present.</p>
 
             <a class="references" href="https://angular.io/api/common/NgIf#description" target="_blank">Angular Docs</a>
