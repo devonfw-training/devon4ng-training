@@ -246,12 +246,25 @@ export class BookEntryComponent {
         </section>
         <section>
           <h3>Structural Directives</h3>
-          <h4>ng-for</h4>
-          <pre><code class="html" data-trim>
-&lt;ul&gt;
-&lt;li *ngFor="let myItem of myList"&gt;{{ myItem.someProperty }}&lt;/li&gt;
-&lt;/ul&gt;
-          </code></pre>
+          <h4>ng-for (Old Syntax)</h4>
+          <pre>
+            <code class="html" data-trim>
+              &lt;ul&gt;
+              &lt;li *ngFor="let myItem of myList"&gt;{{ myItem.someProperty }}&lt;/li&gt;
+              &lt;/ul&gt;
+            </code>
+          </pre>
+          <h4>&#64;for (Angular 17 onwards)</h4>
+          <pre>
+            <code class="html" data-trim>
+              &lt;ul&gt;
+              &#64;for (let myItem of myList) 
+              {
+                &lt;li {{ myItem.someProperty }} /li&gt; 
+              }
+              &lt;/ul&gt;
+            </code>
+          </pre>
           <p><span class="highlight">Creates an element</span> for every item of the collection.</p>
 
           <a class="references" href="https://angular.io/api/common/NgForOf#description" target="_blank">Angular Docs</a>
