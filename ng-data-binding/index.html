@@ -222,7 +222,7 @@ export class BookEntryComponent {
             <pre>
               <code class="html" data-trim>
                 &lt;div *ngIf="book"&gt;
-                &lt;p>{{ book.description }}&lt;/p&gt;
+                  &lt;p>{{ book.description }}&lt;/p&gt;
                 &lt;/div&gt;
               </code>
             </pre>
@@ -260,7 +260,7 @@ export class BookEntryComponent {
               &lt;ul&gt;
               &#64;for (let myItem of myList) 
               {
-                &lt;li {{ myItem.someProperty }} /li&gt; 
+                &lt;li&gt; {{ myItem.someProperty }} &lt;/li&gt; 
               }
               &lt;/ul&gt;
             </code>
