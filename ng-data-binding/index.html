@@ -258,7 +258,7 @@ export class BookEntryComponent {
           <pre>
             <code class="html" data-trim>
               &lt;ul&gt;
-              &#64;for (let myItem of myList) 
+              &#64;for (myItem of myList; track &dollar;index) 
               {
                 &lt;li&gt; {{ myItem.someProperty }} &lt;/li&gt; 
               }
