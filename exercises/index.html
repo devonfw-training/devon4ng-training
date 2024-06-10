@@ -64,6 +64,7 @@
                     <ol>
                         <li>Create a new module <span class="monospace highlight">Movies</span> (<span class="monospace highlight">ng g m movies</span>).</li>
                         <li>Create <span class="monospace highlight">MovieDetails</span> component in movies directory (<span class="monospace highlight">ng g c movies/movie-details</span>).</li>
+						<li>If exists, remove <span class="monospace highlight">standalone: true</span> and <span class="monospace highlight">imports: []</span> from MovieDetailsComponent decorator</li>
                         <li>Export the <span class="monospace highlight">MovieDetailsComponent</span> from the <span class="monospace highlight">MoviesModule</span> - both of them you just created.</li>
                         <li>Import the <span class="monospace highlight">MoviesModule</span> in the <span class="monospace highlight">AppModule</span></li>
                     </ol>
@@ -84,7 +85,8 @@
                             <span class="monospace highlight">id: number, directors: string, title: string, description: string, year: number</span>.</li>
                         <li>Add a public <span class="monospace highlight">currentMovie</span> property of type <span class="monospace highlight">Movie</span> to the <span class="monospace highlight">MovieDetailsComponent</span>
                         </li>
-                        <li>In the <span class="monospace highlight">OnInit</span> lifecycle hook (an empty <span class="monospace highlight">ngOnInit()</span> method should have been generated) assign a newly created <span class="monospace highlight">Movie</span>                            object with the properties of your choice. <span class="monospace">{id:1, title: 'a movie',...}</span>
+						<li>Add <span class="monospace highlight">OnInit</span> Interface and method <span class="monospace highlight">ngOnInit()</span> to <span class="monospace highlight">MovieDetailsComponent</span> as a lifecycle hook</li>
+                        <li>In the <span class="monospace highlight">OnInit</span> lifecycle hook assign a newly created <span class="monospace highlight">Movie</span>                            object with the properties of your choice. <span class="monospace">{id:1, title: 'a movie',...}</span>
                     </ol>
                 </section>
                 <section>
