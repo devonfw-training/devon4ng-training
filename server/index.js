@@ -1,17 +1,18 @@
-const movieData = require('./data/movies');
+const initialData = require('./data/movies');
 
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const express = require('express');
 
-const { includes, max, map, isString, isNumber } = require('lodash');
+const { includes, max, map, isString, isNumber, cloneDeep } = require('lodash');
+let movieData = cloneDeep(initialData);
 
 function* idSequence(initial) {
   let i = initial;
   while (true) { yield i++; } // eslint-disable-line no-constant-condition, no-plusplus
 }
 
-const movieIdGen = idSequence(max(map(movieData, 'id')) + 1);
+let movieIdGen = idSequence(max(map(movieData, 'id')) + 1);
 
 const isMovie = (movie) => !!movie.title && isString(movie.title) 
 && !!movie.directors && isString(movie.directors) 
@@ -54,6 +55,12 @@ app.post('/services/rest/movies', hasMovie, (req, res) => {
         res.json(newMovie);
     }
 });
+
+app.post('/services/rest/reset', (req, res) => {
+  movieData = cloneDeep(initialData);
+  movieIdGen = idSequence(max(map(movieData, 'id')) + 1);
+  res.status(204).send();
+})
 
 
 
