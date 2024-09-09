@@ -136,10 +136,10 @@
                     <li>Simple selection and filtering</li>
                 </ul>
                 <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
-                    // Input: 5, 3, 3, 11, 7, 7, 19
+                    // Input: 5, 3, 3, 11, 7, 7, 3, 3, 3, 19
                     filter( value => value > 10)  // 11, 19
                     take( 5 )               // 5, 3, 3, 11, 7
-                    distinctUntilChanged()  // 5, 3, 11, 7, 19
+                    distinctUntilChanged()  // 5, 3, 11, 7, 3, 19
                         </code></pre>
                 <aside class="notes">
                     <UL>
