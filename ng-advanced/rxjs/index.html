@@ -451,7 +451,7 @@
                     //                  j k l x4|
                     catchError(() => of('z'))
                     retry( 2 )
-                    retry({ delay: (error) => error === x1 : of(error) : throwError(() => error) })
+                    retry({ delay: (error) => error === x1 ? of(error) : throwError(() => error) })
                 </code></pre>
                 <ul>
                     <li>Note: xN is an error</li>
@@ -472,7 +472,7 @@
                     // a b c z
                     retry( 2 )
                     // a b c d e f g h i x3
-                    retry({ delay: (error) => error === x1 : of(error) : throwError(() => error) })
+                    retry({ delay: (error) => error === x1 ? of(error) : throwError(() => error) })
                     // a b c d e f x2
                 </code></pre>
                 <aside class="notes">
