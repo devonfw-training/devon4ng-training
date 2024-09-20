@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>E2E Testing with Playwright</title>
+  <link rel="icon" href="../common/img/favicon.ico">
+
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <link rel="stylesheet" href="../node_modules/reveal.js/css/reveal.css">
+  <link rel="stylesheet" href="../node_modules/reveal.js/css/theme/white.css">
+  <link rel="stylesheet" href="../common/css/common.css">
+  <link rel="stylesheet" href="css/own.css">
+
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="../common/css/github-gist.css">
+
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match(/print-pdf/gi) ? '../node_modules/reveal.js/css/print/pdf.css' : '../node_modules/reveal.js/css/print/paper.css';
+    document.getElementsByTagName('head')[0].appendChild(link);
+  </script>
+</head>
+
+<body>
+  <section class="devon-link">
+    <a href="http://devonfw.github.io" target="_blank"><img height="30px" src="../common/img/devon_logo_blue.png"></a>
+  </section>
+  <section class="angular-link">
+    <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
+  </section>
+  <div class="devon reveal">
+    <div class="slides">
+      <section>
+        <h1>E2E-TESTING USING PLAYWRIGHT</h1>
+        <p><small><a href="https://playwright.dev/docs/writing-tests">Docs</a></small></p>
+      </section>
+      <section>
+        <h3>Why test end-to-end?</h3>
+        <p class="text-align-left">We test...</p>
+        <ul>
+          <li>to ensure our application works within the <span class="highlight">target eco-system</span>.</li>
+          <li>automated to get <span class="highlight">quick and reliable</span> feedback.</li>
+          <li>to detect <span class="highlight">breaking features</span> as soon as possible.</li>
+          <li>to ensure the best <span class="highlight">quality</span>.</li>
+        </ul>
+      </section>
+      <section>
+        <h3>End-to-end testing our Angular applications</h3>
+        <p>
+          <span class="highlight">Protractor</span> is deprecated as of May 2021 due to...
+        </p>
+        <ul>
+          <li>outdated Selenium based testing.</li>
+          <li>many modern alternatives exist.</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Playwright as an alternative</h3>
+        <img src="img/e2e-testing-compare.png" alt="Compare Web Testing">
+        <p>"Playwright is a framework for Web Testing and Automation. It allows testing Chromium, Firefox and WebKit with a single API."</p>
+        <div class="margin_top_30">
+          <p class="align_right"><small><a
+                href="https://github.com/microsoft/playwright">Playwright</a></small>
+          </p>
+        </div>
+      </section>
+      <section>
+        <h3>It is just another node module...</h3>
+        <pre><code class="hljs typescript"  data-trim data-noescape>
+yarn create playwright
+            </code></pre>
+      </section>
+      <section>
+        <h3>...which comes with everything you need to start testing!</h3>
+        <img src="img/playwright-ui-mode.png" alt="Playwright start page">
+      </section>
+      <section>
+        <h3>You can visit your app...</h3>
+        <pre><code class="hljs typescript"  data-trim data-noescape>
+await page.goto('/movies');
+            </code></pre>
+            <div class="margin_top_30">
+              <p class="align_right"><small><a
+                    href="https://playwright.dev/docs/api/class-page#page-goto">Playwright docs</a></small>
+              </p>
+            </div>
+      </section>
+      <section>
+        <h3>...interact with elements...</h3>
+        <pre><code class="hljs typescript"  data-trim data-noescape>
+// click on a fancy button
+await page.getByRole('button', { name: 'Fancy Button' }).click();
+// clear and type into a fancy input
+await page.getByLabel('Fancy Input').fill('Important stuff');
+            </code></pre>
+            <div class="margin_top_30">
+              <p class="align_right"><small><a
+                    href="https://playwright.dev/docs/locators">Playwright docs</a></small>
+              </p>
+            </div>
+      </section>
+      <section>
+        <h3>...make assertions...</h3>
+        <pre><code class="hljs typescript"  data-trim data-noescape>
+// check whether the input value is something
+await expect(page.getByLabel('Fancy Input')).toContainText('Important stuff');
+            </code></pre>
+            <div class="margin_top_30">
+              <p class="align_right"><small><a
+                    href="https://playwright.dev/docs/test-assertions">Playwright docs</a></small>
+              </p>
+            </div>
+      </section>
+      <section>
+        <h3>...and even mock or intercept backend calls!</h3>
+        <pre><code class="hljs typescript"  data-trim data-noescape>
+// mock backend calls
+await page.route('/services/rest/movies', async route => {
+  const json = [{ name: 'Titanic', id: 21 }];
+  await route.fulfill({ json });
+});
+
+// intercept a call and work with the response
+const movies = await request.get(`/services/rest/movies`);
+
+// wait for a request before moving on
+await page.waitForResponse('/services/rest/movies'/);
+            </code></pre>
+            <div class="margin_top_30">
+              <p class="align_right"><small><a
+                    href="https://playwright.dev/docs/mock">Playwright docs</a></small>
+              </p>
+            </div>
+      </section>
+      <section>
+        <h3>The test structure looks familiar!</h3>
+        <pre><code class="hljs typescript"  data-trim data-noescape>
+test.describe('Movie Page', () => {
+  let moviesPage: MoviesPage;
+
+  test.beforeEach(() => {
+    moviesPage = new MoviesPage();
+  });
+
+  test('should create a new movie', async () => {
+    // goto the movie overview
+    await moviesPage.goto();
+
+    // do stuff
+    await moviesPage.clickAddButton();
+    // do something to add a new movie...
+  });
+});
+            </code></pre>
+            <div class="margin_top_30">
+              <p class="align_right"><small><a
+                    href="https://playwright.dev/docs/test-annotations">Playwright docs</a></small>
+              </p>
+            </div>
+      </section>
+      <section>
+        <h3>Some best practices:</h3>
+        <ul>
+          <li>Make tests as isolated as possible (i.e. with beforeEach, Page Object Models, Fixture)</li>
+          <li>Use <span class="highlight">locators</span> with chaining/filtering and prefer user-facing attributes to XPath or CSS selectors</li>
+          <li>Use <span class="highlight">web first assertions</span> because it will wait until the expected condition is met.</li>
+          <li>do not store the result of a <span class="highlight">chainable command</span> in a variable.</li>
+          <li>use as <span class="highlight">many assertions</span> as needed. It's not unit testing.</li>
+        </ul>
+
+          <div class="margin_top_30">
+              <p class="align_right"><small><a
+                      href="https://playwright.dev/docs/best-practices">Playwright docs</a></small>
+              </p>
+          </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="../node_modules/reveal.js/js/reveal.js"></script>
+  <script src="../common/reveal-config.js"></script>
+
+  <script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({ ...revealConfig });
+  </script>
+</body>
+
+</html>

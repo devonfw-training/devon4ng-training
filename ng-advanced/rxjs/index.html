@@ -136,10 +136,10 @@
                     <li>Simple selection and filtering</li>
                 </ul>
                 <pre><code data-noescape data-trim class="typescript no-max-height" data-line-numbers="">
-                    // Input: 5, 3, 3, 11, 7, 7, 19
+                    // Input: 5, 3, 3, 11, 7, 7, 3, 3, 3, 19
                     filter( value => value > 10)  // 11, 19
                     take( 5 )               // 5, 3, 3, 11, 7
-                    distinctUntilChanged()  // 5, 3, 11, 7, 19
+                    distinctUntilChanged()  // 5, 3, 11, 7, 3, 19
                         </code></pre>
                 <aside class="notes">
                     <UL>
@@ -451,7 +451,7 @@
                     //                  j k l x4|
                     catchError(() => of('z'))
                     retry( 2 )
-                    retry({ delay: (error) => error === x1 : of(error) : throwError(() => error) })
+                    retry({ delay: (error) => error === x1 ? of(error) : throwError(() => error) })
                 </code></pre>
                 <ul>
                     <li>Note: xN is an error</li>
@@ -472,7 +472,7 @@
                     // a b c z
                     retry( 2 )
                     // a b c d e f g h i x3
-                    retry({ delay: (error) => error === x1 : of(error) : throwError(() => error) })
+                    retry({ delay: (error) => error === x1 ? of(error) : throwError(() => error) })
                     // a b c d e f x2
                 </code></pre>
                 <aside class="notes">
