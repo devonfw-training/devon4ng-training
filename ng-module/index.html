@@ -348,30 +348,6 @@ export class AppComponent { }</code></pre>
             </aside>
           </section>
           <section>
-            <h3>How does it work?</h3>
-            <pre><code class="hljs typescript" data-trim data-noescape> 
-                import { Component, ViewChild, AfterViewInit } from '@angular/core';
-                import { ProfilePhoto } from './profile-photo.component';
-                
-                @Component({
-                  standalone: true,
-                  imports: [ProfilePhoto],
-                  selector: 'user-profile',
-                  template: `<profile-photo />`
-                })
-                export class UserProfile implements AfterViewInit {
-                  <mark>@ViewChild(ProfilePhoto) profilePhotoComponent!: ProfilePhoto;</mark>
-                
-                  public photoInfo: string = '';
-                
-                  ngAfterViewInit() {
-                    <mark>this.photoInfo = this.profilePhotoComponent.getPhotoInfo();</mark>
-                    <mark>console.log('Photo URL:', this.profilePhotoComponent.photoUrl);</mark>
-                  }
-                }
-                  </code></pre>
-          </section>
-          <section>
             <h3>Import Modules</h3>
             <pre><code class="hljs typescript" data-trim data-noescape> 
                 import { Component } from '@angular/core';
