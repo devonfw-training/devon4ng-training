@@ -1,0 +1,366 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>Angular Signals</title>
+    <link rel="icon" href="../common/img/favicon.ico" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Ubuntu+Mono"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Ubuntu"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/reveal.css" />
+    <link
+      rel="stylesheet"
+      href="../node_modules/reveal.js/css/theme/white.css"
+    />
+    <link rel="stylesheet" href="../common/css/common.css" />
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../common/css/github-gist.css" />
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.type = "text/css";
+      link.href = window.location.search.match(/print-pdf/gi)
+        ? "../node_modules/reveal.js/css/print/pdf.css"
+        : "../node_modules/reveal.js/css/print/paper.css";
+      document.getElementsByTagName("head")[0].appendChild(link);
+    </script>
+  </head>
+  <body>
+    <section class="devon-link">
+      <a href="http://devonfw.github.io" target="_blank"
+        ><img height="30px" src="../common/img/devon_logo_blue.png"
+      /></a>
+    </section>
+    <section class="angular-link">
+      <a href="http://angular.io" target="_blank"
+        ><img height="50px" src="../common/img/angular.svg"
+      /></a>
+    </section>
+    <div class="devon reveal">
+      <div class="slides">
+        <section>
+          <h1>Angular Signals</h1>
+        </section>
+
+        <section>
+          <h3>What are signals?</h3>
+          <ul>
+            <li>
+              A <strong>signal</strong> is a wrapper around a value that
+              notifies interested consumers when that value changes.
+            </li>
+            <li>
+              A new reactive primitive feature introduced with
+              <strong>Angular 16</strong>.
+            </li>
+            <li>
+              Enhances performance through selective view updates, leading to
+              more efficient change detection.
+            </li>
+            <li>
+              Signals can contain any value, from primitives to complex data
+              structures.
+            </li>
+            <li>Provides a <strong>synchronous</strong> reactivity model.</li>
+          </ul>
+          <div class="margin_top_30">
+            <p class="align_right">
+              <small
+                ><a href="https://angular.dev/guide/signals"
+                  >Angular Docs</a
+                ></small
+              >
+            </p>
+          </div>
+        </section>
+
+        <section>
+          <p>
+            Signals aim to reduce the complexity and boilerplate associated with
+            RxJS and Observables. They provide a more straightforward API for
+            state management, making it easier to write, read, and maintain
+            reactive code.
+          </p>
+          <aside class="notes">
+            <ul>
+              <li>
+                Explain that Signals are introduced to simplify state
+                management.
+              </li>
+              <li>They complement rather than replace RxJS.</li>
+              <li>Emphasize simplicity and performance benefits.</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <strong>Comparison with Observables</strong>
+          <br /><br />
+          <table>
+            <tr>
+              <th>Feature</th>
+              <th>Signals</th>
+              <th>Observables (RxJS)</th>
+            </tr>
+            <tr>
+              <td>Type</td>
+              <td>Synchronous</td>
+              <td>Synch-/Asynchronous</td>
+            </tr>
+            <tr>
+              <td>Complexity</td>
+              <td>Simple</td>
+              <td>Higher</td>
+            </tr>
+            <tr>
+              <td>Boilerplate</td>
+              <td>Less</td>
+              <td>More</td>
+            </tr>
+            <tr>
+              <td>Use Cases</td>
+              <td>Local state, UI reactivity</td>
+              <td>Asynchronous data streams</td>
+            </tr>
+          </table>
+        </section>
+
+        <!-- Slide 5: Writable Signals -->
+        <section>
+          <h3>Writable signals</h3>
+          <p>
+            Writable signals provide an API for updating their values directly.
+          </p>
+          <pre><code class="hljs typescript" data-trim>
+import { signal } from '@angular/core';
+
+// Create a signal
+const count = signal(0);
+
+// Signals are getter functions - calling them reads their value.
+console.log('The count is: ' + count());
+
+// Change the value of a writable signal directly with .set():
+count.set(3);
+
+// Or use the .update() operation to compute a new value from the previous one:
+count.update(currentValue => currentValue + 1);
+  </code></pre>
+        </section>
+
+        <section>
+          <h3>Computed signals</h3>
+          <p>
+            Computed signals are read-only signals that derive their value from
+            other signals.
+          </p>
+          <pre><code class="hljs typescript" data-trim>
+import { signal, computed } from '@angular/core';
+
+const count = signal(0);
+const doubleCount = computed(() => count() * 2);
+  </code></pre>
+          <br />
+          <p>
+            Calling <code>.set()</code> on a computed signal results in a
+            compilation error.
+          </p>
+          <pre><code class="hljs typescript" data-trim>
+doubleCount.set(3); 
+
+Error: Property 'set' does not exist on type 'Signal&lt;number&gt;'.
+  </code></pre>
+          <aside class="notes">
+            <ul>
+              <li>Explain that computed signals are read-only.</li>
+              <li>They automatically update when dependent signals change.</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h3>Computed signals evaluation</h3>
+          <p>Computed signals are both lazily evaluated and memoized.</p>
+          <p>
+            The derivation function does not run to calculate its value until
+            the first time you read the computed signal.
+          </p>
+          <aside class="notes">
+            <ul>
+              <li>Discuss lazy evaluation and memoization.</li>
+              <li>Highlight performance benefits.</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h3>Signals vs RxJS Observables</h3>
+          <p><strong>With RxJS:</strong></p>
+          <pre><code class="hljs typescript" data-trim>
+import { BehaviorSubject } from 'rxjs';
+
+const count$ = new BehaviorSubject(0);
+
+count$.subscribe(value => console.log(value));
+
+count$.next(1);
+  </code></pre>
+          <p><strong>With Signals:</strong></p>
+          <pre><code class="hljs typescript" data-trim>
+import { signal } from '@angular/core';
+
+const count = signal(0);
+
+console.log(count());
+
+count.set(1);
+  </code></pre>
+          <aside class="notes">
+            <ul>
+              <li>Explain that both approaches have their use cases.</li>
+              <li>
+                Emphasize the simplicity of signals for local state management.
+              </li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h3>Signals vs Zone.js</h3>
+          <img class="reset" src="img/signals_vs_zonejs.png" />
+        </section>
+
+        <section>
+          <h3>Zone.js</h3>
+          <pre><code class="hljs typescript" data-trim>
+            @Component({
+              selector: 'app-root',
+              template: `
+                <h1>{{ counter }}</h1>
+                <button (click)="increment()">Increment</button>
+              `,
+            })
+            export class AppComponent {  
+              counter: number = 0;
+              
+              increment() {
+                // Since Angular uses Zone.js, the entire component tree 
+                // is checked and the value in the template is updated.
+                this.counter++;
+              }
+            }
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Signals</h2>
+          <pre><code class="hljs typescript" data-trim>
+            @Component({
+              selector: 'app-root',
+              template: `
+                <h1>{{ counter() }}</h1>
+                <button (click)="increment()">Increment</button>
+              `,
+            })
+            export class AppComponent {  
+              counter = signal(0);
+              
+              increment() {
+                // Only the parts of the view that depend on 
+                // the updated signal are checked and updated.
+                this.counter.set(this.counter() + 1);
+              }
+            }
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>Effects</h3>
+          <p>React to changes in signals and perform side effects.</p>
+
+          <pre><code class="hljs typescript" data-trim>
+import { effect } from '@angular/core';
+
+effect(() => {
+  console.log('The count is: ' + count());
+});
+  </code></pre>
+          <aside class="notes">
+            <ul>
+              <li>Show how effects can be used to react to signal changes.</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h3>Live Demo: Angular Signals</h3>
+          <aside class="notes">
+            <ul>
+              <pre><code class="hljs typescript" data-trim>
+                import { Component, signal } from '@angular/core';
+                import { CommonModule } from '@angular/common';
+                
+                @Component({
+                  selector: 'app-root',
+                  standalone: true,
+                  imports: [CommonModule],
+                  template: `
+                    <div *ngIf="isVisible()">
+                      <h1>Hello World</h1>
+                    </div>
+                    <button (click)="updateView()">
+                      {{ isVisible() ? 'Hide' : 'Show' }} Text
+                    </button>
+                  `,
+                })
+                export class AppComponent {
+                  isVisible = signal(false);
+                
+                  updateView() {
+                    this.isVisible.update(value => !value);
+                  }
+                }
+      </code></pre>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h3>Summary</h3>
+          <ul>
+            <li>No need to manage subscriptions.</li>
+            <li>Ideal for local state and UI updates.</li>
+            <li>Performance optimization through selective view updates.</li>
+            <li>Not fully matured for complex asynchronous operations.</li>
+            <li>
+              Signals can be exposed as an Observable with
+              toObservable(this.count);
+            </li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <script src="../node_modules/reveal.js/js/reveal.js"></script>
+    <script src="../common/reveal-config.js"></script>
+
+    <script>
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({ ...revealConfig });
+    </script>
+  </body>
+</html>
