@@ -348,7 +348,10 @@ effect(() => {
             <li>Not fully matured for complex asynchronous operations.</li>
             <li>
               Signals can be exposed as an Observable with
-              toObservable(this.count);
+              <strong>toObservable(count)</strong>.
+            </li>
+            <li>
+              <strong>toSignal(count$)</strong> subscribes to the Observable immediately.
             </li>
           </ul>
         </section>
