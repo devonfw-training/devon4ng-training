@@ -44,78 +44,26 @@
                 <img class="header-logo" src="img/js-logo.png" alt="javascript logo">
                 <p>ECMAScript (<strong>JavaScript</strong>)</p>
             </section>
-            <section>
-                <p>
-                    <p>ECMAScript (ES) first <strong>introduced 1997</strong> turned 25 in 2022 and its popularity is <strong>still growing.</strong></p>
-                    <p><small><strong>3th</strong> <a href="https://pypl.github.io/PYPL.html" target="_blank">PYPL</a> (September 2021), <strong>7th</strong> <a href="https://www.tiobe.com/tiobe-index/" target="_blank">TIOBE Index</a> (September 2021)<br>
-                (TypeScript is listed separately)</small></p>
-                </p>
-                <aside class="notes">
-                    For a long time is what not very popular, until the browser engines got faster engines.
-                </aside>
-            </section>
-            <section>
-                <h2>JavaScript is everywhere...</h2>
-                <div style="display: flex; justify-content: space-around;">
-                    <div style="display: flex; flex-direction: column; align-items: start">
-                        <div style="display: flex; justify-content: center; align-items: center">
-                            <img class="header-logo" style="height: 138px; margin: -30px" src="img/edge-logo.png" alt="javascript logo">
-                            <img class="header-logo" style="height: 90px" src="img/chrome-logo.png" alt="javascript logo">
-                            <img class="header-logo" style="height: 90px" src="img/firefox-logo.png" alt="javascript logo">
-                            <img class="header-logo" style="height: 90px" src="img/safari-logo.png" alt="javascript logo">
-                        </div>
-                        <p style="text-align: left; margin-left: 28px">on the client</p>
-                    </div>
-                    <div style="display: flex; flex-direction: column; align-items: start">
-                        <img class="header-logo" style="height: 90px; margin-left: 0" src="img/nodejs-logo.png" alt="javascript logo">
-                        <p style="text-align: left">on the server</p>
-                    </div>
-                </div>
-                <aside class="notes">
-                    Java's slogan from 95 was "Write once, run anywhere". It is still not true for Java. Javascript achieved it.
-                </aside>
-            </section>
-            <section>
-                <h2>ECMAScript versions</h2>
-                <ul>
-                    <li>ES3 1999</li>
-                    <li>ES5 2009</li>
-                    <li>ES2015 (f.k.a. ES6) 2015</li>
-                    <li>ES2016, ES2017, ..., ES.Next</li>
-                </ul>
-                <p>
-                    <small>
-                    <a href="http://caniuse.com/#search=es6" target="_blank">Can I use ES6 (Browsers Support)</a><br>
-                    <a href="http://node.green/" target="_blank">node.green (Node.js Support)</a>
-                </small>
-                </p>
-                <aside class="notes">
-                    Long time without new versions.<br>
-                    Since ES2015 new useful features are introduced every year.<br>
-                    The amount of JS projects increased massively since then.
-                </aside>
-            </section>
-            <section>
-                <h3>Why ES5 was relevant for so long</h3>
-                <ul>
-                    <li>Basically every browser supported it</li>
-                    <li>Internet Explorer did not support newer versions</li>
-                    <li>Most TypeScript projects (still) <strong>compile</strong> to it.</li>
-                    <li>There are lots of <strong>legacy projects</strong>, <strong>build scripts</strong>, etc. written in ES5.</li>
-                    <li>In 2022 Internet Explorer's market share is &lt;1% Projects don't need to support it anymore</li>
-                    <li>Today's projects should compile to ES2016+</li>
-                </ul>
-                <aside class="notes">
-                    <ul>
-                        <li>IE did not update itself to a new version. So new language features did not arrive at the users automatically</li>
-                        <li>Other browsers like Chrome and Firefox updated themselfes and got new language features. Only IE was missing</li>
-                        <li>Nowadays the "evergreen" browsers get new features constantly</li>
-                        <li>Node.js supported new ES versions for a long time</li>
-                        <li>Setting the target version to ES2016 instead of ES5 significally reduces the file size. All browsers support it</li>
-                    </ul>
-                    <br>
-                </aside>
-            </section>
+			<section>
+				<h2>JavaScript is everywhere...</h2>
+				<div style="display: flex; justify-content: space-around;">
+					<div style="display: flex; flex-direction: column; align-items: start">
+						<div style="display: flex; justify-content: center; align-items: center">
+							<img class="header-logo" style="height: 90px" src="img/chrome-logo.png" alt="javascript logo">
+							<img class="header-logo" style="height: 90px" src="img/firefox-logo.png" alt="javascript logo">
+							<img class="header-logo" style="height: 90px" src="img/safari-logo.png" alt="javascript logo">
+						</div>
+						<p style="text-align: left; margin-left: 28px">on the client</p>
+					</div>
+					<div style="display: flex; flex-direction: column; align-items: start">
+						<img class="header-logo" style="height: 90px; margin-left: 0" src="img/nodejs-logo.png" alt="javascript logo">
+						<p style="text-align: left">on the server</p>
+					</div>
+				</div>
+				<aside class="notes">
+					Java's slogan from 95 was "Write once, run anywhere". It is still not true for Java. Javascript achieved it.
+				</aside>
+			</section>
             <section>
                 <h2>A word on ES5</h2>
                 <p style="text-align: left"><strong>ES5 / classic JavaScript...</strong></p>
@@ -125,6 +73,7 @@
                 <p>...is of single-threaded nature</p>
                 <p>...has asynchronous programming model</p>
                 <p>...is object oriented & functional at the same time</p>
+				<p class="hint center">Checkout backup slides for <a href="./index.html#/19/3">javascript history</a></p>
                 <aside class="notes">
                     <ul>
                         <li>The name was given for marketing. It is the result of a deal between Nescape (creator of JS) and Sun (owner of Java)</li>
@@ -156,37 +105,6 @@
                         </li>
                     </ul>
                 </aside>
-            </section>
-            <section>
-                <p>An example for a well known JavaScript pattern (<strong>IIFE</strong>)</p>
-                <pre><code class="max-height-unset" data-trim class="javascript">
-var person = (function () {
-    var details = {
-        firstName: 'John',
-        lastName: 'Example',
-        age: 30
-    };
-
-    return {
-        letMeIntroduceMyself: function () {
-            return 'My name is ' +
-                details.firstName + ' ' + details.lastName;
-        }
-    };
-})();
-
-person.letMeIntroduceMyself(); // My name is John Example
-person.details; // undefined
-            </code></pre>
-            <aside class="notes">
-               Immediatly Invoked Functional Expression.<br>
-               This was the go to pattern to create private variables.<br>
-               TypeScript classes still compile to this, if you set the target version to ES5. Newer versions have support for classes.
-            </aside>
-            </section>
-            <section>
-                <p>Newer ES versions introduced concepts like classes, modules and block scope variables.</p>
-                <p>With TypeScript we can use those features today - and that's where we will continue.</p>
             </section>
             <section id="typescript" data-background-image="img/foreground_bluprint.svg" data-background-position="top" data-background-size="100% auto" data-background-color="#152740">
                 <img style="height: 100px" class="header-logo plain margin-top-6-em" src="img/ts-logo.svg" alt="TS logo">
@@ -256,10 +174,14 @@ document.body.innerHTML = greeter(user);
                 </code></pre>
                 <p>Leads to compile time error.</p>
                 <p><small>error TS2345: Argument of type 'number[]' is not assignable to parameter of type 'string'.</p></small>
-            </section>
-            <section>
-                <p>... and is even supported by VS Code</p>
-                <img src="img/ts-vscode-error.png" alt="VS Code TS Error" class="plain no-border">
+				<div class="fragment">
+					<p>... and is even supported by VS Code</p>
+					<img src="img/ts-vscode-error.png" alt="VS Code TS Error" class="plain no-border">
+				</div>
+			</section>
+			<section>
+                <img src="img/greet_person.png" class="plain no-border" alt="">
+                <p>TypeScript works well with VS Code</p>
             </section>
             <section>
                 <pre><code class="typescript" data-trim>
@@ -282,10 +204,6 @@ document.body.innerHTML = greeter(user);
                         <li>Any object that has at least the properties "firstName" and "lastName" fulfills the interface Person</li>
                     </ul>
                  </aside>
-            </section>
-            <section>
-                <img src="img/greet_person.png" class="plain no-border" alt="">
-                <p>TypeScript works well with VS Code</p>
             </section>
             <section>
                 <pre><code data-trim class="typescript">
@@ -431,6 +349,116 @@ query('otto');
                     <p>More specific than a string - cool, right?</p>
                 </div>
             </section>
+			<section>
+				<section>
+					<h2>Summary</h2>
+					<ul>
+						<li>JavaScript is object oriented & functional</li>
+						<li>Use === instead of ==</li>
+						<li>TypeScript is JavaScript with syntax for types</li>
+						<li>Structure-based type check</li>
+						<li>Enjoy Object literals</li>
+					</ul>
+					<p class="hint center">Live Code Examples & Backup slides below</p>
+				</section>
+				<section>
+					<h2>Live Code Examples</h2>
+					<ul>
+						<li><a href="https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html" target="_blank">TypeScript for JavaScript Programmers</a></li>
+						<li>JavaScript specifics: 
+							<a href="https://www.w3schools.com/js/js_hoisting.asp" target="_blank">Hoisting</a>,
+							<a href="https://www.w3schools.com/js/js_this.asp" target="_blank">this Keyword</a>,
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Backup slides</h2>
+					<p>Following slides are not subject of the lecture.<br>Ask trainers in case of questions.</p>
+				</section>
+				<section>
+					<h2>History of JavaScript</h2>
+					<p>
+						<p>ECMAScript (ES) first <strong>introduced 1997</strong> turned 25 in 2022 and its popularity is <strong>still growing.</strong></p>
+						<p><small><strong>3th</strong> <a href="https://pypl.github.io/PYPL.html" target="_blank">PYPL</a> (September 2021), <strong>7th</strong> <a href="https://www.tiobe.com/tiobe-index/" target="_blank">TIOBE Index</a> (September 2021)<br>
+					(TypeScript is listed separately)</small></p>
+					</p>
+					<aside class="notes">
+						For a long time is what not very popular, until the browser engines got faster engines.
+					</aside>
+				</section>
+				<section>
+					<h2>ECMAScript versions</h2>
+					<ul>
+						<li>ES3 1999</li>
+						<li>ES5 2009</li>
+						<li>ES2015 (f.k.a. ES6) 2015</li>
+						<li>ES2016, ES2017, ..., ES.Next</li>
+					</ul>
+					<p>
+						<small>
+						<a href="http://caniuse.com/#search=es6" target="_blank">Can I use ES6 (Browsers Support)</a><br>
+						<a href="http://node.green/" target="_blank">node.green (Node.js Support)</a>
+					</small>
+					</p>
+					<aside class="notes">
+						Long time without new versions.<br>
+						Since ES2015 new useful features are introduced every year.<br>
+						The amount of JS projects increased massively since then.
+					</aside>
+				</section>
+				<section>
+					<h3>Why ES5 was relevant for so long</h3>
+					<ul>
+						<li>Basically every browser supported it</li>
+						<li>Internet Explorer did not support newer versions</li>
+						<li>Most TypeScript projects (still) <strong>compile</strong> to it.</li>
+						<li>There are lots of <strong>legacy projects</strong>, <strong>build scripts</strong>, etc. written in ES5.</li>
+						<li>In 2022 Internet Explorer's market share is &lt;1% Projects don't need to support it anymore</li>
+						<li>Today's projects should compile to ES2016+</li>
+					</ul>
+					<aside class="notes">
+						<ul>
+							<li>IE did not update itself to a new version. So new language features did not arrive at the users automatically</li>
+							<li>Other browsers like Chrome and Firefox updated themselfes and got new language features. Only IE was missing</li>
+							<li>Nowadays the "evergreen" browsers get new features constantly</li>
+							<li>Node.js supported new ES versions for a long time</li>
+							<li>Setting the target version to ES2016 instead of ES5 significally reduces the file size. All browsers support it</li>
+						</ul>
+						<br>
+					</aside>
+				</section>
+				<section>
+					<p>An example for a well known JavaScript pattern (<strong>IIFE</strong>)</p>
+					<pre><code class="max-height-unset" data-trim class="javascript">
+	var person = (function () {
+		var details = {
+			firstName: 'John',
+			lastName: 'Example',
+			age: 30
+		};
+
+		return {
+			letMeIntroduceMyself: function () {
+				return 'My name is ' +
+					details.firstName + ' ' + details.lastName;
+			}
+		};
+	})();
+
+	person.letMeIntroduceMyself(); // My name is John Example
+	person.details; // undefined
+				</code></pre>
+				<aside class="notes">
+				   Immediatly Invoked Functional Expression.<br>
+				   This was the go to pattern to create private variables.<br>
+				   TypeScript classes still compile to this, if you set the target version to ES5. Newer versions have support for classes.
+				</aside>
+				</section>
+				<section>
+					<p>Newer ES versions introduced concepts like classes, modules and block scope variables.</p>
+					<p>With TypeScript we can use those features today - and that's where we will continue.</p>
+				</section>
+			</section>
         </div>
     </div>
 
