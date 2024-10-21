@@ -297,9 +297,10 @@ let zoo = [new Rhino(), new Elephant(), new Snake()];
 // corrects type
 let zoo: Animal[] = [new Rhino(), new Elephant(), new Snake()];
               </code></pre>
+			  <p class="align_right"><small><a href="https://www.typescriptlang.org/docs/handbook/type-inference.html">TypeScript Docs</a></small></p>
             </section>
             <section>
-                <h2>Advanced Types / Type Narrowing</h2>
+                <h2>Type Narrowing</h2>
                 <pre><code class="typescript" data-trim>
 function padLeft(value: string, padding: any) {
   if (typeof padding === 'number') {
@@ -313,6 +314,7 @@ function padLeft(value: string, padding: any) {
   throw new Error(`Expected string or number, got '${padding}'.`);
 }
               </code></pre>
+			  <p><small><a href="https://www.typescriptlang.org/docs/handbook/2/narrowing.html">TypeScript Docs</a></small></p>
             </section>
             <section>
                 <h2>Strict Null Checks</h2>
@@ -328,6 +330,7 @@ function myFunc(val: MyType) {
 myFunc(null); // compiler error
 myFunc(undefined); // compiler error
               </code></pre>
+			  <p><small><a href="https://www.typescriptlang.org/docs/handbook/2/basic-types.html#strictness">TypeScript Docs</a></small></p>
               <aside class="notes">
                 <ul>
                     <li>Sometimes confusing for beginners and therefore turned of for the exercises</li>
