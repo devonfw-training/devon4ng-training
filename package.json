@@ -1,6 +1,9 @@
 {
   "dependencies": {
-    "reveal.js": "^3.8.0",
-    "reveal.js-menu": "^1.2.0"
+    "reveal.js": "^5.1.0",
+    "reveal.js-menu": "^2.1.0"
+  },
+  "scripts": {
+    "start": "cd ./node_modules/reveal.js && npm --prefix ./node_modules/reveal.js run start"
   }
 }

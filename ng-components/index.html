@@ -9,22 +9,13 @@
 
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-    <link rel="stylesheet" href="../node_modules/reveal.js/css/reveal.css">
-    <link rel="stylesheet" href="../node_modules/reveal.js/css/theme/white.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/dist/reveal.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/dist/theme/white.css">
     <link rel="stylesheet" href="../common/css/common.css">
     
     <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="../common/css/github-gist.css">
 	<link rel="stylesheet" href="./styles/own.css" />
-
-    <!-- Printing and PDF exports -->
-    <script>
-        var link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.type = 'text/css';
-        link.href = window.location.search.match(/print-pdf/gi) ? '../node_modules/reveal.js/css/print/pdf.css' : '../node_modules/reveal.js/css/print/paper.css';
-        document.getElementsByTagName('head')[0].appendChild(link);
-    </script>
 </head>
 <body>
   <section class="devon-link">
@@ -55,7 +46,7 @@
 	  <section>
 		  <section>
 			<h2 class="no-text-transform">Component is just a class...</h2>
-			<pre><code class="hljs typescript"  data-trim data-noescape>
+			<pre><code class="hljs typescript"  data-trim data-line-numbers>
 	export class BookDetailsComponent implements OnInit {
 	  currentBook = new Book();
 
@@ -68,9 +59,9 @@
 			</section>
 			<section>
 				<h2 class="no-text-transform">...which has an API for the view</h2>
-				<pre><code class="hljs typescript"  data-trim data-noescape>
+				<pre><code class="hljs typescript"  data-trim data-line-numbers="2">
 	export class BookDetailsComponent implements OnInit {
-	  <mark>currentBook = new Book();</mark>
+	  currentBook = new Book();
 
 	  ngOnInit(): void {
 		this.currentBook.author = 'John Example';
@@ -86,14 +77,14 @@
 			</section>
 			<section>
 				<h2 class="no-text-transform">...and can implement hooks</h2>
-				<pre><code class="hljs typescript"  data-trim data-noescape>
-	export class BookDetailsComponent implements <mark>OnInit</mark> {
+				<pre><code class="hljs typescript" data-trim data-line-numbers="1,4-7">
+	export class BookDetailsComponent implements OnInit {
 	  currentBook = new Book();
 
-	  <mark>ngOnInit(): void {
+	  ngOnInit(): void {
 		this.currentBook.author = 'John Example';
 		this.currentBook.title = 'Angular in a nutshell';
-	  }</mark>
+	  }
 	}
 				</code></pre>
 				<aside class="notes">
@@ -111,24 +102,36 @@
 		<section>
 			<section>
 				<h2 class="no-text-transform">Component template is regular HTML...</h2>
-				<pre><code class="hljs html" data-trim data-noescape>
-	&lt;div&gt;
-	  &lt;label&gt;Author:&lt;/label&gt;&nbsp;&lt;span&gt;{{currentBook.author}}&lt;/span&gt;
-	&lt;/div&gt;
-	&lt;div&gt;
-	  &lt;label&gt;Title:&lt;/label&gt;&nbsp;&lt;span&gt;{{currentBook.title}}&lt;/span&gt;
-	&lt;/div&gt;
+				<pre><code class="hljs html" data-trim data-line-numbers>
+	<div>
+      <label>Author:</label>
+      <span>
+        {{currentBook.author}}
+      </span>
+	</div>
+	<div>
+      <label>Title:</label>
+      <span>
+        {{currentBook.title}}
+	  </span>
+	</div>
 				</code></pre>
 			</section>
 			<section>
 				<h2 class="no-text-transform">...with Angular's template syntax</h2>
-				<pre><code class="hljs html" data-trim data-noescape>
-	&lt;div&gt;
-	  &lt;label&gt;Author:&lt;/label&gt;&nbsp;&lt;span&gt;<mark>{{currentBook.author}}</mark>&lt;/span&gt;
-	&lt;/div&gt;
-	&lt;div&gt;
-	  &lt;label&gt;Title:&lt;/label&gt;&nbsp;&lt;span&gt;<mark>{{currentBook.title}}</mark>&lt;/span&gt;
-	&lt;/div&gt;
+				<pre><code class="hljs html" data-trim data-line-numbers="4,10">
+	<div>
+      <label>Author:</label>
+      <span>
+        {{currentBook.author}}
+      </span>
+	</div>
+	<div>
+      <label>Title:</label>
+      <span>
+        {{currentBook.title}}
+	  </span>
+	</div>
 				</code></pre>
 			</section>
 			<section>
@@ -140,7 +143,7 @@
 		<section>
 			<section>
 				<p>Component Metadata tells Angular <span class="highlight">where to get the major building blocks</span> you specify for the component.</p>
-				<pre><code class="hljs typescript" data-trim  data-noescape>
+				<pre><code class="hljs typescript" data-trim data-line-numbers>
 	@Component({
 	  selector: 'app-book-details',
 	  template:
@@ -158,9 +161,9 @@
 			</section>
 			<section>
 				<p class="no-text-transform"><span class="highlight">selector</span> tells Angular to <span class="highlight">create and insert an instance of this component</span> where it finds a <span class="highlight">&lt;app-book-details&gt; tag</span> in parent HTML</p>
-				<pre><code class="hljs typescript" data-trim  data-noescape>
+				<pre><code class="hljs typescript" data-trim data-line-numbers="2">
 	@Component({
-	  <mark>selector: 'app-book-details'</mark>,
+	  selector: 'app-book-details',
 	  template:
 		`&lt;div&gt;
 		   &lt;label&gt;Author:&lt;/label&gt;&nbsp;&lt;span&gt{{currentBook.author}}&lt;/span&gt;
@@ -176,16 +179,16 @@
 			</section>
 			<section>
 				<p class="no-text-transform"><span class="highlight">Templates can be inlined</span>, e.g. using ES2015 template literals (multi line strings marked with backticks) or ...</p>
-				<pre><code class="hljs typescript" data-trim  data-noescape>
+				<pre><code class="hljs typescript" data-trim data-line-numbers="3-9">
 	@Component({
 	  selector: 'app-book-details',
-	  <mark>template:
+	  template:
 		`&lt;div&gt;
 		   &lt;label&gt;Author:&lt;/label&gt;&nbsp;&lt;span&gt;{{currentBook.author}}&lt;/span&gt;
 		 &lt;/div&gt;
 		 &lt;div&gt;
 		   &lt;label&gt;Title:&lt;/label&gt;&nbsp;&lt;span&gt;{{currentBook.title}}&lt;/span&gt;
-		 &lt;/div&gt;`</mark>
+		 &lt;/div&gt;`
 	})
 	export class BookDetailsComponent implements OnInit {
 	...
@@ -194,10 +197,10 @@
 			</section>
 			<section>
 				<p class="no-text-transform">...extracted to a <span class="highlight">separate file</span> and imported using file path</p>
-				<pre><code class="hljs typescript" data-trim  data-noescape>
+				<pre><code class="hljs typescript" data-trim data-line-numbers="3">
 	@Component({
 	  selector: 'app-book-details',
-	  <mark>templateUrl: './book-details.component.html'</mark>
+	  templateUrl: './book-details.component.html'
 	})
 	export class BookDetailsComponent implements OnInit {
 	...
@@ -206,11 +209,11 @@
 			</section>
 			<section>
 				<p class="no-text-transform">Components are styled <span class="highlight">using a separate css file</span> that is only applied to the component and not to subordinate components.</p>
-				<pre><code class="hljs typescript" data-trim  data-noescape>
+				<pre><code class="hljs typescript" data-trim data-line-numbers="4">
 	@Component({
 	  selector: 'app-book-details',
 	  template: ...,
-	  <mark>styleUrls: ['./book-details.component.css']</mark>
+	  styleUrls: ['./book-details.component.css']
 	})
 	export class BookDetailsComponent implements OnInit {
 	...
@@ -232,12 +235,15 @@
 			<p>The Angular team recommends using standalone components for all new development.</p>
 			<br>
 			<p class="align_right"><small><a href="https://angular.dev/guide/components/importing">Angular Docs</a></small></p>
+			<aside class="notes">
+				We have a look at both varaints to be prepared for older projects.
+			</aside>
 		</section>
-				<section>
+		<section>
 			<h3>Import TypeScript sources</h3>
-			<pre><code class="hljs typescript" data-trim data-noescape> 
+			<pre><code class="hljs typescript" data-trim data-line-numbers="|2"> 
 			import { Component } from '@angular/core'; 
-			<mark>import { ProfilePhoto } from './profile-photo.component';</mark>
+			import { ProfilePhoto } from './profile-photo.component';
 
 			@Component({
 			  standalone: true,
@@ -256,12 +262,12 @@
 		</section>
 		<section>
 			<h3>Define a Standalone Component</h3>
-			<pre><code class="hljs typescript" data-trim data-noescape> 
+			<pre><code class="hljs typescript" data-trim data-line-numbers="5"> 
 			import { Component } from '@angular/core'; 
 			import { ProfilePhoto } from './profile-photo.component';
 
 			@Component({
-			  <mark>standalone: true,</mark>
+			  standalone: true,
 			  imports: [ProfilePhoto],
 			  template: `<profile-photo />`
 			})
@@ -280,13 +286,13 @@
 		</section>
 		<section>
 			<h3>Import Standalone Components</h3>
-			<pre><code class="hljs typescript" data-trim data-noescape> 
+			<pre><code class="hljs typescript" data-trim data-line-numbers="6|"> 
 			import { Component } from '@angular/core'; 
 			import { ProfilePhoto } from './profile-photo.component';
 
 			@Component({
 			  standalone: true,
-			  <mark>imports: [ProfilePhoto],</mark>
+			  imports: [ProfilePhoto],
 			  template: `<profile-photo />`
 			})
 			export class UserProfile { }
@@ -306,15 +312,15 @@
 		</section>
 		<section>
 			<h3>Import Modules</h3>
-			<pre><code class="hljs typescript" data-trim data-noescape> 
+			<pre><code class="hljs typescript" data-trim data-line-numbers="|8"> 
 				import { Component } from '@angular/core';
 				import { ReactiveFormsModule } from '@angular/forms';
 				
 				@Component({
 				  standalone: true,
 				  selector: 'user-profile',
-				  template: `<profile-photo />`,
-				  <mark>imports: [ReactiveFormsModule]</mark>
+				  template: ``,
+				  imports: [ReactiveFormsModule]
 				})
 				export class UserProfile {
 				  profileForm = new FormGroup({
@@ -504,26 +510,26 @@ export class BookModule { }</code></pre>
 				</ul>
 				<p class="hint center">Live Code Examples & Backup slides below</p>
 			</section>
-			<section>
+			<section data-visibility="uncounted">
 				<h2>Live Code Examples</h2>
 				<ul>
 					<li><a href="https://stackblitz.com/edit/stackblitz-starters-ls7pdf?file=src%2Fbook-details.component.ts" target="_blank">Standalone Component</a> Example in Stackblitz</li>
 					<li><a href="https://stackblitz.com/edit/stackblitz-starters-ls7pdf?file=src%2Fbook-details.component.ts" target="_blank">Component & Module</a> Example in Stackblitz</li>
 				</ul>
 			</section>
-			<section>
+			<section data-visibility="uncounted">
 				<h2>Backup slides</h2>
 				<p>Following slides are not subject of the lecture.<br>Ask trainers in case of questions.</p>
 			</section>
-			<section>
+			<section data-visibility="uncounted">
 				<h2 class="no-text-transform">Component CSS Styles</h2>
 				<p>Their selectors only <span class="highlight">apply within the template of that component</span></p>
 				<p>Their class names and selectors <span class="highlight">do not collide</span> with ones used elsewhere in the application</p>
 				<p>Component's styles <span class="highlight">cannot be changed</span> by changes to styles elsewhere in the application</p>
 			</section>
-			<section>
+			<section data-visibility="uncounted">
 				<p><span class="highlight">Pseudo selectors</span>, e.g. <span class="monospace highlight">:host</span>, from <span class="highlight">shadow DOM</span> style scoping are available</p>
-				<pre><code class="hljs css" data-trim data-noescape>
+				<pre><code class="hljs css" data-trim>
 	:host {
 	  display: block;
 	  font-size: x-large;
@@ -537,7 +543,7 @@ export class BookModule { }</code></pre>
 				  ":host" is used to style the angular component itself. Other styles apply to the elements inside of the component, but not the component itself.
 				</aside>
 			</section>
-			<section>
+			<section data-visibility="uncounted">
 			  <h3>Standalone components Definition</h3>
 			  <ul>
 				<li>Introduced with <strong>Angular 14</strong>.</li>
@@ -560,7 +566,7 @@ export class BookModule { }</code></pre>
 				</p>
 			  </div>
 			</section>
-			<section>
+			<section data-visibility="uncounted">
 			  <h3>Benefits of Direct Importing</h3>
 			  <ul>
 				<li>
@@ -575,7 +581,7 @@ export class BookModule { }</code></pre>
 				maintenance and enhances understanding of the codebase.
 			  </aside>
 			</section>
-			<section>
+			<section data-visibility="uncounted">
 				<h3>Future of Angular development</h3>
 				<ul>
 				  <li>
@@ -588,15 +594,15 @@ export class BookModule { }</code></pre>
 				  </li>
 				</ul>
 			  </section>
-			<section>
+			<section data-visibility="uncounted">
 			  <p class="no-text-transform">
 				Starting with <strong>Angular 19</strong>
 				<strong>standalone: true</strong> will be default.
 			  </p>
-			  <pre><code class="hljs typescript" data-trim data-noescape>
+			  <pre><code class="hljs typescript" data-trim>
 					@Component({
-					  <mark>imports: [ProfilePhoto],</mark>
-					  <mark>template: `<profile-photo />`</mark>
+					  imports: [ProfilePhoto],
+					  template: ``
 					})
 					export class UserProfile { }
 					</code></pre>
@@ -605,15 +611,15 @@ export class BookModule { }</code></pre>
 				Add <strong>standalone: false</strong> to existing ngModule
 				components so they continue to work.
 			  </p>
-			  <pre><code class="hljs typescript" data-trim data-noescape>
+			  <pre><code class="hljs typescript" data-trim>
 					  @Component({
-						<mark>standalone: false,</mark>
-						template: `<profile-photo />`
+					    standalone: false,
+					    template: ``
 					  })
 					  export class UserProfile { }
 					  </code></pre>
 			</section>
-			<section>
+			<section data-visibility="uncounted">
 			  <h3>Modules Definition</h3>
 			  <p>
 				Angular modules consolidate
@@ -638,7 +644,7 @@ export class BookModule { }</code></pre>
 				common specific business area.
 			  </aside>
 			</section>
-			<section>
+			<section data-visibility="uncounted">
 			  <h3>Application Start with Modules (1/2)</h3>
 			  <p>AppModule is the top level Module which gets bootstrapped</p>
 			  <pre><code class="typescript">import { NgModule }      from '@angular/core';
@@ -663,7 +669,7 @@ export class BookModule { }</code></pre>
 				entire application like logging or a config service.
 			  </aside>
 			</section>
-			<section>
+			<section data-visibility="uncounted">
 			  <h3>Application Start with Modules (2/2)</h3>
 			  <pre><code style="overflow:hidden" data-trim class="typescript">
 	import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
@@ -692,12 +698,19 @@ export class BookModule { }</code></pre>
     </div>
 </div>
 
-<script src="../node_modules/reveal.js/js/reveal.js"></script>
+<script src="../node_modules/reveal.js/dist/reveal.js"></script>
+<script src="../node_modules/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="../node_modules/reveal.js/plugin/notes/notes.js"></script>
+<script src="../node_modules/reveal.js/plugin/search/search.js"></script>
+<script src="../node_modules/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="../node_modules/reveal.js/plugin/highlight/highlight.js"></script>
+<script src="../node_modules/reveal.js-menu/menu.js"></script>
 <script src="../common/reveal-config.js"></script>
-
 <script>
-    // More info https://github.com/hakimel/reveal.js#configuration
-    Reveal.initialize({ ...revealConfig });
+    Reveal.initialize({
+		...revealConfig, 
+		plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMenu]
+	});
 </script>
 </body>
 </html>

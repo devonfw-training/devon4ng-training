@@ -10,9 +10,10 @@
 
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-    <link rel="stylesheet" href="../node_modules/reveal.js/css/reveal.css">
-    <link rel="stylesheet" href="../node_modules/reveal.js/css/theme/white.css" id="theme">
-
+    <link rel="stylesheet" href="../node_modules/reveal.js/dist/reset.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/dist/reveal.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/dist/theme/white.css">
+    
     <link rel="stylesheet" href="../common/css/common.css">
 
     <!-- Theme used for syntax highlighting of code -->
@@ -73,7 +74,7 @@
                 <p>...is of single-threaded nature</p>
                 <p>...has asynchronous programming model</p>
                 <p>...is object oriented & functional at the same time</p>
-				<p class="hint center">Checkout backup slides for <a href="./index.html#/19/3">javascript history</a></p>
+				<p class="hint center">Checkout backup slides for <a href="./index.html#/history">javascript history</a></p>
                 <aside class="notes">
                     <ul>
                         <li>The name was given for marketing. It is the result of a deal between Nescape (creator of JS) and Sun (owner of Java)</li>
@@ -353,18 +354,18 @@ query('otto');
                 </div>
             </section>
 			<section>
-				<section>
+				<section id="summary">
 					<h2>Summary</h2>
 					<ul>
 						<li>JavaScript is object oriented & functional</li>
 						<li>Use === instead of ==</li>
 						<li>TypeScript is JavaScript with syntax for types</li>
 						<li>Structure-based type check</li>
-						<li>Enjoy Object literals</li>
+						<li>Enjoy the ease of use of object literals.</li>
 					</ul>
 					<p class="hint center">Live Code Examples & Backup slides below</p>
 				</section>
-				<section>
+				<section id="examples" data-visibility="uncounted">
 					<h2>Live Code Examples</h2>
 					<ul>
 						<li><a href="https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html" target="_blank">TypeScript for JavaScript Programmers</a></li>
@@ -374,11 +375,11 @@ query('otto');
 						</li>
 					</ul>
 				</section>
-				<section>
+				<section id="backup" data-visibility="uncounted">
 					<h2>Backup slides</h2>
 					<p>Following slides are not subject of the lecture.<br>Ask trainers in case of questions.</p>
 				</section>
-				<section>
+				<section id="history" data-visibility="uncounted">
 					<h2>History of JavaScript</h2>
 					<p>
 						<p>ECMAScript (ES) first <strong>introduced 1997</strong> turned 25 in 2022 and its popularity is <strong>still growing.</strong></p>
@@ -389,7 +390,7 @@ query('otto');
 						For a long time is what not very popular, until the browser engines got faster engines.
 					</aside>
 				</section>
-				<section>
+				<section data-visibility="uncounted">
 					<h2>ECMAScript versions</h2>
 					<ul>
 						<li>ES3 1999</li>
@@ -409,7 +410,7 @@ query('otto');
 						The amount of JS projects increased massively since then.
 					</aside>
 				</section>
-				<section>
+				<section data-visibility="uncounted">
 					<h3>Why ES5 was relevant for so long</h3>
 					<ul>
 						<li>Basically every browser supported it</li>
@@ -430,7 +431,7 @@ query('otto');
 						<br>
 					</aside>
 				</section>
-				<section>
+				<section data-visibility="uncounted">
 					<p>An example for a well known JavaScript pattern (<strong>IIFE</strong>)</p>
 					<pre><code class="max-height-unset" data-trim class="javascript">
 	var person = (function () {
@@ -457,7 +458,7 @@ query('otto');
 				   TypeScript classes still compile to this, if you set the target version to ES5. Newer versions have support for classes.
 				</aside>
 				</section>
-				<section>
+				<section data-visibility="uncounted">
 					<p>Newer ES versions introduced concepts like classes, modules and block scope variables.</p>
 					<p>With TypeScript we can use those features today - and that's where we will continue.</p>
 				</section>
@@ -465,12 +466,19 @@ query('otto');
         </div>
     </div>
 
-    <script src="../node_modules/reveal.js/js/reveal.js"></script>
+    <script src="../node_modules/reveal.js/dist/reveal.js"></script>
+    <script src="../node_modules/reveal.js/plugin/zoom/zoom.js"></script>
+    <script src="../node_modules/reveal.js/plugin/notes/notes.js"></script>
+    <script src="../node_modules/reveal.js/plugin/search/search.js"></script>
+    <script src="../node_modules/reveal.js/plugin/markdown/markdown.js"></script>
+    <script src="../node_modules/reveal.js/plugin/highlight/highlight.js"></script>
+    <script src="../node_modules/reveal.js-menu/menu.js"></script>
     <script src="../common/reveal-config.js"></script>
-
     <script>
-        // More info https://github.com/hakimel/reveal.js#configuration
-        Reveal.initialize({ ...revealConfig });
+        Reveal.initialize({
+            ...revealConfig, 
+            plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMenu]
+        });
     </script>
 </body>
 
