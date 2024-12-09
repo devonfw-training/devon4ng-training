@@ -15,8 +15,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-	<link rel="stylesheet" href="../node_modules/reveal.js/css/reveal.css">
-	<link rel="stylesheet" href="../node_modules/reveal.js/css/theme/simple.css" id="theme">
+	<link rel="stylesheet" href="../node_modules/reveal.js/dist/reveal.css">
+	<link rel="stylesheet" href="../node_modules/reveal.js/dist/theme/simple.css" id="theme">
 	<link rel="stylesheet" href="../common/css/common.css">
 </head>
 
@@ -110,13 +110,19 @@
 		</div>
 
 	</div>
-    <script src="../node_modules/reveal.js/js/reveal.js"></script>
-    <script src="../common/reveal-config.js"></script>
-
+	<script src="../node_modules/reveal.js/dist/reveal.js"></script>
+	<script src="../node_modules/reveal.js/plugin/zoom/zoom.js"></script>
+	<script src="../node_modules/reveal.js/plugin/notes/notes.js"></script>
+	<script src="../node_modules/reveal.js/plugin/search/search.js"></script>
+	<script src="../node_modules/reveal.js/plugin/markdown/markdown.js"></script>
+	<script src="../node_modules/reveal.js/plugin/highlight/highlight.js"></script>
+	<script src="../node_modules/reveal.js-menu/menu.js"></script>
+	<script src="../common/reveal-config.js"></script>
 	<script>
-		// Full list of configuration options available at:
-		// https://github.com/hakimel/reveal.js#configuration
-		Reveal.initialize({ ...revealConfig });
+		Reveal.initialize({
+			...revealConfig, 
+			plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMenu]
+		});
 	</script>
 
 </body>
