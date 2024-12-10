@@ -9,18 +9,11 @@
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <link rel="icon" href="./img/favicon.ico">
-    <link rel="stylesheet" href="./reveal.js/css/reveal.css">
-    <link rel="stylesheet" href="./reveal.js/css/theme/simple.css">
+    <link rel="stylesheet" href="../../node_modules/reveal.js/dist/reveal.css">
+    <link rel="stylesheet" href="../../node_modules/reveal.js/dist/theme/simple.css">
     <link rel="stylesheet" href="./css/common.css">
     <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="./css/github-gist.css">
-    <script>
-        var link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.type = 'text/css';
-        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
-        document.getElementsByTagName('head')[0].appendChild(link);
-    </script>
 </head>
 <body>
     <div class="devon reveal">
@@ -44,13 +37,18 @@
     </div>
 </div>
 
-<script src="./reveal.js/js/reveal.js"></script>
-
-<script src="../common/reveal-config.js"></script>
+<script src="../../node_modules/reveal.js/dist/reveal.js"></script>
+<script src="../../node_modules/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="../../node_modules/reveal.js/plugin/notes/notes.js"></script>
+<script src="../../node_modules/reveal.js/plugin/search/search.js"></script>
+<script src="../../node_modules/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="../../node_modules/reveal.js/plugin/highlight/highlight.js"></script>
+<script src="../../node_modules/reveal.js-menu/menu.js"></script>
+<script src="../../common/reveal-config.js"></script>
 <script>
-    // More info https://github.com/hakimel/reveal.js#configuration
     Reveal.initialize({
-        ...revealConfig
+        ...revealConfig, 
+        plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMenu]
     });
 </script>
 </body>
