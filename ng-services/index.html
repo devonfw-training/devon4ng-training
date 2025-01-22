@@ -91,14 +91,19 @@ export class BookService {
         </section>
         <section>
             <p class="no-text-transform">Component consumes a service making use of the <span class="highlight">Dependency Injection</span></p>
-            <pre><code class="hljs typescript" data-trim data-noescape>
+            <pre><code class="hljs typescript" data-trim data-noescape data-line-numbers="|5">
 @Component({...})
 export class BookOverviewComponent{
   books$ = this.bookService.findAll();
 
-  constructor(private <mark>bookService: BookService</mark>) {}
+  constructor(private bookService: BookService) {}
 }
             </code></pre>
+			<aside class="notes">
+				Note the access modifier "private" in the constructor parameters. <br>
+				bookService will be injected during instantiation by Angular. <br>
+				bookService can be used like a usual member variable.
+			</aside>
         </section>
 		  <section>
 		   <section id="summary">
