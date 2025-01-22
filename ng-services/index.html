@@ -30,8 +30,7 @@
 <div class="devon reveal">
     <div class="slides">
         <section>
-            <h2 class="no-text-transform">Services and Dependency Injection</h2>
-            <img src="img/services-and-di-architecture.png">
+            <h2 class="no-text-transform">Angular Services and Dependency Injection</h2>
         </section>
 
         <section>
@@ -64,6 +63,9 @@ import { Injectable } from '@angular/core';
 export class BookService {
 }
             </code></pre>
+			<aside class="notes">
+				You can use the Angular CLI to create a service
+			</aside>
         </section>
 
         <section>
@@ -81,6 +83,11 @@ export class BookService {
             </code></pre>
             <code>provideIn: 'root'</code>
             <p>... registers the service in the root injector.</p>
+			<aside class="notes">
+				Important keywords are <br>
+				<b>Provider</b>: Allows DEVs to provide dependencies to Angular. <br>
+				<b>Injector</b>: Framework internal way to inject the provided dependencies
+			</aside>
         </section>
         <section>
             <p class="no-text-transform">Component consumes a service making use of the <span class="highlight">Dependency Injection</span></p>
@@ -93,30 +100,54 @@ export class BookOverviewComponent{
 }
             </code></pre>
         </section>
-        <section>
-            <div class="title-with-image">
-                <img src="img/injector-injects.png">
-                <h2 class="no-text-transform">Dependency Injection</h2>
-            </div>
-            <p>Dependency injection is a way to supply a new instance of a class with the <span class="highlight">fully-formed dependencies</span> it requires.</p>
-            <p><span class="highlight">Most dependencies are services</span>. Angular uses dependency injection to <span class="highlight">provide new components with the services</span> they need.</p>
-        </section>
-        <section>
-            <h2 class="no-text-transform">Injector</h2>
-            <p>When Angular creates a component, it asks an injector for the services that the component requires.</p>
-            <p>An injector keeps one instance per defined service</p>
-            <p>Each component instance has its own injector. The tree of components parallels the tree of injectors.</p>
-        </section>
-        <section>
-            <h2 class="no-text-transform">Providers</h2>
-            <p>An injector can create a new service instance from a provider</p>
-            <p>A provider is a recipe for creating a service <span class="highlight">with configuration</span></p>
-            <p>You can register providers in modules or in components</p>
-            <p>In general, providers are <span class="highlight">added to the root module</span> so that the same instance of a service is available everywhere</p>
-        </section>
-        <section>
-            <img src="img/injector-bubbling.svg" alt="Injector Bubbling" class="plain no-border">
-        </section>
+		  <section>
+		   <section id="summary">
+			<h2>Summary</h2>
+			<ul>
+			 <li>What is a service?</li>
+			 <li>How can we create and use it?</li>
+			</ul>
+			<p class="hint center">Live Code Examples & Backup slides below</p>
+		   </section>
+		   <section id="examples" data-visibility="uncounted">
+			<h2>Live Code Examples</h2>
+			<ul>
+			 <li><a href="https://stackblitz.com/edit/angular-ivy-3kve6z?file=src%2Fapp%2Fbook.service.ts" target="_blank">BookService injected in BookDetails Component</a> Example in Stackblitz</li>
+			</ul>
+		   </section>
+		   <section id="backup" data-visibility="uncounted">
+			<h2>Backup slides</h2>
+			<p>Following slides are not subject of the lecture.<br>Ask trainers in case of questions.</p>
+		   </section>
+		    <section data-visibility="uncounted">
+				<h2 class="no-text-transform">Overview with highlighted Services and Dependency Injection</h2>
+				<img src="img/services-and-di-architecture.png">
+			</section>
+			<section data-visibility="uncounted">
+				<div class="title-with-image">
+					<img src="img/injector-injects.png">
+					<h2 class="no-text-transform">Dependency Injection</h2>
+				</div>
+				<p>Dependency injection is a way to supply a new instance of a class with the <span class="highlight">fully-formed dependencies</span> it requires.</p>
+				<p><span class="highlight">Most dependencies are services</span>. Angular uses dependency injection to <span class="highlight">provide new components with the services</span> they need.</p>
+			</section>
+			<section data-visibility="uncounted">
+				<h2 class="no-text-transform">Injector</h2>
+				<p>When Angular creates a component, it asks an injector for the services that the component requires.</p>
+				<p>An injector keeps one instance per defined service</p>
+				<p>Each component instance has its own injector. The tree of components parallels the tree of injectors.</p>
+			</section>
+			<section data-visibility="uncounted">
+				<h2 class="no-text-transform">Providers</h2>
+				<p>An injector can create a new service instance from a provider</p>
+				<p>A provider is a recipe for creating a service <span class="highlight">with configuration</span></p>
+				<p>You can register providers in modules or in components</p>
+				<p>In general, providers are <span class="highlight">added to the root module</span> so that the same instance of a service is available everywhere</p>
+			</section>
+			<section data-visibility="uncounted">
+				<img src="img/injector-bubbling.svg" alt="Injector Bubbling" class="plain no-border">
+			</section>
+		  </section>
     </div>
 </div>
 
