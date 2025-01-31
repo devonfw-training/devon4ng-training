@@ -46,19 +46,6 @@
                     <h3>Reactive Architecture</h3>
                 </section>
                 <section>
-                    <h2>Scaling MVC Applications</h2>
-                    <div class="image-box">
-                        <img width="400px" style="margin-right: 50px" src="img/ng-state-everwhere.png">
-                        <ul style="width: 500px">
-                            <li>Debugging?</li>
-                            <li>Testing?</li>
-                            <li>Understanding?</li>
-                            <li>Server Side Rendering?</li>
-                        </ul>
-                    </div>
-                    <p style="font-size: 18px; display:flex"><a href="http://onehungrymind.com/build-better-angular-2-application-redux-ngrx/">http://onehungrymind.com/build-better-angular-2-application-redux-ngrx/</a></p>
-                </section>
-                <section>
                     <p style="font-style: italic">UI = f ( State )</p>
                 </section>
                 <section
@@ -76,29 +63,6 @@
                 <section
                     data-background-image="img/state-example-3.png"
                     data-background-size="40%">
-                </section>
-                <section>
-                    <h2>Which Libraries To Know?</h2>
-                    <div style="display:flex; justify-content: space-around;">
-                        <div class="image-box">
-                            <img width="150px" src="img/react.png" style="margin-right: 20px">
-                            <p class="fragment" data-fragment-index="0" style="font-size: 30px; display:flex"><a href="https://facebook.github.io/react/">React</a></p>
-                        </div>
-                        <div class="image-box">
-                            <img width="150px" src="img/flux.png" style="margin-right: 20px">
-                            <p class="fragment" data-fragment-index="1" style="font-size: 30px; display:flex"><a href="https://facebookarchive.github.io/flux/">Flux</a></p>
-                        </div>
-                    </div>
-                    <div style="display:flex; justify-content: space-around;">
-                        <div class="image-box">
-                            <img width="150px" src="img/redux.png" style="margin-right: 20px">
-                            <p class="fragment" data-fragment-index="2" style="font-size: 30px; display:flex"><a href="http://redux.js.org/">Redux</a></p>
-                        </div>
-                        <div class="image-box">
-                            <img width="150px" src="img/ngrx.png" style="margin-right: 20px">
-                            <p class="fragment" data-fragment-index="3" style="font-size: 30px; display:flex"><a href="https://github.com/ngrx">ngrx</a></p>
-                        </div>
-                    </div>
                 </section>
                 <section
                     data-background-image="img/store-view-actions.png"
@@ -129,35 +93,8 @@
                     <img src="img/reducer-composite.png">
                 </section>
                 <section>
-                    <h2>State goes down</h2>
-                    <p>... using Angular <code>@Input</code> syntax.</p>
-                    <img src="img/state-goes-down.png">
-                </section>
-                <section>
-                    <h2>Events go up</h2>
-                    <p>... using Angular <code>@Output</code> syntax.</p>
-                    <img src="img/events-go-up.png">
-                </section>
-                <section>
                     <h2>HTTP Request (XHR)</h2>
                     <img src="img/xhr.png">
-                </section>
-                <section>
-                    <h2>Websockets Push</h2>
-                    <img src="img/websockets-push.png">
-                </section>
-                <section>
-                    <h2>Websockets Pull</h2>
-                    <img src="img/websockets-pull.png">
-                </section>
-                <section>
-                    <h2>Forget Everything And Go Reactive?</h2>
-                    <p>Abstraction is the tradeoff which is not always worth it.</p>
-                    <ul>
-                        <li>For small applications it's simply overkill.</li>
-                        <li>Lack of know how.</li>
-                        <li>Use it when you need it.</li>
-                    </ul>
                 </section>
             </section>
             <section>
@@ -229,7 +166,101 @@
                     <p>Let's try this out and feel the power of reactive architecture!</p>
                 </section>
             </section>
-
+			<section>
+				<section>
+					<h2>Best practice</h2>
+					<p class="hint center">Checkout <a target="_blank" href="../web-app-architecture/index.html#/smart-vs-dumb-components">dumb vs smart components</a></p>
+				</section>
+				<section>
+                    <h2>State goes down</h2>
+                    <p>... using Angular <code>@Input</code> syntax.</p>
+                    <img src="img/state-goes-down.png">
+                </section>
+                <section>
+                    <h2>Events go up</h2>
+                    <p>... using Angular <code>@Output</code> syntax.</p>
+                    <img src="img/events-go-up.png">
+                </section>
+			</section>
+		  <section>
+		   <section id="summary">
+			<h2>Summary</h2>
+			<ul>
+			 <li>First ...<br>
+			  <ul class="ul-small">
+			   <li>First detail...</li>
+			   <li>Another detail ...</li>
+			  </ul>
+			 </li>
+			 <li>Second ..</li>
+			</ul>
+			<p class="hint center">Live Code Examples & Backup slides below</p>
+		   </section>
+		   <section id="examples" data-visibility="uncounted">
+			<h2>Live Code Examples</h2>
+			<ul>
+			 <li><a href=https://stackblitz.com/edit/stackblitz-starters-ls7pdf?file=src%2Fbook-details.component.ts target="_blank">A link to stackblitz ...</a> Example in Stackblitz</li>
+			 <li><a href=https://stackblitz.com/edit/stackblitz-starters-ls7pdf?file=src%2Fbook-details.component.ts target="_blank">Another example</a> Example somewhere else</li>
+			</ul>
+		   </section>
+		   <section id="backup" data-visibility="uncounted">
+			<h2>Backup slides</h2>
+			<p>Following slides are not subject of the lecture.<br>Ask trainers in case of questions.</p>
+		   </section>
+			<section data-visibility="uncounted">
+				<h2>Scaling MVC Applications</h2>
+				<div class="image-box">
+					<img width="400px" style="margin-right: 50px" src="img/ng-state-everwhere.png">
+					<ul style="width: 500px">
+						<li>Debugging?</li>
+						<li>Testing?</li>
+						<li>Understanding?</li>
+						<li>Server Side Rendering?</li>
+					</ul>
+				</div>
+				<p style="font-size: 18px; display:flex"><a href="http://onehungrymind.com/build-better-angular-2-application-redux-ngrx/">http://onehungrymind.com/build-better-angular-2-application-redux-ngrx/</a></p>
+			</section>
+			<section data-visibility="uncounted">
+				<h2>Which Libraries To Know?</h2>
+				<div style="display:flex; justify-content: space-around;">
+					<div class="image-box">
+						<img width="150px" src="img/react.png" style="margin-right: 20px">
+						<p class="fragment" data-fragment-index="0" style="font-size: 30px; display:flex"><a href="https://facebook.github.io/react/">React</a></p>
+					</div>
+					<div class="image-box">
+						<img width="150px" src="img/flux.png" style="margin-right: 20px">
+						<p class="fragment" data-fragment-index="1" style="font-size: 30px; display:flex"><a href="https://facebookarchive.github.io/flux/">Flux</a></p>
+					</div>
+				</div>
+				<div style="display:flex; justify-content: space-around;">
+					<div class="image-box">
+						<img width="150px" src="img/redux.png" style="margin-right: 20px">
+						<p class="fragment" data-fragment-index="2" style="font-size: 30px; display:flex"><a href="http://redux.js.org/">Redux</a></p>
+					</div>
+					<div class="image-box">
+						<img width="150px" src="img/ngrx.png" style="margin-right: 20px">
+						<p class="fragment" data-fragment-index="3" style="font-size: 30px; display:flex"><a href="https://github.com/ngrx">ngrx</a></p>
+					</div>
+				</div>
+			</section>
+			<section data-visibility="uncounted">
+				<h2>Websockets Push</h2>
+				<img src="img/websockets-push.png">
+			</section>
+			<section data-visibility="uncounted">
+				<h2>Websockets Pull</h2>
+				<img src="img/websockets-pull.png">
+			</section>
+			<section data-visibility="uncounted">
+				<h2>Forget Everything And Go Reactive?</h2>
+				<p>Abstraction is the tradeoff which is not always worth it.</p>
+				<ul>
+					<li>For small applications it's simply overkill.</li>
+					<li>Lack of know how.</li>
+					<li>Use it when you need it.</li>
+				</ul>
+			</section>
+		  </section>
         </div>
     </div>
 
