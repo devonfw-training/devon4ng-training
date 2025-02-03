@@ -30,20 +30,14 @@
     <div class="devon reveal">
         <div class="slides">
             <section>
-                <h2>Introduction to</h2>
-                <img class="no-border" src="img/ngrx-logo.png" alt="ngrx logo">
-                <p><a href="https://github.com/ngrx" target="_blank">ngrx on github</a></p>
+                <h2>reactive statemanagement</h2>
+                <img class="no-border" src="https://ngrx.io/assets/images/badge.svg" width="200px" alt="ngrx logo">
                 <p><a href="https://ngrx.io/guide/store" target="_blank">ngrx documentation</a></p>
                 <p>Philip Schmökel & Philipp Huber</p>
             </section>
             <section>
-                <blockquote cite="https://github.com/ngrx/platform/blob/master/docs/store/README.md">
-                    &ldquo;RxJS powered state management for Angular applications, inspired by Redux&rdquo;
-                </blockquote>
-            </section>
-            <section>
                 <section>
-                    <h3>Reactive Architecture</h3>
+                    <h3>Architecture</h3>
                 </section>
                 <section>
                     <p style="font-style: italic">UI = f ( State )</p>
@@ -71,22 +65,25 @@
                 <section>
                     <h2>Reducer Function</h2>
                     <pre class="width-100-percent"><code class="typescript max-height-unset" data-trim data-noescape>
-    export function counterReducer(state: number = 0, action: Action) {
+    export function counterReducer(state: number = 0, action: Action): number {
+      let newState = state;
       switch (action.type) {
         case INCREMENT:
-          return state + 1;
+          newState = state + 1;
     
         case DECREMENT:
-          return state - 1;
+          newState = state - 1;
     
         case RESET:
-          return 0;
-    
-        default:
-          return state;
+          newState = 0;
       }
+      return newState;
     }
                     </code></pre>
+					<aside class="notes">
+						This is a very simplified example. State has only one primitive value and not a deep object. <br>
+						Focus on the method signature. Other actions will trigger invocation of reducer but state keeps the same.
+					</aside>
                 </section>
                 <section>
                     <h2>Store - Tree Of Reducers</h2>
@@ -98,7 +95,13 @@
                 </section>
             </section>
             <section>
-                <section>ngrx in Angular</section>
+                <section>
+					<h2>ngrx</h2>
+					<p>Reactive State for Angular</p>
+					<blockquote cite="https://github.com/ngrx/platform/blob/master/docs/store/README.md">
+						&ldquo;RxJS powered state management for Angular applications, inspired by Redux&rdquo;
+					</blockquote>
+				</section>
                 <section>
                     <p>State is a single, immutable data structure.</p>
                     <pre class="fragment"><code class="typescript" data-trim>
@@ -107,6 +110,20 @@
       age: number;
       showDropdown: boolean;
       isUserLoggedIn: boolean;
+    }
+              </code></pre>
+                </section>
+                <section>
+                    <p>State accessed with the Store, an observable of state and an observer of actions.</p>
+                    <pre class="fragment"><code class="typescript" data-trim>
+    export class FlightComponent {
+      showSpinner$ = this.store.select(state => state.isLoading);
+    
+      constructor(private store: Store&lt;AppState&gt;) {}
+    
+      onInput(flightId: string) {
+        this.store.dispatch(FlightAction.loadFlight({flightId}));
+      }
     }
               </code></pre>
                 </section>
@@ -131,7 +148,7 @@
                 <section>
                     <p>Pure functions called reducers take the previous state and the next action to compute the new state.</p>
                     <pre class="fragment"><code class="typescript" data-trim>
-      const counterReducer = createReducer(
+      const flightReducer = createReducer(
         initialState,
         on(FlightAction.loadFlight, 
           (state: FlightState, { flightId }) => 
@@ -146,24 +163,6 @@
         ),
         on(FlightAction.loadFlightError...));
               </code></pre>
-                </section>
-                <section>
-                    <p>State accessed with the Store, an observable of state and an observer of actions.</p>
-                    <pre class="fragment"><code class="typescript" data-trim>
-    export class FlightComponent {
-      showSpinner$ = this.store.pipe(
-        select(state => state.isLoading));
-    
-      constructor(private store: Store&lt;AppState&gt;) {}
-    
-      onInput(flightId: string) {
-        this.store.dispatch(FlightAction.loadFlight({flightId}));
-      }
-    }
-              </code></pre>
-                </section>
-                <section>
-                    <p>Let's try this out and feel the power of reactive architecture!</p>
                 </section>
             </section>
 			<section>
@@ -186,21 +185,32 @@
 		   <section id="summary">
 			<h2>Summary</h2>
 			<ul>
-			 <li>First ...<br>
+			 <li>Reactive Architecture<br>
 			  <ul class="ul-small">
-			   <li>First detail...</li>
-			   <li>Another detail ...</li>
+			   <li>UI is a function of state</li>
+			   <li>Reducer: state + action -> new state</li>
+			   <li>Effect handles async tasks</li>
 			  </ul>
 			 </li>
-			 <li>Second ..</li>
+			 <li>NGRX<br>
+			  <ul class="ul-small">
+			   <li>Selector returns part of state as observable</li>
+			   <li>Components or services dispatch actions</li>
+			  </ul>
+			 </li>
+			 <li>dumb vs smart components</li>
 			</ul>
 			<p class="hint center">Live Code Examples & Backup slides below</p>
+			<aside class="notes">
+			  Keep in mind: Actions trigger Reducers and effects in that order
+			</aside>
 		   </section>
 		   <section id="examples" data-visibility="uncounted">
 			<h2>Live Code Examples</h2>
 			<ul>
-			 <li><a href=https://stackblitz.com/edit/stackblitz-starters-ls7pdf?file=src%2Fbook-details.component.ts target="_blank">A link to stackblitz ...</a> Example in Stackblitz</li>
-			 <li><a href=https://stackblitz.com/edit/stackblitz-starters-ls7pdf?file=src%2Fbook-details.component.ts target="_blank">Another example</a> Example somewhere else</li>
+			 <li><a href="https://stackblitz.com/edit/angular-slgo4n?file=src%2Fapp%2Fcounter.reducer.ts" target="_blank">Simple Counter</a> Example</li>
+			 <li>Try out <a href="https://github.com/reduxjs/redux-devtools/tree/main/extension#installation" target="_blank">Redux Devtools</a> with <a href="https://ngrx.github.io/platform/example-app/" target="_blank">Book Collection (Angular ngrx store)</a> Example</li>
+			 <li><a href="https://github.com/ngrx/platform/tree/main/projects/example-app" target="_blank">Book Collection</a> Code on Github</li>
 			</ul>
 		   </section>
 		   <section id="backup" data-visibility="uncounted">
