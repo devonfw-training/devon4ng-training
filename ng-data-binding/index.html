@@ -30,7 +30,7 @@
         <section>
             <h1>Data Binding</h1>
             <aside class="notes">
-              Data Binding describes how components communicate with each other and how is the data model linked to the html template.
+                Data Binding describes how components communicate with each other and how is the data model linked to the html template.
             </aside>
         </section>
         <section>
@@ -42,16 +42,16 @@
             <pre class="width-100-percent"><code class="hljs html" data-trim data-noescape>
 &lt;span&gt;<mark>{{ currentBook.author }}</mark>&lt;/span&gt;
                   </code></pre>
-                  <pre class="width-100-percent"><code class="hljs typescript" data-trim data-noescape>
+            <pre class="width-100-percent"><code class="hljs typescript" data-trim data-noescape>
 @Component(...)
 export class BookEntryComponent {
   <mark>currentBook</mark> = { author:'John Example', title: 'Angular in a nutshell' };
 }
             </code></pre>
-          <a href="https://angular.io/guide/interpolation" class="references" target="_blank">Angular Docs</a>
-          <aside class="notes">
-           In the template you have access to class properties inside {{...}}.
-          </aside>
+            <a href="https://angular.io/guide/interpolation" class="references" target="_blank">Angular Docs</a>
+            <aside class="notes">
+                In the template you have access to class properties inside {{...}}.
+            </aside>
         </section>
         <section>
             <div class="title-with-image">
@@ -77,14 +77,14 @@ export class BookOverviewComponent {
   }
 }
                   </code></pre>
-                  
-          <a href="https://angular.io/guide/property-binding" class="references" target="_blank">Angular Docs</a>
-          <aside class="notes">
-            With property bindings data is passed from parent to child component<br>
-            Property bindings are always surrounded by [] brackets<br>
-            The left side of the = is the name of the property as defined by the child.<br>
-            The right side of the = is the name of the parent component's field to pass to the child.<br>
-          </aside>
+
+            <a href="https://angular.io/guide/property-binding" class="references" target="_blank">Angular Docs</a>
+            <aside class="notes">
+                With property bindings data is passed from parent to child component<br>
+                Property bindings are always surrounded by [] brackets<br>
+                The left side of the = is the name of the property as defined by the child.<br>
+                The right side of the = is the name of the parent component's field to pass to the child.<br>
+            </aside>
         </section>
         <section>
             <div class="title-with-image">
@@ -99,7 +99,7 @@ export class BookOverviewComponent {
 &lt;book-entry <mark>[book]</mark>="selectedBook"&gt;&lt;/book-entry &gt;
                   </code></pre>
 
-<pre class="width-100-percent"><code class="hljs typescript" data-trim data-noescape>
+            <pre class="width-100-percent"><code class="hljs typescript" data-trim data-noescape>
 @Component(...)
 export class BookEntryComponent {
   <mark>@Input() book: Book|null;</mark>
@@ -109,12 +109,12 @@ export class BookEntryComponent {
         &lt;div&gt;Title: {{ <mark>book</mark>?.title }}&lt;/div&gt;
         &lt;div&gt;Author: {{ <mark>book</mark>?.author }}&lt;/div&gt;
                   </code></pre>
-                  <a href="https://angular.io/guide/property-binding" class="references" target="_blank">Angular Docs</a>
-                  <aside class="notes">
-                    To define a property we add the Input() decorator to the field of a class<br>
-                    The name of the property is defined through the name of the field<br>
-                    The operator in book?.author is for optional property access. So we don't get an error if book is null
-                  </aside>
+            <a href="https://angular.io/guide/property-binding" class="references" target="_blank">Angular Docs</a>
+            <aside class="notes">
+                To define a property we add the Input() decorator to the field of a class<br>
+                The name of the property is defined through the name of the field<br>
+                The operator in book?.author is for optional property access. So we don't get an error if book is null
+            </aside>
         </section>
         <section>
             <div class="title-with-image">
@@ -140,14 +140,14 @@ export class BookOverviewComponent {
   }
 }
                   </code></pre>
-          <a href="https://angular.io/guide/event-binding" class="references" target="_blank">Angular Docs</a>
-          <aside class="notes">
-            With event bindings data is passed from child to parent component<br>
-            Event bindings are always surrounded by () brackets<br>
-            The left side of the = is the name of the event as defined by the child.<br>
-            The right side of the = is the name of the parent component's method to handle the event.<br>
-            $event is a keyword to pass the events payload as method param
-          </aside>
+            <a href="https://angular.io/guide/event-binding" class="references" target="_blank">Angular Docs</a>
+            <aside class="notes">
+                With event bindings data is passed from child to parent component<br>
+                Event bindings are always surrounded by () brackets<br>
+                The left side of the = is the name of the event as defined by the child.<br>
+                The right side of the = is the name of the parent component's method to handle the event.<br>
+                $event is a keyword to pass the events payload as method param
+            </aside>
         </section>
         <section>
             <div class="title-with-image">
@@ -158,7 +158,7 @@ export class BookOverviewComponent {
 &lt;book-entry [currentBook]="books[0]"
            <mark>(selectBook)="rentBook($event)"</mark>&gt;&lt;/book-entry&gt;
             </code></pre>
-			<pre class="width-100-percent"><code class="max-height-unset typescript" data-trim data-noescape>
+            <pre class="width-100-percent"><code class="max-height-unset typescript" data-trim data-noescape>
 @Component(...)
 export class BookEntryComponent {
   @Input() currentBook: Book;
@@ -173,13 +173,13 @@ export class BookEntryComponent {
     &lt;div&gt;Book title: {{ currentBook.title }}&lt;/div&gt;
     &lt;button (click)="onSelectBtnClick()"&gt;Rent the book&lt;/button&gt;
             </code></pre>
-          <a href="https://angular.io/guide/event-binding" class="references" target="_blank">Angular Docs</a>
-          <aside class="notes">
-            To define an event we add the Output() decorator to a field of a class<br>
-            The name of the event is defined through the name of the field<br>
-            We assign a EventEmitter to the field. On this EventEmitter we can call emit() to trigger the event.
-            EventEmitter can be parametrized to determine the type of the event's payload.
-          </aside>
+            <a href="https://angular.io/guide/event-binding" class="references" target="_blank">Angular Docs</a>
+            <aside class="notes">
+                To define an event we add the Output() decorator to a field of a class<br>
+                The name of the event is defined through the name of the field<br>
+                We assign a EventEmitter to the field. On this EventEmitter we can call emit() to trigger the event.
+                EventEmitter can be parametrized to determine the type of the event's payload.
+            </aside>
         </section>
         <section>
             <h4>Input (Data) and Output (Event) Binding</h4>
@@ -200,13 +200,13 @@ export class BookEntryComponent {
   <mark>currentBook</mark> = { author:'John Example', title: 'Angular in a nutshell' };
 }
                   </code></pre>
-          <a href="https://angular.io/guide/two-way-binding" class="references" target="_blank">Angular Docs</a>
-          <aside class="notes">
-            Two way binding is syntactic sure to handle property and event binding simultaniously.<br>
-            It will immediatly update the view if the value changes in the class and vice versa.<br>
-            Usually used with &lt;input&gt;<br>
-            ngModel is a keyword. The right side of the = is the name of the component's field.
-          </aside>
+            <a href="https://angular.io/guide/two-way-binding" class="references" target="_blank">Angular Docs</a>
+            <aside class="notes">
+                Two way binding is syntactic sure to handle property and event binding simultaniously.<br>
+                It will immediatly update the view if the value changes in the class and vice versa.<br>
+                Usually used with &lt;input&gt;<br>
+                ngModel is a keyword. The right side of the = is the name of the component's field.
+            </aside>
         </section>
         <section>
             <h3>Structural Directives</h3>
@@ -233,26 +233,27 @@ export class BookEntryComponent {
             <br>                  
             <a class="references" href="https://angular.io/api/core/if" target="_blank">Angular Docs @if</a>
             -->
-			<div class="references" ><a href="https://angular.io/api/common/NgIf#description" target="_blank">Angular Docs *ngIf</a> & <a href="https://angular.io/api/core/if" target="_blank">Angular Docs @if</a></div>
-            
+            <div class="references"><a href="https://angular.io/api/common/NgIf#description" target="_blank">Angular Docs *ngIf</a> & <a
+                    href="https://angular.io/api/core/if" target="_blank">Angular Docs @if</a></div>
+
             <aside class="notes">
-              Structural directives are marked with a *<br>
-              Structural directives means they change the structure of the DOM. The other bindings changed values only.<br>
-              *ngIf takes a condition. If the condition fails, it removes the tag and all of its content
+                Structural directives are marked with a *<br>
+                Structural directives means they change the structure of the DOM. The other bindings changed values only.<br>
+                *ngIf takes a condition. If the condition fails, it removes the tag and all of its content
             </aside>
         </section>
         <section>
-          <h3>Structural Directives</h3>
-          <h4>ng-for (Old Syntax)</h4>
-          <pre>
+            <h3>Structural Directives</h3>
+            <h4>ng-for (Old Syntax)</h4>
+            <pre>
             <code class="html" data-trim>
               &lt;ul&gt;
               &nbsp;&lt;li *ngFor="let myItem of myList"&gt;{{ myItem.someProperty }}&lt;/li&gt;
               &lt;/ul&gt;
             </code>
           </pre>
-          <h4>&#64;for (Angular v17 onwards)</h4>
-          <pre>
+            <h4>&#64;for (Angular v17 onwards)</h4>
+            <pre>
             <code class="html" data-trim>
               &lt;ul&gt;
               &nbsp;&#64;for (myItem of myList; track &dollar;index) 
@@ -262,14 +263,15 @@ export class BookEntryComponent {
               &lt;/ul&gt;
             </code>
           </pre>
-		  <div class="references" ><a href="https://angular.io/api/common/NgFor#description" target="_blank">Angular Docs *ngIf</a> & <a href="https://angular.io/api/core/for" target="_blank">Angular Docs @for</a></div>
-          <p><span class="highlight">Creates an element</span> for every item of the collection.</p>
+            <div class="references"><a href="https://angular.io/api/common/NgFor#description" target="_blank">Angular Docs *ngIf</a> & <a
+                    href="https://angular.io/api/core/for" target="_blank">Angular Docs @for</a></div>
+            <p><span class="highlight">Creates an element</span> for every item of the collection.</p>
 
-          <aside class="notes">
-            *ngFor creates one node in the DOM for each element in myList<br>
-            Inside of the tag with ngFor you have access to the loop var as to any other var of the component.
-          </aside>
-      </section>
+            <aside class="notes">
+                *ngFor creates one node in the DOM for each element in myList<br>
+                Inside of the tag with ngFor you have access to the loop var as to any other var of the component.
+            </aside>
+        </section>
         <section>
             <h3>Example - Parent</h3>
             <pre class="width-100-percent"><code class="max-height-unset typescript" data-trim>
@@ -312,6 +314,34 @@ export class BookEntryComponent {
 }
             </code></pre>
         </section>
+        <section>
+            <section id="summary"><h2>Summary</h2>
+                <ul>
+                    <li>First ...<br>
+                        <ul class="ul-small">
+                            <li>First detail...</li>
+                            <li>Another detail ...</li>
+                        </ul>
+                    </li>
+                    <li>Second ..</li>
+                </ul>
+                <p class="hint center">Live Code Examples & Backup slides below</p></section>
+            <section id="examples" data-visibility="uncounted"><h2>Live Code Examples</h2>
+                <ul>
+                    <li><a href=https://stackblitz.com/edit/stackblitz-starters-xrnyd9jh?file=src%2Fapp%2Fname%2Fname.component.html target="_blank">A link to stackblitz</a> Example Input + Output in Stackblitz
+                    </li>
+                    <li><a href=https://stackblitz.com/edit/stackblitz-starters-gb6qqw?file=src%2Fapp%2Fchild%2Fchild.component.ts target="_blank">A link to stackblitz</a> Example Input in Stackblitz
+                    </li>
+                    <li><a href=https://stackblitz.com/edit/stackblitz-starters-ls7pdf?file=src%2Fbook-details.component.ts target="_blank">Another example</a>
+                        Example somewhere else
+                    </li>
+                </ul>
+            </section>
+            <section id="backup" data-visibility="uncounted"><h2>Backup slides</h2>
+                <p>Following slides are not subject of the lecture.<br>Ask trainers in case of questions.</p></section>
+            <section data-visibility="uncounted"><h2>Example</h2>
+                <p>Use alsways data-visibility="uncounted" as attribute of the section HTML tag</p></section>
+        </section>
     </div>
 </div>
 
@@ -325,9 +355,9 @@ export class BookEntryComponent {
 <script src="../common/reveal-config.js"></script>
 <script>
     Reveal.initialize({
-		...revealConfig, 
-		plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMenu]
-	});
+        ...revealConfig,
+        plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMenu]
+    });
 </script>
 </body>
 </html>
