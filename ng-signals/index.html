@@ -230,52 +230,13 @@ count.set(1);
         </section>
 
         <section>
-          <h3>Signals vs Zone.js</h3>
-          <img class="reset" src="img/signals_vs_zonejs.png" />
+          <h3>Change Detection Default Strategy</h3>
+          <img class="reset" src="img/default_change_detection_strategy.gif" />
         </section>
 
         <section>
-          <h3>Zone.js</h3>
-          <pre><code class="hljs typescript" data-trim>
-            @Component({
-              selector: 'app-root',
-              template: `
-                <h1>{{ counter }}</h1>
-                <button (click)="increment()">Increment</button>
-              `,
-            })
-            export class AppComponent {  
-              counter: number = 0;
-              
-              increment() {
-                // Since Angular uses Zone.js, the entire component tree 
-                // is checked and the value in the template is updated.
-                this.counter++;
-              }
-            }
-          </code></pre>
-        </section>
-
-        <section>
-          <h2>Signals</h2>
-          <pre><code class="hljs typescript" data-trim>
-            @Component({
-              selector: 'app-root',
-              template: `
-                <h1>{{ counter() }}</h1>
-                <button (click)="increment()">Increment</button>
-              `,
-            })
-            export class AppComponent {  
-              counter = signal(0);
-              
-              increment() {
-                // Only the parts of the view that depend on 
-                // the updated signal are checked and updated.
-                this.counter.set(this.counter() + 1);
-              }
-            }
-          </code></pre>
+          <h3>Change Detection Signals</h3>
+          <img class="reset" src="img/signals_change_detection.gif" />
         </section>
 
         <section>
@@ -342,6 +303,12 @@ effect(() => {
             </li>
             <li>
               <strong>toSignal(count$)</strong> subscribes to the Observable immediately.
+            </li>
+          </ul>
+        </section>
+        <section id="examples" data-visibility="uncounted"><h2>Live Code Examples</h2>
+          <ul>
+            <li><a href=https://stackblitz.com/edit/stackblitz-starters-ekrn9kaa?file=src%2Fmain.ts target="_blank">A link to stackblitz</a> Example Signals
             </li>
           </ul>
         </section>
