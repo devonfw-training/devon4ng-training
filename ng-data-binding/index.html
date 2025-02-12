@@ -317,13 +317,16 @@ export class BookEntryComponent {
         <section>
             <section id="summary"><h2>Summary</h2>
                 <ul>
-                    <li>First ...<br>
+                    <li>Connects code and the user interface</li>
+                    <li>Ideal to make web application dynamic and responsive</li>
+                    <li>Angular data binding can both send and receive data<br>
                         <ul class="ul-small">
-                            <li>First detail...</li>
-                            <li>Another detail ...</li>
+                            <li>A target which receive the bound value</li>
+                            <li>A template expression produces a value from the model</li>
+                            <li>@Input from parent to child</li>
+                            <li>@Output from child to parent</li>
                         </ul>
                     </li>
-                    <li>Second ..</li>
                 </ul>
                 <p class="hint center">Live Code Examples & Backup slides below</p></section>
             <section id="examples" data-visibility="uncounted"><h2>Live Code Examples</h2>
@@ -332,15 +335,20 @@ export class BookEntryComponent {
                     </li>
                     <li><a href=https://stackblitz.com/edit/stackblitz-starters-gb6qqw?file=src%2Fapp%2Fchild%2Fchild.component.ts target="_blank">A link to stackblitz</a> Example Input in Stackblitz
                     </li>
-                    <li><a href=https://stackblitz.com/edit/stackblitz-starters-ls7pdf?file=src%2Fbook-details.component.ts target="_blank">Another example</a>
-                        Example somewhere else
+                </ul>
+            </section>
+            <section id="backup" data-visibility="uncounted"><h2>Best Practices</h2>
+                <ul>
+                    <li><b>Use short expressions</b> use property names or method calls whenever possible. Keep application and business logic in the component, where it is accessible to develop and test.
+                    </li>
+                    <li>
+                        <b>Implement trackBy in ngFor:</b> this empowers Angular to pinpoint the elements that have changed, rather than re-rendering the entire list.
+                    </li>
+                    <li>
+                        <b>Use Lazy Load:</b> load only the essential components, minimizing the initial load time and enhancing the overall loading speed of the application.
                     </li>
                 </ul>
             </section>
-            <section id="backup" data-visibility="uncounted"><h2>Backup slides</h2>
-                <p>Following slides are not subject of the lecture.<br>Ask trainers in case of questions.</p></section>
-            <section data-visibility="uncounted"><h2>Example</h2>
-                <p>Use alsways data-visibility="uncounted" as attribute of the section HTML tag</p></section>
         </section>
     </div>
 </div>
