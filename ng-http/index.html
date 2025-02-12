@@ -271,7 +271,14 @@ export class AppModule {}
 			<section>
 				<h3>Injecting HttpClient service</h3>
 				<pre><code class="hljs typescript"  data-trim>
-constructor(private http: HttpClient) {}
+@Injectable({
+providedIn:  'root'
+})
+export class HttpService {
+
+constructor(private http: HttpClient) { }
+
+}
 			</code></pre>
 			</section>
 		</section>
