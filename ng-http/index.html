@@ -345,18 +345,25 @@ this.http.post(this.requestUrl, objectToPost);
 		<section>
 			<section id="summary"><h2>Summary</h2>
 				<ul>
-					<li>First ...<br>
+					<li>HTTP Basics<br>
 						<ul class="ul-small">
-							<li>First detail...</li>
-							<li>Another detail ...</li>
+							<li>HTTP is a stateless, client-server text protocol</li>
+							<li>HTTP Methods</li>
+							<li>Status Codes</li>
 						</ul>
 					</li>
-					<li>Second ..</li>
+					<li>Angular HttpClient<br>
+						<ul class="ul-small">
+							<li>Part of @angular/common/http</li>
+							<li>How to configure?</li>
+							<li>Examples of its use</li>
+						</ul>
+					</li>
 				</ul>
 				<p class="hint center">Live Code Examples & Backup slides below</p></section>
 			<section id="backup" data-visibility="uncounted"><h2>Backup slides</h2>
 				<p>Following slides are not subject of the lecture.<br>Ask trainers in case of questions.</p></section>
-			<section>
+			<section data-visibility="uncounted">
 				<h2>HTTP Cache (HTTP 1.1)</h2>
 				<pre style="width:100%"><code data-trim class="http">
 Cache-Control: max-age=3600, public
@@ -408,7 +415,7 @@ Cache-Control: max-age=3600, public
 					</tbody>
 				</table>
 			</section>
-			<section>
+			<section data-visibility="uncounted">
 				<h2>HTTP Cache Validators</h2>
 				<table>
 					<thead>
@@ -437,14 +444,14 @@ Cache-Control: max-age=3600, public
 					</tbody>
 				</table>
 			</section>
-			<section>
+			<section data-visibility="uncounted">
 				<h2>Features</h2>
 				<ul>
 					<li><span class="blue">HTTPS</span> – Hypertext Transfer Protocol Secure</li>
 					<li><span class="blue">Websockets</span> – Full duplex client-server communication</li>
 				</ul>
 			</section>
-			<section>
+			<section data-visibility="uncounted">
 				<h2>Useful tools</h2>
 				<ul>
 					<li>Chrome developer tools / Firebug</li>
@@ -453,7 +460,7 @@ Cache-Control: max-age=3600, public
 					<li>Fiddler</li>
 				</ul>
 			</section>
-			<section>
+			<section data-visibility="uncounted">
 				<h2>HTTP 2</h2>
 				<ul>
 					<li>Multiplexing: Multiple asynchronous HTTP requests over a single TCP connection</li>
@@ -464,18 +471,18 @@ Cache-Control: max-age=3600, public
 				</ul>
 				<a href="https://developers.google.com/web/fundamentals/performance/http2/" target="_blank">Http 2 Details explained</a>
 			</section>
-			<section>
+			<section data-visibility="uncounted">
 				<h2>Facebook uses h2 today...</h2>
 				<img class="no-border" src="./img/h2-example.png" alt="http 2 example">
 			</section>
-			<section>
+			<section data-visibility="uncounted">
 				<p>Most common outside of Angular HttpClient</p>
 				<ul>
 					<li><code>axios</code></li>
 					<li><code>fetch</code></li>
 				</ul>
 			</section>
-			<section>
+			<section data-visibility="uncounted">
 				<p>axios</p>
 				<pre><code class="typescript" data-trim>
 import axios from 'axios';
@@ -485,7 +492,7 @@ axios.get&lt;Book[]&gt;('/api/books')
 			</code></pre>
 				<p>axios is <span class="highlight">Promise based</span> and can be used with generic TypeScript types.</p>
 			</section>
-			<section>
+			<section data-visibility="uncounted">
 				<p>fetch</p>
 				<pre><code class="typescript" data-trim>
 fetch('/api/books').then(response => {
