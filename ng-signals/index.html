@@ -261,65 +261,66 @@ effect(() => {
                 </ul>
             </aside>
         </section>
+		<section>
+			<section id="summary">
+				<h3>Summary</h3>
+				<ul>
+					<li>No need to manage subscriptions.</li>
+					<li>Ideal for local state and UI updates.</li>
+					<li>Performance optimization through selective view updates.</li>
+					<li>Not fully matured for complex asynchronous operations.</li>
+					<li>
+						Signals can be exposed as an Observable with
+						<strong>toObservable(count)</strong>.
+					</li>
+					<li>
+						<strong>toSignal(count$)</strong> subscribes to the Observable immediately.
+					</li>
+				</ul>
+			</section>
+			<section id="examples" data-visibility="uncounted"><h2>Live Code Examples</h2>
+				<ul>
+					<li><a href=https://stackblitz.com/edit/stackblitz-starters-ekrn9kaa?file=src%2Fmain.ts target="_blank">A link to stackblitz</a> Example Signals
+					</li>
+				</ul>
+			</section>
+			<section id="backup" data-visibility="uncounted">
+				<h2>Backup slides</h2>
+				<p>Following slides are not subject of the lecture.<br>Ask trainers in case of questions.</p>
+			</section>
+			<section data-visibility="uncounted">
+				<h3>Live Demo: Angular Signals</h3>
+				<aside class="notes">
+					<ul>
+						  <pre><code class="hljs typescript" data-trim>
+							import { Component, signal } from '@angular/core';
+							import { CommonModule } from '@angular/common';
 
-        <section id="summary">
-            <h3>Summary</h3>
-            <ul>
-                <li>No need to manage subscriptions.</li>
-                <li>Ideal for local state and UI updates.</li>
-                <li>Performance optimization through selective view updates.</li>
-                <li>Not fully matured for complex asynchronous operations.</li>
-                <li>
-                    Signals can be exposed as an Observable with
-                    <strong>toObservable(count)</strong>.
-                </li>
-                <li>
-                    <strong>toSignal(count$)</strong> subscribes to the Observable immediately.
-                </li>
-            </ul>
-        </section>
-        <section id="examples" data-visibility="uncounted"><h2>Live Code Examples</h2>
-            <ul>
-                <li><a href=https://stackblitz.com/edit/stackblitz-starters-ekrn9kaa?file=src%2Fmain.ts target="_blank">A link to stackblitz</a> Example Signals
-                </li>
-            </ul>
-        </section>
-        <section id="backup" data-visibility="uncounted">
-            <h2>Backup slides</h2>
-            <p>Following slides are not subject of the lecture.<br>Ask trainers in case of questions.</p>
-        </section>
-        <section>
-            <h3>Live Demo: Angular Signals</h3>
-            <aside class="notes">
-                <ul>
-                      <pre><code class="hljs typescript" data-trim>
-                        import { Component, signal } from '@angular/core';
-                        import { CommonModule } from '@angular/common';
+							@Component({
+							  selector: 'app-root',
+							  standalone: true,
+							  imports: [CommonModule],
+							  template: `
+								<div *ngIf="isVisible()">
+								  <h1>Hello World</h1>
+								</div>
+								<button (click)="updateView()">
+								  {{ isVisible() ? 'Hide' : 'Show' }} Text
+								</button>
+							  `,
+							})
+							export class AppComponent {
+							  isVisible = signal(false);
 
-                        @Component({
-                          selector: 'app-root',
-                          standalone: true,
-                          imports: [CommonModule],
-                          template: `
-                            <div *ngIf="isVisible()">
-                              <h1>Hello World</h1>
-                            </div>
-                            <button (click)="updateView()">
-                              {{ isVisible() ? 'Hide' : 'Show' }} Text
-                            </button>
-                          `,
-                        })
-                        export class AppComponent {
-                          isVisible = signal(false);
-
-                          updateView() {
-                            this.isVisible.update(value => !value);
-                          }
-                        }
-              </code></pre>
-                </ul>
-            </aside>
-        </section>
+							  updateView() {
+								this.isVisible.update(value => !value);
+							  }
+							}
+				  </code></pre>
+					</ul>
+				</aside>
+			</section>
+		</section>
     </div>
 </div>
 
