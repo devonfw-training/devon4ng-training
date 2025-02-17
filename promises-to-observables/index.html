@@ -118,76 +118,54 @@ try {
 }
                 </code></pre>
             </section>
-            <section>
-                <h3>Promise / Deferred API</h3>
-                <p class="justiy_text">A Promise is an object that is used as a <strong>placeholder for the eventual results</strong> of a deferred (and possibly
-asynchronous) computation.</p>
-                <div class="margin_top_30">
-                    <p class="align_right"><small><a href="http://www.ecma-international.org/ecma-262/6.0/ECMA-262.pdf">ECMAScript 2015 Language Specification</a></small>
-                    </p>
-                </div>
-            </section>
-            <section>
-                <h3>Use a returned promise</h3>
-                <pre><code data-trim class="javascript">
-var promise = tablesService.get(1234);
-promise.then(
-    function (table) {
-        console.log(table.id);
-    }, function (reason) {
-        console.log('Could not get a table because of: ' + reason);
-    });
-                </code></pre>
-            </section>
-            <section>
-                <h3>Drawbacks of Promises</h3>
-                <ul class="list-style-none">
-                    <li>
-                        <p><strong>Returning only single values</strong><p>
-                        <p>This may be suitable for single XHRs but not for WebSocket connections, UI Events, etc.</p>
-                    </li>
-                    <li class="margin-top-40">
-                        <p><strong>Not cancellable</strong></p>
-                        <p>There is no way for the promise consumer to cancel the wrapped subject - e.g. XHR request.</p>
-                    </li>
-                </ul>
-            </section>
-            <section>
-                <section>
-                    <h3>Introduction to Observables</h3>
-                    <div>
-                        <img src="img/Rx_Logo_M.png" style="max-height: 200px">
-                    </div>
-                    <ul class="list-style-none">
-                        <li><p>... or <strong>Microsoft</strong> and <strong>Netflix</strong> to the rescue</p></li>
-                        <li><p>... via RxJS</p></li>
-                        <li><p>... built into Angular by default.</p></li>
-                        <li><p>... ES.Next Proposal</p></li>
-                    </ul>
-                </section>
-                <section>
-                    <h3>Hint: Running the following examples via node js</h3>
-                    <ul>
-                        <li>create folder - e.g. <code>mkdir ts-test</code></li>
-                        <li>cd into folder - e.g. <code>cd ts-test</code></li>
-                        <li>run <code>npm install rxjs</code></li>
-                        <li>create TypeScript file - e.g. 'test.ts'</li>
-                        <li>paste example code and save</li>
-                        <li>run <code>tsc test.ts --target es5 --lib es6,dom</code></li>
-                        <li>run <code>node test.js</code></li>
-                    </ul>
-                </section>
-            </section>
-            <section>
-                <h3>How do Observables differ from Promises?</h3>
-                <p class="text-align-left">An Observable...</p>
-                <ul>
-                    <li>represents <strong>multiple</strong> values over <strong>time</strong>.</li>
-                    <li>can be <strong>subscribed</strong> to (cf. <code>Promise.prototype.then()</code>).</li>
-                    <li>can be <strong>unsubscribed</strong> from.</li>
-                    <li>offers the possibility to <strong>transform received values</strong> through the usage of operators.</li>
-                </ul>
-            </section>
+			<section>
+				<section>
+					<h3>Promise / Deferred API</h3>
+					<p class="justiy_text">A Promise is an object that is used as a <strong>placeholder for the eventual results</strong> of a deferred (and possibly
+	asynchronous) computation.</p>
+					<div class="margin_top_30">
+						<p class="align_right"><small><a href="https://262.ecma-international.org/6.0/">ECMAScript 2015 Language Specification</a></small>
+						</p>
+					</div>
+				</section>
+				<section>
+					<h3>Use a returned promise</h3>
+					<pre><code data-trim class="javascript">
+	var promise = tablesService.get(1234);
+	promise.then(
+		function (table) {
+			console.log(table.id);
+		}, function (reason) {
+			console.log('Could not get a table because of: ' + reason);
+		});
+					</code></pre>
+				</section>
+				<section>
+					<h3>Drawbacks of Promises</h3>
+					<ul class="list-style-none">
+						<li>
+							<p><strong>Returning only single values</strong><p>
+							<p>This may be suitable for single XHRs but not for WebSocket connections, UI Events, etc.</p>
+						</li>
+						<li class="margin-top-40">
+							<p><strong>Not cancellable</strong></p>
+							<p>There is no way for the promise consumer to cancel the wrapped subject - e.g. XHR request.</p>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section>
+				<h3>Introduction to Observables</h3>
+				<div>
+					<img src="img/Rx_Logo_M.png" style="max-height: 200px">
+				</div>
+				<ul class="list-style-none">
+					<li><p>... or <strong>Microsoft</strong> and <strong>Netflix</strong> to the rescue</p></li>
+					<li><p>... via RxJS</p></li>
+					<li><p>... built into Angular by default.</p></li>
+					<li><p>... ES.Next Proposal</p></li>
+				</ul>
+			</section>
             <section>
                 <h3>Create and consume a simple Observable</h3>
                 <pre><code class="javascript" data-trim>
@@ -201,267 +179,313 @@ obs.subscribe(n => console.log('This is number ', n));</code></pre>
                 <li>This is number  3</li>
             </ul>
             </section>
-            <section>
-                <h3>Using map() operator</h3>
-                <pre><code class="javascript" data-trim>
-import { of } from 'rxjs';
-import { map } from 'rxjs/operators';
+			<section>
+				<section>
+					<h3>Using map() operator</h3>
+					<pre><code class="javascript" data-trim>
+	import { of } from 'rxjs';
+	import { map } from 'rxjs/operators';
 
-const obs = of(1, 2, 3);
-obs.pipe(
-    map(n => n * n)
-  )
-  .subscribe(n => console.log('This is number ', n));
-                </code></pre>
-                <ul class="list-style-none font-style-italic">
-                    <li>This is number  1</li>
-                    <li>This is number  4</li>
-                    <li>This is number  9</li>
-                </ul>
-            </section>
-            <section>
-                <h3>When to call subscribe()</h3>
-                <p>Subscribes an observer to the observable sequence.</p>
-                <div class="margin_top_30">
-                    <p class="align_right"><small><a href="http://reactivex.io/rxjs/manual/overview.html#subscribing-to-observables" target="_blank">RxJS Docs</a></small></p>
-                </div>
-            </section>
-            <section>
-                    <div>
-                        <pre><code class="javascript" data-trim>
-import { of } from 'rxjs';
-import { map } from 'rxjs/operators';
+	const obs = of(1, 2, 3);
+	obs.pipe(
+		map(n => n * n)
+	  )
+	  .subscribe(n => console.log('This is number ', n));
+					</code></pre>
+					<ul class="list-style-none font-style-italic">
+						<li>This is number  1</li>
+						<li>This is number  4</li>
+						<li>This is number  9</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Operators</h3>
+					<p>An Operator is a function which creates <strong>a new Observable based on the current Observable</strong>. This is a pure operation: the previous Observable stays unmodified.</p>
+					<div class="margin_top_30">
+						<p class="align_right"><small><a href="http://reactivex.io/rxjs/manual/overview.html#operators" target="_blank">RxJS Docs</a></small>
+					</p>
+					<p>RxJS comes with many operators. The Docs provide an overview. There are lots of use cases covered like taking only a single value, transformations, debounce time, auto retry, etc.</p>                
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>When to call subscribe()</h3>
+					<p>Subscribes an observer to the observable sequence.</p>
+					<div class="margin_top_30">
+						<p class="align_right"><small><a href="http://reactivex.io/rxjs/manual/overview.html#subscribing-to-observables" target="_blank">RxJS Docs</a></small></p>
+					</div>
+				</section>
+				<section>
+						<div>
+							<pre><code class="javascript" data-trim data-line-numbers="|11">
+	import { of } from 'rxjs';
+	import { map } from 'rxjs/operators';
 
-of(2, 3).pipe(
-    map(n => {
-      const result = n * n;
-      console.log(`mapping ${n} to ${result}`);
-      return result;
-    })
-  ); 
-// note: no subscribe() here!</code></pre>
-                        <p>... leads to no output.</p>
-                    </div>
-            </section>
-            <section>
-                <div>
-                    <pre><code class="javascript" data-trim>
-import { of } from 'rxjs';
-import { map } from 'rxjs/operators';
-                                    
-of(2, 3).pipe(
-    map(n => {
-      const result = n * n;
-      console.log(`mapping ${n} to ${result}`);
-      return result;
-    })
-  )
-  .subscribe(n => console.log('This is number ', n));
-                    </code></pre>
-                    <ul class="list-style-none font-style-italic">
-                        <li>mapping 2 to 4</li>
-                        <li>This is number  4</li>
-                        <li>mapping 3 to 9</li>
-                        <li>This is number  9</li>
-                    </ul>
-                </div>
-            </section>
-            <section>
-                <h3>An Observables State</h3>
-                <p>In an Observable Execution, <strong>zero to infinite Next notifications</strong> may be delivered. If <strong>either an Error or Complete notification</strong> is delivered, then nothing else can be delivered afterwards.</p>
-                <div class="margin_top_30">
-                    <p class="align_right"><small><a href="http://reactivex.io/rxjs/manual/overview.html" target="_blank">RxJS Docs</a></small>
-                </p>
-            </section>
-            <section>
-                <p>After <code>complete()</code> an Observable will not emit any more values.</p>                    
-            </section>
-            <section>
-                <pre><code class="typescript" data-trim>
-import { Observable } from 'rxjs';
+	of(2, 3).pipe(
+		map(n => {
+		  const result = n * n;
+		  console.log(`mapping ${n} to ${result}`);
+		  return result;
+		})
+	  ); 
+	// note: no subscribe() here!</code></pre>
+							<p>... leads to no output.<br><br><br><br></p>
+						</div>
+				</section>
+				<section>
+					<div>
+						<pre><code class="javascript" data-trim data-line-numbers="11|">
+	import { of } from 'rxjs';
+	import { map } from 'rxjs/operators';
+										
+	of(2, 3).pipe(
+		map(n => {
+		  const result = n * n;
+		  console.log(`mapping ${n} to ${result}`);
+		  return result;
+		})
+	  )
+	  .subscribe(n => console.log('This is number ', n));
+						</code></pre>
+						<ul class="list-style-none font-style-italic">
+							<li>mapping 2 to 4</li>
+							<li>This is number  4</li>
+							<li>mapping 3 to 9</li>
+							<li>This is number  9</li>
+						</ul>
+					</div>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>An Observables State</h3>
+					<p>In an Observable Execution, <strong>zero to infinite Next notifications</strong> may be delivered. If <strong>either an Error or Complete notification</strong> is delivered, then nothing else can be delivered afterwards.</p>
+					<div class="margin_top_30">
+						<p class="align_right"><small><a href="http://reactivex.io/rxjs/manual/overview.html" target="_blank">RxJS Docs</a></small>
+					</p>
+				</section>
+				<section data-visibility="hidden">
+					<p>After <code>complete()</code> or <code>error()</code> an Observable will not emit any more values.</p>                    
+				</section>
+				<section>
+					<pre><code class="typescript" data-trim data-line-numbers="|12-13|6">
+	import { Observable } from 'rxjs';
 
-let obs = new Observable&lt;number&gt;(subscriber => {
-  subscriber.next(1);
-  subscriber.next(2);
-  subscriber.complete();
-  subscriber.next(3); // note: 3 is never shown
-});
+	let obs = new Observable&lt;number&gt;(subscriber => {
+	  subscriber.next(1);
+	  subscriber.next(2);
+	  subscriber.complete();
+	  subscriber.next(3); // note: 3 is never shown
+	});
 
-obs.subscribe({
-  next(v) { console.log('next value', v) },
-  error(e) { console.log('error', e) },
-  complete() { console.log('completed') }
-});</code></pre>
-                <ul class="list-style-none font-style-italic">
-                    <li>next value 1</li>
-                    <li>next value 2</li>
-                    <li>completed</li>
-                </ul>
-            </section>
-            <section>
-                <p>After <code>error()</code> an Observable will not emit any more values.</p>                    
-            </section>
-            <section>
-                <pre><code class="typescript" data-trim>
-import { Observable } from 'rxjs';
+	obs.subscribe({
+	  next(v) { console.log('next value', v) },
+	  error(e) { console.log('error', e) },
+	  complete() { console.log('completed') }
+	});</code></pre>
+					<ul class="list-style-none font-style-italic">
+						<li>next value 1</li>
+						<li>next value 2</li>
+						<li>completed</li>
+					</ul>
+				</section>
+				<section>
+					<pre><code class="typescript" data-trim data-line-numbers="6|">
+	import { Observable } from 'rxjs';
 
-let obs = new Observable&lt;number&gt;(subscriber => {
-  subscriber.next(1);
-  subscriber.next(2);
-  subscriber.error('Something went wrong.');
-  subscriber.next(3); // note: 3 is never shown
-});
+	let obs = new Observable&lt;number&gt;(subscriber => {
+	  subscriber.next(1);
+	  subscriber.next(2);
+	  subscriber.error('Something went wrong.');
+	  subscriber.next(3); // note: 3 is never shown
+	});
 
-obs.subscribe({
-  next(v) { console.log('next value', v) },
-  error(e) { console.log('error', e) },
-  complete() { console.log('completed') }
-});</code></pre>
-                <ul class="list-style-none font-style-italic">
-                    <li>next value 1</li>
-                    <li>next value 2</li>
-                    <li>error Something went wrong.</li>
-                </ul>
-            </section>
-            <section>
-                <h3>How to cancel an Observable</h3>
-                <p>When you subscribe, you get back a Subscription, which represents the ongoing execution. <strong>Just call unsubscribe() to cancel the execution.</strong></p>
-                <div class="margin_top_30">
-                    <p class="align_right"><small><a href="http://reactivex.io/rxjs/manual/overview.html#disposing-observable-executions" target="_blank">RxJS Docs</a></small>
-                </p>
-            </section>
-            <section>
-                <p>The following code leads to endless numbers</p>
-                <pre><code class="typescript" data-trim>
-import { Observable } from 'rxjs';
+	obs.subscribe({
+	  next(v) { console.log('next value', v) },
+	  error(e) { console.log('error', e) },
+	  complete() { console.log('completed') }
+	});</code></pre>
+					<ul class="list-style-none font-style-italic">
+						<li>next value 1</li>
+						<li>next value 2</li>
+						<li>error Something went wrong.</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Error handling</h3>
+					<p>As described earlier when calling <a href="https://rxjs.dev/api/index/class/Observable#subscribe">subscribe()</a> the <strong>error property of the passed <a href="https://rxjs.dev/api/index/interface/Observer">Observer</a> is a function which gets called if the observable collection emits an error</strong> by calling <code>error()</code>.</p>
+					<p class="margin-top-70">Note: Throwing inside the function given to <code>new Observable()</code> leads to an unhandled exception - calling <code>error()</code> fulfills the contract.</p>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>How to cancel an Observable</h3>
+					<p>When you subscribe, you get back a Subscription, which represents the ongoing execution. <strong>Just call unsubscribe() to cancel the execution.</strong></p>
+					<div class="margin_top_30">
+						<p class="align_right"><small><a href="http://reactivex.io/rxjs/manual/overview.html#disposing-observable-executions" target="_blank">RxJS Docs</a></small>
+					</p>
+				</section>
+				<section>
+					<p>The following code leads to endless numbers</p>
+					<pre><code class="typescript" data-trim data-line-numbers="|10-14">
+	import { Observable } from 'rxjs';
 
-let obs = new Observable&lt;number&gt;(subscriber => {
-  let luckyNumber = 1;
-  setInterval(() => {
-    subscriber.next(luckyNumber++);
-  }, 1000);
-});
+	let endlessNumberObservable$ = new Observable&lt;number&gt;(subscriber => {
+	  let luckyNumber = 1;
+	  setInterval(() => {
+		subscriber.next(luckyNumber++);
+	  }, 1000);
+	});
 
-obs.subscribe({
-  next(v) { console.log('next value', v) },
-  error(e) { console.log('error', e) },
-  complete() { console.log('completed') }
-});</code></pre>
-            </section>
-            <section>
-                <p>... <code>subscription.unsubscribe()</code> cancels the observable.</p>
-            </section>
-            <section>
-                <div>
-                    <div class="inline-block">
-                        <pre><code class="code-without-max-height typescript" data-trim>
-import { Observable } from 'rxjs';
+	endlessNumberObservable$.subscribe({
+	  next(v) { console.log('next value', v) },
+	  error(e) { console.log('error', e) },
+	  complete() { console.log('completed') }
+	});</code></pre>
+					<aside class="notes">
+						Do not focus on the endlessNumberObservable$!
+						<br>This is about unsubscribe.
+					</aside>
+				</section>
+				<section>
+					<p>... <code>subscription.unsubscribe()</code> cancels the observable.</p>
+				</section>
+				<section>
+					<div>
+						<div class="inline-block">
+							<pre><code class="code-without-max-height typescript" data-trim data-line-numbers="|15-16|18-21">
+	import { Observable } from 'rxjs';
 
-let obs = new Observable&lt;number&gt;(subscriber => {
-  let luckyNumber = 1;
-  let intervalId = setInterval(() => {
-    subscriber.next(luckyNumber++);
-  }, 1000);
+	let endlessNumberObservable$ = new Observable&lt;number&gt;(subscriber => {
+	  let luckyNumber = 1;
+	  let intervalId = setInterval(() => {
+		subscriber.next(luckyNumber++);
+	  }, 1000);
 
-  // this function gets executed on unsubscribe()
-  return () => { 
-    clearInterval(intervalId);
-  };
-});
+	  // this function gets executed on unsubscribe()
+	  return () => { 
+		clearInterval(intervalId);
+	  };
+	});
 
-let subscription = 
-    obs.subscribe(v => console.log('next value', v));
-// calling unsubscribe() after 5,1 seconds
-setTimeout(() => { 
-    subscription.unsubscribe();
-}, 5100);</code></pre>
-                    </div>
-                    <div class="inline-block">
-                        <ul class="list-style-none font-style-italic">
-                            <li>next value 1</li>
-                            <li>next value 2</li>
-                            <li>next value 3</li>
-                            <li>next value 4</li>
-                            <li>next value 5</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-            <section>
-                <h3>Error handling</h3>
-                <p>As described earlier when calling <a href="https://rxjs.dev/api/index/class/Observable#subscribe">subscribe()</a> the <strong>error property of the passed <a href="https://rxjs.dev/api/index/interface/Observer">Observer</a> is a function which gets called if the observable collection emits an error</strong> by calling <code>error()</code>.</p>
-                <p class="margin-top-70">Note: Throwing inside the function given to <code>new Observable()</code> leads to an unhandled exception - calling <code>error()</code> fulfills the contract.</p>
-            </section>
-            <section>
-                <h3>Operators</h3>
-                <p>An Operator is a function which creates <strong>a new Observable based on the current Observable</strong>. This is a pure operation: the previous Observable stays unmodified.</p>
-                <div class="margin_top_30">
-                    <p class="align_right"><small><a href="http://reactivex.io/rxjs/manual/overview.html#operators" target="_blank">RxJS Docs</a></small>
-                </p>
-                <p>RxJS comes with many operators. The Docs provide an overview. There are lots of use cases covered like taking only a single value, transformations, debounce time, auto retry, etc.</p>                
-            </section>
-            <section>
-                <h3>Binding Observables in Angular components (1/2)</h3>
-                <pre><code class="typescript max-height-unset" data-trim>
-@Component({
-  selector: 'app-root',
-  template: '&lt;h1&gt;Hello {{name$ | async}}&lt;/h1&gt;'
-})
-export class AppComponent {
-  name$ = new Observable&lt;string&gt;(subscriber => {
-    let index = 0;
-    setInterval(() => {
-      index = ++index >= this.names.length ? 0 : index;
-      subscriber.next(this.names[index]);
-    }, 500);
-  });
-  private names = ['Waldo', 'Caspar', 'Azizi'];
-}</code></pre>
-                <p>Binding to a stream of data - how cool is that?</p>
-            </section>
-            <section>
-                <h3>Binding Observables in Angular components (2/2)</h3>
-                <ul>
-                    <li>Observable members have <strong>suffix $</strong> by convention</li>
-                    <li>Angular views automatically <strong>subscribe and unsubscribe</strong></li>
-                    <li>... this logic is inside <strong>async pipe</strong> and prevents memory leaks (you never have to think about when to unsubscribe!)</li>
-                </ul>
-            </section>
-            <section>
-                <p>These examples <strong>only scratched the surface</strong> of what Observables <a href="https://rxmarbles.com/" target="_blank">can do.</a></p>
-                <p>They are key to so called <strong>reactive architectures</strong>.</p>
-                <p>Further reading:</p>
-                <p><a href="https://github.com/ngrx/store">ngrx</a><span>: Redux implementation for Angular</span></p>
-            </section>
+	let subscription = 
+		endlessNumberObservable$.subscribe(v => console.log('next value', v));
+		
+	// calling unsubscribe() after 5,1 seconds
+	setTimeout(() => { 
+		subscription.unsubscribe();
+	}, 5100);</code></pre>
+						</div>
+						<div class="inline-block">
+							<ul class="list-style-none font-style-italic">
+								<li>next value 1</li>
+								<li>next value 2</li>
+								<li>next value 3</li>
+								<li>next value 4</li>
+								<li>next value 5</li>
+							</ul>
+						</div>
+					</div>
+					<aside class="notes">
+						Do not focus on the endlessNumberObservable changes$!
+						<br>This is about subscriptions and calling unsubscribe.
+					</aside>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>Binding Observables in Angular components (1/2)</h3>
+					<pre><code class="typescript max-height-unset" data-trim>
+	@Component({
+	  selector: 'app-root',
+	  template: '&lt;h1&gt;Hello {{name$ | async}}&lt;/h1&gt;'
+	})
+	export class AppComponent {
+	  name$ = new Observable&lt;string&gt;(subscriber => {
+		let index = 0;
+		setInterval(() => {
+		  index = ++index >= this.names.length ? 0 : index;
+		  subscriber.next(this.names[index]);
+		}, 500);
+	  });
+	  private names = ['Waldo', 'Caspar', 'Azizi'];
+	}</code></pre>
+					<p>Binding to a stream of data - how cool is that?</p>
+				</section>
+				<section>
+					<h3>Binding Observables in Angular components (2/2)</h3>
+					<ul>
+						<li>Observable members have <strong>suffix $</strong> by convention</li>
+						<li>Angular views automatically <strong>subscribe and unsubscribe</strong></li>
+						<li>... this logic is inside <strong>async pipe</strong> and prevents memory leaks (you never have to think about when to unsubscribe!)</li>
+					</ul>
+				</section>
+			</section>
             <section>
                 <section id="summary">
                    <h2>Summary</h2>
                    <ul>
                       <li>
-                         First ...<br>      
-                         <ul class="ul-small">
-                            <li>First detail...</li>
-                            <li>Another detail ...</li>
+                         Asynchronous programming<br>      
+                         <ul>
+                            <li>Challenges: Synchronization and exception handling</li>
+                            <li>Promises are native solution</li>
                          </ul>
+					  <li>
+                         An observable ...<br>  
+						<ul class="ul-small">
+							<li>represents <strong>multiple</strong> values over <strong>time</strong>.</li>
+							<li>can be <strong>subscribed</strong> to (cf. <code>Promise.prototype.then()</code>).</li>
+							<li>can be <strong>unsubscribed</strong> from.</li>
+							<li>offers the possibility to <strong>transform received values</strong> through the usage of operators.</li>
+						</ul>
                       </li>
-                      <li>Second ..</li>
                    </ul>
                    <p class="hint center">Live Code Examples & Backup slides below</p>
                 </section>
                 <section id="examples" data-visibility="uncounted">
                    <h2>Live Code Examples</h2>
                    <ul>
-                      <li><a href=https://stackblitz.com/edit/stackblitz-starters-ls7pdf?file=src%2Fbook-details.component.ts target="_blank">A link to stackblitz ...</a> Example in Stackblitz</li>
-                      <li><a href=https://stackblitz.com/edit/stackblitz-starters-ls7pdf?file=src%2Fbook-details.component.ts target="_blank">Another example</a> Example somewhere else</li>
-                   </ul>
+					  <li>Previous examples in Stackblitz<br>
+					  <ul class="ul-small">
+						  <li><a href="https://stackblitz.com/edit/angular-mvuyvc7b?file=src%2Fmap-and-subscribe%2Fmap-and-subscribe.component.ts" target="_blank">Map (operator) and subscribe</a></li>
+						  <li><a href="https://stackblitz.com/edit/angular-mpwnjqgm?file=src%2Ferror-and-complete%2Ferror-and-complete.component.ts" target="_blank">Error and complete state transitions</a></li>
+						  <li><a href="https://stackblitz.com/edit/angular-aptn46we?file=src%2Funsubscribe-from-endless-numbers%2Funsubscribe-from-endless-numbers.component.ts" target="_blank">Unsubscribe from endless number</a></li>
+						  <li><a href="https://stackblitz.com/edit/angular-vt1kihbo?file=src%2Fbinding-observables%2Fbinding-observables.component.html" target="_blank">Binding Observables in Angular</a></li>
+					  </ul>
+				   </ul>
                 </section>
                 <section id="backup" data-visibility="uncounted">
                    <h2>Backup slides</h2>
                    <p>Following slides are not subject of the lecture.<br>Ask trainers in case of questions.</p>
                 </section>
-                <section data-visibility="uncounted">
-                    <h2>Bookmarks</h2>
-                    <p>XMLHttpRequest on Wikipedia: <a href="https://de.wikipedia.org/wiki/XMLHttpRequest">XMLHttpRequest</a></p>
+				<section data-visibility="hidden">
+					<h3>How do Observables differ from Promises?</h3>
+					<p class="text-align-left">An Observable...</p>
+					<ul>
+						<li>represents <strong>multiple</strong> values over <strong>time</strong>.</li>
+						<li>can be <strong>subscribed</strong> to (cf. <code>Promise.prototype.then()</code>).</li>
+						<li>can be <strong>unsubscribed</strong> from.</li>
+						<li>offers the possibility to <strong>transform received values</strong> through the usage of operators.</li>
+					</ul>
+				</section>
+				<section data-visibility="uncounted">
+					<p>These examples <strong>only scratched the surface</strong> of what Observables <a href="https://rxmarbles.com/" target="_blank">can do.</a></p>
+					<p>They are key to so called <strong>reactive architectures</strong>.</p>
+					<p>Further reading:</p>
+					<p><a href="https://github.com/ngrx/store">ngrx</a><span>: Redux implementation for Angular</span></p>
+				</section>
+				<section data-visibility="uncounted">
+                    <h3>Hint: Running the previous examples via node js</h3>
+                    <ul>
+                        <li>create folder - e.g. <code>mkdir ts-test</code></li>
+                        <li>cd into folder - e.g. <code>cd ts-test</code></li>
+                        <li>run <code>npm install rxjs</code></li>
+                        <li>create TypeScript file - e.g. 'test.ts'</li>
+                        <li>paste example code and save</li>
+                        <li>run <code>tsc test.ts --target es5 --lib es6,dom</code></li>
+                        <li>run <code>node test.js</code></li>
+                    </ul>
                 </section>
              </section>
     </div>
