@@ -32,6 +32,14 @@
     border: 0;
 }
 
+.reveal .progress {
+    height: 10px;
+}
+
+.reveal .controls .enabled {
+	margin-bottom: 10px;
+}
+
 .devon.reveal section img.reset {
     background: none;
     border: 0;
