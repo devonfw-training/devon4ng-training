@@ -31,245 +31,153 @@
                 <p>Let you test components including their <span class="highlight">interaction with Angular</span>.</p>
 				<p class="hint center">This slides build on <a href="../isolated-unit-testing/index.html" target="_blank">Isolated Unit Testing</a></p>
             </section>
-            <section>
-                <h3>TestBed Testing API</h3>
-            </section>
-            <section>
-                <p><strong>TestBed</strong> creates an Angular module.</p>
-                <p>Its purpose is to create a <span class="highlight">controlled test setup</span>.</p>
-                <pre><code data-trim class="typescript">
-import { TestBed } from '@angular/core/testing';
-import { HelloComponent } from './hello.component';
+			<section>
+				<section>
+					<h3>TestBed Testing API</h3>
+				</section>
+				<section>
+					<p><strong>TestBed</strong> creates an Angular module.</p>
+					<p>Its purpose is to create a <span class="highlight">controlled test setup</span>.</p>
+					<pre><code data-trim class="typescript">
+	import { TestBed } from '@angular/core/testing';
+	import { HelloComponent } from './hello.component';
 
-describe('HelloComponent', () => {
+	describe('HelloComponent', () => {
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [ HelloComponent ]
-    });
-  });
+	  beforeEach(() => {
+		TestBed.configureTestingModule({
+		  declarations: [ HelloComponent ]
+		});
+	  });
 
-})
-                </code></pre>
-            </section>
-            <section>
-                <code>ComponentFixture</code>
-                <p>Fixture for <span class="highlight">debugging and testing</span> a component.</p>
-                <pre><code data-trim data-noescape class="typescript">
-TestBed.configureTestingModule({
-  declarations: [ HelloComponent ],
-});
+	})
+					</code></pre>
+				</section>
+				<section>
+					<code>ComponentFixture</code>
+					<p>Fixture for <span class="highlight">debugging and testing</span> a component.</p>
+					<pre><code data-trim data-noescape class="typescript">
+	TestBed.configureTestingModule({
+	  declarations: [ HelloComponent ],
+	});
 
-const fixture = <mark>TestBed.createComponent(HelloComponent);</mark>
-                </code></pre>                    
-            </section>
-            <section>
-                <p><code>ComponentFixture.componentInstance</code> provides <span class="highlight">access to the component</span></p>                    
-                <pre><code data-trim data-noescape class="typescript max-height-unset">
-import { TestBed } from '@angular/core/testing';
-import { HelloComponent } from './hello.component';
-                        
-describe('HelloComponent', () => {
+	const fixture = <mark>TestBed.createComponent(HelloComponent);</mark>
+					</code></pre>                    
+				</section>
+				<section>
+					<p><code>ComponentFixture.componentInstance</code> provides <span class="highlight">access to the component</span></p>                    
+					<pre><code data-trim data-noescape class="typescript max-height-unset">
+	import { TestBed } from '@angular/core/testing';
+	import { HelloComponent } from './hello.component';
+							
+	describe('HelloComponent', () => {
 
-  let component: HelloComponent;
+	  let component: HelloComponent;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [ HelloComponent ]
-    });
-    const fixture = TestBed.createComponent(HelloComponent);
-    <mark>component = fixture.componentInstance;</mark>
-  });
+	  beforeEach(() => {
+		TestBed.configureTestingModule({
+		  declarations: [ HelloComponent ]
+		});
+		const fixture = TestBed.createComponent(HelloComponent);
+		<mark>component = fixture.componentInstance;</mark>
+	  });
 
-});
-                </code></pre>
-            </section>
-            <section>
-                <p><code>ComponentFixture.debugElement</code> provides <span class="highlight">access to the components HTML tree</span></p>
-                <pre><code data-trim data-noescape class="typescript max-height-unset">
-import { DebugElement } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
-import { HelloComponent } from './hello.component';
-                        
-describe('HelloComponent', () => {
+	});
+					</code></pre>
+				</section>
+				<section>
+					<p><code>ComponentFixture.debugElement</code> provides <span class="highlight">access to the components HTML tree</span></p>
+					<pre><code data-trim data-noescape class="typescript max-height-unset">
+	import { DebugElement } from '@angular/core';
+	import { TestBed } from '@angular/core/testing';
+	import { HelloComponent } from './hello.component';
+							
+	describe('HelloComponent', () => {
 
-    let debugElement: DebugElement;
+		let debugElement: DebugElement;
 
-    beforeEach(() => {
-      TestBed.configureTestingModule({
-          declarations: [ HelloComponent ]
-      });
-      const fixture = TestBed.createComponent(HelloComponent);
-      <mark>debugElement = fixture.debugElement;</mark>
-    });
+		beforeEach(() => {
+		  TestBed.configureTestingModule({
+			  declarations: [ HelloComponent ]
+		  });
+		  const fixture = TestBed.createComponent(HelloComponent);
+		  <mark>debugElement = fixture.debugElement;</mark>
+		});
 
-});
-                </code></pre>                        
-            </section>
-            <section>
-                <p>... which <span class="highlight">can be queried</span> - e.g. by css selector</p>
-                <pre><code data-trim data-noescape class="typescript max-height-unset">
-import { By } from '@angular/platform-browser';
-                        
-const debugElement = fixture.debugElement.query(By.css('h1'));
-                </code></pre>                
-            </section>
-            <section>
-                <p>DebugElement.nativeElement provides <span class="highlight">access to <code>HTMLElement</code></span> (native browser API)</p>                    
-                <pre><code data-trim data-noescape class="typescript">
-const debugElement = fixture.debugElement.query(By.css('h1'));
-const nativeElement = debugElement.nativeElement;
+	});
+					</code></pre>                        
+				</section>
+				<section>
+					<p>... which <span class="highlight">can be queried</span> - e.g. by css selector</p>
+					<pre><code data-trim data-noescape class="typescript max-height-unset">
+	import { By } from '@angular/platform-browser';
+							
+	const debugElement = fixture.debugElement.query(By.css('h1'));
+					</code></pre>                
+				</section>
+				<section>
+					<p>DebugElement.nativeElement provides <span class="highlight">access to <code>HTMLElement</code></span> (native browser API)</p>                    
+					<pre><code data-trim data-noescape class="typescript">
+	const debugElement = fixture.debugElement.query(By.css('h1'));
+	const nativeElement = debugElement.nativeElement;
 
-console.log(nativeElement.textContent);
-                </code></pre>
-            </section>
-            <section>
-                <p>
-                    For a component to adjust its bindings during a test,
-                    you need to call <code>detectChanges()</code> to notify Angular that
-                    <span class="highlight">change detection</span> needs to be run.
-                </p>
-            </section>
-            <section>
-                <p>... and there is an API on <strong>TestFixture</strong></p>                    
-                <pre class="width-100-percent"><code data-trim class="typescript">
-it('should display a different test title', () => {
-  const h1Element = fixture.debugElement.query(By.css('h1'));    
+	console.log(nativeElement.textContent);
+					</code></pre>
+				</section>
+				<section>
+					<p>
+						For a component to adjust its bindings during a test,
+						you need to call <code>detectChanges()</code> to notify Angular that
+						<span class="highlight">change detection</span> needs to be run.
+					</p>
+				</section>
+				<section>
+					<p>... and there is an API on <strong>TestFixture</strong></p>                    
+					<pre class="width-100-percent"><code data-trim class="typescript">
+	it('should display a different test title', () => {
+	  const h1Element = fixture.debugElement.query(By.css('h1'));    
 
-  fixture.componentInstance.title = 'Test Title';
-  fixture.detectChanges();
+	  fixture.componentInstance.title = 'Test Title';
+	  fixture.detectChanges();
 
-  expect(h1Element.nativeElement.textContent).toContain('Test Title');
-});
-                </code></pre>
-            </section>
-            <section>
-                <h3>Testing components with dependencies</h3>
-                <p><code>TestBed.configureTestingModule({})</code> has like <code>@NgModule({})</code> a property called <span class="highlight">providers</span>.</p>
-            </section>
-            <section>
-                <p>For a component to be able to be build you need to <span class="highlight">register all dependencies</span>.</p>
-                <pre class="width-100-percent"><code data-trim class="typescript">
-// 'real' dependency
-TestBed.configureTestingModule({
-  providers: [ HelloService ] 
-});
-                </code></pre>
-                <pre class="width-100-percent"><code data-trim class="typescript">
-// 'fake' dependency
-TestBed.configureTestingModule({
-  providers: [ { provide: HelloService, useValue: helloServiceFake } ] 
-});
-                </code></pre>
-            </section>
-            <section>
-                <h3>Real vs Fake</h3>
-                <p>Both are possible. A real dependency can even be stubbed after creation.</p>
-            </section>
-            <section>
-                <p>To stub the real dependency you need to retrieve the runtime instance via</p>
-                <pre><code class="typescript">fixture.debugElement.injector.get(Speaker)</code></pre>
-                <p>or</p>
-                <pre><code class="typescript">TestBed.inject(Speaker)</code></pre>
-                <span class="highlight">Using the components fixture should be preferred</span> since it is less error prone.
-            </section>
-            <section>
-                <h3>Testing asynchronous functionality</h3>
-            </section>
-            <section>
-                <p>waitForAsync makes the test wait until all asynchronous operations are completed.</p>
-                <pre><code data-noescape data-trim class="typescript">
-import { waitForAsync } from '@angular/core/testing';
-
-it('should display hello', <mark>waitForAsync(</mark>() => {
-  let sut = new TestService();
-
-  sut.doSomething().then(result => {
-    expect(result).toBe('hello');
-  });
-}));</code></pre>
-            </section>
-            <section>
-                <p>
-                    <code>fakeAsync</code> differentiates between
-                    <strong>micro</strong> and <strong>macrotasks</strong>
-                    (tasks and jobs).
-                </p>
-            </section>
-            <section>
-                <code>flushMicrotasks</code>
-                <p>Flush any pending microtasks.</p>
-                <pre class="width-100-percent"><code data-noescape data-trim class="typescript">
-import { fakeAsync, flushMicrotasks } from '@angular/core/testing';
-
-it('should display hello', fakeAsync(() => {
-    let flag = false;
-    Promise.resolve().then(() => { flag = true; });
-
-    expect(flag).toBeFalsy();
-
-    <mark>flushMicrotasks();</mark>
-
-    expect(flag).toBeTruthy();
-}));
-                </code></pre>
-            </section>
-            <section>
-                <p>... macrotasks remain in the queue and are <strong>not executed</strong></p>
-                <pre class="width-100-percent"><code data-noescape data-trim class="typescript">
-import { fakeAsync, flushMicrotasks } from '@angular/core/testing';
-
-it('should display hello', fakeAsync(() => {
-    let flag = false;
-    setTimeout(() => { flag = true; });
-
-    expect(flag).toBeFalsy();
-
-    flushMicrotasks();
-
-    expect(flag).toBeTruthy(); <mark>// Error!</mark>
-}));
-                </code></pre>
-            </section>
-            <section>
-                <code>tick</code>
-                <p>Simulates the asynchronous passage of time for the timers in the fakeAsync zone.</p>
-                <p>The microtasks queue is drained at the very start of this function and after any timer callback has been executed.</p>
-            </section>
-            <section>
-                <pre class="width-100-percent"><code data-noescape data-trim class="typescript">
-import { fakeAsync, tick } from '@angular/core/testing';
-
-it('should display hello', fakeAsync(() => {
-    let flag = false;
-    setTimeout(() => { flag = true; });
-
-    expect(flag).toBeFalsy();
-
-    <mark>tick();</mark>
-
-    expect(flag).toBeTruthy();
-}));
-                </code></pre>
-            </section>
-            <section>
-                <pre class="width-100-percent"><code data-noescape data-trim class="typescript">
-import { fakeAsync, tick } from '@angular/core/testing';
-
-it('should display hello', fakeAsync(() => {
-    let flag = false;
-    setTimeout(() => { flag = true; }, <mark>100</mark>);
-
-    <mark>tick(50);</mark>    
-
-    expect(flag).toBeFalsy();
-
-    <mark>tick(50);</mark>
-
-    expect(flag).toBeTruthy();
-}));
-                </code></pre>
-            </section>
+	  expect(h1Element.nativeElement.textContent).toContain('Test Title');
+	});
+					</code></pre>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>Testing components with dependencies</h3>
+					<p><code>TestBed.configureTestingModule({})</code> has like <code>@NgModule({})</code> a property called <span class="highlight">providers</span>.</p>
+				</section>
+				<section>
+					<p>For a component to be able to be build you need to <span class="highlight">register all dependencies</span>.</p>
+					<pre class="width-100-percent"><code data-trim class="typescript">
+	// 'real' dependency
+	TestBed.configureTestingModule({
+	  providers: [ HelloService ] 
+	});
+					</code></pre>
+					<pre class="width-100-percent"><code data-trim class="typescript">
+	// 'fake' dependency
+	TestBed.configureTestingModule({
+	  providers: [ { provide: HelloService, useValue: helloServiceFake } ] 
+	});
+					</code></pre>
+					<p>see <a href="../isolated-unit-testing/index.html#/mocking" target="_blank">mocking</a> for creation of <code>helloServiceFake</code></p>
+				</section>
+				<section>
+					<h3>Real vs Fake</h3>
+					<p>Both are possible. A real dependency can even be stubbed after creation.</p>
+				</section>
+				<section>
+					<p>To stub the real dependency you need to retrieve the runtime instance via</p>
+					<pre><code class="typescript">fixture.debugElement.injector.get(Speaker)</code></pre>
+					<p>or</p>
+					<pre><code class="typescript">TestBed.inject(Speaker)</code></pre>
+					<span class="highlight">Using the components fixture should be preferred</span> since it is less error prone.
+				</section>
+			</section>
             <section>
                 <h3>Emitting events</h3>
                 <p><code>DebugElement.triggerEventHandler('click', null)</code> emits a click event.</p>
@@ -284,40 +192,161 @@ TestBed.configureTestingModule({
                 <pre class="width-100-percent"><code class="html">&lt;my-component (somethingChanged)="method($event)"&gt;&lt;/my-component&gt;</code></pre>
                 <pre class="width-100-percent"><code class="typescript">debugElement.triggerEventHandler('somethingChanged', whatHasChanged)</code></pre>
             </section>
-            <section>
-                <p>HttpClientTestingModule lets all calls made by HttpClient hit a fake backend.</p>                
-                <pre class="width-100-percent"><code data-trim class="typescript">
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+			<section>
+				<section>
+					<h3>Testing asynchronous functionality</h3>
+				</section>
+				<section>
+					<p>waitForAsync makes the test wait until all asynchronous operations are completed.</p>
+					<pre><code data-noescape data-trim class="typescript">
+	import { waitForAsync } from '@angular/core/testing';
 
-beforeEach(() => {
-  TestBed.configureTestingModule({
-    ...,
-    imports: [
-      HttpClientTestingModule,
-    ],
-  })
-});
-                </code></pre>
-            </section>
-            <section>
-                <pre class="width-100-percent"><code class="max-height-unset typescript" data-trim>
-it('expects a GET request', inject(
-    [BookService, HttpTestingController],
-    (sut: BookService, httpMock: HttpTestingController) => {
-  
-  sut.getBooks()
-     .subscribe(books => expect(books.length).toBe(1));   
+	it('should display hello', <mark>waitForAsync(</mark>() => {
+	  let sut = new TestService();
 
-  const req = httpMock.expectOne('/data');
-    
-  expect(req.request.method).toEqual('GET');
-    
-  req.flush([{ id: 1, name: 'Book of Ra', author: 'Mr Gambler' }]);
-    
-  httpMock.verify();
-}));
-                </code></pre>
-            </section>
+	  sut.doSomething().then(result => {
+		expect(result).toBe('hello');
+	  });
+	}));</code></pre>
+				</section>
+				<section>
+					<p>
+						<code>fakeAsync</code> differentiates between
+						<strong>micro</strong> and <strong>macrotasks</strong>
+						(tasks and jobs).
+					</p>
+				</section>
+				<section>
+					<code>flushMicrotasks</code>
+					<p>Flush any pending microtasks.</p>
+					<pre class="width-100-percent"><code data-noescape data-trim class="typescript">
+	import { fakeAsync, flushMicrotasks } from '@angular/core/testing';
+
+	it('should display hello', fakeAsync(() => {
+		let flag = false;
+		Promise.resolve().then(() => { flag = true; });
+
+		expect(flag).toBeFalsy();
+
+		<mark>flushMicrotasks();</mark>
+
+		expect(flag).toBeTruthy();
+	}));
+					</code></pre>
+				</section>
+				<section>
+					<p>... macrotasks remain in the queue and are <strong>not executed</strong></p>
+					<pre class="width-100-percent"><code data-noescape data-trim class="typescript">
+	import { fakeAsync, flushMicrotasks } from '@angular/core/testing';
+
+	it('should display hello', fakeAsync(() => {
+		let flag = false;
+		setTimeout(() => { flag = true; });
+
+		expect(flag).toBeFalsy();
+
+		flushMicrotasks();
+
+		expect(flag).toBeTruthy(); <mark>// Error!</mark>
+	}));
+					</code></pre>
+				</section>
+				<section>
+					<code>tick</code>
+					<p>Simulates the asynchronous passage of time for the timers in the fakeAsync zone.</p>
+					<p>The microtasks queue is drained at the very start of this function and after any timer callback has been executed.</p>
+				</section>
+				<section>
+					<pre class="width-100-percent"><code data-noescape data-trim class="typescript">
+	import { fakeAsync, tick } from '@angular/core/testing';
+
+	it('should display hello', fakeAsync(() => {
+		let flag = false;
+		setTimeout(() => { flag = true; });
+
+		expect(flag).toBeFalsy();
+
+		<mark>tick();</mark>
+
+		expect(flag).toBeTruthy();
+	}));
+					</code></pre>
+				</section>
+				<section>
+					<pre class="width-100-percent"><code data-noescape data-trim class="typescript">
+	import { fakeAsync, tick } from '@angular/core/testing';
+
+	it('should display hello', fakeAsync(() => {
+		let flag = false;
+		setTimeout(() => { flag = true; }, <mark>100</mark>);
+
+		<mark>tick(50);</mark>    
+
+		expect(flag).toBeFalsy();
+
+		<mark>tick(50);</mark>
+
+		expect(flag).toBeTruthy();
+	}));
+					</code></pre>
+				</section>
+			</section>
+			<section>
+			  <section id="summary">
+				 <h2>Summary</h2>
+				 <ul>
+				  <li>Testbade Testing API</li>
+				  <li>Testing Components with dependencies</li>
+				  <li>How to test event binding?</li>
+				  <li>Testing asynchronous functionality</li>
+				 </ul>
+				 <p class="hint center">Live Code Examples & Backup slides below</p>
+			  </section>
+			  <section id="examples" data-visibility="uncounted">
+				 <h2>Live Code Examples</h2>
+				 <ul>
+				  <li><a href="https://stackblitz.com/edit/angular-unit-testing-examples-rgvs3noj?file=src%2Ftest.ts" target="_blank">Examples</a> of all discussed cases in Stackblitz (see comments over test imports in test.ts)</li>
+				</ul>
+			  </section>
+			  <section id="backup" data-visibility="uncounted">
+				 <h2>Backup slides</h2>
+				 <p>Following slides are not subject of the lecture.<br>Ask trainers in case of questions.</p>
+			  </section>
+			  <section data-visibility="uncounted">
+					<p>HttpClientTestingModule lets all calls made by HttpClient hit a fake backend.</p>                
+					<pre class="width-100-percent"><code data-trim class="typescript">
+	import { HttpClientTestingModule } from '@angular/common/http/testing';
+
+	beforeEach(() => {
+	  TestBed.configureTestingModule({
+		...,
+		imports: [
+		  HttpClientTestingModule,
+		],
+	  })
+	});
+					</code></pre>
+				</section>
+				<section data-visibility="uncounted">
+					<pre class="width-100-percent"><code class="max-height-unset typescript" data-trim>
+	it('expects a GET request', inject(
+		[BookService, HttpTestingController],
+		(sut: BookService, httpMock: HttpTestingController) => {
+	  
+	  sut.getBooks()
+		 .subscribe(books => expect(books.length).toBe(1));   
+
+	  const req = httpMock.expectOne('/data');
+		
+	  expect(req.request.method).toEqual('GET');
+		
+	  req.flush([{ id: 1, name: 'Book of Ra', author: 'Mr Gambler' }]);
+		
+	  httpMock.verify();
+	}));
+					</code></pre>
+				</section>
+			</section>
     </div>
 </div>
 
