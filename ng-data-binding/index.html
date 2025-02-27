@@ -16,7 +16,15 @@
 
     <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="../common/css/github-gist.css">
-
+	<style>
+	.container{
+		display: flex;
+	}
+	.col{
+		flex: 1;
+		margin: 5px 20px;
+	}
+	</style>
 </head>
 <body>
 <section class="angular-link">
@@ -58,130 +66,133 @@ export class BookEntryComponent {
                 <img class="reset" src="img/property-binding.png">
                 <h2>Property Binding</h2>
             </div>
-            <pre class="width-100-percent"><code class="hljs html" data-trim data-noescape>
-&lt;ul&gt;
-  &lt;li (click)="selectBook(firstBook)">{{ firstBook.title }}&lt;/li&gt;
-  &lt;li (click)="selectBook(secondBook)">{{ secondBook.title }}&lt;/li&gt;
-&lt;/ul&gt;
-&lt;book-entry <mark>[book]="selectedBook"</mark>&gt;&lt;/book-entry &gt;
-                  </code></pre>
-            <pre class="width-100-percent"><code class="hljs typescript" data-trim data-noescape>
-@Component(...)
-export class BookOverviewComponent {
-  firstBook = new Book(...);
-  secondBook = new Book(...);
-  <mark>selectedBook</mark>: Book|null = null;
+			<div style="margin-left:-200px;" class="container">
+				<div class="col">
+					<pre class="width-100-percent"><code class="hljs html" data-trim data-noescape>
+		&lt;!-- BookOverviewComponent (Parent) --&gt;
+		&lt;ul&gt;
+		  &lt;li (click)="selectBook(firstBook)">{{ firstBook.title }}&lt;/li&gt;
+		  &lt;li (click)="selectBook(secondBook)">{{ secondBook.title }}&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;book-entry <mark>[book]="selectedBook"</mark>&gt;&lt;/book-entry&gt;
+						  </code></pre>
+					<pre class="width-100-percent"><code class="hljs typescript" data-trim data-noescape>
+		@Component(...)
+		export class BookOverviewComponent {
+		  firstBook = new Book(...);
+		  secondBook = new Book(...);
+		  <mark>selectedBook</mark>: Book|null = null;
 
-  selectBook(book:Book):void {
-    this.selectedBook = book;
-  }
-}
-                  </code></pre>
+		  selectBook(book:Book):void {
+			this.selectedBook = book;
+		  }
+		}
+						  </code></pre>
+				</div>
+				<div class="col">
+							<pre class="width-100-percent"><code class="hljs html" data-trim data-noescape >
+			&lt;!-- BookDetailsComponent (Child) --&gt;
+			&lt;div&gt;Title: {{ <mark>book</mark>?.title }}&lt;/div&gt;
+			&lt;div&gt;Author: {{ <mark>book</mark>?.author }}&lt;/div&gt;
+					  </code></pre>
+				    <pre class="width-100-percent"><code class="hljs typescript" data-trim data-noescape>
+	@Component(...)
+	export class BookEntryComponent {
+	  <mark>@Input() book: Book|null;</mark>
+	}
+					  </code></pre>
+
+				</div>
+			</div>
 
             <a href="https://angular.io/guide/property-binding" class="references" target="_blank">Angular Docs</a>
             <aside class="notes">
+				To define a property we add the Input() decorator to the field of a class<br>
+				The name of the property is defined through the name of the field<br>
+				The operator in book?.author is for optional property access. So we don't get an error if book is null<br><br>
+			
                 With property bindings data is passed from parent to child component<br>
                 Property bindings are always surrounded by [] brackets<br>
                 The left side of the = is the name of the property as defined by the child.<br>
                 The right side of the = is the name of the parent component's field to pass to the child.<br>
             </aside>
         </section>
-        <section>
+		<section>
             <div class="title-with-image">
                 <img class="reset" src="img/property-binding.png">
                 <h2>Property Binding</h2>
-                <img class="small-img" src="img/property.svg">
             </div>
-            <pre class="width-100-percent"><code class="hljs html" data-trim data-noescape>
-&lt;ul&gt;
-  &lt;li (click)="selectBook(firstBook)">{{ firstBook.title }}&lt;/li&gt;
-  &lt;li (click)="selectBook(secondBook)">{{ secondBook.title }}&lt;/li&gt;
-&lt;/ul&gt;
-&lt;book-entry <mark>[book]</mark>="selectedBook"&gt;&lt;/book-entry &gt;
-                  </code></pre>
-
-            <pre class="width-100-percent"><code class="hljs typescript" data-trim data-noescape>
-@Component(...)
-export class BookEntryComponent {
-  <mark>@Input() book: Book|null;</mark>
-}
-                  </code></pre>
-            <pre class="width-100-percent"><code class="hljs html" data-trim data-noescape>
-        &lt;div&gt;Title: {{ <mark>book</mark>?.title }}&lt;/div&gt;
-        &lt;div&gt;Author: {{ <mark>book</mark>?.author }}&lt;/div&gt;
-                  </code></pre>
-            <a href="https://angular.io/guide/property-binding" class="references" target="_blank">Angular Docs</a>
-            <aside class="notes">
-                To define a property we add the Input() decorator to the field of a class<br>
-                The name of the property is defined through the name of the field<br>
-                The operator in book?.author is for optional property access. So we don't get an error if book is null
-            </aside>
+			<img src="img/property.svg">
+            <p><a href="https://v17.angular.io/guide/inputs-outputs" class="references" target="_blank">Angular Docs</a></p>
         </section>
         <section>
             <div class="title-with-image">
                 <img class="reset" src="img/event-binding.png">
                 <h2>Event Binding</h2>
             </div>
-            <pre class="width-100-percent"><code class="hljs html" data-trim data-noescape>
-&lt;book-entry [currentBook]="books[0]"
-           (selectBook)=<mark>"rentBook($event)"</mark>&gt;
-&lt;/book-entry&gt;
-&lt;book-entry [currentBook]="books[1]"
-           (selectBook)=<mark>"rentBook($event)"</mark>&gt;
-&lt;/book-entry&gt;
-                  </code></pre>
-            <pre class="width-100-percent"><code class="hljs typescript" data-trim data-noescape>
-@Component(...)
-export class BookOverviewComponent {
-  books = [new Book(...), new Book(...)];
-  rentedBook: Book|null = null;
+			<div style="margin-left:-200px;" class="container">
+				<div class="col">
+					<pre class="width-100-percent"><code class="hljs html" data-trim data-noescape>
+		&lt;!-- BookOverviewComponent (Parent) --&gt;
+		&lt;book-entry [currentBook]="books[0]"
+				   (selectBook)=<mark>"rentBook($event)"</mark>&gt;
+		&lt;/book-entry&gt;
+		&lt;book-entry [currentBook]="books[1]"
+				   (selectBook)=<mark>"rentBook($event)"</mark>&gt;
+		&lt;/book-entry&gt;
+						  </code></pre>
+					<pre class="width-100-percent"><code class="hljs typescript" data-trim data-noescape>
+		@Component(...)
+		export class BookOverviewComponent {
+		  books = [new Book(...), new Book(...)];
+		  rentedBook: Book|null = null;
 
-  <mark>rentBook(book: Book)</mark> {
-    this.rentedBook = book;
-  }
-}
-                  </code></pre>
+		  <mark>rentBook(book: Book)</mark> {
+			this.rentedBook = book;
+		  }
+		}
+						  </code></pre>
+				</div>
+				<div class="col">
+									<pre class="width-100-percent"><code class="hljs html" data-trim data-noescape>
+			&lt;!-- BookDetailsComponent (Child) --&gt;
+			&lt;div&gt;Book title: {{ currentBook.title }}&lt;/div&gt;
+			&lt;button (click)="onSelectBtnClick()"&gt;Rent the book&lt;/button&gt;
+					</code></pre>
+					<pre class="width-100-percent"><code class="max-height-unset typescript" data-trim data-noescape>
+		@Component(...)
+		export class BookEntryComponent {
+		  @Input() currentBook: Book;
+		  <mark>@Output() selectBook = new EventEmitter&lt;Book&gt;();</mark>
+
+		  onSelectBtnClick(): void {
+			this.selectBook.emit(this.currentBook);
+		  }
+		}
+					</code></pre>
+				</div>
+			</div>
             <a href="https://angular.io/guide/event-binding" class="references" target="_blank">Angular Docs</a>
             <aside class="notes">
                 With event bindings data is passed from child to parent component<br>
                 Event bindings are always surrounded by () brackets<br>
                 The left side of the = is the name of the event as defined by the child.<br>
                 The right side of the = is the name of the parent component's method to handle the event.<br>
-                $event is a keyword to pass the events payload as method param
+                $event is a keyword to pass the events payload as method param<br><br>
+				
+				To define an event we add the Output() decorator to a field of a class<br>
+                The name of the event is defined through the name of the field<br>
+                We assign a EventEmitter to the field. On this EventEmitter we can call emit() to trigger the event.
+                EventEmitter can be parametrized to determine the type of the event's payload.
             </aside>
         </section>
         <section>
             <div class="title-with-image">
                 <img class="reset" src="img/event-binding.png">
                 <h2>Event Binding</h2>
-                <img class="small-img" src="img/event.svg">
             </div>
-            <pre class="width-100-percent"><code class="hljs html" data-trim data-noescape>
-&lt;book-entry [currentBook]="books[0]"
-           <mark>(selectBook)="rentBook($event)"</mark>&gt;&lt;/book-entry&gt;
-            </code></pre>
-            <pre class="width-100-percent"><code class="max-height-unset typescript" data-trim data-noescape>
-@Component(...)
-export class BookEntryComponent {
-  @Input() currentBook: Book;
-  <mark>@Output() selectBook = new EventEmitter&lt;Book&gt;();</mark>
-
-  onSelectBtnClick(): void {
-    this.selectBook.emit(this.currentBook);
-  }
-}
-            </code></pre>
-            <pre class="width-100-percent"><code class="hljs html" data-trim data-noescape>
-    &lt;div&gt;Book title: {{ currentBook.title }}&lt;/div&gt;
-    &lt;button (click)="onSelectBtnClick()"&gt;Rent the book&lt;/button&gt;
-            </code></pre>
-            <a href="https://angular.io/guide/event-binding" class="references" target="_blank">Angular Docs</a>
-            <aside class="notes">
-                To define an event we add the Output() decorator to a field of a class<br>
-                The name of the event is defined through the name of the field<br>
-                We assign a EventEmitter to the field. On this EventEmitter we can call emit() to trigger the event.
-                EventEmitter can be parametrized to determine the type of the event's payload.
-            </aside>
+			<img src="img/event.svg">
+            <p><a href="https://v17.angular.io/guide/inputs-outputs" class="references" target="_blank">Angular Docs</a></p>
         </section>
         <section>
             <h4>Input (Data) and Output (Event) Binding</h4>
