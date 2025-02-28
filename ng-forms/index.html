@@ -105,16 +105,16 @@ type NameFormType = {
 
 @Component({ ... })
 export class FormTestComponent implements OnInit {
-  contactForm: FormGroup;
+  contactForm: FormGroup<ContactFormType>;
 
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
 	  contactForm = this.formBuilder.group({
-	    name: {
+	    name: this.formBuilder.group({
 	      first: "Juana",
 	      last: "Garcia",
-	    },
+	    }),
 	    email: "",
 	  });
   }
@@ -124,10 +124,10 @@ export class FormTestComponent implements OnInit {
             <h3>Validation</h3>
             <p>... in Model Driven forms</p>
             <pre><code class="typescript">  this.contactForm = this.formBuilder.group({
-    name: {
+    name: this.formBuilder.group({
       first: "Juana",
       last: ["Garcia", Validators.required],
-    },
+    }),
     email: ["", Validators.email],
   });</code></pre>
             <ul>
