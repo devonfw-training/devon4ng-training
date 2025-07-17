@@ -36,62 +36,177 @@
                 <p>Rohan Fernandes</p>
             </section>
             <section>
-                <h2>ToDO</h2>
-                <p>some content - todo</p>
+                <h2>Agenda</h2>
+                <ul class="ul-small">
+                    <li>NgRx Recap</li>
+                    <li>Advanced Effects</li>
+                    <li>Advanced Selectors</li>
+                    <li>Scalable Store Patterns</li>
+                    <li>Best Parctices Q&A</li>
+                </ul>
             </section>
 			<section>
 				<section>
-					<h2>TODO</h2>
-					<p class="hint center">Checkout <a target="_blank" href="../web-app-architecture/index.html#/smart-vs-dumb-components">dumb vs smart components</a></p>
+                    <h2>NgRx</h2>
+                    <img src="img/state-management-lifecycle.png">
 				</section>
-				<section>
-                    <h2>State goes down</h2>
-                    <p>... using Angular <code>@Input</code> syntax.</p>
-                    <img src="img/state-goes-down.png">
-                </section>
-                <section>
-                    <h2>Events go up</h2>
-                    <p>... using Angular <code>@Output</code> syntax.</p>
-                    <img src="img/events-go-up.png">
-                </section>
 			</section>
-		  <section>
-		   <section id="summary">
-			<h2>Summary</h2>
-			<ul>
-			 <li>Recap Angular Foundation<br>
-			  <ul class="ul-small">
-			   <li>TODO</li>
-			  </ul>
-			 </li>
-			 <li>Effects (for instance as Advanced Topics 1)<br>
-			  <ul class="ul-small">
-			   <li>TODO</li>
-			  </ul>
-			 </li>
-             <li>Advanced Topics 2<br>
-			  <ul class="ul-small">
-			   <li>TODO</li>
-			  </ul>
-			 </li>
-			 <li>dumb vs smart components</li>
-			</ul>
-			<p class="hint center">Live Code Examples & Backup slides below</p>
-			<aside class="notes">
-			  Keep in mind: Actions trigger Reducers and effects in that order
-			</aside>
-		   </section>
-		   <section id="examples" data-visibility="uncounted">
-			<h2>Live Code Examples</h2>
-			<ul>
-			 <li>TODO</li>
-			</ul>
-		   </section>
-		   <section id="backup" data-visibility="uncounted">
-			<h2>Backup slides</h2>
-			<p>Following slides are not subject of the lecture.<br>Ask trainers in case of questions.</p>
-		   </section>
-		  </section>
+            <section>
+                <section id="advanced-effects">
+                    <h2>Advanced Effects</h2>
+                </section>
+                <section id="effect-logic" data-visibility="uncounted">
+                    <h2>Effect Logic & Dispatching</h2>
+                    <ul>
+                        <li>Create effects with <code>createEffect</code></li>
+                        <li>Dispatch multiple actions from one effect<br>
+                            <pre class="width-100-percent">
+                                <code class="typescript" data-trim>
+                                     return of(action1(), action2());
+                                </code>
+                            </pre>
+                        </li>
+                        <li>Side effects examples:<br>
+                            <ul class="ul-small">
+                                <li>Navigation</li>
+                                <li>LocalStorage updates</li>
+                                <li>Notifications</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                <section id="effect-error-handling" data-visibility="uncounted">
+                    <h2>Error Handling in Effects</h2>
+                    <ul>
+                        <li>Use <code>catchError</code> inside effect pipelines</li>
+                        <li>Dispatch an error action</li>
+                        <li>Don't swallow errors silently<br>
+                            <pre class="width-100-percent">
+                                <code class="typescript" data-trim>
+                                     catchError(error => of(actionOnFailure({ error })));
+                                </code>
+                            </pre>
+                        </li>
+                    </ul>
+                </section>
+                <section id="effect-exercise" data-visibility="uncounted">
+                    <h2>Exercise: NgRx with Effects - Load Users</h2>
+                    <ul>
+                        <li>Goal: Use NgRx Effects to load users from an API</li>
+                        <li>Steps:
+                            <ul class="ul-small">
+                                <li>Create actions: loadUsers, loadUsersSuccess, loadUsersFailure</li>
+                                <li>Create an effect to call a mock API</li>
+                                <li>Update the reducer to handle loading states</li>
+                                <li>Display users and loading/error states in the UI</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <section id="advanced-selectors">
+                    <h2>Advanced Selectors</h2>
+                </section>
+                <section data-visibility="uncounted">
+                    <h2>Composing Selectors</h2>
+                    <ul>
+                        <pre class="width-100-percent">
+                            <code class="typescript" data-trim>
+                                const selectFeature = createFeatureSelector&lt;UserState&gt;('user');
+                                const selectUsers = createSelector(selectFeature, s => s.users);
+                            </code>
+                        </pre>
+                        <li>Break large selectors into composable units</li>
+                        <li>Avoid repeating logic in components</li>
+                        <li>Keep selectors pure, reusable, and memoized</li>
+                    </ul>
+                </section>
+                <section data-visibility="uncounted">
+                    <h2>Parameterized Selectors</h2>
+                    <ul>
+                        <li>Ideal for list/detail views</li>
+                        <li>Automatically memoized by argument</li>
+                        <li>Efficient and reusable in components</li>
+                        <pre class="width-100-percent">
+                            <code class="typescript" data-trim>
+                                 selectUserById = (id: string) =>
+                                    createSelector(selectUsers, users => users.find(u => u.id === id));
+                            </code>
+                        </pre>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <section id="store-patterns">
+                    <h2>Scalable Store Patterns</h2>
+                </section>
+                <section data-visibility="uncounted">
+                    <h2>Feature Store Setup</h2>
+                    <ul>
+                        <pre class="width-100-percent">
+                            <code class="typescript" data-trim>
+                                StoreModule.forFeature('feature', featureReducer);
+                            </code>
+                        </pre>
+                        <li>One slice per feature</li>
+                        <li>Avoid large monolithic store</li>
+                        <li>Keep store aligned with routing</li>
+                    </ul>
+                </section>
+                <section data-visibility="uncounted">
+                    <h2>Store Reset on Logout</h2>
+                    <ul>
+                        <pre class="width-100-percent">
+                            <code class="typescript" data-trim>
+                                 export function clearState(reducer) {
+                                    return (state, action) => {
+                                        return action.type === '[Auth] Logout Success'
+                                          ? reducer(undefined, action)
+                                          : reducer(state, action);
+                                    };
+                                 }
+                            </code>
+                        </pre>
+                        <li>Clean state to prevent data leaks</li>
+                    </ul>
+                </section>
+                <section id="selectors-exercise" data-visibility="uncounted">
+                    <h2>Exercise: Selectors and Feature State</h2>
+                    <ul>
+                        <li>Goal: Organize state using feature modules and selectors</li>
+                        <li>Steps:
+                            <ul class="ul-small">
+                                <li>Create a feature module for users</li>
+                                <li>Define feature state and selectors (selectUsers, selectLoading, etc.)</li>
+                                <li>Use selectors in the component to access state</li>
+                                <li>Demonstrate memoization</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h2>Best Practices</h2>
+                </section>
+                <section data-visibility="uncounted">
+                    <h2>Do:</h2>
+                    <ul>
+                        <li>Use <code>selectors</code> + OnPush for performance</li>
+                        <li>Keep effects clean and purposeful</li>
+                        <li>Split state by feature</li>
+                    </ul>
+                </section>
+                <section data-visibility="uncounted">
+                    <h2>Don't:</h2>
+                    <ul>
+                        <li>Storing every piece of UI state in the store</li>
+                        <li>Write effects with no side-effects</li>
+                        <li>Keep unrelated state in one slice</li>
+                    </ul>
+                </section>
+            </section>  
         </div>
     </div>
 
