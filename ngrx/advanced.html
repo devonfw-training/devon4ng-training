@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Introduction to ngrx</title>
+    <title>Advanced ngrx</title>
     <link rel="icon" href="../common/img/favicon.ico">
 
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
@@ -48,7 +48,8 @@
 			<section>
 				<section>
                     <h2>NgRx</h2>
-                    <img src="img/state-management-lifecycle.png">
+                    <img style="height: 375px;" src="img/state-management-lifecycle.png" alt="NgRx State Management Lifecycle">
+                    <p>Image Source: <a href="https://ngrx.io/guide/store" target="_blank">NgRx Official Documentation</a></p>
 				</section>
 			</section>
             <section>
@@ -201,7 +202,7 @@
                 <section data-visibility="uncounted">
                     <h2>Don't:</h2>
                     <ul>
-                        <li>Storing every piece of UI state in the store</li>
+                        <li>Store modal open/close UI flags globally</li>
                         <li>Write effects with no side-effects</li>
                         <li>Keep unrelated state in one slice</li>
                     </ul>
