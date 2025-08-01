@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Advanced signals</title>
+    <link rel="icon" href="../common/img/favicon.ico">
+
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" href="../node_modules/reveal.js/dist/reveal.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/dist/theme/white.css" id="theme">
+
+    <link rel="stylesheet" href="../common/css/common.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../common/css/github-gist.css">
+
+</head>
+
+<body>
+    <section class="angular-link">
+        <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
+    </section>
+    <section class="devon-link">
+        <a href="http://devonfw.github.io" target="_blank"><img height="30px" src="../common/img/devon_logo_blue.png"></a>
+    </section>
+    <div class="devon reveal">
+        <div class="slides">
+            <section>
+                <h2>Signals Advanced (In progress)</h2>
+                <img class="no-border" src="https://ngrx.io/assets/images/badge.svg" width="200px" alt="ngrx logo">
+                <p>Based on <a href="intro.html" target="_blank">ngrx intro</a> from Angular Foundation</p>
+                <p>Rohan Fernandes</p>
+            </section>
+            <section>
+                <h2>ToDO</h2>
+                <p>some content - todo</p>
+            </section>
+			<section>
+				<section>
+					<h2>TODO</h2>
+					<p class="hint center">Checkout <a target="_blank" href="../web-app-architecture/index.html#/smart-vs-dumb-components">dumb vs smart components</a></p>
+				</section>
+				<section>
+                    <h2>State goes down</h2>
+                    <p>... using Angular <code>@Input</code> syntax.</p>
+                    <img src="img/state-goes-down.png">
+                </section>
+                <section>
+                    <h2>Events go up</h2>
+                    <p>... using Angular <code>@Output</code> syntax.</p>
+                    <img src="img/events-go-up.png">
+                </section>
+			</section>
+		  <section>
+		   <section id="summary">
+			<h2>Summary</h2>
+			<ul>
+			 <li>Recap Angular Foundation<br>
+			  <ul class="ul-small">
+			   <li>TODO</li>
+			  </ul>
+			 </li>
+			 <li>Effects (for instance as Advanced Topics 1)<br>
+			  <ul class="ul-small">
+			   <li>TODO</li>
+			  </ul>
+			 </li>
+             <li>Advanced Topics 2<br>
+			  <ul class="ul-small">
+			   <li>TODO</li>
+			  </ul>
+			 </li>
+			 <li>dumb vs smart components</li>
+			</ul>
+			<p class="hint center">Live Code Examples & Backup slides below</p>
+			<aside class="notes">
+			  Keep in mind: Actions trigger Reducers and effects in that order
+			</aside>
+		   </section>
+		   <section id="examples" data-visibility="uncounted">
+			<h2>Live Code Examples</h2>
+			<ul>
+			 <li>TODO</li>
+			</ul>
+		   </section>
+		   <section id="backup" data-visibility="uncounted">
+			<h2>Backup slides</h2>
+			<p>Following slides are not subject of the lecture.<br>Ask trainers in case of questions.</p>
+		   </section>
+		  </section>
+        </div>
+    </div>
+
+    <script src="../node_modules/reveal.js/dist/reveal.js"></script>
+    <script src="../node_modules/reveal.js/plugin/zoom/zoom.js"></script>
+    <script src="../node_modules/reveal.js/plugin/notes/notes.js"></script>
+    <script src="../node_modules/reveal.js/plugin/search/search.js"></script>
+    <script src="../node_modules/reveal.js/plugin/markdown/markdown.js"></script>
+    <script src="../node_modules/reveal.js/plugin/highlight/highlight.js"></script>
+    <script src="../node_modules/reveal.js-menu/menu.js"></script>
+    <script src="../common/reveal-config.js"></script>
+    <script>
+        Reveal.initialize({
+            ...revealConfig, 
+            plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMenu]
+        });
+    </script>
+</body>
+
+</html>
