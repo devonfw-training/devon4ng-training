@@ -64,12 +64,40 @@
               <a href="index.html" target="_blank">Signals</a> Recap
               (Foundation)
             </li>
+            <li>Effects vs. Computed Signals</li>
             <li>Input Signals</li>
             <li>Outputs</li>
             <li>View Child Signals</li>
             <li>Content Child Signals</li>
-            <li>Effects vs. Computed Signals</li>
+            <li>Linked Signals</li>
             <li>Exercise: Dice-Signals</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Effects vs. Computed Signals</h2>
+          <p>Which one I should use?</p>
+        </section>
+
+        <section>
+          <h2>Effects vs. Computed Signals</h2>
+          <strong>Use Cases for Computed Signals</strong>
+          <ul>
+            <li>
+              Calculation should return a value and can be done with pure
+              functions
+            </li>
+            <li>Deriving reactive values</li>
+            <li>
+              No side effects - signal caches its result until dependencies
+              change
+            </li>
+          </ul>
+
+          <strong>Use Cases for Effects</strong>
+          <ul>
+            <li>Performing side effects as logging, API calls</li>
+            <li>Trigger external actions</li>
           </ul>
         </section>
 
@@ -176,29 +204,24 @@ export class CubeComponent {
         </section>
 
         <section>
-          <h2>Effects vs. Computed Signals</h2>
-          <p>Which one I should use?</p>
-        </section>
+          <h2>Linked Signals</h2>
 
-        <section>
-          <h2>Effects vs. Computed Signals</h2>
-          <strong>Use Cases for Computed Signals</strong>
+          <p>
+            Linked signals are similar to writable signals, but they also react
+            to changes of another source signal
+          </p>
+          <pre><code class="hljs typescript" data-trim>
+                <script type="text/template">
+myLinkedSignal = linkedSignal({
+  source: this.anotherSignal
+  computation: (newValue, previous) => calculateMyNewValue()
+})
+                </script>
+            </code></pre>
+          <p>Value can be changed</p>
           <ul>
-            <li>
-              Calculation should return a value and can be done with pure
-              functions
-            </li>
-            <li>Deriving reactive values</li>
-            <li>
-              No side effects - signal caches its result until dependencies
-              change
-            </li>
-          </ul>
-
-          <strong>Use Cases for Effects</strong>
-          <ul>
-            <li>Performing side effects as logging, API calls</li>
-            <li>Trigger external actions</li>
+            <li>by set function</li>
+            <li>by value change of the source signal</li>
           </ul>
         </section>
 
@@ -213,35 +236,38 @@ export class CubeComponent {
         </section>
 
         <section>
-          <h2>Exercise: Instructions</h2>
-          <ul>
-            <li>
-              Start with task 01 on branch exercise-01-rxjs. Try to fill the
-              gaps marked by "Todo".
-            </li>
-            <li>
-              For task 02 you can either continue to work on your solution of
-              task 01 or check out the branch exercise-02-rxjs which already
-              contains a solution for task 01. See readme files on the branches
-              for more info.
-            </li>
-            <li>
-              Implement the same app now using signals: check out branch
-              exercise-01-signals and implement Todos.
-            </li>
-            <li>
-              If required you can have a look at the sample solutions on the
-              corresponding branches.
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h2>Branches</h2>
+          <h2>Exercise</h2>
+          <h4>Two Parts</h4>
+
           <table>
             <tr>
-              <th>Task</th>
-              <th>Observables (RxJS)</th>
+              <th>RxJS</th>
               <th>Signals</th>
+            </tr>
+            <tr>
+              <td>Exercises 01 and 02</td>
+              <td>Exercises 01 and 02</td>
+            </tr>
+          </table>
+          <p class="hint center">
+            Start with task 01 on branch exercise-01-rxjs. Try to fill the gaps
+            marked by "Todo".
+          </p>
+          <p class="hint center">
+            For task 02 you can either continue to work on your solution of task
+            01 or check out the branch exercise-02-rxjs which already contains a
+            solution for task 01.
+          </p>
+          <p>See readme files on the branches for more info</p>
+        </section>
+
+        <section>
+          <h2>Branches</h2>
+          <table width="1100px">
+            <tr>
+              <th>Task</th>
+              <th style="width: 40%">RxJS</th>
+              <th style="width: 40%">Signals</th>
             </tr>
             <tr>
               <td>Task 01</td>
