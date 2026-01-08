@@ -1,0 +1,195 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Signals</title>
+    <link rel="icon" href="../common/img/favicon.ico">
+
+
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/theme/white.css" id="theme">
+    <link rel="stylesheet" href="../common/css/common.css">
+    <link rel="stylesheet" href="css/own.css">
+    <link rel="stylesheet" href="css/js-engine.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../common/css/github-gist.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../node_modules/reveal.js/css/print/pdf.css' : '../node_modules/reveal.js/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<section class="angular-link">
+    <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
+</section>
+<section class="devon-link">
+    <a href="http://devonfw.github.io" target="_blank"><img height="30px" src="../common/img/devon_logo_blue.png"></a>
+</section>
+<div class="devon reveal">
+    <div class="slides">
+            <section>
+                <p class="title_image">
+                    <img height="200" src="../common/img/angular.svg">             
+                </p>
+                <h2>Signals</h2>
+                <p></p>
+                <p></p>
+            </section>
+            <section>
+				<h3>Why Signals Matter?</h3>
+				<p class="justiy_text">Signals play a crucial role in managing state and updates in Angular applications. They enable efficient handling of UI updates and state changes, leading to enhanced user experience and better code organization.</p>
+				<pre><code style="border: none;" data-trim class="javascript">
+// Define a signal
+const count = signal(0);
+				</code></pre>
+				
+				<div class="navigate-left enabled"></div>
+               
+            </section>
+            <section>
+                <h3>What are Signals?</h3>
+				<p class="justiy_text">Signals are a mechanism for tracking and managing state changes within Angular applications. They provide a way to notify components about changes in data or application state.</p>
+			</section>
+            <section>
+                <h3>Signals - Key Concepts</h3>
+                <ul>
+                    <li>Signals in Angular are wrappers around values that notify subscribers when the value changes.
+                    </li>
+                    <li>Signals can be either writable or read-only.
+                    </li>
+                    <li>Writable signals allow direct updating of their values using the set or update methods.
+					</li>
+                    <li>Read-only signals derive their values from other signals and are defined using the computed function.
+					</li>
+				</ul>
+			</section>
+            <section>
+                <h3>Example</h3>
+					
+				<pre><code data-trim class="javascript">
+// Define a signal
+const count = signal(0);
+
+// Update the value of the signal
+count.update(value => value + 1); // Output: Counter value: 1
+count.update(value => value + 1); // Output: Counter value: 2
+count.update(value => value + 1); // Output: Counter value: 3
+				</code></pre>
+            </section>
+			<section>
+                <h3>Computed Signals - Key Concepts</h3>
+                <ul>
+                    <li>Computed signals derive their values from other signals and update automatically when their dependencies change.
+                    </li>
+                    <li>They are lazily evaluated and memoized for performance optimization.
+                    </li>
+                    <li>Computed signals are not writable and cannot be directly assigned new values.
+					</li>
+				</ul>
+			</section>
+            <section>
+                <h3>Example</h3>
+					
+				<pre><code data-trim class="javascript">
+const count: WritableSignal<number> = signal(0);
+const doubleCount: Signal<number> = computed(() => count() * 2);
+
+doubleCount.set(3);
+				</code></pre>
+				<p class="justiy_text"><strong>produces a compilation error, because doubleCount is not a WritableSignal.</strong></p>
+				<p>&nbsp;</p>
+				<p class="justiy_text">Whenever the count source signal has a new value, the derived signal also gets updated automatically.</p>
+
+            </section>
+            <section>
+                <h3>Effects</h3>
+                <ul>
+                    <li>Effects are operations that run whenever one or more signal values change.</li>
+                    <li>They are useful for tasks such as logging, DOM manipulation, or custom rendering.</li>
+                    <li>Effects run asynchronously during the change detection process and are automatically cleaned up when no longer needed.</li>
+                </ul>
+                <pre><code data-trim class="javascript">
+effect(() => {
+
+  // We just have to use the source signals 
+  // somewhere inside this effect
+  console.log(`The current count is: ${count()}`);
+});
+                </code></pre>
+            </section>
+            <section>
+                <h3>Signal Equality Functions</h3>
+				<ul>
+					<li>Signals can optionally specify an equality function to determine if a new value is different from the previous one.</li>
+					<li>Equality functions are useful for optimizing performance when dealing with complex data structures.</li>
+				</ul>
+			</section>
+			<section>
+				<h3>Injection Context</h3>
+				<ul>
+					<li>Effects require an injection context for registration, typically provided within components, directives, or services.</li>
+					<li>They can also be manually initialized using an Injector.</li>
+				</ul>
+			</section>
+			<section>
+				<h3>Effect Cleanup Functions</h3>
+				<ul>
+					<li>Effects can register cleanup functions that are invoked before the next run of the effect or when the effect is destroyed.</li>
+					<li>Cleanup functions are useful for canceling long-running operations or releasing resources.</li>
+				</ul>
+			</section>
+			<section>
+				<h3>Example Code</h3>
+                <p class="justiy_text">Let's take a look at a basic example to understand how signals work in practice.</p>
+                <pre><code data-trim class="javascript">
+// main.ts
+import { signal } from "@angular/core";
+
+export const count = signal(0);
+				
+// app.component.ts
+import { Component } from "@angular/core";
+import { count } from "./main";
+
+@Component({
+  selector: "app",
+  template: `
+    <div>
+      <p>Counter: {{ count() }}</p>
+      <button (click)="increment()">Increment from HundredIncrComponent</button>
+    </div>
+  `,
+})
+export class HundredIncrComponent {
+  count = count;
+
+  increment() {
+    this.count.update((value) => value + 100);
+  }
+}
+                </code></pre>
+            </section>
+    </div>
+</div>
+
+<script src="../node_modules/reveal.js/js/reveal.js"></script>
+<script src="../common/reveal-config.js"></script>
+<script src="lib/jquery/jquery.min.js"></script>
+<script src="js/js-engine.js"></script>
+
+<script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({ ...revealConfig });
+</script>
+</body>
+</html>
