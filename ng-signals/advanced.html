@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -70,6 +70,7 @@
             <li>View Child Signals</li>
             <li>Content Child Signals</li>
             <li>Linked Signals</li>
+            <li>Signal Forms</li>
             <li>Exercise: Dice-Signals</li>
           </ul>
         </section>
@@ -223,6 +224,72 @@ myLinkedSignal = linkedSignal({
             <li>by set function</li>
             <li>by value change of the source signal</li>
           </ul>
+        </section>
+
+        <section>
+          <img
+            class="no-border"
+            src="img/new-icon.svg"
+            width="100px"
+            alt="New"
+            style="
+              transform: translate(180px, -200px);
+              position: absolute;
+              top: 100px;
+            "
+          />
+          <h2>Signal Forms</h2>
+
+          <p>
+            Angular 21: Library that allows you to manage form state by building
+            on the reactive foundation of signals.
+          </p>
+
+          <ul>
+            <li>Automatic two-way binding</li>
+            <li>Type-safe field access</li>
+            <li>Centralized schema-based validation</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Form Model</h2>
+
+          <p>Create one signal that holds the data model</p>
+          If required, add validation for fields centrally at this place instead
+          on each and every form control
+          <pre><code class="hljs typescript" data-trim>
+                <script type="text/template">
+@Component({
+  selector: 'app-registration', imports: [FormField], ...
+})
+export class Registration {
+  registrationModel = signal({
+    email: '',
+    password: '',
+  });
+
+  formFieldTree = form(this.registrationModel, (schemaPath) => {
+    required(schemaPath.email, {message: 'Email is required'});
+    email(schemaPath.email, {message: 'Enter valid email'});
+  });
+}
+
+                </script>
+            </code></pre>
+        </section>
+
+        <section>
+          <h2>Binding to input fields</h2>
+
+          <pre><code class="hljs typescript" data-trim>
+                <script type="text/template">
+
+    <input type="email" [formField]="formFieldTree.email" />
+    <input type="password" [formField]="formFieldTree.password" />
+
+                </script>
+            </code></pre>
         </section>
 
         <section>
