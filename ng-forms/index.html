@@ -1,337 +1,453 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!-- #region Config -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <title>Angular Forms</title>
+  <link rel="icon" href="../common/img/favicon.ico">
+  
+  <!-- Showing Examples -->
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <link rel="stylesheet" href="../node_modules/reveal.js/dist/reveal.css">
+  <link rel="stylesheet" href="../css/lib/style.css">
+  <link rel="stylesheet" href="../node_modules/reveal.js/dist/theme/white.css" id="theme">
+  <link rel="stylesheet" href="../common/css/common.css">
+  
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="../common/css/github-gist.css">
+  
+</head>
+<!-- #endregion -->
 
-        <title>Angular Forms</title>
-        <link rel="icon" href="../common/img/favicon.ico">
-
-        <!-- Showing Examples -->
-        <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-        <link rel="stylesheet" href="../node_modules/reveal.js/dist/reveal.css">
-        <link rel="stylesheet" href="../css/lib/style.css">
-        <link rel="stylesheet" href="../node_modules/reveal.js/dist/theme/white.css" id="theme">
-        <link rel="stylesheet" href="../common/css/common.css">
-        
-        <!-- Theme used for syntax highlighting of code -->
-        <link rel="stylesheet" href="../common/css/github-gist.css">
-
-    </head>
 <body>
-<section class="angular-link">
+  <!-- #region Config: Navigation Logo Overlays -->
+  <section class="angular-link">
     <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
-</section>
-<section class="devon-link">
+  </section>
+  <section class="devon-link">
     <a href="http://devonfw.github.io" target="_blank"><img height="30px" src="../common/img/devon_logo_blue.png"></a>
-</section>
-<div class="devon reveal">
+  </section>
+  <!-- #endregion -->
+  
+  <div class="devon reveal">
     <div class="slides">
-        <section>
-            <h1>FORMS</h1>
-            <div>
-                <img id="title-img" src="./img/forms-title-img.png" alt="html forms illustrated">
-            </div>
-        </section>
-        <section>
-            <h3>Angular includes two types of forms</h3>
-            <ol>
-                <li><span class="highlight">Template Driven</span> Forms (see <a href="./index.html#/backup">Backup</a> slides)</li>
-                <li><span class="highlight">Model Driven</span> Forms (reactive)</li>
-            </ol>
-            <p>The underlying data model / API is nearly the same - it's about <span class="highlight">where the data model is defined</span> - either the <span class="highlight">view or the component class</span>.</p>
-        </section>
-        <section>
-            <h3>Model driven forms (reactive)</h3>
-            <ul>
-                <li>are written <span class="highlight">by code</span></li>
-                <li>are <span class="highlight">easily testable</span></li>
-				<li>are <span class="highlight">strictly typed</span></li>
-            </ul>
-            <pre><code class="typescript max-height-unset">const contactForm = new FormGroup&lt;ContactFormType&gt;({
-  name: new FormGroup&lt;NameFormType&gt;({
-    first: new FormControl('Juana'),
-    last: new FormControl('Garcia')
-  }),
-  email: new FormControl('')
-});</code></pre>
-            <pre class="fragment"><code class="typescript max-height-unset">// types used above
-interface ContactFormType {
-  name: FormGroup&lt;NameFormType&gt;;
-  email: FormControl&lt;string | null&gt;;
-}
-type NameFormType = {
-  first: FormControl&lt;string | null&gt;;
-  last: FormControl&lt;string | null&gt;;
-};</code></pre>
-        </section>
-        <section>
-            <p>... and can be bound by</p>
-            <pre><code class="max-height-unset html">&lt;form [formGroup]=&quot;contactForm&quot; novalidate&gt;
-  &lt;div formGroupName=&quot;name&quot;&gt;
-    &lt;div&gt;
-      &lt;label&gt;First Name&lt;/label&gt;
-      &lt;input type=&quot;text&quot; formControlName=&quot;first&quot;&gt;
-    &lt;/div&gt;
-    &lt;div&gt;
-      &lt;label&gt;Last Name&lt;/label&gt;
-      &lt;input type=&quot;text&quot; formControlName=&quot;last&quot;&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div&gt;
-    &lt;label&gt;E-Mail&lt;/label&gt;
-    &lt;input type=&quot;email&quot; formControlName=&quot;email&quot;&gt;
-  &lt;/div&gt;
-  &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
-&lt;/form&gt;</code></pre>
-            <ul>
-                <li><code class="html">[formGroup]="contactForm"</code> binds upper FormGroup</li>
-                <li><code class="html">formGroupName</code> binds child FormGroup</li>
-                <li><code class="html">formControlName</code> binds child FormControl</li>
-            </ul>
-        </section>
-        <section>
-            <h3>FormBuilder</h3>
-            <p>... creates the same FormGroup-FormControl tree</p>
-            <pre><code class="typescript max-height-unset">interface ContactFormType {
-  name: FormGroup&lt;NameFormType&gt;;
-  email: FormControl&lt;string | null&gt;;
-}
-type NameFormType = {
-  first: FormControl&lt;string | null&gt;;
-  last: FormControl&lt;string | null&gt;;
-};
-
-@Component({ ... })
-export class FormTestComponent implements OnInit {
-  contactForm: FormGroup<ContactFormType>;
-
-  constructor(private formBuilder: FormBuilder) { }
-
-  ngOnInit(): void {
-	  contactForm = this.formBuilder.group({
-	    name: this.formBuilder.group({
-	      first: "Juana",
-	      last: "Garcia",
-	    }),
-	    email: "",
-	  });
-  }
-}</code></pre>
-        </section>
-        <section>
-            <h3>Validation</h3>
-            <p>... in Model Driven forms</p>
-            <pre><code class="typescript">  this.contactForm = this.formBuilder.group({
-    name: this.formBuilder.group({
-      first: "Juana",
-      last: ["Garcia", Validators.required],
-    }),
-    email: ["", Validators.email],
-  });</code></pre>
-            <ul>
-              <li><code>FormControl</code> and <code>FormGroup</code> both extend <code class="highlight">AbstractControl</code></li>
-              <li>... which has properties <span class="highlight">valid, invalid, errors,</span> etc.</li>
-              <li><code class="highlight">valueChanges</code> and <code class="highlight">statusChanges</code> provide Observables</li>
-              <li><code>FormControl</code> has <span class="highlight">single controls</span> status</li>
-              <li><code>FormGroup</code> has <span class="highlight">aggregated</span> status of child controls</li>
-            </ul>
-        </section>
-        <section>
-            <h3>Custom Validation Interface</h3>
-            <pre><code class="typescript">interface ValidatorFn {
-    (c: AbstractControl): {
-        [key: string]: any;
-    } | null;
-}</code></pre>
-            <p><code class="typescript">ValidatorFn</code> takes an <code>AbstractControl</code> to validate.</p>
-            <p>Returns <span class="highlight">null if valid</span>.</p>
-            <p>Returns <span class="highlight">{[key: string]: any}</span> as error definition.</p>
-        </section>
-        <section>
-            <h3>Custom Validation Example</h3>
-            <p>Higher order function can return <code class="typescript">ValidatorFn</code></p>
-            <p>which returns <span class="highlight">{ forbiddenName: name }</span> as error.</p>
-            <pre><code class="typescript">function forbiddenName(forbiddenName: string): ValidatorFn {
-  return (control: AbstractControl): ValidationErrors => {
-    const name = control.value;
-    const isForbidden = forbiddenName === name;
-    return isForbidden ? { forbiddenName: name } : null;
-  };
-}</code></pre>
-        </section>
-        <section>
-            <h3>Displaying (Custom) Validation</h3>
-            <p>behaves just like Angular Validators</p>
-            <p>FormControl.errors is extended by custom error key-value pairs from validation method.</p>
-            <pre class="width-100-percent"><code class="html">&lt;div 
-  *ngIf="contactForm.controls.name.controls.first.getError('forbiddenName')"&gt;
-  The name is not allowed.
-&lt;/div&gt;</code></pre>
-        </section>
-        <section>
-          <section id="summary">
-             <h2>Summary</h2>
-             <ul>
-              <li>
-               Model Driven Forms: <br>      
-               <ul class="ul-small">
+      
+      <!-- #region Slide: Title -->
+      <section>
+        <h1>FORMS</h1>
+        <div>
+          <img id="title-img" src="./img/forms-title-img.png" alt="html forms illustrated">
+        </div>
+      </section>
+      <!-- #endregion --> 
+      
+      <!-- #region Slide: Intro - Two Types of Forms -->
+      <section>
+        <h3>Angular includes two types of forms</h3>
+        <ol>
+          <li><span class="highlight">Template Driven</span> Forms (see <a href="./index.html#/backup">Backup</a> slides)</li>
+          <li><span class="highlight">Model Driven</span> Forms (reactive)</li>
+        </ol>
+        <p>The underlying data model / API is nearly the same - it's about <span class="highlight">where the data model is defined</span> - either the <span class="highlight">view or the component class</span>.</p>
+      </section>
+      <!-- #endregion --> 
+      
+      <!-- #region Slide: Model Driven Forms - Overview -->
+      <section>
+        <h3>Model driven forms (reactive)</h3>
+        <ul>
+          <li>are written <span class="highlight">by code</span></li>
+          <li>are <span class="highlight">easily testable</span></li>
+          <li>are <span class="highlight">strictly typed</span></li>
+        </ul>
+        <pre>
+          <code data-trim class="typescript max-height-unset">
+            const contactForm = new FormGroup&lt;ContactFormType&gt;({
+              name: new FormGroup&lt;NameFormType&gt;({
+                first: new FormControl('Juana'),
+                last: new FormControl('Garcia')
+              }),
+              email: new FormControl('')
+            });
+          </code>
+        </pre>
+        <pre class="fragment">
+          <code data-trim class="typescript max-height-unset">
+            // types used above
+            interface ContactFormType {
+              name: FormGroup&lt;NameFormType&gt;;
+              email: FormControl&lt;string | null&gt;;
+            }
+            type NameFormType = {
+              first: FormControl&lt;string | null&gt;;
+              last: FormControl&lt;string | null&gt;;
+            };
+          </code>
+        </pre>
+      </section>
+      <!-- #endregion -->
+      
+      <!-- #region Slide: Model Driven Forms - Template Binding -->
+      <section>
+        <p>... and can be bound by</p>
+        <pre>
+          <code data-trim class="max-height-unset html">
+            &lt;form [formGroup]=&quot;contactForm&quot; novalidate&gt;
+              &lt;div formGroupName=&quot;name&quot;&gt;
+                &lt;div&gt;
+                  &lt;label&gt;First Name&lt;/label&gt;
+                  &lt;input type=&quot;text&quot; formControlName=&quot;first&quot;&gt;
+                &lt;/div&gt;
+                &lt;div&gt;
+                  &lt;label&gt;Last Name&lt;/label&gt;
+                  &lt;input type=&quot;text&quot; formControlName=&quot;last&quot;&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div&gt;
+                &lt;label&gt;E-Mail&lt;/label&gt;
+                &lt;input type=&quot;email&quot; formControlName=&quot;email&quot;&gt;
+              &lt;/div&gt;
+              &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
+            &lt;/form&gt;
+          </code>
+        </pre>
+        <ul>
+          <li><code data-trim class="html">[formGroup]="contactForm"</code> binds upper FormGroup</li>
+          <li><code data-trim class="html">formGroupName</code> binds child FormGroup</li>
+          <li><code data-trim class="html">formControlName</code> binds child FormControl</li>
+        </ul>
+      </section>
+      <!-- #endregion -->
+      
+      <!-- #region Slide: Model Driven Forms - FormBuilder -->
+      <section>
+        <h3>FormBuilder</h3>
+        <p>... creates the same FormGroup-FormControl tree</p>
+        <pre>
+          <code data-trim class="typescript max-height-unset">
+            interface ContactFormType {
+              name: FormGroup&lt;NameFormType&gt;;
+              email: FormControl&lt;string | null&gt;;
+            }
+            type NameFormType = {
+              first: FormControl&lt;string | null&gt;;
+              last: FormControl&lt;string | null&gt;;
+            };
+            
+            @Component({ ... })
+            export class FormTestComponent implements OnInit {
+              contactForm: FormGroup<ContactFormType>;
+              constructor(private formBuilder: FormBuilder) { }
+              
+              ngOnInit(): void {
+                contactForm = this.formBuilder.group({
+                  name: this.formBuilder.group({
+                    first: "Juana",
+                    last: "Garcia",
+                  }),
+                  email: "",
+                });
+              }
+            }
+          </code>
+        </pre>
+      </section>
+      <!-- #endregion -->
+        
+      <!-- #region Slide: Model Driven Forms - Validation -->
+      <section>
+        <h3>Validation</h3>
+        <p>... in Model Driven forms</p>
+        <pre>
+          <code data-trim class="typescript">
+            this.contactForm = this.formBuilder.group({
+              name: this.formBuilder.group({
+                first: "Juana",
+                last: ["Garcia", Validators.required],
+              }),
+              email: ["", Validators.email],
+            });
+          </code>
+        </pre>
+        <ul>
+          <li><code data-trim>FormControl</code> and <code data-trim>FormGroup</code> both extend <code data-trim class="highlight">AbstractControl</code></li>
+          <li>... which has properties <span class="highlight">valid, invalid, errors,</span> etc.</li>
+          <li><code data-trim class="highlight">valueChanges</code> and <code data-trim class="highlight">statusChanges</code> provide Observables</li>
+          <li><code data-trim>FormControl</code> has <span class="highlight">single controls</span> status</li>
+          <li><code data-trim>FormGroup</code> has <span class="highlight">aggregated</span> status of child controls</li>
+        </ul>
+      </section>
+      <!-- #endregion -->
+      
+      <!-- #region Slide: Custom Validation - Interface -->
+      <section>
+        <h3>Custom Validation Interface</h3>
+        <pre>
+          <code data-trim class="typescript">
+            interface ValidatorFn {
+              (c: AbstractControl): {
+                [key: string]: any;
+              } | null;
+            }
+          </code>
+        </pre>
+        <p><code data-trim class="typescript">ValidatorFn</code> takes an <code data-trim>AbstractControl</code> to validate.</p>
+        <p>Returns <span class="highlight">null if valid</span>.</p>
+        <p>Returns <span class="highlight">{[key: string]: any}</span> as error definition.</p>
+      </section>
+      <!-- #endregion -->
+      
+      <!-- #region Slide: Custom Validation - Example -->
+      <section>
+        <h3>Custom Validation Example</h3>
+        <p>Higher order function can return <code data-trim class="typescript">ValidatorFn</code></p>
+        <p>which returns <span class="highlight">{ forbiddenName: name }</span> as error.</p>
+        <pre>
+          <code data-trim class="typescript">
+            function forbiddenName(forbiddenName: string): ValidatorFn {
+              return (control: AbstractControl): ValidationErrors => {
+                const name = control.value;
+                const isForbidden = forbiddenName === name;
+                return isForbidden ? { forbiddenName: name } : null;
+              };
+            }
+          </code>
+        </pre>
+      </section>
+      <!-- #endregion -->
+      
+      <!-- #region Slide: Custom Validation - Displaying Errors -->
+      <section>
+        <h3>Displaying (Custom) Validation</h3>
+        <p>behaves just like Angular Validators</p>
+        <p>FormControl.errors is extended by custom error key-value pairs from validation method.</p>
+        <pre class="width-100-percent">
+          <code data-trim class="html">
+            &lt;div 
+              *ngIf="contactForm.controls.name.controls.first.getError('forbiddenName')"&gt;
+                The name is not allowed.
+            &lt;/div&gt;
+          </code>
+        </pre>
+      </section>
+      <!-- #endregion -->
+      
+      <!-- #region Slide Group: Summary & Backup (vertical stack) -->
+      <section>
+        <!-- #region Slide: Summary -->
+        <section id="summary">
+          <h2>Summary</h2>
+          <ul>
+            <li>
+              Model Driven Forms: <br>      
+              <ul class="ul-small">
                 <li>separate view from typed model</li>
                 <li>Model Driven Forms</li>
-               </ul>
-              </li>
-              <li>
-               Forms can be validated using <br>
-               <ul class="ul-small">
+              </ul>
+            </li>
+            <li>
+              Forms can be validated using <br>
+              <ul class="ul-small">
                 <li>default Validators provided by Angular</li>
                 <li>defining Custom Validator for Field</li>
-               </ul>
-              </li>
-             </ul>
-             <p class="hint center">Live Code Examples & Backup slides below</p>
-          </section>
-          <section id="examples" data-visibility="uncounted">
-             <h2>Live Code Examples</h2>
-             <ul>
-              <li><a href="https://stackblitz.com/edit/angular-control-value-accessor-simple-example-t-zxtskpj7?file=src%2Fapp%2Fapp.component.ts" target="_blank">Model driven form</a> Example in Stackblitz</li>
-              <li><a href="https://stackblitz.com/edit/angular-control-value-accessor-simple-example-t-8jfpg3ve?file=src%2Fapp%2Fapp.component.ts" target="_blank">Simple Model driven form with custom validator</a> in Stackblitz</li>
-              <li><a href="https://stackblitz.com/edit/angular-ivy-wg16x9?file=src%2Fapp%2Fhello.component.ts" target="_blank">Template driven form</a> Example in Stackblitz</li>
-            </ul>
-          </section>
-          <section id="backup" data-visibility="uncounted">
-             <h2>Backup slides</h2>
-             <p>Following slides are not subject of the lecture.<br>Ask trainers in case of questions.</p>
-          </section>
-		  <section data-visibility="uncounted">
-				<h3>Template driven forms</h3>
-				<ul>
-					<li>behave <span class="highlight">like Angular 1 forms</span></li>
-					<li>form model is <span class="highlight">defined inside HTML</span> template</li>
-				</ul>
-				<pre><code class="html">&lt;form #contactForm=&quot;ngForm&quot; (ngSubmit)=&quot;submit(contactForm.value)&quot;&gt;
-	  &lt;div ngModelGroup=&quot;name&quot;&gt;
-		&lt;label for=&quot;first&quot;&gt;First Name&lt;/label&gt;
-		&lt;input type=&quot;text&quot; name=&quot;first&quot; ngModel&gt;
-
-		&lt;label for=&quot;last&quot;&gt;Last Name&lt;/label&gt;
-		&lt;input type=&quot;text&quot; name=&quot;last&quot; ngModel&gt;
-	  &lt;/div&gt;
-
-	  &lt;label for=&quot;email&quot;&gt;E-Mail&lt;/label&gt;
-	  &lt;input type=&quot;text&quot; name=&quot;email&quot; ngModel&gt;
-
-	  &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
-	&lt;/form&gt;
-	</code></pre>
-				<code class="typescript">{ name: { first: string, last: string }, email:string }</code>
-			</section>
-			<section class="ng-model-ng-model-group" data-visibility="uncounted">
-				<h3>ngModel / ngModelGroup</h3>
-				<div>
-					<pre><code class="html">&lt;input name=first ngModel&gt;</code></pre>
-					<p><span class="highlight">creates property</span> inside forms data model with key 'first'</p>
-				</div>
-				<div>
-					<pre><code class="html">&lt;input name=first [ngModel]="varName"&gt;</code></pre>
-					<p>creates one-way binding - binds a <span class="highlight">default value</span></p>
-				</div>
-				<div>
-					<pre><code class="html"><!-- syntactic sugar (banana in a box) -->
-	&lt;input name=first [(ngModel)]="varName"&gt;
-	&lt;input name=first [ngModel]="varName" (ngModelChange)="varName=$event"&gt;</code></pre>
-					<p>
-						creates <span class="highlight">two-way</span> binding. Note: <span class="highlight">state at two places</span> (component member and forms model)
-					</p>
-				</div>
-				<div>
-					<pre><code class="html">&lt;div ngModelGroup=group&gt;&lt;/div&gt;</code></pre>
-					<p>creates <span class="highlight">nested object</span> called group inside forms data model (form.value)</p>
-				</div>
-			</section>
-			<section data-visibility="uncounted">
-				<h3>Validation</h3>
-				<p>... in Template Driven forms</p>
-				<ul>
-					<li>
-						Angular provides default validators
-						<pre><code class="html">&lt;input name=otto ngModel required minlength=4 maxlength=24&gt;</code></pre>
-					</li>
-					<li>
-						Each control / property has 'errors' which can be checked
-						<pre><code class="html">&lt;form #form=ngForm&gt;
-	  &lt;input name=otto ngModel required&gt;
-	  &lt;div *ngIf=form.controls.otto.errors&gt;
-		&lt;div [hidden]="!form.controls.otto.errors.required"&gt;
-			&lt;span&gt;Otto is really important!&lt;/span&gt;
-		&lt;/div&gt;
-		<!--check other validations...-->
-	  &lt;/div&gt;
-	&lt;/form&gt;</code></pre>
-					</li>
-					<li>
-						<code>form</code> and <code>ngModelGroup</code> aggregate underlying controls (combined errors)
-					</li>
-				</ul>
-			</section>
-          <section id="bookmarks" data-visibility="uncounted">
-            <h2>Bookmarks</h2>
-            <li><a href=https://angular.dev/guide/forms target="_blank">Angular Forms</a> Angular Forms</li>
-            <li><a href=https://angular.dev/api/forms/NgModelGroup target="_blank">Angular NgModelGroup Directive</a> Angular NgModelGroup Directive</li>
-            <li><a href=https://angular.dev/guide/templates/variables#template-reference-variables target="_blank">Template reference variables</a> Template reference variables</li>
-            <li><a href=https://angular.dev/api/forms/FormBuilder target="_blank">Form Builder</a> Form Builder</li>
-            <li><a href=https://codecraft.tv/courses/angular/advanced-topics/basic-custom-validators/ target="_blank">Custom Form Validators</a> Custom Form Validators</li>
-            <li><a href=https://angular.dev/api/forms/AbstractControl target="_blank">Abstract Control</a> Abstract Control</li>
-            <li><a href=https://angular.dev/api/core/Directive target="_blank">Directive</a> Directive</li>
-            <li><a href=https://angular.dev/api/forms/FormControl target="_blank">Form Control</a> Form Control</li>
-            <li><a href="https://angular.dev/guide/forms/typed-forms" target="_blank">Typed Forms</a> Typed Forms</li>         
-          </section>
-		  <section data-visibility="uncounted">
-				<h3>Directive Validator</h3>
-				<p>Adding custom validators to Template Driven forms via <span class="highlight">Directives</span></p>
-				<pre><code class="html">&lt;input type="text" name="first" ngModel noForbiddenName&gt;</code></pre>
-				<ol>
-					<li><span class="highlight">Create directive</span> with matching selector - e.g. 'noForbiddenName'</li>
-					<li><span class="highlight">Extend <code>NG_VALIDATORS</code></span> dependency via <code>providers</code> property (directive meta data)</li>
-					<li><span class="highlight">Implement <code>validate()</code></span> for directive and call validator - e.g. forbiddenNameValidator</li>
-				</ol>
-			</section>
-			<section data-visibility="uncounted">
-				<h3>Directive Validator example</h3>
-				<pre><code class="typescript max-height-unset">@Directive({
-	  selector: '[noForbiddenName][ngModel],[noForbiddenName][formControl],[noForbiddenName][formControlName]',
-	  providers: [{ 
-			provide: NG_VALIDATORS, 
-			useExisting: forwardRef(() => ForbiddenNameValidator), 
-			multi: true 
-	  }]
-	})
-	export class ForbiddenNameValidator implements Validator {
-
-	  validator = forbiddenNameValidatorFn;
-
-	  validate(c: FormControl) {
-		return this.validator(c);
-	  }
-	}</code></pre>
-		   </section>
-         </section>
+              </ul>
+            </li>
+          </ul>
+          <p class="hint center">Live Code Examples & Backup slides below</p>
+        </section>
+        <!-- #endregion -->
+        
+        <!-- #region Slide: Live Code Examples -->
+        <section id="examples" data-visibility="uncounted">
+          <h2>Live Code Examples</h2>
+          <ul>
+            <li><a href="https://stackblitz.com/edit/angular-control-value-accessor-simple-example-t-zxtskpj7?file=src%2Fapp%2Fapp.component.ts" target="_blank">Model driven form</a> Example in Stackblitz</li>
+            <li><a href="https://stackblitz.com/edit/angular-control-value-accessor-simple-example-t-8jfpg3ve?file=src%2Fapp%2Fapp.component.ts" target="_blank">Simple Model driven form with custom validator</a> in Stackblitz</li>
+            <li><a href="https://stackblitz.com/edit/angular-ivy-wg16x9?file=src%2Fapp%2Fhello.component.ts" target="_blank">Template driven form</a> Example in Stackblitz</li>
+          </ul>
+        </section>
+        <!-- #endregion -->
+        
+        <!-- #region Slide: Backup Intro -->
+        <section id="backup" data-visibility="uncounted">
+          <h2>Backup slides</h2>
+          <p>Following slides are not subject of the lecture.<br>Ask trainers in case of questions.</p>
+        </section>
+        <!-- #endregion -->
+        
+        <!-- #region Slide: Template Driven Forms - Overview -->
+        <section data-visibility="uncounted">
+          <h3>Template driven forms</h3>
+          <ul>
+            <li>behave <span class="highlight">like Angular 1 forms</span></li>
+            <li>form model is <span class="highlight">defined inside HTML</span> template</li>
+          </ul>
+          <pre>
+            <code data-trim class="html">
+              &lt;form #contactForm=&quot;ngForm&quot; (ngSubmit)=&quot;submit(contactForm.value)&quot;&gt;
+                &lt;div ngModelGroup=&quot;name&quot;&gt;
+                  &lt;label for=&quot;first&quot;&gt;First Name&lt;/label&gt;
+                  &lt;input type=&quot;text&quot; name=&quot;first&quot; ngModel&gt;
+              
+                  &lt;label for=&quot;last&quot;&gt;Last Name&lt;/label&gt;
+                  &lt;input type=&quot;text&quot; name=&quot;last&quot; ngModel&gt;
+                &lt;/div&gt;
+              
+                &lt;label for=&quot;email&quot;&gt;E-Mail&lt;/label&gt;
+                &lt;input type=&quot;text&quot; name=&quot;email&quot; ngModel&gt;
+              
+                &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
+              &lt;/form&gt;
+            </code>
+          </pre>
+          <code data-trim class="typescript">{ name: { first: string, last: string }, email:string }</code>
+        </section>
+        <!-- #endregion -->
+        
+        <!-- #region Slide: Template Driven Forms - ngModel / ngModelGroup -->
+        <section class="ng-model-ng-model-group" data-visibility="uncounted">
+          <h3>ngModel / ngModelGroup</h3>
+          <div>
+            <pre><code data-trim class="html">&lt;input name=first ngModel&gt;</code></pre>
+            <p><span class="highlight">creates property</span> inside forms data model with key 'first'</p>
+          </div>
+          <div>
+            <pre><code data-trim class="html">&lt;input name=first [ngModel]="varName"&gt;</code></pre>
+            <p>creates one-way binding - binds a <span class="highlight">default value</span></p>
+          </div>
+          <div>
+            <pre>
+              <code data-trim class="html">
+                <!-- syntactic sugar (banana in a box) -->
+                &lt;input name=first [(ngModel)]="varName"&gt;
+                &lt;input name=first [ngModel]="varName" (ngModelChange)="varName=$event"&gt;
+              </code>
+            </pre>
+            <p>
+              creates <span class="highlight">two-way</span> binding. Note: <span class="highlight">state at two places</span> (component member and forms model)
+            </p>
+          </div>
+          <div>
+            <pre><code data-trim class="html">&lt;div ngModelGroup=group&gt;&lt;/div&gt;</code></pre>
+            <p>creates <span class="highlight">nested object</span> called group inside forms data model (form.value)</p>
+          </div>
+        </section>
+        <!-- #endregion -->
+        
+        <!-- #region Slide: Template Driven Forms - Validation -->
+        <section data-visibility="uncounted">
+          <h3>Validation</h3>
+          <p>... in Template Driven forms</p>
+          <ul>
+            <li>
+              Angular provides default validators
+              <pre>
+                <code data-trim class="html">&lt;input name=otto ngModel required minlength=4 maxlength=24&gt;</code>
+              </pre>
+            </li>
+            <li>
+              Each control / property has 'errors' which can be checked
+              <pre>
+                <code data-trim class="html">
+                  &lt;form #form=ngForm&gt;
+                    &lt;input name=otto ngModel required&gt;
+                    &lt;div *ngIf=form.controls.otto.errors&gt;
+                      &lt;div [hidden]="!form.controls.otto.errors.required"&gt;
+                        &lt;span&gt;Otto is really important!&lt;/span&gt;
+                      &lt;/div&gt;
+                      <!--check other validations...-->
+                    &lt;/div&gt;
+                  &lt;/form&gt;
+                </code>
+              </pre>
+            </li>
+            <li>
+              <code data-trim>form</code> and <code data-trim>ngModelGroup</code> aggregate underlying controls (combined errors)
+            </li>
+          </ul>
+        </section>
+        <!-- #endregion -->
+        
+        <!-- #region Slide: Bookmarks -->
+        <section id="bookmarks" data-visibility="uncounted">
+          <h2>Bookmarks</h2>
+          <li><a href=https://angular.dev/guide/forms target="_blank">Angular Forms</a> Angular Forms</li>
+          <li><a href=https://angular.dev/api/forms/NgModelGroup target="_blank">Angular NgModelGroup Directive</a> Angular NgModelGroup Directive</li>
+          <li><a href=https://angular.dev/guide/templates/variables#template-reference-variables target="_blank">Template reference variables</a> Template reference variables</li>
+          <li><a href=https://angular.dev/api/forms/FormBuilder target="_blank">Form Builder</a> Form Builder</li>
+          <li><a href=https://codecraft.tv/courses/angular/advanced-topics/basic-custom-validators/ target="_blank">Custom Form Validators</a> Custom Form Validators</li>
+          <li><a href=https://angular.dev/api/forms/AbstractControl target="_blank">Abstract Control</a> Abstract Control</li>
+          <li><a href=https://angular.dev/api/core/Directive target="_blank">Directive</a> Directive</li>
+          <li><a href=https://angular.dev/api/forms/FormControl target="_blank">Form Control</a> Form Control</li>
+          <li><a href="https://angular.dev/guide/forms/typed-forms" target="_blank">Typed Forms</a> Typed Forms</li>         
+        </section>
+        <!-- #endregion -->
+        
+        <!-- #region Slide: Template Driven Forms - Directive Validator -->
+        <section data-visibility="uncounted">
+          <h3>Directive Validator</h3>
+          <p>Adding custom validators to Template Driven forms via <span class="highlight">Directives</span></p>
+          <pre><code data-trim class="html">&lt;input type="text" name="first" ngModel noForbiddenName&gt;</code></pre>
+          <ol>
+            <li><span class="highlight">Create directive</span> with matching selector - e.g. 'noForbiddenName'</li>
+            <li><span class="highlight">Extend <code data-trim>NG_VALIDATORS</code></span> dependency via <code data-trim>providers</code> property (directive meta data)</li>
+            <li><span class="highlight">Implement <code data-trim>validate()</code></span> for directive and call validator - e.g. forbiddenNameValidator</li>
+          </ol>
+        </section>
+        <!-- #endregion -->
+        
+        <!-- #region Slide: Template Driven Forms - Directive Validator Example -->
+        <section data-visibility="uncounted">
+          <h3>Directive Validator example</h3>
+          <pre>
+            <code data-trim class="typescript max-height-unset">
+              @Directive({
+                selector: '[noForbiddenName][ngModel],[noForbiddenName][formControl],[noForbiddenName][formControlName]',
+                providers: [{ 
+                  provide: NG_VALIDATORS, 
+                  useExisting: forwardRef(() => ForbiddenNameValidator), 
+                  multi: true 
+                }]
+              })
+              export class ForbiddenNameValidator implements Validator {
+                
+                validator = forbiddenNameValidatorFn;
+                
+                validate(c: FormControl) {
+                  return this.validator(c);
+                }
+              }
+            </code>
+          </pre>
+        </section>
+        <!-- #endregion -->
+        
+      </section>
+      <!-- #endregion -->
+        
     </div>
-</div>
-
-<script src="../node_modules/reveal.js/dist/reveal.js"></script>
-<script src="../node_modules/reveal.js/plugin/zoom/zoom.js"></script>
-<script src="../node_modules/reveal.js/plugin/notes/notes.js"></script>
-<script src="../node_modules/reveal.js/plugin/search/search.js"></script>
-<script src="../node_modules/reveal.js/plugin/markdown/markdown.js"></script>
-<script src="../node_modules/reveal.js/plugin/highlight/highlight.js"></script>
-<script src="../node_modules/reveal.js-menu/menu.js"></script>
-<script src="../common/reveal-config.js"></script>
-<script>
-    Reveal.initialize({
-		...revealConfig, 
-		plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMenu]
-	});
-</script>
-</body>
-</html>
+  </div>
+    
+    <!-- #region Config: Reveal.js Scripts & Initialization (not slide content) -->
+    <script src="../node_modules/reveal.js/dist/reveal.js"></script>
+    <script src="../node_modules/reveal.js/plugin/zoom/zoom.js"></script>
+    <script src="../node_modules/reveal.js/plugin/notes/notes.js"></script>
+    <script src="../node_modules/reveal.js/plugin/search/search.js"></script>
+    <script src="../node_modules/reveal.js/plugin/markdown/markdown.js"></script>
+    <script src="../node_modules/reveal.js/plugin/highlight/highlight.js"></script>
+    <script src="../node_modules/reveal.js-menu/menu.js"></script>
+    <script src="../common/reveal-config.js"></script>
+    <script>
+      Reveal.initialize({
+        ...revealConfig, 
+        plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMenu]
+      });
+    </script>
+    <!-- #endregion -->
+    
+  </body>
+  </html>
+  
