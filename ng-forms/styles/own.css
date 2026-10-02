@@ -8,6 +8,8 @@
    ============================================================ */
 :root {
   --color-accent-blue: #0070ad;
+  --color-label-grey: #6e7781;
+  --color-code-border: #dcdfe3;
 }
 
 html section.ng-model-ng-model-group div p {
@@ -67,6 +69,29 @@ html section.ng-model-ng-model-group div p {
 /* Shrink code blocks below the reveal.js default (0.55em) - long lines otherwise overflow/wrap awkwardly */
 .reveal pre {
     font-size: 0.42em;
+}
+
+/* Small filename tab above each code block (from the data-file attribute) - kept compact so it adds minimal vertical space */
+.reveal pre[data-file] {
+    position: relative;
+    margin-top: 2.8em;
+    border: 1px solid var(--color-code-border);
+}
+
+.reveal pre[data-file]::before {
+    content: attr(data-file);
+    position: absolute;
+    bottom: calc(100%);
+    left: -1px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 0.8em;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+    padding: 0.15em 0.8em;
+    color: var(--color-label-grey);
+    background: #fff;
+    border: 1px solid var(--color-code-border);
+    border-radius: 6px 6px 0 0;
 }
 
 /* Two-column layout for model-vs-DOM comparisons (same convention as other devon4ng decks) */
