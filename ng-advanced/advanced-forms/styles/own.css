@@ -164,3 +164,11 @@ html section.ng-model-ng-model-group div p {
 .reveal .slides .exercises .hint.center {
     text-align: left !important;
 }
+
+/* Exception: the caption naming a component directly under an intro slide's centered mock
+   visualization (e.g. "app-address") is part of that visual, not exercise-step metadata - it
+   should stay centered under the thing it's captioning instead of snapping to the left margin.
+   More specific than the rule above (extra type selectors) so it wins despite coming first. */
+.reveal .slides .exercises section > div + p.hint.center {
+    text-align: center !important;
+}

@@ -1968,76 +1968,6 @@
       </section>
       <!-- #endregion -->
 
-      <!-- #region Slide Group: With Form Group Directive (vertical stack) -->
-      <section class="exercises">
-
-        <section>
-          <h3>With Form Group Directive</h3>
-          <div style="display:flex; align-items:center; justify-content:center; gap:0.75rem; margin:1rem 0;">
-            <div style="border:1px solid #ccc; border-radius:6px; padding:0.3rem 0.6rem; text-align:left;">
-              <div style="font-size:0.55em; color:#888; text-transform:uppercase; letter-spacing:0.05em;">First Name</div>
-              <div style="font-size:0.85em; font-family:monospace;">Juana</div>
-            </div>
-            <div style="border:1px solid #ccc; border-radius:6px; padding:0.3rem 0.6rem; text-align:left;">
-              <div style="font-size:0.55em; color:#888; text-transform:uppercase; letter-spacing:0.05em;">Last Name</div>
-              <div style="font-size:0.85em; font-family:monospace;">Garcia</div>
-            </div>
-          </div>
-          <p class="hint center">order-overview &#8594; general-info</p>
-          <p>Build an order form whose nested <code data-trim>general-info</code> component injects its own fields directly into the parent's <code data-trim>FormGroup</code> via <code data-trim>ControlContainer</code>.</p>
-          <p class="hint center">CVA-only pattern - no Signal Forms equivalent (composite values there are just nested signal slices, see <a class="slide-link" href="#/time-range-picker-combining">the Time-Range-Picker</a>).</p>
-        </section>
-
-        <section>
-          <h3>With Form Group Directive</h3>
-          <p class="hint center">Exercise (1/3)</p>
-          <ol>
-            <li>Create an order module (ng g m order)</li>
-            <li>Create order-overview component (ng g c order-overview)
-              <ul>
-                <li>This is the parent form - add [formGroup] directive</li>
-                <li>Add apply and cancel buttons</li>
-                <li>On apply show the form (rawValue) in the console</li>
-                <li>Form can be submitted only if it's valid (add a flag submitted)</li>
-              </ul>
-            </li>
-          </ol>
-        </section>
-
-        <section>
-          <h3>With Form Group Directive</h3>
-          <p class="hint center">Exercise (2/3)</p>
-          <ol>
-            <li>Add general-info component (ng g c general-info)
-              <ul>
-                <li>Add formGroupName (to the div in the template)</li>
-                <li>Add 2 matInputs: with first and last name</li>
-                <li>Define viewProviders ( provide: ControlContainer, useExisting: FormGroupDirective })</li>
-                <li>Inject parent in the constructor (this.form = parent)</li>
-              </ul>
-            </li>
-          </ol>
-        </section>
-
-        <section>
-          <h3>With Form Group Directive</h3>
-          <p class="hint center">Exercise (3/3)</p>
-          <ol>
-            <li>Build the form structure in the general-info component
-              <ul>
-                <li>Use addControl (this.form.form.addControl)</li>
-                <li>Add first and lastName controls</li>
-                <li>Add required validators for each field</li>
-                <li>Add mat-error to the template</li>
-                <li>Don't forget all needed imports in the order.module</li>
-              </ul>
-            </li>
-          </ol>
-        </section>
-
-      </section>
-      <!-- #endregion -->
-
       <!-- #region Slide Group: Address Field (vertical stack) -->
       <section class="exercises">
 
@@ -2189,6 +2119,76 @@
               <ul>
                 <li>Define in child @Input() isParentSubmitted</li>
                 <li>Add address as FormControl in parent</li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+
+      </section>
+      <!-- #endregion -->
+
+      <!-- #region Slide Group: With Form Group Directive (vertical stack) -->
+      <section class="exercises">
+
+        <section>
+          <h3>With Form Group Directive</h3>
+          <div style="display:flex; align-items:center; justify-content:center; gap:0.75rem; margin:1rem 0;">
+            <div style="border:1px solid #ccc; border-radius:6px; padding:0.3rem 0.6rem; text-align:left;">
+              <div style="font-size:0.55em; color:#888; text-transform:uppercase; letter-spacing:0.05em;">First Name</div>
+              <div style="font-size:0.85em; font-family:monospace;">Juana</div>
+            </div>
+            <div style="border:1px solid #ccc; border-radius:6px; padding:0.3rem 0.6rem; text-align:left;">
+              <div style="font-size:0.55em; color:#888; text-transform:uppercase; letter-spacing:0.05em;">Last Name</div>
+              <div style="font-size:0.85em; font-family:monospace;">Garcia</div>
+            </div>
+          </div>
+          <p class="hint center">order-overview &#8594; general-info</p>
+          <p>Build an order form whose nested <code data-trim>general-info</code> component injects its own fields directly into the parent's <code data-trim>FormGroup</code> via <code data-trim>ControlContainer</code>.</p>
+          <p class="hint center">CVA-only pattern - no Signal Forms equivalent (composite values there are just nested signal slices, see <a class="slide-link" href="#/time-range-picker-combining">the Time-Range-Picker</a>).</p>
+        </section>
+
+        <section>
+          <h3>With Form Group Directive</h3>
+          <p class="hint center">Exercise (1/3)</p>
+          <ol>
+            <li>Create an order module (ng g m order)</li>
+            <li>Create order-overview component (ng g c order-overview)
+              <ul>
+                <li>This is the parent form - add [formGroup] directive</li>
+                <li>Add apply and cancel buttons</li>
+                <li>On apply show the form (rawValue) in the console</li>
+                <li>Form can be submitted only if it's valid (add a flag submitted)</li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h3>With Form Group Directive</h3>
+          <p class="hint center">Exercise (2/3)</p>
+          <ol>
+            <li>Add general-info component (ng g c general-info)
+              <ul>
+                <li>Add formGroupName (to the div in the template)</li>
+                <li>Add 2 matInputs: with first and last name</li>
+                <li>Define viewProviders ( provide: ControlContainer, useExisting: FormGroupDirective })</li>
+                <li>Inject parent in the constructor (this.form = parent)</li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h3>With Form Group Directive</h3>
+          <p class="hint center">Exercise (3/3)</p>
+          <ol>
+            <li>Build the form structure in the general-info component
+              <ul>
+                <li>Use addControl (this.form.form.addControl)</li>
+                <li>Add first and lastName controls</li>
+                <li>Add required validators for each field</li>
+                <li>Add mat-error to the template</li>
+                <li>Don't forget all needed imports in the order.module</li>
               </ul>
             </li>
           </ol>
