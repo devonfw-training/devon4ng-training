@@ -1914,6 +1914,7 @@
             </code>
           </pre>
           <p>So <code data-trim>ng g c customized-select-box</code> generates <code data-trim>standalone: false</code> automatically, matching every existing component (e.g. <code data-trim>AppComponent</code>) - still double-check it landed in the <code data-trim>declarations</code> of the module you intended.</p>
+          <p class="hint center">Heads-up: existing templates (<code data-trim>book-overview</code>, <code data-trim>book-details</code>, ...) still use the legacy <code data-trim>*ngIf</code>/<code data-trim>*ngFor</code> structural directives, not the modern <code data-trim>@if</code>/<code data-trim>@for</code> control-flow syntax. Both work side by side in the same app - use whichever you like in new template code, there's no need to migrate what's already there.</p>
         </section>
 
       </section>
@@ -1934,6 +1935,18 @@
           <p>Extend the book form with a genre picker - a dropdown showing an icon and name, backed by a new <code data-trim>/api/genres</code> endpoint.</p>
         </section>
 
+        <section id="custom-form-control-worlds">
+          <h3>Custom Form Control</h3>
+          <p class="hint center">Before you start: two forms "worlds"</p>
+          <p>Angular has two different form APIs: the classic <span class="highlight">Reactive Forms</span> (<code data-trim>FormGroup</code>) and the newer <span class="highlight">Signal Forms</span> (<code data-trim>form()</code>, <code data-trim>[formField]</code>). A control built for one doesn't automatically plug into the other - think of it as two different plug shapes.</p>
+          <p><code data-trim>book-details</code>'s form (<code data-trim>bookForm</code>) happens to be built with <span class="highlight">Reactive Forms</span>:</p>
+          <ul>
+            <li>Build the genre picker as <span class="highlight">CVA</span> &#8594; it plugs straight in, no surprises - Reactive Forms is its native language.</li>
+            <li>Build it as <span class="highlight">Signal Forms</span> instead &#8594; it speaks the other language, so it needs a small <span class="highlight">adapter</span> to join <code data-trim>bookForm</code>.</li>
+          </ul>
+          <p class="hint center">That adapter has a name - <code data-trim>SignalFormControl</code> - and it's one extra step, shown where it's needed in the Signal Forms track below. Nothing to prepare now, just know it's coming.</p>
+        </section>
+
         <section>
           <h3>Custom Form Control</h3>
           <p class="hint center">Exercise (1/5)</p>
@@ -1945,7 +1958,7 @@
               <ul>
                 <li>Create a genre.ts interface with following fields: id, name, icon</li>
                 <li>Add new endpoint in server.ts (GET /api/genres)</li>
-                <li>Add genres.json with 4 genres, e.g.: {"id": 1, "name": "IT", "icon": "favorite"}</li>
+                <li>The data already ships as <code data-trim>server/book-genres.json</code> (<code data-trim>{"id": 1, "name": "IT", "icon": "code"}</code>, ...) - no need to create a new file, just read and return it</li>
               </ul>
             </li>
           </ol>
@@ -1959,7 +1972,11 @@
             <li>Add book-genres.service (ng g s book-genres) and implement a method getGenres() which
               returns a json with genres
             </li>
-            <li>Add BookGenresResolver and implement the resolve method</li>
+            <li>Add BookGenresResolver and implement the resolve method
+              <ul>
+                <li>This is an instance of an official Angular routing pattern, worth knowing by name - look it up if it's new to you</li>
+              </ul>
+            </li>
           </ul>
         </section>
 
@@ -1979,6 +1996,7 @@
                     href="https://material.angular.io/components/select/overview">here</a></li>
               </ul>
             </li>
+            <li>Mount the finished component on the book form in <code data-trim>book-details</code> - that's the only book form in this starter</li>
           </ul>
         </section>
 
@@ -1994,9 +2012,9 @@
               </ul>
             </li>
             <li>Wire <code data-trim>(selectionChange)</code> on <code data-trim>mat-select</code> to <code data-trim>value.set($event.value)</code></li>
-            <li>Mount it like any other field: <code data-trim>&lt;app-customized-select-box [formField]="bookForm.genre" /&gt;</code></li>
             <li>No registration needed - no <code data-trim>NG_VALUE_ACCESSOR</code>, no module wiring beyond the usual standalone imports</li>
           </ol>
+          <p class="hint center">The adapter from <a class="slide-link" href="#/custom-form-control-worlds">before you start</a>, in code: <code data-trim>genre = new SignalFormControl&lt;Genre | null&gt;(null, p =&gt; required(p))</code>, then <code data-trim>bookForm.addControl('genre', this.genre)</code>, then mount with <code data-trim>[formField]="genre.fieldTree"</code> instead of <code data-trim>bookForm.genre</code>.</p>
         </section>
 
         <section id="exercise-cva-track" data-visibility="uncounted">
@@ -2051,7 +2069,19 @@
             </div>
           </div>
           <p class="hint center">app-address</p>
-          <p>Build a reusable address field (street, zip code, city, all required) and mount it inside the order form.</p>
+          <p>Build a reusable address field (street, zip code, city, all required) and mount it inside the Personal Information form.</p>
+          <p class="hint center">The starter already ships <code data-trim>app-personal-info-overview</code> (route <code data-trim>/personal-info</code>) as the host for this exercise.</p>
+        </section>
+
+        <section id="address-field-worlds">
+          <h3>Address Field</h3>
+          <p class="hint center">Before you start: two forms "worlds" (the other way round)</p>
+          <p>Same idea as the genre picker, flipped: this time the host page, <code data-trim>personal-info-overview</code>, is built with <span class="highlight">Signal Forms</span> (<code data-trim>form()</code>) instead of Reactive Forms.</p>
+          <ul>
+            <li>Build the address field as <span class="highlight">Signal Forms</span> (<code data-trim>FormValueControl</code>) &#8594; it plugs straight in via <code data-trim>[formField]</code> - this page's native language.</li>
+            <li>Build it as <span class="highlight">CVA</span> instead (backup track below) &#8594; it speaks Reactive Forms, so it needs the mirror-image adapter to join a Signal Forms host.</li>
+          </ul>
+          <p class="hint center">That adapter is called <code data-trim>compatForm</code> - shown where it's needed in the CVA backup steps below. Together with the genre picker's <code data-trim>SignalFormControl</code>, these two exercises cover both directions of Signal Forms &#8596; Reactive Forms compatibility.</p>
         </section>
 
         <section>
@@ -2087,11 +2117,12 @@
           <h3>Address Field</h3>
           <p class="hint center">Exercise (3/3)</p>
           <ol>
-            <li>In order-overview, apply the schema and mount the field
+            <li>In <code data-trim>PersonalInfoOverviewComponent</code>, apply the schema and mount the field
               <ul>
-                <li><code data-trim>orderForm = form(this.model, (path) =&gt; apply(path.address, addressSchema));</code></li>
-                <li><code data-trim>&lt;app-address [formField]="orderForm.address" /&gt;</code> - one binding, no <code data-trim>isParentSubmitted</code> workaround</li>
-                <li>On submit: <code data-trim>orderForm().markAsTouched()</code> reveals every error at once</li>
+                <li>Add an <code data-trim>address: Address</code> field to its <code data-trim>PersonalInfo</code> model (with a default value) - the component already has a commented-out slot for it</li>
+                <li><code data-trim>personalInfoForm = form(this.model, (path) =&gt; apply(path.address, addressSchema));</code></li>
+                <li><code data-trim>&lt;app-address [formField]="personalInfoForm.address" /&gt;</code> - one binding, no <code data-trim>isParentSubmitted</code> workaround</li>
+                <li>On submit: <code data-trim>personalInfoForm().markAsTouched()</code> reveals every error at once</li>
               </ul>
             </li>
           </ol>
@@ -2178,13 +2209,14 @@
           <p class="hint center">Backup - same point, CVA flavour.</p>
           <p class="hint center">Exercise (5/5)</p>
           <ol>
-            <li>Set an Input in parent (order-overview) [isParentSubmitted]="submitted"
+            <li>Set an Input in parent (personal-info-overview) [isParentSubmitted]="submitted"
               <ul>
                 <li>Define in child @Input() isParentSubmitted</li>
-                <li>Add address as FormControl in parent</li>
+                <li>Add address as a plain <code data-trim>FormControl</code> inside the component's model signal</li>
               </ul>
             </li>
           </ol>
+          <p class="hint center">The adapter from <a class="slide-link" href="#/address-field-worlds">before you start</a>, in code: wrap the model with <code data-trim>compatForm</code> instead of <code data-trim>form</code> so a plain <code data-trim>FormControl</code> can live inside it as a leaf, then mount <code data-trim>&lt;app-address [formControl]="model().address" [isParentSubmitted]="submitted" /&gt;</code> exactly as CVA expects.</p>
         </section>
 
       </section>
@@ -2193,7 +2225,7 @@
       <!-- #region Slide Group: With Form Group Directive (vertical stack) -->
       <section class="exercises">
 
-        <section>
+        <section id="exercise-form-group-directive">
           <h3>With Form Group Directive</h3>
           <div style="display:flex; align-items:center; justify-content:center; gap:0.75rem; margin:1rem 0;">
             <div style="border:1px solid #ccc; border-radius:6px; padding:0.3rem 0.6rem; text-align:left;">
