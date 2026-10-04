@@ -1856,6 +1856,69 @@
         </section>
         <!-- #endregion -->
 
+      <!-- #region Slide Group: Exercises Introduction (vertical stack) -->
+      <section class="exercises">
+
+        <section>
+          <h3>Before You Start: About the Starter Project</h3>
+          <p>This exercise project has been iteratively upgraded from Angular 7 to Angular 22 rather than rewritten from scratch - it still follows the classic <code data-trim>NgModule</code> structure end to end.</p>
+          <p>Standalone components are Angular's modern default, and the Signal Forms exercises lean on them for new fields - but standalone and <code data-trim>NgModule</code> interop freely, so this isn't a conflict you need to resolve.</p>
+          <p class="hint center">The next few slides cover what that means in practice while you work through the exercises.</p>
+        </section>
+
+        <section>
+          <h3>Why Modules, Not Standalone-Only</h3>
+          <p><code data-trim>NgModule</code>s are not deprecated - standalone is only the new default for <em>new</em> code, not a replacement requirement for existing apps.</p>
+          <p>This app still bootstraps the classic way:</p>
+          <pre data-file="main.ts">
+            <code data-trim class="typescript">
+              platformBrowser().bootstrapModule(AppModule)
+                .catch(err =&gt; console.error(err));
+            </code>
+          </pre>
+          <p>Feature areas stay organized as <code data-trim>NgModule</code>s (<code data-trim>BookModule</code>, <code data-trim>SharedModule</code>, ...) with their own <code data-trim>declarations</code>/<code data-trim>imports</code>/<code data-trim>exports</code>.</p>
+        </section>
+
+        <section>
+          <h3>Standalone &amp; NgModule Interop</h3>
+          <p>A standalone component can be imported straight into an <code data-trim>NgModule</code>'s own <code data-trim>imports</code> array - not <code data-trim>declarations</code>:</p>
+          <pre data-file="book.module.ts">
+            <code data-trim class="typescript">
+              @NgModule({
+                imports: [SomeStandaloneWidgetComponent],
+                declarations: [BookOverviewComponent],
+              })
+              export class BookModule {}
+            </code>
+          </pre>
+          <p>The reverse works too - a standalone component lists whichever <code data-trim>NgModule</code>s it needs in its own <code data-trim>imports</code>:</p>
+          <pre data-file="some-standalone.component.ts">
+            <code data-trim class="typescript">
+              @Component({
+                selector: 'app-some-standalone',
+                imports: [MatFormFieldModule, MatInputModule],
+              })
+              export class SomeStandaloneComponent {}
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h3>Generating New Components for the Exercises</h3>
+          <p><code data-trim>ng generate component</code> already does the right thing here - no extra flag needed:</p>
+          <pre data-file="angular.json">
+            <code data-trim class="json">
+              "schematics": {
+                "@schematics/angular:component": { "standalone": false }
+              }
+            </code>
+          </pre>
+          <p>So <code data-trim>ng g c customized-select-box</code> generates <code data-trim>standalone: false</code> automatically, matching every existing component (e.g. <code data-trim>AppComponent</code>) - still double-check it landed in the <code data-trim>declarations</code> of the module you intended.</p>
+        </section>
+
+      </section>
+      <!-- #endregion -->
+
       <!-- #region Slide Group: Custom Form Control (vertical stack) -->
       <section class="exercises">
 
