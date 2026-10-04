@@ -29,6 +29,26 @@ Don't reach for `<ul>`/`<li>` to break up prose that isn't a genuine list of par
 independent items (e.g. step-by-step reasoning where each point depends on the previous one).
 Write that as flowing sentences instead - in notes if it's too long for the slide itself.
 
+## Exercises are documentation, not presented slides
+Every exercise topic is its own horizontal `<section class="exercises">` group (not a single
+shared id) - see `.exercises` in own.css. Each is read directly by trainees during self-paced
+work - there's no presenter narrating it and no speaker notes to fall back on, so the
+"keyword on slide, explanation in notes" rule above and "don't overload a slide" do **not**
+apply inside it. Write exercise steps with full instructional detail directly on the slide,
+even if that makes it denser/longer than a normal slide.
+- `.exercises` in own.css already left-aligns text and lets a slide scroll internally if its
+  content overflows - don't fight that by re-centering content or trimming it to fit.
+- Still split unrelated steps onto separate, numbered `Exercise (n/m)` slides rather than
+  cramming a whole topic onto one - "denser" means "fully worded", not "everything on one slide".
+- This exception is scoped to `.exercises` only - every other slide in the deck still follows
+  the keyword-on-slide/detail-in-notes convention from README.md.
+- A step's own detail bullets belong **inside** the `<li>` they explain (`<li>text<ul>...</ul></li>`),
+  never as a sibling `<ul>`/`<ol>` after it - sibling placement is invalid nesting and breaks the
+  CSS hanging-indent rules in own.css (`.exercises section > ol/ul`), which assume exactly one
+  real top-level list per slide. Don't wrap a list in an outer `<ol>`/`<ul>` that has no `<li>`
+  of its own either - use the list type (`ol` for genuinely ordered steps, `ul` for flat tasks)
+  directly as the top-level list instead of adding an empty wrapper.
+
 ## Slide cross-references are real links
 When slide text (not speaker notes) names another specific, non-adjacent slide (e.g. "see
 the error-channel slide"), make it a clickable reveal.js internal link instead of leaving it

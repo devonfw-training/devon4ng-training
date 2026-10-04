@@ -7,7 +7,7 @@
    used on the dark-background decks (e.g. ng-advanced/forms).
    ============================================================ */
 :root {
-  --color-accent-blue: #0070ad;
+  --color-accent-blue: #3573c0;
   --color-label-grey: #6e7781;
   --color-code-border: #dcdfe3;
   /* Capgemini orange - deliberately not blue, so in-deck slide-jump links read as distinct from .highlight/default link blue */
@@ -42,7 +42,10 @@ html section.ng-model-ng-model-group div p {
     text-decoration-thickness: 0.12em;
 }
 
-/* Material Symbols "link" icon, recolored orange via CSS mask (not <img>) so it tracks --color-link-orange without needing a separately-colored SVG asset */
+/* Material Symbols "link" icon, recolored orange via CSS mask (not <img>) so it tracks --color-link-orange without needing a separately-colored SVG asset.
+   Inlined as a data URI (not url('../img/...svg')) - mask images are loaded via an actual CORS-mode fetch (they need the
+   file's pixel/alpha data, unlike a plain background-image), which file:// can never satisfy and silently fails when the
+   deck is opened directly from disk instead of through a local server. A data URI isn't a network fetch, so no CORS check applies. */
 .devon.reveal a.slide-link::before {
     content: "";
     display: inline-block;
@@ -53,8 +56,8 @@ html section.ng-model-ng-model-group div p {
     /* 1em mask is taller than the text's x-height - nudge down so it optically centers on the text instead of sitting high */
     vertical-align: -0.15em;
     background-color: var(--color-link-orange);
-    -webkit-mask: url('../img/link_2_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg') no-repeat center / contain;
-    mask: url('../img/link_2_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg') no-repeat center / contain;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='24' viewBox='0 -960 960 960' width='24'%3E%3Cpath d='M318-120q-82 0-140-58t-58-140q0-40 15-76t43-64l134-133 56 56-134 134q-17 17-25.5 38.5T200-318q0 49 34.5 83.5T318-200q23 0 45-8.5t39-25.5l133-134 57 57-134 133q-28 28-64 43t-76 15Zm79-220-57-57 223-223 57 57-223 223Zm251-28-56-57 134-133q17-17 25-38t8-44q0-50-34-85t-84-35q-23 0-44.5 8.5T558-726L425-592l-57-56 134-134q28-28 64-43t76-15q82 0 139.5 58T839-641q0 39-14.5 75T782-502L648-368Z'/%3E%3C/svg%3E") no-repeat center / contain;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='24' viewBox='0 -960 960 960' width='24'%3E%3Cpath d='M318-120q-82 0-140-58t-58-140q0-40 15-76t43-64l134-133 56 56-134 134q-17 17-25.5 38.5T200-318q0 49 34.5 83.5T318-200q23 0 45-8.5t39-25.5l133-134 57 57-134 133q-28 28-64 43t-76 15Zm79-220-57-57 223-223 57 57-223 223Zm251-28-56-57 134-133q17-17 25-38t8-44q0-50-34-85t-84-35q-23 0-44.5 8.5T558-726L425-592l-57-56 134-134q28-28 64-43t76-15q82 0 139.5 58T839-641q0 39-14.5 75T782-502L648-368Z'/%3E%3C/svg%3E") no-repeat center / contain;
 }
 
 /* Inline code renders visually larger than surrounding text at the same font-size - shrink it relative to the (now smaller) table font */
@@ -122,4 +125,42 @@ html section.ng-model-ng-model-group div p {
     background: #fff;
     border: 1px solid var(--color-code-border);
     border-radius: 6px 6px 0 0;
+}
+
+/* Exercises are read directly as self-paced documentation, not narrated from speaker notes
+   like the rest of the deck - so they need the full instructional text on-slide, left-aligned
+   like a doc instead of centered like a presented slide, and allowed to run longer than fits
+   one screen without clipping. Scoped to .exercises so this never affects presented slides. */
+.exercises section {
+    text-align: left;
+    overflow-y: auto;
+    max-height: 100%;
+    /* body text here carries full instructions (not keywords) - shrink to fit more per screen */
+    font-size: 0.65em;
+}
+
+.exercises section h3 {
+    font-size: 30pt;
+}
+
+/* reveal's theme gives the top-level ol/ul an extra 1em left margin (white.css) on top of the
+   browser's own ~40px default padding-left - zero both so list items start flush with the
+   heading's left edge instead of indented past it. Index.html no longer wraps a bare list in a
+   vestigial <ol>/<ul> with no <li> of its own (fixed at the markup level - see AGENTS.md), so
+   this only ever has to target the one real top-level list per slide. */
+.exercises section > ol,
+.exercises section > ul {
+    margin-left: 0;
+    /* keep list-style-position at its outside default - enough padding for the marker, but no
+       more, so a wrapped second line of a bullet's text hangs indented under the first line's
+       text instead of sliding back under the marker (which 0 padding + inside position did) */
+    padding-left: 1.2em;
+}
+
+/* .hint.center is centered elsewhere in the deck via `.reveal .slides .hint.center` (4 classes,
+   !important) - that beat a plain `.exercises .hint.center` (3 classes) regardless of source
+   order, so match its specificity by chaining the same ancestor prefix. */
+.reveal .slides .exercises .hint,
+.reveal .slides .exercises .hint.center {
+    text-align: left !important;
 }

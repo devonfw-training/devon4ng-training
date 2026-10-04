@@ -14,11 +14,11 @@
   <link rel="stylesheet" href="../../node_modules/reveal.js/dist/reveal.css">
   <link rel="stylesheet" href="../../css/lib/style.css">
   <link rel="stylesheet" href="../../node_modules/reveal.js/dist/theme/white.css" id="theme">
-  <link rel="stylesheet" href="../../common/css/common.css">
+  <link rel="stylesheet" href="./styles/common.css">
   <link rel="stylesheet" href="./styles/own.css">
   
   <!-- Theme used for syntax highlighting of code -->
-  <link rel="stylesheet" href="../../common/css/github-gist.css">
+  <link rel="stylesheet" href="./styles/github-gist.css">
   
 </head>
 <!-- #endregion -->
@@ -1856,8 +1856,20 @@
         </section>
         <!-- #endregion -->
 
-      <!-- #region Slide Group: Exercises (vertical stack) -->
-      <section>
+      <!-- #region Slide Group: Custom Form Control (vertical stack) -->
+      <section class="exercises">
+
+        <section>
+          <h3>Custom Form Control</h3>
+          <div style="display:flex; align-items:center; justify-content:center; margin:1rem 0;">
+            <div style="border:1px solid #ccc; border-radius:6px; padding:0.3rem 0.6rem; text-align:left;">
+              <div style="font-size:0.55em; color:#888; text-transform:uppercase; letter-spacing:0.05em;">Genre</div>
+              <div style="font-size:0.85em; font-family:monospace;">Fantasy &#9662;</div>
+            </div>
+          </div>
+          <p class="hint center">app-customized-select-box</p>
+          <p>Extend the book form with a genre picker - a dropdown showing an icon and name, backed by a new <code data-trim>/api/genres</code> endpoint.</p>
+        </section>
 
         <section>
           <h3>Custom Form Control</h3>
@@ -1866,36 +1878,35 @@
             <li>Pull or fork a repository from <a
                 href="https://github.com/devonfw-ng-adv-training/advanced-forms.git">here</a></li>
             <li>Get a master state</li>
-            <li>First of all we need to extend our book model:</li>
-            <ul>
-              <li>Create a genre.ts interface with following fields: id, name, icon</li>
-              <li>Add new endpoint in server.ts (GET /api/genres)</li>
-              <li>Add genres.json with 4 genres, e.g.: {"id": 1, "name": "IT", "icon": "favorite"}</li>
-            </ul>
+            <li>First of all we need to extend our book model:
+              <ul>
+                <li>Create a genre.ts interface with following fields: id, name, icon</li>
+                <li>Add new endpoint in server.ts (GET /api/genres)</li>
+                <li>Add genres.json with 4 genres, e.g.: {"id": 1, "name": "IT", "icon": "favorite"}</li>
+              </ul>
+            </li>
           </ol>
         </section>
 
         <section>
           <h3>Custom Form Control</h3>
           <p class="hint center">Exercise (2/5)</p>
-          <ol>
-            <ul>
-              <li>Add to isBook method (server.ts) an extra check if genre is defined</li>
-              <li>Add book-genres.service (ng g s book-genres) and implement a method getGenres() which
-                returns a json with genres
-              </li>
-              <li>Add BookGenresResolver and implement the resolve method</li>
-            </ul>
-          </ol>
+          <ul>
+            <li>Add to isBook method (server.ts) an extra check if genre is defined</li>
+            <li>Add book-genres.service (ng g s book-genres) and implement a method getGenres() which
+              returns a json with genres
+            </li>
+            <li>Add BookGenresResolver and implement the resolve method</li>
+          </ul>
         </section>
 
         <section>
           <h3>Custom Form Control</h3>
           <p class="hint center">Exercise (3/5)</p>
-          <ol>
-            <ul>
-              <li>Create a custom control component with a select box (ng g c customized-select-box)</li>
-              <li>Define customized select box template - the list should consist of icon and genre</li>
+          <p class="hint center">Jump to the flavor-specific steps: <a class="slide-link" href="#/exercise-signal-track">Signal Forms</a> &middot; <a class="slide-link" href="#/exercise-cva-track">CVA</a></p>
+          <ul>
+            <li>Create a custom control component with a select box (ng g c customized-select-box)</li>
+            <li>Define customized select box template - the list should consist of icon and genre
               <ul>
                 <li>Use mat-form-field</li>
                 <li>Use mat-select fot the list</li>
@@ -1904,36 +1915,77 @@
                 <li>Documentation can be found <a
                     href="https://material.angular.io/components/select/overview">here</a></li>
               </ul>
-            </ul>
-          </ol>
+            </li>
+          </ul>
         </section>
 
-        <section>
+        <section id="exercise-signal-track">
           <h3>Custom Form Control</h3>
-          <p class="hint center">Exercise (4/5)</p>
+          <p class="hint center">Signal Forms flavour &middot; Exercise (4/4)</p>
           <ol>
-            <ul>
-              <li>Implement ControlValueAccessor</li>
-              <li>To get MatSelect, use a @ViewChild: @ViewChild(MatSelect) matSelect: MatSelect;</li>
-              <li>Add field: propagateChange (val: any) => {}</li>
-              <li>Add genres (list) and placeholder as Inputs</li>
-            </ul>
+            <li>Implement <code data-trim>FormValueControl&lt;Genre&gt;</code> on <code data-trim>CustomizedSelectBox</code>
+              <ul>
+                <li>Add <code data-trim>value = model&lt;Genre | null&gt;(null)</code></li>
+                <li>Add <code data-trim>touch = output&lt;void&gt;()</code>, emit it on blur / when the panel closes</li>
+                <li>Add <code data-trim>genres</code> (list) and <code data-trim>placeholder</code> as <code data-trim>input()</code>s</li>
+              </ul>
+            </li>
+            <li>Wire <code data-trim>(selectionChange)</code> on <code data-trim>mat-select</code> to <code data-trim>value.set($event.value)</code></li>
+            <li>Mount it like any other field: <code data-trim>&lt;app-customized-select-box [formField]="bookForm.genre" /&gt;</code></li>
+            <li>No registration needed - no <code data-trim>NG_VALUE_ACCESSOR</code>, no module wiring beyond the usual standalone imports</li>
           </ol>
         </section>
 
-        <section>
+        <section id="exercise-cva-track" data-visibility="uncounted">
           <h3>Custom Form Control</h3>
+          <p class="hint center">Backup - same point, CVA flavour.</p>
+          <p class="hint center">Exercise (4/5)</p>
+          <ul>
+            <li>Implement ControlValueAccessor</li>
+            <li>To get MatSelect, use a @ViewChild: @ViewChild(MatSelect) matSelect: MatSelect;</li>
+            <li>Add field: propagateChange (val: any) => {}</li>
+            <li>Add genres (list) and placeholder as Inputs</li>
+          </ul>
+        </section>
+
+        <section data-visibility="uncounted">
+          <h3>Custom Form Control</h3>
+          <p class="hint center">Backup - same point, CVA flavour.</p>
           <p class="hint center">Exercise (5/5)</p>
           <ol>
-            <li>Implement following methods: writeValue and registerOnChange</li>
-            <ul>
-              <li>You need to add (selectionChange) event to mat-select, implement this method
-                in a component and select the option from the list and trigger propagateOnChange
-              </li>
-              <li>You need to register CVA</li>
-            </ul>
+            <li>Implement following methods: writeValue and registerOnChange
+              <ul>
+                <li>You need to add (selectionChange) event to mat-select, implement this method
+                  in a component and select the option from the list and trigger propagateOnChange
+                </li>
+                <li>You need to register CVA</li>
+              </ul>
+            </li>
             <li>Don't forget to register new services and components in the modules</li>
           </ol>
+        </section>
+
+      </section>
+      <!-- #endregion -->
+
+      <!-- #region Slide Group: With Form Group Directive (vertical stack) -->
+      <section class="exercises">
+
+        <section>
+          <h3>With Form Group Directive</h3>
+          <div style="display:flex; align-items:center; justify-content:center; gap:0.75rem; margin:1rem 0;">
+            <div style="border:1px solid #ccc; border-radius:6px; padding:0.3rem 0.6rem; text-align:left;">
+              <div style="font-size:0.55em; color:#888; text-transform:uppercase; letter-spacing:0.05em;">First Name</div>
+              <div style="font-size:0.85em; font-family:monospace;">Juana</div>
+            </div>
+            <div style="border:1px solid #ccc; border-radius:6px; padding:0.3rem 0.6rem; text-align:left;">
+              <div style="font-size:0.55em; color:#888; text-transform:uppercase; letter-spacing:0.05em;">Last Name</div>
+              <div style="font-size:0.85em; font-family:monospace;">Garcia</div>
+            </div>
+          </div>
+          <p class="hint center">order-overview &#8594; general-info</p>
+          <p>Build an order form whose nested <code data-trim>general-info</code> component injects its own fields directly into the parent's <code data-trim>FormGroup</code> via <code data-trim>ControlContainer</code>.</p>
+          <p class="hint center">CVA-only pattern - no Signal Forms equivalent (composite values there are just nested signal slices, see <a class="slide-link" href="#/time-range-picker-combining">the Time-Range-Picker</a>).</p>
         </section>
 
         <section>
@@ -1941,13 +1993,14 @@
           <p class="hint center">Exercise (1/3)</p>
           <ol>
             <li>Create an order module (ng g m order)</li>
-            <li>Create order-overview component (ng g c order-overview)</li>
-            <ul>
-              <li>This is the parent form - add [formGroup] directive</li>
-              <li>Add apply and cancel buttons</li>
-              <li>On apply show the form (rawValue) in the console</li>
-              <li>Form can be submitted only if it's valid (add a flag submitted)</li>
-            </ul>
+            <li>Create order-overview component (ng g c order-overview)
+              <ul>
+                <li>This is the parent form - add [formGroup] directive</li>
+                <li>Add apply and cancel buttons</li>
+                <li>On apply show the form (rawValue) in the console</li>
+                <li>Form can be submitted only if it's valid (add a flag submitted)</li>
+              </ul>
+            </li>
           </ol>
         </section>
 
@@ -1955,13 +2008,14 @@
           <h3>With Form Group Directive</h3>
           <p class="hint center">Exercise (2/3)</p>
           <ol>
-            <li>Add general-info component (ng g c general-info)</li>
-            <ul>
-              <li>Add formGroupName (to the div in the template)</li>
-              <li>Add 2 matInputs: with first and last name</li>
-              <li>Define viewProviders ( provide: ControlContainer, useExisting: FormGroupDirective })</li>
-              <li>Inject parent in the constructor (this.form = parent)</li>
-            </ul>
+            <li>Add general-info component (ng g c general-info)
+              <ul>
+                <li>Add formGroupName (to the div in the template)</li>
+                <li>Add 2 matInputs: with first and last name</li>
+                <li>Define viewProviders ( provide: ControlContainer, useExisting: FormGroupDirective })</li>
+                <li>Inject parent in the constructor (this.form = parent)</li>
+              </ul>
+            </li>
           </ol>
         </section>
 
@@ -1969,75 +2023,153 @@
           <h3>With Form Group Directive</h3>
           <p class="hint center">Exercise (3/3)</p>
           <ol>
-            <li>Build the form structure in the general-info component</li>
-            <ul>
-              <li>Use addControl (this.form.form.addControl)</li>
-              <li>Add first and lastName controls</li>
-              <li>Add required validators for each field</li>
-              <li>Add mat-error to the template</li>
-              <li>Don't forget all needed imports in the order.module</li>
-            </ul>
+            <li>Build the form structure in the general-info component
+              <ul>
+                <li>Use addControl (this.form.form.addControl)</li>
+                <li>Add first and lastName controls</li>
+                <li>Add required validators for each field</li>
+                <li>Add mat-error to the template</li>
+                <li>Don't forget all needed imports in the order.module</li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+
+      </section>
+      <!-- #endregion -->
+
+      <!-- #region Slide Group: Address Field (vertical stack) -->
+      <section class="exercises">
+
+        <section>
+          <h3>Address Field</h3>
+          <div style="display:flex; align-items:center; justify-content:center; gap:0.75rem; margin:1rem 0; flex-wrap:wrap;">
+            <div style="border:1px solid #ccc; border-radius:6px; padding:0.3rem 0.6rem; text-align:left;">
+              <div style="font-size:0.55em; color:#888; text-transform:uppercase; letter-spacing:0.05em;">Street</div>
+              <div style="font-size:0.85em; font-family:monospace;">Elm Street 12</div>
+            </div>
+            <div style="border:1px solid #ccc; border-radius:6px; padding:0.3rem 0.6rem; text-align:left;">
+              <div style="font-size:0.55em; color:#888; text-transform:uppercase; letter-spacing:0.05em;">Zip Code</div>
+              <div style="font-size:0.85em; font-family:monospace;">12345</div>
+            </div>
+            <div style="border:1px solid #ccc; border-radius:6px; padding:0.3rem 0.6rem; text-align:left;">
+              <div style="font-size:0.55em; color:#888; text-transform:uppercase; letter-spacing:0.05em;">City</div>
+              <div style="font-size:0.85em; font-family:monospace;">Springfield</div>
+            </div>
+          </div>
+          <p class="hint center">app-address</p>
+          <p>Build a reusable address field (street, zip code, city, all required) and mount it inside the order form.</p>
+        </section>
+
+        <section>
+          <h3>Address Field</h3>
+          <p class="hint center">Exercise (1/3)</p>
+          <ol>
+            <li>Add address component (ng g c address)
+              <ul>
+                <li>Implement <code data-trim>FormValueControl&lt;Address&gt;</code></li>
+                <li>Add <code data-trim>value = model&lt;Address&gt;({ street: '', zipCode: '', city: '' })</code></li>
+                <li>Template: plain inputs for street, zipCode, city - no internal FormGroup</li>
+                <li>Each input writes back via <code data-trim>value.update(v =&gt; ({ ...v, street: $event }))</code> (and so on)</li>
+              </ul>
+            </li>
           </ol>
         </section>
 
         <section>
-          <h3>With Control Value Accessor</h3>
+          <h3>Address Field</h3>
+          <p class="hint center">Exercise (2/3)</p>
+          <ol>
+            <li>Ship a companion schema alongside the component
+              <ul>
+                <li>Create <code data-trim>addressSchema = schema&lt;Address&gt;((path) =&gt; { ... })</code></li>
+                <li>Add <code data-trim>required(path.street, ...)</code>, <code data-trim>required(path.zipCode, ...)</code>, <code data-trim>required(path.city, ...)</code></li>
+                <li>No <code data-trim>NG_VALIDATORS</code>, no <code data-trim>validate()</code> method on the component - the schema owns the rules</li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h3>Address Field</h3>
+          <p class="hint center">Exercise (3/3)</p>
+          <ol>
+            <li>In order-overview, apply the schema and mount the field
+              <ul>
+                <li><code data-trim>orderForm = form(this.model, (path) =&gt; apply(path.address, addressSchema));</code></li>
+                <li><code data-trim>&lt;app-address [formField]="orderForm.address" /&gt;</code> - one binding, no <code data-trim>isParentSubmitted</code> workaround</li>
+                <li>On submit: <code data-trim>orderForm().markAsTouched()</code> reveals every error at once</li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+
+        <section data-visibility="uncounted">
+          <h3>Address Field</h3>
+          <p class="hint center">Backup - same point, CVA flavour.</p>
           <p class="hint center">Exercise (1/5)</p>
           <ol>
-            <li>Add address component (ng g c address)</li>
-            <ul>
-              <li>Implement Control Value Accessor</li>
-              <li>Define form in the template [formGroup]="form"</li>
-              <li>Add following fields (as MatInputs): street, zipCode, city</li>
-              <li>All the fields are required - add validators and mat-error</li>
-            </ul>
+            <li>Add address component (ng g c address)
+              <ul>
+                <li>Implement Control Value Accessor</li>
+                <li>Define form in the template [formGroup]="form"</li>
+                <li>Add following fields (as MatInputs): street, zipCode, city</li>
+                <li>All the fields are required - add validators and mat-error</li>
+              </ul>
+            </li>
           </ol>
         </section>
 
-        <section>
-          <h3>With Control Value Accessor</h3>
+        <section data-visibility="uncounted">
+          <h3>Address Field</h3>
+          <p class="hint center">Backup - same point, CVA flavour.</p>
           <p class="hint center">Exercise (2/5)</p>
           <ol>
-            <li>Implement CVA methods:</li>
-            <ul>
-              <li>Define form in the template [formGroup]="form"</li>
-              <li>In writeValue use setValue and set emitEvent as false (good for the performance)</li>
-              <li>Use valueChanges (from form) to subscribe on changes in the registerOnChange method</li>
-              <li>All the fields are required - add validators and mat-error</li>
-            </ul>
+            <li>Implement CVA methods:
+              <ul>
+                <li>Define form in the template [formGroup]="form"</li>
+                <li>In writeValue use setValue and set emitEvent as false (good for the performance)</li>
+                <li>Use valueChanges (from form) to subscribe on changes in the registerOnChange method</li>
+                <li>All the fields are required - add validators and mat-error</li>
+              </ul>
+            </li>
           </ol>
         </section>
 
-        <section>
-          <h3>With Control Value Accessor</h3>
+        <section data-visibility="uncounted">
+          <h3>Address Field</h3>
+          <p class="hint center">Backup - same point, CVA flavour.</p>
           <p class="hint center">Exercise (3/5)</p>
           <ol>
-            <li>Implement Validator in providers</li>
-            <pre data-file="address.component.ts">
-              <code data-trim class="typescript">
-                {
-                  provide: NG_VALIDATORS,
-                  useExisting: forwardRef(() => AddressComponent),
-                  multi: true
-                }
-              </code>
-            </pre>
+            <li>Implement Validator in providers
+              <pre data-file="address.component.ts">
+                <code data-trim class="typescript">
+                  {
+                    provide: NG_VALIDATORS,
+                    useExisting: forwardRef(() => AddressComponent),
+                    multi: true
+                  }
+                </code>
+              </pre>
+            </li>
             <li>Implement validate method</li>
           </ol>
         </section>
 
-        <section>
-          <h3>With Control Value Accessor</h3>
+        <section data-visibility="uncounted">
+          <h3>Address Field</h3>
+          <p class="hint center">Backup - same point, CVA flavour.</p>
           <p class="hint center">Exercise (4/5)</p>
           <ol>
-            <li>We need to know in the child if parent was submitted (parent has the submit button)</li>
-            <ul>
-              <li>Define in child @Input() isParentSubmitted</li>
-              <li>Implement OnChanges interface</li>
-              <li>We need a workaround in Angular Material to trigger a validation on submit (bug in Angular
-                Material)
-              </li>
-            </ul>
+            <li>We need to know in the child if parent was submitted (parent has the submit button)
+              <ul>
+                <li>Define in child @Input() isParentSubmitted</li>
+                <li>Implement OnChanges interface</li>
+                <li>We need a workaround in Angular Material to trigger a validation on submit (bug in Angular
+                  Material)
+                </li>
+              </ul>
+            </li>
           </ol>
           <pre data-file="address.component.ts">
             <code data-trim class="typescript">
@@ -2048,16 +2180,17 @@
           </pre>
         </section>
 
-        <section>
-          <h3>With Control Value Accessor</h3>
+        <section data-visibility="uncounted">
+          <h3>Address Field</h3>
+          <p class="hint center">Backup - same point, CVA flavour.</p>
           <p class="hint center">Exercise (5/5)</p>
           <ol>
             <li>Set an Input in parent (order-overview) [isParentSubmitted]="submitted"
-            <li>
               <ul>
                 <li>Define in child @Input() isParentSubmitted</li>
                 <li>Add address as FormControl in parent</li>
               </ul>
+            </li>
           </ol>
         </section>
 
