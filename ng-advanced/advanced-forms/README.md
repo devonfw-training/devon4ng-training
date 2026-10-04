@@ -21,10 +21,24 @@ you from re-deriving the reasoning behind choices that aren't self-explanatory f
 ## Slides vs. speaker notes
 - Slides tend to carry only keywords/short phrases; the explanation lives in the speaker
   notes. If you find a slide feels crowded, that's usually a sign the prose belongs in the notes.
-- Most speaker notes open with a one-to-two sentence statement of what the slide is meant to
-  convey and why — handy context if you're not the one who originally wrote it.
 - Notes are written to be readable at a glance while presenting, not as dense reference text.
 - Notes support markdown; raw HTML in them needs to be escaped to render correctly.
+- Notes follow up to three sections, separated by a blank line, in this order:
+  1. **Talking points** (no header) - what you actually glance at mid-presentation. A real
+     markdown bullet list (`- ...`), one short cue per line - a few words each, just enough
+     to jog memory (e.g. "explain historic order of Angular form types" -> "historic order").
+     Never write this as a prose paragraph - on the reveal.js notes popup, un-bulleted lines
+     collapse into one dense block and stop being scannable.
+     Each line leads with a short `keyword:` label naming what the point is about, followed
+     by the actual detail - so the keyword alone is enough to recall the point at a glance,
+     and the detail is there if you need more (e.g. "trade-offs: know the trade-offs of each
+     type, not just the newest one").
+  2. **Intent** (no header) - one to two sentences on what the slide is meant to convey and
+     why it's in the deck. Kept short and placed after the talking points so it doesn't push
+     them down the page.
+  3. **Additional speaker information** (use that literal header) - fuller detail, written
+     in prose, meant to be read while preparing the talk rather than while presenting it.
+  Not every slide needs all three sections - a simple slide may only have an intent.
 
 ## Visual design
 - Colors are defined once as named tokens in `own.css` (with comments on when to use which),

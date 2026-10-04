@@ -54,9 +54,9 @@
             <thead>
               <tr>
                 <th></th>
-                <th>Template Driven</th>
-                <th>Model Driven (Reactive)</th>
-                <th>Signal Driven</th>
+                <th>Template-driven Forms</th>
+                <th>Reactive Forms</th>
+                <th>Signal Forms</th>
               </tr>
             </thead>
             <tbody>
@@ -87,14 +87,26 @@
             </tbody>
           </table>
           <p class="hint center">All three approaches keep an underlying form model - they differ in <span class="highlight">where it's declared</span> and <span class="highlight">how the view and model stay in sync</span>, not in whether a model exists at all.</p>
-          <p class="hint center">The <span class="highlight">Model Driven</span> and <span class="highlight">Template Driven</span> take on each topic lives as a backup slide ↓ beneath the matching <span class="highlight">Signal Driven</span> slide.</p>
+          <p class="hint center">The <span class="highlight">Reactive Forms</span> and <span class="highlight">Template-driven Forms</span> take on each topic lives as a backup slide ↓ beneath the matching <span class="highlight">Signal Forms</span> slide.</p>
           <aside class="notes" data-markdown>
-            Establishes the shared mental model for the whole deck - all three form flavors keep the same underlying model, differing only in where it's declared and how view/model stay in sync; previews Signal Driven as the current standard, the other two as backups below.
+            - historical order: Template-driven -> Reactive -> Signal Forms
+            - signal forms new standard: Reactive was the standard until recently
+            - "standard" = default choice, not mandatory: depends on the project's Angular version
+            - trade-offs: know the trade-offs of each type, not just the newest one
+            - legacy code: everyone still needs to understand all three - legacy code exists in the wild
+            - compatibility: Signal Forms interops with Reactive/Template-driven Forms; most teams today still mainly use Reactive
+            - plan: mostly present Signal Forms; Reactive Forms backups sit directly below, Template-driven Forms below that
+
+            Grounds the whole deck's structure: the three form types arrived in this order - Template-driven Forms, then Reactive Forms, then Signal Forms - and all three keep the same underlying form model, differing only in where it's declared and how view/model stay in sync. Signal Forms is "standard" as in the default pick for new or updatable work, not a mandate to rewrite what already exists.
+
+            **Additional speaker information**
+
+            Template-driven Forms' main selling point as the oldest approach: simple forms can sometimes be written more directly in the template with less boilerplate, which is also why it's worth recognizing even where it isn't your default. Adopting Signal Forms needs at least Angular 21 (experimental) or Angular 22 (stable) - this also gets restated on the later "Signal Forms - Overview" slide, flagging in case that becomes redundant. Of the two legacy flavors, Reactive Forms is covered first in the backup stacks since it's still the one most commonly found in real projects today; Template-driven Forms follows beneath it as the least relevant going forward.
           </aside>
         </section>
         <!-- #endregion -->
         
-        <!-- #region Backup - Template & Model Driven Forms -->
+        <!-- #region Backup - Template-driven & Reactive Forms -->
         <!-- #region Slide: Angular Form Types - Detailed Comparison -->
         <section id="backup" data-visibility="uncounted">
           <h3>Angular Form Types - Detailed Comparison</h3>
@@ -102,9 +114,9 @@
             <thead>
               <tr>
                 <th></th>
-                <th>Template Driven</th>
-                <th>Model Driven (Reactive)</th>
-                <th>Signal Driven</th>
+                <th>Template-driven Forms</th>
+                <th>Reactive Forms</th>
+                <th>Signal Forms</th>
               </tr>
             </thead>
             <tbody>
@@ -142,12 +154,12 @@
           </table>
           <p class="hint center">Reactive Forms treat the form model as <span class="highlight">immutable</span> - a change like <code data-trim>setValue</code> replaces the value rather than mutating it in place. Signal Forms keeps that same snapshot semantics, just exposed through signals instead of an <code data-trim>AbstractControl</code> tree.</p>
           <aside class="notes" data-markdown>
-            Backup companion: the fuller side-by-side comparison from the legacy deck (form model, data model, predictability, validation style, mutability), extended with a Signal Driven column.
+            Backup companion: the fuller side-by-side comparison from the legacy deck (form model, data model, predictability, validation style, mutability), extended with a Signal Forms column.
 
-            Legacy "when to use" guidance, Template Driven vs Reactive:
-            - Template Driven: the template is the source of truth; suited to simple forms (e.g. login / sign-up); two-way binding; harder to test; doesn't scale well - reach for it only when the forms and their logic are simple.
-            - Reactive (Model Driven): the form model is the source of truth; more scalable, reusable and testable; synchronous and immutable.
-            - Signal Driven keeps the model-as-source-of-truth and synchronous predictability, now expressed through signals.
+            Legacy "when to use" guidance, Template-driven Forms vs Reactive Forms:
+            - Template-driven Forms: the template is the source of truth; suited to simple forms (e.g. login / sign-up); two-way binding; harder to test; doesn't scale well - reach for it only when the forms and their logic are simple.
+            - Reactive Forms: the form model is the source of truth; more scalable, reusable and testable; synchronous and immutable.
+            - Signal Forms keeps the model-as-source-of-truth and synchronous predictability, now expressed through signals.
           </aside>
         </section>
         <!-- #endregion -->
@@ -207,14 +219,14 @@
             </code>
           </pre>
           <aside class="notes" data-markdown>
-            Shows a Signal Forms model starts from one plain signal + form(), to contrast with the more verbose class-based setup in the Reactive backup below.
+            Shows a Signal Forms model starts from one plain signal + form(), to contrast with the more verbose class-based setup in the Reactive Forms backup below.
           </aside>
         </section>
         <!-- #endregion -->
 
-        <!-- #region Slide: Form Model - Model Driven (Reactive) -->
+        <!-- #region Slide: Form Model - Reactive Forms -->
         <section data-visibility="uncounted">
-          <p class="hint center">Backup - same point, Model Driven (Reactive) flavour.</p>
+          <p class="hint center">Backup - same point, Reactive Forms flavour.</p>
           <h3>Form Model</h3>
           <p>Build the <code data-trim>FormGroup</code>-<code data-trim>FormControl</code> tree <span class="highlight">in code</span></p>
           <pre data-file="contact-form.component.ts">
@@ -247,9 +259,9 @@
         </section>
         <!-- #endregion -->
 
-        <!-- #region Slide: Form Model - Model Driven (Reactive) - FormBuilder -->
+        <!-- #region Slide: Form Model - Reactive Forms - FormBuilder -->
         <section data-visibility="uncounted">
-          <p class="hint center">Backup - same point, Model Driven (Reactive) flavour, via <code data-trim>FormBuilder</code>.</p>
+          <p class="hint center">Backup - same point, Reactive Forms flavour, via <code data-trim>FormBuilder</code>.</p>
           <h3>FormBuilder</h3>
           <p>... creates the same FormGroup-FormControl tree</p>
           <pre data-file="form-test.component.ts">
@@ -286,9 +298,9 @@
         </section>
         <!-- #endregion -->
 
-        <!-- #region Slide: Form Model - Template Driven -->
+        <!-- #region Slide: Form Model - Template-driven Forms -->
         <section data-visibility="uncounted">
-          <p class="hint center">Backup - same point, Template Driven flavour.</p>
+          <p class="hint center">Backup - same point, Template-driven Forms flavour.</p>
           <h3>Form Model</h3>
           <p>The form model is <span class="highlight">defined inside the HTML</span> template</p>
           <pre data-file="contact-form.component.html">
@@ -335,9 +347,9 @@
         </section>
         <!-- #endregion -->
 
-        <!-- #region Slide: Binding - Model Driven (Reactive) -->
+        <!-- #region Slide: Binding - Reactive Forms -->
         <section data-visibility="uncounted">
-          <p class="hint center">Backup - same point, Model Driven (Reactive) flavour.</p>
+          <p class="hint center">Backup - same point, Reactive Forms flavour.</p>
           <h3>Binding to input fields</h3>
           <pre data-file="contact-form.component.html">
             <code data-trim class="max-height-unset html">
@@ -371,9 +383,9 @@
         </section>
         <!-- #endregion -->
 
-        <!-- #region Slide: Binding - Template Driven -->
+        <!-- #region Slide: Binding - Template-driven Forms -->
         <section class="ng-model-ng-model-group" data-visibility="uncounted">
-          <p class="hint center">Backup - same point, Template Driven flavour.</p>
+          <p class="hint center">Backup - same point, Template-driven Forms flavour.</p>
           <h3>ngModel / ngModelGroup</h3>
           <div>
             <pre><code data-trim class="html">&lt;input name=first ngModel&gt;</code></pre>
@@ -436,11 +448,11 @@
         </section>
         <!-- #endregion -->
 
-        <!-- #region Slide: Validation - Model Driven (Reactive) -->
+        <!-- #region Slide: Validation - Reactive Forms -->
         <section data-visibility="uncounted">
-          <p class="hint center">Backup - same point, Model Driven (Reactive) flavour.</p>
+          <p class="hint center">Backup - same point, Reactive Forms flavour.</p>
           <h3>Validation</h3>
-          <p>... in Model Driven forms</p>
+          <p>... in Reactive Forms</p>
           <pre data-file="contact-form.component.ts">
             <code data-trim class="typescript">
               this.contactForm = this.formBuilder.group({
@@ -474,11 +486,11 @@
         </section>
         <!-- #endregion -->
 
-        <!-- #region Slide: Validation - Template Driven -->
+        <!-- #region Slide: Validation - Template-driven Forms -->
         <section data-visibility="uncounted">
-          <p class="hint center">Backup - same point, Template Driven flavour.</p>
+          <p class="hint center">Backup - same point, Template-driven Forms flavour.</p>
           <h3>Validation</h3>
-          <p>... in Template Driven forms</p>
+          <p>... in Template-driven Forms</p>
           <ul>
             <li>
               Angular provides default validators
@@ -625,10 +637,10 @@
         </section>
         <!-- #endregion -->
 
-        <!-- #region Slide: Reusable & Cross-field - Model Driven Backup -->
+        <!-- #region Slide: Reusable & Cross-field - Reactive Forms Backup -->
         <section data-visibility="uncounted">
-          <p class="hint center">Backup - same point, Model Driven (Reactive) flavour.</p>
-          <h3>Reusable &amp; Cross-field - Reactive</h3>
+          <p class="hint center">Backup - same point, Reactive Forms flavour.</p>
+          <h3>Reusable &amp; Cross-field - Reactive Forms</h3>
           <p>A <code data-trim>ValidatorFn</code> is already reusable - attach it to any control; cross-field = a validator on the <code data-trim>FormGroup</code>:</p>
           <pre data-file="validators.ts">
             <code data-trim class="typescript max-height-unset">
@@ -659,10 +671,10 @@
         </section>
         <!-- #endregion -->
 
-        <!-- #region Slide: Reusable & Cross-field - Template Driven Backup -->
+        <!-- #region Slide: Reusable & Cross-field - Template-driven Forms Backup -->
         <section data-visibility="uncounted">
-          <p class="hint center">Backup - same point, Template Driven flavour.</p>
-          <h3>Reusable &amp; Cross-field - Template Driven</h3>
+          <p class="hint center">Backup - same point, Template-driven Forms flavour.</p>
+          <h3>Reusable &amp; Cross-field - Template-driven Forms</h3>
           <p>One <code data-trim>NG_VALIDATORS</code> directive = a reusable custom validator; the same pattern on an <code data-trim>ngModelGroup</code> gives cross-field:</p>
           <pre data-file="validators.directive.ts">
             <code data-trim class="typescript max-height-unset">
@@ -704,11 +716,11 @@
         </section>
         <!-- #endregion -->
 
-        <!-- #region Slide: Template Driven Forms - Directive Validator -->
+        <!-- #region Slide: Template-driven Forms - Directive Validator -->
         <section data-visibility="uncounted">
-          <p class="hint center">Backup - same point, Template Driven flavour, step by step.</p>
+          <p class="hint center">Backup - same point, Template-driven Forms flavour, step by step.</p>
           <h3>Directive Validator</h3>
-          <p>Adding custom validators to Template Driven forms via <span class="highlight">Directives</span></p>
+          <p>Adding custom validators to Template-driven Forms via <span class="highlight">Directives</span></p>
           <pre><code data-trim class="html">&lt;input type="text" name="first" ngModel noForbiddenName&gt;</code></pre>
           <ol>
             <li><span class="highlight">Create directive</span> with matching selector - e.g. 'noForbiddenName'</li>
@@ -716,14 +728,14 @@
             <li><span class="highlight">Implement <code data-trim>validate()</code></span> for directive and call validator - e.g. forbiddenNameValidator</li>
           </ol>
           <aside class="notes" data-markdown>
-            Explains the three steps to attach a custom validator in Template Driven forms via a directive, since there's no form-builder API to hand a ValidatorFn to directly.
+            Explains the three steps to attach a custom validator in Template-driven Forms via a directive, since there's no form-builder API to hand a ValidatorFn to directly.
           </aside>
         </section>
         <!-- #endregion -->
 
-        <!-- #region Slide: Template Driven Forms - Directive Validator Example -->
+        <!-- #region Slide: Template-driven Forms - Directive Validator Example -->
         <section data-visibility="uncounted">
-          <p class="hint center">Backup - same point, Template Driven flavour, full code.</p>
+          <p class="hint center">Backup - same point, Template-driven Forms flavour, full code.</p>
           <h3>Directive Validator example</h3>
           <pre data-file="forbidden-name.directive.ts">
             <code data-trim class="typescript max-height-unset">
@@ -849,28 +861,28 @@
           </thead>
           <tbody>
             <tr>
-              <td>Template Driven</td>
+              <td>Template-driven Forms</td>
               <td><code data-trim>ControlValueAccessor</code> (CVA)</td>
               <td>Angular 2</td>
             </tr>
             <tr>
-              <td>Model Driven (Reactive)</td>
+              <td>Reactive Forms</td>
               <td><code data-trim>ControlValueAccessor</code> (CVA)</td>
               <td>Angular 2</td>
             </tr>
             <tr>
-              <td>Signal Driven</td>
+              <td>Signal Forms</td>
               <td><code data-trim>FormValueControl</code> / <code data-trim>FormCheckboxControl</code></td>
               <td>Angular 21 (experimental), stable since Angular 22</td>
             </tr>
           </tbody>
         </table>
         <p class="hint center">Signal Forms does not reuse CVA - <code data-trim>[formField]</code> detects these new interfaces directly, no <code data-trim>NG_VALUE_ACCESSOR</code> / <code data-trim>forwardRef</code> required.</p>
-        <p class="hint center">The <span class="highlight">Model Driven</span> and <span class="highlight">Template Driven</span> rows share one interface - <code data-trim>ControlValueAccessor</code> - so the <span class="highlight">CVA</span> take on each topic lives as a backup slide ↓ beneath the matching <span class="highlight">Signal Driven</span> slide.</p>
+        <p class="hint center">The <span class="highlight">Reactive Forms</span> and <span class="highlight">Template-driven Forms</span> rows share one interface - <code data-trim>ControlValueAccessor</code> - so the <span class="highlight">CVA</span> take on each topic lives as a backup slide ↓ beneath the matching <span class="highlight">Signal Forms</span> slide.</p>
         <aside class="notes" data-markdown>
           Summarizes that Signal Forms replaces the single long-standing CVA interface with two narrower signal-based interfaces, so participants know which applies before building a field.
 
-          Ask the room: who is still building forms with Model Driven (Reactive) forms today?
+          Ask the room: who is still building forms with Reactive Forms today?
           If most/all participants are already on Signal Forms, you can skip diving down into
           the CVA backup slides in the next two sections and just stay on the top row.
 
@@ -1004,7 +1016,7 @@
             - formControlName needs a registered NG_VALUE_ACCESSOR to find this control - without it: runtime error "No value accessor for form control", not a TypeScript error
             - again, TS only catches it at compile time if the class explicitly 'implements ControlValueAccessor' and misses writeValue/registerOnChange/registerOnTouched
             - markAllAsTouched() walks the whole FormGroup, same idea as the Signal Forms root's markAsTouched() on the previous slide - the control itself also reports touched on blur, via its registerOnTouched callback - how that's wired is covered when we look at the interface itself
-            - good to know: per Angular's docs, a FormValueControl/FormCheckboxControl custom control also works as-is in Reactive/Template-Driven forms - no CVA needed even if you haven't migrated the rest of the app yet
+            - good to know: per Angular's docs, a FormValueControl/FormCheckboxControl custom control also works as-is in Reactive Forms / Template-driven Forms - no CVA needed even if you haven't migrated the rest of the app yet
           </aside>
         </section>
         <!-- #endregion -->
@@ -1043,7 +1055,7 @@
         
         <!-- #region Slide: Backup - ControlValueAccessor Interface -->
         <section data-visibility="uncounted">
-          <p class="hint center">Backup - for participants still on Reactive / Template-Driven forms.<br>Full <code data-trim>ControlValueAccessor</code> API, implementation & exercises: see the Advanced Forms module</p>
+          <p class="hint center">Backup - for participants still on Reactive Forms / Template-driven Forms.<br>Full <code data-trim>ControlValueAccessor</code> API, implementation & exercises: see the Advanced Forms module</p>
           <h3>Angular Internals: The <code data-trim>ControlValueAccessor</code> Interface</h3>
           <pre data-file="@angular/forms/control_value_accessor.ts">
             <code data-trim class="typescript max-height-unset">
@@ -1174,24 +1186,24 @@
         </section>
         <!-- #endregion -->
 
-        <!-- #region Slide: Backup - Template Driven Forms Diagram -->
+        <!-- #region Slide: Backup - Template-driven Forms Diagram -->
         <section data-visibility="uncounted">
-          <p class="hint center">Backup - legacy diagram, Template Driven flavour.</p>
-          <h3>Template Driven Forms</h3>
-          <img src="./img/template-driven-forms.png" class="no-border" style="max-height:55vh;" alt="Template Driven forms data flow">
+          <p class="hint center">Backup - legacy diagram, Template-driven Forms flavour.</p>
+          <h3>Template-driven Forms</h3>
+          <img src="./img/template-driven-forms.png" class="no-border" style="max-height:55vh;" alt="Template-driven Forms data flow">
           <aside class="notes" data-markdown>
-            Legacy diagram of the Template Driven data flow, kept for participants still maintaining ngModel-based forms.
+            Legacy diagram of the Template-driven Forms data flow, kept for participants still maintaining ngModel-based forms.
           </aside>
         </section>
         <!-- #endregion -->
 
         <!-- #region Slide: Backup - Reactive Forms Diagram -->
         <section data-visibility="uncounted">
-          <p class="hint center">Backup - legacy diagram, Model Driven (Reactive) flavour.</p>
+          <p class="hint center">Backup - legacy diagram, Reactive Forms flavour.</p>
           <h3>Reactive Forms</h3>
-          <img src="./img/reactive-forms.png" class="no-border" style="max-height:55vh;" alt="Reactive forms data flow">
+          <img src="./img/reactive-forms.png" class="no-border" style="max-height:55vh;" alt="Reactive Forms data flow">
           <aside class="notes" data-markdown>
-            Legacy diagram of the Reactive forms data flow, kept for participants still maintaining FormGroup/FormControl-based forms.
+            Legacy diagram of the Reactive Forms data flow, kept for participants still maintaining FormGroup/FormControl-based forms.
           </aside>
         </section>
         <!-- #endregion -->
@@ -1458,7 +1470,7 @@
             </ul>
           </li>
           <li>
-            Reactive & Template-Driven forms still exist: <br>
+            Reactive Forms & Template-driven Forms still exist: <br>
             <ul class="ul-small">
               <li>see <a class="slide-link" href="#/backup">backup slides under "Angular Form Types"</a> for the full recap</li>
               <li>includes Live Code Examples for both</li>
@@ -1466,7 +1478,7 @@
           </li>
         </ul>
         <aside class="notes" data-markdown>
-          Closing recap distinguishing what participants must know going forward (Signal Forms) from what still exists in the wild (Reactive/Template Driven).
+          Closing recap distinguishing what participants must know going forward (Signal Forms) from what still exists in the wild (Reactive Forms/Template-driven Forms).
         </aside>
       </section>
       <!-- #endregion -->
@@ -1752,7 +1764,7 @@
 
               How the sharing actually works: formGroupName/formControlName look up ControlContainer with @Host(), which is restricted to the component's own view, so by default they can't see an ancestor component's FormGroupDirective. The constructor param FormGroupDirective is not @Host()-restricted, so DI walks past the component boundary and injects the real ancestor instance from the host's &lt;form [formGroup]&gt;. viewProviders then re-publishes that same instance as ControlContainer for this component's own view, so formGroupName="slot" inside resolves to it too. Because it's the same object and not a copy, this.form.form.addControl(...) mutates the host's own meetingForm directly - the host's FormGroup starts without a "slot" control at all (e.g. just { room: new FormControl('') }) until the picker adds it.
 
-              Pro/con vs. the nested-FormGroup CVA approach above: quicker to wire up - no NG_VALUE_ACCESSOR/NG_VALIDATORS providers, no writeValue/registerOnChange boilerplate - but it only works inside one Reactive Forms tree. The component isn't a portable, self-contained control anymore: it requires an ancestor &lt;form [formGroup]&gt; to graft onto, can't be dropped into a Template Driven form, and can't be reused standalone the way a true CVA control can.
+              Pro/con vs. the nested-FormGroup CVA approach above: quicker to wire up - no NG_VALUE_ACCESSOR/NG_VALIDATORS providers, no writeValue/registerOnChange boilerplate - but it only works inside one Reactive Forms tree. The component isn't a portable, self-contained control anymore: it requires an ancestor &lt;form [formGroup]&gt; to graft onto, can't be dropped into a Template-driven form, and can't be reused standalone the way a true CVA control can.
 
               Control Container lookup: formGroupName/formControlName (and ngModelGroup) find their parent by searching up the injector tree for a ControlContainer - any of ngForm, FormGroupDirective, NgModelGroup, FormGroupName or FormArrayName. That ancestor is exactly the instance this slide's viewProviders re-publishes, so the child's controls attach to the host's own form.
             </aside>
@@ -2058,9 +2070,9 @@
         <section id="examples" data-visibility="uncounted">
           <h2>Live Code Examples</h2>
           <ul>
-            <li><a href="https://stackblitz.com/edit/angular-control-value-accessor-simple-example-t-zxtskpj7?file=src%2Fapp%2Fapp.component.ts" target="_blank">Model driven form</a> Example in Stackblitz</li>
-            <li><a href="https://stackblitz.com/edit/angular-control-value-accessor-simple-example-t-8jfpg3ve?file=src%2Fapp%2Fapp.component.ts" target="_blank">Simple Model driven form with custom validator</a> in Stackblitz</li>
-            <li><a href="https://stackblitz.com/edit/angular-ivy-wg16x9?file=src%2Fapp%2Fhello.component.ts" target="_blank">Template driven form</a> Example in Stackblitz</li>
+            <li><a href="https://stackblitz.com/edit/angular-control-value-accessor-simple-example-t-zxtskpj7?file=src%2Fapp%2Fapp.component.ts" target="_blank">Reactive form</a> Example in Stackblitz</li>
+            <li><a href="https://stackblitz.com/edit/angular-control-value-accessor-simple-example-t-8jfpg3ve?file=src%2Fapp%2Fapp.component.ts" target="_blank">Simple Reactive form with custom validator</a> in Stackblitz</li>
+            <li><a href="https://stackblitz.com/edit/angular-ivy-wg16x9?file=src%2Fapp%2Fhello.component.ts" target="_blank">Template-driven form</a> Example in Stackblitz</li>
           </ul>
         </section>
         <!-- #endregion -->

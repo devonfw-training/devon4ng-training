@@ -123,37 +123,3 @@ html section.ng-model-ng-model-group div p {
     border: 1px solid var(--color-code-border);
     border-radius: 6px 6px 0 0;
 }
-
-/* Two-column layout for model-vs-DOM comparisons (same convention as other devon4ng decks) */
-.reveal section div.side-by-side {
-    width: 960px;
-}
-
-.reveal section div.side-by-side div {
-    width: 45%;
-    display: inline-block;
-    vertical-align: top;
-}
-
-/* Pyramid layout: one top box (the shared call site), two bottom boxes (its two providers) */
-.reveal section div.pyramid {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.3em;
-}
-
-.reveal section div.pyramid-top {
-    width: 55%;
-}
-
-.reveal section div.pyramid-bottom {
-    display: flex;
-    gap: 1.5em;
-    width: 100%;
-    justify-content: center;
-}
-
-.reveal section div.pyramid-bottom > div {
-    width: 45%;
-}
