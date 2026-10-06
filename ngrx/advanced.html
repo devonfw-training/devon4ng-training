@@ -1,164 +1,142 @@
 <!doctype html>
 <html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
 
     <title>Advanced ngrx</title>
-    <link rel="icon" href="../common/img/favicon.ico">
+    <link rel="icon" href="../common/img/favicon.ico" />
 
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-    <link rel="stylesheet" href="../node_modules/reveal.js/dist/reveal.css">
-    <link rel="stylesheet" href="../node_modules/reveal.js/dist/theme/white.css" id="theme">
+    <link
+      href="https://fonts.googleapis.com/css?family=Ubuntu+Mono"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Ubuntu"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../node_modules/reveal.js/dist/reveal.css" />
+    <link
+      rel="stylesheet"
+      href="../node_modules/reveal.js/dist/theme/white.css"
+      id="theme"
+    />
 
-    <link rel="stylesheet" href="../common/css/common.css">
+    <link rel="stylesheet" href="../common/css/common.css" />
 
     <!-- Theme used for syntax highlighting of code -->
-    <link rel="stylesheet" href="../common/css/github-gist.css">
+    <link rel="stylesheet" href="../common/css/github-gist.css" />
+  </head>
 
-</head>
-
-<body>
+  <body>
     <section class="angular-link">
-        <a href="http://angular.io" target="_blank"><img height="50px" src="../common/img/angular.svg"></a>
+      <a href="http://angular.io" target="_blank"
+        ><img height="50px" src="../common/img/angular.svg"
+      /></a>
     </section>
     <section class="devon-link">
-        <a href="http://devonfw.github.io" target="_blank"><img height="30px" src="../common/img/devon_logo_blue.png"></a>
+      <a href="http://devonfw.github.io" target="_blank"
+        ><img height="30px" src="../common/img/devon_logo_blue.png"
+      /></a>
     </section>
     <div class="devon reveal">
-        <div class="slides">
-            <section>
-                <h2>reactive statemanagement (advanced)</h2>
-                <img class="no-border" src="https://ngrx.io/assets/images/badge.svg" width="200px" alt="ngrx logo">
-                <p>Based on <a href="intro.html" target="_blank">ngrx intro</a> from Angular Foundation</p>
-                <p>Rohan Fernandes</p>
-            </section>
-            <section>
-                <h2>Agenda</h2>
-                <ul class="ul-small">
-                    <li>NgRx Recap</li>
-                    <li>Advanced Effects</li>
-                    <li>Advanced Selectors</li>
-                    <li>Scalable Store Patterns</li>
-                    <li>Best Parctices Q&A</li>
-                </ul>
-            </section>
-			<section>
-				<section>
-                    <h2>NgRx</h2>
-                    <img style="height: 375px;" src="img/state-management-lifecycle.png" alt="NgRx State Management Lifecycle">
-                    <p>Image Source: <a href="https://ngrx.io/guide/store" target="_blank">NgRx Official Documentation</a></p>
-				</section>
-			</section>
-            <section>
-                <section id="advanced-effects">
-                    <h2>Advanced Effects</h2>
-                </section>
-                <section id="effect-logic" data-visibility="uncounted">
-                    <h2>Effect Logic & Dispatching</h2>
-                    <ul>
-                        <li>Create effects with <code>createEffect</code></li>
-                        <li>Dispatch multiple actions from one effect<br>
-                            <pre class="width-100-percent">
-                                <code class="typescript" data-trim>
-                                     return of(action1(), action2());
-                                </code>
-                            </pre>
-                        </li>
-                        <li>Side effects examples:<br>
-                            <ul class="ul-small">
-                                <li>Navigation</li>
-                                <li>LocalStorage updates</li>
-                                <li>Notifications</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </section>
-                <section id="effect-error-handling" data-visibility="uncounted">
-                    <h2>Error Handling in Effects</h2>
-                    <ul>
-                        <li>Use <code>catchError</code> inside effect pipelines</li>
-                        <li>Dispatch an error action</li>
-                        <li>Don't swallow errors silently<br>
-                            <pre class="width-100-percent">
-                                <code class="typescript" data-trim>
-                                     catchError(error => of(actionOnFailure({ error })));
-                                </code>
-                            </pre>
-                        </li>
-                    </ul>
-                </section>
-                <section id="effect-exercise" data-visibility="uncounted">
-                    <h2>Exercise: NgRx with Effects - Load Users</h2>
-                    <ul>
-                        <li>Goal: Use NgRx Effects to load users from an API</li>
-                        <li>Steps:
-                            <ul class="ul-small">
-                                <li>Create actions: loadUsers, loadUsersSuccess, loadUsersFailure</li>
-                                <li>Create an effect to call a mock API</li>
-                                <li>Update the reducer to handle loading states</li>
-                                <li>Display users and loading/error states in the UI</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </section>
-            </section>
-            <section>
-                <section id="advanced-selectors">
-                    <h2>Advanced Selectors</h2>
-                </section>
-                <section data-visibility="uncounted">
-                    <h2>Composing Selectors</h2>
-                    <ul>
-                        <pre class="width-100-percent">
-                            <code class="typescript" data-trim>
-                                const selectFeature = createFeatureSelector&lt;UserState&gt;('user');
-                                const selectUsers = createSelector(selectFeature, s => s.users);
-                            </code>
-                        </pre>
-                        <li>Break large selectors into composable units</li>
-                        <li>Avoid repeating logic in components</li>
-                        <li>Keep selectors pure, reusable, and memoized</li>
-                    </ul>
-                </section>
-                <section data-visibility="uncounted">
-                    <h2>Parameterized Selectors</h2>
-                    <ul>
-                        <li>Ideal for list/detail views</li>
-                        <li>Automatically memoized by argument</li>
-                        <li>Efficient and reusable in components</li>
-                        <pre class="width-100-percent">
-                            <code class="typescript" data-trim>
-                                 selectUserById = (id: string) =>
-                                    createSelector(selectUsers, users => users.find(u => u.id === id));
-                            </code>
-                        </pre>
-                    </ul>
-                </section>
-            </section>
-            <section>
-                <section id="store-patterns">
-                    <h2>Scalable Store Patterns</h2>
-                </section>
-                <section data-visibility="uncounted">
-                    <h2>Feature Store Setup</h2>
-                    <ul>
-                        <pre class="width-100-percent">
+      <div class="slides">
+        <section>
+          <h2>reactive statemanagement (advanced)</h2>
+          <img
+            class="no-border"
+            src="img/ngrx.png"
+            width="200px"
+            alt="ngrx logo"
+          />
+          <p>
+            Based on <a href="intro.html" target="_blank">ngrx intro</a> from
+            Angular Foundation
+          </p>
+          <p>Rohan Fernandes</p>
+          <p>Denis Pokojski</p>
+        </section>
+        <section>
+          <h2>Agenda</h2>
+          <ul class="ul-small">
+            <li>NgRx Recap</li>
+            <li>Scalable Store Patterns</li>
+            <li>Advanced Effects</li>
+            <li>Advanced Selectors</li>
+            <li>Best Parctices Q&A</li>
+          </ul>
+        </section>
+        <section>
+          <h2>NgRx</h2>
+          <img
+            style="height: 375px"
+            src="img/state-management-lifecycle.png"
+            alt="NgRx State Management Lifecycle"
+          />
+          <p>
+            Image Source:
+            <a href="e" target="_blank">NgRx Official Documentation</a>
+          </p>
+        </section>
+
+        <section>
+          <section id="store-patterns">
+            <h2>Scalable Store Patterns</h2>
+          </section>
+          <section data-visibility="uncounted">
+            <h2>Feature Store Setup</h2>
+            <ul>
+              <pre class="width-100-percent">
                             <code class="typescript" data-trim>
                                 StoreModule.forFeature('feature', featureReducer);
                             </code>
                         </pre>
-                        <li>One slice per feature</li>
-                        <li>Avoid large monolithic store</li>
-                        <li>Keep store aligned with routing</li>
-                    </ul>
-                </section>
-                <section data-visibility="uncounted">
-                    <h2>Store Reset on Logout</h2>
-                    <ul>
-                        <pre class="width-100-percent">
+              or without ng modules
+              <pre class="width-100-percent">
+              <code class="typescript" data-trim>
+                provideStore({ [featureKey]: featureReducer })
+              </code>
+              </pre>
+
+              <li>One slice per feature</li>
+              <li>Avoid large monolithic store</li>
+              <li>Keep store aligned with routing</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Use NgRx-Entity for Collections</h2>
+            <ul>
+              <pre class="width-100-percent">
+                            <code class="typescript" data-trim>
+                                export interface UserState extends EntityState&lt;User&gt; {
+                                    
+                                }
+                                
+                                const userAdapter = createEntityAdapter&lt;User&gt;({
+                                  selectId: (user: User) => user.id,
+                                });
+                            </code>
+                        </pre>
+              <li>
+                Use entity adapter for CRUD operations
+                <ul style="font-size: 0.7em">
+                  <li>userAdapter.addOne()</li>
+                  <li>userAdapter.updateOne()</li>
+                  <li>userAdapter.removeOne()</li>
+                  <li>userAdapter.addMany()</li>
+                  <li>userAdapter.upsertMany()</li>
+                </ul>
+              </li>
+            </ul>
+          </section>
+
+          <section data-visibility="uncounted">
+            <h2>Store Reset on Logout</h2>
+            <ul>
+              <pre class="width-100-percent">
                             <code class="typescript" data-trim>
                                  export function clearState(reducer) {
                                     return (state, action) => {
@@ -169,46 +147,140 @@
                                  }
                             </code>
                         </pre>
-                        <li>Clean state to prevent data leaks</li>
-                    </ul>
-                </section>
-                <section id="selectors-exercise" data-visibility="uncounted">
-                    <h2>Exercise: Selectors and Feature State</h2>
-                    <ul>
-                        <li>Goal: Organize state using feature modules and selectors</li>
-                        <li>Steps:
-                            <ul class="ul-small">
-                                <li>Create a feature module for users</li>
-                                <li>Define feature state and selectors (selectUsers, selectLoading, etc.)</li>
-                                <li>Use selectors in the component to access state</li>
-                                <li>Demonstrate memoization</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </section>
-            </section>
-            <section>
-                <section>
-                    <h2>Best Practices</h2>
-                </section>
-                <section data-visibility="uncounted">
-                    <h2>Do:</h2>
-                    <ul>
-                        <li>Use <code>selectors</code> + OnPush for performance</li>
-                        <li>Keep effects clean and purposeful</li>
-                        <li>Split state by feature</li>
-                    </ul>
-                </section>
-                <section data-visibility="uncounted">
-                    <h2>Don't:</h2>
-                    <ul>
-                        <li>Store modal open/close UI flags globally</li>
-                        <li>Write effects with no side-effects</li>
-                        <li>Keep unrelated state in one slice</li>
-                    </ul>
-                </section>
-            </section>  
-        </div>
+              <li>Clean state to prevent data leaks</li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <section id="advanced-effects">
+            <h2>Advanced Effects</h2>
+          </section>
+          <section id="effect-logic" data-visibility="uncounted">
+            <h2>Effect Logic & Dispatching</h2>
+            <ul>
+              <li>
+                Side effects examples:<br />
+                <ul class="ul-small">
+                  <li>Remote endpoint invocation</li>
+                  <li>Navigation</li>
+                  <li>LocalStorage updates</li>
+                  <li>Notifications</li>
+                  <li>Logging</li>
+                </ul>
+              </li>
+              <li>
+                Dispatch multiple actions from one effect<br />
+                <pre class="width-100-percent">
+                                <code class="typescript" data-trim>
+                                     return of(action1(), action2());
+                                </code>
+                            </pre>
+              </li>
+            </ul>
+          </section>
+          <section id="effect-error-handling" data-visibility="uncounted">
+            <h2>Error Handling in Effects</h2>
+            <ul>
+              <li>Use <code>catchError</code> inside effect pipelines</li>
+              <li>Dispatch an error action</li>
+              <li>
+                Don't swallow errors silently<br />
+                <pre class="width-100-percent">
+                                <code class="typescript" data-trim>
+                                     catchError(error => of(actionOnFailure({ error })));
+                                </code>
+                            </pre>
+              </li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <section id="advanced-selectors">
+            <h2>Advanced Selectors</h2>
+          </section>
+          <section data-visibility="uncounted">
+            <h2>Composing Selectors</h2>
+            <ul>
+              <pre class="width-100-percent">
+                            <code class="typescript" data-trim>
+                                const selectFeature = createFeatureSelector&lt;UserState&gt;('user');
+                                const selectUsers = createSelector(selectFeature, s => s.users);
+                            </code>
+                        </pre>
+              <li>Break large selectors into composable units</li>
+              <li>Avoid repeating logic in components</li>
+              <li>Keep selectors pure, reusable, and memoized</li>
+            </ul>
+          </section>
+          <section data-visibility="uncounted">
+            <h2>Parameterized Selectors</h2>
+            <ul>
+              <li>Ideal for list/detail views</li>
+              <li>Automatically memoized by argument</li>
+              <li>Efficient and reusable in components</li>
+              <pre class="width-100-percent">
+                            <code class="typescript" data-trim>
+                                 selectUserById = (id: string) =>
+                                    createSelector(selectUsers, users => users.find(u => u.id === id));
+                            </code>
+                        </pre>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Best Practices</h2>
+          </section>
+          <section data-visibility="uncounted">
+            <h2>Do:</h2>
+            <ul>
+              <li>Use <code>selectors</code> + OnPush for performance</li>
+              <li>Split state by feature</li>
+              <li>Keep effects clean and purposeful</li>
+              <li>Store ID references instead of entire objects</li>
+              <li>Store only relevant data</li>
+            </ul>
+          </section>
+          <section data-visibility="uncounted">
+            <h2>Don't:</h2>
+            <ul>
+              <li>Store modal open/close UI flags globally</li>
+              <li>Write effects with no side-effects</li>
+              <li>Keep unrelated state in one slice</li>
+              <li>Store values that can be derived</li>
+              <li>Store data redundantly also in services, components etc.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>Extension or Alternative to global Store: NgRx-SignalStore</h2>
+            <ul>
+              <pre class="width-100-percent">
+                            <code class="typescript" data-trim>
+                             export const CustomerStore = signalStore(
+                              withState({
+                                customers: [] as Customer[],
+                                selectedCustomerId: null as string | null,
+                              }),
+
+                              withMethods((store) => ({
+                                selectCustomer(id: string) { },
+                              }))
+                             );
+                            </code>
+                        </pre>
+              <li>For data that is not needed globally</li>
+              <li>
+                Less boilerplate code: without actions, selectors, reducers
+              </li>
+              <li>Native Angular Signals Integration</li>
+            </ul>
+          </section>
+        </section>
+      </div>
     </div>
 
     <script src="../node_modules/reveal.js/dist/reveal.js"></script>
@@ -220,11 +292,17 @@
     <script src="../node_modules/reveal.js-menu/menu.js"></script>
     <script src="../common/reveal-config.js"></script>
     <script>
-        Reveal.initialize({
-            ...revealConfig, 
-            plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMenu]
-        });
+      Reveal.initialize({
+        ...revealConfig,
+        plugins: [
+          RevealZoom,
+          RevealNotes,
+          RevealSearch,
+          RevealMarkdown,
+          RevealHighlight,
+          RevealMenu,
+        ],
+      });
     </script>
-</body>
-
+  </body>
 </html>
