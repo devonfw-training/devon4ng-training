@@ -3,6 +3,7 @@
 const revealConfig = {
   hash: true,
   controls: true,
+  controlsTutorial: false,
   progress: true,
   history: true,
   center: true,

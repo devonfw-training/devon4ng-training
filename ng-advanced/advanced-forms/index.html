@@ -1,521 +1,2347 @@
 <!doctype html>
 <html>
+<!-- #region MARK: Config -->
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-    <title>Dependency Injection</title>
-
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-    <link rel="icon" href="./img/favicon.ico">
-    <link rel="stylesheet" href="../../node_modules/reveal.js/dist/reveal.css">
-    <link rel="stylesheet" href="../../node_modules/reveal.js/dist/theme/simple.css">
-    <link rel="stylesheet" href="./css/common.css">
-    <!-- Theme used for syntax highlighting of code -->
-    <link rel="stylesheet" href="./css/github-gist.css">
-    <script>
-        var link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.type = 'text/css';
-        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
-        document.getElementsByTagName('head')[0].appendChild(link);
-    </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <title>Angular Forms</title>
+  <link rel="icon" href="../../common/img/favicon.ico">
+  
+  <!-- Showing Examples -->
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <link rel="stylesheet" href="../../node_modules/reveal.js/dist/reveal.css">
+  <link rel="stylesheet" href="../../css/lib/style.css">
+  <link rel="stylesheet" href="../../node_modules/reveal.js/dist/theme/white.css" id="theme">
+  <link rel="stylesheet" href="./styles/common.css">
+  <link rel="stylesheet" href="./styles/own.css">
+  
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="./styles/github-gist.css">
+  
 </head>
+<!-- #endregion -->
+
 <body>
-<div class="reveal">
+  <!-- #region MARK: Config: Navigation Logo Overlays -->
+  <section class="angular-link">
+    <a href="http://angular.io" target="_blank"><img height="50px" src="../../common/img/angular.svg"></a>
+  </section>
+  <section class="devon-link">
+    <a href="http://devonfw.github.io" target="_blank"><img height="30px" src="../../common/img/devon_logo_blue.png"></a>
+  </section>
+  <!-- #endregion -->
+  
+  <div class="devon reveal">
     <div class="slides">
-        <section data-background-image="./img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
-            <h3 class="white">Advanced Forms</h3>
-            <h4 class="white">March 2019 State</h4>
-            <img height="250em" class="no-background no-border no-margin no-shadow" src="./img/angular-forms.png">
-            <!--Image taken from: https://egghead.io/courses/learn-the-basics-of-angular-forms -->
-        </section>
+      
+      <!-- #region MARK: Slide: Title -->
+      <section>
+        <h1>FORMS</h1>
+        <div>
+          <img id="title-img" src="./img/forms-title-img.png" alt="html forms illustrated">
+        </div>
+      </section>
+      <!-- #endregion --> 
+      
+      <!-- #region MARK: Slide Group: Angular Form Types (vertical stack) -->
+      <section>
+        <!-- #region MARK: Slide: Angular Form Types -->
+        <section id="form-types">
+          <h3>Angular Form Types</h3>
+          <table class="size-medium">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Template-driven Forms</th>
+                <th>Reactive Forms</th>
+                <th>Signal Forms</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Form model</td>
+                <td>Implicit (template)</td>
+                <td>Explicit (component)</td>
+                <td>Explicit (component)</td>
+              </tr>
+              <tr>
+                <td>Data flow</td>
+                <td>Asynchronous, two-way binding</td>
+                <td>Synchronous, explicit binding</td>
+                <td>Synchronous, explicit binding</td>
+              </tr>
+              <tr>
+                <td>Status</td>
+                <td>Legacy - backup ↓</td>
+                <td>Legacy - backup ↓</td>
+                <td><span class="highlight">Current standard</span></td>
+              </tr>
+              <tr>
+                <td>API</td>
+                <td><code data-trim>ngModel / ngModelGroup</code></td>
+                <td><code data-trim>FormGroup / FormControl</code></td>
+                <td><code data-trim>signal() + form()</code></td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="hint center">All three approaches keep an underlying form model - they differ in <span class="highlight">where it's declared</span> and <span class="highlight">how the view and model stay in sync</span>, not in whether a model exists at all.</p>
+          <p class="hint center">The <span class="highlight">Reactive Forms</span> and <span class="highlight">Template-driven Forms</span> take on each topic lives as a backup slide ↓ beneath the matching <span class="highlight">Signal Forms</span> slide.</p>
+          <aside class="notes" data-markdown>
+            - historical order: Template-driven -> Reactive -> Signal Forms
+            - signal forms new standard: Reactive was the standard until recently
+            - "standard" = default choice, not mandatory: depends on the project's Angular version
+            - trade-offs: know the trade-offs of each type, not just the newest one
+            - legacy code: everyone still needs to understand all three - legacy code exists in the wild
+            - compatibility: Signal Forms interops with Reactive/Template-driven Forms; most teams today still mainly use Reactive
+            - plan: mostly present Signal Forms; Reactive Forms backups sit directly below, Template-driven Forms below that
 
-        <section id="agenda-1" data-transition="slide"
-                 data-background-image="./img/shapes/Fixed_Shape_2_SVG/Fixed_Shape_2_CapgeminiBlue_RGB.svg">
-            <h2 class="white">Agenda</h2>
-            <ul class="white">
-                <li>Recap: Template Driven & Reactive Forms</li>
-                <li>Custom Form Controls</li>
-                <li>Nested Forms</li>
-                <ul class="white">
-                    <li>with Form Group Directive</li>
-                    <li>with Control Value Accessor</li>
-                </ul>
-            </ul>
-        </section>
+            Grounds the whole deck's structure: the three form types arrived in this order - Template-driven Forms, then Reactive Forms, then Signal Forms - and all three keep the same underlying form model, differing only in where it's declared and how view/model stay in sync. Signal Forms is "standard" as in the default pick for new or updatable work, not a mandate to rewrite what already exists.
 
+            **Additional speaker information**
+
+            Template-driven Forms' main selling point as the oldest approach: simple forms can sometimes be written more directly in the template with less boilerplate, which is also why it's worth recognizing even where it isn't your default. Adopting Signal Forms needs at least Angular 21 (experimental) or Angular 22 (stable) - this also gets restated on the later "Signal Forms - Overview" slide, flagging in case that becomes redundant. Of the two legacy flavors, Reactive Forms is covered first in the backup stacks since it's still the one most commonly found in real projects today; Template-driven Forms follows beneath it as the least relevant going forward.
+          </aside>
+        </section>
+        <!-- #endregion -->
+        
+        <!-- #region MARK: Backup - Template-driven & Reactive Forms -->
+        <!-- #region MARK: Slide: Angular Form Types - Detailed Comparison -->
+        <section id="backup" data-visibility="uncounted">
+          <h3>Angular Form Types - Detailed Comparison</h3>
+          <table class="size-medium">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Template-driven Forms</th>
+                <th>Reactive Forms</th>
+                <th>Signal Forms</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Form model</td>
+                <td>HTML template</td>
+                <td>Defined in a component</td>
+                <td>Defined in a component</td>
+              </tr>
+              <tr>
+                <td>Data model</td>
+                <td>Unstructured</td>
+                <td>Structured</td>
+                <td>Structured (typed)</td>
+              </tr>
+              <tr>
+                <td>Predictability</td>
+                <td>Asynchronous</td>
+                <td>Synchronous</td>
+                <td>Synchronous</td>
+              </tr>
+              <tr>
+                <td>Form validation</td>
+                <td>Directives</td>
+                <td>Functions</td>
+                <td>Schema functions</td>
+              </tr>
+              <tr>
+                <td>Mutability</td>
+                <td>Mutable</td>
+                <td><span class="highlight">Immutable</span></td>
+                <td>Signals (<code data-trim>set</code> / <code data-trim>update</code>)</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="hint center">Reactive Forms treat the form model as <span class="highlight">immutable</span> - a change like <code data-trim>setValue</code> replaces the value rather than mutating it in place. Signal Forms keeps that same snapshot semantics, just exposed through signals instead of an <code data-trim>AbstractControl</code> tree.</p>
+          <aside class="notes" data-markdown>
+            Backup companion: the fuller side-by-side comparison from the legacy deck (form model, data model, predictability, validation style, mutability), extended with a Signal Forms column.
+
+            Legacy "when to use" guidance, Template-driven Forms vs Reactive Forms:
+            - Template-driven Forms: the template is the source of truth; suited to simple forms (e.g. login / sign-up); two-way binding; harder to test; doesn't scale well - reach for it only when the forms and their logic are simple.
+            - Reactive Forms: the form model is the source of truth; more scalable, reusable and testable; synchronous and immutable.
+            - Signal Forms keeps the model-as-source-of-truth and synchronous predictability, now expressed through signals.
+          </aside>
+        </section>
+        <!-- #endregion -->
+        
+          <!-- #endregion -->
+      </section>
+      <!-- #endregion -->
+      
+      <!-- #region MARK: Slide: Signal Forms - Overview -->
+      <section>
+        <img class="no-border" src="./img/new-icon.svg" width="100px" alt="New" style="transform: translate(180px, -200px); position: absolute; top: 100px;">
+        <h3>Signal Forms</h3>
+        <p>Manage form state by building on the reactive foundation of signals.</p>
+        <ul>
+          <li>Automatic two-way binding</li>
+          <li>Type-safe field access</li>
+          <li>Centralized schema-based validation</li>
+        </ul>
+        <p class="hint center">Introduced as experimental in Angular 21 - <span class="highlight">stable since Angular 22</span>.</p>
+        <aside class="notes" data-markdown>
+          Introduces Signal Forms as the deck's main topic and previews its three headline benefits before the detailed slides that follow.
+        </aside>
+      </section>
+      <!-- #endregion -->
+      
+      <!-- #region MARK: Slide Group: Signal Forms - Form Model (vertical stack) -->
+      <section>
+        <!-- #region MARK: Slide: Signal Forms - Form Model -->
         <section>
-            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                <h3 class="white">Template Driven & Reactive Forms</h3>
-            </section>
+          <h3>Form Model</h3>
+          <p>Create one signal that holds the data model</p>
+          <pre data-file="app.ts">
+            <code data-trim class="typescript max-height-unset">
+              interface LoginData {
+                email: string;
+                password: string;
+              }
 
-            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                <h3 class="white">Template Driven Forms</h3>
-                <h5 class="white" style="color: #10e0ff">Template as the source of truth</h5>
-                <ul class="white">
-                    <li>Normally <strong>simple forms </strong>such as email or sign up form</li>
-                    <li>They are <strong>asynchronous</strong></li>
-                    <li><strong>Two way</strong> data binding</li>
-                    <li><strong>Testing</strong> is more difficult</li>
-                    <li>They don't <strong>scale </strong>well</li>
-                    <li>Use if the forms and forms logic in your app are <strong>simple</strong></li>
-                </ul>
-            </section>
+              @Component({
+                ...
+                imports: [FormField],
+              })
+              export class App {
+                loginModel = signal&lt;LoginData&gt;({
+                  email: '',
+                  password: '',
+                });
 
-            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                <h3 class="white">Template Driven Forms</h3>
-                <h5 class="white">Example</h5>
-                <pre><code>
-@Component({
-  selector: "app-login",
-  template: `
-     <form #form="ngForm" (submit)="submit(form.value)">
-       <input type="email" [ngModel]="email" name="email">
-       <input type="submit" value="submit">
-     </form>
-  `
-})
-export class LoginComponent {
-  email = '';
+                loginForm = form(this.loginModel);
 
-  @ViewChild('form') form: FormGroup;
+                onSubmit(event: Event) {
+                  event.preventDefault();
+                  // Perform login logic here
+                  // e.g., await this.authService.login(credentials);
+                }
+              }
+            </code>
+          </pre>
+          <aside class="notes" data-markdown>
+            Shows a Signal Forms model starts from one plain signal + form(), to contrast with the more verbose class-based setup in the Reactive Forms backup below.
+          </aside>
+        </section>
+        <!-- #endregion -->
 
-  submit(value) {
-    console.log(value);
-  }
+        <!-- #region MARK: Slide: Form Model - Reactive Forms -->
+        <section data-visibility="uncounted">
+          <p class="hint center">Backup - same point, Reactive Forms flavour.</p>
+          <h3>Form Model</h3>
+          <p>Build the <code data-trim>FormGroup</code>-<code data-trim>FormControl</code> tree <span class="highlight">in code</span></p>
+          <pre data-file="contact-form.component.ts">
+            <code data-trim class="typescript max-height-unset">
+              const contactForm = new FormGroup&lt;ContactFormType&gt;({
+                name: new FormGroup&lt;NameFormType&gt;({
+                  first: new FormControl('Juana'),
+                  last: new FormControl('Garcia')
+                }),
+                email: new FormControl('')
+              });
+            </code>
+          </pre>
+          <pre data-file="contact-form.types.ts">
+            <code data-trim class="typescript max-height-unset">
+              // types used above
+              interface ContactFormType {
+                name: FormGroup&lt;NameFormType&gt;;
+                email: FormControl&lt;string | null&gt;;
+              }
+              type NameFormType = {
+                first: FormControl&lt;string | null&gt;;
+                last: FormControl&lt;string | null&gt;;
+              };
+            </code>
+          </pre>
+          <aside class="notes" data-markdown>
+            Backup companion: the equivalent FormGroup/FormControl tree built by hand in Reactive Forms.
+          </aside>
+        </section>
+        <!-- #endregion -->
 
-}
-                </code></pre>
-            </section>
+        <!-- #region MARK: Slide: Form Model - Reactive Forms - FormBuilder -->
+        <section data-visibility="uncounted">
+          <p class="hint center">Backup - same point, Reactive Forms flavour, via <code data-trim>FormBuilder</code>.</p>
+          <h3>FormBuilder</h3>
+          <p>... creates the same FormGroup-FormControl tree</p>
+          <pre data-file="form-test.component.ts">
+            <code data-trim class="typescript max-height-unset">
+              interface ContactFormType {
+                name: FormGroup&lt;NameFormType&gt;;
+                email: FormControl&lt;string | null&gt;;
+              }
+              type NameFormType = {
+                first: FormControl&lt;string | null&gt;;
+                last: FormControl&lt;string | null&gt;;
+              };
+              
+              @Component({ ... })
+              export class FormTestComponent implements OnInit {
+                contactForm: FormGroup<ContactFormType>;
+                constructor(private formBuilder: FormBuilder) { }
+                
+                ngOnInit(): void {
+                  this.contactForm = this.formBuilder.group({
+                    name: this.formBuilder.group({
+                      first: "Juana",
+                      last: "Garcia",
+                    }),
+                    email: "",
+                  });
+                }
+              }
+            </code>
+          </pre>
+          <aside class="notes" data-markdown>
+            Shows FormBuilder is just a convenience wrapper producing the exact same FormGroup/FormControl tree as writing it by hand, not a different form model.
+          </aside>
+        </section>
+        <!-- #endregion -->
 
-            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                <h3 class="white">Template Driven Forms</h3>
-                <img src="img/template-driven-forms.png" class="no-background no-border no-margin no-shadow">
-            </section>
+        <!-- #region MARK: Slide: Form Model - Template-driven Forms -->
+        <section data-visibility="uncounted">
+          <p class="hint center">Backup - same point, Template-driven Forms flavour.</p>
+          <h3>Form Model</h3>
+          <p>The form model is <span class="highlight">defined inside the HTML</span> template</p>
+          <pre data-file="contact-form.component.html">
+            <code data-trim class="html max-height-unset">
+              &lt;form #contactForm=&quot;ngForm&quot; (ngSubmit)=&quot;submit(contactForm.value)&quot;&gt;
+                &lt;div ngModelGroup=&quot;name&quot;&gt;
+                  &lt;label for=&quot;first&quot;&gt;First Name&lt;/label&gt;
+                  &lt;input type=&quot;text&quot; name=&quot;first&quot; ngModel&gt;
 
-            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                <h3 class="white">Reactive Forms</h3>
-                <h5 class="white" style="color: #10e0ff">The form model as the source of truth</h5>
-                <ul class="white">
-                    <li>More <strong>scalable, reusable and testable </strong></li>
-                    <li>They are <strong>synchronous</strong></li>
-                    <li><strong>Immutable</strong></li>
-                </ul>
-            </section>
+                  &lt;label for=&quot;last&quot;&gt;Last Name&lt;/label&gt;
+                  &lt;input type=&quot;text&quot; name=&quot;last&quot; ngModel&gt;
+                &lt;/div&gt;
 
-            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                <h3 class="white">Reactive Forms</h3>
-                <h5 class="white">Example</h5>
-                <pre><code>
-@Component({
-  selector: "app-login",
-  template: `
-     <form [formGroup]="loginForm" (submit)="submit()">
-       <input type="email" formControlName="email">
-       <input type="submit" value="submit">
-     </form>
-  `
-})
-export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
+                &lt;label for=&quot;email&quot;&gt;E-Mail&lt;/label&gt;
+                &lt;input type=&quot;text&quot; name=&quot;email&quot; ngModel&gt;
 
-  ngOnInit() {
-    this.loginForm = new FormGroup({
-      email: new FormControl()
-    });
-  }
+                &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
+              &lt;/form&gt;
+            </code>
+          </pre>
+          <code data-trim class="typescript">{ name: { first: string, last: string }, email:string }</code>
+          <aside class="notes" data-markdown>
+            Backup companion: shows the model is implicit, emerging only from the template markup itself - unlike the other two explicit approaches.
+          </aside>
+        </section>
+        <!-- #endregion -->
+      </section>
+      <!-- #endregion -->
+      
+      <!-- #region MARK: Slide Group: Signal Forms - Binding to Input Fields (vertical stack) -->
+      <section>
+        <!-- #region MARK: Slide: Signal Forms - Binding to Input Fields -->
+        <section>
+          <h3>Binding to input fields</h3>
+          <pre data-file="app.html">
+            <code data-trim class="html">
+              &lt;input type="email" [formField]="loginForm.email" /&gt;
+              &lt;input type="password" [formField]="loginForm.password" /&gt;
+            </code>
+          </pre>
+          <aside class="notes" data-markdown>
+            Shows the single [formField] directive binding a native input, to be contrasted later with the dispatch logic that lets the same directive also work on custom components.
+          </aside>
+        </section>
+        <!-- #endregion -->
 
-  submit() {
-    console.log(this.loginForm.value);
-  }
+        <!-- #region MARK: Slide: Binding - Reactive Forms -->
+        <section data-visibility="uncounted">
+          <p class="hint center">Backup - same point, Reactive Forms flavour.</p>
+          <h3>Binding to input fields</h3>
+          <pre data-file="contact-form.component.html">
+            <code data-trim class="max-height-unset html">
+              &lt;form [formGroup]=&quot;contactForm&quot; novalidate&gt;
+                &lt;div formGroupName=&quot;name&quot;&gt;
+                  &lt;div&gt;
+                    &lt;label&gt;First Name&lt;/label&gt;
+                    &lt;input type=&quot;text&quot; formControlName=&quot;first&quot;&gt;
+                  &lt;/div&gt;
+                  &lt;div&gt;
+                    &lt;label&gt;Last Name&lt;/label&gt;
+                    &lt;input type=&quot;text&quot; formControlName=&quot;last&quot;&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div&gt;
+                  &lt;label&gt;E-Mail&lt;/label&gt;
+                  &lt;input type=&quot;email&quot; formControlName=&quot;email&quot;&gt;
+                &lt;/div&gt;
+                &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
+              &lt;/form&gt;
+            </code>
+          </pre>
+          <ul>
+            <li><code data-trim class="html">[formGroup]="contactForm"</code> binds upper FormGroup</li>
+            <li><code data-trim class="html">formGroupName</code> binds child FormGroup</li>
+            <li><code data-trim class="html">formControlName</code> binds child FormControl</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            Backup companion: the formGroup/formGroupName/formControlName directives used to wire a template to a Reactive Forms model.
+          </aside>
+        </section>
+        <!-- #endregion -->
 
-}
+        <!-- #region MARK: Slide: Binding - Template-driven Forms -->
+        <section class="ng-model-ng-model-group" data-visibility="uncounted">
+          <p class="hint center">Backup - same point, Template-driven Forms flavour.</p>
+          <h3>ngModel / ngModelGroup</h3>
+          <div>
+            <pre><code data-trim class="html">&lt;input name=first ngModel&gt;</code></pre>
+            <p><span class="highlight">creates property</span> inside forms data model with key 'first'</p>
+          </div>
+          <div>
+            <pre><code data-trim class="html">&lt;input name=first [ngModel]="varName"&gt;</code></pre>
+            <p>creates one-way binding - binds a <span class="highlight">default value</span></p>
+          </div>
+          <div>
+            <pre data-file="contact-form.component.html">
+              <code data-trim class="html">
+                <!-- syntactic sugar (banana in a box) -->
+                &lt;input name=first [(ngModel)]="varName"&gt;
+                &lt;input name=first [ngModel]="varName" (ngModelChange)="varName=$event"&gt;
+              </code>
+            </pre>
+            <p>
+              creates <span class="highlight">two-way</span> binding. Note: <span class="highlight">state at two places</span> (component member and forms model)
+            </p>
+          </div>
+          <div>
+            <pre><code data-trim class="html">&lt;div ngModelGroup=group&gt;&lt;/div&gt;</code></pre>
+            <p>creates <span class="highlight">nested object</span> called group inside forms data model (form.value)</p>
+          </div>
+          <aside class="notes" data-markdown>
+            Backup companion: shows ngModel/ngModelGroup bindings implicitly build the form model as a side effect of binding the view.
+          </aside>
+        </section>
+        <!-- #endregion -->
+      </section>
+      <!-- #endregion -->
+      
+      <!-- #region MARK: Slide Group: Signal Forms - Validation & Field State (vertical stack) -->
+      <section>
+        <!-- #region MARK: Slide: Signal Forms - Validation & Field State -->
+        <section>
+          <h3>Validation & Field State</h3>
+          <p>Validation rules live in a <span class="highlight">schema function</span> passed to <code data-trim>form()</code></p>
+          <pre data-file="app.ts">
+            <code data-trim class="typescript max-height-unset">
+              loginForm = form(this.loginModel, (path) =&gt; {
+                required(path.email, { message: 'Email is required' });
+                email(path.email, { message: 'Enter a valid email address' });
+              });
+            </code>
+          </pre>
+          <p>Every field exposes its state as signals:</p>
+          <pre data-file="app.html">
+            <code data-trim class="html">
+              &lt;input type="email" [formField]="loginForm.email" /&gt;
+              @if (loginForm.email().touched() &amp;&amp; loginForm.email().invalid()) {
+                &lt;span class="error"&gt;{{ loginForm.email().errors()[0].message }}&lt;/span&gt;
+              }
+            </code>
+          </pre>
+          <aside class="notes" data-markdown>
+            Introduces the schema function as the single place validation rules live, and shows every field exposes its state as plain signals.
+          </aside>
+        </section>
+        <!-- #endregion -->
+
+        <!-- #region MARK: Slide: Validation - Reactive Forms -->
+        <section data-visibility="uncounted">
+          <p class="hint center">Backup - same point, Reactive Forms flavour.</p>
+          <h3>Validation</h3>
+          <p>... in Reactive Forms</p>
+          <pre data-file="contact-form.component.ts">
+            <code data-trim class="typescript">
+              this.contactForm = this.formBuilder.group({
+                name: this.formBuilder.group({
+                  first: "Juana",
+                  last: ["Garcia", Validators.required],
+                }),
+                email: ["", Validators.email],
+              });
+            </code>
+          </pre>
+          <ul>
+            <li><code data-trim>FormControl</code> and <code data-trim>FormGroup</code> both extend <code data-trim class="highlight">AbstractControl</code></li>
+            <li>... which has properties <span class="highlight">valid, invalid, errors,</span> etc.</li>
+            <li><code data-trim class="highlight">valueChanges</code> and <code data-trim class="highlight">statusChanges</code> provide Observables</li>
+            <li><code data-trim>FormControl</code> has <span class="highlight">single controls</span> status</li>
+            <li><code data-trim>FormGroup</code> has <span class="highlight">aggregated</span> status of child controls</li>
+          </ul>
+          <p>Custom errors behave just like built-in ones - read via <code data-trim>getError()</code>:</p>
+          <pre class="width-100-percent" data-file="contact-form.component.html">
+            <code data-trim class="html">
+              &lt;div 
+                *ngIf="contactForm.controls.name.controls.first.getError('forbiddenName')"&gt;
+                  The name is not allowed.
+              &lt;/div&gt;
+            </code>
+          </pre>
+          <aside class="notes" data-markdown>
+            Backup companion: validators attached on FormBuilder calls; introduces AbstractControl as the shared base exposing valid/invalid/errors; custom validator errors are displayed identically to built-in ones via getError().
+          </aside>
+        </section>
+        <!-- #endregion -->
+
+        <!-- #region MARK: Slide: Validation - Template-driven Forms -->
+        <section data-visibility="uncounted">
+          <p class="hint center">Backup - same point, Template-driven Forms flavour.</p>
+          <h3>Validation</h3>
+          <p>... in Template-driven Forms</p>
+          <ul>
+            <li>
+              Angular provides default validators
+              <pre>
+                <code data-trim class="html">&lt;input name=otto ngModel required minlength=4 maxlength=24&gt;</code>
+              </pre>
+            </li>
+            <li>
+              Each control / property has 'errors' which can be checked
+              <pre data-file="contact-form.component.html">
+                <code data-trim class="html">
+                  &lt;form #form=ngForm&gt;
+                    &lt;input name=otto ngModel required&gt;
+                    &lt;div *ngIf=form.controls.otto.errors&gt;
+                      &lt;div [hidden]="!form.controls.otto.errors.required"&gt;
+                        &lt;span&gt;Otto is really important!&lt;/span&gt;
+                      &lt;/div&gt;
+                      <!--check other validations...-->
+                    &lt;/div&gt;
+                  &lt;/form&gt;
                 </code>
-                </pre>
-            </section>
+              </pre>
+            </li>
+            <li>
+              <code data-trim>form</code> and <code data-trim>ngModelGroup</code> aggregate underlying controls (combined errors)
+            </li>
+          </ul>
+          <aside class="notes" data-markdown>
+            Backup companion: built-in validators as template attributes, and errors read off the form/ngModelGroup object.
+          </aside>
+        </section>
+        <!-- #endregion -->
+      </section>
+      <!-- #endregion -->
+      
+      <!-- #region MARK: Slide: Custom Form Fields - Why -->
+      <section>
+        <h3>Custom Form Fields - Why Talk About This?</h3>
+        <ul>
+          <li>Manual wiring - <span class="highlight">works once</span></li>
+          <li><span class="highlight">Breaks</span> when reused elsewhere</li>
+          <li>Own interface = <span class="highlight">everyone has to learn it</span></li>
+          <li>Reusable = <span class="highlight">same interface</span> as native fields</li>
+        </ul>
+        <aside class="notes" data-markdown>
+          Frames the whole custom-fields discussion: manual wiring works once but doesn't scale, which is why a reusable field must speak Angular's own control interface instead of inventing a new one.
 
-            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                <h3 class="white">Reactive Forms</h3>
-                <img src="img/reactive-forms.png" class="no-background no-border no-margin no-shadow">
-            </section>
+          - manual wiring: track value yourself, emit changes yourself - works, but only in the one place you built it for
+          - reused in a different form -> breaks down, pattern doesn't carry over
+          - could invent your own interface instead of Angular's - but then every other dev has to learn YOUR interface instead of the standard one
+          - reusable custom field needs to speak the same interface as Angular's native fields (input, select, ...)
+          - for Signal Forms that interface is FormValueControl / FormCheckboxControl, not ControlValueAccessor - see next slides
+          - second half of reusability, beyond the interface: don't bake decisions into the field's implementation (e.g. which format is valid, which values are allowed, when to switch segments) - forward those decision factors as inputs and let the using component decide. Field stays generic, host decides the specifics.
+        </aside>
+      </section>
+      <!-- #endregion -->
 
-            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                <h3 class="white">Template Driven vs. Reactive Forms</h3>
-                <table class="white">
-                    <thead>
-                    <tr>
-                        <th></th>
-                        <th style="color: #10e0ff">Template Driven</th>
-                        <th style="color: #10e0ff">Reactive</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>Form model</td>
-                        <td>HTML template</td>
-                        <td>Defined in a component</td>
-                    </tr>
-                    <tr>
-                        <td>Data model</td>
-                        <td>Unstructured</td>
-                        <td>Structured</td>
-                    </tr>
-                    <tr>
-                        <td>Predictability</td>
-                        <td>Asynchronous</td>
-                        <td>Synchronous</td>
-                    </tr>
-                    <tr>
-                        <td>Form validation</td>
-                        <td>Directives</td>
-                        <td>Functions</td>
-                    </tr>
-                    <tr>
-                        <td>Mutability</td>
-                        <td>Mutable</td>
-                        <td>Immutable</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </section>
+      <!-- #region MARK: Slide Group: Custom Validators Live in the Schema (vertical stack) -->
+      <section>
+        <!-- #region MARK: Slide: Custom Validators Live in the Schema -->
+        <section>
+          <h3>Custom Validators Live in the Schema</h3>
+          <p>Before building a custom <em>field</em>, note where a custom <em>validator</em> lives: in the <span class="highlight">schema</span>, not in the field. A plain native <code data-trim>&lt;input&gt;</code> already gets custom validation:</p>
+          <pre data-file="app.ts">
+            <code data-trim class="typescript max-height-unset">
+              loginForm = form(this.loginModel, (path) =&gt; {
+                // custom rule: return an error object, or null when valid
+                validate(path.website, ({ value }) =&gt; {
+                  return value().startsWith('https://')
+                    ? null
+                    : { kind: 'https', message: 'URL must start with https://' };
+                });
+              });
+            </code>
+          </pre>
+          <pre><code data-trim class="html">&lt;input [formField]="loginForm.website" /&gt;</code></pre>
+          <p class="hint center">The field (native here) does <span class="highlight">nothing</span> - the schema owns the rule. Error shape is always <code data-trim>{ kind, message? }</code>; all rules run, no short-circuit.</p>
+          <aside class="notes" data-markdown>
+            Establishes the baseline rule before discussing custom fields at all: custom validation always lives in the schema, even for a plain native input with no custom component involved.
 
+            - validate(path, ctx =&gt; error | null) is the custom-rule primitive; siblings are validateTree() (subtree / cross-field), validateHttp() (async, drives pending()), validateStandardSchema() (Zod/Valibot)
+            - ctx also carries valueOf()/stateOf()/fieldTreeOf() to reach other fields - that's how cross-field rules work (next slide)
+            - key teaching point: this is identical whether [formField] sits on a native input or a custom component - the control never validates
+          </aside>
+        </section>
+        <!-- #endregion -->
+
+      </section>
+      <!-- #endregion -->
+
+      <!-- #region MARK: Slide Group: Reusable & Cross-field Custom Rules (vertical stack) -->
+      <section>
+        <!-- #region MARK: Slide: Reusable & Cross-field Custom Rules -->
+        <section>
+          <h3>Reusable &amp; Cross-field Custom Rules</h3>
+          <p>Wrap <code data-trim>validate()</code> in a function - now it's used like a built-in:</p>
+          <pre data-file="validators.ts">
+            <code data-trim class="typescript max-height-unset">
+              function requireHttpsUrl(path: SchemaPath&lt;string&gt;, opts?: { message?: string }) {
+                validate(path, ({ value }) =&gt;
+                  value().startsWith('https://')
+                    ? null
+                    : { kind: 'httpsUrl', message: opts?.message ?? 'Use https://' });
+              }
+
+              form(this.model, (path) =&gt; requireHttpsUrl(path.website));
+            </code>
+          </pre>
+          <p>Cross-field rules read another field via <code data-trim>valueOf()</code> - and re-run reactively:</p>
+          <pre data-file="app.ts">
+            <code data-trim class="typescript max-height-unset">
+              validate(path.confirmPassword, ({ value, valueOf }) =&gt;
+                value() === valueOf(path.password)
+                  ? null
+                  : { kind: 'passwordMismatch', message: 'Passwords do not match' });
+            </code>
+          </pre>
+          <p class="hint center">Conditional? Gate a rule with the <code data-trim>when</code> option, or groups of rules with <code data-trim>applyWhen()</code>.</p>
+          <aside class="notes" data-markdown>
+            Shows wrapping validate() in a function makes a rule reusable like a built-in, and that cross-field checks are just another validate() reading a sibling field via valueOf() - not a separate mechanism.
+          </aside>
+        </section>
+        <!-- #endregion -->
+
+        <!-- #region MARK: Slide: Custom Validation Interface - CVA Backup -->
+        <section data-visibility="uncounted">
+          <p class="hint center">Backup - the <code data-trim>ValidatorFn</code> contract behind both CVA flavours below.</p>
+          <h3>Custom Validation Interface</h3>
+          <pre data-file="@angular/forms/validators.ts">
+            <code data-trim class="typescript">
+              interface ValidatorFn {
+                (c: AbstractControl): {
+                  [key: string]: any;
+                } | null;
+              }
+            </code>
+          </pre>
+          <p><code data-trim class="typescript">ValidatorFn</code> takes an <code data-trim>AbstractControl</code> to validate.</p>
+          <p>Returns <span class="highlight">null if valid</span>.</p>
+          <p>Returns <span class="highlight">{[key: string]: any}</span> as error definition.</p>
+          <aside class="notes" data-markdown>
+            Introduces the ValidatorFn contract (null = valid, object = error) behind the requireHttpsUrl/rangeOrder examples in the following backup slides.
+          </aside>
+        </section>
+        <!-- #endregion -->
+
+        <!-- #region MARK: Slide: Reusable & Cross-field - Reactive Forms Backup -->
+        <section data-visibility="uncounted">
+          <p class="hint center">Backup - same point, Reactive Forms flavour.</p>
+          <h3>Reusable &amp; Cross-field - Reactive Forms</h3>
+          <p>A <code data-trim>ValidatorFn</code> is already reusable - attach it to any control; cross-field = a validator on the <code data-trim>FormGroup</code>:</p>
+          <pre data-file="validators.ts">
+            <code data-trim class="typescript max-height-unset">
+              // reusable custom validator - a plain ValidatorFn, drop it on any control
+              function requireHttpsUrl(c: AbstractControl): ValidationErrors | null {
+                return c.value?.startsWith('https://') ? null : { httpsUrl: true };
+              }
+
+              // cross-field: validate the group, not a single control
+              function rangeOrder(g: AbstractControl): ValidationErrors | null {
+                const { from, to } = g.value;
+                return isBefore(from, to) ? null : { rangeOrder: true };
+              }
+
+              new FormGroup({
+                website: new FormControl('', [requireHttpsUrl]),
+                slot: new FormGroup(
+                  { from: new FormControl(''), to: new FormControl('') },
+                  { validators: [rangeOrder] },
+                ),
+              });
+            </code>
+          </pre>
+          <pre><code data-trim class="html">&lt;input formControlName="website"&gt;</code></pre>
+          <aside class="notes" data-markdown>
+            Backup companion: reusability comes from a plain ValidatorFn; cross-field validation comes from attaching a validator to the FormGroup instead of a control.
+          </aside>
+        </section>
+        <!-- #endregion -->
+
+        <!-- #region MARK: Slide: Reusable & Cross-field - Template-driven Forms Backup -->
+        <section data-visibility="uncounted">
+          <p class="hint center">Backup - same point, Template-driven Forms flavour.</p>
+          <h3>Reusable &amp; Cross-field - Template-driven Forms</h3>
+          <p>One <code data-trim>NG_VALIDATORS</code> directive = a reusable custom validator; the same pattern on an <code data-trim>ngModelGroup</code> gives cross-field:</p>
+          <pre data-file="validators.directive.ts">
+            <code data-trim class="typescript max-height-unset">
+              @Directive({
+                selector: '[requireHttpsUrl]',
+                providers: [{ provide: NG_VALIDATORS, useExisting: RequireHttpsUrl, multi: true }],
+              })
+              export class RequireHttpsUrl implements Validator {
+                validate(c: AbstractControl): ValidationErrors | null {
+                  return c.value?.startsWith('https://') ? null : { httpsUrl: true };
+                }
+              }
+
+              @Directive({
+                selector: '[rangeOrder]',
+                providers: [{ provide: NG_VALIDATORS, useExisting: RangeOrder, multi: true }],
+              })
+              export class RangeOrder implements Validator {
+                validate(g: AbstractControl): ValidationErrors | null {
+                  const { from, to } = g.value;
+                  return isBefore(from, to) ? null : { rangeOrder: true };
+                }
+              }
+            </code>
+          </pre>
+          <pre data-file="signup-form.component.html">
+            <code data-trim class="html">
+              &lt;input name="website" ngModel requireHttpsUrl&gt;
+
+              &lt;div ngModelGroup="slot" rangeOrder&gt;
+                &lt;input name="from" ngModel&gt;
+                &lt;input name="to" ngModel&gt;
+              &lt;/div&gt;
+            </code>
+          </pre>
+          <aside class="notes" data-markdown>
+            Backup companion: one NG_VALIDATORS directive gives both reusability and, applied to an ngModelGroup, cross-field validation.
+          </aside>
+        </section>
+        <!-- #endregion -->
+
+        <!-- #region MARK: Slide: Template-driven Forms - Directive Validator -->
+        <section data-visibility="uncounted">
+          <p class="hint center">Backup - same point, Template-driven Forms flavour, step by step.</p>
+          <h3>Directive Validator</h3>
+          <p>Adding custom validators to Template-driven Forms via <span class="highlight">Directives</span></p>
+          <pre><code data-trim class="html">&lt;input type="text" name="first" ngModel noForbiddenName&gt;</code></pre>
+          <ol>
+            <li><span class="highlight">Create directive</span> with matching selector - e.g. 'noForbiddenName'</li>
+            <li><span class="highlight">Extend <code data-trim>NG_VALIDATORS</code></span> dependency via <code data-trim>providers</code> property (directive meta data)</li>
+            <li><span class="highlight">Implement <code data-trim>validate()</code></span> for directive and call validator - e.g. forbiddenNameValidator</li>
+          </ol>
+          <aside class="notes" data-markdown>
+            Explains the three steps to attach a custom validator in Template-driven Forms via a directive, since there's no form-builder API to hand a ValidatorFn to directly.
+          </aside>
+        </section>
+        <!-- #endregion -->
+
+        <!-- #region MARK: Slide: Template-driven Forms - Directive Validator Example -->
+        <section data-visibility="uncounted">
+          <p class="hint center">Backup - same point, Template-driven Forms flavour, full code.</p>
+          <h3>Directive Validator example</h3>
+          <pre data-file="forbidden-name.directive.ts">
+            <code data-trim class="typescript max-height-unset">
+              @Directive({
+                selector: '[noForbiddenName][ngModel],[noForbiddenName][formControl],[noForbiddenName][formControlName]',
+                providers: [{ 
+                  provide: NG_VALIDATORS, 
+                  useExisting: forwardRef(() => ForbiddenNameValidator), 
+                  multi: true 
+                }]
+              })
+              export class ForbiddenNameValidator implements Validator {
+                
+                validator = forbiddenNameValidatorFn;
+                
+                validate(c: FormControl) {
+                  return this.validator(c);
+                }
+              }
+            </code>
+          </pre>
+          <aside class="notes" data-markdown>
+            Ties the previous slide's steps to real code: the NG_VALIDATORS provider and validate() method.
+          </aside>
+        </section>
+        <!-- #endregion -->
+      </section>
+      <!-- #endregion -->
+
+            <!-- #region MARK: Slide: Native Control Creation Function -->
+      <section>
+        <h3>Native Controls: Wired Up by a Function</h3>
+        <p>When <code data-trim>[formField]</code> sits on a real <code data-trim>&lt;input&gt;</code> / <code data-trim>&lt;select&gt;</code> / <code data-trim>&lt;textarea&gt;</code>, Signal Forms calls this internally:</p>
+        <pre data-file="@angular/forms/signals/control_native.ts">
+          <code data-trim class="typescript max-height-unset">
+            export function nativeControlCreate(
+              host: ControlDirectiveHost,
+              parent: FormField&lt;unknown&gt;,
+            ): () =&gt; void {
+              // ... reads/writes the DOM element's value ...
+              host.listenToDom('input', () =&gt; parser.setRawValue(undefined));
+              host.listenToDom('blur', () =&gt; parent.state().markAsTouched());
+
+              parent.registerAsBinding();
+              return () =&gt; { /* keep the DOM in sync on every field update */ };
+            }
+          </code>
+        </pre>
+        <p class="hint center">No code of yours runs here - this bridge ships with Angular for every native form element.</p>
+        <aside class="notes" data-markdown>
+          Illustrates that a native input/select/textarea gets its Signal Forms wiring for free from Angular's nativeControlCreate - exactly the bridge a custom field must replicate via FormValueControl to behave the same way.
+
+          - Source: @angular/forms/signals/src/directive/control_native.ts, function nativeControlCreate
+          - Simplified: the real implementation also handles value parsing, min/max, &lt;select&gt; option tracking, etc.
+          - Key line for this topic: host.listenToDom('blur', () =&gt; parent.state().markAsTouched())
+        </aside>
+      </section>
+      <!-- #endregion -->
+      
+      <!-- #region MARK: Slide Group: What a Native Field Already Gives You (vertical stack) -->
+      <section>
+        <!-- #region MARK: Slide: Native Field State - Signal Forms -->
+        <section>
+          <h3>What a Native Field Already Gives You</h3>
+          <p>No custom component involved - a plain <code data-trim>&lt;input&gt;</code>, wired up by <code data-trim>nativeControlCreate</code> alone:</p>
+          <pre data-file="app.ts">
+            <code data-trim class="typescript">
+              loginForm.email().touched();       // read
+              loginForm.email().markAsTouched(); // write
+              loginForm.email().invalid();
+              loginForm.email().errors();
+            </code>
+          </pre>
+          <p class="hint center">Full surface: <a href="https://angular.dev/api/forms/signals/FieldState" target="_blank">FieldState API reference</a> (angular.dev)</p>
+          <aside class="notes" data-markdown>
+            Shows the touched/invalid/errors API a plain native field already exposes with zero custom code - the baseline a custom FormValueControl must match to feel native.
+
+            - loginForm.email() returns a FieldState - this is the consumer-side object, same one we called touched()/invalid()/errors()/markAsTouched() on for the custom time-picker earlier
+            - for a native &lt;input&gt;, nativeControlCreate (previous slide) wires it up automatically - no interface to implement, no component at all
+            - full FieldState surface per Angular's docs: value, touched, dirty, valid, invalid, errors, disabled, hidden, pending, required/min/max/pattern signals, plus markAsTouched()/markAsDirty()/reset()/getError() methods
+            - the bridge to what's next: a custom field like our time-picker is reduced to this exact same FieldState once it implements FormValueControl - that's what the upcoming table and interface slides are about
+          </aside>
+        </section>
+        <!-- #endregion -->
+        
+        <!-- #region MARK: Slide: Native Field State - CVA -->
+        <section data-visibility="uncounted">
+          <p class="hint center">Backup - same point, CVA/Reactive Forms flavour.</p>
+          <h3>What a Native Field Already Gives You</h3>
+          <p>No custom component involved - a plain <code data-trim>&lt;input formControlName&gt;</code>, wired up by <code data-trim>DefaultValueAccessor</code> alone:</p>
+          <pre data-file="contact-form.component.ts">
+            <code data-trim class="typescript">
+              form.controls.email.touched;        // read
+              form.controls.email.markAsTouched(); // write
+              form.controls.email.invalid;
+              form.controls.email.errors;
+            </code>
+          </pre>
+          <p class="hint center">Full surface: <a href="https://angular.dev/api/forms/AbstractControl" target="_blank">AbstractControl API reference</a> (angular.dev)</p>
+          <aside class="notes" data-markdown>
+            Backup companion: the equivalent AbstractControl API a native input gets for free under CVA via DefaultValueAccessor - the baseline a custom CVA control must match.
+
+            - form.controls.email is an AbstractControl - same object a custom CVA control's state ends up driving too
+            - for a native &lt;input&gt;, DefaultValueAccessor (earlier backup slide) wires it up automatically via NgControl - no CVA implementation needed on your side
+            - full AbstractControl surface per Angular's docs: value, valid, invalid, pending, disabled, errors, pristine, dirty, touched, untouched, plus markAsTouched()/markAsDirty()/markAsPristine()/disable()/enable()/setValue()/patchValue()/reset()/updateValueAndValidity()/getError()/hasError() methods
+            - same bridge point: a custom component implementing ControlValueAccessor gets wired into this exact same AbstractControl machinery - that's what the CVA column of the upcoming table covers
+          </aside>
+        </section>
+        <!-- #endregion -->
+      </section>
+      <!-- #endregion -->
+      
+      <!-- #region MARK: Slide: Custom Control Interfaces - CVA vs Signal Forms -->
+      <section>
+        <h3>Custom Control Interfaces: CVA vs Signal Forms</h3>
+        <table class="size-medium">
+          <thead>
+            <tr>
+              <th>Form Type</th>
+              <th>Custom Control Interface</th>
+              <th>Available Since</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Template-driven Forms</td>
+              <td><code data-trim>ControlValueAccessor</code> (CVA)</td>
+              <td>Angular 2</td>
+            </tr>
+            <tr>
+              <td>Reactive Forms</td>
+              <td><code data-trim>ControlValueAccessor</code> (CVA)</td>
+              <td>Angular 2</td>
+            </tr>
+            <tr>
+              <td>Signal Forms</td>
+              <td><code data-trim>FormValueControl</code> / <code data-trim>FormCheckboxControl</code></td>
+              <td>Angular 21 (experimental), stable since Angular 22</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="hint center">Signal Forms does not reuse CVA - <code data-trim>[formField]</code> detects these new interfaces directly, no <code data-trim>NG_VALUE_ACCESSOR</code> / <code data-trim>forwardRef</code> required.</p>
+        <p class="hint center">The <span class="highlight">Reactive Forms</span> and <span class="highlight">Template-driven Forms</span> rows share one interface - <code data-trim>ControlValueAccessor</code> - so the <span class="highlight">CVA</span> take on each topic lives as a backup slide ↓ beneath the matching <span class="highlight">Signal Forms</span> slide.</p>
+        <aside class="notes" data-markdown>
+          Summarizes that Signal Forms replaces the single long-standing CVA interface with two narrower signal-based interfaces, so participants know which applies before building a field.
+
+          Ask the room: who is still building forms with Reactive Forms today?
+          If most/all participants are already on Signal Forms, you can skip diving down into
+          the CVA backup slides in the next two sections and just stay on the top row.
+
+          - CVA has been part of Angular since v2, essentially unchanged since
+          - FormValueControl / FormCheckboxControl shipped experimentally in Angular 21 and are stable (public API, @publicApi 22.0) since Angular 22
+        </aside>
+      </section>
+      <!-- #endregion -->
+      
+      <!-- #region MARK: Slide Group: One Directive, Several Wirings (vertical stack) -->
+      <section>
+        <!-- #region MARK: Slide: Dispatch - Signal Forms -->
+        <section>
+          <h3>One Directive, Several Wirings</h3>
+          <p><code data-trim>[formField]</code> is a single directive matched by attribute selector - it decides at runtime what it's sitting on:</p>
+          <pre data-file="@angular/forms/signals/form_field.ts">
+            <code data-trim class="typescript max-height-unset">
+              @Directive({ selector: '[formField]', exportAs: 'formField' })
+              export class FormField&lt;T&gt; {
+                readonly field = input.required&lt;Field&lt;T&gt;&gt;({ alias: 'formField' });
+
+                ɵngControlCreate(host: ControlDirectiveHost): void {
+                  if (this.controlValueAccessor) {
+                    this.ɵngControlUpdate = cvaControlCreate(host, this); // reactive-forms interop
+                  } else if (host.customControl) {
+                    this.ɵngControlUpdate = customControlCreate(host, this);
+                  } else if (this.elementIsNativeFormElement) {
+                    this.ɵngControlUpdate = nativeControlCreate(host, this);
+                  }
+                }
+              }
+            </code>
+          </pre>
+          <p class="hint center">Same directive, same <code data-trim>[formField]</code> binding - only the wiring function underneath changes.</p>
+          <aside class="notes" data-markdown>
+            Shows [formField] is one directive that inspects its host at runtime to pick the right wiring function - why the same binding syntax works unchanged on native inputs and custom components alike.
+
+            - Source: @angular/forms/signals/src/directive/form_field.ts, method FormField.ɵngControlCreate
+            - host.customControl checks whether the host component has a 'value' or 'checked' model signal, i.e. implements FormValueControl/FormCheckboxControl - otherwise it falls back to the native branch
+            - ɵngControlCreate is an internal lifecycle hook, renamed/simplified here for clarity - not meant to be called by app code
+            - next slide: the CVA equivalent of this same dispatch decision
+          </aside>
+        </section>
+        <!-- #endregion -->
+        
+        <!-- #region MARK: Slide: Dispatch - CVA -->
+        <section data-visibility="uncounted">
+          <p class="hint center">Backup - same point, CVA flavour.</p>
+          <h3>One Directive, Several Wirings</h3>
+          <p>Several directives can match the same <code data-trim>formControlName</code>/<code data-trim>ngModel</code> - Angular picks exactly one value accessor:</p>
+          <pre data-file="@angular/forms/shared.ts">
+            <code data-trim class="typescript max-height-unset">
+              function selectValueAccessor(dir, accessors) {
+                if (customAccessor) return customAccessor;   // your CVA component
+                if (builtinAccessor) return builtinAccessor; // Checkbox/Select/Number/...
+                return defaultAccessor;                      // plain &lt;input&gt;
+              }
+            </code>
+          </pre>
+          <p class="hint center">Same idea as <code data-trim>host.customControl</code> - custom wins, then the closest built-in match, then the plain default.</p>
+          <aside class="notes" data-markdown>
+            Backup companion: the equivalent selection logic Angular has always used to pick one CVA among several matching directives - 'custom beats built-in beats default' predates Signal Forms.
+
+            - built-in accessors (Checkbox/Select/SelectMultiple/Number/Range/Radio) match narrower selectors, e.g. input[type=checkbox]; DefaultValueAccessor is the catch-all fallback
+            - a custom CVA component registers via NG_VALUE_ACCESSOR and always wins if present - same effect as host.customControl winning on the Signal Forms slide
+            - this precedence (custom &gt; builtin &gt; default) is unchanged since Angular 2 - nothing version-specific to worry about here
+            - source: @angular/forms/src/directives/shared.ts, function selectValueAccessor
+          </aside>
+        </section>
+        <!-- #endregion -->
+      </section>
+      <!-- #endregion -->
+      
+      <!-- #region MARK: Slide Group: Accessing Custom Fields (vertical stack) -->
+      <section>
+        <!-- #region MARK: Slide: Accessing Custom Fields - Signal Forms -->
+        <section>
+          <h3>Accessing Custom Fields</h3>
+          <pre data-file="signal-forms-demo.ts">
+            <code data-trim class="typescript">
+              // write: force touched from code, e.g. on submit
+              this.feedbackForm().markAsTouched();
+            </code>
+          </pre>
+          <pre data-file="signal-forms-demo.html">
+            <code data-trim class="html">
+              &lt;!-- read: consumer checks the state back --&gt;
+              @if (feedbackForm.arrivalTime().touched() &amp;&amp; feedbackForm.arrivalTime().invalid()) {
+                &lt;p&gt;{{ feedbackForm.arrivalTime().errors()[0].message }}&lt;/p&gt;
+              }
+            </code>
+          </pre>
+          <p class="hint center">Read and write touched/invalid/errors - same calls as a native field, because <code data-trim>app-time-picker</code> implements <code data-trim>FormValueControl</code>.</p>
+          <aside class="notes" data-markdown>
+            Demonstrates a custom field's touched/invalid/errors are read/written with the exact same calls as a native field, which only works because it implements FormValueControl rather than a one-off API.
+
+            - these calls aren't reinvented per control - they come straight from the FormValueControl interface (previous slides: nativeControlCreate gives native inputs the same thing automatically)
+            - markAsTouched() imperatively forces touched (e.g. to reveal all errors on submit without waiting for the user to blur every field) - the control itself also reports touched on blur, via its own 'touch' output - how that's wired is covered when we look at the interface itself
+            - markAsTouched() on the root field marks the whole tree touched by default (same idea as the CVA backup slide's markAllAsTouched()), not just one field
+            - skip the interface and you lose all of this AND the parent form can no longer aggregate this field into form().invalid()/errors() - the parent only understands the actual interface
+            - that mismatch surfaces as an Angular runtime error (invalid [formField] host), not a TypeScript compile error - TS only complains if the class explicitly 'implements FormValueControl<T>' and is missing a member
+            - the payoff beyond avoiding the error: any other dev/API can treat this control exactly like a native field - same interface, same expectations
+            - next slide: the actual interface this is based on
+          </aside>
+        </section>
+        <!-- #endregion -->
+        
+        <!-- #region MARK: Slide: Accessing Custom Fields - CVA -->
+        <section data-visibility="uncounted">
+          <p class="hint center">Backup - same point, CVA flavour.</p>
+          <h3>Accessing Custom Fields</h3>
+          <pre data-file="cva-demo.ts">
+            <code data-trim class="typescript">
+              // write: force touched from code, e.g. on submit
+              this.feedbackForm.markAllAsTouched();
+            </code>
+          </pre>
+          <pre data-file="cva-demo.html">
+            <code data-trim class="html">
+              &lt;!-- read: consumer checks the state back --&gt;
+              @if (feedbackForm.controls.arrivalTime.touched &amp;&amp;
+                   feedbackForm.controls.arrivalTime.errors?.['required']) {
+                &lt;p&gt;Arrival time is required.&lt;/p&gt;
+              }
+            </code>
+          </pre>
+          <p class="hint center">Same <span class="highlight">write</span>/<span class="highlight">read</span> split as Signal Forms - because <code data-trim>app-time-picker</code> implements <code data-trim>ControlValueAccessor</code> and registers <code data-trim>NG_VALUE_ACCESSOR</code>.</p>
+          <aside class="notes" data-markdown>
+            Backup companion: the same read/write split under CVA, showing 'custom field behaves like a native one' is not new to Signal Forms.
+
+            - formControlName needs a registered NG_VALUE_ACCESSOR to find this control - without it: runtime error "No value accessor for form control", not a TypeScript error
+            - again, TS only catches it at compile time if the class explicitly 'implements ControlValueAccessor' and misses writeValue/registerOnChange/registerOnTouched
+            - markAllAsTouched() walks the whole FormGroup, same idea as the Signal Forms root's markAsTouched() on the previous slide - the control itself also reports touched on blur, via its registerOnTouched callback - how that's wired is covered when we look at the interface itself
+            - good to know: per Angular's docs, a FormValueControl/FormCheckboxControl custom control also works as-is in Reactive Forms / Template-driven Forms - no CVA needed even if you haven't migrated the rest of the app yet
+          </aside>
+        </section>
+        <!-- #endregion -->
+      </section>
+      <!-- #endregion -->
+      
+      <!-- #region MARK: Slide Group: Signal Forms Custom Control Interfaces (vertical stack) -->
+      <section>
+        <!-- #region MARK: Slide: Signal Forms Custom Control Interfaces -->
+        <section>
+          <h3>The Signal Forms Control Interfaces</h3>
+          <pre data-file="@angular/forms/signals/control.ts">
+            <code data-trim class="typescript max-height-unset">
+              interface FormValueControl&lt;T&gt; {
+                value: ModelSignal&lt;T&gt;;        // required
+                touched?: InputSignal&lt;boolean&gt;; // read touched back, e.g. for styling
+                touch?: OutputRef&lt;void&gt;;        // report a blur, marks the field touched
+                disabled?: InputSignal&lt;boolean&gt;;
+                invalid?: InputSignal&lt;boolean&gt;;
+                errors?: InputSignal&lt;readonly ValidationError[]&gt;;
+                // ... more optional state, see FormUiControl
+              }
+
+              interface FormCheckboxControl {
+                checked: ModelSignal&lt;boolean&gt;;  // required - mutually exclusive with 'value'
+                // ... same optional FormUiControl state as above
+              }
+            </code>
+          </pre>
+          <p class="hint center"><code data-trim>[formField]</code> auto-detects which interface your component implements - <span class="highlight">no <code data-trim>forwardRef</code>, no <code data-trim>NG_VALUE_ACCESSOR</code> provider</span> required.</p>
+          <aside class="notes" data-markdown>
+            Shows the actual FormValueControl/FormCheckboxControl contracts behind everything demonstrated so far, auto-detected by [formField] without forwardRef/NG_VALUE_ACCESSOR boilerplate.
+          </aside>
+        </section>
+        <!-- #endregion -->
+        
+        <!-- #region MARK: Slide: Backup - ControlValueAccessor Interface -->
+        <section data-visibility="uncounted">
+          <p class="hint center">Backup - for participants still on Reactive Forms / Template-driven Forms.<br>Full <code data-trim>ControlValueAccessor</code> API, implementation & exercises: see the Advanced Forms module</p>
+          <h3>Angular Internals: The <code data-trim>ControlValueAccessor</code> Interface</h3>
+          <pre data-file="@angular/forms/control_value_accessor.ts">
+            <code data-trim class="typescript max-height-unset">
+              interface ControlValueAccessor {
+                // model -&gt; view: write a new value into the DOM element
+                writeValue(obj: any): void;
+
+                // view -&gt; model: register the callback to call on input
+                registerOnChange(fn: any): void;
+
+                // register the callback to call on blur ("touched")
+                registerOnTouched(fn: any): void;
+
+                // enable/disable the DOM element
+                setDisabledState?(isDisabled: boolean): void;
+              }
+            </code>
+          </pre>
+          <p class="hint center">Source: <code data-trim>@angular/forms</code> - <code data-trim>control_value_accessor.ts</code></p>
+          <aside class="notes" data-markdown>
+            Backup companion: the four-method CVA contract that is the pre-Signal-Forms equivalent of FormValueControl.
+          </aside>
+        </section>
+        <!-- #endregion -->
+      </section>
+      <!-- #endregion -->
+      
+      <!-- #region MARK: Slide Group: Building a Custom Field (vertical stack) -->
+      <section>
+        <!-- #region MARK: Slide: Building a Custom Field -->
+        <section>
+          <h3>Building a Custom Field</h3>
+          <pre data-file="email-input.ts">
+            <code data-trim class="typescript max-height-unset">
+              @Component({
+                selector: 'app-email-input',
+                template: `
+                  &lt;input type="text" [value]="value()"
+                    (input)="value.set($any($event.target).value)" /&gt;
+                `,
+              })
+              export class EmailInput implements FormValueControl&lt;string&gt; {
+                value = model('');
+              }
+            </code>
+          </pre>
+          <p>Used exactly like a native field - <span class="highlight">same <code data-trim>[formField]</code> binding as before</span>:</p>
+          <pre>
+            <code data-trim class="html">
+              &lt;app-email-input [formField]="loginForm.email" /&gt;
+            </code>
+          </pre>
+          <aside class="notes" data-markdown>
+            First concrete FormValueControl example, showing it's bound with the exact same [formField] syntax used for native inputs.
+          </aside>
+        </section>
+        <!-- #endregion -->
+        
+        <!-- #region MARK: Slide: Angular Internals - DefaultValueAccessor -->
+        <section data-visibility="uncounted">
+          <h3><code data-trim>DefaultValueAccessor</code>: How <code data-trim>&lt;input&gt;</code> Connects</h3>
+          <pre data-file="@angular/forms/default_value_accessor.ts">
+            <code data-trim class="typescript max-height-unset">
+              @Directive({
+                selector:
+                  'input:not([type=checkbox])[formControlName],
+                   input:not([type=checkbox])[formControl],
+                   input:not([type=checkbox])[ngModel], ...',
+                host: {
+                  '(input)': '_handleInput($any($event.target).value)',
+                  '(blur)': 'onTouched()',
+                },
+                providers: [DEFAULT_VALUE_ACCESSOR],
+              })
+              export class DefaultValueAccessor extends BaseControlValueAccessor
+                implements ControlValueAccessor { ... }
+            </code>
+          </pre>
+          <ul>
+            <li>Matches every native <code data-trim>input</code> / <code data-trim>textarea</code> bound via <code data-trim>ngModel</code> / <code data-trim>formControl</code> / <code data-trim>formControlName</code></li>
+            <li>Typing fires the DOM <code data-trim>input</code> event - handled <span class="highlight">here</span>, not by your component</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            Backup companion: the selector/host bindings letting DefaultValueAccessor transparently attach to native inputs under CVA - the mechanism a custom CVA control must hook into manually.
+          </aside>
+        </section>
+        <!-- #endregion -->
+        
+        <!-- #region MARK: Slide: Angular Internals - writeValue and Callbacks -->
+        <section data-visibility="uncounted">
+          <h3><code data-trim>writeValue</code> & Registering Callbacks</h3>
+          <pre data-file="@angular/forms/default_value_accessor.ts">
+            <code data-trim class="typescript max-height-unset">
+              // DefaultValueAccessor
+              writeValue(value: any): void {
+                const normalizedValue = value == null ? '' : value;
+                this.setProperty('value', normalizedValue); // model -&gt; view
+              }
+
+              _handleInput(value: any): void {
+                this.onChange(value); // view -&gt; model
+              }
+            </code>
+          </pre>
+          <pre data-file="@angular/forms/default_value_accessor.ts">
+            <code data-trim class="typescript max-height-unset">
+              // BaseControlValueAccessor
+              registerOnChange(fn: (_: any) =&gt; {}): void { this.onChange = fn; }
+              registerOnTouched(fn: () =&gt; void): void { this.onTouched = fn; }
+            </code>
+          </pre>
+          <p class="hint center">This exact <code data-trim>writeValue</code> / <code data-trim>registerOnChange</code> pattern is what CVA-based custom fields need to implement.</p>
+          <aside class="notes" data-markdown>
+            Backup companion: the writeValue/registerOnChange/registerOnTouched pattern a custom CVA field must replicate for model-view sync.
+          </aside>
+        </section>
+        <!-- #endregion -->
+
+        <!-- #region MARK: Slide: Backup - CVA Flow Diagram -->
+        <section data-visibility="uncounted">
+          <p class="hint center">Backup - legacy diagram, CVA flavour.</p>
+          <h3>Control Value Accessor - The Bridge</h3>
+          <p class="hint center">CVA is an interface that acts as a <span class="highlight">bridge</span> between the <span class="highlight">Angular forms API</span> and a <span class="highlight">native element in the DOM</span>. It propagates changes from the model to the view, and from the view to the model.</p>
+          <img src="./img/cva.jpeg" class="no-border" style="max-height:55vh;" alt="Control Value Accessor flow between the form model and the DOM view">
+          <aside class="notes" data-markdown>
+            Legacy CVA flow diagram: the ControlValueAccessor sits between the Angular forms API (model) and the native DOM element (view), propagating model-&gt;view via writeValue and view-&gt;model via the registerOnChange callback.
+          </aside>
+        </section>
+        <!-- #endregion -->
+
+        <!-- #region MARK: Slide: Backup - Template-driven Forms Diagram -->
+        <section data-visibility="uncounted">
+          <p class="hint center">Backup - legacy diagram, Template-driven Forms flavour.</p>
+          <h3>Template-driven Forms</h3>
+          <img src="./img/template-driven-forms.png" class="no-border" style="max-height:55vh;" alt="Template-driven Forms data flow">
+          <aside class="notes" data-markdown>
+            Legacy diagram of the Template-driven Forms data flow, kept for participants still maintaining ngModel-based forms.
+          </aside>
+        </section>
+        <!-- #endregion -->
+
+        <!-- #region MARK: Slide: Backup - Reactive Forms Diagram -->
+        <section data-visibility="uncounted">
+          <p class="hint center">Backup - legacy diagram, Reactive Forms flavour.</p>
+          <h3>Reactive Forms</h3>
+          <img src="./img/reactive-forms.png" class="no-border" style="max-height:55vh;" alt="Reactive Forms data flow">
+          <aside class="notes" data-markdown>
+            Legacy diagram of the Reactive Forms data flow, kept for participants still maintaining FormGroup/FormControl-based forms.
+          </aside>
+        </section>
+        <!-- #endregion -->
+
+      </section>
+      <!-- #endregion -->
+
+      <!-- #region MARK: Slide: Connecting a Custom Field With Validation - Intro -->
+      <section>
+        <h3>Custom Field + Custom Validators</h3>
+        <p>The field is built - now wire it to validation. Two running examples:</p>
+        <ul>
+          <li><code data-trim>app-rating-input</code> - a single <code data-trim>FormValueControl&lt;number&gt;</code>: shows how <span class="highlight">config &amp; constraints flow into</span> the control, and the "no parse step" extreme</li>
+          <li><code data-trim>app-corporate-email-input</code> - has a real parse step: shows <span class="highlight">internal (parse) vs external (schema)</span> validation, and a companion schema that ships the whole policy</li>
+        </ul>
+        <p class="hint center">One rule runs through all of it: the control <span class="highlight">displays</span> validation, the schema <span class="highlight">performs</span> it.</p>
+        <aside class="notes" data-markdown>
+          Transition slide framing the two running examples (rating-input, corporate-email-input) used to explore where validation logic should live. The composite/nested case (time-range picker) gets its own full topic later.
+        </aside>
+      </section>
+      <!-- #endregion -->
+
+      <!-- #region MARK: Slide Group: Division of Labour (vertical stack) -->
+      <section>
+        <!-- #region MARK: Slide: Division of Labour - Signal Forms -->
+        <section>
+          <h3>Division of Labour: Schema Validates, Control Displays</h3>
+          <pre data-file="app.ts">
+            <code data-trim class="typescript max-height-unset">
+              // schema owns the rule
+              feedbackForm = form(this.model, (path) =&gt; {
+                min(path.rating, 1, { message: 'Please select a rating' });
+              });
+            </code>
+          </pre>
+          <pre data-file="rating-input.ts">
+            <code data-trim class="typescript max-height-unset">
+              // the control holds NO validation
+              export class RatingInput implements FormValueControl&lt;number&gt; {
+                value = model(0);
+                touch = output&lt;void&gt;();
+                maxStars = input(5);
+              }
+            </code>
+          </pre>
+          <pre data-file="app.html">
+            <code data-trim class="html">
+              &lt;app-rating-input [formField]="feedbackForm.rating" /&gt;
+              @if (feedbackForm.rating().touched() &amp;&amp; feedbackForm.rating().invalid()) {
+                &lt;p&gt;{{ feedbackForm.rating().errors()[0].message }}&lt;/p&gt;
+              }
+            </code>
+          </pre>
+          <p class="hint center">Anti-pattern: an <code data-trim>isValid()</code> inside the control. Define rules in the schema; let the control render the result.</p>
+          <aside class="notes" data-markdown>
+            Applies the schema-validates/control-displays rule to the rating field specifically, as the positive example to contrast with the CVA anti-pattern backup below.
+
+            - companion point (previously its own "Config &amp; Constraints Flow Into the Control" slide): besides errors()/invalid() state, two things flow INTO the control, from two different places:
+              - channel 1: maxStars - the control's OWN config input (how many stars to render), passed directly by the host - the "host decides the specifics, field stays generic" narrative from the Why slide
+              - channel 2: [formField] also forwards the schema's constraint VALUES (min/max/required/minLength/maxLength/pattern) down to the control; the control reads them only to enhance the UI (e.g. dim stars below min, mirror to HTML5 attrs), it never runs them to validate
+            - e.g. host template: &lt;app-rating-input [maxStars]="10" [formField]="feedbackForm.rating" /&gt; and in the control: maxStars = input(5); min = input&lt;number&gt;();
+            - we deliberately keep only min(path.rating, 1) in the schema here - an extra max(..., 10) would be redundant for a star rating (you can't click an 11th star when only 10 are drawn) and the duplicate 10 made maxStars and max look like the same knob
+            - the error channel is one-directional: form -&gt; control. The control's only way to push an error up is a parse error - covered on the error-channel slide
+          </aside>
+        </section>
+        <!-- #endregion -->
+
+        <!-- #region MARK: Slide: Division of Labour - CVA Backup -->
+        <section data-visibility="uncounted">
+          <p class="hint center">Backup - same point, CVA flavour.</p>
+          <h3>Division of Labour - CVA</h3>
+          <p>Under CVA a self-validating control registers <code data-trim>NG_VALIDATORS</code> and contributes to its own <code data-trim>errors</code> - idiomatic, Angular Material does it:</p>
+          <pre data-file="rating-input.ts">
+            <code data-trim class="typescript max-height-unset">
+              @Directive({
+                providers: [{ provide: NG_VALIDATORS, useExisting: RatingInput, multi: true }],
+              })
+              class RatingInput implements ControlValueAccessor, Validator {
+                validate(c: AbstractControl) { return c.value >= 1 ? null : { min: true }; }
+              }
+            </code>
+          </pre>
+          <p class="hint center">Signal Forms has <span class="highlight">no</span> <code data-trim>NG_VALIDATORS</code> equivalent - see <a class="slide-link" href="#/error-channel">the error-channel slide</a>.</p>
+          <aside class="notes" data-markdown>
+            Backup companion: under CVA a self-validating control registering NG_VALIDATORS is idiomatic (Angular Material does it) - the opposite stance from the Signal Forms slide above.
+          </aside>
+        </section>
+        <!-- #endregion -->
+
+        <!-- #region MARK: Slide: Division of Labour - CVA Host + Internal Validators -->
+        <section data-visibility="uncounted">
+          <p class="hint center">Backup - CVA flavour: both sides validate.</p>
+          <h3>CVA: Host Validators Stack <em>On Top</em> of Internal Ones</h3>
+          <p>The host can add its own validators - they run <span class="highlight">in addition to</span> the control's internal ones:</p>
+          <pre>
+            <code data-trim class="typescript max-height-unset">
+              // reactive: control self-validates (min 1) + host adds more
+              new FormControl('', [Validators.required, maxRating(10)]);
+            </code>
+          </pre>
+          <pre>
+            <code data-trim class="html">
+              &lt;!-- template-driven: extra validator directives on the same element --&gt;
+              &lt;app-rating-input name="rating" ngModel required maxRating&gt;&lt;/app-rating-input&gt;
+            </code>
+          </pre>
+          <ul>
+            <li><code data-trim>NG_VALIDATORS</code> is a <span class="highlight">multi</span>-provider - Angular composes all of them</li>
+            <li><code data-trim>control.errors</code> is the <span class="highlight">merged</span> result (collision = same error key wins/overwrites)</li>
+            <li>Add-only: the host can <span class="highlight">add</span> but not <span class="highlight">remove</span> the control's baked-in validators</li>
+          </ul>
+          <p class="hint center">This two-sided validation is exactly what Signal Forms drops - there the control contributes <span class="highlight">no</span> validators (bar parse errors); all of it lives in the schema.</p>
+          <aside class="notes" data-markdown>
+            Backup companion: shows a host can stack its own validators on top of a control's internal ones - a two-sided model Signal Forms drops in favor of the schema owning all rules.
+
+            Re-validation caveat: this stacking only works because WorkingHours/maxRating are registered as NG_VALIDATORS on the control that's actually part of the parent form tree. If a validator instead lives only inside a child's own internal FormGroup (nested one level deeper, not exposed via NG_VALIDATORS on the component itself), it won't participate in the parent form's validity or submission state - for it to count towards the parent form's validation, it must sit on the top-level control the parent can see, not buried inside the child.
+          </aside>
+        </section>
+        <!-- #endregion -->
+      </section>
+      <!-- #endregion -->
+
+      <!-- #region MARK: Slide: Internal vs External Validation -->
+      <section>
+        <h3>Internal vs External Validation</h3>
+        <p><code data-trim>app-corporate-email-input</code> is a single field, but still has both kinds of checks:</p>
+        <pre data-file="corporate-email-input.ts">
+          <code data-trim class="typescript max-height-unset">
+            // INTERNAL (control): is this even shaped like an email? A type check, not a business rule.
+            // An unparseable raw value becomes a parse error via transformedValue:
+            protected readonly rawValue = transformedValue(this.value, {
+              parse: (raw) =&gt; isValidEmailShape(raw)
+                ? { value: raw }
+                : { error: { kind: 'parse', message: 'Enter a valid email address' } },
+              format: (val) =&gt; val ?? '',
+            });
+          </code>
+        </pre>
+        <pre data-file="corporate-email-input.ts">
+          <code data-trim class="typescript max-height-unset">
+            // EXTERNAL (schema): which domain is allowed is a business rule, not a parse - lives in the schema
+            validate(path, ({ value }) =&gt;
+              value().endsWith('@capgemini.com')
+                ? null
+                : { kind: 'domain', message: 'Use your @capgemini.com address' });
+          </code>
+        </pre>
+        <p class="hint center"><span class="highlight">Parse</span>: can this raw value even become the typed value - the control's job. <span class="highlight">Validate</span>: is this (already-typed) value allowed - the schema's job. This split holds for every field, flat or composite - see it again on <a class="slide-link" href="#/time-range-picker-combining">the time-range-picker</a>.</p>
+        <aside class="notes" data-markdown>
+          Draws the line between parsing (can this raw value exist - owned by the control) and validation (is it allowed - owned by the schema), now on a field that - unlike the rating - DOES have a parse step.
+
+          - mirrors the time-picker's hh:mm parse / from&lt;to schema split, now shown on one flat field instead of a composite one
+          - the rating stays the "zero parse, 100% schema" extreme; this field is the "has parse, still splits internal/external" case
+        </aside>
+      </section>
+      <!-- #endregion -->
+
+      <!-- #region MARK: Slide: The Error Channel Is One-Directional -->
+      <section id="error-channel">
+        <h3>The Error Channel Is One-Directional</h3>
+        <table class="size-medium">
+          <thead>
+            <tr><th>form &#8594; control (inputs)</th><th>control &#8594; form (out)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code data-trim>errors()</code>, <code data-trim>invalid()</code> - to display</td><td><code data-trim>value</code> (model)</td></tr>
+            <tr><td><code data-trim>touched</code>, <code data-trim>disabled</code>, <code data-trim>required/min/max/...</code></td><td><code data-trim>touch</code> (output, on blur)</td></tr>
+            <tr><td></td><td><span class="highlight">parse errors</span> via <code data-trim>transformedValue</code></td></tr>
+          </tbody>
+        </table>
+        <p>A control's <span class="highlight">only</span> way to push an error up is a <span class="highlight">parse error</span>. There is no Signal Forms equivalent of CVA's <code data-trim>NG_VALIDATORS</code>.</p>
+        <p class="hint center">The rating has no parse step &#8594; <span class="highlight">zero</span> upward channel &#8594; 100% of its validation must live in the schema.</p>
+        <aside class="notes" data-markdown>
+          Makes the structural argument explicit: a control can only push a parse error upward, so a general validation rule baked into the component would be invisible to the parent form.
+
+          - errors / invalid are input() signals - the form pushes them down for the control to render
+          - this is THE structural reason a general validation rule can't live inside the component: it literally cannot reach the field's errors()
+          - the rating makes the point sharpest: no parse =&gt; no upward error at all =&gt; everything is schema
+        </aside>
+      </section>
+      <!-- #endregion -->
+
+      <!-- #region MARK: Slide: Reusable Field = Companion Schema -->
+      <section>
+        <h3>Reusable Field = Companion Schema</h3>
+        <p>Don't make every host re-type the domain check. Ship a <span class="highlight">companion schema</span> with the field - here it bundles the whole policy, nothing left for the host to add:</p>
+        <pre data-file="corporate-email-input.ts">
+          <code data-trim class="typescript max-height-unset">
+            // shipped alongside the control - the domain is intrinsic to this field, not host-configurable
+            export const corporateEmailSchema = schema&lt;string&gt;((path) =&gt; {
+              validate(path, ({ value }) =&gt;
+                value().endsWith('@capgemini.com')
+                  ? null
+                  : { kind: 'domain', message: 'Use your @capgemini.com address' });
+            });
+          </code>
+        </pre>
+        <pre data-file="app.ts">
+          <code data-trim class="typescript max-height-unset">
+            // any host - one line, no re-implementation, nothing to compose on top
+            signupForm = form(this.model, (path) =&gt; {
+              apply(path.workEmail, corporateEmailSchema);
+            });
+          </code>
+        </pre>
+        <p class="hint center">Rule authored <span class="highlight">once</span>, lives in the schema layer. Contrast with <a class="slide-link" href="#/reuse-companion-schema">the time-range-picker's companion schema</a>: that one only ships the intrinsic <code data-trim>from &lt; to</code> rule - hosts still compose their own business hours on top. Here the policy is complete.</p>
+        <aside class="notes" data-markdown>
+          Shows the companion-schema pattern (schema + apply()) as the answer to where a reusable field's intrinsic rule lives, so every host gets it for free instead of re-implementing it - and contrasts a "complete policy" schema (nothing to add) with the time-picker's "intrinsic + host composes more" schema.
+        </aside>
+      </section>
+      <!-- #endregion -->
+
+      <!-- #region MARK: Slide: Was Co-locating Validation Ever Wrong? -->
+      <section>
+        <h3>Was Co-locating Validation Ever an Anti-pattern?</h3>
+        <table class="size-medium">
+          <thead>
+            <tr><th></th><th>CVA</th><th>Signal Forms</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Self-validating control</td><td><code data-trim>NG_VALIDATORS</code> - idiomatic</td><td>no equivalent; <code data-trim>errors</code> is an input</td></tr>
+            <tr><td>Upward error channel</td><td>full validator contribution</td><td>parse errors only</td></tr>
+            <tr><td>Home for a rule</td><td>control <em>or</em> schema</td><td>schema (control displays)</td></tr>
+            <tr><td>Verdict</td><td><span class="highlight">not</span> an anti-pattern</td><td>co-locating rules &#8594; discouraged</td></tr>
+          </tbody>
+        </table>
+        <p class="hint center">Why it shifted: a CVA composite was a <span class="highlight">black box</span> (parent saw <em>that</em> it was invalid, not <em>why</em>). A Signal field tree is <span class="highlight">transparent</span> - schema rules aggregate into <code data-trim>form().invalid()</code>, attach to a <code data-trim>fieldTree</code>, and re-run via <code data-trim>valueOf()</code>.</p>
+        <aside class="notes" data-markdown>
+          Answers directly whether 'schema validates, control displays' contradicts older CVA practice - it's the field's transparency, not a change in taste, that makes schema-only necessary for Signal Forms.
+
+          - concrete failure if you bake from&lt;to into the component: it can't reach form().invalid(), so the form reports valid with a backwards range and the submit gate lets it through - that is the real anti-pattern
+          - the parse exception stays in the control because a parse failure genuinely is the control's private knowledge
+        </aside>
+      </section>
+      <!-- #endregion -->
+
+      <!-- #region MARK: Slide: Custom Field Validation - Takeaways -->
+      <section>
+        <h3>Custom Field Validation - Takeaways</h3>
+        <ul>
+          <li>The schema <span class="highlight">validates</span>; the control <span class="highlight">displays</span>.</li>
+          <li>The only error a control owns is a <span class="highlight">parse error</span> (<code data-trim>transformedValue &#8594; {error}</code>). A click-based field like the rating has none &#8594; 100% schema.</li>
+          <li>Config &amp; constraints flow <span class="highlight">into</span> the control (rating <code data-trim>maxStars</code>); host decides specifics, field stays generic.</li>
+          <li>Reusable intrinsic rules travel <span class="highlight">with</span> the field as a companion <code data-trim>schema</code> + <code data-trim>apply()</code> - not inside the component.</li>
+          <li>CVA self-validation was fine; under Signal Forms it's discouraged because the error channel is <span class="highlight">form &#8594; control</span> only.</li>
+          <li>Composite/nested fields (e.g. a time-range picker) get the same treatment - see <a class="slide-link" href="#/nested-forms">Nested Forms</a>.</li>
+        </ul>
+        <aside class="notes" data-markdown>
+          Recap consolidating the validation-placement discussion into rules participants can apply to their own custom fields.
+        </aside>
+      </section>
+      <!-- #endregion -->
+
+      <!-- #region MARK: Slide: Summary -->
+      <section id="summary">
+        <h2>Summary</h2>
+        <ul>
+          <li>
+            Signal Forms are the <span class="highlight">current standard</span>: <br>
+            <ul class="ul-small">
+              <li>form model declared in code, reactivity via Signals</li>
+              <li>automatic two-way binding & type-safe field access</li>
+              <li>custom fields implement <code data-trim>FormValueControl</code> / <code data-trim>FormCheckboxControl</code> - no CVA needed</li>
+            </ul>
+          </li>
+          <li>
+            Reactive Forms & Template-driven Forms still exist: <br>
+            <ul class="ul-small">
+              <li>see <a class="slide-link" href="#/backup">backup slides under "Angular Form Types"</a> for the full recap</li>
+              <li>includes Live Code Examples for both</li>
+            </ul>
+          </li>
+        </ul>
+        <aside class="notes" data-markdown>
+          Closing recap distinguishing what participants must know going forward (Signal Forms) from what still exists in the wild (Reactive Forms/Template-driven Forms).
+        </aside>
+      </section>
+      <!-- #endregion -->
+
+      <!-- #region MARK: Slide: Nested Forms - Overview -->
+      <section id="nested-forms">
+          <h3>Time-Range Picker</h3>
+          <div style="display:flex; align-items:center; justify-content:center; gap:1.5rem; margin-top:2rem;">
+            <div style="border:2px solid #ccc; border-radius:8px; padding:0.75rem 1.25rem; text-align:left;">
+              <div style="font-size:0.7em; color:#888; text-transform:uppercase; letter-spacing:0.05em;">From</div>
+              <div style="font-size:1.3em; font-family:monospace;">09:00 am</div>
+            </div>
+            <span style="font-size:1.5em;">&#8594;</span>
+            <div style="border:2px solid #ccc; border-radius:8px; padding:0.75rem 1.25rem; text-align:left;">
+              <div style="font-size:0.7em; color:#888; text-transform:uppercase; letter-spacing:0.05em;">To</div>
+              <div style="font-size:1.3em; font-family:monospace;">05:00 pm</div>
+            </div>
+          </div>
+          <p class="hint center">app-time-range-picker</p>
+        </section>
+        <!-- #endregion -->
+
+        <!-- #region MARK: Slide: Time Picker - Requirements -->
+        <section>
+          <h3>Time Picker: Requirements</h3>
+          <div style="display:flex; align-items:center; justify-content:center; margin:0.4rem 0;">
+            <div style="border:1px solid #ccc; border-radius:6px; padding:0.3rem 0.6rem; text-align:left;">
+              <div style="font-size:0.55em; color:#888; text-transform:uppercase; letter-spacing:0.05em;">Time</div>
+              <div style="font-size:0.85em; font-family:monospace;">09:00 am</div>
+            </div>
+          </div>
+          <p class="hint center">app-time-picker</p>
+          <ul>
+            <li>Accepts a time typed as <code data-trim>hh:mm am/pm</code> (e.g. <code data-trim>09:00 am</code>)</li>
+            <li>Rejects anything that doesn't look like a valid clock time - with a clear error</li>
+            <li>Owns nothing else - no business rules, just "is this a time at all?"</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            Requirements-only slide before the implementation - sets up what the control needs to do before showing how (Signal Forms next, CVA backup below).
+          </aside>
+        </section>
+        <!-- #endregion -->
+
+        <!-- #region MARK: Slide Group: Time Picker - Internal Parsing (vertical stack) -->
+        <section>
+          <section>
+            <h3>Time Picker: Internal Parsing</h3>
+            <div style="display:flex; align-items:center; justify-content:center; margin:0.4rem 0;">
+              <div style="border:1px solid #ccc; border-radius:6px; padding:0.3rem 0.6rem; text-align:left;">
+                <div style="font-size:0.55em; color:#888; text-transform:uppercase; letter-spacing:0.05em;">Time</div>
+                <div style="font-size:0.85em; font-family:monospace;">09:00 am</div>
+              </div>
+            </div>
+            <p class="hint center">app-time-picker</p>
+            <pre data-file="time-picker.ts">
+              <code data-trim class="typescript max-height-unset">
+                export class TimePicker implements FormValueControl&lt;string&gt; {
+                  value = model('');
+
+                  // an unparseable raw value becomes a parse error via transformedValue
+                  protected readonly rawValue = transformedValue(this.value, {
+                    parse: (raw) =&gt; isValidClock(raw)
+                      ? { value: raw }
+                      : { error: { kind: 'parse', message: 'Use hh:mm am/pm' } },
+                    format: (val) =&gt; val ?? '',
+                  });
+                }
+              </code>
+            </pre>
+            <p class="hint center">No schema involved yet - this is purely "can this raw text even become a clock time?"</p>
+            <aside class="notes" data-markdown>
+              A single app-time-picker FormValueControl&lt;string&gt; - hh:mm am/pm is the ONE thing it owns. Isolates the parse step on a single, non-composite control before introducing the range on the next slide.
+            </aside>
+          </section>
+
+          <section data-visibility="uncounted">
+            <p class="hint center">Backup - same point, CVA flavour.</p>
+            <h3>Time Picker: Self-Validation</h3>
+            <div style="display:flex; align-items:center; justify-content:center; margin:0.4rem 0;">
+              <div style="border:1px solid #ccc; border-radius:6px; padding:0.3rem 0.6rem; text-align:left;">
+                <div style="font-size:0.55em; color:#888; text-transform:uppercase; letter-spacing:0.05em;">Time</div>
+                <div style="font-size:0.85em; font-family:monospace;">09:00 am</div>
+              </div>
+            </div>
+            <p class="hint center">app-time-picker</p>
+            <pre data-file="time-picker.component.ts">
+              <code data-trim class="typescript max-height-unset">
+                @Component({
+                  selector: 'app-time-picker',
+                  providers: [
+                    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() =&gt; TimePickerComponent), multi: true },
+                    { provide: NG_VALIDATORS, useExisting: forwardRef(() =&gt; TimePickerComponent), multi: true },
+                  ],
+                })
+                export class TimePickerComponent implements ControlValueAccessor, Validator {
+                  validate(c: AbstractControl): ValidationErrors | null {
+                    return isValidClock(c.value) ? null : { clock: true };
+                  }
+                }
+              </code>
+            </pre>
+            <p class="hint center">Idiomatic under CVA: the control contributes to its own <code data-trim>errors</code> via <code data-trim>NG_VALIDATORS</code>.</p>
+            <aside class="notes" data-markdown>
+              TimePickerComponent implements ControlValueAccessor + Validator - the format check is a full validator, not a parse step.
+            </aside>
+          </section>
+        </section>
+        <!-- #endregion -->
+
+        <!-- #region MARK: Slide: Time Range Picker - Requirements -->
+        <section>
+          <h3>Time Range Picker: Requirements</h3>
+          <div style="display:flex; align-items:center; justify-content:center; gap:0.75rem; margin:0.4rem 0;">
+            <div style="border:1px solid #ccc; border-radius:6px; padding:0.3rem 0.6rem; text-align:left;">
+              <div style="font-size:0.55em; color:#888; text-transform:uppercase; letter-spacing:0.05em;">From</div>
+              <div style="font-size:0.85em; font-family:monospace;">09:00 am</div>
+            </div>
+            <span style="font-size:1em;">&#8594;</span>
+            <div style="border:1px solid #ccc; border-radius:6px; padding:0.3rem 0.6rem; text-align:left;">
+              <div style="font-size:0.55em; color:#888; text-transform:uppercase; letter-spacing:0.05em;">To</div>
+              <div style="font-size:0.85em; font-family:monospace;">05:00 pm</div>
+            </div>
+          </div>
+          <p class="hint center">app-time-range-picker</p>
+          <ul>
+            <li>Combines two time pickers - a <code data-trim>from</code> and a <code data-trim>to</code></li>
+            <li>Each one individually must still be a valid <code data-trim>hh:mm am/pm</code> time</li>
+            <li>Additionally, <code data-trim>from</code> must be strictly before <code data-trim>to</code> - otherwise show an error</li>
+            <li>Reuses the time-picker's own validation - doesn't reimplement it</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            Requirements-only slide before the implementation - sets up what the composite needs to do before showing how (Signal Forms next, CVA backups below).
+          </aside>
+        </section>
+        <!-- #endregion -->
+
+        <!-- #region MARK: Slide Group: Time Range Picker - Combining Both (vertical stack) -->
+        <section>
+          <section id="time-range-picker-combining">
+            <h3>Time Range Picker: Combining Both, <code data-trim>from &lt; to</code></h3>
+            <div style="display:flex; align-items:center; justify-content:center; gap:0.75rem; margin:0.4rem 0;">
+              <div style="border:1px solid #ccc; border-radius:6px; padding:0.3rem 0.6rem; text-align:left;">
+                <div style="font-size:0.55em; color:#888; text-transform:uppercase; letter-spacing:0.05em;">From</div>
+                <div style="font-size:0.85em; font-family:monospace;">09:00 am</div>
+              </div>
+              <span style="font-size:1em;">&#8594;</span>
+              <div style="border:1px solid #ccc; border-radius:6px; padding:0.3rem 0.6rem; text-align:left;">
+                <div style="font-size:0.55em; color:#888; text-transform:uppercase; letter-spacing:0.05em;">To</div>
+                <div style="font-size:0.85em; font-family:monospace;">05:00 pm</div>
+              </div>
+            </div>
+            <p class="hint center">app-time-range-picker</p>
+            <pre data-file="time-range-picker.ts">
+              <code data-trim class="typescript max-height-unset">
+                @Component({
+                  selector: 'app-time-range-picker',
+                  template: `
+                    &lt;app-time-picker [value]="value().from" (valueChange)="setFrom($event)" /&gt;
+                    &lt;app-time-picker [value]="value().to" (valueChange)="setTo($event)" /&gt;
+                  `,
+                })
+                export class TimeRangePicker implements FormValueControl&lt;TimeRange&gt; {
+                  value = model&lt;TimeRange&gt;({ from: '', to: '' });
+
+                  // reads value().from/to directly - no extra signal needed to stay in sync
+                  protected setFrom(from: string) { this.value.update(v =&gt; ({ ...v, from })); }
+                  protected setTo(to: string)     { this.value.update(v =&gt; ({ ...v, to })); }
+                }
+              </code>
+            </pre>
+            <pre data-file="app.html">
+              <code data-trim class="html">
+                &lt;!-- mounted like any other field - ONE binding, not two --&gt;
+                &lt;app-time-range-picker [formField]="meetingForm.slot" /&gt;
+              </code>
+            </pre>
+            <aside class="notes" data-markdown>
+              app-time-range-picker is a genuine composite FormValueControl&lt;TimeRange&gt; - reusable as ONE [formField] binding, just like app-rating-input/app-email-input earlier (NOT exploded into two separate bindings at every call site - that would defeat the whole point of reuse). Internally it renders two app-time-picker's (each already parses internally); each child reads its slice straight off value() - a plain signal read, re-evaluated whenever value() changes - and writes back via (valueChange) and update(), no extra sync signal or ambient form-sharing mechanism needed. Ties back to the Internal vs External Validation slide for the email field - same split, now on a genuinely composite/nested value. The from &lt; to rule itself is covered next, as a companion schema.
+            </aside>
+          </section>
+
+          <section data-visibility="uncounted" id="time-range-picker-nested-formgroup">
+            <p class="hint center">Backup - same point, CVA flavour.</p>
+            <h3>Time Range Picker: Nested FormGroup</h3>
+            <div style="display:flex; align-items:center; justify-content:center; gap:0.75rem; margin:0.4rem 0;">
+              <div style="border:1px solid #ccc; border-radius:6px; padding:0.3rem 0.6rem; text-align:left;">
+                <div style="font-size:0.55em; color:#888; text-transform:uppercase; letter-spacing:0.05em;">From</div>
+                <div style="font-size:0.85em; font-family:monospace;">09:00 am</div>
+              </div>
+              <span style="font-size:1em;">&#8594;</span>
+              <div style="border:1px solid #ccc; border-radius:6px; padding:0.3rem 0.6rem; text-align:left;">
+                <div style="font-size:0.55em; color:#888; text-transform:uppercase; letter-spacing:0.05em;">To</div>
+                <div style="font-size:0.85em; font-family:monospace;">05:00 pm</div>
+              </div>
+            </div>
+            <p class="hint center">app-time-range-picker</p>
+            <pre data-file="time-range-picker.component.ts">
+              <code data-trim class="typescript max-height-unset">
+                @Component({
+                  providers: [
+                    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() =&gt; TimeRangePickerComponent), multi: true },
+                    { provide: NG_VALIDATORS, useExisting: forwardRef(() =&gt; TimeRangePickerComponent), multi: true },
+                  ],
+                })
+                export class TimeRangePickerComponent implements ControlValueAccessor, Validator {
+                  form = new FormGroup({
+                    from: new FormControl(''), // each child already has the time-picker's own NG_VALIDATORS
+                    to: new FormControl(''),
+                  });
+
+                  writeValue(v: TimeRange) { this.form.setValue(v, { emitEvent: false }); }
+                  registerOnChange(fn: (v: TimeRange) =&gt; void) { this.form.valueChanges.subscribe(fn); }
+
+                  // the composite contributes its OWN cross-field rule, full validator contribution
+                  validate(): ValidationErrors | null {
+                    const { from, to } = this.form.value;
+                    return isBefore(from, to) ? null : { rangeOrder: true };
+                  }
+                }
+              </code>
+            </pre>
+            <p class="hint center">Unlike Signal Forms' parse-only upward channel, both levels here are full <code data-trim>NG_VALIDATORS</code> contributions.</p>
+            <aside class="notes" data-markdown>
+              TimeRangePickerComponent wraps a nested FormGroup({ from, to }) - here we have ALL the validations: hh:mm am/pm in the time picker, from &lt; to in the time range picker.
+
+              Pros &amp; cons of this CVA composite (nested FormGroup): Pro - reusable &amp; portable, the Google-recommended best practice, supports many nested levels. Con - you must implement the interface; and mat-error in Angular Material misbehaves when the child exposes only a control, not a form.
+            </aside>
+          </section>
+
+          <section data-visibility="uncounted">
+            <p class="hint center">Backup - CVA-only, no Signal Forms equivalent.</p>
+            <h3>Alternative: Sharing the Parent FormGroup</h3>
+            <div style="display:flex; align-items:center; justify-content:center; gap:0.75rem; margin:0.4rem 0;">
+              <div style="border:1px solid #ccc; border-radius:6px; padding:0.3rem 0.6rem; text-align:left;">
+                <div style="font-size:0.55em; color:#888; text-transform:uppercase; letter-spacing:0.05em;">From</div>
+                <div style="font-size:0.85em; font-family:monospace;">09:00 am</div>
+              </div>
+              <span style="font-size:1em;">&#8594;</span>
+              <div style="border:1px solid #ccc; border-radius:6px; padding:0.3rem 0.6rem; text-align:left;">
+                <div style="font-size:0.55em; color:#888; text-transform:uppercase; letter-spacing:0.05em;">To</div>
+                <div style="font-size:0.85em; font-family:monospace;">05:00 pm</div>
+              </div>
+            </div>
+            <p class="hint center">app-time-range-picker - same UI and outcome</p>
+            <pre data-file="time-range-picker.component.ts">
+              <code data-trim class="typescript max-height-unset">
+                @Component({
+                  selector: 'app-time-range-picker',
+                  viewProviders: [{ provide: ControlContainer, useExisting: FormGroupDirective }],
+                  template: `
+                    &lt;ng-container formGroupName="slot"&gt;
+                      &lt;app-time-picker formControlName="from" /&gt;
+                      &lt;app-time-picker formControlName="to" /&gt;
+                    &lt;/ng-container&gt;
+                  `,
+                })
+                export class TimeRangePickerComponent implements OnInit {
+                  // inject parent in the constructor (this.form = parent)
+                  constructor(private form: FormGroupDirective) {}
+
+                  ngOnInit() {
+                    // build the form structure in this component (this.form.form.addControl) -
+                    // the host never has to know "slot" has a from/to shape
+                    this.form.form.addControl('slot', new FormGroup({
+                      from: new FormControl(''),
+                      to: new FormControl(''),
+                    }));
+                  }
+                }
+              </code>
+            </pre>
+            <pre data-file="meeting-room-form.component.html">
+              <code data-trim class="html">
+                &lt;!-- host owns the root FormGroup only - "slot" is the picker's own business --&gt;
+                &lt;form [formGroup]="meetingForm"&gt;
+                  &lt;app-time-range-picker /&gt;
+                &lt;/form&gt;
+              </code>
+            </pre>
+            <p class="hint center"><code data-trim>viewProviders</code> instead of <code data-trim>providers</code>: providers cannot reach up to the parent. No CVA, no composite value - just template reuse.</p>
+            <aside class="notes" data-markdown>
+              Same From/To UI and outcome - but TimeRangePickerComponent owns neither a value nor a FormGroup. It writes straight into the parent's form instead. Same technique as the legacy general-info exercise (now in the Exercises section): inject the parent FormGroupDirective in the constructor, addControl its own structure into it, bind via formGroupName/formControlName - just applied directly to the time-range-picker instead of taught abstractly on a generic address field. CVA-only: a Signal Forms composite just binds its children to slices of its own value() - a plain two-way-bindable signal, no ambient form-sharing mechanism needed at all - whereas CVA has no such plain model object and must reach for either a nested FormGroup or this ControlContainer trick.
+
+              How the sharing actually works: formGroupName/formControlName look up ControlContainer with @Host(), which is restricted to the component's own view, so by default they can't see an ancestor component's FormGroupDirective. The constructor param FormGroupDirective is not @Host()-restricted, so DI walks past the component boundary and injects the real ancestor instance from the host's &lt;form [formGroup]&gt;. viewProviders then re-publishes that same instance as ControlContainer for this component's own view, so formGroupName="slot" inside resolves to it too. Because it's the same object and not a copy, this.form.form.addControl(...) mutates the host's own meetingForm directly - the host's FormGroup starts without a "slot" control at all (e.g. just { room: new FormControl('') }) until the picker adds it.
+
+              Pro/con vs. the nested-FormGroup CVA approach above: quicker to wire up - no NG_VALUE_ACCESSOR/NG_VALIDATORS providers, no writeValue/registerOnChange boilerplate - but it only works inside one Reactive Forms tree. The component isn't a portable, self-contained control anymore: it requires an ancestor &lt;form [formGroup]&gt; to graft onto, can't be dropped into a Template-driven form, and can't be reused standalone the way a true CVA control can.
+
+              Control Container lookup: formGroupName/formControlName (and ngModelGroup) find their parent by searching up the injector tree for a ControlContainer - any of ngForm, FormGroupDirective, NgModelGroup, FormGroupName or FormArrayName. That ancestor is exactly the instance this slide's viewProviders re-publishes, so the child's controls attach to the host's own form.
+            </aside>
+          </section>
+        </section>
+        <!-- #endregion -->
+
+        <!-- #region MARK: Slide Group: Reuse - Companion Schema (vertical stack) -->
+        <section>
+          <section id="reuse-companion-schema">
+            <h3>Reuse: Companion Schema</h3>
+            <p>Ship the intrinsic <code data-trim>from &lt; to</code> rule alongside the field:</p>
+            <pre data-file="time-range-picker.ts">
+              <code data-trim class="typescript max-height-unset">
+                // shipped alongside the control
+                export const timeRangeSchema = schema&lt;TimeRange&gt;((path) =&gt; {
+                  validateTree(path, (ctx) =&gt; {
+                    const { from, to } = ctx.value();
+                    return isBefore(from, to)
+                      ? null
+                      : { kind: 'rangeOrder', message: 'Start must be before end',
+                          fieldTree: ctx.fieldTree.to };
+                  });
+                });
+              </code>
+            </pre>
+            <pre data-file="app.ts">
+              <code data-trim class="typescript max-height-unset">
+                meetingForm = form(this.model, (path) =&gt; {
+                  apply(path.slot, timeRangeSchema); // from &lt; to - one line, every host gets it
+                });
+              </code>
+            </pre>
+            <p class="hint center">Same pattern as <code data-trim>corporateEmailSchema</code> earlier - the intrinsic rule travels <span class="highlight">with</span> the field, not re-implemented per host.</p>
+          </section>
+
+          <section data-visibility="uncounted">
+            <p class="hint center">Backup - same point, CVA flavour.</p>
+            <h3>Reuse: Exported Validator Function</h3>
+            <p>CVA doesn't need a companion-schema-style reuse mechanism as badly: without the <span class="highlight">schema validates, control displays</span> split forcing rules out of the class, self-validation is allowed - the <code data-trim>from &lt; to</code> check already lives bundled inside <code data-trim>TimeRangePickerComponent</code>'s own <code data-trim>validate()</code>, no separate schema to ship (see <a class="slide-link" href="#/time-range-picker-nested-formgroup">Nested FormGroup</a>).</p>
+          </section>
+        </section>
+        <!-- #endregion -->
+
+        <!-- #region MARK: Slide Group: Host-Specific Constraint - 9-5 Working Hours (vertical stack) -->
+        <section>
+          <section>
+            <h3>Host-Specific Constraint: 9-5 Working Hours</h3>
+            <p>One specific host composes its own business rule <span class="highlight">on top</span> of the shipped schema - not reusable, not shipped with the field:</p>
+            <pre data-file="app.ts">
+              <code data-trim class="typescript max-height-unset">
+                // THIS host only - one-off business rule, composed on top
+                meetingForm = form(this.model, (path) =&gt; {
+                  apply(path.slot, timeRangeSchema);                       // from &lt; to (shipped)
+                  min(path.slot.from, '09:00', { message: 'Opens at 9' }); // business rule (this host only)
+                  max(path.slot.to,   '17:00', { message: 'Closes at 5' });
+                });
+              </code>
+            </pre>
+            <p class="hint center">No reuse here by design - a meeting-room booking form needs 9-5, another host of the same field might not.</p>
+          </section>
+
+          <section data-visibility="uncounted">
+            <p class="hint center">Backup - same point, CVA flavour.</p>
+            <h3>Host-Specific Constraint - CVA</h3>
+            <p>The host stacks its own working-hours validator via a second <code data-trim>NG_VALIDATORS</code> entry - on top of the composite's own internal <code data-trim>from &lt; to</code>:</p>
+            <pre data-file="meeting-room-form.component.ts">
+              <code data-trim class="typescript max-height-unset">
+                @Component({
+                  providers: [
+                    // THIS host only - not shipped with app-time-range-picker
+                    { provide: NG_VALIDATORS, useExisting: forwardRef(() =&gt; WorkingHours), multi: true },
+                  ],
+                })
+                class WorkingHours implements Validator {
+                  validate(c: AbstractControl) {
+                    const { from, to } = c.value;
+                    return from &gt;= '09:00' &amp;&amp; to &lt;= '17:00' ? null : { workingHours: true };
+                  }
+                }
+              </code>
+            </pre>
+            <ul>
+              <li><code data-trim>NG_VALIDATORS</code> is a <span class="highlight">multi</span>-provider - composes with the composite's own <code data-trim>rangeOrder</code> validator</li>
+              <li>Add-only: this host adds a rule, it cannot remove the component's baked-in <code data-trim>from &lt; to</code> check</li>
+            </ul>
+            <p class="hint center">Same "host stacks on top" pattern as the rating field's CVA backup, now applied to a composite control.</p>
+          </section>
+        </section>
+        <!-- #endregion -->
+
+      <!-- #region MARK: Slide Group: Exercises Introduction (vertical stack) -->
+      <section class="exercises">
+
+        <section>
+          <h3>Before You Start: About the Starter Project</h3>
+          <p>This exercise project has been iteratively upgraded from Angular 7 to Angular 22 rather than rewritten from scratch - it still follows the classic <code data-trim>NgModule</code> structure end to end.</p>
+          <p>Standalone components are Angular's modern default, and the Signal Forms exercises lean on them for new fields - but standalone and <code data-trim>NgModule</code> interop freely, so this isn't a conflict you need to resolve.</p>
+          <p class="hint center">The next few slides cover what that means in practice while you work through the exercises.</p>
         </section>
 
         <section>
-            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                <h3 class="white">Custom Form Control</h3>
-                <h5 class="white" style="color: #10e0ff">With Control Value Accessor</h5>
-                <blockquote class="white">
-                    CVA - is an interface that acts as a <strong>bridge </strong>between the <strong>Angular forms
-                    API </strong>and a <strong>native element in the DOM</strong>.
-                </blockquote>
-                <span class="white">It propagates changes from the <span
-                        style="color: #10e0ff"><strong>model</strong></span> to the <span
-                        style="color: #10e0ff"><strong>view</strong></span>
-                    and from the <span style="color: #10e0ff"><strong>view</strong></span> to the <span
-                            style="color: #10e0ff"><strong>model</strong></span></span>
-            </section>
-
-            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                <h3 class="white">Control Value Accessor</h3>
-                <img src="img/cva.jpeg" class="no-background no-border no-margin no-shadow">
-                <!--Image taken from: https://blog.angularindepth.com/never-again-be-confused-when-implementing-controlvalueaccessor-in-angular-forms-93b9eee9ee83-->
-            </section>
-
-            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                <h3 class="white">Control Value Accessor</h3>
-                <h5 class="white" style="color: #10e0ff">API</h5>
-                <pre><code>
-// is the method that writes a new value from the form model
-// into the view or (if needed) DOM property
-writeValue(obj: any)
-// is a method that registers a handler that should be called
-// when something in the view has changed
-registerOnChange(fn: any)
-// it registers a handler specifically for when a control receives
-// a touch event
-registerOnTouched(fn: any)
-                </code></pre>
-            </section>
-
-            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                <h3 class="white">Control Value Accessor</h3>
-                <h5 class="white" style="color: #10e0ff">Implementation steps</h5>
-                <ul class="white">
-                    <li>Implement ControlValueAccessor interface and implement its methods</li>
-                    <li>Register ControlValueAccessor (in a Component)</li>
-                </ul>
-                <pre><code>
-providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CustomComponent),
-      multi: true
-    }
-  ]
-                </code></pre>
-            </section>
-
-            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                <h3 class="white">Control Value Accessor</h3>
-                <h5 class="white" style="color: #10e0ff">Exercise (1/5)</h5>
-                <ol class="white">
-                    <li>Pull or fork a repository from <a
-                            href="https://github.com/devonfw-ng-adv-training/advanced-forms.git">here</a></li>
-                    <li>Get a master state</li>
-                    <li>First of all we need to extend our book model:</li>
-                    <ul>
-                        <li>Create a genre.ts interface with following fields: id, name, icon</li>
-                        <li>Add new endpoint in server.ts (GET /api/genres)</li>
-                        <li>Add genres.json with 4 genres, e.g.: {"id": 1, "name": "IT", "icon": "favorite"}</li>
-                    </ul>
-                </ol>
-            </section>
-
-            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                <h3 class="white">Control Value Accessor</h3>
-                <h5 class="white" style="color: #10e0ff">Exercise (2/5)</h5>
-                <ol class="white">
-                    <ul>
-                        <li>Add to isBook method (server.ts) an extra check if genre is defined</li>
-                        <li>Add book-genres.service (ng g s book-genres) and implement a method getGenres() which
-                            returns a json with genres
-                        </li>
-                        <li>Add BookGenresResolver and implement the resolve method</li>
-                    </ul>
-                </ol>
-            </section>
-
-            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                <h3 class="white">Control Value Accessor</h3>
-                <h5 class="white" style="color: #10e0ff">Exercise (3/5)</h5>
-                <ol class="white">
-                    <ul>
-                        <li>Create a custom control component with a select box (ng g c customized-select-box)</li>
-                        <li>Define customized select box template - the list should consist of icon and genre</li>
-                        <ul>
-                            <li>Use mat-form-field</li>
-                            <li>Use mat-select fot the list</li>
-                            <li>Use mat-select-trigger to define how and what should be displayed in the list</li>
-                            <li>Use mat-option</li>
-                            <li>Documentation can be found <a
-                                    href="https://material.angular.io/components/select/overview">here</a></li>
-                        </ul>
-                        <li>Add BookGenresResolver and implement the resolve method</li>
-                    </ul>
-                </ol>
-            </section>
-
-            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                <h3 class="white">Control Value Accessor</h3>
-                <h5 class="white" style="color: #10e0ff">Exercise (4/5)</h5>
-                <ol class="white">
-                    <ul>
-                        <li>Implement ControlValueAccessor</li>
-                        <li>To get MatSelect, use a @ViewChild: @ViewChild(MatSelect) matSelect: MatSelect;</li>
-                        <li>Add field: propagateChange (val: any) => {}</li>
-                        <li>Add genres (list) and placeholder as Inputs</li>
-                    </ul>
-                </ol>
-            </section>
-
-            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                <h3 class="white">Control Value Accessor</h3>
-                <h5 class="white" style="color: #10e0ff">Exercise (5/5)</h5>
-                <ol class="white">
-                    <li>Implement following methods: writeValue and registerOnChange</li>
-                    <ul>
-                        <li>You need to add (selectionChange) event to mat-select, implement this method
-                            in a component and select the option from the list and trigger propagateOnChange
-                        </li>
-                        <li>You need to register CVA</li>
-                    </ul>
-                    <li>Don't forget to register new services and components in the modules</li>
-                </ol>
-            </section>
-
+          <h3>Why Modules, Not Standalone-Only</h3>
+          <p><code data-trim>NgModule</code>s are not deprecated - standalone is only the new default for <em>new</em> code, not a replacement requirement for existing apps.</p>
+          <p>This app still bootstraps the classic way:</p>
+          <pre data-file="main.ts">
+            <code data-trim class="typescript">
+              platformBrowser().bootstrapModule(AppModule)
+                .catch(err =&gt; console.error(err));
+            </code>
+          </pre>
+          <p>Feature areas stay organized as <code data-trim>NgModule</code>s (<code data-trim>BookModule</code>, <code data-trim>SharedModule</code>, ...) with their own <code data-trim>declarations</code>/<code data-trim>imports</code>/<code data-trim>exports</code>.</p>
         </section>
-
 
         <section>
-
-            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                <h3 class="white">Nested Forms</h3>
-                <h5 class="white" style="color: #10e0ff">With Form Group Directive</h5>
-                <span class="white">Control Container looks in the tree for any of these directives (looks for a parent):</span>
-                <ul class="white">
-                    <li>ngForm</li>
-                    <li>FormGroupDirective</li>
-                    <li>NgModelGroup</li>
-                    <li>FormGroupName</li>
-                    <li>FormArrayName</li>
-                </ul>
-            </section>
-
-            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                <h3 class="white">With Form Group Directive</h3>
-                <h5 class="white" style="color: #10e0ff">Implementation</h5>
-                <pre><code>
-viewProviders: [
-    { provide: ControlContainer, useExisting: FormGroupDirective }
-  ]
-                </code></pre>
-                <span class="white">ViewProviders instead of providers: providers cannot reach up the parent (if the structure is complex)</span>
-            </section>
-
-            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                <h3 class="white">With Form Group Directive</h3>
-                <h5 class="white" style="color: #10e0ff">Pros & cons</h5>
-                <ul class="white">
-                    <li>Pro: quicker to set up</li>
-                    <li>Con: limited to one forms module</li>
-                </ul>
-            </section>
-
-            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                <h3 class="white">With Form Group Directive</h3>
-                <h5 class="white" style="color: #10e0ff">Exercise (1/3)</h5>
-                <ol class="white">
-                    <li>Create an order module (ng g m order)</li>
-                    <li>Create order-overview component (ng g c order-overview)</li>
-                    <ul class="white">
-                        <li>This is the parent form - add [formGroup] directive</li>
-                        <li>Add apply and cancel buttons</li>
-                        <li>On apply show the form (rawValue) in the console</li>
-                        <li>Form can be submitted only if it's valid (add a flag submitted)</li>
-                    </ul>
-                </ol>
-            </section>
-
-            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                <h3 class="white">With Form Group Directive</h3>
-                <h5 class="white" style="color: #10e0ff">Exercise (2/3)</h5>
-                <ol class="white">
-                    <li>Add general-info component (ng g c general-info)</li>
-                    <ul class="white">
-                        <li>Add formGroupName (to the div in the template)</li>
-                        <li>Add 2 matInputs: with first and last name</li>
-                        <li>Define viewProviders ( provide: ControlContainer, useExisting: FormGroupDirective })</li>
-                        <li>Inject parent in the constructor (this.form = parent)</li>
-                    </ul>
-                </ol>
-            </section>
-
-            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                <h3 class="white">With Form Group Directive</h3>
-                <h5 class="white" style="color: #10e0ff">Exercise (3/3)</h5>
-                <ol class="white">
-                    <li>Build the form structure in the general-info component</li>
-                    <ul class="white">
-                        <li>Use addControl (this.form.form.addControl)</li>
-                        <li>Add first and lastName controls</li>
-                        <li>Add required validators for each field</li>
-                        <li>Add mat-error to the template</li>
-                        <li>Don't forget all needed imports in the order.module</li>
-                    </ul>
-                </ol>
-            </section>
-
-            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                <h3 class="white">Nested Forms</h3>
-                <h5 class="white" style="color: #10e0ff">With Control Value Accessor</h5>
-                <ul class="white">
-                    <li>Pro: Reusable & portable</li>
-                    <li>Pro: Best practise (Google)</li>
-                    <li>Pro: Supports many nested levels</li>
-                    <li>Cons: Implement interface</li>
-                    <li>Cons: Problems with mat-error in Angular Material (if there is no form, only a control)</li>
-                </ul>
-
-            </section>
-
-            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                <h3 class="white">With Control Value Accessor</h3>
-                <h5 class="white" style="color: #10e0ff">Validation</h5>
-                <blockquote class="white">
-                    For Re-validation, the validators will need to be on the top-level form, not at the child component,
-                    if you want it to be part of the parent form’s validation.
-                </blockquote>
-
-            </section>
-
-            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                <h3 class="white">With Control Value Accessor</h3>
-                <h5 class="white" style="color: #10e0ff">Exercise (1/4)</h5>
-                <ol class="white">
-                    <li>Add address component (ng g c address)</li>
-                    <ul class="white">
-                        <li>Implement Control Value Accessor</li>
-                        <li>Define form in the template [formGroup]="form"</li>
-                        <li>Add following fields (as MatInputs): street, zipCode, city</li>
-                        <li>All the fields are required - add validators and mat-error</li>
-                    </ul>
-                </ol>
-            </section>
-
-            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                <h3 class="white">With Control Value Accessor</h3>
-                <h5 class="white" style="color: #10e0ff">Exercise (2/4)</h5>
-                <ol class="white">
-                    <li>Implement CVA methods:</li>
-                    <ul class="white">
-                        <li>Define form in the template [formGroup]="form"</li>
-                        <li>In writeValue use setValue and set emitEvent as false (good for the performance)</li>
-                        <li>Use valueChanges (from form) to subscribe on changes in the registerOnChange method</li>
-                        <li>All the fields are required - add validators and mat-error</li>
-                    </ul>
-                </ol>
-            </section>
-
-            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                <h3 class="white">With Control Value Accessor</h3>
-                <h5 class="white" style="color: #10e0ff">Exercise (3/4)</h5>
-                <ol class="white">
-                    <li>Implement Validator in providers</li>
-                    <pre><code>
-{
-   provide: NG_VALIDATORS,
-   useExisting: forwardRef(() => AddressComponent),
-   multi: true
-}
-                    </code></pre>
-                    <li>Implement validate method</li>
-                </ol>
-            </section>
-
-            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                <h3 class="white">With Control Value Accessor</h3>
-                <h5 class="white" style="color: #10e0ff">Exercise (3/4)</h5>
-                <ol class="white">
-                    <li>We need to know in the child if parent was submitted (parent has the submit button)</li>
-                    <ul class="white">
-                        <li>Define in child @Input() isParentSubmitted</li>
-                        <li>Implement OnChanges interface</li>
-                        <li>We need a workaround in Angular Material to trigger a validation on submit (bug in Angular
-                            Material)
-                        </li>
-                    </ul>
-                </ol>
-                <pre><code>
-   Object.keys(this.form.controls).forEach(key => {
-      this.form.get(key).markAsTouched();
-   });
-                        </code></pre>
-            </section>
-
-
-            <section data-background-image="./img/shapes/Fixed_Shape_3_SVG/Fixed_Shape_3_CapgeminiBlue_RGB.svg">
-                <h3 class="white">With Control Value Accessor</h3>
-                <h5 class="white" style="color: #10e0ff">Exercise (4/4)</h5>
-                <ol class="white">
-                    <li>Set an Input in parent (order-overview) [isParentSubmitted]="submitted"
-                    <li>
-                        <ul class="white">
-                            <li>Define in child @Input() isParentSubmitted</li>
-                            <li>Add address as FormControl in parent</li>
-                        </ul>
-                </ol>
-            </section>
+          <h3>Standalone &amp; NgModule Interop</h3>
+          <p>A standalone component can be imported straight into an <code data-trim>NgModule</code>'s own <code data-trim>imports</code> array - not <code data-trim>declarations</code>:</p>
+          <pre data-file="book.module.ts">
+            <code data-trim class="typescript">
+              @NgModule({
+                imports: [SomeStandaloneWidgetComponent],
+                declarations: [BookOverviewComponent],
+              })
+              export class BookModule {}
+            </code>
+          </pre>
+          <p>The reverse works too - a standalone component lists whichever <code data-trim>NgModule</code>s it needs in its own <code data-trim>imports</code>:</p>
+          <pre data-file="some-standalone.component.ts">
+            <code data-trim class="typescript">
+              @Component({
+                selector: 'app-some-standalone',
+                imports: [MatFormFieldModule, MatInputModule],
+              })
+              export class SomeStandaloneComponent {}
+            </code>
+          </pre>
         </section>
+
+        <section>
+          <h3>Generating New Components for the Exercises</h3>
+          <p><code data-trim>ng generate component</code> already does the right thing here - no extra flag needed:</p>
+          <pre data-file="angular.json">
+            <code data-trim class="json">
+              "schematics": {
+                "@schematics/angular:component": { "standalone": false }
+              }
+            </code>
+          </pre>
+          <p>So <code data-trim>ng g c customized-select-box</code> generates <code data-trim>standalone: false</code> automatically, matching every existing component (e.g. <code data-trim>AppComponent</code>) - still double-check it landed in the <code data-trim>declarations</code> of the module you intended.</p>
+          <p class="hint center">Heads-up: existing templates (<code data-trim>book-overview</code>, <code data-trim>book-details</code>, ...) still use the legacy <code data-trim>*ngIf</code>/<code data-trim>*ngFor</code> structural directives, not the modern <code data-trim>@if{}</code>/<code data-trim>@for{}</code> control-flow syntax. Both work side by side in the same app - use whichever you like in new template code, there's no need to migrate what's already there.</p>
+        </section>
+
+      </section>
+      <!-- #endregion -->
+
+      <!-- #region MARK: Slide Group: Custom Form Control (vertical stack) -->
+      <section class="exercises">
+
+        <section>
+          <h3>Custom Form Control</h3>
+          <div style="display:flex; align-items:center; justify-content:center; margin:1rem 0;">
+            <div style="border:1px solid #ccc; border-radius:6px; padding:0.3rem 0.6rem; text-align:left;">
+              <div style="font-size:0.55em; color:#888; text-transform:uppercase; letter-spacing:0.05em;">Genre</div>
+              <div style="font-size:0.85em; font-family:monospace;">Fantasy &#9662;</div>
+            </div>
+          </div>
+          <p class="hint center">app-customized-select-box</p>
+          <p>Extend the book form with a genre picker - a dropdown showing an icon and name, backed by a new <code data-trim>/api/genres</code> endpoint.</p>
+        </section>
+
+        <section id="custom-form-control-worlds">
+          <h3>Custom Form Control</h3>
+          <p class="hint center">Before you start: two forms "worlds"</p>
+          <p>Angular has two different form APIs: the classic <span class="highlight">Reactive Forms</span> (<code data-trim>FormGroup</code>) and the newer <span class="highlight">Signal Forms</span> (<code data-trim>form()</code>, <code data-trim>[formField]</code>). A control built for one doesn't automatically plug into the other - think of it as two different plug shapes.</p>
+          <p><code data-trim>book-details</code>'s form (<code data-trim>bookForm</code>) happens to be built with <span class="highlight">Reactive Forms</span>:</p>
+          <ul>
+            <li>Build the genre picker as <span class="highlight">CVA</span> &#8594; it plugs straight in, no surprises - Reactive Forms is its native language.</li>
+            <li>Build it as <span class="highlight">Signal Forms</span> instead &#8594; it speaks the other language, so it needs a small <span class="highlight">adapter</span> to join <code data-trim>bookForm</code>.</li>
+          </ul>
+          <p class="hint center">That adapter has a name - <code data-trim>SignalFormControl</code> - and it's one extra step, shown where it's needed in the Signal Forms track below. Nothing to prepare now, just know it's coming.</p>
+        </section>
+
+        <section>
+          <h3>Custom Form Control</h3>
+          <p class="hint center">Exercise (1/5)</p>
+          <ol>
+            <li>Pull or fork a repository from <a
+                href="https://github.com/devonfw-ng-adv-training/advanced-forms.git">here</a></li>
+            <li>Get a master state</li>
+            <li>First of all we need to extend our book model:
+              <ul>
+                <li>Create a genre.ts interface with following fields: id, name, icon</li>
+                <li>Add new endpoint in server.ts (GET /api/genres)</li>
+                <li>The data already ships as <code data-trim>server/book-genres.json</code> (<code data-trim>{"id": 1, "name": "IT", "icon": "code"}</code>, ...) - no need to create a new file, just read and return it</li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h3>Custom Form Control</h3>
+          <p class="hint center">Exercise (2/5)</p>
+          <ul>
+            <li>Add to isBook method (server.ts) an extra check if genre is defined</li>
+            <li>Add book-genres.service (ng g s book-genres) and implement a method getGenres() which
+              returns a json with genres
+            </li>
+            <li>Add BookGenresResolver and implement the resolve method
+              <ul>
+                <li>This is an instance of an official Angular routing pattern, worth knowing by name - look it up if it's new to you</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Custom Form Control</h3>
+          <p class="hint center">Exercise (3/5)</p>
+          <p class="hint center">Jump to the flavor-specific steps: <a class="slide-link" href="#/exercise-signal-track">Signal Forms</a> &middot; <a class="slide-link" href="#/exercise-cva-track">CVA</a></p>
+          <ul>
+            <li>Create a custom control component with a select box (ng g c customized-select-box)</li>
+            <li>Define customized select box template - the list should consist of icon and genre
+              <ul>
+                <li>Use mat-form-field</li>
+                <li>Use mat-select fot the list</li>
+                <li>Use mat-select-trigger to define how and what should be displayed in the list</li>
+                <li>Use mat-option</li>
+                <li>Documentation can be found <a
+                    href="https://material.angular.io/components/select/overview">here</a></li>
+              </ul>
+            </li>
+            <li>Mount the finished component on the book form in <code data-trim>book-details</code> - that's the only book form in this starter</li>
+          </ul>
+        </section>
+
+        <section id="exercise-signal-track">
+          <h3>Custom Form Control</h3>
+          <p class="hint center">Signal Forms flavour &middot; Exercise (4/4)</p>
+          <ol>
+            <li>Implement <code data-trim>FormValueControl&lt;Genre&gt;</code> on <code data-trim>CustomizedSelectBox</code>
+              <ul>
+                <li>Add <code data-trim>value = model&lt;Genre | null&gt;(null)</code></li>
+                <li>Add <code data-trim>touch = output&lt;void&gt;()</code>, emit it on blur / when the panel closes</li>
+                <li>Add <code data-trim>genres</code> (list) and <code data-trim>placeholder</code> as <code data-trim>input()</code>s</li>
+              </ul>
+            </li>
+            <li>Wire <code data-trim>(selectionChange)</code> on <code data-trim>mat-select</code> to <code data-trim>value.set($event.value)</code></li>
+            <li>No registration needed - no <code data-trim>NG_VALUE_ACCESSOR</code>, no module wiring beyond the usual standalone imports</li>
+          </ol>
+          <p class="hint center">The adapter from <a class="slide-link" href="#/custom-form-control-worlds">before you start</a>, in code: <code data-trim>genre = new SignalFormControl&lt;Genre | null&gt;(null, p =&gt; required(p))</code>, then <code data-trim>bookForm.addControl('genre', this.genre)</code>, then mount with <code data-trim>[formField]="genre.fieldTree"</code> instead of <code data-trim>bookForm.genre</code>.</p>
+        </section>
+
+        <section id="exercise-cva-track" data-visibility="uncounted">
+          <h3>Custom Form Control</h3>
+          <p class="hint center">Backup - same point, CVA flavour.</p>
+          <p class="hint center">Exercise (4/5)</p>
+          <ul>
+            <li>Implement ControlValueAccessor</li>
+            <li>To get MatSelect, use a @ViewChild: @ViewChild(MatSelect) matSelect: MatSelect;</li>
+            <li>Add field: propagateChange (val: any) => {}</li>
+            <li>Add genres (list) and placeholder as Inputs</li>
+          </ul>
+        </section>
+
+        <section data-visibility="uncounted">
+          <h3>Custom Form Control</h3>
+          <p class="hint center">Backup - same point, CVA flavour.</p>
+          <p class="hint center">Exercise (5/5)</p>
+          <ol>
+            <li>Implement following methods: writeValue and registerOnChange
+              <ul>
+                <li>You need to add (selectionChange) event to mat-select, implement this method
+                  in a component and select the option from the list and trigger propagateOnChange
+                </li>
+                <li>You need to register CVA</li>
+              </ul>
+            </li>
+            <li>Don't forget to register new services and components in the modules</li>
+          </ol>
+        </section>
+
+      </section>
+      <!-- #endregion -->
+
+      <!-- #region MARK: Slide Group: Address Field (vertical stack) -->
+      <section class="exercises">
+
+        <section>
+          <h3>Address Field</h3>
+          <div style="display:flex; align-items:center; justify-content:center; gap:0.75rem; margin:1rem 0; flex-wrap:wrap;">
+            <div style="border:1px solid #ccc; border-radius:6px; padding:0.3rem 0.6rem; text-align:left;">
+              <div style="font-size:0.55em; color:#888; text-transform:uppercase; letter-spacing:0.05em;">Street</div>
+              <div style="font-size:0.85em; font-family:monospace;">Elm Street 12</div>
+            </div>
+            <div style="border:1px solid #ccc; border-radius:6px; padding:0.3rem 0.6rem; text-align:left;">
+              <div style="font-size:0.55em; color:#888; text-transform:uppercase; letter-spacing:0.05em;">Zip Code</div>
+              <div style="font-size:0.85em; font-family:monospace;">12345</div>
+            </div>
+            <div style="border:1px solid #ccc; border-radius:6px; padding:0.3rem 0.6rem; text-align:left;">
+              <div style="font-size:0.55em; color:#888; text-transform:uppercase; letter-spacing:0.05em;">City</div>
+              <div style="font-size:0.85em; font-family:monospace;">Springfield</div>
+            </div>
+          </div>
+          <p class="hint center">app-address</p>
+          <p>Build a reusable address field (street, zip code, city, all required) and mount it inside the Personal Information form.</p>
+          <p class="hint center">The starter already ships <code data-trim>app-personal-info-overview</code> (route <code data-trim>/personal-info</code>) as the host for this exercise.</p>
+        </section>
+
+        <section id="address-field-worlds">
+          <h3>Address Field</h3>
+          <p class="hint center">Before you start: two forms "worlds" (the other way round)</p>
+          <p>Same idea as the genre picker, flipped: this time the host page, <code data-trim>personal-info-overview</code>, is built with <span class="highlight">Signal Forms</span> (<code data-trim>form()</code>) instead of Reactive Forms.</p>
+          <ul>
+            <li>Build the address field as <span class="highlight">Signal Forms</span> (<code data-trim>FormValueControl</code>) &#8594; it plugs straight in via <code data-trim>[formField]</code> - this page's native language.</li>
+            <li>Build it as <span class="highlight">CVA</span> instead (backup track below) &#8594; it speaks Reactive Forms, so it needs the mirror-image adapter to join a Signal Forms host.</li>
+          </ul>
+          <p class="hint center">That adapter is called <code data-trim>compatForm</code> - shown where it's needed in the CVA backup steps below. Together with the genre picker's <code data-trim>SignalFormControl</code>, these two exercises cover both directions of Signal Forms &#8596; Reactive Forms compatibility.</p>
+        </section>
+
+        <section>
+          <h3>Address Field</h3>
+          <p class="hint center">Exercise (1/3)</p>
+          <ol>
+            <li>Add address component (ng g c address)
+              <ul>
+                <li>Implement <code data-trim>FormValueControl&lt;Address&gt;</code></li>
+                <li>Add <code data-trim>value = model&lt;Address&gt;({ street: '', zipCode: '', city: '' })</code></li>
+                <li>Template: plain inputs for street, zipCode, city - no internal FormGroup</li>
+                <li>Each input writes back via <code data-trim>value.update(v =&gt; ({ ...v, street: $event }))</code> (and so on)</li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h3>Address Field</h3>
+          <p class="hint center">Exercise (2/3)</p>
+          <ol>
+            <li>Ship a companion schema alongside the component
+              <ul>
+                <li>Create <code data-trim>addressSchema = schema&lt;Address&gt;((path) =&gt; { ... })</code></li>
+                <li>Add <code data-trim>required(path.street, ...)</code>, <code data-trim>required(path.zipCode, ...)</code>, <code data-trim>required(path.city, ...)</code></li>
+                <li>No <code data-trim>NG_VALIDATORS</code>, no <code data-trim>validate()</code> method on the component - the schema owns the rules</li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h3>Address Field</h3>
+          <p class="hint center">Exercise (3/3)</p>
+          <ol>
+            <li>In <code data-trim>PersonalInfoOverviewComponent</code>, apply the schema and mount the field
+              <ul>
+                <li>Add an <code data-trim>address: Address</code> field to its <code data-trim>PersonalInfo</code> model (with a default value) - the component already has a commented-out slot for it</li>
+                <li><code data-trim>personalInfoForm = form(this.model, (path) =&gt; apply(path.address, addressSchema));</code></li>
+                <li><code data-trim>&lt;app-address [formField]="personalInfoForm.address" /&gt;</code> - one binding, no <code data-trim>isParentSubmitted</code> workaround</li>
+                <li>On submit: <code data-trim>personalInfoForm().markAsTouched()</code> reveals every error at once</li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+
+        <section data-visibility="uncounted">
+          <h3>Address Field</h3>
+          <p class="hint center">Backup - same point, CVA flavour.</p>
+          <p class="hint center">Exercise (1/5)</p>
+          <ol>
+            <li>Add address component (ng g c address)
+              <ul>
+                <li>Implement Control Value Accessor</li>
+                <li>Define form in the template [formGroup]="form"</li>
+                <li>Add following fields (as MatInputs): street, zipCode, city</li>
+                <li>All the fields are required - add validators and mat-error</li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+
+        <section data-visibility="uncounted">
+          <h3>Address Field</h3>
+          <p class="hint center">Backup - same point, CVA flavour.</p>
+          <p class="hint center">Exercise (2/5)</p>
+          <ol>
+            <li>Implement CVA methods:
+              <ul>
+                <li>Define form in the template [formGroup]="form"</li>
+                <li>In writeValue use setValue and set emitEvent as false (good for the performance)</li>
+                <li>Use valueChanges (from form) to subscribe on changes in the registerOnChange method</li>
+                <li>All the fields are required - add validators and mat-error</li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+
+        <section data-visibility="uncounted">
+          <h3>Address Field</h3>
+          <p class="hint center">Backup - same point, CVA flavour.</p>
+          <p class="hint center">Exercise (3/5)</p>
+          <ol>
+            <li>Implement Validator in providers
+              <pre data-file="address.component.ts">
+                <code data-trim class="typescript">
+                  {
+                    provide: NG_VALIDATORS,
+                    useExisting: forwardRef(() => AddressComponent),
+                    multi: true
+                  }
+                </code>
+              </pre>
+            </li>
+            <li>Implement validate method</li>
+          </ol>
+        </section>
+
+        <section data-visibility="uncounted">
+          <h3>Address Field</h3>
+          <p class="hint center">Backup - same point, CVA flavour.</p>
+          <p class="hint center">Exercise (4/5)</p>
+          <ol>
+            <li>We need to know in the child if parent was submitted (parent has the submit button)
+              <ul>
+                <li>Define in child @Input() isParentSubmitted</li>
+                <li>Implement OnChanges interface</li>
+                <li>We need a workaround in Angular Material to trigger a validation on submit (bug in Angular
+                  Material)
+                </li>
+              </ul>
+            </li>
+          </ol>
+          <pre data-file="address.component.ts">
+            <code data-trim class="typescript">
+              Object.keys(this.form.controls).forEach(key => {
+                this.form.get(key).markAsTouched();
+              });
+            </code>
+          </pre>
+        </section>
+
+        <section data-visibility="uncounted">
+          <h3>Address Field</h3>
+          <p class="hint center">Backup - same point, CVA flavour.</p>
+          <p class="hint center">Exercise (5/5)</p>
+          <ol>
+            <li>Set an Input in parent (personal-info-overview) [isParentSubmitted]="submitted"
+              <ul>
+                <li>Define in child @Input() isParentSubmitted</li>
+                <li>Add address as a plain <code data-trim>FormControl</code> inside the component's model signal</li>
+              </ul>
+            </li>
+          </ol>
+          <p class="hint center">The adapter from <a class="slide-link" href="#/address-field-worlds">before you start</a>, in code: wrap the model with <code data-trim>compatForm</code> instead of <code data-trim>form</code> so a plain <code data-trim>FormControl</code> can live inside it as a leaf, then mount <code data-trim>&lt;app-address [formControl]="model().address" [isParentSubmitted]="submitted" /&gt;</code> exactly as CVA expects.</p>
+        </section>
+
+      </section>
+      <!-- #endregion -->
+
+      <!-- #region MARK: Slide Group: With Form Group Directive (vertical stack) -->
+      <section class="exercises">
+
+        <section id="exercise-form-group-directive">
+          <h3>With Form Group Directive</h3>
+          <div style="display:flex; align-items:center; justify-content:center; gap:0.75rem; margin:1rem 0;">
+            <div style="border:1px solid #ccc; border-radius:6px; padding:0.3rem 0.6rem; text-align:left;">
+              <div style="font-size:0.55em; color:#888; text-transform:uppercase; letter-spacing:0.05em;">First Name</div>
+              <div style="font-size:0.85em; font-family:monospace;">Juana</div>
+            </div>
+            <div style="border:1px solid #ccc; border-radius:6px; padding:0.3rem 0.6rem; text-align:left;">
+              <div style="font-size:0.55em; color:#888; text-transform:uppercase; letter-spacing:0.05em;">Last Name</div>
+              <div style="font-size:0.85em; font-family:monospace;">Garcia</div>
+            </div>
+          </div>
+          <p class="hint center">order-overview &#8594; general-info</p>
+          <p>Build an order form whose nested <code data-trim>general-info</code> component injects its own fields directly into the parent's <code data-trim>FormGroup</code> via <code data-trim>ControlContainer</code>.</p>
+          <p class="hint center">CVA-only pattern - no Signal Forms equivalent (composite values there are just nested signal slices, see <a class="slide-link" href="#/time-range-picker-combining">the Time-Range-Picker</a>).</p>
+        </section>
+
+        <section>
+          <h3>With Form Group Directive</h3>
+          <p class="hint center">Exercise (1/3)</p>
+          <ol>
+            <li>Create an order module (ng g m order)</li>
+            <li>Create order-overview component (ng g c order-overview)
+              <ul>
+                <li>This is the parent form - add [formGroup] directive</li>
+                <li>Add apply and cancel buttons</li>
+                <li>On apply show the form (rawValue) in the console</li>
+                <li>Form can be submitted only if it's valid (add a flag submitted)</li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h3>With Form Group Directive</h3>
+          <p class="hint center">Exercise (2/3)</p>
+          <ol>
+            <li>Add general-info component (ng g c general-info)
+              <ul>
+                <li>Add formGroupName (to the div in the template)</li>
+                <li>Add 2 matInputs: with first and last name</li>
+                <li>Define viewProviders ( provide: ControlContainer, useExisting: FormGroupDirective })</li>
+                <li>Inject parent in the constructor (this.form = parent)</li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h3>With Form Group Directive</h3>
+          <p class="hint center">Exercise (3/3)</p>
+          <ol>
+            <li>Build the form structure in the general-info component
+              <ul>
+                <li>Use addControl (this.form.form.addControl)</li>
+                <li>Add first and lastName controls</li>
+                <li>Add required validators for each field</li>
+                <li>Add mat-error to the template</li>
+                <li>Don't forget all needed imports in the order.module</li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+
+      </section>
+      <!-- #endregion -->
+
+      <!-- #region MARK: Slide Group: Resources (vertical stack) -->
+      <section>
+        <!-- #region MARK: Slide: Live Code Examples -->
+        <section id="examples" data-visibility="uncounted">
+          <h2>Live Code Examples</h2>
+          <ul>
+            <li><a href="https://stackblitz.com/edit/angular-control-value-accessor-simple-example-t-zxtskpj7?file=src%2Fapp%2Fapp.component.ts" target="_blank">Reactive form</a> Example in Stackblitz</li>
+            <li><a href="https://stackblitz.com/edit/angular-control-value-accessor-simple-example-t-8jfpg3ve?file=src%2Fapp%2Fapp.component.ts" target="_blank">Simple Reactive form with custom validator</a> in Stackblitz</li>
+            <li><a href="https://stackblitz.com/edit/angular-ivy-wg16x9?file=src%2Fapp%2Fhello.component.ts" target="_blank">Template-driven form</a> Example in Stackblitz</li>
+          </ul>
+        </section>
+        <!-- #endregion -->
+
+        <!-- #region MARK: Slide: Bookmarks -->
+        <section id="bookmarks" data-visibility="uncounted">
+          <h2>Bookmarks</h2>
+          <li><a href=https://angular.dev/guide/forms target="_blank">Angular Forms</a> Angular Forms</li>
+          <li><a href=https://angular.dev/api/forms/NgModelGroup target="_blank">Angular NgModelGroup Directive</a> Angular NgModelGroup Directive</li>
+          <li><a href=https://angular.dev/guide/templates/variables#template-reference-variables target="_blank">Template reference variables</a> Template reference variables</li>
+          <li><a href=https://angular.dev/api/forms/FormBuilder target="_blank">Form Builder</a> Form Builder</li>
+          <li><a href=https://codecraft.tv/courses/angular/advanced-topics/basic-custom-validators/ target="_blank">Custom Form Validators</a> Custom Form Validators</li>
+          <li><a href=https://angular.dev/api/forms/AbstractControl target="_blank">Abstract Control</a> Abstract Control</li>
+          <li><a href=https://angular.dev/api/core/Directive target="_blank">Directive</a> Directive</li>
+          <li><a href=https://angular.dev/api/forms/FormControl target="_blank">Form Control</a> Form Control</li>
+          <li><a href="https://angular.dev/guide/forms/typed-forms" target="_blank">Typed Forms</a> Typed Forms</li>
+        </section>
+        <!-- #endregion -->
+      </section>
+      <!-- #endregion -->
 
     </div>
-</div>
-
-<script src="../../node_modules/reveal.js/dist/reveal.js"></script>
-<script src="../../node_modules/reveal.js/plugin/zoom/zoom.js"></script>
-<script src="../../node_modules/reveal.js/plugin/notes/notes.js"></script>
-<script src="../../node_modules/reveal.js/plugin/search/search.js"></script>
-<script src="../../node_modules/reveal.js/plugin/markdown/markdown.js"></script>
-<script src="../../node_modules/reveal.js/plugin/highlight/highlight.js"></script>
-<script src="../../node_modules/reveal.js-menu/menu.js"></script>
-<script src="../../common/reveal-config.js"></script>
-<script>
-    Reveal.initialize({
+  </div>
+    
+    <!-- #region MARK: Config: Reveal.js Scripts & Initialization (not slide content) -->
+    <script src="../../node_modules/reveal.js/dist/reveal.js"></script>
+    <script src="../../node_modules/reveal.js/plugin/zoom/zoom.js"></script>
+    <script src="../../node_modules/reveal.js/plugin/notes/notes.js"></script>
+    <script src="../../node_modules/reveal.js/plugin/search/search.js"></script>
+    <script src="../../node_modules/reveal.js/plugin/markdown/markdown.js"></script>
+    <script src="../../node_modules/reveal.js/plugin/highlight/highlight.js"></script>
+    <script src="../../node_modules/reveal.js-menu/menu.js"></script>
+    <script src="../../common/reveal-config.js"></script>
+    <script>
+      Reveal.initialize({
         ...revealConfig, 
         plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMenu]
-    });
-</script>
-</body>
-</html>
+      });
+    </script>
+    <!-- #endregion -->
+    
+  </body>
+  </html>
+  
