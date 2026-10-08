@@ -86,6 +86,7 @@
           <section id="store-patterns">
             <h2>Scalable Store Patterns</h2>
           </section>
+
           <section data-visibility="uncounted">
             <h2>Feature Store Setup</h2>
             <ul>
@@ -106,13 +107,38 @@
               <li>Keep store aligned with routing</li>
             </ul>
           </section>
+
+          <section data-visibility="uncounted">
+            <h2>Feature Store Setup using createFeature()</h2>
+            <ul>
+              <pre class="width-100-percent">
+                            <code class="typescript" data-trim>
+                              export const counterFeature = createFeature({
+                                name: counterFeatureKey,
+                                reducer: createReducer(
+                                  initialState,
+                                  on(increment, (state) => ({ ...state, count: state.count + 1 })),
+                                  on(decrement, (state) => ({ ...state, count: state.count - 1 })),
+                                ),
+                            });
+
+                            </code>
+                        </pre>
+
+              <li>
+                Less boilerplate code: automatically generated selectors for
+                fields
+              </li>
+            </ul>
+          </section>
+
           <section>
-            <h2>Use NgRx-Entity for Collections</h2>
+            <h2>Use NgRx-Entity Adapter for Collections</h2>
             <ul>
               <pre class="width-100-percent">
                             <code class="typescript" data-trim>
                                 export interface UserState extends EntityState&lt;User&gt; {
-                                    
+                                    &lt;..additional Properties..&gt;
                                 }
                                 
                                 const userAdapter = createEntityAdapter&lt;User&gt;({
