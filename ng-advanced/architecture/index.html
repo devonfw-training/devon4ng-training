@@ -32,31 +32,6 @@
                 </div>
             </section>
             <section data-transition="slide-in fade-out" data-transition-speed="slow">
-                <ul class="blue">
-                    <li>TI-Architecture:
-                        <span>
-                            technical infrastructure...
-                        </span>
-                    </li>
-                    <li>T-Architecture:
-                        <span>
-                            technical...
-                        </span>
-                    </li>
-                    <li>A-Architecture:
-                        <span>
-                            application...
-                        </span>
-                    </li>
-                </ul>
-                <aside class="notes">
-
-                </aside>
-            </section>
-            <section data-transition="slide-in fade-out" data-transition-speed="slow">
-                <section>
-                    <h2 class="blue">TI-Architecture</h2>
-                </section>
                 <section>
                     <h3 class="blue">Past</h3>
                     <p>pageload-centric web applications</p>
@@ -89,262 +64,41 @@
                         another part.
                     </aside>
                 </section>
-                <section>
-                    <ul class="blue">
-                        <li>TI-Architecture:
-                            <span>
-                                technical infrastructure...
-                            </span>
-                            <i class="margin-left fa fa-check-circle green"></i>
-                        </li>
-                        <li>T-Architecture:
-                            <span>
-                                technical...
-                            </span>
-                        </li>
-                        <li>A-Architecture:
-                            <span>
-                                application...
-                            </span>
-                        </li>
-                    </ul>
-                    <aside class="notes">
-
-                    </aside>
-                </section>
             </section>
             <section data-transition="slide-in fade-out" data-transition-speed="slow">
-                <section>
-                    <h2 class="blue">T-Architecture</h2>
-                    <aside class="notes">
-                        difference to other architectures:
-                        <ul>
-                            <li>ti-architecture: meta architecture should work native & web and independent of place of
-                                client tier location</li>
-                            <li>a-architecture: differs from project to project</li>
-                        </ul>
-                    </aside>
-                </section>
-                <section>
-                    <figure>
-                        <img src="./img/OASP_ClientArchitecture_Overview.png" height=400
-                            alt="Client Architecture - Overview">
-                        <figcaption>Client Architecture - Overview</figcaption>
-                    </figure>
-					<p class="fragment">explained by the <a
-                            href="https://devonfw.com/docs/typescript/current/angular/meta-architecture.html">devonfw
-                            meta architecture for clients</a></p>
-
-                    <aside class="notes">
-						Open the link of the Meta Architecture two show the image with the full complexity.
-                        <ol>
-                            <li>
-                                dialog component
-                                <ul>
-                                    <li>logical, self-contained part of the ui</li>
-                                    <li>accepts user input</li>
-                                    <li>actions & controls communication with user</li>
-                                    <li>uses services to execute business logic</li>
-                                    <li>has own data, state & logic</li>
-                                    <li>can be used to form a hierarchy</li>
-                                    <li>can interact with each other</li>
-                                </ul>
-                            </li>
-                            <li>
-                                dialog container
-                                <ul>
-                                    <li>bootstrapping client</li>
-                                    <li>application & environment configuration</li>
-                                    <li>initialization of application server access</li>
-                                    <li>controlling the lifecycle</li>
-                                    <li>controlling dialog flow & interactions between dialogs</li>
-                                    <li>providing services to dialog components (i.e. caching, data storage)</li>
-                                    <li>shutdown of application</li>
-                                </ul>
-                            </li>
-                            <li>
-                                application server access
-                                <ul>
-                                    <li>
-                                        handles backend calls
-                                    </li>
-                                </ul>
-                            </li>
-                        </ol>
-                    </aside>
-                </section>
-                <section>
-                    <figure>
-                        <img src="./img/OASP_ClientArchitecture_DialogComponent.png" height=400
-                            alt="Client Architecture - Dialog Component">
-                        <figcaption>Client Architecture - Dialog Component</figcaption>
-                    </figure>
-
-                    <aside class="notes">
-                        <ul>
-                            <li>
-                                presentation layer
-                                <ul>
-                                    <li>generates and displays the user interface</li>
-                                    <li>accepts user input & actions</li>
-                                    <li>binds user interaction to dialog core layer</li>
-                                </ul>
-                            </li>
-                            <li>
-                                dialog core layer
-                                <ul>
-                                    <li>processing of user interaction</li>
-                                    <li>valdidating</li>
-                                    <li>logical dialog state</li>
-                                    <li>communication with application server</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </aside>
-                </section>
-                <section>
-                    <figure>
-                        <img src="./img/OASP_ClientArchitecture_DialogContainer.png" height=400
-                            alt="Client Architecture - Dialog Container">
-                        <figcaption>Client Architecture - Dialog Container</figcaption>
-                    </figure>
-
-                    <aside class="notes">
-                        <ul>
-                            <li>configuration management: deployment to different environments, using specific
-                                configuration there</li>
-                            <li>dialog management: defining, creating, destroying dialog components - basic lifecycle
-                                capabilities
-                            </li>
-                            <li>service registry: define, register, lookup services - independent of dialog hierarchy
-                            </li>
-                        </ul>
-                    </aside>
-                </section>
-                <section data-auto-animate>
-                    <h4 class="blue">Dialog Container - Configuration Management</h4>
-
-                    <pre><code>"environmentSource": "environments/environment.ts",
-"environments": {
-    "dev": "environments/environment.ts",
-    "ci": "environments/environment.ci.ts",
-    "staging": "environments/environment.staging.ts",
-    "prod": "environments/environment.prod.ts"
-}</code></pre>
-
-					<p class="fragment" data-fragment-index="1"></p>
-                    <pre class="fragment" data-fragment-index="1"><code>// Import Statement
-import { environment } from '../../../environments/environment';     
-// Usage
-this.http.get(environment.backendUrl + '/flights');</code></pre>
-                    <aside class="notes">
-                        <ul>
-                            <li>configuration management: deployment to different environments, using specific
-                                configuration there</li>
-                        </ul>
-                    </aside>
-                </section>
-                <section>
-                    <h4 class="blue">Dialog Container - Dialog Management</h4>
-
-                    <figure>
-                        <img src="./img/hooks-in-sequence.png" height=400 alt="Angular Lifecycle Hooks">
-                        <figcaption>Angular Lifecycle Hooks from <a
-                                href="https://v2.angular.io/docs/ts/latest/guide/lifecycle-hooks.html">angular.io</a>
-                        </figcaption>
-                    </figure>
-
-
-                    <aside class="notes">
-                        <ul>
-                            <li>dialog management: defining, creating, destroying dialog components - basic lifecycle
-                                capabilities
-                            </li>
-                        </ul>
-                    </aside>
-                </section>
-                <section>
-                    <h4 class="blue">Dialog Container - Service Registry</h4>
-
-                    <figure>
-                        <img src="./img/injector-bubbling.svg" height=400
-                            alt="Client Architecture - Dependency Management - Injectors">
-                        <figcaption>Angular Dependency Management - Injector Bubbling</figcaption>
-                    </figure>
-                    <aside class="notes">
-                        <ul>
-                            <li>service registry: define, register, lookup services - independent of dialog hierarchy
-                            </li>
-                            <li>When Angular compiler creates HeaderComponent, injectors are asked until the dependency
-                                can be found or root injector can not handle</li>
-                        </ul>
-                    </aside>
-                </section>
-                <section>
-                    <figure>
-                        <img src="./img/OASP_ClientArchitecture_DialogContainer.png" height=400
-                            alt="Client Architecture - Dialog Container">
-                        <figcaption>Client Architecture - Dialog Container</figcaption>
-                    </figure>
-
-                    <aside class="notes">
-                        <ul>
-                            <li>configuration management: deployment to different environments, using specific
-                                configuration there</li>
-                            <li>dialog management: defining, creating, destroying dialog components - basic lifecycle
-                                capabilities
-                            </li>
-                            <li>service registry: define, register, lookup services - independent of dialog hierarchy
-                            </li>
-                        </ul>
-                    </aside>
-                </section>
-                <section>
-                    <figure>
-                        <img src="./img/OASP_ClientArchitecture_DialogInteractions.png" height=400
-                            alt="Client Architecture - Dialog Interactions">
-                        <figcaption>Client Architecture - Dialog Interactions</figcaption>
-                    </figure>
-
-                    <aside class="notes">
-                        support for a-architecture
-                    </aside>
-                </section>
-                <section data-transition="slide-in fade-out" data-transition-speed="slow">
-                    <ul class="blue">
-                        <li>TI-Architecture:
-                            <span>
-                                technical infrastructure...
-                            </span>
-                            <i class="margin-left fa fa-check-circle green"></i>
-                        </li>
-                        <li>T-Architecture:
-                            <span>
-                                technical...
-                            </span>
-                            <i class="margin-left fa fa-check-circle green"></i>
-                        </li>
-                        <li>A-Architecture:
-                            <span>
-                                application...
-                            </span>
-                        </li>
-                    </ul>
-                </section>
+				<h2>devonfw Client Architecture</h2>
+				<ul>
+					<li>(Dialog) Components<br>
+						<ul class="ul-small">
+							<li>View (HTML Template)</li>
+							<li>Data / Action Bindings</li>
+						</ul>
+					</li>
+					<li>Dialog Container<br>
+						<ul class="ul-small">
+							<li>Configuration Management</li>
+							<li>Dialog Management (Component Lifecycle, Routing)</li>
+							<li>Service Registry (Providers)</li>
+							<li>State Management (e.g.: NGRX)</li>
+						</ul>
+					</li>
+					<li>Application Server Access<br>
+						<ul class="ul-small">
+							<li>HttpClient</li>
+						</ul>
+					</li>
+				</ul>
             </section>
 
             <section data-transition="slide-in fade-out" data-transition-speed="slow">
-                <section>
-                    <h2 class="blue">A-Architecture</h2>
-                </section>
                 <section>
                     <h3>
                         Terminology
                     </h3>
                     <ul>
-                        <li>A component describes an UI element containing HTML, CSS and JavaScript - structure, design
+                        <li>A <b>component</b> describes an UI element containing HTML, CSS and JavaScript - structure, design
                             and logic encapsulated inside a reusable container called component.</li>
-                        <li>A module describes an applications feature area. The application flight-app may have a
+                        <li>A <b>module</b> describes an applications feature area. The application flight-app may have a
                             module called booking. ES2015 modules are not meant here.</li>
                     </ul>
                 </section>
@@ -416,12 +170,272 @@ this.http.get(environment.backendUrl + '/flights');</code></pre>
                         </ul>
                     </aside>
                 </section>
-                <section>
+            </section>
+			<section>
+				<section id="summary">
+					<h2>Summary</h2>
+					<ul>
+						<li>Web Application Evolution</li>
+						<li>devonfw Architecture</li>
+						<li>Components & Modules</li>
+						<li>Feature Modules</li>
+						<li>Component Hierarchy</li>
+						<li>Smart & Dumb Components</li>
+					</ul>
+					<p class="hint center">Backup slides below</p>
+				</section>
+				<section id="backup" data-visibility="uncounted">
+					<h2>Backup slides</h2>
+					<p>Following slides are not subject of the lecture.<br>Ask trainers in case of questions.</p>
+				</section>
+				<section data-transition="slide-in fade-out" data-transition-speed="slow" data-visibility="uncounted">
+					<ul class="blue">
+						<li>TI-Architecture:
+							<span>
+								technical infrastructure...
+							</span>
+						</li>
+						<li>T-Architecture:
+							<span>
+								technical...
+							</span>
+						</li>
+						<li>A-Architecture:
+							<span>
+								application...
+							</span>
+						</li>
+					</ul>
+					<aside class="notes">
+
+					</aside>
+				</section>
+				<section data-visibility="uncounted">
+                    <h2 class="blue">T-Architecture</h2>
+                    <aside class="notes">
+                        difference to other architectures:
+                        <ul>
+                            <li>ti-architecture: meta architecture should work native & web and independent of place of
+                                client tier location</li>
+                            <li>a-architecture: differs from project to project</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section data-visibility="uncounted">
+                    <figure>
+                        <img src="./img/OASP_ClientArchitecture_Overview.png" height=400
+                            alt="Client Architecture - Overview">
+                        <figcaption>Client Architecture - Overview</figcaption>
+                    </figure>
+					<p class="fragment">explained by the <a
+                            href="https://devonfw.com/docs/typescript/current/angular/meta-architecture.html">devonfw
+                            meta architecture for clients</a></p>
+
+                    <aside class="notes">
+						Open the link of the Meta Architecture two show the image with the full complexity.
+                        <ol>
+                            <li>
+                                dialog component
+                                <ul>
+                                    <li>logical, self-contained part of the ui</li>
+                                    <li>accepts user input</li>
+                                    <li>actions & controls communication with user</li>
+                                    <li>uses services to execute business logic</li>
+                                    <li>has own data, state & logic</li>
+                                    <li>can be used to form a hierarchy</li>
+                                    <li>can interact with each other</li>
+                                </ul>
+                            </li>
+                            <li>
+                                dialog container
+                                <ul>
+                                    <li>bootstrapping client</li>
+                                    <li>application & environment configuration</li>
+                                    <li>initialization of application server access</li>
+                                    <li>controlling the lifecycle</li>
+                                    <li>controlling dialog flow & interactions between dialogs</li>
+                                    <li>providing services to dialog components (i.e. caching, data storage)</li>
+                                    <li>shutdown of application</li>
+                                </ul>
+                            </li>
+                            <li>
+                                application server access
+                                <ul>
+                                    <li>
+                                        handles backend calls
+                                    </li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </aside>
+                </section>
+                <section data-visibility="uncounted">
+                    <figure>
+                        <img src="./img/OASP_ClientArchitecture_DialogComponent.png" height=400
+                            alt="Client Architecture - Dialog Component">
+                        <figcaption>Client Architecture - Dialog Component</figcaption>
+                    </figure>
+
+                    <aside class="notes">
+                        <ul>
+                            <li>
+                                presentation layer
+                                <ul>
+                                    <li>generates and displays the user interface</li>
+                                    <li>accepts user input & actions</li>
+                                    <li>binds user interaction to dialog core layer</li>
+                                </ul>
+                            </li>
+                            <li>
+                                dialog core layer
+                                <ul>
+                                    <li>processing of user interaction</li>
+                                    <li>valdidating</li>
+                                    <li>logical dialog state</li>
+                                    <li>communication with application server</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </aside>
+                </section>
+                <section data-visibility="uncounted">
+                    <figure>
+                        <img src="./img/OASP_ClientArchitecture_DialogContainer.png" height=400
+                            alt="Client Architecture - Dialog Container">
+                        <figcaption>Client Architecture - Dialog Container</figcaption>
+                    </figure>
+
+                    <aside class="notes">
+                        <ul>
+                            <li>configuration management: deployment to different environments, using specific
+                                configuration there</li>
+                            <li>dialog management: defining, creating, destroying dialog components - basic lifecycle
+                                capabilities
+                            </li>
+                            <li>service registry: define, register, lookup services - independent of dialog hierarchy
+                            </li>
+                        </ul>
+                    </aside>
+                </section>
+                <section data-auto-animate data-visibility="uncounted">
+                    <h4 class="blue">Dialog Container - Configuration Management</h4>
+
+                    <pre><code>"environmentSource": "environments/environment.ts",
+"environments": {
+    "dev": "environments/environment.ts",
+    "ci": "environments/environment.ci.ts",
+    "staging": "environments/environment.staging.ts",
+    "prod": "environments/environment.prod.ts"
+}</code></pre>
+
+					<p class="fragment" data-fragment-index="1"></p>
+                    <pre class="fragment" data-fragment-index="1"><code>// Import Statement
+import { environment } from '../../../environments/environment';     
+// Usage
+this.http.get(environment.backendUrl + '/flights');</code></pre>
+                    <aside class="notes">
+                        <ul>
+                            <li>configuration management: deployment to different environments, using specific
+                                configuration there</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section data-visibility="uncounted">
+                    <h4 class="blue">Dialog Container - Dialog Management</h4>
+
+                    <figure>
+                        <img src="./img/hooks-in-sequence.png" height=400 alt="Angular Lifecycle Hooks">
+                        <figcaption>Angular Lifecycle Hooks from <a
+                                href="https://v2.angular.io/docs/ts/latest/guide/lifecycle-hooks.html">angular.io</a>
+                        </figcaption>
+                    </figure>
+
+
+                    <aside class="notes">
+                        <ul>
+                            <li>dialog management: defining, creating, destroying dialog components - basic lifecycle
+                                capabilities
+                            </li>
+                        </ul>
+                    </aside>
+                </section>
+                <section data-visibility="uncounted">
+                    <h4 class="blue">Dialog Container - Service Registry</h4>
+
+                    <figure>
+                        <img src="./img/injector-bubbling.svg" height=400
+                            alt="Client Architecture - Dependency Management - Injectors">
+                        <figcaption>Angular Dependency Management - Injector Bubbling</figcaption>
+                    </figure>
+                    <aside class="notes">
+                        <ul>
+                            <li>service registry: define, register, lookup services - independent of dialog hierarchy
+                            </li>
+                            <li>When Angular compiler creates HeaderComponent, injectors are asked until the dependency
+                                can be found or root injector can not handle</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section data-visibility="uncounted">
+                    <figure>
+                        <img src="./img/OASP_ClientArchitecture_DialogContainer.png" height=400
+                            alt="Client Architecture - Dialog Container">
+                        <figcaption>Client Architecture - Dialog Container</figcaption>
+                    </figure>
+
+                    <aside class="notes">
+                        <ul>
+                            <li>configuration management: deployment to different environments, using specific
+                                configuration there</li>
+                            <li>dialog management: defining, creating, destroying dialog components - basic lifecycle
+                                capabilities
+                            </li>
+                            <li>service registry: define, register, lookup services - independent of dialog hierarchy
+                            </li>
+                        </ul>
+                    </aside>
+                </section>
+                <section data-visibility="uncounted">
+                    <figure>
+                        <img src="./img/OASP_ClientArchitecture_DialogInteractions.png" height=400
+                            alt="Client Architecture - Dialog Interactions">
+                        <figcaption>Client Architecture - Dialog Interactions</figcaption>
+                    </figure>
+
+                    <aside class="notes">
+                        support for a-architecture
+                    </aside>
+                </section>
+                <section data-transition="slide-in fade-out" data-transition-speed="slow" data-visibility="uncounted">
+                    <ul class="blue">
+                        <li>TI-Architecture:
+                            <span>
+                                technical infrastructure...
+                            </span>
+                            <i class="margin-left fa fa-check-circle green"></i>
+                        </li>
+                        <li>T-Architecture:
+                            <span>
+                                technical...
+                            </span>
+                            <i class="margin-left fa fa-check-circle green"></i>
+                        </li>
+                        <li>A-Architecture:
+                            <span>
+                                application...
+                            </span>
+                        </li>
+                    </ul>
+                </section>
+				<section data-visibility="uncounted">
+                    <h2 class="blue">A-Architecture</h2>
+                </section>
+				<section data-visibility="uncounted">
                     <h3>Smart, Thin, Fat, Dumb, Happy, Specific..</h3>
 
                     <p>but where to put my code? 😕</p>
                 </section>
-                <section>
+                <section data-visibility="uncounted">
                     <h3>Template (HTML)</h3>
                     <h4>Dumb & Declarative</h4>
                     <div class="img-grid">
@@ -455,7 +469,7 @@ this.http.get(environment.backendUrl + '/flights');</code></pre>
                         </div>
                     </div>
                 </section>
-                <section>
+                <section data-visibility="uncounted">
                     <h3>Component (TS)</h3>
                     <h4>Smart & Thin</h4>
                     <div class="img-grid">
@@ -497,7 +511,7 @@ this.http.get(environment.backendUrl + '/flights');</code></pre>
                         </div>
                     </div>
                 </section>
-                <section>
+                <section data-visibility="uncounted">
                     <h3>Services</h3>
                     <h4>Fat, Happy and Specific</h4>
                     <div class="img-grid">
@@ -519,7 +533,7 @@ this.http.get(environment.backendUrl + '/flights');</code></pre>
                         </div>
                     </div>
                 </section>
-                <section>
+                <section data-visibility="uncounted">
                     <h4>State Management</h4>
                     <figure>
                         <img src="./img/ui-fn.png" height=300>
@@ -529,7 +543,7 @@ this.http.get(environment.backendUrl + '/flights');</code></pre>
                         </figcaption>
                     </figure>
                 </section>
-                <section>
+                <section data-visibility="uncounted">
                     <h4>...with store</h4>
                     <figure>
                         <img src="./img/store-view-actions.png" height=300>
@@ -548,7 +562,7 @@ this.http.get(environment.backendUrl + '/flights');</code></pre>
                         </ul>
                     </aside>
                 </section>
-                <section>
+                <section data-visibility="uncounted">
                     <ul class="blue">
                         <li>TI-Architecture:
                             <span>
@@ -570,7 +584,7 @@ this.http.get(environment.backendUrl + '/flights');</code></pre>
                         </li>
                     </ul>
                 </section>
-            </section>
+			</section>
         </div>
     </div>
 
