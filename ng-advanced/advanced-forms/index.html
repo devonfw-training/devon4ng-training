@@ -316,8 +316,84 @@
         <!-- #endregion -->
       </section>
       <!-- #endregion -->
-      
-      <!-- #region MARK: Signal Forms - Binding to Input Fields (vertical stack) -->
+
+      <section>
+        <p><code>form()</code> creates a Field Tree (Callable Structure). Calling the resulting function accesses the Field State. Dot-Notation (login.email) traverses the object as usual</p>
+        <pre data-file="app.ts">
+          <code data-trim class="typescript">
+            loginModel = signal&lt;LoginData&gt;({
+              email: '',
+              password: '',
+            });
+
+            loginForm = form(this.loginModel);
+          </code>
+        </pre>
+        <pre data-file="app.ts">
+          <code data-trim class="typescript">
+            loginForm                 // FieldTree&lt;LoginData&gt;
+            loginForm()               // FieldState&lt;LoginData&gt;
+            loginForm.email           // FieldTree&lt;string&gt;
+            loginForm.email()         // FieldState&lt;string&gt;
+            loginForm.email().value   // WritableSignal&lt;string&gt;
+            loginForm.email().value() // tatsächlicher String-Wert
+          </code>
+        </pre>
+        <pre data-file="abstract field tree">
+          <code data-trim class="typescript">
+            loginForm: FieldTree&lt;LoginData&gt;
+            ├── ()             → FieldState&lt;LoginData&gt;
+            ├── email          → FieldTree&lt;string&gt;
+            │   └── ()         → FieldState&lt;string&gt;
+            └── password       → FieldTree&lt;string&gt;
+                └── ()         → FieldState&lt;string&gt;
+          </code>
+        </pre>
+      </section>
+
+      <section>
+        <h3>Callable Structures</h3>
+        <p>Angular uses callable structures to represent complex state of signal forms objects, 
+          allowing functions to have properties that can also hold state.</p>
+        <pre data-file="javascript">
+          <code data-trim class="typescript">
+              function address() { return 'Address State'; }
+              // A function can have properties
+              address.street = function () { return 'Street State'; };
+          </code>
+        </pre>
+        <pre data-file="javascript">
+          <code data-trim class="typescript">
+            address()         // Funktionsaufruf
+            address.street    // Property-Zugriff
+            address.street()  // Property-Zugriff + Funktionsaufruf
+          </code>
+        </pre>
+      </section>
+
+      <section>
+        <h3>Field State</h3>
+        <p>The Field State represents the current state of a form field. This is what is available to you when using native Fields</p>
+        <pre data-file="field state">
+          <code data-trim class="typescript">
+            interface FieldState&lt;string&gt; {
+              readonly fieldTree: FieldTree&lt;unknown&gt;;
+
+              readonly value: WritableSignal&lt;string&gt;;
+              readonly controlValue: WritableSignal&lt;string&gt;;
+
+              readonly disabled: Signal&lt;boolean&gt;;
+              readonly readonly: Signal&lt;boolean&gt;;
+              readonly required: Signal&lt;boolean&gt;;
+              readonly touched: Signal&lt;boolean&gt;;
+              markAsTouched(options?): void;
+                [...]
+            }
+          </code>
+        </pre>
+      </section>
+
+      <!-- #region MARK: Slide Group: Signal Forms - Binding to Input Fields (vertical stack) -->
       <section>
         <!-- #region MARK: Signal Forms - Binding to Input Fields -->
         <section>
@@ -765,6 +841,8 @@
       </section>
 
       <!-- #region MARK: Custom Control Interfaces - CVA vs Signal Forms -->
+      
+      <!-- #region MARK: Slide: Custom Control Interfaces - CVA vs Signal Forms -->
       <section>
         <h3>Custom Control Interfaces: CVA vs Signal Forms</h3>
         <table class="size-medium">
@@ -913,6 +991,30 @@
           - Simplified: the real implementation also handles value parsing, min/max, &lt;select&gt; option tracking, etc.
           - Key line for this topic: host.listenToDom('blur', () =&gt; parent.state().markAsTouched())
         </aside>
+      </section>
+      <!-- #endregion -->
+         
+      <!-- #region MARK: Slide Group: What a Native Field Already Gives You (vertical stack) -->
+      <section>
+        <h3>Field State</h3>
+        <p>The Field State represents the current state of a form field. This is what is available to you when using native Fields</p>
+        <pre data-file="field state">
+          <code data-trim class="typescript">
+            interface FieldState&lt;string&gt; {
+              readonly fieldTree: FieldTree&lt;unknown&gt;;
+
+              readonly value: WritableSignal&lt;string&gt;;
+              readonly controlValue: WritableSignal&lt;string&gt;;
+
+              readonly disabled: Signal&lt;boolean&gt;; // =&gt; Control
+              readonly readonly: Signal&lt;boolean&gt;; // =&gt; Control
+              readonly required: Signal&lt;boolean&gt;; // =&gt; Control
+              readonly touched: Signal&lt;boolean&gt;;  // &lt;= Control
+              markAsTouched(options?): void;            // =&gt; Control
+              [...]
+            }
+          </code>
+        </pre>
       </section>
       <!-- #endregion -->
 
@@ -2322,6 +2424,6 @@
     </script>
     <!-- #endregion -->
     
-  </body>
-  </html>
+</body>
+</html>
   
