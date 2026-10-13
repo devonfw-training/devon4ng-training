@@ -1459,7 +1459,7 @@
           <pre data-file="time-picker.ts">
               <code data-trim class="typescript max-height-unset">
                 export class TimePicker implements FormValueControl&lt;Time&gt; {
-                  value = model<Time>({ hours: 9, minutes: 0, period: 'am' });
+                  value = model&lt;Time&gt;({ hours: 9, minutes: 0, period: 'am' });
                   invalid = input(false);
                   errors = input&lt;ValidationError[]&gt;()
 
@@ -1468,7 +1468,7 @@
                       isValidClockNumbers(raw)
                         ? { value: raw } 
                         : { error: { kind: 'parse', message: 'Hours must be 1-12, minutes 0-59' } },
-                    format: (val) => val,
+                    format: (val) =&gt; val,
                   });
 
                   protected setHours(hours: number)    { this.rawValue.update(v => ({ ...v, hours })); }
@@ -1714,8 +1714,8 @@
                 });
 
                 // reads value().from/to directly - no extra signal needed to stay in sync
-                protected setFrom(from: Time) { this.value.update(v => ({ ...v, from })); }
-                protected setTo(to: Time)     { this.value.update(v => ({ ...v, to })); }
+                protected setFrom(from: Time) { this.value.update(v =&gt; ({ ...v, from })); }
+                protected setTo(to: Time)     { this.value.update(v =&gt; ({ ...v, to })); }
               }
             </code>
           </pre>
@@ -1889,11 +1889,11 @@
         <p class="hint center">app-time-range-picker</p>
         <pre data-file="time-range-picker.schema.ts">
           <code data-trim class="typescript max-height-unset">
-            // shipped alongside the control — the intrinsic "from < to" rule, not a business rule
-          export const timeRangeSchema = schema<TimeRange>((path) => {
+            // shipped alongside the control — the intrinsic "from &lt; to" rule, not a business rule
+          export const timeRangeSchema = schema&lt;TimeRange&gt;((path) => {
             validateTree(path, (ctx) => {
               const { from, to } = ctx.value();
-              return toMinutes(from) < toMinutes(to)
+              return toMinutes(from) &lt; toMinutes(to)
                 ? null
                 : {
                     kind: 'rangeOrder',
