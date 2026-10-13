@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Swagger</title>
+    <link rel="icon" href="../../common/img/favicon.ico">
+
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" href="../../node_modules/reveal.js/dist/reveal.css">
+    <link rel="stylesheet" href="../../node_modules/reveal.js/dist/theme/white.css">
+    <link rel="stylesheet" href="../../common/css/common.css">
+    
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../../common/css/github-gist.css">
+
+</head>
+<body>
+<section class="devon-link">
+    <a href="http://devonfw.github.io" target="_blank"><img height="30px" src="../../common/img/devon_logo_blue.png"></a>
+</section>
+<section class="angular-link">
+    <a href="http://angular.io" target="_blank"><img height="50px" src="../../common/img/angular.svg"></a>
+</section>
+<div class="devon reveal">
+    <div class="slides">
+        <section>
+            <h1>Swagger</h1>
+			<p class="align_right"><small><a href="https://swagger.io/docs/specification/about/">Swagger Docs</a></small></p>
+        </section>
+		<section>
+			<h3>Open API</h3>
+            <p>OpenAPI Specification (formerly Swagger Specification) is an API description format for REST APIs. An OpenAPI file allows you to describe your entire API.</p>
+        </section>
+		<section>
+			<p>Available endpoints (/users) and operations on each endpoint (GET /users, POST /users)</p>
+			<p>Operation parameters Input and output for each operation</p>
+			<p>Authentication methods</p>
+			<p>Contact information, license, terms of use and other information.</p>
+        </section>
+		<section>
+			<h3>Swagger</h3>
+            <p>Swagger is a set of open-source tools built around the OpenAPI Specification that can help you design, build, document and consume REST APIs.</p>
+        </section>
+		<section>
+            <p>The major Swagger tools include:</p>
+			<p>Swagger Editor – browser-based editor where you can write OpenAPI specs.</p>
+			<p>Swagger UI – renders OpenAPI specs as interactive API documentation.</p>
+			<p>Swagger Codegen – generates server stubs and client libraries from an OpenAPI spec.</p>
+        </section>
+    </div>
+</div>
+
+<script src="../../node_modules/reveal.js/dist/reveal.js"></script>
+<script src="../../node_modules/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="../../node_modules/reveal.js/plugin/notes/notes.js"></script>
+<script src="../../node_modules/reveal.js/plugin/search/search.js"></script>
+<script src="../../node_modules/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="../../node_modules/reveal.js/plugin/highlight/highlight.js"></script>
+<script src="../../node_modules/reveal.js-menu/menu.js"></script>
+<script src="../../common/reveal-config.js"></script>
+<script>
+    Reveal.initialize({
+		...revealConfig, 
+		plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMenu]
+	});
+</script>
+</body>
+</html>

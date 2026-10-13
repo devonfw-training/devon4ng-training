@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Web Application Architecture</title>
+
+    <meta name="description" content="Web Application Architecture">
+    <meta name="author" content="Tim Lüecke, Marek Matczak">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" href="../../node_modules/reveal.js/dist/reveal.css">
+    <link rel="stylesheet" href="../../node_modules/reveal.js/dist/theme/white.css" id="theme">
+
+    <link rel="stylesheet" href="../../common/css/common.css">
+    <link rel="stylesheet" href="css/own.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../../common/css/github-gist.css">
+
+</head>
+
+<body>
+<style>
+div.slides section img {
+    border: none;
+    box-shadow: none;
+    margin: 0;
+}
+
+.image-box {
+    display:flex;
+    align-items: center;
+}
+</style>
+<div class="reveal">
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+        <section>
+            <p>
+                <img class="plain no-border" height="300" src="img/architecture.jpg">
+            </p>
+            <h2>Web Application Architecture</h2>
+            <p>Philip Schmökel, Tim Lüecke, Marek Matczak</p>
+        </section>
+        <section
+            data-background-image="img/rewrite-frontend-every-six-weeks.jpg"
+            data-background-size="contain">
+        </section>
+        <section>
+            <h2>Client Infrastructure</h2>
+            <p>(a.k.a. TI-Architecture)</p>
+        </section>
+        <section>
+            <h3>Pageload-centric web applications</h3>
+            <p>... are the predominant architecture of the past.</p>
+            <img class="plain no-border" height="300" src="img/classical-web-apps.png">
+        </section>
+        <section>
+            <p>
+                The content of each web page is fully <strong>rendered on the server</strong>.
+            </p>
+            <p>
+                Each action requires a <strong>round trip to the server</strong> which contains presentation logic and application state.
+            </p>
+        </section>
+        <section>
+            <h3>Single Page Applications</h3>
+            <img class="plain no-border" height="300" src="img/spas.png">
+        </section>
+        <section>
+            <p>
+                A page's content is retrieved with a <strong>single page load</strong>. </p>
+            <p>
+                The page <strong>does not reload</strong> any more.
+            </p>
+        </section>
+        <section>
+            <h2>Client Architecture</h2>
+            <p>(a.k.a. T-Architecture)</p>
+        </section>
+        <section>
+            <h3>Model View Controller</h3>
+            <div>
+                <img class="plain no-border" height="300" src="img/mvc.png">
+            </div>
+        </section>
+        <section>
+            <h3>Model View Presenter</h3>
+            <img class="plain no-border" height="300" src="img/mvp.png">
+             <aside class="notes">
+               <ul>
+                 <li>Presenter is capable of receiving events from the view</li>
+               </ul>
+             </aside>
+        </section>
+        <section>
+            <h3>Model View View Model</h3>
+            <img class="plain no-border" height="300" src="img/mvvm.png">
+        </section>
+        <section>
+            <h3>
+                <strong>
+                    <a href="https://martinfowler.com/bliki/CQRS.html">CQRS</a>
+                </strong> / 
+                <strong>
+                    Event Sourcing
+                </strong>
+            </h3>
+            <p>... commonly called <strong>Reactive Architecture</strong> or <strong>Flux</strong></p>
+            <img class="plain no-border" height="400" src="img/redux-architecture.svg">
+            <aside class="notes">
+                    <ul>
+                      <li>Command Query Responsibility Segregation</li>
+                      <li>use a different model to update information than the model you use to read information</li>
+                    </ul>
+                </aside>
+        </section>
+        <section>
+            <section>
+                <p>But is this really sufficient for building large scalable applications?</p>
+                <p class="fragment">... here are a few questions.</p>
+            </section>
+            <section>
+                <p>How to structure huge applications?</p>
+            </section>
+            <section>
+                <p>How is the data <strong>converted</strong> from model to view?</p>
+            </section>
+            <section>
+                <p>Where does <strong>Internationalization</strong> happen?</p>
+            </section>
+            <section>
+                <p>What about <strong>validation</strong> of user input?</p>
+            </section>
+            <section>
+                <p>How does the client <strong>talk to the application core</strong>?</p>
+            </section>
+            <section>
+                <p>What about dialog <strong>states</strong> and widget states?</p>
+            </section>
+            <section>            
+                <p>What about states that are <strong>dependent on other states</strong>?</p>
+            </section>
+            <section>
+                <p>How to design state controlling if an <strong>action</strong> can be executed or not?</p>
+            </section>
+            <section>
+                <p>How does the <strong>model</strong> look exactly?</p>
+            </section>        
+        </section>
+        <section>
+            <section
+                data-background-image="img/onedoesnotsimplybuild.jpg"
+                data-background-size="contain">
+            </section>
+            <section>
+                <p>Projects gone wrong. Let's look at a few examples.</p>                
+            </section>
+            <section>
+                <p>It's done! Does it work in IE? Err... Avoid rolling your own if there is a library!</p>            
+            </section>
+            <section>
+                <p>Browser tab grows to 2GB, unresponsive script warnings. Dialogs were not unloaded.</p>
+            </section>
+            <section>
+                <p>Unlimited loading of data to the client. Do paging, filtering, sorting, and grouping on the server side!</li>
+            </section>
+            <section>
+                <p>Mass manipulation in the DOM caused unnecessary rendering of intermediate results (forced reflow). Render at the end!</p>
+            </section>
+            <section>
+                <p>Methods reused at the wrong level cause duplicate calls and performance issues. Event listeners triggering new
+                        events are hard to debug. Avoid!</p>        
+            </section>        
+        </section>
+        <section>
+            <h2>Let's step back</h2>
+            <p>What we are trying to achieve, is a <strong>maintainable</strong> and <strong>performant</strong> client.</p>
+            <p>For that we need to handle its <strong>static</strong> and <strong>dynamic</strong> complexity.</p>
+        </section>
+        <section>
+            <h3>Static complexity comes in two dimensions</h3>
+            <ul>
+                <li>Functional complexity</li>
+                <li>Technical complexity</li>
+            </ul>
+        </section>
+        <section>
+            <h3>Dynamic complexity needs to consider</h3>
+            <ul>
+                <li>Amount of processed data</li>
+                <li>Granularity of backend calls</li>
+                <li>Target Platform/Browser</li>
+                <li>UI Frameworks to be used</li>
+                <li>...</li>
+            </ul>
+        </section>
+        <section>
+            <section>
+                <h2>Handling Functional Complexity</h2>
+            </section>
+            <section>
+                <p>Split applications into <strong>functional components</strong> handling a specific functional concern.</p>
+            </section>
+            <section>
+                <h2>Entering component-oriented architecture</h2>                    
+                <img class="no-border" src="img/component-oriented-architecture.svg" alt="">
+            </section>
+            <section>
+                <h2>A Component?</h2>
+                <p>Features of components</p>
+                <ul>
+                    <li>Providing services to other components via interfaces</li>
+                    <li>Depends on other components by importing their services</li>
+                    <li>Encapsulated: implementation can be replaced</li>
+                    <li>Element of reuse</li>
+                    <li>Composed of other components (composition hierarchy)</li>
+                    <li>Feasible unit of construction, implementation and planning</li>
+                </ul>
+            </section>
+            <section>
+                <p>On the client components are called <strong>dialogs</strong>.</p>                    
+            </section>
+            <section>
+                <h3>How do we handle dialogs like this?</h3>
+                <img class="plain no-border" src="img/complex-dialog.png" />
+            </section>
+            <section>
+                <h3>Functional decomposition into dialog components</h3>
+                <img class="plain no-border" height="300px" src="img/complex-dialog-decomposed.png" >
+                <img class="plain no-border" height="300px" src="img/complex-dialog-hierarchy.png" />
+                <p>Car configurator could then be reused for public website.</p>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>Handling Technical Complexity</h2>
+            </section>
+            <section>
+                <h2>Technical Tasks of a client</h2>
+                <ul>
+                    <li>Displaying the user interface</li>
+                    <li>Displaying (business) data</li>
+                    <li>Accepting user input</li>
+                    <li>Controlling the dialog and dialog flow</li>
+                    <li>Validating of user input</li>
+                    <li>Controlling the presentation state</li>           
+                    <li>Calling the server for logic</li>
+                </ul>
+            </section>
+            <section>
+                <h2>devonfw Client Meta Architecture</h2>
+                <img class="no-border" height="350px" src="img/devonfw_ClientArchitecture_Overview.png" />
+            </section>
+            <section>
+                <h2>Dialog Container Architecture</h2>
+                <p>The container is responsible for the configuration, lifecycle-management and bootstrapping of the dialogs and client application.</p>
+                <img class="plain no-border" src="img/devonfw_ClientArchitecture_DialogContainer.png" />
+                <p>Mostly provided by framework, but might need to be extended.</p>
+            </section>
+            <section>
+                <h2>Dialog Components</h2>
+                <img class="plain no-border" src="img/devonfw_ClientArchitecture_DialogInteractions.png" />
+                <p>Dialog components interact by either embedding each other or forwarding the control flow to each other.</p>
+            </section>
+            <section>
+                <h3>devonfw Dialog Component Meta Architecture</h3>
+                <div style="display:flex;">
+                    <img class="no-border" style="height:200px;" src="img/single-dialog-component-highlighted.png" alt="">
+                    <img class="plain no-border" style="height:400px;margin-left:0" src="img/devonfw_ClientArchitecture_DialogComponent.png" />
+                </div>
+                <p>This meta architecture maps to MVC, MVP, MVVM...</p>
+            </section>
+        </section>
+        <section
+            data-background-image="img/devonfw_ClientArchitecture_CompleteOverview.png"
+            data-background-size="contain">
+        </section>
+        <section>
+            <p>The devonfw Client Architecture is a <strong>meta-architecture</strong> for architectures based on a concrete framework:</p>
+            <ul>
+                <li>serving as a blueprint for checking completeness</li>
+                <li>providing a stable orientation</li>
+            </ul>
+        </section>
+        <section>
+            <h3>Now let's move to Angular...</h3>
+            <h4>... and see the different concepts in action.</h4>
+        </section>
+        <section>
+            <section>
+                <h2>devon4ng Architecture</h2>
+                <h3>Based on Angular</h3>
+                <ul>
+                    <li>Implementation of meta-architecture based on Angular</li>
+                    <li>Taking over the Angular best practices</li>
+                    <li>Filling the gaps where needed</li>
+                </ul>
+            </section>
+            <section>
+                <p>Mapping the Dialog Container...</p>
+                <img class="no-border" style="height:400px" src="img/devonfw_ClientArchitecture_DialogContainer.png" alt="">
+            </section>
+            <section>
+                <img class="no-border" style="height:400px" src="img/config-management-highlighted.png" alt="">
+            </section>
+            <section>
+                <h3>Angular Configuration Management</h3>
+                <h4>Definition</h4>
+                <pre data-trim><code data-trim class="json">
+"configurations": {
+  "production": {
+    "fileReplacements": [
+      {
+        "replace": "src/environments/environment.ts",
+        "with": "src/environments/environment.prod.ts"
+      }
+    ]
+  }
+}
+                </code></pre>
+            </section>
+            <section>
+                <p>angular.json</p>
+                <img style="border: none; box-shadow: none" src="./img/angular-configuration-management.svg">
+            </section>
+            <section>
+                <h3>Angular Configuration Management</h3>
+                <h4>Usage</h4>
+                <pre data-trim><code data-trim class="typescript">
+// Import Statement
+import { environment } from '../../../environments/environment';
+                </code></pre>
+                <pre data-trim><code data-trim class="typescript">
+// Usage
+this.http.get&lt;Flight[]&gt;(environment.backendUrl + '/flights');
+                </code></pre>
+                <p>The import statement does not change when changing the environment.</p>
+            </section>
+            <section>
+                <img class="no-border" style="height:400px" src="img/dialog-management-highlighted.png" alt="">
+            </section>
+            <section>
+                <h3>Angular Component Lifecycle</h3>
+                <img class="no-border" src="img/hooks-in-sequence.png" alt="">
+            </section>
+            <section>
+                <img class="no-border" style="height:400px" src="img/service-registry-highlighted.png" alt="">
+            </section>
+            <section>
+                <h3>Angular Dialog / Dependency Management</h3>
+                <img style="border: none; box-shadow: none; height:400px" src="./img/injector-bubbling.svg" alt="">
+                <p style="margin: 0; padding: 0">When Angular compiler creates HeaderComponent injectors are asked until the dependency can be found or root injector can not handle</p>
+            </section>
+            <section>
+                <p>Angular Modules help to structure the client</p>
+                <img style="border: none; box-shadow: none" src="./img/angular-module-dependencies.svg">
+                <p>core.module contains shared services.</p>
+                <p>share.module contains shared components.</p>
+            </section>
+            <section>
+                <p>A feature module encapsulates <strong>dialog components and functionality</strong> of one business domain.</p>
+                <p>Note: Multiple dialog components can be part of a feature module.</p>
+            </section>
+            <section>
+                <h3>The Angular Component Tree</h3>
+                <img class="no-border" src="img/component-tree.svg">
+            </section>
+            <section>
+                <img class="no-border" style="height:400px" src="img/highlighted-smart-component.png" alt="">            
+                <p>A <strong>Dialog Component</strong> is typically an Angular toplevel component, that is activated by a route.</p>
+            </section>
+            <section>
+                <h3>Dialog Components</h3>
+                <img class="no-border" src="img/component-tree-highlight.svg">
+            </section>
+            <section id="smart-vs-dumb-components">
+                <img style="border: none; box-shadow: none" src="./img/smart-dumb-components-interaction.svg">
+                <p>A <strong>must-know</strong> pattern: Smart vs Dumb Components</p>
+            </section>
+            <section>
+                <table style="width: 100%; font-size: 26px">
+                    <thead>
+                        <tr style="font-size: 45px;">
+                            <td style="width: 50%">Smart Components</td>
+                            <td style="width: 50%">Dumb Components</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>contain the current view state</td>
+                            <td data-markdown>show data via `@Input` binding and contain no view state</td>
+                        </tr>
+                        <tr>
+                            <td data-markdown>handle events emited by _Dumb Components_</td>
+                            <td data-markdown>pass events up the component tree to be handled by _Smart Components_ (`@Output`)</td>
+                        </tr>
+                        <tr>
+                            <td>subscribe to application state from stores</td>
+                            <td>never use stores</td>
+                        </tr>
+                        <tr>
+                            <td data-markdown>consists of n _Dumb Components_</td>
+                            <td data-markdown>is independent of _Smart Components_</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section>
+                <h3 data-markdown>A _Smart Component_ is typically a toplevel dialog</h3>
+                <ul>
+                    <li>a component that can be routed to</li>
+                    <li>a modal dialog</li>
+                    <li>a component which is placed inside AppComponent</li>
+                </ul>
+            </section>
+        </section>
+    </div>
+</div>
+<script src="../../node_modules/reveal.js/dist/reveal.js"></script>
+<script src="../../node_modules/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="../../node_modules/reveal.js/plugin/notes/notes.js"></script>
+<script src="../../node_modules/reveal.js/plugin/search/search.js"></script>
+<script src="../../node_modules/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="../../node_modules/reveal.js/plugin/highlight/highlight.js"></script>
+<script src="../../node_modules/reveal.js-menu/menu.js"></script>
+<script src="../../common/reveal-config.js"></script>
+<script>
+    Reveal.initialize({
+		...revealConfig, 
+		plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMenu]
+	});
+</script>
+
+</body>
+
+</html>

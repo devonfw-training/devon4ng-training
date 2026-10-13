@@ -1,0 +1,255 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Angular Router</title>
+    <link rel="icon" href="../../common/img/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" href="../../node_modules/reveal.js/dist/reveal.css">
+    <link rel="stylesheet" href="../../node_modules/reveal.js/dist/theme/white.css">
+    <link rel="stylesheet" href="../../common/css/common.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../../common/css/github-gist.css">
+
+</head>
+<body>
+<section class="devon-link">
+	<a href="http://devonfw.github.io" target="_blank"><img height="30px" src="../../common/img/devon_logo_blue.png"></a>
+</section>
+<section class="angular-link">
+    <a href="http://angular.io" target="_blank"><img height="50px" src="../../common/img/angular.svg"></a>
+</section>
+<div class="devon reveal">
+    <div class="slides">
+        <section>
+            <h1>Routing</h1>
+			<img class="reset" src="img/router-1-anim.gif">
+			<p><small><a target="_blank" href="https://angular.io/docs/ts/latest/guide/router.html">https://angular.io/docs/ts/latest/guide/router.html</a></small><p>
+        </section>
+		
+        <section>
+            <p>The Angular <span class="highlight">Router</span> enables navigation from one <span class="highlight">view</span> to the next as users perform application tasks.</p>
+			<p> It can interpret a browser URL as an instruction to navigate to a client-generated view and pass optional parameters along to the supporting view component to help it decide what specific content to present</p>
+        </section>
+		
+		<section>
+			<h2>Router Core Principle</h2>
+            <img class="reset" src="img/component-tree.svg">
+        </section>
+		
+		<section>
+			<h2>Router Core Operations</h2>
+			<div style="position:relative; width:640px; height:480px; margin:0 auto;">
+			<img style="position:absolute;top:0;left:0;" class="reset" src="img/router_apply_redirects.png">
+			<img style="position:absolute;top:0;left:0;" class="reset fragment " src="img/router_recognizing_state.png">
+			<img style="position:absolute;top:0;left:0;" class="reset fragment " src="img/router_guards_resolve.png">
+			<img style="position:absolute;top:0;left:0;" class="reset fragment " src="img/router_activate_components.png">
+			<img style="position:absolute;top:0;left:0;" class="reset fragment " src="img/router_navigate.png">
+			<img style="position:absolute;top:0;left:0;" class="reset fragment " src="img/router_diagram.png">
+			</div>
+			<p><small><a target="_blank" href="https://vsavkin.com/angular-2-router-d9e30599f9ea#.8dn6hooyh">https://vsavkin.com/angular-2-router</a></small><p>
+		</section>
+		
+        <section>
+			<section>
+				<h2>Simple Router Configuration Steps</h2>
+				<ul>
+					<li class="fragment fade-up">ensure that <span class="highlight">base href</span> is set in index.html</li>
+					<li class="fragment fade-up">importing from the <span class="highlight">router library</span></li>
+					<li class="fragment fade-up">configuring the <span class="highlight">router</span> paths</li>
+					<li class="fragment fade-up">inserting <span class="highlight">&lt;router-outlet&gt;&lt;/router-outlet&gt;</span></li>
+					<li class="fragment fade-up">building simple navigation with <span class="highlight">routerLink</span> directive</li>
+					<li class="fragment fade-up">navigating from component's code</li>
+				</ul>
+			</section>
+			
+			<section>
+				<h3>base href</h3>
+				<p>The <span class="highlight">base</span> tag tells the router how to compose navigation URLs.</p>
+				<pre><code class="html"  data-trim>
+<!-- index.html file-->
+
+&lt;head&gt;
+  &lt;base href="/"&gt;
+				</code></pre>
+			</section>
+			
+			<section>
+				<h3>Router imports</h3>
+				<ul>
+					<li><span class="highlight">RouterModule</span> - A separate Angular module that provides the necessary service providers and directives for navigating through application views.</li>
+					<li><span class="highlight">Routes</span> - Defines an array of Routes, each mapping a URL path to a component.</li>
+				</ul>
+				<pre><code class="hljs typescript"  data-trim>// AppModule.ts
+import { RouterModule, Routes } from '@angular/router';
+				</code></pre>
+			</section>
+			
+			
+			<section>
+				<h3>Paths configuration</h3>
+				<pre><code class="hljs typescript"  data-trim> // AppModule.ts
+const appRoutes: Routes = [
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'heroes', component: HeroesComponent },
+  { path: '**', component: PageNotFoundComponent }
+];
+
+@NgModule({
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot(appRoutes)
+  ],
+  declarations: [ ... ],
+  bootstrap: [ ... ]
+})
+				</code></pre>
+			</section>
+
+			<section>
+				<h3>Router Outlet</h3>
+
+				<pre><code class="html"  data-trim>
+&lt;router-outlet&gt;&lt;/router-outlet&gt;
+<!-- Routed views go here -->
+				</code></pre>
+			</section>
+
+			<section>
+				<h3>Router Link</h3>
+
+				<pre><code class="html"  data-trim>
+&lt;nav&gt;
+   &lt;a routerLink="/heroes" routerLinkActive="active"&gt;Heroes&lt;/a&gt;
+&lt;/nav&gt;
+				</code></pre>
+			</section>
+
+			<section>
+				<h3>Navigating from component's code</h3>
+
+				<pre><code class="hljs typescript"  data-trim> //*.component.ts
+// import
+import { Router } from '@angular/router';
+...
+// injection
+constructor(private router: Router) {}
+...
+// navigation
+this.router.navigate(['/dashboard']);
+				</code></pre>
+			</section>
+			<section>
+				<h3>Main Navigation Example</h3>
+
+				<pre><code class="html max-height-unset"  data-trim><!-- *.component.html file -->
+<nav>
+  <ul>
+    <li>
+      <a [routerLink]="['/']" routerLinkActive="active" >Home</a>
+    </li>
+    <li>
+      <a [routerLink]="['/feature1']" routerLinkActive="active" >Awesome Feature</a>
+    </li>
+    <li>
+    <a [routerLink]="['/about']" routerLinkActive="active" >About</a>
+    </li>
+  </ul>
+</nav>
+<router-outlet></router-outlet>
+				</code></pre>
+			</section>
+        </section>
+
+		<section>
+			<section>
+				<h3>Routing with path variables</h3>
+				<ul>
+					<li class="">configuring the <span class="highlight">router</span> paths with variables</li>
+					<li class="">building navigation with <span class="highlight">routerLink</span> directive</li>
+					<li class="">receiving <span class="highlight">params</span> from a route</li>
+				</ul>
+			</section>
+
+			<section>
+				<h3>routes configuration</h3>
+				<pre><code class="hljs typescript"  data-trim>
+const appRoutes: Routes = [
+  { path: 'hero/:id', component: HeroDetailComponent }
+];
+				</code></pre>
+			</section>
+			
+			<section>
+				<h3>routerLink directive for paths with variables</h3>
+				<pre><code class="html"  data-trim>
+<!--template-->
+&lt;a *ngFor="let hero of heroes" [routerLink]="['/hero', hero.id]"&gt;
+				</code></pre>
+			</section>
+				
+			<section>
+				<h3>Receiving params from a path</h3>
+				<pre class="width-100-percent"><code class="max-height-unset typescript" data-trim>
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+
+export class HeroDetailsComponent implements OnInit {
+
+  hero$: Observable&lt;Hero&gt;;
+
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private heroService: HeroService
+  ) { }
+
+  ngOnInit() {
+    this.hero$ = this.activatedRoute.params.pipe(
+      switchMap(params => this.heroService.getHero(params.id))
+    );
+  }
+}
+				</code></pre>
+
+			</section>
+				
+		</section>
+		<section>
+			<section id="summary">
+				<h2>Summary</h2>
+				<ul>
+					<li>Router Core Principle & Operations</li>
+					<li>Configuration Steps</li>
+					<li>Usage of path variables</li>
+				</ul>
+				<p class="hint center">Live Code Examples below</p>
+		    </section>
+			<section id="examples" data-visibility="uncounted"><h2>Live Code Example</h2>
+					<li><a href="https://stackblitz.com/edit/stackblitz-starters-vvryx1?file=package.json" target="_blank">Routing</a></li>
+			</section>
+		</section>
+    </div>
+</div>
+
+<script src="../../node_modules/reveal.js/dist/reveal.js"></script>
+<script src="../../node_modules/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="../../node_modules/reveal.js/plugin/notes/notes.js"></script>
+<script src="../../node_modules/reveal.js/plugin/search/search.js"></script>
+<script src="../../node_modules/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="../../node_modules/reveal.js/plugin/highlight/highlight.js"></script>
+<script src="../../node_modules/reveal.js-menu/menu.js"></script>
+<script src="../../common/reveal-config.js"></script>
+<script>
+    Reveal.initialize({
+		...revealConfig, 
+		plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMenu]
+	});
+</script>
+</body>
+</html>
