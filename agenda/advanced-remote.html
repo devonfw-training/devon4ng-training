@@ -1,40 +1,67 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
 
-<head>
-	<meta charset="utf-8">
+    <title>devonfw Angular Advanced</title>
+    <link rel="icon" href="../common/img/favicon.ico" />
+    <meta name="description" content="Richwebclient" />
+    <meta name="author" content="Richwebclient Team" />
 
-	<title>devonfw Angular Advanced</title>
-	<link rel="icon" href="../common/img/favicon.ico">
-	<meta name="description" content="Richwebclient">
-	<meta name="author" content="Richwebclient Team">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
 
-	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Ubuntu+Mono"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Ubuntu"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../node_modules/reveal.js/dist/reveal.css" />
+    <link
+      rel="stylesheet"
+      href="../node_modules/reveal.js/dist/theme/simple.css"
+      id="theme"
+    />
+    <link rel="stylesheet" href="../common/css/common.css" />
+  </head>
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-	<link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-	<link rel="stylesheet" href="../node_modules/reveal.js/dist/reveal.css">
-	<link rel="stylesheet" href="../node_modules/reveal.js/dist/theme/simple.css" id="theme">
-	<link rel="stylesheet" href="../common/css/common.css">
-</head>
-
-<body>
-	<style>
-
-	</style>
-	<div class="reveal">
-		<div class="slides">
-			<section data-background-size="70% auto" data-background-position="0% 0%" data-background-image="../common/img/shapes/Fixed_Shape_1_SVG/Fixed_Shape_1_CapgeminiBlue_RGB.svg">
-				<div class="width-60-percent" style="position: absolute; top:250px; right: 0px;">
-					<h1 class="header-align-right">Angular Advanced Agenda</h1>
-					<p class="header-align-right">Deep Dive into Forms and Data, Async Programming, Testing and More</p>
-					<p class="header-align-right">Please prepare the training: <a href="../ng-advanced/preparation/index.html" target="_blank">Preparation</a></p> 
-				</div>
-			</section>
-			<section data-markdown>
-				<textarea data-template>
+  <body>
+    <style></style>
+    <div class="reveal">
+      <div class="slides">
+        <section
+          data-background-size="70% auto"
+          data-background-position="0% 0%"
+          data-background-image="../common/img/shapes/Fixed_Shape_1_SVG/Fixed_Shape_1_CapgeminiBlue_RGB.svg"
+        >
+          <div
+            class="width-60-percent"
+            style="position: absolute; top: 250px; right: 0px"
+          >
+            <h1 class="header-align-right">Angular Advanced Agenda</h1>
+            <p class="header-align-right">
+              Deep Dive into Forms and Data, Async Programming, Testing and More
+            </p>
+            <p class="header-align-right">
+              Please prepare the training:
+              <a href="../ng-advanced/preparation/index.html" target="_blank"
+                >Preparation</a
+              >
+            </p>
+          </div>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
 | Day 1        		  | Times |
 | :---------------- |:--- |
 | Warm-up | 09:00 
@@ -42,61 +69,69 @@
 | <a href="../ng-advanced/asynchronous-development/index.html" target="_blank">Asynchronous development and JS Engine</a> | 11:00
 |
 | <a href="../ng-advanced/rxjs/index.html" target="_blank">rxjs levelling Up</a> and time for <a href="https://github.com/devonfw-ng-adv-training/rxjs-exercises" target="_blank">exercise</a> | 13:00
-				</textarea>
-			</section>
-			<section data-markdown>
-				<textarea data-template>
+				</textarea
+          >
+        </section>
+        <section data-markdown>
+          <textarea data-template>
 | Day 2        		  | Times |
 | :---------------- |:--- |
 | <a href="https://github.com/devonfw-ng-adv-training/rxjs-exercises" target="_blank">rxjs exercise</a> discussion  | 09:00
 | <a href="../ng-advanced/elements/index.html" target="_blank">Microfrontends</a> & <a href="../ng-advanced/architecture/index.html" target="_blank">Architecture recap</a> | 09:30
 | Modul federation: <a href="https://www.angulararchitects.io/en/blog/the-microfrontend-revolution-module-federation-in-webpack-5/" target="_blank">angulararchitects.io</a> & <a href="https://www.angulararchitects.io/en/blog/the-microfrontend-revolution-part-2-module-federation-with-angular/" target="_blank">part 2</a> | 10:00
-| <a href="../ng-signals/advanced.html" target="_blank">Signals</a>  and time for exercises | 10:15
+| <a href="../ng-signals/advanced.html" target="_blank">Signals</a>  and time for <a href="../ng-signals/advanced.html#/exercises" target="_blank">exercises</a> | 10:15
 |
 | Exercise discussion | 14:00
 | <a href="../ng-advanced/advanced-forms/index.html#/advanced-forms" target="_blank">Forms deep dive</a> and time for <a href="../ng-advanced/advanced-forms/index.html#/exercises" target="_blank">CVA and Nested Forms Exercises</a> | 14:30
-				</textarea>
-			</section>
-			<section data-markdown>
-				<textarea data-template>
+				</textarea
+          >
+        </section>
+        <section data-markdown>
+          <textarea data-template>
 | Day 3        		  | Times |
 | :---------------- |:--- |
 | <a href="../ng-advanced/advanced-forms/index.html#/exercises" target="_blank">CVA and Nested Forms Exercises</a> discussion  | 09:00
 | <a href="../e2e-cypress/index.html" target="_blank">Cypress</a>, <a href="../ng-advanced/testing/index.html" target="_blank">Testing</a> or <a href="../ng-advanced/dependency-injection/index.html" target="_blank">Dependency Injection</a> | 10:00
 | Lessons learned & questions from you | 11:00
 | Feedback  | 12:30
-				</textarea>
-			</section>
-		</div>
-
-	</div>
-	<script src="../node_modules/reveal.js/dist/reveal.js"></script>
-	<script src="../node_modules/reveal.js/plugin/zoom/zoom.js"></script>
-	<script src="../node_modules/reveal.js/plugin/notes/notes.js"></script>
-	<script src="../node_modules/reveal.js/plugin/search/search.js"></script>
-	<script src="../node_modules/reveal.js/plugin/markdown/markdown.js"></script>
-	<script src="../node_modules/reveal.js/plugin/highlight/highlight.js"></script>
-	<script src="../node_modules/reveal.js-menu/menu.js"></script>
-	<script src="../common/reveal-config.js"></script>
-	<script>
-		Reveal.initialize({
-			...revealConfig, 
-			plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMenu],
-			width: "100%", height: "100%",
-			menu: {
-				hideMissingTitles: true,
-				custom: true,
-				custom: [
-					{
-						title: "Links",
-						icon: '<i class="fa fa-link">',
-						src: "./../ng-advanced/common/navigation/links.html",
-					},
-				],
-			}, 
-		});
-	</script>
-
-</body>
-
+				</textarea
+          >
+        </section>
+      </div>
+    </div>
+    <script src="../node_modules/reveal.js/dist/reveal.js"></script>
+    <script src="../node_modules/reveal.js/plugin/zoom/zoom.js"></script>
+    <script src="../node_modules/reveal.js/plugin/notes/notes.js"></script>
+    <script src="../node_modules/reveal.js/plugin/search/search.js"></script>
+    <script src="../node_modules/reveal.js/plugin/markdown/markdown.js"></script>
+    <script src="../node_modules/reveal.js/plugin/highlight/highlight.js"></script>
+    <script src="../node_modules/reveal.js-menu/menu.js"></script>
+    <script src="../common/reveal-config.js"></script>
+    <script>
+      Reveal.initialize({
+        ...revealConfig,
+        plugins: [
+          RevealZoom,
+          RevealNotes,
+          RevealSearch,
+          RevealMarkdown,
+          RevealHighlight,
+          RevealMenu,
+        ],
+        width: "100%",
+        height: "100%",
+        menu: {
+          hideMissingTitles: true,
+          custom: true,
+          custom: [
+            {
+              title: "Links",
+              icon: '<i class="fa fa-link">',
+              src: "./../ng-advanced/common/navigation/links.html",
+            },
+          ],
+        },
+      });
+    </script>
+  </body>
 </html>
